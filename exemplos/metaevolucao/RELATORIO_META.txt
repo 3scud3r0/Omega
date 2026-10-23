@@ -1,0 +1,11 @@
+ÔMEGA 1.2 — Autoevolução finita de política de busca
+Espaço completo de programas candidatos: 625
+Tarefas: 8 de treinamento, 8 reservadas para teste; total 16 gates booleanos.
+Número de políticas verificadas em cada geração: 1, 11, 243
+Código executável Ômega de prioridade gerado e executado sobre os 625 candidatos.
+Custo total de treino: 2902 -> 617 -> 481
+Custo total em tarefas reservadas: 3106 -> 648 -> 437
+Política final: [1, -1, 0, 0, 0]
+Domínio exaustivo: 16 tarefas, universo de hipóteses 625, espaço de políticas 243.
+Prova de completude do espaço de hipóteses: True
+IMPORTANTE: melhoria em domínio finito NÃO é prova de AGI, evolução ilimitada ou segurança geral.

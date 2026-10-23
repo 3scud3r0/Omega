@@ -1,0 +1,223 @@
+{
+  "formato": "omega-ir-1",
+  "versao_compilador": "0.4.0",
+  "sha256_fonte": "4d296c053e304864b2b53410773377a2db01000eac0e5a028525599bbe1f7e4d",
+  "comandos": [
+    {
+      "tipo": "parametro_tensor",
+      "nome": "W",
+      "parametro": "matriz",
+      "expressao": {
+        "tipo": "lista",
+        "itens": [
+          {
+            "tipo": "lista",
+            "itens": [
+              {
+                "tipo": "num",
+                "valor": "2"
+              },
+              {
+                "tipo": "num",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipo": "lista",
+            "itens": [
+              {
+                "tipo": "num",
+                "valor": "0"
+              },
+              {
+                "tipo": "num",
+                "valor": "1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "parametro_tensor",
+      "nome": "b",
+      "parametro": "vetor",
+      "expressao": {
+        "tipo": "lista",
+        "itens": [
+          {
+            "tipo": "num",
+            "valor": "1"
+          },
+          {
+            "tipo": "un",
+            "op": "-",
+            "arg": {
+              "tipo": "num",
+              "valor": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "vetor",
+      "nome": "x",
+      "parametro": "",
+      "expressao": {
+        "tipo": "lista",
+        "itens": [
+          {
+            "tipo": "num",
+            "valor": "1"
+          },
+          {
+            "tipo": "num",
+            "valor": "2"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "tensor",
+      "nome": "predicao",
+      "parametro": "",
+      "expressao": {
+        "tipo": "bin",
+        "op": "+",
+        "esq": {
+          "tipo": "bin",
+          "op": "@",
+          "esq": {
+            "tipo": "var",
+            "nome": "W"
+          },
+          "dir": {
+            "tipo": "var",
+            "nome": "x"
+          }
+        },
+        "dir": {
+          "tipo": "var",
+          "nome": "b"
+        }
+      }
+    },
+    {
+      "tipo": "perda",
+      "nome": "objetivo",
+      "parametro": "",
+      "expressao": {
+        "tipo": "chamada",
+        "funcao": "dot",
+        "args": [
+          {
+            "tipo": "var",
+            "nome": "predicao"
+          },
+          {
+            "tipo": "var",
+            "nome": "predicao"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "mostrar",
+      "nome": "W",
+      "parametro": ""
+    },
+    {
+      "tipo": "mostrar",
+      "nome": "b",
+      "parametro": ""
+    },
+    {
+      "tipo": "mostrar",
+      "nome": "predicao",
+      "parametro": ""
+    },
+    {
+      "tipo": "mostrar",
+      "nome": "objetivo",
+      "parametro": ""
+    },
+    {
+      "tipo": "gradientes",
+      "nome": "objetivo",
+      "parametro": ""
+    },
+    {
+      "tipo": "gradiente",
+      "nome": "objetivo",
+      "parametro": "W"
+    },
+    {
+      "tipo": "gradiente",
+      "nome": "objetivo",
+      "parametro": "b"
+    },
+    {
+      "tipo": "passo",
+      "nome": "objetivo",
+      "parametro": "W",
+      "taxa": {
+        "tipo": "bin",
+        "op": "/",
+        "esq": {
+          "tipo": "num",
+          "valor": "1"
+        },
+        "dir": {
+          "tipo": "num",
+          "valor": "16"
+        }
+      }
+    },
+    {
+      "tipo": "passo",
+      "nome": "objetivo",
+      "parametro": "b",
+      "taxa": {
+        "tipo": "bin",
+        "op": "/",
+        "esq": {
+          "tipo": "num",
+          "valor": "1"
+        },
+        "dir": {
+          "tipo": "num",
+          "valor": "16"
+        }
+      }
+    },
+    {
+      "tipo": "mostrar",
+      "nome": "W",
+      "parametro": ""
+    },
+    {
+      "tipo": "mostrar",
+      "nome": "b",
+      "parametro": ""
+    },
+    {
+      "tipo": "mostrar",
+      "nome": "predicao",
+      "parametro": ""
+    },
+    {
+      "tipo": "mostrar",
+      "nome": "objetivo",
+      "parametro": ""
+    }
+  ],
+  "tipos": {
+    "W": "ParametroMatriz[2,2]",
+    "b": "ParametroVetor[2]",
+    "x": "Vetor[2]",
+    "predicao": "Vetor[2]",
+    "objetivo": "Polinomio"
+  }
+}

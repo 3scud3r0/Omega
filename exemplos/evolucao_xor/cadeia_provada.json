@@ -1,0 +1,65 @@
+{
+  "dominio": "Bool²",
+  "formato": "omega-evolution-cert-1",
+  "geracoes": [
+    {
+      "anterior": "GENESIS",
+      "fonte": "# Programa sintetizado automaticamente por Omega.\nparametro x = 0;\nparametro y = 0;\nparametro esperado = 0;\ntensor soma_xy = x + y + 0;\ntensor h0 = relu(relu(soma_xy));\ntensor h1 = relu(soma_xy - 1);\ntensor h2 = relu(soma_xy - 2);\ntensor saida = (0) * h0 + (0) * h1 + (0) * h2 + 0;\nperda custo = (saida - esperado)^2;\nmostrar saida;\n",
+      "genes": [
+        0,
+        0,
+        0
+      ],
+      "id": "fc56bb9d36d4ad37f827c8779047f55077531d70f6afec637fbbeacc16b5856c",
+      "perda": "2",
+      "raio": 0,
+      "sha256_fonte": "7f7852321df9d559cab160d4ee8967c787d3288dba89e83e8e8c1ea8544c1255",
+      "tabela": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "anterior": "fc56bb9d36d4ad37f827c8779047f55077531d70f6afec637fbbeacc16b5856c",
+      "fonte": "# Programa sintetizado automaticamente por Omega.\nparametro x = 0;\nparametro y = 0;\nparametro esperado = 0;\ntensor soma_xy = x + y + 0;\ntensor h0 = relu(relu(soma_xy));\ntensor h1 = relu(soma_xy - 1);\ntensor h2 = relu(soma_xy - 2);\ntensor saida = (1) * h0 + (-1) * h1 + (0) * h2 + 0;\nperda custo = (saida - esperado)^2;\nmostrar saida;\n",
+      "genes": [
+        1,
+        -1,
+        0
+      ],
+      "id": "e0a5255ea65c4942a858b6e713b81dda87818809f970ccc0ee8c1879015e9942",
+      "perda": "1",
+      "raio": 1,
+      "sha256_fonte": "7c0fbbc9b8a4402a898c0b0159d0e6c30f82c6e834f58f9bff635d79614686e8",
+      "tabela": [
+        "0",
+        "1",
+        "1",
+        "1"
+      ]
+    },
+    {
+      "anterior": "e0a5255ea65c4942a858b6e713b81dda87818809f970ccc0ee8c1879015e9942",
+      "fonte": "# Programa sintetizado automaticamente por Omega.\nparametro x = 0;\nparametro y = 0;\nparametro esperado = 0;\ntensor soma_xy = x + y + 0;\ntensor h0 = relu(relu(soma_xy));\ntensor h1 = relu(soma_xy - 1);\ntensor h2 = relu(soma_xy - 2);\ntensor saida = (1) * h0 + (-2) * h1 + (0) * h2 + 0;\nperda custo = (saida - esperado)^2;\nmostrar saida;\n",
+      "genes": [
+        1,
+        -2,
+        0
+      ],
+      "id": "11c0a6168204b3f90f1df5f32e2c16c97ad83753d4c03cf8f84bc29004cc872b",
+      "perda": "0",
+      "raio": 2,
+      "sha256_fonte": "9b339367766e416f1d7477bc4947b14fc22a5da3e871edda0b825b98b2a42a99",
+      "tabela": [
+        "0",
+        "1",
+        "1",
+        "0"
+      ]
+    }
+  ],
+  "propriedade": "erro_quadratico_exaustivo",
+  "raio_maximo": 2
+}

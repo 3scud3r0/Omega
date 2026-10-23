@@ -1,0 +1,7 @@
+# Transformações estruturais locais: eliminam transpostas e ReLU repetidas.
+parametro matriz W = [[1, 2], [3, 4]];
+vetor x = [2, 1];
+tensor Wduplo = transposta(transposta(W));
+tensor ativacao = relu(relu(Wduplo @ x));
+perda custo = dot(ativacao, ativacao) + 0;
+mostrar custo;

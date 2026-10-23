@@ -1,0 +1,5 @@
+parametro x = 3;
+perda objetivo = x^2;
+# Erro detectado ANTES de executar qualquer comando:
+# "objetivo" é do tipo Polinomio, não Parametro.
+gradiente objetivo em objetivo;

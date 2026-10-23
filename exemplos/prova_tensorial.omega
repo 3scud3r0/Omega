@@ -1,0 +1,4 @@
+# A linearidade matricial é provada elemento a elemento.
+matriz A = [[1, 2], [3, 4]];
+teorema distributividade = A @ ([u, v] + [a, b]) == A @ [u, v] + A @ [a, b];
+verificar distributividade;

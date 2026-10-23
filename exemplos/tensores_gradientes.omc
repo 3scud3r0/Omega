@@ -1,0 +1,255 @@
+{
+  "formato": "omega-ir-1",
+  "versao_compilador": "0.3.0",
+  "sha256_fonte": "6ca6631d180a425b80dbec7a30f5cfab3912d661f7a0851ac1a444e806ca7cb4",
+  "comandos": [
+    {
+      "tipo": "parametro",
+      "nome": "x",
+      "parametro": "",
+      "expressao": {
+        "tipo": "num",
+        "valor": "2"
+      }
+    },
+    {
+      "tipo": "parametro",
+      "nome": "y",
+      "parametro": "",
+      "expressao": {
+        "tipo": "un",
+        "op": "-",
+        "arg": {
+          "tipo": "num",
+          "valor": "1"
+        }
+      }
+    },
+    {
+      "tipo": "matriz",
+      "nome": "A",
+      "parametro": "",
+      "expressao": {
+        "tipo": "lista",
+        "itens": [
+          {
+            "tipo": "lista",
+            "itens": [
+              {
+                "tipo": "num",
+                "valor": "2"
+              },
+              {
+                "tipo": "num",
+                "valor": "1"
+              }
+            ]
+          },
+          {
+            "tipo": "lista",
+            "itens": [
+              {
+                "tipo": "num",
+                "valor": "1"
+              },
+              {
+                "tipo": "num",
+                "valor": "3"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "vetor",
+      "nome": "v",
+      "parametro": "",
+      "expressao": {
+        "tipo": "lista",
+        "itens": [
+          {
+            "tipo": "var",
+            "nome": "x"
+          },
+          {
+            "tipo": "var",
+            "nome": "y"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "tensor",
+      "nome": "z",
+      "parametro": "",
+      "expressao": {
+        "tipo": "bin",
+        "op": "@",
+        "esq": {
+          "tipo": "var",
+          "nome": "A"
+        },
+        "dir": {
+          "tipo": "var",
+          "nome": "v"
+        }
+      }
+    },
+    {
+      "tipo": "mostrar",
+      "nome": "z",
+      "parametro": ""
+    },
+    {
+      "tipo": "perda",
+      "nome": "objetivo",
+      "parametro": "",
+      "expressao": {
+        "tipo": "chamada",
+        "funcao": "dot",
+        "args": [
+          {
+            "tipo": "var",
+            "nome": "z"
+          },
+          {
+            "tipo": "var",
+            "nome": "z"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "mostrar",
+      "nome": "objetivo",
+      "parametro": ""
+    },
+    {
+      "tipo": "gradientes",
+      "nome": "objetivo",
+      "parametro": ""
+    },
+    {
+      "tipo": "passo",
+      "nome": "objetivo",
+      "parametro": "x",
+      "taxa": {
+        "tipo": "bin",
+        "op": "/",
+        "esq": {
+          "tipo": "num",
+          "valor": "1"
+        },
+        "dir": {
+          "tipo": "num",
+          "valor": "8"
+        }
+      }
+    },
+    {
+      "tipo": "mostrar",
+      "nome": "objetivo",
+      "parametro": ""
+    },
+    {
+      "tipo": "gradientes",
+      "nome": "objetivo",
+      "parametro": ""
+    },
+    {
+      "tipo": "teorema",
+      "nome": "linearidade",
+      "parametro": "",
+      "expressao": {
+        "tipo": "bin",
+        "op": "@",
+        "esq": {
+          "tipo": "var",
+          "nome": "A"
+        },
+        "dir": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "var",
+                "nome": "x"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            },
+            {
+              "tipo": "var",
+              "nome": "y"
+            }
+          ]
+        }
+      },
+      "direita": {
+        "tipo": "bin",
+        "op": "+",
+        "esq": {
+          "tipo": "bin",
+          "op": "@",
+          "esq": {
+            "tipo": "var",
+            "nome": "A"
+          },
+          "dir": {
+            "tipo": "lista",
+            "itens": [
+              {
+                "tipo": "var",
+                "nome": "x"
+              },
+              {
+                "tipo": "var",
+                "nome": "y"
+              }
+            ]
+          }
+        },
+        "dir": {
+          "tipo": "bin",
+          "op": "@",
+          "esq": {
+            "tipo": "var",
+            "nome": "A"
+          },
+          "dir": {
+            "tipo": "lista",
+            "itens": [
+              {
+                "tipo": "var",
+                "nome": "y"
+              },
+              {
+                "tipo": "num",
+                "valor": "0"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "tipo": "verificar",
+      "nome": "linearidade",
+      "parametro": ""
+    }
+  ],
+  "tipos": {
+    "x": "Parametro",
+    "y": "Parametro",
+    "A": "Matriz[2,2]",
+    "v": "Vetor[2]",
+    "z": "Vetor[2]",
+    "objetivo": "Polinomio",
+    "linearidade": "Prova"
+  }
+}

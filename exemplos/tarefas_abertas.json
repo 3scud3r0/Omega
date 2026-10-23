@@ -1,0 +1,10 @@
+{
+  "tasks": [
+    {"id":"paridade3", "arity":3, "outputs":[0,1,1,0,1,0,0,1]},
+    {"id":"maioria3", "arity":3, "outputs":[0,0,0,1,0,1,1,1]},
+    {"id":"e4", "arity":4, "outputs":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]},
+    {"id":"ou4", "arity":4, "outputs":[0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+    {"id":"paridade4", "arity":4, "outputs":[0,1,1,0,1,0,0,1,1,0,0,1,0,1,1,0]}
+  ],
+  "train_ids": ["paridade3","maioria3","e4"]
+}

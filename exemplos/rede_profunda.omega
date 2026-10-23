@@ -1,0 +1,15 @@
+# Ômega 1.0: rede não linear com duas camadas e gradientes racionais.
+parametro matriz W1 = [[2, -1], [1, 1]];
+parametro vetor b1 = [0, 1];
+parametro matriz W2 = [[1, 2]];
+parametro vetor b2 = [0];
+vetor entrada = [1, 2];
+tensor camada = relu(W1 @ entrada + b1);
+tensor camada_idempotente = relu(camada);
+tensor predicao = W2 @ camada_idempotente + b2;
+perda custo = dot(predicao, predicao);
+gradientes custo;
+passo custo em W2 taxa 1/128;
+passo_livre custo em b1 taxa 1/256;
+passo_ruidoso custo em W1 taxa 1/512 semente 42;
+mostrar custo;

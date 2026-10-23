@@ -1,0 +1,19 @@
+# Ômega 0.4: matrizes/vetores treináveis e certificados independentes.
+parametro matriz W = [[2, 0], [0, 1]];
+parametro vetor b = [1, -1];
+vetor x = [1, 2];
+tensor predicao = W @ x + b;
+perda objetivo = dot(predicao, predicao);
+mostrar W;
+mostrar b;
+mostrar predicao;
+mostrar objetivo;
+gradientes objetivo;
+gradiente objetivo em W;
+gradiente objetivo em b;
+passo objetivo em W taxa 1/16;
+passo objetivo em b taxa 1/16;
+mostrar W;
+mostrar b;
+mostrar predicao;
+mostrar objetivo;

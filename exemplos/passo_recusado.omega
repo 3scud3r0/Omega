@@ -1,0 +1,4 @@
+parametro x = 3;
+perda erro = (x - 1)^2;
+# Gradiente em x = 4; taxa 2 propõe x = -5 e piora o erro de 4 para 36.
+passo erro em x taxa 2;

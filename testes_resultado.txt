@@ -1,0 +1,31 @@
+ERRO ÔMEGA: [Errno 2] No such file or directory: '/tmp/tmp_1_eivuy/evolucao/NAO.json'
+ERRO ÔMEGA: Número de nós inválido
+----------------------------------------------------------------------
+Ran 218 tests in 26.545s
+
+OK
+AUDITORIA APROVADA: {"geracoes": 3, "erro_final": "0", "xor_exaustivamente_provado": true, "nos_iniciais": 31, "nos_finais": 27}
+CADEIA VÁLIDA: 3 gerações; XOR demonstrado: True
+META AUDITORIA APROVADA: {"geracoes": 3, "treino": [2902, 617, 481], "teste": [3106, 648, 437], "completude_16": true, "hipoteses": 625, "politicas_finais_verificadas": 243}
+CERTIFICADO META VÁLIDO: 16 tarefas, 625 hipóteses, 243 políticas finais
+parâmetro x = 2
+perda f = 4
+passo ACEITO: x 2 -> 1; f 4 -> 1
+VÁLIDO: 3 comandos; 1 certificados clássicos
+Otimizado: 4 -> 3 nós; 1 regras
+IR: /tmp/tmpv4hlf3c_/opt.omc | Prova: /tmp/tmpv4hlf3c_/p.json
+VALIDADO: 1 transformação(ões) local(is) de IR
+declarado: x
+declarado: f
+f = 2
+Compilado para IR tensorial: /tmp/tmpyep8oez_/p.omc
+declarado: W
+declarado: b
+declarado: x
+declarado: h
+declarado: custo
+passo W: 10 -> 45/32 (taxa 1/16)
+custo = 45/32
+Certificados salvos: /tmp/tmpyep8oez_/c.json
+VERIFICADO: 1 certificado(s)
+Fatos numéricos exportados: /tmp/tmpyep8oez_/proof.lean (execute `lake env lean` com Mathlib)

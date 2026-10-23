@@ -1,0 +1,2 @@
+# Deve ser rejeitado: uma identidade matemática falsa.
+provar (a + b)^2 == a^2 + b^2;

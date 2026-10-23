@@ -1,0 +1,6 @@
+# Omega 1.3: programa substituivel de priorizacao
+parametro nos = 0;
+parametro profundidade = 0;
+parametro operacoes = 0;
+tensor prioridade = (0) * nos + (0) * profundidade + (1) * operacoes;
+mostrar prioridade;

@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "linguagem-omega"
+version = "1.3.0"
+description = "Linguagem Ômega: IR tensorial exata, ReLU, certificados operacionais e transformações verificáveis e autoevolução limitada de políticas"
+requires-python = ">=3.10"
+
+[project.scripts]
+omega = "omega.cli:principal"
+omegac = "omega.cli:compilador_principal"
+
+[tool.setuptools]
+packages = ["omega", "omega_open"]

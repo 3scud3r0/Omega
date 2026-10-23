@@ -1,0 +1,11 @@
+# Programa sintetizado automaticamente por Omega.
+parametro x = 0;
+parametro y = 0;
+parametro esperado = 0;
+tensor soma_xy = x + y + 0;
+tensor h0 = relu(relu(soma_xy));
+tensor h1 = relu(soma_xy - 1);
+tensor h2 = relu(soma_xy - 2);
+tensor saida = (0) * h0 + (0) * h1 + (0) * h2 + 0;
+perda custo = (saida - esperado)^2;
+mostrar saida;

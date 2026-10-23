@@ -1,0 +1,352 @@
+{
+  "comandos": [
+    {
+      "nome": "a",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "b",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "c",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "d",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "prioridade",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "prioridade",
+      "tipo": "mostrar"
+    }
+  ],
+  "formato": "omega-ir-2",
+  "nos": [
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "nome": "a",
+      "op": "param"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "nome": "b",
+      "op": "param"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "nome": "c",
+      "op": "param"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "nome": "d",
+      "op": "param"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [
+        1
+      ],
+      "forma": [],
+      "op": "relu"
+    },
+    {
+      "args": [
+        1
+      ],
+      "forma": [],
+      "op": "neg"
+    },
+    {
+      "args": [
+        10
+      ],
+      "forma": [],
+      "op": "relu"
+    },
+    {
+      "args": [
+        9,
+        11
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [
+        3
+      ],
+      "forma": [],
+      "op": "relu"
+    },
+    {
+      "args": [
+        3
+      ],
+      "forma": [],
+      "op": "neg"
+    },
+    {
+      "args": [
+        14
+      ],
+      "forma": [],
+      "op": "relu"
+    },
+    {
+      "args": [
+        13,
+        15
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [
+        12,
+        16
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [
+        5
+      ],
+      "forma": [],
+      "op": "relu"
+    },
+    {
+      "args": [
+        5
+      ],
+      "forma": [],
+      "op": "neg"
+    },
+    {
+      "args": [
+        19
+      ],
+      "forma": [],
+      "op": "relu"
+    },
+    {
+      "args": [
+        18,
+        20
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [
+        17,
+        21
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [
+        7
+      ],
+      "forma": [],
+      "op": "relu"
+    },
+    {
+      "args": [
+        7
+      ],
+      "forma": [],
+      "op": "neg"
+    },
+    {
+      "args": [
+        24
+      ],
+      "forma": [],
+      "op": "relu"
+    },
+    {
+      "args": [
+        23,
+        25
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [
+        22,
+        26
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [
+        8,
+        27
+      ],
+      "forma": [],
+      "op": "*"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [
+        29,
+        1
+      ],
+      "forma": [],
+      "op": "*"
+    },
+    {
+      "args": [
+        28,
+        30
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [
+        32,
+        3
+      ],
+      "forma": [],
+      "op": "*"
+    },
+    {
+      "args": [
+        31,
+        33
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [
+        35,
+        5
+      ],
+      "forma": [],
+      "op": "*"
+    },
+    {
+      "args": [
+        34,
+        36
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [
+        38,
+        7
+      ],
+      "forma": [],
+      "op": "*"
+    },
+    {
+      "args": [
+        37,
+        39
+      ],
+      "forma": [],
+      "op": "+"
+    }
+  ],
+  "parametros": [
+    {
+      "id": 1,
+      "inicial": 0,
+      "nome": "a"
+    },
+    {
+      "id": 3,
+      "inicial": 2,
+      "nome": "b"
+    },
+    {
+      "id": 5,
+      "inicial": 4,
+      "nome": "c"
+    },
+    {
+      "id": 7,
+      "inicial": 6,
+      "nome": "d"
+    }
+  ],
+  "perdas": {},
+  "simbolos": {
+    "a": 1,
+    "b": 3,
+    "c": 5,
+    "d": 7,
+    "prioridade": 40
+  },
+  "versao": "1.0.0"
+}
