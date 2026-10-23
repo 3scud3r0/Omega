@@ -1,0 +1,263 @@
+{
+  "comandos": [
+    {
+      "nome": "x",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "y",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "esperado",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "soma_xy",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "h0",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "h1",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "h2",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "saida",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "custo",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "saida",
+      "tipo": "mostrar"
+    }
+  ],
+  "formato": "omega-ir-2",
+  "nos": [
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "nome": "x",
+      "op": "param"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "nome": "y",
+      "op": "param"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "nome": "esperado",
+      "op": "param"
+    },
+    {
+      "args": [
+        1,
+        3
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [
+        6
+      ],
+      "forma": [],
+      "op": "relu"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "1"
+    },
+    {
+      "args": [
+        6,
+        9
+      ],
+      "forma": [],
+      "op": "-"
+    },
+    {
+      "args": [
+        10
+      ],
+      "forma": [],
+      "op": "relu"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "2"
+    },
+    {
+      "args": [
+        6,
+        12
+      ],
+      "forma": [],
+      "op": "-"
+    },
+    {
+      "args": [
+        13
+      ],
+      "forma": [],
+      "op": "relu"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "1"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "2"
+    },
+    {
+      "args": [
+        16
+      ],
+      "forma": [],
+      "op": "neg"
+    },
+    {
+      "args": [
+        17,
+        11
+      ],
+      "forma": [],
+      "op": "*"
+    },
+    {
+      "args": [
+        8,
+        18
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [
+        20,
+        14
+      ],
+      "forma": [],
+      "op": "*"
+    },
+    {
+      "args": [
+        19,
+        21
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [
+        22,
+        5
+      ],
+      "forma": [],
+      "op": "-"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "2"
+    },
+    {
+      "args": [
+        24,
+        25
+      ],
+      "forma": [],
+      "op": "^"
+    }
+  ],
+  "parametros": [
+    {
+      "id": 1,
+      "inicial": 0,
+      "nome": "x"
+    },
+    {
+      "id": 3,
+      "inicial": 2,
+      "nome": "y"
+    },
+    {
+      "id": 5,
+      "inicial": 4,
+      "nome": "esperado"
+    }
+  ],
+  "perdas": {
+    "custo": 26
+  },
+  "simbolos": {
+    "custo": 26,
+    "esperado": 5,
+    "h0": 8,
+    "h1": 11,
+    "h2": 14,
+    "saida": 22,
+    "soma_xy": 6,
+    "x": 1,
+    "y": 3
+  },
+  "versao": "1.0.0"
+}

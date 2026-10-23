@@ -1,0 +1,421 @@
+{
+  "formato": "omega-ir-2",
+  "versao": "1.0.0",
+  "nos": [
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "2"
+    },
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "1"
+    },
+    {
+      "op": "neg",
+      "args": [
+        1
+      ],
+      "forma": []
+    },
+    {
+      "op": "stack",
+      "args": [
+        0,
+        2
+      ],
+      "forma": [
+        2
+      ]
+    },
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "1"
+    },
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "1"
+    },
+    {
+      "op": "stack",
+      "args": [
+        4,
+        5
+      ],
+      "forma": [
+        2
+      ]
+    },
+    {
+      "op": "stack",
+      "args": [
+        3,
+        6
+      ],
+      "forma": [
+        2,
+        2
+      ]
+    },
+    {
+      "op": "param",
+      "args": [],
+      "forma": [
+        2,
+        2
+      ],
+      "nome": "W1"
+    },
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "0"
+    },
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "1"
+    },
+    {
+      "op": "stack",
+      "args": [
+        9,
+        10
+      ],
+      "forma": [
+        2
+      ]
+    },
+    {
+      "op": "param",
+      "args": [],
+      "forma": [
+        2
+      ],
+      "nome": "b1"
+    },
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "1"
+    },
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "2"
+    },
+    {
+      "op": "stack",
+      "args": [
+        13,
+        14
+      ],
+      "forma": [
+        2
+      ]
+    },
+    {
+      "op": "stack",
+      "args": [
+        15
+      ],
+      "forma": [
+        1,
+        2
+      ]
+    },
+    {
+      "op": "param",
+      "args": [],
+      "forma": [
+        1,
+        2
+      ],
+      "nome": "W2"
+    },
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "0"
+    },
+    {
+      "op": "stack",
+      "args": [
+        18
+      ],
+      "forma": [
+        1
+      ]
+    },
+    {
+      "op": "param",
+      "args": [],
+      "forma": [
+        1
+      ],
+      "nome": "b2"
+    },
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "1"
+    },
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "2"
+    },
+    {
+      "op": "stack",
+      "args": [
+        21,
+        22
+      ],
+      "forma": [
+        2
+      ]
+    },
+    {
+      "op": "@",
+      "args": [
+        8,
+        23
+      ],
+      "forma": [
+        2
+      ]
+    },
+    {
+      "op": "+",
+      "args": [
+        24,
+        12
+      ],
+      "forma": [
+        2
+      ]
+    },
+    {
+      "op": "relu",
+      "args": [
+        25
+      ],
+      "forma": [
+        2
+      ]
+    },
+    {
+      "op": "relu",
+      "args": [
+        26
+      ],
+      "forma": [
+        2
+      ]
+    },
+    {
+      "op": "@",
+      "args": [
+        17,
+        27
+      ],
+      "forma": [
+        1
+      ]
+    },
+    {
+      "op": "+",
+      "args": [
+        28,
+        20
+      ],
+      "forma": [
+        1
+      ]
+    },
+    {
+      "op": "dot",
+      "args": [
+        29,
+        29
+      ],
+      "forma": []
+    },
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "1"
+    },
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "128"
+    },
+    {
+      "op": "/",
+      "args": [
+        31,
+        32
+      ],
+      "forma": []
+    },
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "1"
+    },
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "256"
+    },
+    {
+      "op": "/",
+      "args": [
+        34,
+        35
+      ],
+      "forma": []
+    },
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "1"
+    },
+    {
+      "op": "num",
+      "args": [],
+      "forma": [],
+      "v": "512"
+    },
+    {
+      "op": "/",
+      "args": [
+        37,
+        38
+      ],
+      "forma": []
+    }
+  ],
+  "simbolos": {
+    "W1": 8,
+    "b1": 12,
+    "W2": 17,
+    "b2": 20,
+    "entrada": 23,
+    "camada": 26,
+    "camada_idempotente": 27,
+    "predicao": 29,
+    "custo": 30
+  },
+  "parametros": [
+    {
+      "nome": "W1",
+      "id": 8,
+      "inicial": 7
+    },
+    {
+      "nome": "b1",
+      "id": 12,
+      "inicial": 11
+    },
+    {
+      "nome": "W2",
+      "id": 17,
+      "inicial": 16
+    },
+    {
+      "nome": "b2",
+      "id": 20,
+      "inicial": 19
+    }
+  ],
+  "perdas": {
+    "custo": 30
+  },
+  "comandos": [
+    {
+      "tipo": "declaracao",
+      "nome": "W1"
+    },
+    {
+      "tipo": "declaracao",
+      "nome": "b1"
+    },
+    {
+      "tipo": "declaracao",
+      "nome": "W2"
+    },
+    {
+      "tipo": "declaracao",
+      "nome": "b2"
+    },
+    {
+      "tipo": "declaracao",
+      "nome": "entrada"
+    },
+    {
+      "tipo": "declaracao",
+      "nome": "camada"
+    },
+    {
+      "tipo": "declaracao",
+      "nome": "camada_idempotente"
+    },
+    {
+      "tipo": "declaracao",
+      "nome": "predicao"
+    },
+    {
+      "tipo": "declaracao",
+      "nome": "custo"
+    },
+    {
+      "tipo": "gradientes",
+      "nome": "custo"
+    },
+    {
+      "tipo": "passo",
+      "nome": "custo",
+      "parametro": "W2",
+      "taxa": 33
+    },
+    {
+      "tipo": "passo_livre",
+      "nome": "custo",
+      "parametro": "b1",
+      "taxa": 36
+    },
+    {
+      "tipo": "passo_ruidoso",
+      "nome": "custo",
+      "parametro": "W1",
+      "taxa": 39,
+      "semente": 42
+    },
+    {
+      "tipo": "mostrar",
+      "nome": "custo"
+    }
+  ],
+  "sha256_fonte": "0bb7f60aa56cce7d07927f7b4093111b0e3c7541afe446940202217dc6275a51"
+}

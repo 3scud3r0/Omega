@@ -1,0 +1,10 @@
+Ômega — prova finita de evolução
+Domínio completo: Bool² (4 entradas)
+Funções avaliadas no último raio: 125
+Gerações: 2 → 1 → 0 (erro quadrático exato)
+Genes finais: [1, -2, 0]
+Prova de XOR no domínio: True
+Nós de IR: 31 → 27
+Certificado de reescrita: True
+Escopo: função XOR em Bool² e equivalências de regras locais, não AGI.
+As obrigações Lean exigem compilador Lean/Mathlib externo para validação.

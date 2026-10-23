@@ -1,0 +1,294 @@
+{
+  "comandos": [
+    {
+      "nome": "x",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "y",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "esperado",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "soma_xy",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "h0",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "h1",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "h2",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "saida",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "custo",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "saida",
+      "tipo": "mostrar"
+    }
+  ],
+  "formato": "omega-ir-2",
+  "nos": [
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "nome": "x",
+      "op": "param"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "nome": "y",
+      "op": "param"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "nome": "esperado",
+      "op": "param"
+    },
+    {
+      "args": [
+        1,
+        3
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [
+        6,
+        7
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [
+        8
+      ],
+      "forma": [],
+      "op": "relu"
+    },
+    {
+      "args": [
+        9
+      ],
+      "forma": [],
+      "op": "relu"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "1"
+    },
+    {
+      "args": [
+        8,
+        11
+      ],
+      "forma": [],
+      "op": "-"
+    },
+    {
+      "args": [
+        12
+      ],
+      "forma": [],
+      "op": "relu"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "2"
+    },
+    {
+      "args": [
+        8,
+        14
+      ],
+      "forma": [],
+      "op": "-"
+    },
+    {
+      "args": [
+        15
+      ],
+      "forma": [],
+      "op": "relu"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "1"
+    },
+    {
+      "args": [
+        17,
+        10
+      ],
+      "forma": [],
+      "op": "*"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "2"
+    },
+    {
+      "args": [
+        19
+      ],
+      "forma": [],
+      "op": "neg"
+    },
+    {
+      "args": [
+        20,
+        13
+      ],
+      "forma": [],
+      "op": "*"
+    },
+    {
+      "args": [
+        18,
+        21
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [
+        23,
+        16
+      ],
+      "forma": [],
+      "op": "*"
+    },
+    {
+      "args": [
+        22,
+        24
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [
+        25,
+        26
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [
+        27,
+        5
+      ],
+      "forma": [],
+      "op": "-"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "2"
+    },
+    {
+      "args": [
+        28,
+        29
+      ],
+      "forma": [],
+      "op": "^"
+    }
+  ],
+  "parametros": [
+    {
+      "id": 1,
+      "inicial": 0,
+      "nome": "x"
+    },
+    {
+      "id": 3,
+      "inicial": 2,
+      "nome": "y"
+    },
+    {
+      "id": 5,
+      "inicial": 4,
+      "nome": "esperado"
+    }
+  ],
+  "perdas": {
+    "custo": 30
+  },
+  "simbolos": {
+    "custo": 30,
+    "esperado": 5,
+    "h0": 10,
+    "h1": 13,
+    "h2": 16,
+    "saida": 27,
+    "soma_xy": 8,
+    "x": 1,
+    "y": 3
+  },
+  "versao": "1.0.0"
+}

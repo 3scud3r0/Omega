@@ -1,0 +1,130 @@
+{
+  "dominio": "Bool^2",
+  "formato": "omega-meta-cert-1",
+  "geracoes": [
+    {
+      "avaliacoes": [
+        313,
+        409,
+        317,
+        413,
+        337,
+        433,
+        341,
+        437,
+        314,
+        410,
+        318,
+        414,
+        338,
+        434,
+        342,
+        438
+      ],
+      "codigo_sha256": "1966de2dbe1cb2a6637ba5c444706f4848b333c1de31b02ff4d3722265825987",
+      "fase": 0,
+      "hipoteses": 1,
+      "id": "ee885f30c0e7d4bc5d8681d57a35dc28bb4762bcd54adc68439c71ad5d4e3afc",
+      "pesos": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "prev": "GENESIS",
+      "teste_total": 3106,
+      "treino_total": 2902
+    },
+    {
+      "avaliacoes": [
+        1,
+        214,
+        27,
+        35,
+        31,
+        36,
+        196,
+        37,
+        6,
+        361,
+        7,
+        101,
+        8,
+        105,
+        91,
+        9
+      ],
+      "codigo_sha256": "f3b40e8ce09384a0e0d52a959f16704d0d79ebede7801376b361a42d66c38628",
+      "fase": 1,
+      "hipoteses": 11,
+      "id": "559ee83f823285a70b61dcda8feb1c5325a47fc7ce63e95155b2e4919dd00e96",
+      "pesos": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "prev": "ee885f30c0e7d4bc5d8681d57a35dc28bb4762bcd54adc68439c71ad5d4e3afc",
+      "teste_total": 648,
+      "treino_total": 617
+    },
+    {
+      "avaliacoes": [
+        1,
+        121,
+        33,
+        10,
+        37,
+        11,
+        222,
+        12,
+        7,
+        245,
+        8,
+        44,
+        9,
+        48,
+        108,
+        2
+      ],
+      "codigo_sha256": "a80694b8ed951ffb02d6a4b250597b36708073be5b313bfbc4be5dd9870c00b1",
+      "fase": 2,
+      "hipoteses": 243,
+      "id": "1c8ce43d007ab346ecb0df9a23ac92be4524db7aafd28b93d4cc39d2aebc35b7",
+      "pesos": [
+        1,
+        -1,
+        0,
+        0,
+        0
+      ],
+      "prev": "559ee83f823285a70b61dcda8feb1c5325a47fc7ce63e95155b2e4919dd00e96",
+      "teste_total": 437,
+      "treino_total": 481
+    }
+  ],
+  "hash": "866f2f66404c4a77db9b98025a0447bf78b40e066562f94df7d3c3fa11111354",
+  "parametros": "(-2..2)^4",
+  "teste": [
+    3,
+    5,
+    9,
+    10,
+    11,
+    12,
+    14,
+    15
+  ],
+  "treino": [
+    0,
+    1,
+    2,
+    4,
+    6,
+    7,
+    8,
+    13
+  ]
+}

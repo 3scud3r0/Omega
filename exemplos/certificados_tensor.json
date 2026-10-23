@@ -1,0 +1,1292 @@
+{
+  "formato": "omega-cert-1",
+  "linguagem": "Ômega",
+  "versao": "0.3.0",
+  "certificados": [
+    {
+      "tipo": "expansao_tensor",
+      "original": {
+        "tipo": "lista",
+        "itens": [
+          {
+            "tipo": "lista",
+            "itens": [
+              {
+                "tipo": "num",
+                "valor": "2"
+              },
+              {
+                "tipo": "num",
+                "valor": "1"
+              }
+            ]
+          },
+          {
+            "tipo": "lista",
+            "itens": [
+              {
+                "tipo": "num",
+                "valor": "1"
+              },
+              {
+                "tipo": "num",
+                "valor": "3"
+              }
+            ]
+          }
+        ]
+      },
+      "definicoes": {},
+      "expandido": {
+        "tipo": "lista",
+        "itens": [
+          {
+            "tipo": "lista",
+            "itens": [
+              {
+                "tipo": "num",
+                "valor": "2"
+              },
+              {
+                "tipo": "num",
+                "valor": "1"
+              }
+            ]
+          },
+          {
+            "tipo": "lista",
+            "itens": [
+              {
+                "tipo": "num",
+                "valor": "1"
+              },
+              {
+                "tipo": "num",
+                "valor": "3"
+              }
+            ]
+          }
+        ]
+      },
+      "dimensoes": [
+        2,
+        2
+      ],
+      "formas": [
+        [
+          [
+            {
+              "monomio": [],
+              "coeficiente": "2"
+            }
+          ],
+          [
+            {
+              "monomio": [],
+              "coeficiente": "1"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "monomio": [],
+              "coeficiente": "1"
+            }
+          ],
+          [
+            {
+              "monomio": [],
+              "coeficiente": "3"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "tipo": "expansao_tensor",
+      "original": {
+        "tipo": "lista",
+        "itens": [
+          {
+            "tipo": "var",
+            "nome": "x"
+          },
+          {
+            "tipo": "var",
+            "nome": "y"
+          }
+        ]
+      },
+      "definicoes": {
+        "A": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "num",
+                  "valor": "2"
+                },
+                {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              ]
+            },
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "num",
+                  "valor": "1"
+                },
+                {
+                  "tipo": "num",
+                  "valor": "3"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "expandido": {
+        "tipo": "lista",
+        "itens": [
+          {
+            "tipo": "var",
+            "nome": "x"
+          },
+          {
+            "tipo": "var",
+            "nome": "y"
+          }
+        ]
+      },
+      "dimensoes": [
+        2
+      ],
+      "formas": [
+        [
+          {
+            "monomio": [
+              [
+                "x",
+                1
+              ]
+            ],
+            "coeficiente": "1"
+          }
+        ],
+        [
+          {
+            "monomio": [
+              [
+                "y",
+                1
+              ]
+            ],
+            "coeficiente": "1"
+          }
+        ]
+      ]
+    },
+    {
+      "tipo": "expansao_tensor",
+      "original": {
+        "tipo": "bin",
+        "op": "@",
+        "esq": {
+          "tipo": "var",
+          "nome": "A"
+        },
+        "dir": {
+          "tipo": "var",
+          "nome": "v"
+        }
+      },
+      "definicoes": {
+        "A": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "num",
+                  "valor": "2"
+                },
+                {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              ]
+            },
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "num",
+                  "valor": "1"
+                },
+                {
+                  "tipo": "num",
+                  "valor": "3"
+                }
+              ]
+            }
+          ]
+        },
+        "v": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "var",
+              "nome": "x"
+            },
+            {
+              "tipo": "var",
+              "nome": "y"
+            }
+          ]
+        }
+      },
+      "expandido": {
+        "tipo": "lista",
+        "itens": [
+          {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "2"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          },
+          {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "3"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          }
+        ]
+      },
+      "dimensoes": [
+        2
+      ],
+      "formas": [
+        [
+          {
+            "monomio": [
+              [
+                "x",
+                1
+              ]
+            ],
+            "coeficiente": "2"
+          },
+          {
+            "monomio": [
+              [
+                "y",
+                1
+              ]
+            ],
+            "coeficiente": "1"
+          }
+        ],
+        [
+          {
+            "monomio": [
+              [
+                "x",
+                1
+              ]
+            ],
+            "coeficiente": "1"
+          },
+          {
+            "monomio": [
+              [
+                "y",
+                1
+              ]
+            ],
+            "coeficiente": "3"
+          }
+        ]
+      ]
+    },
+    {
+      "tipo": "expansao_tensor",
+      "original": {
+        "tipo": "chamada",
+        "funcao": "dot",
+        "args": [
+          {
+            "tipo": "var",
+            "nome": "z"
+          },
+          {
+            "tipo": "var",
+            "nome": "z"
+          }
+        ]
+      },
+      "definicoes": {
+        "A": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "num",
+                  "valor": "2"
+                },
+                {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              ]
+            },
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "num",
+                  "valor": "1"
+                },
+                {
+                  "tipo": "num",
+                  "valor": "3"
+                }
+              ]
+            }
+          ]
+        },
+        "v": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "var",
+              "nome": "x"
+            },
+            {
+              "tipo": "var",
+              "nome": "y"
+            }
+          ]
+        },
+        "z": {
+          "tipo": "bin",
+          "op": "@",
+          "esq": {
+            "tipo": "var",
+            "nome": "A"
+          },
+          "dir": {
+            "tipo": "var",
+            "nome": "v"
+          }
+        }
+      },
+      "expandido": {
+        "tipo": "bin",
+        "op": "+",
+        "esq": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "2"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "2"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          }
+        },
+        "dir": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "3"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "3"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          }
+        }
+      },
+      "dimensoes": [],
+      "formas": [
+        {
+          "monomio": [
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              1
+            ]
+          ],
+          "coeficiente": "10"
+        },
+        {
+          "monomio": [
+            [
+              "x",
+              2
+            ]
+          ],
+          "coeficiente": "5"
+        },
+        {
+          "monomio": [
+            [
+              "y",
+              2
+            ]
+          ],
+          "coeficiente": "10"
+        }
+      ]
+    },
+    {
+      "tipo": "retropropagacao",
+      "expressao": {
+        "tipo": "bin",
+        "op": "+",
+        "esq": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "2"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "2"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          }
+        },
+        "dir": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "3"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "3"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          }
+        }
+      },
+      "estado": {
+        "x": "2",
+        "y": "-1"
+      },
+      "resultados": {
+        "x": "10",
+        "y": "0"
+      }
+    },
+    {
+      "tipo": "expansao_tensor",
+      "original": {
+        "tipo": "bin",
+        "op": "/",
+        "esq": {
+          "tipo": "num",
+          "valor": "1"
+        },
+        "dir": {
+          "tipo": "num",
+          "valor": "8"
+        }
+      },
+      "definicoes": {
+        "A": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "num",
+                  "valor": "2"
+                },
+                {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              ]
+            },
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "num",
+                  "valor": "1"
+                },
+                {
+                  "tipo": "num",
+                  "valor": "3"
+                }
+              ]
+            }
+          ]
+        },
+        "v": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "var",
+              "nome": "x"
+            },
+            {
+              "tipo": "var",
+              "nome": "y"
+            }
+          ]
+        },
+        "z": {
+          "tipo": "bin",
+          "op": "@",
+          "esq": {
+            "tipo": "var",
+            "nome": "A"
+          },
+          "dir": {
+            "tipo": "var",
+            "nome": "v"
+          }
+        }
+      },
+      "expandido": {
+        "tipo": "bin",
+        "op": "/",
+        "esq": {
+          "tipo": "num",
+          "valor": "1"
+        },
+        "dir": {
+          "tipo": "num",
+          "valor": "8"
+        }
+      },
+      "dimensoes": [],
+      "formas": [
+        {
+          "monomio": [],
+          "coeficiente": "1/8"
+        }
+      ]
+    },
+    {
+      "tipo": "passo",
+      "expressao": {
+        "tipo": "bin",
+        "op": "+",
+        "esq": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "2"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "2"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          }
+        },
+        "dir": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "3"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "3"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          }
+        }
+      },
+      "expressao_taxa": {
+        "tipo": "bin",
+        "op": "/",
+        "esq": {
+          "tipo": "num",
+          "valor": "1"
+        },
+        "dir": {
+          "tipo": "num",
+          "valor": "8"
+        }
+      },
+      "parametro": "x",
+      "estado_antes": {
+        "x": "2",
+        "y": "-1"
+      },
+      "estado_depois": {
+        "x": "3/4",
+        "y": "-1"
+      },
+      "taxa": "1/8",
+      "gradiente": "10",
+      "perda_antes": "10",
+      "perda_depois": "85/16"
+    },
+    {
+      "tipo": "retropropagacao",
+      "expressao": {
+        "tipo": "bin",
+        "op": "+",
+        "esq": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "2"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "2"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          }
+        },
+        "dir": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "3"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "1"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "x"
+              }
+            },
+            "dir": {
+              "tipo": "bin",
+              "op": "*",
+              "esq": {
+                "tipo": "num",
+                "valor": "3"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            }
+          }
+        }
+      },
+      "estado": {
+        "x": "3/4",
+        "y": "-1"
+      },
+      "resultados": {
+        "x": "-5/2",
+        "y": "-25/2"
+      }
+    },
+    {
+      "tipo": "identidade_tensorial",
+      "esquerda": {
+        "tipo": "bin",
+        "op": "@",
+        "esq": {
+          "tipo": "var",
+          "nome": "A"
+        },
+        "dir": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "var",
+                "nome": "x"
+              },
+              "dir": {
+                "tipo": "var",
+                "nome": "y"
+              }
+            },
+            {
+              "tipo": "var",
+              "nome": "y"
+            }
+          ]
+        }
+      },
+      "direita": {
+        "tipo": "bin",
+        "op": "+",
+        "esq": {
+          "tipo": "bin",
+          "op": "@",
+          "esq": {
+            "tipo": "var",
+            "nome": "A"
+          },
+          "dir": {
+            "tipo": "lista",
+            "itens": [
+              {
+                "tipo": "var",
+                "nome": "x"
+              },
+              {
+                "tipo": "var",
+                "nome": "y"
+              }
+            ]
+          }
+        },
+        "dir": {
+          "tipo": "bin",
+          "op": "@",
+          "esq": {
+            "tipo": "var",
+            "nome": "A"
+          },
+          "dir": {
+            "tipo": "lista",
+            "itens": [
+              {
+                "tipo": "var",
+                "nome": "y"
+              },
+              {
+                "tipo": "num",
+                "valor": "0"
+              }
+            ]
+          }
+        }
+      },
+      "definicoes": {
+        "A": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "num",
+                  "valor": "2"
+                },
+                {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              ]
+            },
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "num",
+                  "valor": "1"
+                },
+                {
+                  "tipo": "num",
+                  "valor": "3"
+                }
+              ]
+            }
+          ]
+        },
+        "v": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "var",
+              "nome": "x"
+            },
+            {
+              "tipo": "var",
+              "nome": "y"
+            }
+          ]
+        },
+        "z": {
+          "tipo": "bin",
+          "op": "@",
+          "esq": {
+            "tipo": "var",
+            "nome": "A"
+          },
+          "dir": {
+            "tipo": "var",
+            "nome": "v"
+          }
+        }
+      },
+      "dimensoes": [
+        2
+      ],
+      "formas": [
+        [
+          {
+            "monomio": [
+              [
+                "x",
+                1
+              ]
+            ],
+            "coeficiente": "2"
+          },
+          {
+            "monomio": [
+              [
+                "y",
+                1
+              ]
+            ],
+            "coeficiente": "3"
+          }
+        ],
+        [
+          {
+            "monomio": [
+              [
+                "x",
+                1
+              ]
+            ],
+            "coeficiente": "1"
+          },
+          {
+            "monomio": [
+              [
+                "y",
+                1
+              ]
+            ],
+            "coeficiente": "4"
+          }
+        ]
+      ],
+      "nome": "linearidade"
+    }
+  ]
+}

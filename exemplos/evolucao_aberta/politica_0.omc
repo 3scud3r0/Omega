@@ -1,0 +1,146 @@
+{
+  "comandos": [
+    {
+      "nome": "nos",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "profundidade",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "operacoes",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "prioridade",
+      "tipo": "declaracao"
+    },
+    {
+      "nome": "prioridade",
+      "tipo": "mostrar"
+    }
+  ],
+  "formato": "omega-ir-2",
+  "nos": [
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "nome": "nos",
+      "op": "param"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "nome": "profundidade",
+      "op": "param"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "nome": "operacoes",
+      "op": "param"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [
+        6,
+        1
+      ],
+      "forma": [],
+      "op": "*"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [
+        8,
+        3
+      ],
+      "forma": [],
+      "op": "*"
+    },
+    {
+      "args": [
+        7,
+        9
+      ],
+      "forma": [],
+      "op": "+"
+    },
+    {
+      "args": [],
+      "forma": [],
+      "op": "num",
+      "v": "0"
+    },
+    {
+      "args": [
+        11,
+        5
+      ],
+      "forma": [],
+      "op": "*"
+    },
+    {
+      "args": [
+        10,
+        12
+      ],
+      "forma": [],
+      "op": "+"
+    }
+  ],
+  "parametros": [
+    {
+      "id": 1,
+      "inicial": 0,
+      "nome": "nos"
+    },
+    {
+      "id": 3,
+      "inicial": 2,
+      "nome": "profundidade"
+    },
+    {
+      "id": 5,
+      "inicial": 4,
+      "nome": "operacoes"
+    }
+  ],
+  "perdas": {},
+  "simbolos": {
+    "nos": 1,
+    "operacoes": 5,
+    "prioridade": 13,
+    "profundidade": 3
+  },
+  "versao": "1.0.0"
+}

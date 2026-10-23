@@ -1,0 +1,14 @@
+# Ômega 0.2: tipos + provas nomeadas com verificação separada
+parametro x = 3;
+parametro y = -1;
+perda objetivo = (x - 1)^2 + (y + 2)^2;
+
+# A igualdade usa símbolos matemáticos universalmente quantificados
+# dentro do anel de polinômios sobre racionais.
+teorema quadrado_da_soma = (a+b)^2 == a^2 + 2*a*b + b^2;
+verificar quadrado_da_soma;
+mostrar quadrado_da_soma;
+
+gradiente objetivo em x;
+passo objetivo em x taxa 1/4;
+mostrar objetivo;

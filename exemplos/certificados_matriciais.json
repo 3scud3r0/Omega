@@ -1,0 +1,1879 @@
+{
+  "formato": "omega-cert-1",
+  "linguagem": "Ômega",
+  "versao": "0.4.0",
+  "certificados": [
+    {
+      "tipo": "expansao_tensor",
+      "original": {
+        "tipo": "lista",
+        "itens": [
+          {
+            "tipo": "num",
+            "valor": "1"
+          },
+          {
+            "tipo": "num",
+            "valor": "2"
+          }
+        ]
+      },
+      "definicoes": {
+        "W": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                }
+              ]
+            },
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                }
+              ]
+            }
+          ]
+        },
+        "b": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            },
+            {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          ]
+        }
+      },
+      "expandido": {
+        "tipo": "lista",
+        "itens": [
+          {
+            "tipo": "num",
+            "valor": "1"
+          },
+          {
+            "tipo": "num",
+            "valor": "2"
+          }
+        ]
+      },
+      "dimensoes": [
+        2
+      ],
+      "formas": [
+        [
+          {
+            "monomio": [],
+            "coeficiente": "1"
+          }
+        ],
+        [
+          {
+            "monomio": [],
+            "coeficiente": "2"
+          }
+        ]
+      ]
+    },
+    {
+      "tipo": "expansao_tensor",
+      "original": {
+        "tipo": "bin",
+        "op": "+",
+        "esq": {
+          "tipo": "bin",
+          "op": "@",
+          "esq": {
+            "tipo": "var",
+            "nome": "W"
+          },
+          "dir": {
+            "tipo": "var",
+            "nome": "x"
+          }
+        },
+        "dir": {
+          "tipo": "var",
+          "nome": "b"
+        }
+      },
+      "definicoes": {
+        "W": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                }
+              ]
+            },
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                }
+              ]
+            }
+          ]
+        },
+        "b": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            },
+            {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          ]
+        },
+        "x": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "num",
+              "valor": "1"
+            },
+            {
+              "tipo": "num",
+              "valor": "2"
+            }
+          ]
+        }
+      },
+      "expandido": {
+        "tipo": "lista",
+        "itens": [
+          {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            }
+          },
+          {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          }
+        ]
+      },
+      "dimensoes": [
+        2
+      ],
+      "formas": [
+        [
+          {
+            "monomio": [
+              [
+                "__omega_coord_W_0_0",
+                1
+              ]
+            ],
+            "coeficiente": "1"
+          },
+          {
+            "monomio": [
+              [
+                "__omega_coord_W_0_1",
+                1
+              ]
+            ],
+            "coeficiente": "2"
+          },
+          {
+            "monomio": [
+              [
+                "__omega_coord_b_0",
+                1
+              ]
+            ],
+            "coeficiente": "1"
+          }
+        ],
+        [
+          {
+            "monomio": [
+              [
+                "__omega_coord_W_1_0",
+                1
+              ]
+            ],
+            "coeficiente": "1"
+          },
+          {
+            "monomio": [
+              [
+                "__omega_coord_W_1_1",
+                1
+              ]
+            ],
+            "coeficiente": "2"
+          },
+          {
+            "monomio": [
+              [
+                "__omega_coord_b_1",
+                1
+              ]
+            ],
+            "coeficiente": "1"
+          }
+        ]
+      ]
+    },
+    {
+      "tipo": "expansao_tensor",
+      "original": {
+        "tipo": "chamada",
+        "funcao": "dot",
+        "args": [
+          {
+            "tipo": "var",
+            "nome": "predicao"
+          },
+          {
+            "tipo": "var",
+            "nome": "predicao"
+          }
+        ]
+      },
+      "definicoes": {
+        "W": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                }
+              ]
+            },
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                }
+              ]
+            }
+          ]
+        },
+        "b": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            },
+            {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          ]
+        },
+        "x": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "num",
+              "valor": "1"
+            },
+            {
+              "tipo": "num",
+              "valor": "2"
+            }
+          ]
+        },
+        "predicao": {
+          "tipo": "bin",
+          "op": "+",
+          "esq": {
+            "tipo": "bin",
+            "op": "@",
+            "esq": {
+              "tipo": "var",
+              "nome": "W"
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "x"
+            }
+          },
+          "dir": {
+            "tipo": "var",
+            "nome": "b"
+          }
+        }
+      },
+      "expandido": {
+        "tipo": "bin",
+        "op": "+",
+        "esq": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            }
+          }
+        },
+        "dir": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          }
+        }
+      },
+      "dimensoes": [],
+      "formas": [
+        {
+          "monomio": [
+            [
+              "__omega_coord_W_0_0",
+              1
+            ],
+            [
+              "__omega_coord_W_0_1",
+              1
+            ]
+          ],
+          "coeficiente": "4"
+        },
+        {
+          "monomio": [
+            [
+              "__omega_coord_W_0_0",
+              1
+            ],
+            [
+              "__omega_coord_b_0",
+              1
+            ]
+          ],
+          "coeficiente": "2"
+        },
+        {
+          "monomio": [
+            [
+              "__omega_coord_W_0_0",
+              2
+            ]
+          ],
+          "coeficiente": "1"
+        },
+        {
+          "monomio": [
+            [
+              "__omega_coord_W_0_1",
+              1
+            ],
+            [
+              "__omega_coord_b_0",
+              1
+            ]
+          ],
+          "coeficiente": "4"
+        },
+        {
+          "monomio": [
+            [
+              "__omega_coord_W_0_1",
+              2
+            ]
+          ],
+          "coeficiente": "4"
+        },
+        {
+          "monomio": [
+            [
+              "__omega_coord_W_1_0",
+              1
+            ],
+            [
+              "__omega_coord_W_1_1",
+              1
+            ]
+          ],
+          "coeficiente": "4"
+        },
+        {
+          "monomio": [
+            [
+              "__omega_coord_W_1_0",
+              1
+            ],
+            [
+              "__omega_coord_b_1",
+              1
+            ]
+          ],
+          "coeficiente": "2"
+        },
+        {
+          "monomio": [
+            [
+              "__omega_coord_W_1_0",
+              2
+            ]
+          ],
+          "coeficiente": "1"
+        },
+        {
+          "monomio": [
+            [
+              "__omega_coord_W_1_1",
+              1
+            ],
+            [
+              "__omega_coord_b_1",
+              1
+            ]
+          ],
+          "coeficiente": "4"
+        },
+        {
+          "monomio": [
+            [
+              "__omega_coord_W_1_1",
+              2
+            ]
+          ],
+          "coeficiente": "4"
+        },
+        {
+          "monomio": [
+            [
+              "__omega_coord_b_0",
+              2
+            ]
+          ],
+          "coeficiente": "1"
+        },
+        {
+          "monomio": [
+            [
+              "__omega_coord_b_1",
+              2
+            ]
+          ],
+          "coeficiente": "1"
+        }
+      ]
+    },
+    {
+      "tipo": "retropropagacao",
+      "expressao": {
+        "tipo": "bin",
+        "op": "+",
+        "esq": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            }
+          }
+        },
+        "dir": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          }
+        }
+      },
+      "estado": {
+        "__omega_coord_W_0_0": "2",
+        "__omega_coord_W_0_1": "0",
+        "__omega_coord_W_1_0": "0",
+        "__omega_coord_W_1_1": "1",
+        "__omega_coord_b_0": "1",
+        "__omega_coord_b_1": "-1"
+      },
+      "resultados": {
+        "__omega_coord_W_0_0": "6",
+        "__omega_coord_W_0_1": "12",
+        "__omega_coord_W_1_0": "2",
+        "__omega_coord_W_1_1": "4",
+        "__omega_coord_b_0": "6",
+        "__omega_coord_b_1": "2"
+      }
+    },
+    {
+      "tipo": "gradiente_tensor",
+      "expressao": {
+        "tipo": "bin",
+        "op": "+",
+        "esq": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            }
+          }
+        },
+        "dir": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          }
+        }
+      },
+      "coordenadas": [
+        [
+          "__omega_coord_W_0_0",
+          "__omega_coord_W_0_1"
+        ],
+        [
+          "__omega_coord_W_1_0",
+          "__omega_coord_W_1_1"
+        ]
+      ],
+      "estado": {
+        "__omega_coord_W_0_0": "2",
+        "__omega_coord_W_0_1": "0",
+        "__omega_coord_W_1_0": "0",
+        "__omega_coord_W_1_1": "1",
+        "__omega_coord_b_0": "1",
+        "__omega_coord_b_1": "-1"
+      },
+      "resultado": [
+        [
+          "6",
+          "12"
+        ],
+        [
+          "2",
+          "4"
+        ]
+      ]
+    },
+    {
+      "tipo": "gradiente_tensor",
+      "expressao": {
+        "tipo": "bin",
+        "op": "+",
+        "esq": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            }
+          }
+        },
+        "dir": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          }
+        }
+      },
+      "coordenadas": [
+        "__omega_coord_b_0",
+        "__omega_coord_b_1"
+      ],
+      "estado": {
+        "__omega_coord_W_0_0": "2",
+        "__omega_coord_W_0_1": "0",
+        "__omega_coord_W_1_0": "0",
+        "__omega_coord_W_1_1": "1",
+        "__omega_coord_b_0": "1",
+        "__omega_coord_b_1": "-1"
+      },
+      "resultado": [
+        "6",
+        "2"
+      ]
+    },
+    {
+      "tipo": "expansao_tensor",
+      "original": {
+        "tipo": "bin",
+        "op": "/",
+        "esq": {
+          "tipo": "num",
+          "valor": "1"
+        },
+        "dir": {
+          "tipo": "num",
+          "valor": "16"
+        }
+      },
+      "definicoes": {
+        "W": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                }
+              ]
+            },
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                }
+              ]
+            }
+          ]
+        },
+        "b": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            },
+            {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          ]
+        },
+        "x": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "num",
+              "valor": "1"
+            },
+            {
+              "tipo": "num",
+              "valor": "2"
+            }
+          ]
+        },
+        "predicao": {
+          "tipo": "bin",
+          "op": "+",
+          "esq": {
+            "tipo": "bin",
+            "op": "@",
+            "esq": {
+              "tipo": "var",
+              "nome": "W"
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "x"
+            }
+          },
+          "dir": {
+            "tipo": "var",
+            "nome": "b"
+          }
+        }
+      },
+      "expandido": {
+        "tipo": "bin",
+        "op": "/",
+        "esq": {
+          "tipo": "num",
+          "valor": "1"
+        },
+        "dir": {
+          "tipo": "num",
+          "valor": "16"
+        }
+      },
+      "dimensoes": [],
+      "formas": [
+        {
+          "monomio": [],
+          "coeficiente": "1/16"
+        }
+      ]
+    },
+    {
+      "tipo": "passo_tensor",
+      "expressao": {
+        "tipo": "bin",
+        "op": "+",
+        "esq": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            }
+          }
+        },
+        "dir": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          }
+        }
+      },
+      "expressao_taxa": {
+        "tipo": "bin",
+        "op": "/",
+        "esq": {
+          "tipo": "num",
+          "valor": "1"
+        },
+        "dir": {
+          "tipo": "num",
+          "valor": "16"
+        }
+      },
+      "coordenadas": [
+        [
+          "__omega_coord_W_0_0",
+          "__omega_coord_W_0_1"
+        ],
+        [
+          "__omega_coord_W_1_0",
+          "__omega_coord_W_1_1"
+        ]
+      ],
+      "estado_antes": {
+        "__omega_coord_W_0_0": "2",
+        "__omega_coord_W_0_1": "0",
+        "__omega_coord_W_1_0": "0",
+        "__omega_coord_W_1_1": "1",
+        "__omega_coord_b_0": "1",
+        "__omega_coord_b_1": "-1"
+      },
+      "estado_depois": {
+        "__omega_coord_W_0_0": "13/8",
+        "__omega_coord_W_0_1": "-3/4",
+        "__omega_coord_W_1_0": "-1/8",
+        "__omega_coord_W_1_1": "3/4",
+        "__omega_coord_b_0": "1",
+        "__omega_coord_b_1": "-1"
+      },
+      "gradientes": [
+        [
+          "6",
+          "12"
+        ],
+        [
+          "2",
+          "4"
+        ]
+      ],
+      "taxa": "1/16",
+      "perda_antes": "10",
+      "perda_depois": "45/32"
+    },
+    {
+      "tipo": "expansao_tensor",
+      "original": {
+        "tipo": "bin",
+        "op": "/",
+        "esq": {
+          "tipo": "num",
+          "valor": "1"
+        },
+        "dir": {
+          "tipo": "num",
+          "valor": "16"
+        }
+      },
+      "definicoes": {
+        "W": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                }
+              ]
+            },
+            {
+              "tipo": "lista",
+              "itens": [
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                }
+              ]
+            }
+          ]
+        },
+        "b": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            },
+            {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          ]
+        },
+        "x": {
+          "tipo": "lista",
+          "itens": [
+            {
+              "tipo": "num",
+              "valor": "1"
+            },
+            {
+              "tipo": "num",
+              "valor": "2"
+            }
+          ]
+        },
+        "predicao": {
+          "tipo": "bin",
+          "op": "+",
+          "esq": {
+            "tipo": "bin",
+            "op": "@",
+            "esq": {
+              "tipo": "var",
+              "nome": "W"
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "x"
+            }
+          },
+          "dir": {
+            "tipo": "var",
+            "nome": "b"
+          }
+        }
+      },
+      "expandido": {
+        "tipo": "bin",
+        "op": "/",
+        "esq": {
+          "tipo": "num",
+          "valor": "1"
+        },
+        "dir": {
+          "tipo": "num",
+          "valor": "16"
+        }
+      },
+      "dimensoes": [],
+      "formas": [
+        {
+          "monomio": [],
+          "coeficiente": "1/16"
+        }
+      ]
+    },
+    {
+      "tipo": "passo_tensor",
+      "expressao": {
+        "tipo": "bin",
+        "op": "+",
+        "esq": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_0_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_0"
+            }
+          }
+        },
+        "dir": {
+          "tipo": "bin",
+          "op": "*",
+          "esq": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          },
+          "dir": {
+            "tipo": "bin",
+            "op": "+",
+            "esq": {
+              "tipo": "bin",
+              "op": "+",
+              "esq": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_0"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "1"
+                }
+              },
+              "dir": {
+                "tipo": "bin",
+                "op": "*",
+                "esq": {
+                  "tipo": "var",
+                  "nome": "__omega_coord_W_1_1"
+                },
+                "dir": {
+                  "tipo": "num",
+                  "valor": "2"
+                }
+              }
+            },
+            "dir": {
+              "tipo": "var",
+              "nome": "__omega_coord_b_1"
+            }
+          }
+        }
+      },
+      "expressao_taxa": {
+        "tipo": "bin",
+        "op": "/",
+        "esq": {
+          "tipo": "num",
+          "valor": "1"
+        },
+        "dir": {
+          "tipo": "num",
+          "valor": "16"
+        }
+      },
+      "coordenadas": [
+        "__omega_coord_b_0",
+        "__omega_coord_b_1"
+      ],
+      "estado_antes": {
+        "__omega_coord_W_0_0": "13/8",
+        "__omega_coord_W_0_1": "-3/4",
+        "__omega_coord_W_1_0": "-1/8",
+        "__omega_coord_W_1_1": "3/4",
+        "__omega_coord_b_0": "1",
+        "__omega_coord_b_1": "-1"
+      },
+      "estado_depois": {
+        "__omega_coord_W_0_0": "13/8",
+        "__omega_coord_W_0_1": "-3/4",
+        "__omega_coord_W_1_0": "-1/8",
+        "__omega_coord_W_1_1": "3/4",
+        "__omega_coord_b_0": "55/64",
+        "__omega_coord_b_1": "-67/64"
+      },
+      "gradientes": [
+        "9/4",
+        "3/4"
+      ],
+      "taxa": "1/16",
+      "perda_antes": "45/32",
+      "perda_depois": "2205/2048"
+    }
+  ]
+}

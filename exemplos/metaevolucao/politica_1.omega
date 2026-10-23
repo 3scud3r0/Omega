@@ -1,0 +1,7 @@
+# Politica de busca auto-sintetizada pela linguagem Omega.
+parametro a = 0;
+parametro b = 0;
+parametro c = 0;
+parametro d = 0;
+tensor prioridade = (1) * ((relu(a) + relu(-a))+(relu(b) + relu(-b))+(relu(c) + relu(-c))+(relu(d) + relu(-d))) + (0) * a + (0) * b + (0) * c + (0) * d;
+mostrar prioridade;

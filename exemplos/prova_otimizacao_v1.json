@@ -1,0 +1,425 @@
+{
+  "tipo": "reescrita_ir",
+  "formato": "omega-opt-cert-1",
+  "original": {
+    "formato": "omega-ir-2",
+    "versao": "1.0.0",
+    "nos": [
+      {
+        "op": "num",
+        "args": [],
+        "forma": [],
+        "v": "1"
+      },
+      {
+        "op": "num",
+        "args": [],
+        "forma": [],
+        "v": "2"
+      },
+      {
+        "op": "stack",
+        "args": [
+          0,
+          1
+        ],
+        "forma": [
+          2
+        ]
+      },
+      {
+        "op": "num",
+        "args": [],
+        "forma": [],
+        "v": "3"
+      },
+      {
+        "op": "num",
+        "args": [],
+        "forma": [],
+        "v": "4"
+      },
+      {
+        "op": "stack",
+        "args": [
+          3,
+          4
+        ],
+        "forma": [
+          2
+        ]
+      },
+      {
+        "op": "stack",
+        "args": [
+          2,
+          5
+        ],
+        "forma": [
+          2,
+          2
+        ]
+      },
+      {
+        "op": "param",
+        "args": [],
+        "forma": [
+          2,
+          2
+        ],
+        "nome": "W"
+      },
+      {
+        "op": "num",
+        "args": [],
+        "forma": [],
+        "v": "2"
+      },
+      {
+        "op": "num",
+        "args": [],
+        "forma": [],
+        "v": "1"
+      },
+      {
+        "op": "stack",
+        "args": [
+          8,
+          9
+        ],
+        "forma": [
+          2
+        ]
+      },
+      {
+        "op": "transposta",
+        "args": [
+          7
+        ],
+        "forma": [
+          2,
+          2
+        ]
+      },
+      {
+        "op": "transposta",
+        "args": [
+          11
+        ],
+        "forma": [
+          2,
+          2
+        ]
+      },
+      {
+        "op": "@",
+        "args": [
+          12,
+          10
+        ],
+        "forma": [
+          2
+        ]
+      },
+      {
+        "op": "relu",
+        "args": [
+          13
+        ],
+        "forma": [
+          2
+        ]
+      },
+      {
+        "op": "relu",
+        "args": [
+          14
+        ],
+        "forma": [
+          2
+        ]
+      },
+      {
+        "op": "dot",
+        "args": [
+          15,
+          15
+        ],
+        "forma": []
+      },
+      {
+        "op": "num",
+        "args": [],
+        "forma": [],
+        "v": "0"
+      },
+      {
+        "op": "+",
+        "args": [
+          16,
+          17
+        ],
+        "forma": []
+      }
+    ],
+    "simbolos": {
+      "W": 7,
+      "x": 10,
+      "Wduplo": 12,
+      "ativacao": 15,
+      "custo": 18
+    },
+    "parametros": [
+      {
+        "nome": "W",
+        "id": 7,
+        "inicial": 6
+      }
+    ],
+    "perdas": {
+      "custo": 18
+    },
+    "comandos": [
+      {
+        "tipo": "declaracao",
+        "nome": "W"
+      },
+      {
+        "tipo": "declaracao",
+        "nome": "x"
+      },
+      {
+        "tipo": "declaracao",
+        "nome": "Wduplo"
+      },
+      {
+        "tipo": "declaracao",
+        "nome": "ativacao"
+      },
+      {
+        "tipo": "declaracao",
+        "nome": "custo"
+      },
+      {
+        "tipo": "mostrar",
+        "nome": "custo"
+      }
+    ]
+  },
+  "otimizado": {
+    "formato": "omega-ir-2",
+    "versao": "1.0.0",
+    "nos": [
+      {
+        "op": "num",
+        "args": [],
+        "forma": [],
+        "v": "1"
+      },
+      {
+        "op": "num",
+        "args": [],
+        "forma": [],
+        "v": "2"
+      },
+      {
+        "op": "stack",
+        "args": [
+          0,
+          1
+        ],
+        "forma": [
+          2
+        ]
+      },
+      {
+        "op": "num",
+        "args": [],
+        "forma": [],
+        "v": "3"
+      },
+      {
+        "op": "num",
+        "args": [],
+        "forma": [],
+        "v": "4"
+      },
+      {
+        "op": "stack",
+        "args": [
+          3,
+          4
+        ],
+        "forma": [
+          2
+        ]
+      },
+      {
+        "op": "stack",
+        "args": [
+          2,
+          5
+        ],
+        "forma": [
+          2,
+          2
+        ]
+      },
+      {
+        "op": "param",
+        "args": [],
+        "forma": [
+          2,
+          2
+        ],
+        "nome": "W"
+      },
+      {
+        "op": "num",
+        "args": [],
+        "forma": [],
+        "v": "2"
+      },
+      {
+        "op": "num",
+        "args": [],
+        "forma": [],
+        "v": "1"
+      },
+      {
+        "op": "stack",
+        "args": [
+          8,
+          9
+        ],
+        "forma": [
+          2
+        ]
+      },
+      {
+        "op": "transposta",
+        "args": [
+          7
+        ],
+        "forma": [
+          2,
+          2
+        ]
+      },
+      {
+        "op": "@",
+        "args": [
+          7,
+          10
+        ],
+        "forma": [
+          2
+        ]
+      },
+      {
+        "op": "relu",
+        "args": [
+          12
+        ],
+        "forma": [
+          2
+        ]
+      },
+      {
+        "op": "dot",
+        "args": [
+          13,
+          13
+        ],
+        "forma": []
+      },
+      {
+        "op": "num",
+        "args": [],
+        "forma": [],
+        "v": "0"
+      }
+    ],
+    "simbolos": {
+      "W": 7,
+      "x": 10,
+      "Wduplo": 7,
+      "ativacao": 13,
+      "custo": 14
+    },
+    "parametros": [
+      {
+        "nome": "W",
+        "id": 7,
+        "inicial": 6
+      }
+    ],
+    "perdas": {
+      "custo": 14
+    },
+    "comandos": [
+      {
+        "tipo": "declaracao",
+        "nome": "W"
+      },
+      {
+        "tipo": "declaracao",
+        "nome": "x"
+      },
+      {
+        "tipo": "declaracao",
+        "nome": "Wduplo"
+      },
+      {
+        "tipo": "declaracao",
+        "nome": "ativacao"
+      },
+      {
+        "tipo": "declaracao",
+        "nome": "custo"
+      },
+      {
+        "tipo": "mostrar",
+        "nome": "custo"
+      }
+    ]
+  },
+  "mapeamento": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    7,
+    12,
+    13,
+    13,
+    14,
+    15,
+    14
+  ],
+  "regras": [
+    {
+      "indice": 12,
+      "regra": "double_transpose",
+      "resultado": 7
+    },
+    {
+      "indice": 15,
+      "regra": "relu_idem",
+      "resultado": 13
+    },
+    {
+      "indice": 18,
+      "regra": "add_zero",
+      "resultado": 14
+    }
+  ]
+}

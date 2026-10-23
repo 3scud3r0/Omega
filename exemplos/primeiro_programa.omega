@@ -1,0 +1,24 @@
+# Ômega 0.1: dois parâmetros e uma perda quadrática.
+parametro x = 3;
+parametro y = -1;
+
+# A perda depende de duas variáveis diferenciáveis.
+perda objetivo = (x - 1)^2 + (y + 2)^2;
+mostrar objetivo;
+
+gradiente objetivo em x;
+gradiente objetivo em y;
+
+# Cada passo só é aceito com prova local de não aumento da perda.
+passo objetivo em x taxa 1/4;
+passo objetivo em y taxa 1/4;
+mostrar objetivo;
+
+# Identidade formal, válida para todos os valores de a e b.
+provar (a + b)^2 == a^2 + 2*a*b + b^2;
+
+# Transformação sintática aceita somente após equivalência algébrica.
+reescrever objetivo = (y + 2)^2 + (x - 1)^2;
+mostrar x;
+mostrar y;
+mostrar objetivo;

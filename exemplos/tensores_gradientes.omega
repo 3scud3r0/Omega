@@ -1,0 +1,17 @@
+# Ômega 0.3: vetores, produto matricial e retropropagação exata.
+parametro x = 2;
+parametro y = -1;
+matriz A = [[2, 1], [1, 3]];
+vetor v = [x, y];
+tensor z = A @ v;
+mostrar z;
+perda objetivo = dot(z, z);
+mostrar objetivo;
+gradientes objetivo;
+# Uma atualização verificada, usando a derivada exata de x.
+passo objetivo em x taxa 1/8;
+mostrar objetivo;
+gradientes objetivo;
+# Identidade vetorial universal (igualdade componente a componente).
+teorema linearidade = A @ [x + y, y] == A @ [x, y] + A @ [y, 0];
+verificar linearidade;

@@ -1,0 +1,8 @@
+# Palavras-chave alternativas.
+param theta = 5;
+loss target = (theta - 1)^2;
+grad target wrt theta;
+step target wrt theta rate 1/4;
+prove (u + v)^2 == u^2 + 2*u*v + v^2;
+rewrite target = theta^2 - 2*theta + 1;
+show target;

@@ -1,0 +1,4 @@
+# Este arquivo DEVE falhar antes da execução: A tem duas colunas e v tem três componentes.
+matriz A = [[1, 2], [3, 4]];
+vetor v = [1, 2, 3];
+tensor resultado = A @ v;
