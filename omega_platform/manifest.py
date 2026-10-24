@@ -47,7 +47,7 @@ def compiler_inputs(root):
            'omega_selfhost/tensor_runtime.h','omega_selfhost/polynomial.h',
            'omega_platform/manifest.py','omega_platform/budget.py','omega_platform/sandbox.py',
            'omega_platform/_supervisor.py','omega_platform/results.py','omega/typesystem.py','omega/procedural_types.py',
-           'omega/dimensions.py','omega/typed_ir.py']
+           'omega/dimensions.py','omega/typed_ir.py','omega/modules.py']
     record={'sources':{n:sha256(root/n) for n in names},'toolchain':toolchain()}
     return {'sha256':hashlib.sha256(canonical(record)).hexdigest(),**record}
 
@@ -79,6 +79,16 @@ def verify(record,root):
         inputs=dict(record['compiler_inputs']);expected=inputs.pop('sha256')
         if hashlib.sha256(canonical(inputs)).hexdigest()!=expected:
             raise ValueError('Compiler input record integrity mismatch')
+    if 'module_graph' in record:
+        if type(record['module_graph']) is not dict:raise ValueError('Invalid module graph manifest')
+        names=[record.get('module_source'),record.get('module_manifest')]
+        if any(type(n) is not str or n not in record['artifacts'] for n in names):
+            raise ValueError('Missing module source/manifest artifacts')
+        source,manifest=names
+        if sha256(root/source)!=record.get('source_sha256') or record['module_graph'].get('linked_sha256')!=record['source_sha256']:
+            raise ValueError('Linked module source hash mismatch')
+        if (root/manifest).read_bytes()!=canonical(record['module_graph']):
+            raise ValueError('Module graph manifest mismatch')
     return True
 
 

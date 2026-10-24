@@ -8,7 +8,7 @@
       "status": "implemented_pending_review",
       "evidence": "docs/FUNDACAO_3_0.md",
       "validation": {
-        "ci_run": 40095379238,
+        "ci_run": 40119962958,
         "ubuntu": [
           "22.04",
           "24.04"
@@ -22,7 +22,7 @@
       "status": "implemented_pending_review",
       "evidence": "docs/FUNDACAO_3_0.md",
       "validation": {
-        "ci_run": 40095379238,
+        "ci_run": 40119962958,
         "ubuntu": [
           "22.04",
           "24.04"
@@ -36,7 +36,7 @@
       "status": "implemented_pending_review",
       "evidence": "docs/FUNDACAO_3_0.md",
       "validation": {
-        "ci_run": 40095379238,
+        "ci_run": 40119962958,
         "ubuntu": [
           "22.04",
           "24.04"
@@ -50,7 +50,7 @@
       "status": "implemented_pending_review",
       "evidence": "docs/FUNDACAO_3_0.md",
       "validation": {
-        "ci_run": 40095379238,
+        "ci_run": 40119962958,
         "ubuntu": [
           "22.04",
           "24.04"
@@ -64,7 +64,7 @@
       "status": "implemented_pending_review",
       "evidence": "docs/FUNDACAO_3_0.md",
       "validation": {
-        "ci_run": 40095379238,
+        "ci_run": 40119962958,
         "ubuntu": [
           "22.04",
           "24.04"
@@ -78,7 +78,7 @@
       "status": "implemented_pending_review",
       "evidence": "docs/FUNDACAO_3_0.md",
       "validation": {
-        "ci_run": 40095379238,
+        "ci_run": 40119962958,
         "ubuntu": [
           "22.04",
           "24.04"
@@ -92,7 +92,7 @@
       "status": "implemented_pending_review",
       "evidence": "docs/FUNDACAO_3_0.md",
       "validation": {
-        "ci_run": 40095379238,
+        "ci_run": 40119962958,
         "ubuntu": [
           "22.04",
           "24.04"
@@ -106,7 +106,7 @@
       "status": "implemented_pending_review",
       "evidence": "docs/FUNDACAO_3_0.md",
       "validation": {
-        "ci_run": 40095379238,
+        "ci_run": 40119962958,
         "ubuntu": [
           "22.04",
           "24.04"
@@ -120,7 +120,7 @@
       "status": "implemented_pending_review",
       "evidence": "docs/FUNDACAO_3_0.md",
       "validation": {
-        "ci_run": 40095379238,
+        "ci_run": 40119962958,
         "ubuntu": [
           "22.04",
           "24.04"
@@ -134,7 +134,7 @@
       "status": "implemented_pending_review",
       "evidence": "docs/FUNDACAO_3_0.md",
       "validation": {
-        "ci_run": 40095379238,
+        "ci_run": 40119962958,
         "ubuntu": [
           "22.04",
           "24.04"
@@ -148,7 +148,7 @@
       "status": "implemented_pending_review",
       "evidence": "docs/SINTAXE_E_SEMANTICA.md",
       "validation": {
-        "ci_run": 40095379238,
+        "ci_run": 40119962958,
         "ubuntu": [
           "22.04",
           "24.04"
@@ -160,19 +160,43 @@
       "id": "OM-012",
       "phase": 1,
       "status": "implemented_pending_review",
-      "evidence": "roadmap/evidence/om012.json"
+      "evidence": "roadmap/evidence/om012.json",
+      "validation": {
+        "ci_run": 40119962958,
+        "ubuntu": [
+          "22.04",
+          "24.04"
+        ],
+        "result": "success"
+      }
     },
     {
       "id": "OM-013",
       "phase": 1,
       "status": "implemented_pending_review",
-      "evidence": "roadmap/evidence/om013.json"
+      "evidence": "roadmap/evidence/om013.json",
+      "validation": {
+        "ci_run": 40119962958,
+        "ubuntu": [
+          "22.04",
+          "24.04"
+        ],
+        "result": "success"
+      }
     },
     {
       "id": "OM-014",
       "phase": 1,
       "status": "implemented_pending_review",
-      "evidence": "roadmap/evidence/om014.json"
+      "evidence": "roadmap/evidence/om014.json",
+      "validation": {
+        "ci_run": 40119962958,
+        "ubuntu": [
+          "22.04",
+          "24.04"
+        ],
+        "result": "success"
+      }
     },
     {
       "id": "OM-015",
@@ -189,8 +213,8 @@
     {
       "id": "OM-017",
       "phase": 1,
-      "status": "not_started",
-      "evidence": null
+      "status": "implemented_pending_review",
+      "evidence": "roadmap/evidence/om017.json"
     },
     {
       "id": "OM-018",

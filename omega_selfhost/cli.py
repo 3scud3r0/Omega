@@ -3,10 +3,15 @@ import json
 from pathlib import Path
 import sys
 
-COMMANDS=('bootstrap','native-build','native-run','verify-native','native-types','native-shapes','native-ir','validate-ir','native-ssa')
+COMMANDS=('bootstrap','native-build','native-run','verify-native','native-types','native-shapes','native-ir','validate-ir','native-ssa','module-link','module-build')
 
 
 def register(sub):
+    for action in ('module-link','module-build'):
+        p=sub.add_parser(action,help='link local procedural modules with explicit exports and a bounded import root')
+        p.add_argument('arquivo',type=Path)
+        p.add_argument('--raiz',type=Path)
+        p.add_argument('--saida',type=Path,required=True)
     p=sub.add_parser('native-ssa',help='analyze SSA def-use and dominance for a tensor evaluation graph')
     p.add_argument('arquivo',type=Path)
     p=sub.add_parser('native-ir',help='export canonical, typed, versioned tensor IR')
@@ -56,6 +61,17 @@ def _execute(args):
         result=analyze_tensor(TypedIR.from_legacy(driver.compile_ir(args.arquivo)))
     elif args.acao=='native-build':
         result=driver.build_checked(args.arquivo,args.saida,args.optimize).unwrap()
+    elif args.acao=='module-build':
+        result=driver.build_module(args.arquivo.resolve(),args.saida,root=args.raiz)
+    elif args.acao=='module-link':
+        from omega.modules import link
+        from omega_platform.manifest import canonical
+        source=args.arquivo.resolve();linked=link(source,args.raiz or source.parent)
+        target=args.saida;manifest=target.with_suffix('.modules.json')
+        if target==manifest or target.exists() or manifest.exists():raise FileExistsError('Linked module artifacts already exist or collide')
+        with target.open('x',encoding='utf-8') as stream:stream.write(linked.source)
+        with manifest.open('xb') as stream:stream.write(canonical(linked.manifest()))
+        result={'linked_source':str(target),'module_manifest':str(manifest),'sha256':linked.manifest()['linked_sha256']}
     elif args.acao=='native-run':
         data,result=driver.run_checked(args.arquivo,destination=args.saida).unwrap()
         for line in data['outputs']:print(line)

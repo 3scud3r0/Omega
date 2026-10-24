@@ -136,6 +136,7 @@ def build(source, destination, optimize=False):
     destination=Path(destination).resolve()
     outputs=[destination,destination.with_suffix('.c'),destination.with_suffix('.build.json')]
     if optimize:outputs.extend([destination.with_suffix('.opt.json'),destination.with_suffix('.opt.lean')])
+    if len(set(outputs))!=len(outputs):raise ValueError('Artifact destinations must be distinct')
     if any(path.exists() for path in outputs):
         raise ValueError('Destination already exists')
     destination.parent.mkdir(parents=True,exist_ok=True)
@@ -240,6 +241,7 @@ def run_checked(binary,*,destination=None,budget=Budget()):
         if destination is not None:
             target=Path(destination)
             outputs=[target,target.with_suffix('.lean'),target.with_suffix('.verification.json')]
+            if len(set(outputs))!=len(outputs):raise ValueError('Result destinations must be distinct')
             if any(path.exists() for path in outputs):raise FileExistsError('Result destination already exists')
     ready=attempt('io',preflight)
     if isinstance(ready,Err):return ready
@@ -265,6 +267,31 @@ def run_checked(binary,*,destination=None,budget=Budget()):
     published=attempt('io',publish)
     if isinstance(published,Err):return published
     return Ok((data,verification))
+
+
+def build_module(entry,destination,*,root=None):
+    from omega.modules import link
+    from omega_platform.manifest import canonical
+    entry=Path(entry)
+    if root is None:
+        entry=entry.resolve();root=entry.parent
+    linked=link(entry,root)
+    destination=Path(destination).resolve()
+    module_source=destination.with_suffix('.linked.omega');module_manifest=destination.with_suffix('.modules.json')
+    outputs=[destination,destination.with_suffix('.c'),destination.with_suffix('.build.json'),module_source,module_manifest]
+    if len(set(outputs))!=len(outputs):raise ValueError('Module artifact destinations must be distinct')
+    if any(path.exists() for path in outputs):raise FileExistsError('Module artifact destination already exists')
+    destination.parent.mkdir(parents=True,exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix='.omega-modules-',dir=destination.parent) as tmp:
+        source=Path(tmp)/'linked.omega';source.write_text(linked.source,encoding='utf-8')
+        result=build_checked(source,destination).unwrap()
+    with module_source.open('x',encoding='utf-8') as stream:stream.write(linked.source)
+    with module_manifest.open('xb') as stream:stream.write(canonical(linked.manifest()))
+    record=destination.with_suffix('.build.json');provenance=json.loads(record.read_text())
+    provenance.update(module_graph=linked.manifest(),module_source=module_source.name,module_manifest=module_manifest.name)
+    provenance['artifacts'].update(artifact_record([module_source,module_manifest],destination.parent))
+    record.write_text(json.dumps(provenance,indent=2,ensure_ascii=False)+'\n')
+    return {**result,'modules':len(linked.manifest()['modules']),'linked_source':str(module_source),'module_manifest':str(module_manifest)}
 
 
 def compiler_main():
