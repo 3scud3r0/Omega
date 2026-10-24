@@ -1,0 +1,190 @@
+"""Components embedded in the single-file distribution; acceptance remains pending."""
+from dataclasses import dataclass
+import json
+from .generics import Registry, expand
+
+# Additional components share this file so the requested delivery is auditable.
+# Task coverage is explicitly measured; inclusion here never grants acceptance.
+from concurrent.futures import ThreadPoolExecutor
+from collections import deque
+import math
+import random
+import time
+import unittest
+
+
+class BoundedQueue:
+    """FIFO with explicit capacity; overflow never discards an existing item."""
+    def __init__(self, capacity):
+        if type(capacity) is not int or not 1 <= capacity <= 100000:
+            raise ValueError('Invalid queue capacity')
+        self.capacity = capacity
+        self._items = deque()
+
+    def push(self, value):
+        if len(self._items) >= self.capacity:
+            raise OverflowError('Queue capacity exhausted')
+        self._items.append(value)
+
+    def pop(self):
+        if not self._items:
+            raise IndexError('Empty queue')
+        return self._items.popleft()
+
+    def __len__(self):
+        return len(self._items)
+
+
+class ArenaBudget:
+    """Accounting contract only: this does not implement native garbage collection."""
+    def __init__(self, limit):
+        if type(limit) is not int or limit <= 0:
+            raise ValueError('Positive allocation budget required')
+        self.limit = limit
+        self.used = 0
+        self._allocations = {}
+        self._next = 0
+
+    def reserve(self, size):
+        if type(size) is not int or size < 0:
+            raise ValueError('Invalid allocation size')
+        if size > self.limit - self.used:
+            raise MemoryError('Allocation budget exhausted')
+        self._next += 1
+        self._allocations[self._next] = size
+        self.used += size
+        return self._next
+
+    def release(self, handle):
+        if type(handle) is not int or handle not in self._allocations:
+            raise ValueError('Unknown or already released allocation')
+        self.used -= self._allocations.pop(handle)
+
+
+@dataclass(frozen=True)
+class Measurement:
+    name: str
+    seed: int
+    elapsed_seconds: float
+    correct: bool
+    detail: str
+
+
+def deterministic_map(operation, values, workers=1):
+    """Ordered results for trusted pure host functions, not a candidate sandbox.
+
+    Callers must provide pure operations. Shared mutable state is not made safe
+    by this helper, and process isolation remains the existing sandbox's job.
+    """
+    if type(workers) is not int or not 1 <= workers <= 16:
+        raise ValueError('Invalid worker count')
+    values = tuple(values)
+    if len(values) > 10000:
+        raise ValueError('Batch budget exhausted')
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        return tuple(executor.map(operation, values))
+
+
+def paired_bootstrap(before, after, *, seed=0, samples=2000):
+    """Paired mean improvement and percentile CI; no automatic promotion."""
+    before, after = tuple(before), tuple(after)
+    if len(before) != len(after) or not 2 <= len(before) <= 10000:
+        raise ValueError('Paired measurements required')
+    if type(samples) is not int or not 100 <= samples <= 10000:
+        raise ValueError('Invalid resampling budget')
+    if samples * len(before) > 2000000:
+        raise ValueError('Resampling work budget exhausted')
+    if any(type(x) not in (int, float) or not math.isfinite(x) for x in before + after):
+        raise ValueError('Finite measurements required')
+    delta = tuple(y-x for x,y in zip(before,after))
+    rng = random.Random(seed)
+    means = sorted(sum(rng.choice(delta) for _ in delta)/len(delta) for _ in range(samples))
+    return {'mean_delta':sum(delta)/len(delta), 'ci95':[means[int(samples*.025)],means[int(samples*.975)]],
+            'seed':seed,'samples':samples,'pairs':len(delta),'promotion_authorized':False}
+
+
+def benchmark(name, operation, verify, *, seed=0):
+    """Measure a trusted adapter; preserve negative outcomes as measurements."""
+    started = time.perf_counter()
+    try:
+        value = operation(seed)
+        correct = verify(value)
+        if type(correct) is not bool:
+            raise TypeError('Verifier must return bool')
+        detail = 'accepted' if correct else 'rejected'
+    except Exception as exc:
+        correct = False
+        detail = type(exc).__name__
+    return Measurement(name,seed,time.perf_counter()-started,correct,detail)
+
+
+def coverage(root):
+    """Report actual scope against every requested task, without success stubs."""
+    from pathlib import Path
+    tasks=[]
+    for line in (Path(root)/'roadmap/tasks.tsv').read_text().splitlines():
+        task,phase,title,acceptance=line.split('\t')
+        if int(task[3:]) < 18:
+            continue
+        tasks.append({'id':task,'phase':int(phase),'title':title,'acceptance':acceptance,
+                      'status':'partial' if task in {'OM-018','OM-019','OM-020','OM-021','OM-109','OM-136'} else 'not_implemented',
+                      'accepted':False})
+    return tasks
+
+
+class MonolithTests(unittest.TestCase):
+    def test_queue_properties(self):
+        rng=random.Random(19)
+        queue=BoundedQueue(20)
+        reference=[]
+        for _ in range(1000):
+            if reference and rng.randrange(2):
+                self.assertEqual(queue.pop(),reference.pop(0))
+            elif len(reference)<20:
+                value=rng.randrange(100);queue.push(value);reference.append(value)
+            self.assertEqual(len(queue),len(reference))
+        full=BoundedQueue(1);full.push(7)
+        with self.assertRaises(OverflowError):full.push(8)
+        self.assertEqual(full.pop(),7)
+        with self.assertRaises(IndexError):full.pop()
+
+    def test_allocation_accounting(self):
+        arena=ArenaBudget(10);handle=arena.reserve(8)
+        with self.assertRaises(MemoryError):arena.reserve(3)
+        self.assertEqual(arena.used,8)
+        arena.release(handle)
+        self.assertEqual(arena.used,0)
+        with self.assertRaises(ValueError):arena.release(handle)
+
+    def test_ordered_execution(self):
+        self.assertEqual(deterministic_map(lambda x:x*x,range(100),4),tuple(x*x for x in range(100)))
+
+    def test_statistics_do_not_authorize_promotion(self):
+        result=paired_bootstrap([0,0,0],[1,1,1],samples=100)
+        self.assertEqual(result['ci95'],[1,1])
+        self.assertFalse(result['promotion_authorized'])
+        with self.assertRaises(ValueError):paired_bootstrap([0,float('nan')],[1,2])
+
+    def test_negative_benchmark_is_preserved(self):
+        result=benchmark('negative',lambda seed:0,lambda value:False)
+        self.assertFalse(result.correct)
+        self.assertEqual(result.detail,'rejected')
+
+    def test_generic_expansion(self):
+        registry=Registry.from_dict({'format':'omega-generics-1','schema_version':'1.0.0','functions':[
+            {'name':'square','parameters':[{'name':'x','shape':[]}],'returns':[],'body':'x*x'}]})
+        result=expand('parametro x=3;perda l=square(x);mostrar l;',registry)
+        self.assertEqual(result.manifest()['instances'][0]['result'],{'element':'rational','shape':[]})
+
+
+if __name__ == '__main__':
+    import argparse
+    from pathlib import Path
+    parser=argparse.ArgumentParser(description='Single-file Omega components; unfinished roadmap tasks are explicitly reported.')
+    parser.add_argument('action',choices=['self-test','coverage'])
+    args=parser.parse_args()
+    if args.action=='self-test':
+        suite=unittest.defaultTestLoader.loadTestsFromTestCase(MonolithTests)
+        outcome=unittest.TextTestRunner(verbosity=2).run(suite)
+        raise SystemExit(0 if outcome.wasSuccessful() else 1)
+    print(json.dumps(coverage(Path(__file__).resolve().parents[1]),ensure_ascii=False,indent=2))

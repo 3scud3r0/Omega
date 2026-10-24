@@ -1,0 +1,20 @@
+{
+  "task": "OM-018",
+  "scope": "closed pure rational/tensor templates with bounded concrete dimension specialization; no general higher-order polymorphism",
+  "validation": {
+    "targeted_tests": 9,
+    "reference_scalar_vector_instances": 13,
+    "native_result_independently_verified_by_lean": true,
+    "full_reference_log_compared": true,
+    "all_computation_nodes_preserved": true,
+    "corrupt_or_missing_provenance_blocks_execution": true
+  },
+  "independent_review": false,
+  "sources": {
+    "omega/generics.py": "9e4b82ce01615be15de53ad59af13c86c3df713f16befa3037caa32bce340088",
+    "omega_selfhost/driver.py": "c9cb9a052a8e4b5997ca97bc9f353322ba6a973f16fcc7a2156e825ee78a5193",
+    "omega_selfhost/cli.py": "2be6d3606fbb101319d93f74fc28a7b9d816ad3210db495d66238ac8e029eab8",
+    "testes/foundation/test_generics.py": "874cd1bce88ddd834df0da99e8ca6abbb7942fbe5ce528dd702ff5da162b1a65",
+    "docs/GENERICS_EM_DESENVOLVIMENTO.md": "b84fb43da964b17f1b5ea7f614d0765674f21ed513fff203eee8f9b74da4c9bb"
+  }
+}

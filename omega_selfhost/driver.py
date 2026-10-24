@@ -246,10 +246,14 @@ def run_checked(binary,*,destination=None,budget=Budget()):
     ready=attempt('io',preflight)
     if isinstance(ready,Err):return ready
     def execute():
+        generic=_generic_program(binary)
         execution=isolated_run([Path(binary).resolve()],budget=budget,check=True)
         data=json.loads(execution.stdout)
         optimization=Path(binary).resolve().with_suffix('.opt.json')
         if optimization.is_file():data['optimization']=json.loads(optimization.read_text())
+        if generic is not None:
+            from omega.generics import project_result
+            data=project_result(generic,data)
         return execution,data
     execution=attempt('execute',execute)
     if isinstance(execution,Err):return execution
@@ -292,6 +296,70 @@ def build_module(entry,destination,*,root=None):
     provenance['artifacts'].update(artifact_record([module_source,module_manifest],destination.parent))
     record.write_text(json.dumps(provenance,indent=2,ensure_ascii=False)+'\n')
     return {**result,'modules':len(linked.manifest()['modules']),'linked_source':str(module_source),'module_manifest':str(module_manifest)}
+
+
+def _bounded_text(path,limit):
+    with Path(path).open('rb') as stream:data=stream.read(limit+1)
+    if len(data)>limit:raise ValueError('Generic artifact byte budget exceeded')
+    return data.decode('utf-8')
+
+
+def build_generic(source,templates,destination):
+    from omega.generics import Registry,expand
+    from omega_platform.manifest import canonical
+    original=_bounded_text(source,1024*1024)
+    template_text=_bounded_text(templates,1024*1024)
+    program=expand(original,Registry.load(templates))
+    destination=Path(destination).resolve()
+    additions={'.generic-input.omega':original,'.generic-templates.json':template_text,
+               '.expanded.omega':program.source,'.generics.json':canonical(program.manifest()).decode()}
+    outputs=[destination,destination.with_suffix('.c'),destination.with_suffix('.build.json'),
+             *(destination.with_suffix(suffix) for suffix in additions)]
+    if len(set(outputs))!=len(outputs):raise ValueError('Generic artifact paths must be distinct')
+    if any(path.exists() for path in outputs):raise FileExistsError('Generic artifact destination already exists')
+    destination.parent.mkdir(parents=True,exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix='.omega-generic-',dir=destination.parent) as tmp:
+        expanded=Path(tmp)/'expanded.omega';expanded.write_text(program.source,encoding='utf-8')
+        result=build_checked(expanded,destination).unwrap()
+    for suffix,content in additions.items():
+        with destination.with_suffix(suffix).open('x',encoding='utf-8') as stream:stream.write(content)
+    path=destination.with_suffix('.build.json');record=json.loads(path.read_text())
+    record['generic_expansion']=program.manifest()
+    record['artifacts'].update(artifact_record([destination.with_suffix(s) for s in additions],destination.parent))
+    path.write_text(json.dumps(record,indent=2,ensure_ascii=False)+'\n')
+    return {**result,'generic_instances':len(program.manifest()['instances']),
+            'expansion_manifest':str(destination.with_suffix('.generics.json'))}
+
+
+def _generic_program(binary):
+    from omega.generics import Registry,expand
+    from omega_platform.manifest import verify,canonical
+    binary=Path(binary).resolve();manifest=binary.with_suffix('.generics.json')
+    if not manifest.exists():
+        record_path=binary.with_suffix('.build.json')
+        if record_path.exists() and 'generic_expansion' in json.loads(_bounded_text(record_path,16*1024*1024)):
+            raise ValueError('Missing required generic expansion manifest')
+        return None
+    record=json.loads(_bounded_text(binary.with_suffix('.build.json'),16*1024*1024))
+    verify(record,binary.parent)
+    required=[binary.with_suffix(s).name for s in ('.generic-input.omega','.generic-templates.json','.expanded.omega','.generics.json')]
+    if not set(required)<=set(record['artifacts']):raise ValueError('Missing generic provenance artifacts')
+    program=expand(_bounded_text(binary.with_suffix('.generic-input.omega'),1024*1024),
+                   Registry.load(binary.with_suffix('.generic-templates.json')))
+    expected=canonical(program.manifest())
+    if manifest.read_bytes()!=expected or canonical(record.get('generic_expansion'))!=expected:
+        raise ValueError('Generic expansion cannot be reproduced')
+    if binary.with_suffix('.expanded.omega').read_bytes()!=program.source.encode():
+        raise ValueError('Generic expanded source mismatch')
+    return program
+
+
+def generic_ir(source,templates):
+    from omega.generics import Registry,expand,project_ir
+    program=expand(_bounded_text(source,1024*1024),Registry.load(templates))
+    with tempfile.TemporaryDirectory(prefix='omega-generic-ir-') as tmp:
+        path=Path(tmp)/'expanded.omega';path.write_text(program.source,encoding='utf-8')
+        return project_ir(program,compile_ir(path))
 
 
 def compiler_main():

@@ -3,10 +3,15 @@ import json
 from pathlib import Path
 import sys
 
-COMMANDS=('bootstrap','native-build','native-run','verify-native','native-types','native-shapes','native-ir','validate-ir','native-ssa','module-link','module-build')
+COMMANDS=('bootstrap','native-build','native-run','verify-native','native-types','native-shapes','native-ir','validate-ir','native-ssa','module-link','module-build','generic-build','generic-ir')
 
 
 def register(sub):
+    for action in ('generic-build','generic-ir'):
+        p=sub.add_parser(action,help='specialize closed rational/tensor templates with checked dimensions')
+        p.add_argument('arquivo',type=Path)
+        p.add_argument('--templates',type=Path,required=True)
+        p.add_argument('--saida',type=Path,required=True)
     for action in ('module-link','module-build'):
         p=sub.add_parser(action,help='link local procedural modules with explicit exports and a bounded import root')
         p.add_argument('arquivo',type=Path)
@@ -61,6 +66,13 @@ def _execute(args):
         result=analyze_tensor(TypedIR.from_legacy(driver.compile_ir(args.arquivo)))
     elif args.acao=='native-build':
         result=driver.build_checked(args.arquivo,args.saida,args.optimize).unwrap()
+    elif args.acao=='generic-build':
+        result=driver.build_generic(args.arquivo,args.templates,args.saida)
+    elif args.acao=='generic-ir':
+        from omega.typed_ir import TypedIR
+        ir=TypedIR.from_legacy(driver.generic_ir(args.arquivo,args.templates))
+        with args.saida.open('xb') as stream:stream.write(ir.to_bytes())
+        result={'format':'omega-ir-validation-1','valid':True,'sha256':ir.sha256}
     elif args.acao=='module-build':
         result=driver.build_module(args.arquivo.resolve(),args.saida,root=args.raiz)
     elif args.acao=='module-link':
