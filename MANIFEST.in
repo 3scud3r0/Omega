@@ -1,0 +1,12 @@
+include *.md *.txt RECONSTRUIR_TXT.py .gitignore
+recursive-include docs *.md *.txt
+recursive-include formal *.lean lean-toolchain *.json
+recursive-exclude formal .lake/*
+recursive-include scripts *.sh
+recursive-include requirements *.lock
+recursive-include exemplos *.json *.omega *.ows *.py *.smt2 *.tab *.omc *.lean *.txt
+recursive-include testes *.py
+recursive-include .github *.yml
+prune formal/lean/.lake
+
+prune formal/tensor/.lake

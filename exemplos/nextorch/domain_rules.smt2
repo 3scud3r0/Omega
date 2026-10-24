@@ -1,0 +1,6 @@
+(declare-const P_0 Bool)
+(declare-const P_1 Bool)
+(declare-const P_2 Bool)
+(assert P_0)
+(assert (=> P_0 P_1))
+(assert (=> P_1 P_2))

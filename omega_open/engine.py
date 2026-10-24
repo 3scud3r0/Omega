@@ -157,13 +157,13 @@ def audit(doc):
 def compile_policy(weights):
     """Compila de verdade no motor Ômega anterior quando disponível."""
     try:
-        from omega.motor_v1 import CompiladorV1, MaquinaV1
-        from omega.sintaxe import analisar
+        from omega.motor_v1 import MaquinaV1
+        from omega_selfhost.driver import compile_text
         from omega.nucleo_v1 import validar_ir
         from fractions import Fraction
     except ImportError:
         return None
-    ir=CompiladorV1().programa(analisar(source_policy(weights)))
+    ir=compile_text(source_policy(weights))
     validar_ir(ir)
     machine=MaquinaV1(ir).executar()
     idx=ir['simbolos']['prioridade']

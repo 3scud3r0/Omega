@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scheme version="2.0" title="Ômega + Nextorch: síntese certificada" description="No widget File, escolha intuicao_xor.tab. No Omega Certifier, clique em Sintetizar e certificar. O Lean deve estar configurado por OMEGA_LEAN.">
+  <nodes>
+    <node id="0" name="File" qualified_name="Orange.widgets.data.owfile.OWFile" project_name="Orange3" version="" title="Tabela-verdade" position="(100, 100)" />
+    <node id="1" name="Omega Certifier" qualified_name="omega_nextorch.orange.OWOmegaCertifier.OWOmegaCertifier" project_name="linguagem-omega" version="1.4.0" title="Ômega certifica Nextorch" position="(380, 100)" />
+  </nodes>
+  <links>
+    <link id="0" source_node_id="0" sink_node_id="1" source_channel="Data" sink_channel="Truth Table" enabled="true" />
+  </links>
+  <annotations />
+  <thumbnail />
+  <node_properties />
+</scheme>

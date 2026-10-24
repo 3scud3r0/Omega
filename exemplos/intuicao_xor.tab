@@ -1,0 +1,7 @@
+x0	x1	xor
+continuous	continuous	0 1
+		class
+0	0	0
+1	0	1
+0	1	1
+1	1	0
