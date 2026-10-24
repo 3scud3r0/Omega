@@ -1,5 +1,6 @@
 import Lean.Data.Json
 import ProofPrelude
+import OperationalSemantics
 open Lean OmegaTensor
 
 def cellsCount (shape : List Nat) : Nat := shape.foldl (· * ·) 1

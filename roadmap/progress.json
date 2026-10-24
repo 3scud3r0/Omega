@@ -65,8 +65,8 @@
     {
       "id": "OM-011",
       "phase": 1,
-      "status": "not_started",
-      "evidence": null
+      "status": "implemented_pending_review",
+      "evidence": "docs/SINTAXE_E_SEMANTICA.md"
     },
     {
       "id": "OM-012",

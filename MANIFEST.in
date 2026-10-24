@@ -5,7 +5,7 @@ recursive-exclude formal .lake/*
 recursive-include scripts *.sh *.py
 recursive-include requirements *.lock
 recursive-include exemplos *.json *.omega *.ows *.py *.smt2 *.tab *.omc *.lean *.txt
-recursive-include testes *.py *.c *.json
+recursive-include testes *.py *.c *.json *.lean
 recursive-include .github *.yml
 prune formal/lean/.lake
 

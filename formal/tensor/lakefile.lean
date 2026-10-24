@@ -6,6 +6,8 @@ lean_lib TensorKernel where
   srcDir := "../../omega_selfhost"
 lean_lib ProofPrelude where
   srcDir := "../../omega_selfhost"
+lean_lib OperationalSemantics where
+  srcDir := "../../omega_selfhost"
 @[default_target]
 lean_exe omega_tensor_kernel where
   root := `Main
