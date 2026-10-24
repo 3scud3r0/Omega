@@ -15,7 +15,8 @@ from .nucleo_meta import (GENES,BASE,TREINO,TESTE,FORMATO,
                           certificado_completude,saidas,alvo,escore)
 from .meta_programa import fonte_politica
 from .sintaxe import ErroOmega,analisar
-from .motor_v1 import CompiladorV1,MaquinaV1
+from .motor_v1 import MaquinaV1
+from omega_selfhost.driver import compile_text
 from .nucleo_v1 import validar_ir
 
 
@@ -38,7 +39,7 @@ def construir():
 
 
 def executar_codigo(fonte):
-    ir=CompiladorV1().programa(analisar(fonte))
+    ir=compile_text(fonte)
     validar_ir(ir)
     maquina=MaquinaV1(ir).executar()
     # Auditoria exaustiva: TODAS as hipóteses, não apenas amostras.

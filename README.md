@@ -1,4 +1,68 @@
-# Ômega 1.3.0
+# Ômega 2.0 — compilador auto-hospedado, execução nativa e núcleo Lean
+
+O compilador de produção está escrito em
+[`omega_selfhost/compiler.omega`](omega_selfhost/compiler.omega): lexer, parser,
+verificação de formas, lowering da linguagem tensorial, otimizador e emissão de C.
+Ele compila a própria fonte. Os estágios 0, 1, 2 e 3 geram C idêntico; os binários
+estabilizados também coincidem. Depois do bootstrap, compilar e executar programas
+nativos não requer Python.
+
+O backend usa GMP para aritmética racional exata e cobre escalares, vetores,
+matrizes, ReLU, gradientes e atualizações. O núcleo independente em Lean verifica
+valores observados, todas as coordenadas dos gradientes, autorização das taxas,
+sementes, atualizações e a cadeia completa de estados. As otimizações recebem
+provas universais de preservação de valores **e gradientes** para cada coordenada.
+
+O Nextorch está incorporado ao pacote como subsistema de propostas neurais. Ômega
+faz a admissão exata; os modelos e as interfaces Orange continuam usando
+PyTorch/Python. Os compiladores/VMs históricos em Python são preservados como
+referência e compatibilidade, não são chamados pelos estágios nativos do compilador.
+
+```sh
+# Linux x86_64, Python 3.12, compilador C, libgmp-dev e zstd.
+bash scripts/setup.sh
+bash scripts/test.sh -q
+
+.venv/bin/python -m omega bootstrap
+.venv/bin/python -m omega native-build exemplos/rede_profunda.omega \
+  --saida artifacts/nativo/rede
+.venv/bin/python -m omega native-run artifacts/nativo/rede \
+  --saida artifacts/nativo/rede-result.json
+.venv/bin/python -m omega verify-native artifacts/nativo/rede-result.json
+
+# Otimizador auto-hospedado, com prova universal conferida antes da entrega:
+.venv/bin/python -m omega native-build exemplos/otimizacao_ir.omega \
+  --saida artifacts/nativo/otimizado --optimize
+.venv/bin/python -m omega native-run artifacts/nativo/otimizado
+```
+
+Use destinos novos: os comandos preservam resultados existentes. O executável
+`build/selfhost/omegac-stage2` aceita `fonte.omega destino.c` ou
+`fonte.omega destino.json --ir`. A entrada `omegac` instalada chama esse compilador.
+O bootstrap Python é uma semente auditável do dialeto procedural, não uma
+primitiva oculta chamada pelo compilador auto-hospedado.
+
+Os três passos e sua base de confiança estão descritos em
+[estado dos três passos](docs/ESTADO_DOS_TRES_PASSOS.md).
+Veja [linguagem procedural e bootstrap](docs/AUTO_HOSPEDAGEM.md),
+[execução nativa e provas](docs/NATIVO_E_LEAN.md) e
+[integração Nextorch/Orange](docs/INTEGRACAO_NEXTORCH.md).
+
+## Subsistema neural incorporado
+
+```sh
+export OMEGA_LEAN=/workspace/.tools/lean-4.19.0-linux/bin/lean
+export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+.venv/bin/python -m omega intuition exemplos/tarefas_abertas.json \
+  --saida artifacts/intuicao --lean --native
+.venv/bin/python -m omega audit-intuition artifacts/intuicao --lean --native
+```
+
+No Orange Canvas, abra `exemplos/omega_nextorch.ows` e selecione
+`exemplos/intuicao_xor.tab`. O widget **Omega Certifier** só exporta o circuito após
+certificação. Os três widgets originais Nextorch continuam disponíveis.
+
+## Documentação do motor 1.3 preservado
 
 **Novo: [síntese aberta e metapolíticas de busca](README_OPEN_1_3.md)**.
 

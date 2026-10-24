@@ -1,0 +1,32 @@
+name: Omega native and neural regression
+on:
+  push:
+  pull_request:
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: sudo apt-get update && sudo apt-get install -y libgmp-dev zstd libegl1 libopengl0
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ../.tools
+            ../.cache/pip
+          key: ${{ runner.os }}-lean-4.19.0-mathlib-c44e0c8-${{ hashFiles('formal/tensor/lake-manifest.json', 'requirements/cpu-py312.lock') }}
+      - run: bash scripts/setup.sh
+      - run: bash scripts/test.sh -q --junitxml=artifacts/test-results.xml
+      - run: .venv/bin/python -m build --no-isolation
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: omega-validation
+          path: |
+            artifacts/test-results.xml
+            build/selfhost/bootstrap.json
+            dist/*.whl
+            dist/*.tar.gz

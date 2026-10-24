@@ -12,7 +12,8 @@ from hashlib import sha256
 from itertools import product
 
 from .sintaxe import analisar, ErroOmega
-from .motor_v1 import CompiladorV1, MaquinaV1
+from .motor_v1 import MaquinaV1
+from omega_selfhost.driver import compile_text
 from .otimizador_v1 import otimizar, validar_otimizacao
 from .nucleo_v1 import validar_ir
 from .nucleo_evolucao import (FORMATO,MAX_RAIO,CASOS,digest,
@@ -71,7 +72,7 @@ def sintetizar(raio_maximo=2):
 
 
 def compilar_fonte(fonte):
-    ir=CompiladorV1().programa(analisar(fonte))
+    ir=compile_text(fonte)
     validar_ir(ir)
     return ir
 

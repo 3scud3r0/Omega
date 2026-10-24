@@ -12,7 +12,7 @@ from .tipos import checar_tipos
 from .sintaxe import (ErroOmega, analisar, comando_de_dict, comando_para_dict,
                       Binario, Lista, Unario, Chamada)
 
-VERSAO = '1.3.0'
+VERSAO = '2.0.0'
 FORMATO_IR = 'omega-ir-1'
 FORMATO_PROVAS = 'omega-cert-1'
 FORMATO_IR_V1 = 'omega-ir-2'
@@ -51,9 +51,13 @@ def novo_motor(comandos):
 
 
 def principal(argumentos: list[str] | None = None) -> int:
-    p=argparse.ArgumentParser(prog='omega',description='Ômega 1.3 — evolução aberta com certificação finita')
+    p=argparse.ArgumentParser(prog='omega',description='Ômega 2.0 — auto-hospedagem, execução nativa e certificação')
     p.add_argument('--versao', action='version',version='Ômega '+VERSAO)
     sub=p.add_subparsers(dest='acao',required=True)
+    from omega_nextorch.cli import register, execute, COMMANDS
+    register(sub)
+    from omega_selfhost import cli as native_cli
+    native_cli.register(sub)
     for acao,help_text in (
         ('open-evolve','sintetiza tarefas Bool^n com políticas reprogramáveis'),('audit-open','audita evolução aberta e os arquivos'),('verify-open','verifica certificados de evolução aberta'),('run','executa .omega ou .omc'),('check','verifica execução e certificados'),
         ('types','lista tipos e formas'),('compile','compila para .omc'),
@@ -75,6 +79,10 @@ def principal(argumentos: list[str] | None = None) -> int:
         if acao in ('run','check','types','compile'):sp.add_argument('--motor',choices=['auto','classico','v1'],default='auto')
     args=p.parse_args(argumentos)
     try:
+        if args.acao in COMMANDS:
+            return execute(args)
+        if args.acao in native_cli.COMMANDS:
+            return native_cli.execute(args)
         if args.acao=='open-evolve':
             from omega_open.engine import build,export,audit
             doc=ler_json(args.arquivo)

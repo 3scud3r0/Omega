@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scheme version="2.0" title="Nextorch — synthesis, latent audit, certified evolution" description="Choose a dataset in File. The synthesizer trains a small model and forwards it to the inspector and formal monitor. Click Start in the monitor to run proof-gated expert iteration.">
+  <nodes>
+    <node id="0" name="File" qualified_name="Orange.widgets.data.owfile.OWFile" project_name="Orange3" version="" title="Dataset" position="(80, 180)" />
+    <node id="1" name="Nextorch Synthesizer" qualified_name="nextorch.orange.OWNextorchSynthesizer.OWNextorchSynthesizer" project_name="nextorch-ai" version="0.1.0" title="Synthesize and train" position="(300, 180)" />
+    <node id="2" name="Latent Inspector" qualified_name="nextorch.orange.OWLatentInspector.OWLatentInspector" project_name="nextorch-ai" version="0.1.0" title="Inspect latent trajectories" position="(540, 100)" />
+    <node id="3" name="Formal Loop Monitor" qualified_name="nextorch.orange.OWFormalLoopMonitor.OWFormalLoopMonitor" project_name="nextorch-ai" version="0.1.0" title="Certified expert iteration" position="(540, 290)" />
+    <node id="4" name="Data Table" qualified_name="Orange.widgets.data.owtable.OWTable" project_name="Orange3" version="" title="Derived SAE features" position="(790, 100)" />
+    <node id="5" name="Data Table" qualified_name="Orange.widgets.data.owtable.OWTable" project_name="Orange3" version="" title="Proofs and certified samples" position="(790, 290)" />
+  </nodes>
+  <links>
+    <link id="0" source_node_id="0" sink_node_id="1" source_channel="Data" sink_channel="Data" enabled="true" />
+    <link id="1" source_node_id="0" sink_node_id="2" source_channel="Data" sink_channel="Data" enabled="true" />
+    <link id="2" source_node_id="1" sink_node_id="2" source_channel="Nextorch Model" sink_channel="Nextorch Model" enabled="true" />
+    <link id="3" source_node_id="1" sink_node_id="3" source_channel="Nextorch Model" sink_channel="Nextorch Model" enabled="true" />
+    <link id="4" source_node_id="2" sink_node_id="4" source_channel="Decoded Features Table" sink_channel="Data" enabled="true" />
+    <link id="5" source_node_id="3" sink_node_id="5" source_channel="Certified Dataset" sink_channel="Data" enabled="true" />
+  </links>
+  <annotations>
+    <text id="0" type="text/plain" rect="(30, 10, 260, 90)">1. Open File and choose a local dataset (for example, iris.tab from Orange's sample datasets).</text>
+    <text id="1" type="text/plain" rect="(420, 390, 400, 70)">2. Inspect trajectories, then click Start in Formal Loop Monitor. Model approval and symbolic expert contributions are reported separately.</text>
+  </annotations>
+  <thumbnail />
+  <node_properties />
+</scheme>
