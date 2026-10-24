@@ -56,21 +56,29 @@ def _tool(name):
     return value
 
 
-def _seccomp(instrumented=False,threads=False):
+def _seccomp(instrumented=False,threads=False,subprocesses=False):
     # Classic BPF over seccomp_data, x86-64 only. Unknown architectures fail closed.
     if platform.machine() not in ('x86_64','amd64'):
-        raise IsolationUnavailable('The audited seccomp policy currently supports x86-64')
+        raise IsolationUnavailable('The implemented seccomp policy currently supports x86-64')
     instructions=[(0x20,0,0,4),(0x15,1,0,0xC000003E),(0x06,0,0,0x80000000),
                   (0x20,0,0,0),(0x45,0,1,0x40000000),(0x06,0,0,0x80000000)]
     # Network and process escape/creation syscalls. The sandbox has one candidate
     # process; the supervisor is outside its PID namespace.
     denied=(41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,101,
             165,166,169,175,176,246,248,249,250,272,288,298,299,307,308,
-            310,311,313,317,321,322,323,435,438)
+            310,311,313,317,321,322,323,425,426,427,428,429,430,431,432,433,435,438,442)
     # LeakSanitizer inspects its own address space with a helper. Both the
     # helper and traced process stay inside the private PID namespace.
-    if instrumented:denied=tuple(n for n in denied if n not in (56,57,58,101,435))
-    if threads and not instrumented:
+    if instrumented or subprocesses:
+        allowed=(56,57,58,435,101) if instrumented else (56,57,58,435)
+        denied=tuple(n for n in denied if n not in allowed)
+        # Permit helpers inside this namespace, never new namespaces or a
+        # changed parent. clone3 cannot be inspected through a user pointer.
+        instructions.extend([(0x15,0,1,435),(0x06,0,0,0x00050000|errno.ENOSYS),
+                             (0x15,0,5,56),(0x20,0,0,16),(0x54,0,0,0x7E028080),
+                             (0x15,1,0,0),(0x06,0,0,0x00050000|errno.EPERM),
+                             (0x06,0,0,0x7FFF0000)])
+    if threads and not (instrumented or subprocesses):
         # glibc falls back from clone3 on ENOSYS. Permit only a clone sharing
         # VM, signal handlers and thread group; no independent child process.
         denied=tuple(n for n in denied if n not in (56,435))
@@ -140,11 +148,11 @@ def _capture(command,original,budget,*,cwd=None,env=None,pass_fds=(),sandboxed=F
 
 
 def run(argv:Sequence[str|Path],*,budget=Budget(),readonly=(),writable=(),
-        cwd='/work',extra_env=None,check=False,_instrumented=False,threads=False):
+        cwd='/work',extra_env=None,check=False,_instrumented=False,threads=False,_subprocesses=False):
     if not argv:raise ValueError('An executable is required')
     exe=Path(argv[0]).resolve(strict=True)
     if not exe.is_file():raise ValueError('Executable must be a file')
-    bwrap=_tool('bwrap');prlimit=_tool('prlimit');policy=_seccomp(_instrumented,threads)
+    bwrap=_tool('bwrap');prlimit=_tool('prlimit');policy=_seccomp(_instrumented,threads,_subprocesses)
     with tempfile.TemporaryFile() as filters:
         filters.write(policy);filters.flush();filters.seek(0)
         args=[bwrap,'--unshare-all','--die-with-parent','--new-session','--cap-drop','ALL',
@@ -186,6 +194,20 @@ def trusted(argv,*,budget,cwd=None,check=False):
                     env=os.environ.copy(),sandboxed=False)
     if check and not result.ok:raise ExecutionFailure(result)
     return result
+
+
+def c_tool(argv,*,inputs,output_directory,budget,check=False):
+    """Trusted C toolchain processing generated C inside a restricted filesystem.
+
+    GCC may spawn cc1/as/ld, but cannot read the caller's workspace or secrets
+    through preprocessor directives in generated C. Only its system toolchain,
+    explicit inputs and output directory are granted.
+    """
+    for path in inputs:
+        if Path(path).is_symlink():raise ValueError('Compiler inputs cannot be symlinks')
+    system=[p for p in ('/usr/bin','/bin','/usr/include','/usr/libexec') if Path(p).exists()]
+    return run(argv,readonly=[*system,*inputs],writable=[output_directory],
+               budget=budget,check=check,_subprocesses=True)
 
 
 def instrumented(argv,**kwargs):

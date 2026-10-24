@@ -1,0 +1,18 @@
+{
+  "command": "bash scripts/test.sh -q --junitxml=artifacts/foundation/test-results.xml",
+  "suite": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "1",
+    "tests": "408",
+    "time": "129.301",
+    "timestamp": "2026-10-24T12:04:30.741268+00:00",
+    "hostname": "dc17b0dfefe7"
+  },
+  "passed": 370,
+  "subtests_passed": 37,
+  "skipped_cuda": 1,
+  "junit_sha256": "47a03c6b14f7c18748876efbcb82b52050f718a37a87ec959e973d4e9c05ad71",
+  "independent_review": false
+}

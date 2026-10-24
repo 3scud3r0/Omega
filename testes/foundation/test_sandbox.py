@@ -17,7 +17,8 @@ def execute(text,**kwargs):
     return run([PYTHON,'-c',text],**kwargs)
 
 
-def test_no_network_secrets_host_files_or_external_writes(tmp_path,monkeypatch):
+@pytest.mark.parametrize('threads',[False,True])
+def test_no_network_secrets_host_files_or_external_writes(tmp_path,monkeypatch,threads):
     secret=tmp_path/'host-secret';secret.write_text('canary')
     monkeypatch.setenv('OMEGA_SECRET_CANARY','must-not-inherit')
     script=f'''
@@ -36,7 +37,7 @@ except PermissionError:pass
 else:raise AssertionError('fork allowed')
 print('restricted')
 '''
-    out=execute(script,check=True)
+    out=execute(script,check=True,threads=threads)
     assert out.stdout=='restricted\n' and out.sandboxed
     assert not (tmp_path/'outside').exists()
 
@@ -98,3 +99,25 @@ def test_no_orphaned_sandbox_monitor():
                                       ('fuel',0),('depth',513),('cpu_seconds',True)])
 def test_invalid_budget_rejected(field,value):
     with pytest.raises(ValueError):replace(Budget(),**{field:value})
+
+
+def test_thread_capability_is_explicit():
+    script='''import threading
+t=threading.Thread(target=lambda:None)
+t.start()
+t.join()'''
+    assert execute(script,threads=True).ok
+    assert not execute(script).ok
+
+
+def test_c_preprocessor_cannot_read_outside_build_capability(tmp_path):
+    from omega_platform.budget import BUILD_BUDGET
+    from omega_platform.sandbox import c_tool
+    outside=tmp_path/'host';outside.mkdir()
+    secret=outside/'secret.h';secret.write_text('#error PRIVATE_CANARY_MUST_NOT_LEAK\n')
+    build=tmp_path/'build';build.mkdir()
+    source=build/'input.c';source.write_text(f'#include "{secret}"\nint main(void){{return 0;}}\n')
+    out=c_tool(['/usr/bin/cc',source,'-o',build/'program'],inputs=[source],
+               output_directory=build,budget=BUILD_BUDGET)
+    assert not out.ok and 'No such file' in out.stderr
+    assert 'PRIVATE_CANARY_MUST_NOT_LEAK' not in out.stderr

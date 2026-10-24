@@ -1,7 +1,11 @@
 name: Omega foundation and regression
 on:
   push:
+    branches: [main]
   pull_request:
+concurrency:
+  group: omega-foundation-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
   actions: read
@@ -41,7 +45,7 @@ jobs:
         run: .venv/bin/python scripts/security.py --output artifacts/foundation/security.json
       - name: Build packages and provenance
         run: |
-          .venv/bin/python -m build --no-isolation
+          .venv/bin/python scripts/package.py
           .venv/bin/python scripts/build-manifest.py --output artifacts/build-manifest.json
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()

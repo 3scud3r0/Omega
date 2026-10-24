@@ -10,7 +10,7 @@ import tempfile
 from dataclasses import replace
 
 from omega_platform.budget import Budget,BUILD_BUDGET,COMPILER_BUDGET,PROOF_BUDGET
-from omega_platform.sandbox import trusted,run as isolated_run,ExecutionFailure,IsolationUnavailable
+from omega_platform.sandbox import trusted,run as isolated_run,ExecutionFailure,IsolationUnavailable,c_tool
 from omega_platform.manifest import compiler_inputs,artifact_record
 
 PACKAGE = Path(__file__).resolve().parent
@@ -30,9 +30,11 @@ def cc(source, output, optimization='-O2'):
     compiler = shutil.which(os.environ.get('CC','cc'))
     if not compiler:
         raise IsolationUnavailable('A C compiler and GMP development headers are required')
-    command([compiler,'-std=gnu11',optimization,'-s','-Wall','-Wextra',
+    c_tool([compiler,'-std=gnu11',optimization,'-s','-Wall','-Wextra',
              '-Wno-unused-function','-Wno-unused-variable','-Wno-misleading-indentation',
-             '-I',PACKAGE,source,'-lgmp','-o',output], timeout=300)
+             '-I',PACKAGE,Path(source).resolve(),'-lgmp','-o',Path(output).resolve()],
+            inputs=[source,PACKAGE],output_directory=Path(output).resolve().parent,
+            budget=BUILD_BUDGET,check=True)
 
 
 def _bootstrap(destination):

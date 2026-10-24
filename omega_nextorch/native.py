@@ -6,12 +6,11 @@ import json
 import os
 from pathlib import Path
 import shutil
-import subprocess
 import tempfile
 
 from .gate import verify
 from omega_platform.budget import BUILD_BUDGET
-from omega_platform.sandbox import trusted,run as isolated_run
+from omega_platform.sandbox import c_tool,run as isolated_run
 
 
 def bytecode(ast):
@@ -88,8 +87,9 @@ def build(certificate, destination, cc=None):
     with tempfile.TemporaryDirectory(prefix=".omega-native-", dir=target.parent) as tmp:
         src, exe = Path(tmp) / "circuit.c", Path(tmp) / "circuit"
         src.write_text(code, encoding="utf-8")
-        proc = trusted([compiler, "-std=c11", "-O2", "-Wall", "-Wextra", "-Werror",
-                        str(src), "-o", str(exe)],budget=BUILD_BUDGET)
+        proc = c_tool([compiler, "-std=c11", "-O2", "-Wall", "-Wextra", "-Werror",
+                        str(src.resolve()), "-o", str(exe.resolve())],inputs=[src],
+                        output_directory=Path(tmp),budget=BUILD_BUDGET)
         if proc.returncode:
             raise RuntimeError("Compilação C falhou: " + proc.stderr[-4000:])
         result = isolated_run([str(exe.resolve())])

@@ -32,7 +32,7 @@ bash scripts/setup.sh
 bash scripts/test.sh -q --junitxml=artifacts/foundation/test-results.xml
 .venv/bin/python scripts/regression.py --output artifacts/foundation/corpus.json
 .venv/bin/python scripts/security.py --output artifacts/foundation/security.json
-.venv/bin/python -m build --no-isolation
+.venv/bin/python scripts/package.py
 .venv/bin/python scripts/build-manifest.py --output artifacts/build-manifest.json
 .venv/bin/python scripts/build-manifest.py --verify artifacts/build-manifest.json
 ```
@@ -43,6 +43,12 @@ processo, falta de kernel ou sandbox e timeout não contam como rejeição
 intencional de exemplo. Um novo exemplo sem classificação impede aprovação.
 O manifesto é uma especificação revisável, não uma contagem descoberta depois
 de observar quantos exemplos passaram.
+
+O empacotamento fixa `SOURCE_DATE_EPOCH` no commit e normaliza timestamps,
+ordenação e propriedade do sdist. Com o mesmo conteúdo e toolchain, duas
+execuções devem produzir os mesmos hashes de wheel e sdist. Isso não afirma
+igualdade de binários produzidos por GCC/GMP diferentes entre as duas versões
+de Ubuntu; a proveniência registra essas diferenças.
 
 ## Invariantes de execução e fronteiras de confiança
 
@@ -65,9 +71,11 @@ O perfil normal impede criação de processos/threads e sockets. O verificador
 Lean tem um perfil explícito que permite somente clones de threads com VM,
 grupo de threads e manipuladores compartilhados; clone3 retorna ENOSYS para
 que libc use o clone filtrado. Fork e rede continuam proibidos. O processo
-supervisor externo adota e recolhe monitores órfãos. Os builds e a elaboração
-de provas geradas exclusivamente por renderizadores confiáveis têm limites
-de recursos, mas permanecem ferramentas confiáveis fora desse sandbox.
+supervisor externo adota e recolhe monitores órfãos. O GCC executa em perfil de build isolado, com helpers autorizados e acesso
+a headers/ferramentas do sistema, entradas explícitas e diretório de saída.
+Diretivas de pré-processamento não concedem leitura da workspace. A elaboração
+de provas geradas exclusivamente por renderizadores confiáveis tem limites
+de recursos, mas permanece uma ferramenta confiável fora desse sandbox.
 
 Escrita persistente só existe quando o chamador confiável concede um diretório.
 Um arquivo montado somente para leitura dentro desse diretório permanece
@@ -109,11 +117,12 @@ alterações no núcleo estável ou declara as OM-011 a OM-150 concluídas.
 
 ## Resultados locais em 24/10/2026
 
-- Suite completa: 367 testes e 37 subtestes aprovados; um teste CUDA ignorado.
+- Suite completa: 370 testes e 37 subtestes aprovados; um teste CUDA ignorado.
 - Corpus: 24 exemplos aprovados e quatro rejeições previstas, sem falhas de
   infraestrutura ou diferenças contra as referências.
 - Segurança: 250 casos aprovados, incluindo execução tensorial/AD instrumentada,
-  validação Lean dessa saída, canário ASan e análise GCC do runtime.
+  validação Lean dessa saída, canário ASan e análise GCC do runtime. Os testes
+  de isolamento também verificam o bloqueio de leitura externa via `#include`.
 - Build Python: wheel e sdist produzidos; manifesto verifica seus hashes e os
   binários dos estágios e dos dois kernels Lean.
 - Preparação Bubblewrap 0.12.0 compilada e executada neste ambiente sem root,
