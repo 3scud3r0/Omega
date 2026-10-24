@@ -3,10 +3,12 @@ import json
 from pathlib import Path
 import subprocess
 
-COMMANDS=('bootstrap','native-build','native-run','verify-native','native-types','native-shapes','native-ir','validate-ir')
+COMMANDS=('bootstrap','native-build','native-run','verify-native','native-types','native-shapes','native-ir','validate-ir','native-ssa')
 
 
 def register(sub):
+    p=sub.add_parser('native-ssa',help='analyze SSA def-use and dominance for a tensor evaluation graph')
+    p.add_argument('arquivo',type=Path)
     p=sub.add_parser('native-ir',help='export canonical, typed, versioned tensor IR')
     p.add_argument('arquivo',type=Path)
     p.add_argument('--saida',type=Path,required=True)
@@ -49,6 +51,10 @@ def execute(args):
             from omega.typed_ir import TypedIR
             ir=TypedIR.load(args.arquivo)
             result={'format':'omega-ir-validation-1','valid':True,'sha256':ir.sha256}
+        elif args.acao=='native-ssa':
+            from omega.typed_ir import TypedIR
+            from omega.ssa import analyze_tensor
+            result=analyze_tensor(TypedIR.from_legacy(driver.compile_ir(args.arquivo)))
         elif args.acao=='native-build':
             result=driver.build(args.arquivo,args.saida,args.optimize)
         elif args.acao=='native-run':

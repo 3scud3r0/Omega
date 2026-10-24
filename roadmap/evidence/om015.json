@@ -1,0 +1,16 @@
+{
+  "task": "OM-015",
+  "scope": "typed SSA CFG analysis and single-evaluation tensor adapter; no lowering of procedural heap or mutable training commands",
+  "validation": {
+    "targeted_passed": 62,
+    "ssa_tests": 17,
+    "cfgs_checked_against_independent_path_oracle": 80,
+    "corpus": "all non-compile-rejection tensor graphs checked"
+  },
+  "independent_review": false,
+  "sources": {
+    "omega/ssa.py": "f338443ba8b9bd25e429b81da809dc88bb46c58c9193456a59f44180999fb425",
+    "testes/foundation/test_ssa.py": "54e35fdcb6e5656b4476d5e0ff113683ff3b6a82278eb105fe2828ab01fb5538",
+    "docs/SSA_3_0.md": "49a6ad8d225203437b83fce40851d42cab6aab3e623d662de1f7b43fd7e5d84c"
+  }
+}

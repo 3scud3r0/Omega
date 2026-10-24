@@ -40,6 +40,8 @@ def test_contract_roundtrip_rejects_forged_outputs_and_equations():
         with pytest.raises(TypeCheckError):DimensionContract.from_dict(changed)
     forged=DimensionContract('@',((2,3),(3,4)),(2,5),())
     with pytest.raises(TypeCheckError):forged.specialize({})
+    changed=dimension_contract('neg',((1,),)).to_dict();changed['output']=[True]
+    with pytest.raises(TypeCheckError):DimensionContract.from_dict(changed)
 
 
 def test_all_small_concrete_shapes_match_two_existing_independent_type_rules():
@@ -90,3 +92,9 @@ def test_internal_node_shape_tampering_is_rejected(mutation):
                {'op':'+','args':[0,1],'forma':[]}],'parametros':[]}
     mutation(ir)
     with pytest.raises(TypeCheckError):certify_graph_shapes(ir)
+
+
+def test_shape_certificate_does_not_accept_boolean_as_integer():
+    ir={'nos':[{'op':'zeros','args':[],'forma':[1]}],'parametros':[]}
+    cert=certify_graph_shapes(ir);cert['nodes'][0]['shape']=[True]
+    with pytest.raises(TypeCheckError):verify_graph_shapes(ir,cert)

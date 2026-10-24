@@ -74,6 +74,12 @@ class DimensionContract:
         if value['format']!='omega-dimensions-1' or type(value['inputs']) is not list:
             raise TypeCheckError('Unsupported dimension contract')
         if any(type(s) is not list for s in value['inputs']):raise TypeCheckError('Malformed input shapes')
+        if type(value['output']) is not list or type(value['equalities']) is not list:
+            raise TypeCheckError('Malformed dimension obligations')
+        _shape(tuple(value['output']))
+        for pair in value['equalities']:
+            if type(pair) is not list or len(pair)!=2:raise TypeCheckError('Malformed dimension equality')
+            for dimension in pair:_shape((dimension,))
         result=dimension_contract(value['operator'],tuple(tuple(s) for s in value['inputs']))
         if result.to_dict()!=value:raise TypeCheckError('Noncanonical or forged dimension contract')
         return result
@@ -159,6 +165,11 @@ def certify_graph_shapes(ir):
 
 
 def verify_graph_shapes(ir,certificate):
-    if type(certificate) is not dict or certificate!=certify_graph_shapes(ir):
+    if type(certificate) is not dict:raise TypeCheckError('Malformed shape certificate')
+    try:
+        expected=json.dumps(certify_graph_shapes(ir),sort_keys=True,separators=(',',':'),allow_nan=False)
+        actual=json.dumps(certificate,sort_keys=True,separators=(',',':'),allow_nan=False)
+    except (ValueError,TypeError,RecursionError):raise TypeCheckError('Malformed shape certificate') from None
+    if expected!=actual:
         raise TypeCheckError('Shape certificate does not match its graph')
     return True

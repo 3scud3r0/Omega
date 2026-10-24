@@ -9,8 +9,12 @@
   },
   "independent_review": false,
   "sources": {
-    "omega/dimensions.py": "a906b8b6b79c8fe2f9ab702079ffa671ced4743621a95f36870599dd430a03d3",
-    "testes/foundation/test_dimensions.py": "782bf3ecfa4cae96919d04263ca9c84873de9ad5003deaac23eae934e3ae5daf",
+    "omega/dimensions.py": "2400fc20604b17e1e0f9304e2eddadbdc6a40451edc50f31aa47d3ac84839e1f",
+    "testes/foundation/test_dimensions.py": "4b85f26dbeff1b9ad81cb204461db242aea8fc561130380e79c80d3918f655c1",
     "docs/DIMENSOES_3_0.md": "43d019b58db605e83c1734cc7c61280829dfa4bbb1bdf8d61bba60b00abce1b9"
+  },
+  "followup": {
+    "strict_boolean_rejection": true,
+    "validated_with_ssa_and_typed_ir_tests": 62
   }
 }
