@@ -1,32 +1,62 @@
-name: Omega native and neural regression
+name: Omega foundation and regression
 on:
   push:
+    branches: [main]
   pull_request:
+concurrency:
+  group: omega-foundation-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+  actions: read
 jobs:
-  regression:
-    runs-on: ubuntu-latest
+  clean-linux:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
-          python-version: '3.12'
-      - run: sudo apt-get update && sudo apt-get install -y libgmp-dev zstd libegl1 libopengl0
-      - uses: actions/cache@v4
+          python-version: '3.12.14'
+      - name: Install trusted system prerequisites
+        run: sudo apt-get update && sudo apt-get install -y libgmp-dev zstd libegl1 libopengl0 bubblewrap meson ninja-build pkg-config libcap-dev ripgrep
+      - name: Enable the namespace mechanism on the disposable runner
+        run: |
+          if test -f /proc/sys/kernel/apparmor_restrict_unprivileged_userns; then
+            sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+          fi
+          bwrap --unshare-all --ro-bind /usr /usr --ro-bind /lib /lib --ro-bind /lib64 /lib64 -- /usr/bin/true
+      # Compiled Mathlib/Lake outputs are deliberately not restored. Generated
+      # proof imports must be build targets on a genuinely clean machine.
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
-          path: |
-            ../.tools
-            ../.cache/pip
-          key: ${{ runner.os }}-lean-4.19.0-mathlib-c44e0c8-${{ hashFiles('formal/tensor/lake-manifest.json', 'requirements/cpu-py312.lock') }}
+          path: ../.cache/pip
+          key: ${{ runner.os }}-${{ matrix.os }}-py31214-${{ hashFiles('requirements/cpu-py312.lock') }}
       - run: bash scripts/setup.sh
-      - run: bash scripts/test.sh -q --junitxml=artifacts/test-results.xml
-      - run: .venv/bin/python -m build --no-isolation
-      - uses: actions/upload-artifact@v4
+      - name: Complete regression
+        run: bash scripts/test.sh -q --junitxml=artifacts/test-results.xml
+      - name: Manifest-based differential corpus
+        run: .venv/bin/python scripts/regression.py --output artifacts/foundation/corpus.json
+      - name: Native security, fuzzing and sanitizers
+        run: |
+          docker pull gcc@sha256:b99b86a28812b1e6453a231a947dc43d76fe192788a12f344a9b568bf9f5d24c
+          .venv/bin/python scripts/security.py --analyzer docker --output artifacts/foundation/security.json
+      - name: Build packages and provenance
+        run: |
+          .venv/bin/python scripts/package.py
+          .venv/bin/python scripts/build-manifest.py --output artifacts/build-manifest.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:
-          name: omega-validation
+          name: omega-validation-${{ matrix.os }}
           path: |
             artifacts/test-results.xml
+            artifacts/foundation
+            artifacts/build-manifest.json
             build/selfhost/bootstrap.json
             dist/*.whl
             dist/*.tar.gz

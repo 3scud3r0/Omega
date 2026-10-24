@@ -1,0 +1,16 @@
+{
+  "task": "OM-017",
+  "scope": "root-confined procedural module linker with explicit exports, deterministic names and cycle checks; tensor imports and native-bootstrap module syntax are not added",
+  "validation": {
+    "targeted_passed": 39,
+    "module_tests": 24,
+    "native_module_project": "three modules compiled and executed in sandbox",
+    "adversarial_paths": "escape, symlinks, FIFO and symlink swap at open rejected"
+  },
+  "independent_review": false,
+  "sources": {
+    "omega/modules.py": "c0d12ff2312e5856ad7fa5685e55a56868c55ca143509e054581534539be02fd",
+    "testes/foundation/test_modules.py": "ef98a320325e09991f74b09a1c4828b21fe4f7a87c5754f6a5cc5feca52af1d9",
+    "docs/MODULOS_3_0.md": "254c8906d3b382d553920f12dd7d39b5e04e2443224159557ea1a2bf071ee035"
+  }
+}

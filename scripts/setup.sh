@@ -4,6 +4,7 @@ set -euo pipefail
 OMEGA_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 OMEGA_TOOLS="${OMEGA_TOOLS_DIR:-$(dirname "$OMEGA_ROOT")/.tools}"
 cd "$OMEGA_ROOT"
+bash scripts/setup-sandbox.sh
 python3 -c 'import sys; assert sys.version_info[:2] == (3, 12), "The supplied lock requires Python 3.12"'
 python3 -m venv .venv
 PYTHON_BIN="$OMEGA_ROOT/.venv/bin/python"

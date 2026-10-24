@@ -8,7 +8,8 @@ import hashlib
 import os
 import shutil
 from pathlib import Path
-import subprocess
+from omega_platform.sandbox import trusted
+from omega_platform.budget import PROOF_BUDGET
 import tempfile
 
 
@@ -104,7 +105,7 @@ def matmul(a,b):
 
 
 def source(certificates):
-    lines=['import TensorKernel','import Mathlib.Tactic.NormNum',
+    lines=['import ProofPrelude',
            'namespace OmegaNativeProofs','open OmegaTensor',
            'set_option maxRecDepth 10000','set_option maxHeartbeats 2000000']
     count=0
@@ -119,8 +120,9 @@ def source(certificates):
                 return [pair for p,q in zip(x,y) for pair in obligations(p,q)]
             return [(x,y)]
         for x,y in obligations(a,b):
+            tactic='rfl' if x==y else 'simp only [eval]\n  ring'
             lines.append(f'theorem identity_{count} (s : Env) : eval s {x} = eval s {y} := by\n'
-                         '  simp only [eval]\n  first | rfl | ring')
+                         f'  {tactic}')
             lines.append(f'#print axioms identity_{count}')
             count+=1
     lines.append('end OmegaNativeProofs')
@@ -134,8 +136,7 @@ def check_identities(certificates,*,proof_path=None):
     if not lake.is_file():raise RuntimeError('Lean/Lake is required')
     with tempfile.TemporaryDirectory(prefix='omega-universal-proof-') as tmp:
         path=Path(tmp)/'Identity.lean';path.write_text(generated)
-        result=subprocess.run([str(lake),'env','lean',str(path)],cwd=root,
-                              capture_output=True,text=True,timeout=180)
+        result=trusted([str(lake),'env','lean',str(path)],cwd=root,budget=PROOF_BUDGET)
         output=result.stdout+result.stderr
         if result.returncode or 'sorryAx' in output or 'warning:' in output:
             raise ValueError('Lean rejected the universal identity:\n'+output[-6000:])
@@ -156,8 +157,7 @@ def check_generated(generated):
     lake=lake_binary()
     with tempfile.TemporaryDirectory(prefix='omega-rewrite-proof-') as tmp:
         path=Path(tmp)/'Optimization.lean';path.write_text(generated)
-        proc=subprocess.run([str(lake),'env','lean',str(path)],cwd=root,
-                            text=True,capture_output=True,timeout=300)
+        proc=trusted([str(lake),'env','lean',str(path)],cwd=root,budget=PROOF_BUDGET)
         output=proc.stdout+proc.stderr
         count=generated.count('#print axioms ')
         # Lean's generated-proof linter may report unused tactics after a goal

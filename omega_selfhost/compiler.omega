@@ -143,10 +143,30 @@ funcao apply_c(n,args) {
   }
   push(out,n+"("+join(names,",")+");})"); retornar join(out,"");
 }
+funcao chex(c) {
+  var digits="0123456789abcdef";var i=0;
+  enquanto(i<16){se(digits[i]==c){retornar i;}i=i+1;}
+  fail("Hexadecimal invalido");retornar 0;
+}
+funcao cstring(s) {
+  var parts=["\""];var i=0;
+  enquanto(i<len(s)){
+    var c=s[i];var quoted=json(c);var escaped=slice(quoted,1,len(quoted)-1);
+    se(c=="\u007f"){escaped="\\177";}
+    senao{
+      se(len(escaped)==6 && slice(escaped,0,2)=="\\u"){
+        var n=16*chex(escaped[4])+chex(escaped[5]);
+        escaped="\\0"+text((n-n%8)/8)+text(n%8);
+      }
+    }
+    push(parts,escaped);i=i+1;
+  }
+  push(parts,"\"");retornar join(parts,"");
+}
 funcao cexpr(e) {
   var kind=e[0];
-  se (kind=="s") { retornar "o_str("+json(e[1])+")"; }
-  se (kind=="n") { retornar "o_num("+json(e[1])+")"; }
+  se (kind=="s") { retornar "o_str("+cstring(e[1])+")"; }
+  se (kind=="n") { retornar "o_num("+cstring(e[1])+")"; }
   se (kind=="v") { retornar "v_"+e[1]; }
   se (kind=="index") { retornar apply_c("o_get",[e[1],e[2]]); }
   se (kind=="call") { var n="fn_"+e[1]; se (builtin(e[1])) { n="o_"+e[1]; } retornar apply_c(n,e[2]); }

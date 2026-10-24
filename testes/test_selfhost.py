@@ -13,6 +13,8 @@ from omega_selfhost.bootstrap import compile_source
 from omega.sintaxe import analisar,ErroOmega
 from omega.motor_v1 import CompiladorV1,MaquinaV1,num
 from omega.nucleo_v1 import verificar_certificado_v1
+from omega_platform.budget import Budget,COMPILER_BUDGET
+from omega_platform.sandbox import run as isolated_run
 
 ROOT=Path(__file__).resolve().parents[1]
 KERNEL=ROOT/'formal/tensor/.lake/build/bin/omega_tensor_kernel'
@@ -29,8 +31,9 @@ class BootstrapTests(unittest.TestCase):
         self.assertFalse(report['native_stages_use_python'])
         with tempfile.TemporaryDirectory() as tmp:
             out=Path(tmp)/'without-python.c'
-            subprocess.run([str(compiler),str(driver.PACKAGE/'compiler.omega'),str(out)],
-                           env={'PATH':'/nonexistent'},check=True,capture_output=True)
+            isolated_run([compiler,driver.PACKAGE/'compiler.omega',out],
+                         readonly=[driver.PACKAGE/'compiler.omega'],writable=[tmp],
+                         budget=COMPILER_BUDGET,check=True)
             self.assertEqual(driver.digest(out),report['stage_c_sha256'][2])
 
     def test_ordered_calls_strings_loops_and_exact_rationals(self):
@@ -47,19 +50,18 @@ funcao principal() {
             root=Path(tmp);path=root/'sample.omega';path.write_text(source)
             c0=root/'bootstrap.c';c0.write_text(compile_source(source))
             c1=root/'native.c'
-            driver.command([driver.compiler(),path,c1])
+            isolated_run([driver.compiler(),path,c1],readonly=[path],writable=[tmp],budget=COMPILER_BUDGET,check=True)
             self.assertEqual(c0.read_text(),c1.read_text())
             exe=root/'sample';driver.cc(c1,exe)
-            self.assertEqual(driver.command([exe]),'12\n[0,1,2,3]\n1/2\nΩ\n\t🚀\n')
+            self.assertEqual(isolated_run([exe],check=True).stdout,'12\n[0,1,2,3]\n1/2\nΩ\n\t🚀\n')
 
     def test_fuel_and_recursion_are_bounded(self):
         for body in ('enquanto(1){} retornar 0;', 'retornar principal();'):
             with tempfile.TemporaryDirectory() as tmp:
                 root=Path(tmp);src=root/'bad.omega';src.write_text('funcao principal(){'+body+'}')
                 c=root/'bad.c';exe=root/'bad'
-                driver.command([driver.compiler(),src,c]);driver.cc(c,exe)
-                proc=subprocess.run([str(exe)],env={**os.environ,'OMEGA_FUEL':'1000'},
-                                    capture_output=True,text=True,timeout=5)
+                isolated_run([driver.compiler(),src,c],readonly=[src],writable=[tmp],budget=COMPILER_BUDGET,check=True);driver.cc(c,exe)
+                proc=isolated_run([exe],budget=Budget(fuel=1000,depth=512,wall_seconds=5))
                 self.assertNotEqual(proc.returncode,0)
                 self.assertIn('budget' if 'enquanto' in body else 'depth',proc.stderr)
 
@@ -67,6 +69,15 @@ funcao principal() {
         source='parametro α=١٢; perda custo=(α-١)^2; gradiente custo em α; mostrar custo;'
         ref=CompiladorV1().programa(analisar(source))
         self.assertEqual(driver.compile_text(source),ref)
+
+    def test_json_control_characters_have_valid_c_string_encoding(self):
+        value=''.join(chr(i) for i in range(1,32))+chr(127)+'a7"\\Ω🚀'
+        source='funcao principal(){print(json('+json.dumps(value,ensure_ascii=False)+'));retornar 0;}'
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);path=root/'controls.omega';path.write_text(source)
+            binary=root/'controls';driver.build(path,binary)
+            self.assertEqual(binary.with_suffix('.c').read_text(),compile_source(source))
+            self.assertEqual(json.loads(isolated_run([binary],check=True).stdout),value)
 
 
 @unittest.skipUnless(KERNEL.is_file(),'Run scripts/setup-native.sh')
@@ -87,7 +98,7 @@ class NativeTensorTests(unittest.TestCase):
         self.assertEqual(self.result['state'],{k:num(v) for k,v in ref.estado.items()})
         self.assertTrue(all(verificar_certificado_v1(c) for c in self.result['certificates']))
         self.assertTrue(self.verification['valid'])
-        proc=subprocess.run([str(self.binary)],env={'PATH':'/nonexistent'},capture_output=True,text=True,check=True)
+        proc=isolated_run([self.binary],check=True)
         self.assertEqual(json.loads(proc.stdout),self.result)
 
     def test_kernel_rejects_changed_gradient_step_seed_shape_and_chain(self):
@@ -122,29 +133,11 @@ class NativeTensorTests(unittest.TestCase):
             with self.assertRaises(RuntimeError):driver.verify_result(result)
 
     def test_all_repository_sources_are_supported_or_intentionally_rejected(self):
-        rejected={'dimensoes_invalidas.omega','erro_de_tipo.omega','passo_recusado.omega','prova_falsa.omega'}
-        count=0
-        with tempfile.TemporaryDirectory() as tmp:
-            for index,path in enumerate(sorted((ROOT/'exemplos').rglob('*.omega'))):
-                if 'procedural' in path.parts:continue
-                with self.subTest(source=str(path.relative_to(ROOT))):
-                    exe=Path(tmp)/f'p{index}'
-                    if path.name in rejected:
-                        with self.assertRaises((RuntimeError,ValueError)):
-                            driver.build(path,exe);driver.run(exe)
-                        continue
-                    driver.build(path,exe)
-                    result,verified=driver.run(exe)
-                    self.assertTrue(verified['valid'])
-                    try:ir=CompiladorV1().programa(analisar(path.read_text()))
-                    except ErroOmega:ir=None
-                    if ir is not None:
-                        self.assertEqual(driver.compile_ir(path),ir)
-                        ref=MaquinaV1(ir).executar()
-                        self.assertEqual(result['outputs'],ref.saidas)
-                        self.assertEqual(result['state'],{k:num(v) for k,v in ref.estado.items()})
-                    count+=1
-        self.assertGreaterEqual(count,20)
+        from omega_platform.corpus import regression
+        report=regression(ROOT)
+        self.assertTrue(report['valid'],json.dumps(report,indent=2,ensure_ascii=False))
+        self.assertTrue(report['count_matches'])
+        self.assertEqual(report['infrastructure_failures'],0)
 
     def test_optimization_has_universal_value_and_gradient_proofs(self):
         with tempfile.TemporaryDirectory() as tmp:

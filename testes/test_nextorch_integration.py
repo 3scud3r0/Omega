@@ -15,6 +15,7 @@ from omega_open.checker import fingerprint
 from omega_nextorch.gate import certify, verify
 from omega_nextorch import lean, native, pipeline
 from omega_nextorch.proposer import NeuralBudget
+from omega_platform.sandbox import run as isolated_run
 
 
 TASK = {"id": "xor", "arity": 2, "outputs": [0, 1, 1, 0]}
@@ -102,10 +103,10 @@ class NativeTests(unittest.TestCase):
                 metadata = native.build(cert, target)
                 self.assertEqual(metadata["checked_rows"], 4)
                 for row in range(4):
-                    value = subprocess.check_output([str(target), str(row)], text=True)
+                    value = isolated_run([target,str(row)],check=True).stdout
                     self.assertEqual(int(value), task["outputs"][row])
                 for invalid in ("-1", "4", "junk", ""):
-                    self.assertNotEqual(subprocess.run([str(target), invalid], capture_output=True).returncode, 0)
+                    self.assertNotEqual(isolated_run([target,invalid]).returncode, 0)
             with self.assertRaises(ValueError):
                 native.build(cert, target)
 

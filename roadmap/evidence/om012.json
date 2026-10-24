@@ -1,0 +1,29 @@
+{
+  "task": "OM-012",
+  "scope": "numeric/tensor inference and bounded contextual procedural type analysis; not a formal soundness proof",
+  "regression": {
+    "passed": 423,
+    "subtests_passed": 37,
+    "skipped_cuda": 1
+  },
+  "security": {
+    "passed": 250,
+    "failed": 0
+  },
+  "primitive_runtime_comparisons": 208,
+  "bootstrap_fixed_point": true,
+  "dependency_check": "pip check passed",
+  "independent_review": false,
+  "sources": {
+    "omega/typesystem.py": "174e796e9459ae87498df8de50065ba8ce28c816d0f98bd36e20e3c38a7db8b6",
+    "omega/procedural_types.py": "94e4d0e5cf7ea9a8c9529e4986ab46aa07365818897e4ad0d59d57c8a1f8bd91",
+    "omega_selfhost/driver.py": "9eed0e8e3573cc4d9f9db4e6216b484d8fc06ed7d76bf4abf0a6573e3e311feb",
+    "omega_selfhost/bootstrap.py": "0c910df5eeadf5655f926a98720ab67e90c9db94edd483a6e30e398075c1a423",
+    "omega_selfhost/compiler.omega": "000e31f0aae4fc1710adf170efe7083bcf3a0a96b9fcc61701c4788f3d3db071",
+    "testes/foundation/test_type_inference.py": "4be2acb96ba652dbf59018c2ecc60eee555fec537a00a592c691d86c6b268ba4",
+    "testes/foundation/test_procedural_types.py": "453c9e8239c652ea2a32ef94a39416f296944dce4e16e0e5fc5bbd441f344f76",
+    "testes/foundation/type_ops_harness.c": "0af5af10096944492cb98ac07fdc9761affc3e6939ab411d57eb8e277e204c03",
+    "testes/test_selfhost.py": "26b5a024b4e2efabe77bc75a5beab419666beda85d5a90668e648895428d3c8d",
+    "docs/TIPAGEM_3_0.md": "95f8677f4a79939f155b537df32caa3ed6553623914221476a3e9d2e4a1bdc60"
+  }
+}

@@ -4,7 +4,9 @@ from __future__ import annotations
 import os
 from pathlib import Path
 import shutil
-import subprocess
+from dataclasses import replace
+from omega_platform.budget import PROOF_BUDGET
+from omega_platform.sandbox import trusted
 import tempfile
 
 from .gate import verify
@@ -61,7 +63,7 @@ def check(certificate, destination=None, executable=None, timeout=60):
     with tempfile.TemporaryDirectory(prefix="omega-lean-") as tmp:
         proof = Path(tmp) / "Certificate.lean"
         proof.write_text(generated, encoding="utf-8")
-        proc = subprocess.run([lean, str(proof)], text=True, capture_output=True, timeout=timeout)
+        proc = trusted([lean, str(proof)], budget=replace(PROOF_BUDGET,wall_seconds=timeout))
         output = proc.stdout + proc.stderr
         if proc.returncode or "sorryAx" in output or "warning:" in output:
             raise ValueError("Lean rejeitou a prova: " + output[-4000:])
