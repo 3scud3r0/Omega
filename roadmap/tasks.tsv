@@ -1,0 +1,150 @@
+OM-001	0	Corrigir instalação e compilação da Mathlib	CI limpa compila os módulos Lean usados por provas geradas
+OM-002	0	Corrigir e parametrizar a contagem de exemplos válidos	Suite diferencia falhas de exemplo, infraestrutura e contagem
+OM-003	0	CI com matriz Linux, versões fixadas e ambientes limpos	Build reproduzível, logs e artefatos verificáveis
+OM-004	0	Testes de regressão para todos os programas .omega	Comparação diferencial com implementação de referência
+OM-005	0	Fuzzing de lexer, parser, IR, JSON e runtime	Entradas inválidas não causam comportamento indefinido
+OM-006	0	Sanitizers e análise estática de C	ASan/UBSan e análise de falhas integrados à CI
+OM-007	0	Orçamentos de tempo, memória, CPU, profundidade e combustível	Limites aplicados também fora do interpretador
+OM-008	0	Sandbox para executar programas não confiáveis	Sem rede ou escrita externa sem autorização
+OM-009	0	Manifesto de builds e hashes dos artefatos	Cada binário rastreável ao código e dependências
+OM-010	0	Documentação de invariantes e modelo de ameaças	Limites das garantias explicitados e testados
+OM-011	1	Especificação formal de sintaxe e semântica Ômega	Semântica operacional definida para o subconjunto suportado
+OM-012	1	Sistema de tipos estático com inferência	Programas mal tipados rejeitados antes da execução
+OM-013	1	Tipos de tensores com dimensões verificáveis	Operações incompatíveis rejeitadas ou justificadas
+OM-014	1	IR canônica, tipada e versionada	Serialização determinística e validação completa
+OM-015	1	SSA e grafo de dependências	Def-use, dominadores e invariantes testados
+OM-016	1	Tratamento explícito de erros e resultados	Sem falhas silenciosas ou valores sentinela ambíguos
+OM-017	1	Módulos, importações e resolução de nomes	Dependências determinísticas e ciclos diagnosticados
+OM-018	1	Funções genéricas e abstrações reutilizáveis	Especialização preserva semântica
+OM-019	1	Biblioteca padrão de estruturas de dados	APIs com contratos e testes de propriedade
+OM-020	1	Gerenciamento de memória nativa	Sem vazamentos, uso após liberação ou crescimento ilimitado
+OM-021	1	Execução concorrente determinística quando exigida	Resultados reproduzíveis e ausência de corridas
+OM-022	1	Backend WebAssembly isolável	Programas executados sob limites explícitos
+OM-023	1	Backend LLVM ou compilação nativa otimizada	Equivalência diferencial contra backend de referência
+OM-024	1	Depurador, profiler e rastreamento de IR	Passos e estados reproduzíveis
+OM-025	1	Sistema de pacotes com dependências verificadas	Lockfile, integridade e resolução reproduzível
+OM-026	2	Semântica denotacional e operacional do núcleo tensorial	Teoremas de correspondência para o subconjunto formalizado
+OM-027	2	Prova de preservação de tipos	Execução não produz estados incompatíveis sob hipóteses formais
+OM-028	2	Prova de progresso ou erros tipados	Estados bem tipados não ficam bloqueados indevidamente
+OM-029	2	Provas de correção das transformações de IR	Cada otimização tem teorema ou certificado verificável
+OM-030	2	Verificador de equivalência entre IR original e otimizada	Resultados e gradientes preservados no domínio declarado
+OM-031	2	Refinamento da máquina abstrata para o backend C	Subconjunto nativo ligado à semântica formal
+OM-032	2	Contratos formais para primitivas GMP e tensor runtime	Pré-condições e pós-condições explícitas
+OM-033	2	Provas de derivação automática e regra da cadeia	Concordância para operações e pontos diferenciáveis
+OM-034	2	Semântica explícita de subgradientes e ReLU	Convenções nos pontos não diferenciáveis documentadas
+OM-035	2	Provas matriciais abstratas sem escalarização integral	Teoremas parametrizados por dimensões
+OM-036	2	Certificados compactos e checagem incremental	Verificação reutiliza resultados sem perder integridade
+OM-037	2	Correspondência entre enunciado e certificado	Certificados irrelevantes não são aceitos
+OM-038	2	Verificação de hipóteses, axiomas e dependências Lean	Nenhuma prova admitida por axioma não autorizado
+OM-039	2	Protocolo de prova com formato canônico	Certificados adulterados ou ambíguos rejeitados
+OM-040	2	Verificação independente de artefatos compilados	Resultado auditável sem confiar no gerador
+OM-041	3	Interface unificada de problemas e objetivos	Esquema tipado para entradas, restrições e sucesso
+OM-042	3	Representação de estados de raciocínio	Passos, premissas, evidências e incertezas rastreáveis
+OM-043	3	Planejador hierárquico de tarefas	Decomposição em subtarefas com dependências
+OM-044	3	Planejamento por busca e avaliação de estados	Algoritmos comparados em problemas verificáveis
+OM-045	3	Raciocínio simbólico com regras de inferência	Conclusões derivadas por regras explícitas
+OM-046	3	Raciocínio probabilístico calibrado	Confiança avaliada por calibração e erro
+OM-047	3	Integração neural-simbólica bidirecional	Propostas neurais convertidas em objetos verificáveis
+OM-048	3	Detecção de contradições e premissas ausentes	Conflitos identificados sem inventar demonstrações
+OM-049	3	Gerenciamento de hipóteses concorrentes	Alternativas mantidas até evidência suficiente
+OM-050	3	Metacognição operacional	Decisão entre continuar, buscar evidência, pedir ajuda ou parar
+OM-051	3	Orçamento adaptativo de raciocínio	Custo controlado por benefício mensurável
+OM-052	3	Planejamento de experimentos	Hipóteses testáveis e resultados interpretáveis
+OM-053	3	Aprendizado de heurísticas de busca	Ganho em problemas não vistos contra baseline
+OM-054	3	Generalização composicional	Testes com combinações não presentes no treinamento
+OM-055	3	Detecção de distribuição desconhecida	Abstenção ou escalonamento em situações fora de domínio
+OM-056	4	Leitura e indexação semântica de repositórios	Mapas de símbolos, dependências e chamadas
+OM-057	4	Tradução de requisitos em especificações executáveis	Critérios de aceite gerados e revisáveis
+OM-058	4	Planejamento de alterações em múltiplos arquivos	Impacto e dependências estimados antes da edição
+OM-059	4	Geração de código Ômega, Python, C e Lean	Programas passam validação sintática e testes
+OM-060	4	Editor estruturado por AST	Alterações preservam regiões não relacionadas
+OM-061	4	Geração automática de testes	Testes úteis detectam mutações introduzidas
+OM-062	4	Reparo de falhas de compilação e execução	Correções avaliadas sem mascarar erros
+OM-063	4	Reparo assistido por contraexemplos formais	Contraexemplo convertido em tarefa de correção
+OM-064	4	Síntese guiada por contratos e tipos	Busca limitada a candidatos válidos
+OM-065	4	Busca enumerativa, evolutiva e neural de programas	Resultados comparados sob orçamento igual
+OM-066	4	Otimização de programas com equivalência verificada	Melhoria de desempenho sem regressão semântica
+OM-067	4	Execução de testes em worktrees isoladas	Nenhuma modificação direta da versão estável
+OM-068	4	Revisão automatizada de patches	Segurança, correção e compatibilidade examinadas
+OM-069	4	Geração de pull requests auditáveis	Diff, testes, riscos e justificativa anexados
+OM-070	4	Integração de ferramentas externas com permissões	Acesso limitado por capacidade e aprovação
+OM-071	5	Memória episódica de tarefas e resultados	Histórico consultável e reproduzível
+OM-072	5	Memória semântica com recuperação híbrida	Busca lexical e vetorial avaliada por relevância
+OM-073	5	Base de conhecimento com proveniência	Cada afirmação vinculada a evidências
+OM-074	5	Deduplicação, versionamento e expiração de memórias	Registros contraditórios ou obsoletos identificados
+OM-075	5	Buffer de replay certificado	Amostras revalidadas antes do treinamento
+OM-076	5	Treinamento incremental com controles de regressão	Novas tarefas não destroem capacidades anteriores
+OM-077	5	Detecção de esquecimento catastrófico	Métricas por habilidade e domínio
+OM-078	5	Currículo automático de dificuldade	Progressão baseada em desempenho verificável
+OM-079	5	Aprendizado ativo e seleção de exemplos	Melhoria por unidade de custo de rotulagem
+OM-080	5	Distilação de soluções e trajetórias	Modelo menor reproduz resultados mensuráveis
+OM-081	5	Transferência entre domínios	Ganhos em tarefas fora da distribuição de treino
+OM-082	5	Treinamento com feedback de verificadores	Recompensas vinculadas a critérios independentes
+OM-083	5	Prevenção de contaminação de benchmarks	Separação rigorosa entre treino e avaliação
+OM-084	5	Versionamento de datasets e checkpoints	Treinamentos reproduzíveis
+OM-085	5	Políticas de privacidade e retenção	Dados sensíveis não reaproveitados sem autorização
+OM-086	6	API estável para modelos de raciocínio	Arquiteturas substituíveis sem mudar o orquestrador
+OM-087	6	Tokenizer e representação de código, provas e texto	Codificação consistente e versionada
+OM-088	6	Treinamento supervisionado de programação e raciocínio	Avaliação em tarefas retidas
+OM-089	6	Geração condicionada por AST, tipos e contratos	Taxa de candidatos válidos mensurada
+OM-090	6	Busca neural com verificador no ciclo	Eficiência comparada com busca não neural
+OM-091	6	Crescimento Net2Net com testes de preservação	Saídas preservadas dentro das tolerâncias especificadas
+OM-092	6	Mecanismos de expansão e poda de capacidade	Melhoria líquida de custo e qualidade
+OM-093	6	Interpretabilidade com SAE e análise causal	Hipóteses interpretativas testadas por intervenções
+OM-094	6	Estimativa de incerteza e abstenção	Risco seletivo medido
+OM-095	6	Treinamento distribuído com checkpoints recuperáveis	Recuperação após interrupção
+OM-096	6	Suporte CPU, GPU e precisão mista	Paridade numérica conforme tolerâncias
+OM-097	6	Avaliação de eficiência de inferência	Latência, memória e energia monitoradas
+OM-098	6	Roteamento entre especialistas e modelos	Escolha por desempenho e custo
+OM-099	6	Prevenção de reward hacking e overfitting ao verificador	Avaliação externa detecta soluções oportunistas
+OM-100	6	Benchmark neural versus métodos simbólicos	Contribuição real do componente neural quantificada
+OM-101	7	Inventário formal de componentes modificáveis	Escopos autorizados e protegidos explícitos
+OM-102	7	Motor de propostas de melhoria	Hipótese, custo e resultado esperado registrados
+OM-103	7	Modificação de código em ramificações isoladas	Nenhum patch aplicado diretamente ao núcleo confiável
+OM-104	7	Geração de novas heurísticas de síntese	Melhorias testadas contra baselines
+OM-105	7	Otimização do próprio compilador	Equivalência e regressões verificadas
+OM-106	7	Otimização do planejador e do mecanismo de busca	Ganhos em conjunto de avaliação retido
+OM-107	7	Ajuste de hiperparâmetros sob orçamento	Experimentos comparáveis e rastreáveis
+OM-108	7	Propostas de mudança de arquitetura neural	Treino, validação e comparação automatizados
+OM-109	7	Seleção estatística de melhorias	Intervalos de confiança e controle de múltiplas comparações
+OM-110	7	Portão independente de promoção	Aprovação externa obrigatória para mudanças críticas
+OM-111	7	Rollback transacional de versões	Retorno automático à última versão estável
+OM-112	7	Detecção de regressão de segurança e capacidade	Promoção bloqueada quando invariantes falham
+OM-113	7	Árvore genealógica de versões e experimentos	Causalidade e proveniência rastreáveis
+OM-114	7	Limites de recursos para ciclos evolutivos	Sem crescimento ilimitado de custo ou processos
+OM-115	7	Parada por estagnação, risco ou incerteza	Ciclo interrompido quando não há evidência de benefício
+OM-116	8	Interface de ferramentas com contratos tipados	Argumentos e respostas validados
+OM-117	8	Navegação e recuperação de informação	Fontes e datas rastreáveis
+OM-118	8	Leitura estruturada de PDFs e documentos	Extração validada por amostras
+OM-119	8	Interpretação de imagens e diagramas	Avaliação multimodal independente
+OM-120	8	Entrada e saída de áudio opcionais	Qualidade medida em conjuntos próprios
+OM-121	8	Execução de código e notebooks isolados	Recursos e efeitos controlados
+OM-122	8	Interface com bancos de dados	Permissões e transações explícitas
+OM-123	8	Integração com Git, CI e issues	Operações rastreáveis e reversíveis
+OM-124	8	Ambientes simulados para planejamento	Estados, ações e recompensas verificáveis
+OM-125	8	Políticas de aprovação de ações externas	Operações sensíveis exigem autorização
+OM-126	9	Modelo de ameaças para agentes e autoedição	Ataques e fronteiras de confiança documentados
+OM-127	9	Controle de acesso por capacidades	Privilégios mínimos e escopos temporários
+OM-128	9	Separação entre proponente, verificador e promotor	Nenhum agente aprova sozinho sua própria mudança
+OM-129	9	Defesa contra prompt injection e dados adversariais	Testes de ataques em ferramentas e documentos
+OM-130	9	Proteção de segredos e credenciais	Sem exposição em logs, prompts ou artefatos
+OM-131	9	Auditoria imutável de decisões e ações	Cadeia de eventos verificável
+OM-132	9	Desligamento e revogação de permissões	Interrupção efetiva testada
+OM-133	9	Controle de objetivos e limites de autonomia	Nenhuma mudança de objetivo sem autorização
+OM-134	9	Monitoramento de comportamento e anomalias	Alertas, bloqueio e investigação reproduzíveis
+OM-135	9	Avaliação adversarial independente	Falhas identificadas fora do conjunto de desenvolvimento
+OM-136	10	Harness unificado de benchmarks	Execuções reproduzíveis e resultados comparáveis
+OM-137	10	Conjuntos de tarefas de programação inéditas	Testes ocultos e soluções verificadas
+OM-138	10	Benchmarks de prova matemática	Taxa de teoremas corretos e custo de verificação
+OM-139	10	Benchmarks de generalização e transferência	Desempenho em novos domínios
+OM-140	10	Experimentos de autoaperfeiçoamento longitudinal	Comparação entre gerações sob orçamento fixo
+OM-141	10	Ablações de memória, Nextorch, Lean e busca	Contribuição de cada componente isolada
+OM-142	10	Telemetria de CPU, GPU, RAM, energia e tempo	Custo por solução correta calculado
+OM-143	10	Rastreabilidade de datasets, seeds e modelos	Experimentos reproduzíveis
+OM-144	10	Relatórios estatísticos e análise de falhas	Resultados negativos preservados
+OM-145	10	Painel de progresso e maturidade	Indicadores derivados de medições reais
+OM-146	10	Infraestrutura de execução distribuída	Workers isolados e agendamento justo
+OM-147	10	Cache de provas e artefatos por hash	Reutilização sem confiar em cache adulterado
+OM-148	10	Políticas de custo, quota e interrupção	Orçamentos respeitados
+OM-149	10	Empacotamento, releases e documentação de API	Instalação reproduzível e compatibilidade versionada
+OM-150	10	Avaliação externa e revisão de resultados	Reprodução independente dos marcos principais

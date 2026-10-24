@@ -1,0 +1,182 @@
+{
+  "format": "omega-corpus-report-1",
+  "expected_positive": 24,
+  "passed_positive": 24,
+  "expected_negative": 4,
+  "observed_negative": 4,
+  "count_matches": true,
+  "infrastructure_failures": 0,
+  "example_failures": 0,
+  "valid": true,
+  "manifest_sha256": "c50519d0cce43178c5b70ef617b50bf8bfc73badd63b4f37701da854b67bdf6a",
+  "results": [
+    {
+      "path": "exemplos/dimensoes_invalidas.omega",
+      "status": "expected_rejection",
+      "stage": "compile",
+      "detail": "Omega: Produto matricial incompativel"
+    },
+    {
+      "path": "exemplos/erro_de_tipo.omega",
+      "status": "expected_rejection",
+      "stage": "compile",
+      "detail": "Omega: Parametro inexistente"
+    },
+    {
+      "path": "exemplos/evolucao_aberta/politica_0.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/evolucao_aberta/politica_1.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/evolucao_aberta/politica_ativa.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/evolucao_aberta_cli/politica_0.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/evolucao_aberta_cli/politica_1.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/evolucao_aberta_cli/politica_ativa.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/evolucao_xor/geracao_0.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/evolucao_xor/geracao_1.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/evolucao_xor/geracao_2.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/evolucao_xor/programa_sucessor.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/metaevolucao/politica_0.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/metaevolucao/politica_1.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/metaevolucao/politica_2.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/metaevolucao/politica_ativa.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/otimizacao_ir.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/parametros_matriciais.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/passo_recusado.omega",
+      "status": "expected_rejection",
+      "stage": "execute",
+      "detail": "Omega: Step rejected: loss would increase"
+    },
+    {
+      "path": "exemplos/primeiro_programa.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/procedural/soma.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/produto_matrizes.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/prova_falsa.omega",
+      "status": "expected_rejection",
+      "stage": "execute",
+      "detail": "Omega: Polynomial identity rejected"
+    },
+    {
+      "path": "exemplos/prova_tensorial.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/rede_profunda.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/sintaxe_inglesa.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/tensores_gradientes.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    },
+    {
+      "path": "exemplos/tipos_e_teoremas.omega",
+      "status": "passed",
+      "stage": "complete",
+      "detail": "Native, verifier and reference agree"
+    }
+  ]
+}

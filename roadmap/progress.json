@@ -1,0 +1,906 @@
+{
+  "format": "omega-roadmap-status-1",
+  "rule": "No task is complete without acceptance evidence and independent review.",
+  "tasks": [
+    {
+      "id": "OM-001",
+      "phase": 0,
+      "status": "implemented_pending_review",
+      "evidence": "docs/FUNDACAO_3_0.md"
+    },
+    {
+      "id": "OM-002",
+      "phase": 0,
+      "status": "implemented_pending_review",
+      "evidence": "docs/FUNDACAO_3_0.md"
+    },
+    {
+      "id": "OM-003",
+      "phase": 0,
+      "status": "implemented_pending_review",
+      "evidence": "docs/FUNDACAO_3_0.md"
+    },
+    {
+      "id": "OM-004",
+      "phase": 0,
+      "status": "implemented_pending_review",
+      "evidence": "docs/FUNDACAO_3_0.md"
+    },
+    {
+      "id": "OM-005",
+      "phase": 0,
+      "status": "implemented_pending_review",
+      "evidence": "docs/FUNDACAO_3_0.md"
+    },
+    {
+      "id": "OM-006",
+      "phase": 0,
+      "status": "implemented_pending_review",
+      "evidence": "docs/FUNDACAO_3_0.md"
+    },
+    {
+      "id": "OM-007",
+      "phase": 0,
+      "status": "implemented_pending_review",
+      "evidence": "docs/FUNDACAO_3_0.md"
+    },
+    {
+      "id": "OM-008",
+      "phase": 0,
+      "status": "implemented_pending_review",
+      "evidence": "docs/FUNDACAO_3_0.md"
+    },
+    {
+      "id": "OM-009",
+      "phase": 0,
+      "status": "implemented_pending_review",
+      "evidence": "docs/FUNDACAO_3_0.md"
+    },
+    {
+      "id": "OM-010",
+      "phase": 0,
+      "status": "implemented_pending_review",
+      "evidence": "docs/FUNDACAO_3_0.md"
+    },
+    {
+      "id": "OM-011",
+      "phase": 1,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-012",
+      "phase": 1,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-013",
+      "phase": 1,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-014",
+      "phase": 1,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-015",
+      "phase": 1,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-016",
+      "phase": 1,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-017",
+      "phase": 1,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-018",
+      "phase": 1,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-019",
+      "phase": 1,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-020",
+      "phase": 1,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-021",
+      "phase": 1,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-022",
+      "phase": 1,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-023",
+      "phase": 1,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-024",
+      "phase": 1,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-025",
+      "phase": 1,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-026",
+      "phase": 2,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-027",
+      "phase": 2,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-028",
+      "phase": 2,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-029",
+      "phase": 2,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-030",
+      "phase": 2,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-031",
+      "phase": 2,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-032",
+      "phase": 2,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-033",
+      "phase": 2,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-034",
+      "phase": 2,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-035",
+      "phase": 2,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-036",
+      "phase": 2,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-037",
+      "phase": 2,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-038",
+      "phase": 2,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-039",
+      "phase": 2,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-040",
+      "phase": 2,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-041",
+      "phase": 3,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-042",
+      "phase": 3,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-043",
+      "phase": 3,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-044",
+      "phase": 3,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-045",
+      "phase": 3,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-046",
+      "phase": 3,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-047",
+      "phase": 3,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-048",
+      "phase": 3,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-049",
+      "phase": 3,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-050",
+      "phase": 3,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-051",
+      "phase": 3,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-052",
+      "phase": 3,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-053",
+      "phase": 3,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-054",
+      "phase": 3,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-055",
+      "phase": 3,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-056",
+      "phase": 4,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-057",
+      "phase": 4,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-058",
+      "phase": 4,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-059",
+      "phase": 4,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-060",
+      "phase": 4,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-061",
+      "phase": 4,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-062",
+      "phase": 4,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-063",
+      "phase": 4,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-064",
+      "phase": 4,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-065",
+      "phase": 4,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-066",
+      "phase": 4,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-067",
+      "phase": 4,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-068",
+      "phase": 4,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-069",
+      "phase": 4,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-070",
+      "phase": 4,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-071",
+      "phase": 5,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-072",
+      "phase": 5,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-073",
+      "phase": 5,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-074",
+      "phase": 5,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-075",
+      "phase": 5,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-076",
+      "phase": 5,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-077",
+      "phase": 5,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-078",
+      "phase": 5,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-079",
+      "phase": 5,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-080",
+      "phase": 5,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-081",
+      "phase": 5,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-082",
+      "phase": 5,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-083",
+      "phase": 5,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-084",
+      "phase": 5,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-085",
+      "phase": 5,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-086",
+      "phase": 6,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-087",
+      "phase": 6,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-088",
+      "phase": 6,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-089",
+      "phase": 6,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-090",
+      "phase": 6,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-091",
+      "phase": 6,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-092",
+      "phase": 6,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-093",
+      "phase": 6,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-094",
+      "phase": 6,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-095",
+      "phase": 6,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-096",
+      "phase": 6,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-097",
+      "phase": 6,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-098",
+      "phase": 6,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-099",
+      "phase": 6,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-100",
+      "phase": 6,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-101",
+      "phase": 7,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-102",
+      "phase": 7,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-103",
+      "phase": 7,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-104",
+      "phase": 7,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-105",
+      "phase": 7,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-106",
+      "phase": 7,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-107",
+      "phase": 7,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-108",
+      "phase": 7,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-109",
+      "phase": 7,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-110",
+      "phase": 7,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-111",
+      "phase": 7,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-112",
+      "phase": 7,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-113",
+      "phase": 7,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-114",
+      "phase": 7,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-115",
+      "phase": 7,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-116",
+      "phase": 8,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-117",
+      "phase": 8,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-118",
+      "phase": 8,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-119",
+      "phase": 8,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-120",
+      "phase": 8,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-121",
+      "phase": 8,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-122",
+      "phase": 8,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-123",
+      "phase": 8,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-124",
+      "phase": 8,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-125",
+      "phase": 8,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-126",
+      "phase": 9,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-127",
+      "phase": 9,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-128",
+      "phase": 9,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-129",
+      "phase": 9,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-130",
+      "phase": 9,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-131",
+      "phase": 9,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-132",
+      "phase": 9,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-133",
+      "phase": 9,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-134",
+      "phase": 9,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-135",
+      "phase": 9,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-136",
+      "phase": 10,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-137",
+      "phase": 10,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-138",
+      "phase": 10,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-139",
+      "phase": 10,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-140",
+      "phase": 10,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-141",
+      "phase": 10,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-142",
+      "phase": 10,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-143",
+      "phase": 10,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-144",
+      "phase": 10,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-145",
+      "phase": 10,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-146",
+      "phase": 10,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-147",
+      "phase": 10,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-148",
+      "phase": 10,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-149",
+      "phase": 10,
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "OM-150",
+      "phase": 10,
+      "status": "not_started",
+      "evidence": null
+    }
+  ]
+}

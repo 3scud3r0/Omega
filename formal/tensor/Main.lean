@@ -1,5 +1,5 @@
 import Lean.Data.Json
-import TensorKernel
+import ProofPrelude
 open Lean OmegaTensor
 
 def cellsCount (shape : List Nat) : Nat := shape.foldl (· * ·) 1
@@ -463,7 +463,7 @@ def optimizationProof (cert : Json) : Except String String := do
   let oldCodes ← scalarize old (← parameters old)
   let newCodes ← scalarize new (← parameters new)
   let mapping ← (← (← cert.getObjVal? "mapeamento").getArr?).toList.mapM Json.getNat?
-  let mut result := "import TensorKernel\nimport Mathlib.Tactic.SplitIfs\nnamespace OmegaOptimizationProof\nopen OmegaTensor\nset_option maxRecDepth 10000\nset_option maxHeartbeats 4000000\n"
+  let mut result := "import ProofPrelude\nnamespace OmegaOptimizationProof\nopen OmegaTensor\nset_option maxRecDepth 10000\nset_option maxHeartbeats 4000000\n"
   for i in [:oldCodes.size] do
     let target := mapping[i]!
     if oldCodes[i]!.cells.size != newCodes[target]!.cells.size then throw "Optimization coordinate mismatch"

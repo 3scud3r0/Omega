@@ -6,6 +6,7 @@
 #include <gmp.h>
 #include <limits.h>
 #include <locale.h>
+#include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,13 +22,37 @@ struct OmegaValue {
   size_t n, cap;
   V *a;
   char **keys;
+  V qnext;
 };
 static int omega_argc;
 static char **omega_argv;
 static unsigned long long omega_ticks = 0, omega_fuel = 500000000ULL;
 static size_t omega_allocated = 0;
-static unsigned omega_depth = 0;
-static void o_die(const char *s) {
+static unsigned omega_depth = 0, omega_max_depth = 512;
+struct OmegaBlock {
+  struct OmegaBlock *next;
+  _Alignas(max_align_t) unsigned char data[];
+};
+static struct OmegaBlock *omega_blocks = NULL;
+static V omega_rationals = NULL;
+static int omega_cleanup_registered = 0;
+static void o_cleanup(void) {
+  for (V q = omega_rationals; q; q = q->qnext)
+    mpq_clear(q->q);
+  omega_rationals = NULL;
+  while (omega_blocks) {
+    struct OmegaBlock *block = omega_blocks;
+    omega_blocks = block->next;
+    free(block);
+  }
+  omega_allocated = 0;
+}
+static void o_qinit(V v) {
+  mpq_init(v->q);
+  v->qnext = omega_rationals;
+  omega_rationals = v;
+}
+static _Noreturn void o_die(const char *s) {
   fprintf(stderr, "Omega: %s\n", s);
   exit(1);
 }
@@ -37,7 +62,7 @@ static void o_tick(void) {
 }
 static void o_enter(void) {
   o_tick();
-  if (++omega_depth > 512)
+  if (++omega_depth > omega_max_depth)
     o_die("Recursion depth exceeded");
 }
 static V o_ret(V v) {
@@ -47,16 +72,25 @@ static V o_ret(V v) {
   return v;
 }
 static void *o_alloc(size_t n) {
-  if (n > SIZE_MAX - omega_allocated || (omega_allocated += n) > 2147483648ULL)
+  if (!n)
+    n = 1;
+  if (n > SIZE_MAX - sizeof(struct OmegaBlock))
+    o_die("Allocation overflow");
+  size_t total = sizeof(struct OmegaBlock) + n;
+  if (total > 2147483648ULL || omega_allocated > 2147483648ULL - total)
     o_die("Memory budget exceeded");
-  void *p = calloc(1, n ? n : 1);
-  if (!p)
+  struct OmegaBlock *block = calloc(1, total);
+  if (!block)
     o_die("Out of memory");
-  return p;
+  block->next = omega_blocks;
+  omega_blocks = block;
+  omega_allocated += total;
+  return block->data;
 }
 static char *o_copy(const char *s, size_t n) {
   char *p = o_alloc(n + 1);
-  memcpy(p, s, n);
+  for (size_t i = 0; i < n; ++i)
+    p[i] = s[i];
   return p;
 }
 static V o_new(int kind) {
@@ -126,7 +160,7 @@ static const char *o_ascii_number(const char *s) {
 static V o_num(const char *s) {
   s = o_ascii_number(s);
   V v = o_new(0);
-  mpq_init(v->q);
+  o_qinit(v);
   char *buf = o_copy(s, strlen(s));
   char *dot = strchr(buf, '.');
   if (dot) {
@@ -144,7 +178,7 @@ static V o_num(const char *s) {
 }
 static V o_int(long n) {
   V v = o_new(0);
-  mpq_init(v->q);
+  o_qinit(v);
   mpq_set_si(v->q, n, 1);
   return v;
 }
@@ -236,7 +270,8 @@ static V o_keys(V a) {
     o_push(r, o_str(a->keys[i]));
   return r;
 }
-static int o_equal(V a, V b) {
+static int o_equal(V a, V b);
+static int o_equal_inner(V a, V b) {
   if (a->kind != b->kind)
     return 0;
   if (a->kind == 0)
@@ -254,6 +289,12 @@ static int o_equal(V a, V b) {
       return 0;
   }
   return 1;
+}
+static int o_equal(V a, V b) {
+  o_enter();
+  int result = o_equal_inner(a, b);
+  --omega_depth;
+  return result;
 }
 static V o_eq(V a, V b) { return o_bool(o_equal(a, b)); }
 static V o_ne(V a, V b) { return o_bool(!o_equal(a, b)); }
@@ -447,7 +488,8 @@ static V o_fail(V a) {
   return NULL;
 }
 /* JSON is a data codec, not a source-code evaluator. */
-static void o_json_into(V a, V parts) {
+static void o_json_into(V a, V parts);
+static void o_json_inner(V a, V parts) {
   if (a->kind == 0) {
     if (mpz_cmp_ui(mpq_denref(a->q), 1))
       o_die("JSON rationals require explicit text conversion");
@@ -490,6 +532,11 @@ static void o_json_into(V a, V parts) {
   }
   o_push(parts, o_str(a->kind == 2 ? "]" : "}"));
 }
+static void o_json_into(V a, V parts) {
+  o_enter();
+  o_json_inner(a, parts);
+  --omega_depth;
+}
 static V o_json(V a) {
   V p = o_list();
   o_json_into(a, p);
@@ -500,7 +547,8 @@ static void o_ws(const char **p) {
     ++*p;
 }
 static V o_parse_value(const char **p, int depth) {
-  if (depth > 256)
+  o_tick();
+  if ((unsigned)depth > omega_max_depth)
     o_die("JSON nesting exceeded");
   o_ws(p);
   if (**p == '"') {
@@ -508,7 +556,11 @@ static V o_parse_value(const char **p, int depth) {
     V chars = o_list();
     while (**p && **p != '"') {
       char c = *(*p)++;
+      if ((unsigned char)c < 32)
+        o_die("Unescaped JSON control character");
       if (c == '\\') {
+        if (!**p)
+          o_die("Truncated JSON escape");
         c = *(*p)++;
         if (c == 'n')
           c = '\n';
@@ -613,10 +665,16 @@ static V o_parse_value(const char **p, int depth) {
   const char *start = *p;
   if (**p == '-')
     ++*p;
+  if (!isdigit((unsigned char)**p))
+    o_die("JSON digit required");
+  if (**p == '0' && isdigit((unsigned char)(*p)[1]))
+    o_die("Leading zero in JSON number");
   while (isdigit((unsigned char)**p))
     ++*p;
   if (**p == '.') {
     ++*p;
+    if (!isdigit((unsigned char)**p))
+      o_die("JSON fractional digit required");
     while (isdigit((unsigned char)**p))
       ++*p;
   }
@@ -637,13 +695,27 @@ static V o_parsejson(V s) {
 static void o_init(int argc, char **argv) {
   omega_argc = argc;
   omega_argv = argv;
+  if (!omega_cleanup_registered) {
+    if (atexit(o_cleanup))
+      o_die("Could not register cleanup");
+    omega_cleanup_registered = 1;
+  }
+  const char *depth = getenv("OMEGA_DEPTH");
+  if (depth) {
+    char *end;
+    errno = 0;
+    unsigned long n = strtoul(depth, &end, 10);
+    if (errno || *end || n < 1 || n > 512)
+      o_die("Invalid OMEGA_DEPTH");
+    omega_max_depth = (unsigned)n;
+  }
   setlocale(LC_CTYPE, "C.UTF-8");
   const char *f = getenv("OMEGA_FUEL");
   if (f) {
     char *end;
     errno = 0;
     unsigned long long n = strtoull(f, &end, 10);
-    if (errno || *end || !n)
+    if (errno || *end || !n || n > 500000000ULL)
       o_die("Invalid OMEGA_FUEL");
     omega_fuel = n;
   }

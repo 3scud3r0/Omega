@@ -1,0 +1,2256 @@
+{
+  "format": "omega-security-report-1",
+  "seed": 20261024,
+  "mutation_count": 48,
+  "passed": 250,
+  "failed": 0,
+  "valid": true,
+  "cases": [
+    {
+      "target": "json-invalid",
+      "input_sha256": "386cf314bb05acdaaabdf4da1caf140167271a26bd08bf34c3a7427d4bc4431f",
+      "input": "\"\\",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Truncated JSON escape\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-invalid",
+      "input_sha256": "c86a72939cce6f538540e08445d38b5aec33c105eca4f91cb5ce930a03f3505d",
+      "input": "\"\\u",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid Unicode escape\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-invalid",
+      "input_sha256": "b7b5d4359a9020c5b64f0b516bf225a91e90b11245ff963fb700efb4f0e4af71",
+      "input": "\"\\ud800",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Missing low surrogate\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-invalid",
+      "input_sha256": "ec1e2b825537581ead1e43d7664d6fc95f40ef28f12bf010ee39c5e875a52b38",
+      "input": "\"\\ud800\\u",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid low surrogate\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-invalid",
+      "input_sha256": "a4c345ee13b420f55da7173986395e56f8ace5b5c46873e971a2fa7eb4ec1d26",
+      "input": "\"unterminated",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Unterminated JSON string\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-invalid",
+      "input_sha256": "34ebf0ac875ac90067e8bca21e7e0880db4787dc01d2bd2f4173717a351cd956",
+      "input": "\"line\nbreak\"",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Unescaped JSON control character\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-invalid",
+      "input_sha256": "1c53ee0df7b12fd4d65b976120c7fa6b847dc41dffd7f0331c3237a1ceab1756",
+      "input": "{\"a\":1,\"a\":2}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Duplicate JSON key\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-invalid",
+      "input_sha256": "938db8c9f82c8cb58d3f3ef4fd250036a48d26a712753d2fde5abd03a85cabf4",
+      "input": "01",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Leading zero in JSON number\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-invalid",
+      "input_sha256": "3973e022e93220f9212c18d0d0c543ae7c309e46640da93a4a0314de999f5112",
+      "input": "-",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-invalid",
+      "input_sha256": "c977dbe785221d34114d345fdf8ff4e18bb4af66750751dbea29407f9738735f",
+      "input": "1.",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON fractional digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-invalid",
+      "input_sha256": "886ad6246ed150b2930495926ba07d579307bc7fecaf4b391650dca8bae7bc66",
+      "input": "[1,]",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-invalid",
+      "input_sha256": "dde93f1100e4f08c4ded6dfc33ab6ce1ac1c0c3a353f8195ae02b683f4746586",
+      "input": "{\"x\":}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-invalid",
+      "input_sha256": "728f7df7d37df8f0c246d5d3fbf32b8496bb8268091275819c74f67916d2e027",
+      "input": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON nesting exceeded\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-roundtrip",
+      "input_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "input": "0",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "json-roundtrip",
+      "input_sha256": "615bdd17c2556f82f384392ea8557f8cc88b03501c759e23093ab0b2a9b5cd48",
+      "input": "-3",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "json-roundtrip",
+      "input_sha256": "4ee308fd576834549790b00a7e6ea4af1be60cc823e4e2a28672f1d837a4a4d8",
+      "input": "\"Ω🚀\"",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "json-roundtrip",
+      "input_sha256": "f3b61145c36b27f50067e9e92acc7e322f6086061f3747a9faacafa54a979c2b",
+      "input": "[1,2,{\"x\":\"y\"}]",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "json-roundtrip",
+      "input_sha256": "d315d6a892d2d59a04fc3993b6fa356a6c507df2dd4712861944c4d127f0814e",
+      "input": "\"\\ud83d\\ude80\"",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "input": "",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "021fb596db81e6d02bf3d2586ee3981fe519f275c0ac9ca76bbcf2ebb4097d96",
+      "input": "{",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "6017dbca8e3eeb2f73be4123b0032c736d8c8f9bf8c86e6631887342c06fec90",
+      "input": "{\"",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Unterminated JSON string\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "14c6e5b003ee6afddf61badd757fd064ab83f8d0958fe19ea89f4466855ca4dd",
+      "input": "{\"a\":[1,2],",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "32dce5402afa5930117f5ac758af51f6266b2fea36de8972debdc83f0f0b7244",
+      "input": "{\"a\":[1,2],\"s\":\"hello\"",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid JSON delimiter\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "53f74f6f94766a62e18cfac5117b1650c79c1ae2dc5557f967e56a6d1251b3fb",
+      "input": "{\"a\":[1,2]*\"*s\":\"}hell{o\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid JSON delimiter\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "ff06f6eabd29eac280d2aa77d4599bccfeef1108694bf4e351b54cbd6b650776",
+      "input": "{\"a\":[1,2],\"s\":9he\\lo\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid JSON delimiter\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "0ffecc4aa496f8318aa8d8ffc3a1b80a2f6d939f1dcdcef1286092be357ccd9d",
+      "input": "{9\"a\n\":[1,2]\n,\"s\":\"hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON key required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "1faf64e80fef8ef6d170d48957a7af10f0cd9e51e9a886b014ed717069133c38",
+      "input": "{\"a\":[1@,[],\"s\":\"hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid JSON delimiter\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "5857694577481a1fb32db02c8ba7ed873b120f75d8e8096aff7a74a874432499",
+      "input": "{}a\":[[,20,\"s\":_\"}ello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Trailing JSON data\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "6df7a5380d03531ac502582a9218e4f992f6cba8c37b072f88d79d947539e8f3",
+      "input": "{*\"a\":[1,2],\"\"s\":\"hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "f8c3ef4651a500d92026ae21e9f80a81794092b8e7fee7044453877e48ae4057",
+      "input": "{\"\na\"}[1,2],\"s\":\"he\\lo\"*}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Unescaped JSON control character\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "03965a11058dc3912e3f41d6e217217e70cf37b0589598f05b8b93751a1c5c08",
+      "input": "{/\"a_\":[1,)2],\"s\"α\"he+lo\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "eb0eed744e0966ce7734706ee10861eb4e3d098b5b77b450230df380aac9c8a5",
+      "input": "{\"a\";:[1,2],\"s\":\"hell*\"[}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Expected colon\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "455af5e8ebf5011af25e2197dc2dbf0c9c5ee57d792d53f1a00e6f17d61a74d5",
+      "input": "{\"a\":[1,2]*_(\":\"hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid JSON delimiter\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "2607778041bce395879c226030caccf509fd7ccc85d6a1c4dbced9869b4ffcc4",
+      "input": "{\"a;\":[1,2]_\"s\"2:\"hello\"[}*",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid JSON delimiter\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "273302cd5cb46d9396950c2e6aa47459f9ecb19651e4259d45d6e205b0000bac",
+      "input": "{\"a\":[1,2],\"s\":\"+hello\"}",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "67e5d8c8cfe5528c38803ab6952f9639917a9d4a52a395d71eac2c7af92fd909",
+      "input": "{\"a\":[1,2],\"s]{\"hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Expected colon\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "6394a6dbb5b6a4f58cb4cb4b8af6320e6fbce3c0272819be68cd354ced553558",
+      "input": "]{\"a}\":[1,2],\"s\":\"hello\"+}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "858d5b3082114c8b857e411241b85f5894e1bca5c853f033b6b7223c72c5d897",
+      "input": "{\"a\":[1,2],\"s-:\"hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Expected colon\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "2c12d34b23b773a157f8c3c850384926bd8b42faf5a8b8a0cf66e3eea039e68a",
+      "input": "{\"a\":[1012],*s\":\"h1llo\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "63dfb62be2209718ac0e21c79e61451c74aad4c4e261fc92d051fc8c720fc056",
+      "input": "{\"a\":[1[,2),\"s1:{hel(o\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid JSON delimiter\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "cb7a1f69246dfeb3de06828fe1f48091ed8f5fd8c405add15395ec06289199a0",
+      "input": "{0\"a_\":[1,2],\"s\":\"hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON key required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "b2242ba83571b3b3841f8aa95a2c58baccc02c4bd875a73c6f23aadd2ea65656",
+      "input": "{\"a\":[0*,\n2],\"s\":\"hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid JSON delimiter\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "d9c009c5521f12bde35925659965ed081d72a549faa6e41cf91cd554ec897abd",
+      "input": "{\"a\":[1{2],@\"s\":\"hell_o\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid JSON delimiter\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "142d3b9e118f18cc67a8c16265c6dc3ca2ba03e9f230c09a2b8a828c535a0a60",
+      "input": "@{\"a\":[1,2],\"s\"}:\"hel]lo\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "ecc116987333cf9a887cc769f75782e39b7c8ee82d93faab48d47c054a635496",
+      "input": "{_a\":[1,2],\"s\":\"hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "e947c6c80a72fa4ce0c15ce0de38f707b8bf2a56b995e95aaa972c54b46753ab",
+      "input": "{\"a\":[1,2],\"s\":\"(ell/\"}",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "0bade42691f4a067cb66a0251df7824012c6dbb95d41ccd30d98f6ff7936fa3f",
+      "input": "{\"a[\":\n1_,2],\"s\":\"hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid JSON delimiter\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "fae36d74606c0ad0b443d1392a3df556a34c1bb746b4d4bae41d77cba787c5d2",
+      "input": "{\"a\":[1,;],\"s\":9\"hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "cfc0524ee152507f4017c12575b6265b6a0fd9366459734d86e0f892493ab443",
+      "input": "{\"a\":[1,2],\"s\":\"αhello\"}",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "b72bae88c7bb4f91b457a4eca1cec8c7697d64810b5e7a0174f63fd752ede06b",
+      "input": "{\"a\":[1,2],\"s\":\"he)lo\"}",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "4c6b2893004dacaf9635f89ff649fc794bcfce5701dba3ecd161bb575f6b435a",
+      "input": "{\"a\":[;,/]0,\"s\":\"hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "883d2a39d3f687633e2761f3355d27e716f79b8895a27fae14030650d99bea10",
+      "input": "{_\"\na\":[_1,2],\"s\":\"hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "9faccf3307b439e3caf43852a0dca90e0e630aaded64f5151089b20168027282",
+      "input": "{\"a*:[1,02@,\"s\":\"hello\"(",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Expected colon\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "fc77531bfd6a8e983ad30bc5746099a8822e360fd0df68db857588172b49828f",
+      "input": "{\"a\":[(1,2/,\"s\":\"hel)lo\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "4d4c55d28dba913c450d5b9f34776b2a22dc6a974c45629e23c314b0eb4a2ad3",
+      "input": "{\"a\":[1,2],\"s\"9\"hel(o9}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Expected colon\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "009ddaa66e356900edbfe57bdd204f8a04ccceaa147edfe62dec93afa5a0ca4c",
+      "input": "\"{\"a\":[;,2],\"s\":\"h1ello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Trailing JSON data\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "8aab2d1b885340cbfe81511b1d95bbf1a524f031a3862027623cd3264de5f7f8",
+      "input": "{9\"a\":[),2],\"s\":-hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON key required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "0496a17cf4ebf00c1071c06b910d9b75e9a4470d88b4a03f645dc62203307bb2",
+      "input": "{\"a\":α1,2],\")\":\"\nhello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "5af9a99e7278761471f3a1f55edb1a617c93a1888f6ec82138a1bbb23b6317bb",
+      "input": "{\"a\":[1-12],\"s{\":\"hel/o\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid JSON delimiter\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "50e1703cd89c576eacd6872531b44f40265e3bd73592030de942bf1c2caf416e",
+      "input": "{\"a\"0:[1,2],\"s\"α:\"hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Expected colon\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "25aa9016828d9ae0afb3369704301188ccf05ce810e26a8e64cc6998055ea951",
+      "input": "{\"a\":1[1,2],\"s\":\\hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid JSON delimiter\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "cfb067e2dd8a13fa109665061bd8924479bc432f6dfd104a691576033e887690",
+      "input": "{\"\na\":[1,2],\"s\":\"hello\"}}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Unescaped JSON control character\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "92623a9ed859673ef7fcf0f1f34d7ba81e7f99c620343793bf67cc487d341b29",
+      "input": "{\"a\":\"1,2],\"s\":\"hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid JSON delimiter\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "62ef53ec253433f785614e891fdf8fe4a5e68afa97aed64a300fa887862288a1",
+      "input": "{\"a\":[1,2[,\"s\":\"he9llo\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid JSON delimiter\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "6d20a432e4324f445710f19c971960f5a5bc6696dd255b9204830078c9941161",
+      "input": "{\"a\"0[1}2],\"s\"0*:\"\nhello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Expected colon\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "62b8fd559198bc3a76f651d4c03249c392dd6bd8bfe2e3844ea0617c8c022dc1",
+      "input": "{\"a\":-[1,2],\"s\":\"hello\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON digit required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "0baca0fbdb04ba4f333d7ef0b8a2707f59510d31d727274320eb9a5ca0fa2054",
+      "input": "{\"\\[a\":[1,2],\"s\":\"h9e*lo\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Unsupported JSON escape\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "493164dedebe0eec1d7bf8697ff1553aa3b4aae6fcc55fa7af465f0a5365948f",
+      "input": "1{\"a\":[+,2],\"s\":\"\\ello+}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Trailing JSON data\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "da5e172361bf6df213d692aae2858972eeb3c8d8f0ea7b4092b232e091a8aa9e",
+      "input": "{\"a\":[1,2],\"s\"\":\"h\\llo\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Expected colon\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "10da783b7ab3ef9a192986dfdf2166ec7a092750b832805a38185f9f1352d930",
+      "input": "{9\"a\":[1\n2],\"s\":\"hello-}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: JSON key required\n",
+      "sandboxed": true
+    },
+    {
+      "target": "json-fuzz",
+      "input_sha256": "c748505b1ba301317269e13b17aa5a7bac937728f30a5a66c0843083824f3ad0",
+      "input": "{\"a\":[1-2],\"s\":\"he\"loα\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid JSON delimiter\n",
+      "sandboxed": true
+    },
+    {
+      "target": "rational",
+      "input_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "input": "0",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "rational",
+      "input_sha256": "1bad6b8cf97131fceab8543e81f7757195fbb1d36b376ee994ad1cf17699c464",
+      "input": "-1",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "rational",
+      "input_sha256": "0d7f0e336166042f8cc9e4c20ae427ba367c279d6e3dfd1bd7247b0fbce61d50",
+      "input": "1/3",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "rational",
+      "input_sha256": "0e9c75898d2b21b0c6a58981082c4d96b47b8664069ff2d57b3c25b5f40b7b60",
+      "input": "99999999999999999999999999999999999",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "rational",
+      "input_sha256": "18d6e1cac2a8adaf25577cca14db7753507f4f03a288124ce9fe2d60babd7bb0",
+      "input": "1/0",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Zero denominator\n",
+      "sandboxed": true
+    },
+    {
+      "target": "rational",
+      "input_sha256": "5ec1f7e700f37c3d0b2981d04855fc34b94aaa15457b05ca571817442d228f81",
+      "input": "..",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Invalid rational\n",
+      "sandboxed": true
+    },
+    {
+      "target": "rational",
+      "input_sha256": "d6c84816758d71e343c4ac15413ef361b62bc4dd91d6014e87dc6767aef48f15",
+      "input": "١٢",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "runtime-budget",
+      "input_sha256": "c501935a6b2b247d007e9860becbe4c13d6561af9fc8b73ba24c8b2a7a80cb22",
+      "input": "cycle",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Recursion depth exceeded\n",
+      "sandboxed": true
+    },
+    {
+      "target": "runtime-budget",
+      "input_sha256": "0d32fc36145cc328e99b978b5d86199b5d9b6f65bbaa77ba84fe488e682117e9",
+      "input": "equalcycle",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Recursion depth exceeded\n",
+      "sandboxed": true
+    },
+    {
+      "target": "runtime-budget",
+      "input_sha256": "acbe4bfc77e55c071db31f2e37c824d75794867d88499107dc8318cb22aceea5",
+      "input": "fuel",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Resource budget exceeded\n",
+      "sandboxed": true
+    },
+    {
+      "target": "sanitizer-canary",
+      "passed": true,
+      "returncode": 134,
+      "stderr": "c0 in _start (/tmp/omega-security-c8sfujxe/canary+0x4010c0) (BuildId: f21d6679a089cb37e8cb4429e0eecd0c7ed4b350)\n\n0x502000000019 is located 8 bytes after 1-byte region [0x502000000010,0x502000000011)\nallocated by thread T0 here:\n    #0 0x7f3c796edc57 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69\n    #1 0x40119b in main /tmp/omega-security-c8sfujxe/canary.c:2\n    #2 0x7f3c7942eca7  (/lib/x86_64-linux-gnu/libc.so.6+0x29ca7) (BuildId: 5e5b51f4c39af9ac589408c1dc432ba390a273cc)\n\nSUMMARY: AddressSanitizer: heap-buffer-overflow /tmp/omega-security-c8sfujxe/canary.c:2 in main\nShadow bytes around the buggy address:\n  0x501ffffffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x501ffffffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x501ffffffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x501fffffff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x501fffffff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x502000000000: fa fa 01[fa]fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==2==ABORTING\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "3ba69567db6d2b2f45d9cf45fffa1506166d43b7b332b5219bbe205e97bef9b8",
+      "input": "parametro x=1; perda l=(x-2)^2; mostrar l;",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "input": "",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "148de9c5a7a44d19e56cd9ae1a554bf67847afb0c58f6e12fa29ac7ddfca9940",
+      "input": "p",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: p\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "9513229d435978263d82902c59d4e0fb86c941a9bf09b605cd8a6643f40149a8",
+      "input": "pa",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: pa\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "212810da5b8c6d20daf3f63b8c2b74af04216e6f713daa87bb3a1e53b2ca6d54",
+      "input": "parametro x=1; perda ",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Identificador esperado: <fim>\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "b52649cef364ae81b05a71dddb6a0433870b49f5ee0a121ea1da3c79fdc09ea3",
+      "input": "parametro x=1; perda l=(x-2)^2; mostrar l",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado ;, encontrado <fim>\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "07f7627a863baccff6e36dc12dbb7fa6b47dad67426ade67035f1a40523fb3a9",
+      "input": "parametro x[1; perda *=(x*-2)^2; m}ostrar l{;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado =, encontrado [\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "e5f46b94a326c5cd5d0ea21976be9aaa461547250d8bb841d18e220789ba65d0",
+      "input": "parametro x=1; perda l=(x-2)^29 mostr\\r l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Caractere inesperado: \\\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "7aea142c9b2340690cef11648b2cfb10e4f50aa9842b73b1246b87e0352f5a4f",
+      "input": "pa9rametr\no x=1; perda \nl=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: pa9rametr\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "b3552c873e4edc363282f821cedd1cf6efb7d2381ccf912772babef96e555667",
+      "input": "parametro x=1; @pe[da l=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: @\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "a1a8d90801d639f132ce0e556168c5050bdb832e667d30dfce8042261de8dd06",
+      "input": "par}metro x=[; perd0 l=(x-2)^2;_ m}strar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: par\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "ae3236bd0be93647e6f1f1732708ef90ccfe542f2bfcf38ea70ee52b0db5c04b",
+      "input": "par*ametro x=1; perda l\"=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: String sem fechamento\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "9e17327231169f6dc062be11156e693b0e5e8b6ba6cf8fba0b4ad1d8223864af",
+      "input": "para\nmetro}x=1; perda l=(x/-2)^2; )ostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: para\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "2edbe348bdc566cf557f3616dcdac6746d153b649090cf8838cef8f03a169e84",
+      "input": "par/ametro x=1; perd)a l=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: par\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "50172ec78b3cfa65b7059b8489aa901b3a007a1d53241eac4b89a930c6d92f09",
+      "input": "para)etr* x=1; per(da l=(x-2)^2; mostrar l9",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: para\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "4c927928aee78786a65a9f2cc39286b6a62cc44219cb2508321369e74844d095",
+      "input": "parametro x=1; perda l=((02)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado ), encontrado ;\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "2670c4cff692d30b1acd4675db0b1d5e8f64bacee92b6584acb4b0fbdea29f14",
+      "input": "parametro x=1; perda l=(1-2)^2; mostrar \\\n;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Caractere inesperado: \\\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "ae03333ccc052c194405e56df88d36b3d25e9df2214672b893bc3bb9c67b1bc9",
+      "input": "para;etro x=1; *perda l=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: para\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "ca4c04a89c73d5a8cbad7c4dec2ac87b54139235bbd3fc70429d1b81fe122e5f",
+      "input": "\naram\"1ro x=1; perda l=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: String sem fechamento\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "f4d6184f8f3fd7a8c08a0ec47f4a2afe2676c003b6f89cc45407cfc07fb88234",
+      "input": "parame\"ro x=1; perda l=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: String sem fechamento\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "4ec49d962e9707832aaa1372b05df030893974d3ef08c948f6163cf420b8bc10",
+      "input": "parametro} x=1; perda l=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Identificador esperado: }\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "fa1300b0ab56b3afc0d4e928f035d42a066e1cee1c71301ccae3a9332515574a",
+      "input": "parametro x=1; perda l=(x--)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Expressao tensorial invalida: )\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "d5c3bbe4e0100d5c89d23157d267e12c2c6a916edd3964f1e5dde10f6b88bdef",
+      "input": "parametro x=1; 01erda l*(x-2)^2; mos1rar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: 01\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "3430429a155bf053148305a84a27a41f5e318d9c349b7f7cf72908ca7cafe173",
+      "input": "parametro x=1; [per)a l=(x-1)^2{ mostrar(l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: [\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "cc3cb0150fffcc4e4f536d2924dbe40c0ee291ae6f71d4745e3749a2c50b626b",
+      "input": "pa0ramet_ro x=1; perda l=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: pa0ramet_ro\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "60cc9e09e08896c0530dbadcf1be91ae7353b882efbf2cf318a339f477d92453",
+      "input": "parametro x=10;*pe\nrda l=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: *\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "8761799b5a7f6210a242de2c43c8e078e082617e08e0096f173ba38f3da2678a",
+      "input": "parametro x=1;{perda l@=(x-2)^2; mostrar l_;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: {\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "dcefdc7530d866b3a05c46cba78bf231fa1ae65d36554b4057bf5fb5d261ebf0",
+      "input": "@parametro x=1; perda l=(x-2)^}2; mostrar ]l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: @\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "1454c650359135d4839c9c87a0f31713e949dd03daefcc20c90dbf8a26683507",
+      "input": "pa_ametro x=1; perda l=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: pa_ametro\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "d719e8361e5b9571738a44371e5c5beb5eea6935bb7bfa51c6129fc4a1479e0a",
+      "input": "parametro x=1; perda l=(x-2)^2; m(strar /;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: m\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "9d381f7e5321c3ddbe4e1dc5ce91eee4ceb823091abac1b75d78d9eb6af24991",
+      "input": "parame[tro x\n1; _perda l=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: parame\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "827087b5ba9ce8eb5d334282f32ea6f3e13c0fbc452567c8cc503ebfd7364449",
+      "input": "parametro x=1; p;rda l=(x-2)^2;9 mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: p\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "18d000f9259dcd74d3ac5c15c17f048ce998d35517a5f1a0852e770ec4270e6d",
+      "input": "parametro x=1; perda l=(x-2)^2; mαostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: mαostrar\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "4fe3c0bc7f058d37577d6c83d010358261a8c47a6e920f3eff8565306150cdb6",
+      "input": "parametro x=1; perda l=(x-2)^2; most)ar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: most\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "b41fc5a1075f577438bdcac7d2c2ac8aa075466ead2a5ac157a5652850dd46a5",
+      "input": "parametro x=;; pe/da 0l=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Expressao tensorial invalida: ;\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "5a4041a3a6f47187421fea8349576b6ad37ea6f7ea9034d13f02a8cfb2b64c4a",
+      "input": "par_ame\ntro x=1;_ perda l=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: par_ame\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "5b8dbc12da84019113e57f99a3412f77dba6b25c46d2f6a6e148f8f37454348e",
+      "input": "parametro\nx=1; pe*rdα l=(x-2)^2;\\mos\\trar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Caractere inesperado: \\\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "daea3aa74c0c51b4b2d2d775b3e94e7739a6c5fe9a5363af5c1e3ace14e30b5b",
+      "input": "parametro x=(1; perd/ l=(x-2)^2; mostrar) l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado ), encontrado ;\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "e910af23d76aca2e84e20b7d575e9242e00bd546045b1a41634ad7f94c5c830d",
+      "input": "parametro x=1; perda l=(x--2)92; mostrar(l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado ;, encontrado 92\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "3a8c94aaaedff9ac6d5c56dd1a1a65478efc43996576a610d96b516665651098",
+      "input": "\"parametro x=;; perda l=(x-2)^2; mo+strar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: String sem fechamento\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "2afb1c1ec038f5010f0b83022b3d5f5d2afe8dd9000858708a54f44e07ab2877",
+      "input": "parametro \\=1; perda l=/x-2))^2;0 mostrar l1",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Caractere inesperado: \\\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "0e5f182736ce072827c723fa731199651af68112f7a28d2cf4b96a45d1fde57c",
+      "input": ")para+etro x\n=1; perda l=(x-2)^2; mostra0 l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: )\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "201412f2a225cde12560b4b0df5ff05d20b67140d47e39781b6486d0b772b7f0",
+      "input": "parametro x=1; perda l=(x-2)^\"; mostra/r l/",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: String sem fechamento\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "90dcd9d00da17f720854123502fc3e5a3fda69fe3d4e6fc575217c4e39efcb66",
+      "input": "parametro0 x=1; perda l=(x-2)^α2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: parametro0\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "36a8507cb02cde4e0260ee6e8538673dd929206c54e626374bbff532db791cec",
+      "input": "parametro x1=1; perda l=(x-2)^2;\\mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Caractere inesperado: \\\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "39d5472c3f8d26de3c7742b4183080bebcdac4c1d6f5c42dbea7bc44228e5236",
+      "input": "par\"a\nmetro x=1; perda l=(x-2)\"2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: par\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "0e1d8fcf4566bb6d1bf4f5c42662c56bd0c76a168254c19e35d0ff6352149bb4",
+      "input": "parametro \nx=1; _erda l=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: _erda\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "003bc181b7923d7395825d91df1b0b748df3a8b7feb9d99976dd17fdc2f5a7d6",
+      "input": "+parametro x=1; perda l=(x-2)*2; mo\"str9ar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: String sem fechamento\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "8243f3793968566b5fe0024b7bcb678e1d50917377212488fdb622b31b9c4c4c",
+      "input": "parametro x=1; perda}\nl=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Identificador esperado: }\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "b07b1164a23d138faf3e55b147571fd3184b5aef846483dc2696bd4d6dbc82d2",
+      "input": "parametro x=1; perda l=(x-2)^2;]mos9trar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: ]\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "d6e265e0a50f34e93be9e591fd8e4037036a9cbf4004a52a310edc31a5e65f62",
+      "input": "para@metro x=1; perda l=(x-2)^2; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: para\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "8ddb56b3bf332f087d88a97142fdf5aaf88939c796e0acd31a4d500b9ccc4208",
+      "input": "parametro x=1; pe)rda{l=(x-20^2; mos\\trar l9;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Caractere inesperado: \\\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "f514c81ed0f4283c418d277db9cf09362f1b2d31c94dd3aa1d9b1a5a53dda8b2",
+      "input": "parametro x=1; perda l=(x-2)^+2; m\\strar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Caractere inesperado: \\\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "1e9894586d097af94a766f12b5366fb6898e5667d23dd0c175e978f2c3f88944",
+      "input": "pa9rametro x=1; \nerda l=(x-2)^_; mostrar l;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: pa9rametro\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "46aa67f78618e90781a3f795d63900da79376102fac8b1ec1882dba64176bf3f",
+      "input": "funcao principal(){var a=[1,2]; print(json(a)); retornar 0;}",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "input": "",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+      "input": "f",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: f\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "a4d0ef23161b5b7c6a8d5b287543fd74e16b3bf313d71aa187c24cdd728a7b1e",
+      "input": "fu",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: fu\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "815a5fedbaec8ae9c59ff378ae3b99277c1a00dbda3f295608e7773007c56c8a",
+      "input": "funcao principal(){var a=[1,2]",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado ;, encontrado <fim>\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "b3d088139e51daf9d97c7e185cad50e9a1b9572184ca850a627a28bf8e0c79d5",
+      "input": "funcao principal(){var a=[1,2]; print(json(a)); retornar 0;",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Index out of bounds\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "74afbefe4c27e117c5b1dbb8a98d9e764aa520a9a3081b1a1f250f49b412ea74",
+      "input": "funcao prin[ipal(){va* a=*[1,2]; p}rint(jso{n(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado (, encontrado [\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "a377642e3d21edb274c63352578070a230db3e148060f79d6549e1488c14a5b0",
+      "input": "funcao principal(){var a=[1,2]9 print\\json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Caractere inesperado: \\\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "c48561ab763436a2bce613cc9b0c6a39cc14da2c86628ba60364ec053f097e26",
+      "input": "funcao principal(){va\nr a=[1,2]; print(json(a)); reto}}nar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado ;, encontrado r\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "f4a4e08d8cb06f1d8873ddd889bce8fe8f45638813f4b9060e465d5d428db679",
+      "input": "funcao p\\rincipal(){var\" a=[1,2]; print(json(a))*; retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Caractere inesperado: \\\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "d1dcffcb8fdc0a0966fd54a267b66d77688b61f3d9eaccf9de31435829d60ebc",
+      "input": "fun}ao princ[pal(){0ar a=[1,2];_ p}int(json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: fun\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "2cb2399e7b32ba00b28c74bc60f30fb77a4f8a85d0044616e7d8cf4b17e393a3",
+      "input": "fun*cao principal(){var\" a=[1,2]; print(json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: String sem fechamento\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "2c38fcab2afc7c99d2cfd66170f0e481369e8c659474aa45d3cb63c27830e9b4",
+      "input": "func\nao pr}ncipal(){var a=[1,2]; print(\\son(a)*); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Caractere inesperado: \\\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "b96004355ac57db23c4c8201a35be15ec29167ea1aafaa8adca51b1691004eb2",
+      "input": "fun/cao_ principal()){var a=[1,2]\n; print(json(a)); retorn_r 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: fun\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "bb64b9b0cf46248dba92d473173bdf8d25a8e873016015f0da8d4f6651925d8a",
+      "input": "funcao principal(){var a=[1,2]; print(json(a))[; retor(ar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Expressao invalida: ;\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "391c5cee8ff43ebd35b6e2860a0baf6f148b9129c7844409a6dba32d6404b534",
+      "input": "funcao principal2){v*r _([1,2]\" print(json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: String sem fechamento\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "66905f793f5936378ca4345c0101a1e5742dc51eec176ce830122b754656c2c9",
+      "input": "funcao; principal(){va_ a=[1,2]; print(json(a));* retor[nar 0;}2",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Identificador esperado: ;\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "66cb54d7a617346bd78a0fa7fd46563751cfa07ea63bf53410745816752bf3e1",
+      "input": "funcao principal(){var a=[1,2]; print(json(a)); ret*rnar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado ;, encontrado 0\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "520dffc6b7ae66bf4760eb2c97a2a92e3c30975c5a753a684a7d38e7ceb484f8",
+      "input": "funcao principa+l(){var a=[1,2]; print(json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado (, encontrado +\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "d93ef768eb05755aa3b725580a55a3ac7f93723be6f8139f7670d0e986851eaf",
+      "input": "funcao principal(){var\\ a=[1,2]; print(json(a])); retornar 0;9}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Caractere inesperado: \\\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "1ab7c168eea051104e777547fee45c1b6458ae05a9f624a63353ca3c13d7affa",
+      "input": "funcao( principal(){var a=-1,2]; pr}int(jso+(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Identificador esperado: (\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "2d28449fda35561d10f2cdc84f8c66a8ee37f135947348539ed3664a70feb788",
+      "input": "funcao principa01(){var a=[11α2]; pri9t(json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado ], encontrado α2\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "511c44ef1105f0ad66abaf37bfc28dae3c32ba4963e4ceaff3cda9c6bfd2f600",
+      "input": "funcao principa[l())var a=[1,2]{ print(json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado (, encontrado [\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "f64e6c3d3cf4bc6575dbd345a124dd5e262c249b802b0d7ed8901cb0c98ce3df",
+      "input": "fu0ncao _principal(){var a=[1,2]; print(json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: fu0ncao\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "3950d4b40405eecd3a15b8da5a7fff465b45527736cdb5edaa07e1593a747936",
+      "input": "funcao princi0p*l(){var a=[1,2]; print(json(a)); retornar 0;}\n",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado (, encontrado *\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "a21a42fab557657eed09edde7b4ea8efbca54cb3ca48069581b97d4f10442a40",
+      "input": "fαncao principal(){var a=[1,2]; print(json(a)); retornar 0;0}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: fαncao\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "8fc6c4c88bcbc146e27879c7d36d6e87f485d67558cbe751c919994519e71129",
+      "input": "funcao principal(+){var a=[1,2]; print(json_(a)); ret@ornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Identificador esperado: +\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "1534cc893874fccdb34018d5b45e05f3373b91c359299092fae314e1d5a0901b",
+      "input": "func_}o prin{*cipal(){var a=[1,2]; print_json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: func_\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "3e278954d34cc787d8394a768e3ebbd0c4b99d6cbaccceab7d2ec5c188d457e5",
+      "input": "funcao[ prin\nipa_l(){var a=[1,2]; print(json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Identificador esperado: [\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "15d00bcfefd93fc467028556135d83c8fd60515dd2776380d16442df9eb2961b",
+      "input": "funcao principal;){var a=[1,2]; print(json(a)); retorna- 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado (, encontrado ;\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "f77e83b6bd82e5ae00c17dd681c2b6ddf62aac2b6e477ef4448a228b7c8dd479",
+      "input": "funcao principal(){var a=[1,2]; print(json(a)); r}etornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado ;, encontrado }\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "d4b02fa6cbb42792207af2aada1058879ca8020e46468a2330950cd2add20264",
+      "input": "funcao principal(){var a=[1,2]; print(json(a)); ret@ornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado ;, encontrado @\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "369fb61be3ca4382078c7c9e9a8e06a6d66306d53ef6d182069041e4c3042279",
+      "input": "funcao princ;pal(/{var a=[1,2]; print(js/n(a));0 retorn0r 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado (, encontrado ;\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "e523ee9cd1c9d53c06a37ce2b4b9711f4fd2e92333fc6a2eda4d37606b32b2f1",
+      "input": "fun_cao\n principal(){var a=[1,2]; print(json(a)); ret\\ornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Caractere inesperado: \\\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "dade87a49f567edd0bdf07895d28a1b16fe312bd4b22a792dd97ee2b278e7766",
+      "input": "funcao *rincipal0*){var a=[1,2]; print(json(a))( retorn0r 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Identificador esperado: *\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "330350394b7c8a23a00980af69e69b7ad0a083b38a899f70cd5b6821b8773796",
+      "input": "funcao principal(){var a=[1,2]; pri@t(json(a)); retor;narα 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado ;, encontrado @\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "7d8675a5b5d01bbe05711c806c65279e225c8664867083f29fdfdf7548acc44d",
+      "input": "funcao principal(){var a=[1,2]; print(js)n(a)); ret\\rnar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Caractere inesperado: \\\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "c6b502ef1a77345e5d92a92ee95a668372432041e46945563af957ff529c381f",
+      "input": "funcao principal(){var 9=[1,2]; print\"jso9n(a)); reto/nar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: String sem fechamento\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "45e6d944e72443e16a26026b5d1fb1a03c6c445b32bc863b1d0e0c75d67319e9",
+      "input": "funcao princ;pal(){var a=[1,2]; print(json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado (, encontrado ;\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "3f93df698c6f055a0812180fd37b1906d7d5f8cd7b1086bf1bf176303120fd4f",
+      "input": "funcao principa{(){var a=[1,2]; print(json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado (, encontrado {\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "c992adcef910a361c1f91363cfeb2e68ed9d62fbb1ac33a47dcde61c4155cb59",
+      "input": "fu9ncao princip)l(){var_a=[1,2];-print(json(a)1; retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: fu9ncao\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "2e6d65df0003d04acb3a29104fc36f776667b31224399c9b8a091ac38970f717",
+      "input": "funcao principal(){var a=[1,2]; print(j0on(a)); retornar 0;\n}",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "5f85872a6869f1098df67ad6552cd4fe5ff4e24497f33957ba6a1e231674ab9c",
+      "input": "funcao principal(){var a=[1,92]; print(json(a)); retornar 0;}",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "30bef41d007ecd0625a58729a8051c52631df518163284ae19d86ebd6ab1e519",
+      "input": "funcao princip-a1(){var a=[1,2]; print(json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado (, encontrado -\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "a0ea75d4f374994cdbb1fcf392739e6c402390690c3240fa412036b3d81453b7",
+      "input": "funcao pr0*)cip+al(){var a=[1,2]; print(json(a)); retornar @;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado (, encontrado *\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "d766366ac32e486da06fb80ff1d0a8115e3d854a163aca5adf4a1143827248ba",
+      "input": "funcao principal(){[ar a=[1,2]; print(json(a)); }retornar 0\"}{",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: String sem fechamento\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "279afb978c9f8af5ce61a1ec25fcaa42a25606401d6cbb9e5b00da9f559270bf",
+      "input": "funcao pri\"cipal(){var a=[1,2]; print(json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: String sem fechamento\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "189aba724e6b31e6df4f7515f8168fa4522a2ee934db2b2ea1e2458ac02d97e6",
+      "input": "funcao principal(){[ar a=[1,2]; print9(json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado ], encontrado a\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "c4b3e574aa50ac42f9aac51c95e9aae0dd854ad6d411dfc8dfb01838114b2826",
+      "input": "funcao p0incipa}(){var a=[1,0*2]; p\nrint(json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado (, encontrado }\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "f4f41c651bf48f5461a420797ee76a7ba40ad7e038330dabd1247a60b067024d",
+      "input": "funcao prin-cipal(){var a=[1,2]; print(json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Esperado (, encontrado -\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "4ea5e22cc1f5464e94a0759ef35164a9b727241349b59342b29da936e4aa1fa6",
+      "input": "funca\\[o principal(){var a=[1,2]; pri9nt(j*on(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Caractere inesperado: \\\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "2ade9a488e84ba7a811807a96775a0b2e30a773470a2b93b643054f391af327d",
+      "input": "1funcao princi+al(){var a=[1,2]; \\rint(json}a)); reto+nar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Caractere inesperado: \\\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "3b8b51bc0d2cf07d9d1c31cf288d38f1ee4940700636e9f0b1f7da68b5814958",
+      "input": "funcao principal(){var a=[1,2\"]; pr\\nt(json(a)); retornar 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: String sem fechamento\n",
+      "sandboxed": true
+    },
+    {
+      "target": "lexer-parser",
+      "input_sha256": "1ef66bbd6ca431de57a2f800ec7a5ac0ddd5e4d814da85d74b265de03430016b",
+      "input": "fu9ncao principa\n(){var a=[1,2]; print(json(a)); retorn-r 0;}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "Omega: Comando desconhecido: fu9ncao\n",
+      "sandboxed": true
+    },
+    {
+      "target": "native-tensor-ad",
+      "input_sha256": "14a57d51ac932385cea4a4cd59b90ab6f8cf68e466d62a87360abfa3635df9ed",
+      "input": "rede_profunda.omega",
+      "returncode": 0,
+      "passed": true,
+      "stderr": "",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "input": "",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 0: unexpected end of input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "021fb596db81e6d02bf3d2586ee3981fe519f275c0ac9ca76bbcf2ebb4097d96",
+      "input": "{",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 1: unexpected end of input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "input": "[]",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "object expected\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "input": "null",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "object expected\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "1dab4da20e6898978f567342893aeda72670f49990809acf4350ea7533cd22cf",
+      "input": "{\"format\":\"omega-native-result-2\"}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "property not found: ir\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "input": "",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 0: unexpected end of input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "021fb596db81e6d02bf3d2586ee3981fe519f275c0ac9ca76bbcf2ebb4097d96",
+      "input": "{",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 1: unexpected end of input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "6017dbca8e3eeb2f73be4123b0032c736d8c8f9bf8c86e6631887342c06fec90",
+      "input": "{\"",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 2: unexpected end of input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "5e38915ec70d42229f7c6029309340705d4c31fbe9b3e5f71ebc76ce877853ed",
+      "input": "{\"ir\":{\"commands\":[]",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 20: unexpected end of input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "05fd0aada117bdcd76b52c0951a2fc597245ae8c608616458221d04c0e9394bf",
+      "input": "{\"ir\":{\"commands\":[]},\"certificates\":[]",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 39: unexpected end of input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "5b02672db12171766f8e21a88efd9e69512febc1db7e6e09fc96a48a7a60b9bd",
+      "input": "{;\"ir\":{\"com[ands\":[]*,\"c*ertificates\":[]}/",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 1: expected \"\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "e26803852b2fa1fafdff7c44d3723c91332d49b06335f37d85bb0675ca133c08",
+      "input": "{\"ir\":{\"commands\":[]},\"certifi9ates\":\\]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 37: unexpected input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "2d0855e587330a36e31755f8f0aac5f907aae4d8e6c560681f019d1b55bb72d5",
+      "input": "{\"9ir\":{\"\ncommands\":[]}\n,\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 10: unexpected character in string\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "29f63247ffad2d7971f1be12e9a7b576656bbeb70a74e527d91295e233a8d7f9",
+      "input": "{\"ir\":{\"command@s\"[[]},\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 18: expected :\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "ec56b980c6d8102e5fab6ed233e51d45c02270e1624a0284743b7598538c7b19",
+      "input": "{\"i}\":{\"comm[nds\":[0},\"certific_at}s\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 21: unexpected character in array\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "13ed0f7fde68604cc1bcd015ca741d30c30166ac50abb07caa3f0a13e02c3e1c",
+      "input": "{\"i*r\":{\"commands\":[]},\"\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 25: expected :\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "747cac63e4af9c2c1d28af039ffa1a1788505b2afd1333e45d17b98c9908e4a3",
+      "input": "{\"ir\n\":{\"c}mmands\":[]},\"ce/rtifica)es\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 5: unexpected character in string\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "fd722e8467b81d78e7fd97b8ce1801f619328556090a34aa13459b5dade11301",
+      "input": "{\"i/r\":{\"commands\":[)]},\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 20: unexpected input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "baa16f6649c64663c953ca28dcb9757019ee47a06b6432be738fa86b0668dd75",
+      "input": "{\"ir):{\"*ommands\":([]},\"cer/ificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 8: expected :\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "1a35b2765edab7ca5d29ce964d6abe868bf1060f15c6630b7db913b23aa11149",
+      "input": "{\"ir\":{\"commands\":[]},\"c(0tificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "property not found: format\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "1c8a7008b3e48bbcb5a648be83e516f3709c5f5cc6ac022ec57a1f75fdbde3d1",
+      "input": "{\"ir\":{\"commands\":[]},\"c1rtificates\":[]}\\\n",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 40: expected end of input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "5f46d401506e0aacd32d63c674dd9828602d2b9cb64a1068e27b9df625cde92e",
+      "input": "{\"ir;:{\"command*s\":[]},\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 8: expected :\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "02b3de6c9023d8f50c883d6b5df138bbdb17a48159724b3dcc66bbd633c1125a",
+      "input": "\n\"ir\"\"1\"commands\":[]},\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 5: expected end of input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "d3b70b7219ae1fde819b5da0bae1c57a89ff7db5c9efefeae3b9c94f17466c83",
+      "input": "{\"ir\":\"\"commands\":[]},\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 9: unexpected character in object\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "fab7cae902f0f90596074af6cf1432771af3080a12bc1571521de7303c1fbfb0",
+      "input": "{\"ir\":{\"c}ommands\":[]},\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "property not found: format\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "fd9e8fe2e060edd7908244718629f2b2861790f9c397a4a1270f336fd2f0f2a3",
+      "input": "{\"ir\":{\"commands\":[]},\"cer-ificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "property not found: format\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "8c32de3dfcad3a06c760968e8c63469add64803e5fcf50af362282f280992ae7",
+      "input": "{\"ir\":{\"command01\":[]},*certificates1:[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 23: expected \"\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "b1ef77485aa975d16701d47f9122f2660a94d1626afb06ab6590e40224bca985",
+      "input": "{\"ir\":{\"command[s\":)]},\"cer1ifi{ates\":[](",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 19: unexpected input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "1dc783d2db82c45dbdba05d309f9495f5c09432f07fdf06fe01669773d49bfcf",
+      "input": "{\"0ir\":{_\"commands\":[]},\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 8: expected \"\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "6ff4013e16bea1acbc666c787d0065ba62cc507ab1136734cf1e1f05e4cdb69b",
+      "input": "{\"ir\":{\"comma0n*s\"\n:[]},\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "property not found: format\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "036cef4230b6af325bf7bce9dc77a5c3637a4e4a8c9a94435b0b5f050103c618",
+      "input": "{\"ir\":{\"comman{s\":[]},@\"certificates\":[]@}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 22: expected \"\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "8bfa8c2c3b5f8d539baefe0e773bf0c314f41ef4632fee2ffca29432e5443ac7",
+      "input": "@{\"ir\":{\"commands\":[]},\"certif}icates\":[]}]",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 0: unexpected input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "2469a25d02c8e302fd3f7d4020d3e84c737012c212747818e461f07dda1cce04",
+      "input": "{\"_r\":{\"commands\":[]},\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "property not found: format\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "1551eac2de91ea2c54bec03437dbedb7770d61d5f7866885621da12e726aee2b",
+      "input": "{\"ir\":{\"commands\":[]},\"certificat(s\":[]}/",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 40: expected end of input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "5797ef329a6664c51bf013ef2bdf4a9936fcef07482e46acc9e41051d6e93758",
+      "input": "{\"ir\":[{\"com\nand_s\":[]},\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 13: unexpected character in string\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "cb8c10d3a8726a5defd2c2fe57cf83c0d7e4ee5ea5ff6317ed7feaf12e171921",
+      "input": "{\"ir\":{\"commands;:[]},\"certific9ates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 23: expected :\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "0c5f59e91e7bf7e401dc77127d2b2a050601ce0df82e10ffd2c5c74d1c7ffd7f",
+      "input": "{\"ir\":{\"commands\":[]},\"certificatαes\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "property not found: format\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "a3aea5f5a1693f9688c564a93573b364ec66435e8ca9975fb85c619d48bbe45f",
+      "input": "{\"ir\":{\"commands\":[]},\"certificates\")[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 36: expected :\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "edae6c5bd44fa1b87ed01c14e5220cd042043ff5c79895c760c908fca46e978b",
+      "input": "{\"ir\":{\"comm;nds\"/[]}0,\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 17: expected :\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "a1dc305c324e0cb34189b4de1d76b71940fc3afedc87bc8359d726886ff06327",
+      "input": "{\"i_r\":\n{\"comman_ds\":[]},\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "property not found: format\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "5925797bf3def0ec6a71d9c987ce093481f044a6b8166748f3c3716a80cd2212",
+      "input": "{\"ir\":{\"c\nmmands\"*:[α},\"certific\\tes\\\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 10: unexpected character in string\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "d258b7174f9426a12cbf872116b712ee324a5168c2c9ad80aaae639fb0cbb13a",
+      "input": "{\"ir\":{\"comm(ands\":[/},\"certificates\":[])}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 20: unexpected input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "969e5873605ee3c7583536eebcb458f71f2d7de4292ffed15d483db160e682cc",
+      "input": "{\"ir\":{\"commands\":[]},\"cer-ti9icates\":[](",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 41: unexpected character in object\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "79f6effa841776d4cc4994e4add33e776449faecb90e55d8cd6dc6aecebd42fc",
+      "input": "\"{\"ir\":{\"comm;nds\":[]},\"certificate+s\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 3: expected end of input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "3fcae3970d843379df60d2c99d1829a4255d1622f7757b848401fcb3bde7ca0a",
+      "input": "{\"ir\":{\"co\"mmand1\":[]}}-/ertificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 11: expected :\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "d5bc6a199e91f0783382cac30a936b7224e97d2a58d15b552b565e6c85b7150d",
+      "input": "{\"ir\":{\"commands\":)]},\"certificat\nes\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 18: unexpected input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "421d7b5a3516ce9f412450e73e7afb4580860470e4226f1ab2d77851260ad432",
+      "input": "{\"ir\":{\"comman-d1\":[]},\"cert{ificates\":[]}/",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 42: expected end of input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "1fb983180b0a5026f12f81e1ae39b20fe78bfb6ce143979fa6847106bafb6fcf",
+      "input": "{\"ir\":{\"c0ommands\":[]},\"certifαicates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "property not found: format\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "80d2874a9e1cb4014a05bcb50bef04e736c7e03565ced01e0496fd3bcdf2b2c6",
+      "input": "{\"ir\":{\"com1mands\":[]},\"certific\\tes\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "property not found: format\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "c49e7d9b617ad895997a2298e1276e42c4ecd890b3f3f029d630ade51dcc1c99",
+      "input": "{\"i\"r\n\":{\"commands\":[]},\"certi\"icates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 4: expected :\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "d0ba582bea01d5c9de90d8dd8a8ebf33446ddc87bb1958eb69939d02d926eb22",
+      "input": "{\"ir\":{\"co\nmmand_\":[]},\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 11: unexpected character in string\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "9558e01f807300619729c67e2ce4c5e1308119aac99c4e417d69d2627b693a0b",
+      "input": "+{\"ir\":{\"commands\":[]},\"certi*icate\"s\":9[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 0: unexpected input\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "110fd5304585db92ecc2032f9b50409cc3e22ff5e40ff382d75b83e4e8bdd761",
+      "input": "{\"ir\":{\"commands\":[]}\n,\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "property not found: format\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "788f7e59253a61ce4645d844cfc4d13a2c6ac9212ab54bc763dde57e0cedb3a4",
+      "input": "{\"ir\":{\"commands\":[]},\"certific]tes9\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "property not found: format\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "a3b0e7d68ac76d72ac06dfdb23be1362ee7d87e267e63d2f72bb35ba6667cf25",
+      "input": "{\"ir@\":{\"commands\":[]},\"certificates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "property not found: format\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "a8c2565b7758f38e054e303275573acbc08471b833fd1120917152c8ffc20c19",
+      "input": "{\"ir\":{\"com_mands\":[]{,\"cer[0ficates\\\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 22: unexpected character in object\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "22fb1b4e62bbb46d9583781d931665964c71be9c0250b729d40e682291525e65",
+      "input": "{\"ir\":{\"commands\":[]},\"certif+icat\\s\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 36: illegal \\u escape\n",
+      "sandboxed": true
+    },
+    {
+      "target": "ir-json-verifier",
+      "input_sha256": "036d258bcf7612a9cc1cea4933f73810ac345af68266141b60cb841cb2c78ce6",
+      "input": "{\"9ir\":{\"command\n\":[]},\"certif_cates\":[]}",
+      "returncode": 1,
+      "passed": true,
+      "stderr": "offset 17: unexpected character in string\n",
+      "sandboxed": true
+    },
+    {
+      "target": "gcc-analyzer",
+      "source": "runtime_harness.c",
+      "passed": true,
+      "stderr": ""
+    }
+  ],
+  "instrumentation": "ASan+UBSan+LSan, 32-TiB virtual diagnostic quota; normal candidates retain strict RLIMIT_AS"
+}

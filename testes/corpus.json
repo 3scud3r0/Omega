@@ -1,0 +1,178 @@
+{
+  "format": "omega-corpus-1",
+  "cases": [
+    {
+      "path": "exemplos/dimensoes_invalidas.omega",
+      "language": "tensor",
+      "expected": "compile_reject",
+      "reference": "rejection",
+      "stderr_pattern": "Produto matricial incompativel"
+    },
+    {
+      "path": "exemplos/erro_de_tipo.omega",
+      "language": "tensor",
+      "expected": "compile_reject",
+      "reference": "rejection",
+      "stderr_pattern": "Parametro inexistente"
+    },
+    {
+      "path": "exemplos/evolucao_aberta/politica_0.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/evolucao_aberta/politica_1.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/evolucao_aberta/politica_ativa.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/evolucao_aberta_cli/politica_0.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/evolucao_aberta_cli/politica_1.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/evolucao_aberta_cli/politica_ativa.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/evolucao_xor/geracao_0.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/evolucao_xor/geracao_1.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/evolucao_xor/geracao_2.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/evolucao_xor/programa_sucessor.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/metaevolucao/politica_0.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/metaevolucao/politica_1.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/metaevolucao/politica_2.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/metaevolucao/politica_ativa.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/otimizacao_ir.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/parametros_matriciais.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/passo_recusado.omega",
+      "language": "tensor",
+      "expected": "run_reject",
+      "reference": "rejection",
+      "stderr_pattern": "Step rejected: loss would increase"
+    },
+    {
+      "path": "exemplos/primeiro_programa.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "classic"
+    },
+    {
+      "path": "exemplos/procedural/soma.omega",
+      "language": "procedural",
+      "expected": "accept",
+      "reference": "bootstrap",
+      "stdout": "1/2\n"
+    },
+    {
+      "path": "exemplos/produto_matrizes.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "classic"
+    },
+    {
+      "path": "exemplos/prova_falsa.omega",
+      "language": "tensor",
+      "expected": "run_reject",
+      "reference": "rejection",
+      "stderr_pattern": "Polynomial identity rejected"
+    },
+    {
+      "path": "exemplos/prova_tensorial.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "classic"
+    },
+    {
+      "path": "exemplos/rede_profunda.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
+      "path": "exemplos/sintaxe_inglesa.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "classic"
+    },
+    {
+      "path": "exemplos/tensores_gradientes.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "classic"
+    },
+    {
+      "path": "exemplos/tipos_e_teoremas.omega",
+      "language": "tensor",
+      "expected": "accept",
+      "reference": "classic"
+    }
+  ]
+}
