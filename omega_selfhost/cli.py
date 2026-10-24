@@ -3,10 +3,15 @@ import json
 from pathlib import Path
 import subprocess
 
-COMMANDS=('bootstrap','native-build','native-run','verify-native','native-types','native-shapes')
+COMMANDS=('bootstrap','native-build','native-run','verify-native','native-types','native-shapes','native-ir','validate-ir')
 
 
 def register(sub):
+    p=sub.add_parser('native-ir',help='export canonical, typed, versioned tensor IR')
+    p.add_argument('arquivo',type=Path)
+    p.add_argument('--saida',type=Path,required=True)
+    p=sub.add_parser('validate-ir',help='validate canonical typed IR without executing it')
+    p.add_argument('arquivo',type=Path)
     p=sub.add_parser('native-shapes',help='check every tensor graph dimension and emit a shape certificate')
     p.add_argument('arquivo',type=Path)
     p=sub.add_parser('native-types',help='infer source types without executing the program')
@@ -35,6 +40,15 @@ def execute(args):
         elif args.acao=='native-shapes':
             from omega.dimensions import certify_graph_shapes
             result=certify_graph_shapes(driver.compile_ir(args.arquivo))
+        elif args.acao=='native-ir':
+            from omega.typed_ir import TypedIR
+            ir=TypedIR.from_legacy(driver.compile_ir(args.arquivo))
+            with args.saida.open('xb') as stream:stream.write(ir.to_bytes())
+            result={'format':'omega-ir-validation-1','valid':True,'sha256':ir.sha256}
+        elif args.acao=='validate-ir':
+            from omega.typed_ir import TypedIR
+            ir=TypedIR.load(args.arquivo)
+            result={'format':'omega-ir-validation-1','valid':True,'sha256':ir.sha256}
         elif args.acao=='native-build':
             result=driver.build(args.arquivo,args.saida,args.optimize)
         elif args.acao=='native-run':

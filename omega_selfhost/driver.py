@@ -111,8 +111,8 @@ def compile_ir(source, optimize=False):
                       '--optimized-ir' if optimize else '--ir'],
                      readonly=[source],writable=[tmp],budget=COMPILER_BUDGET,check=True)
         ir=json.loads(out.read_text())
-        from omega.dimensions import certify_graph_shapes
-        certify_graph_shapes(ir)
+        from omega.typed_ir import validate_legacy
+        validate_legacy(ir)
         types=source_types(source)
         if types is not None:
             expected={name:list(t.shape) for name,t in types.symbols.items()}

@@ -1,0 +1,16 @@
+{
+  "task": "OM-014",
+  "scope": "canonical tensor/identity schema, explicit lossless legacy import, complete supported field/type validation; not proof admission",
+  "validation": {
+    "targeted_passed": 61,
+    "typed_ir_tests": 34,
+    "json_mutations": 300,
+    "corpus": "original and optimized tensor graphs roundtrip"
+  },
+  "independent_review": false,
+  "sources": {
+    "omega/typed_ir.py": "2a53b8bf992d57d1743cb0f5b01ae000f03d96e1860ae7883f2f1421ed945950",
+    "testes/foundation/test_typed_ir.py": "e4cabe3ebd00b68e7031850edb6226b8f248006b9302493fc10b11797c00af87",
+    "docs/IR_CANONICA_3_0.md": "3092ad76311fb96e92307b71fd512d8e884e33354cf99f377e1197fb97399bf0"
+  }
+}
