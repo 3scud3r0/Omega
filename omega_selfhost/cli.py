@@ -3,10 +3,12 @@ import json
 from pathlib import Path
 import subprocess
 
-COMMANDS=('bootstrap','native-build','native-run','verify-native')
+COMMANDS=('bootstrap','native-build','native-run','verify-native','native-types')
 
 
 def register(sub):
+    p=sub.add_parser('native-types',help='infer source types without executing the program')
+    p.add_argument('arquivo',type=Path)
     p=sub.add_parser('bootstrap',help='build and compare native compiler stages 0/1/2')
     p.add_argument('--saida',type=Path)
     p=sub.add_parser('native-build',help='self-hosted compiler, rational tensors and native machine code')
@@ -25,6 +27,9 @@ def execute(args):
     try:
         if args.acao=='bootstrap':
             result=driver.bootstrap(args.saida or driver.BUILD)
+        elif args.acao=='native-types':
+            result=driver.source_types(args.arquivo)
+            result=result.to_dict()
         elif args.acao=='native-build':
             result=driver.build(args.arquivo,args.saida,args.optimize)
         elif args.acao=='native-run':

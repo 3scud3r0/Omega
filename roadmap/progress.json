@@ -6,73 +6,161 @@
       "id": "OM-001",
       "phase": 0,
       "status": "implemented_pending_review",
-      "evidence": "docs/FUNDACAO_3_0.md"
+      "evidence": "docs/FUNDACAO_3_0.md",
+      "validation": {
+        "ci_run": 40095379238,
+        "ubuntu": [
+          "22.04",
+          "24.04"
+        ],
+        "result": "success"
+      }
     },
     {
       "id": "OM-002",
       "phase": 0,
       "status": "implemented_pending_review",
-      "evidence": "docs/FUNDACAO_3_0.md"
+      "evidence": "docs/FUNDACAO_3_0.md",
+      "validation": {
+        "ci_run": 40095379238,
+        "ubuntu": [
+          "22.04",
+          "24.04"
+        ],
+        "result": "success"
+      }
     },
     {
       "id": "OM-003",
       "phase": 0,
       "status": "implemented_pending_review",
-      "evidence": "docs/FUNDACAO_3_0.md"
+      "evidence": "docs/FUNDACAO_3_0.md",
+      "validation": {
+        "ci_run": 40095379238,
+        "ubuntu": [
+          "22.04",
+          "24.04"
+        ],
+        "result": "success"
+      }
     },
     {
       "id": "OM-004",
       "phase": 0,
       "status": "implemented_pending_review",
-      "evidence": "docs/FUNDACAO_3_0.md"
+      "evidence": "docs/FUNDACAO_3_0.md",
+      "validation": {
+        "ci_run": 40095379238,
+        "ubuntu": [
+          "22.04",
+          "24.04"
+        ],
+        "result": "success"
+      }
     },
     {
       "id": "OM-005",
       "phase": 0,
       "status": "implemented_pending_review",
-      "evidence": "docs/FUNDACAO_3_0.md"
+      "evidence": "docs/FUNDACAO_3_0.md",
+      "validation": {
+        "ci_run": 40095379238,
+        "ubuntu": [
+          "22.04",
+          "24.04"
+        ],
+        "result": "success"
+      }
     },
     {
       "id": "OM-006",
       "phase": 0,
       "status": "implemented_pending_review",
-      "evidence": "docs/FUNDACAO_3_0.md"
+      "evidence": "docs/FUNDACAO_3_0.md",
+      "validation": {
+        "ci_run": 40095379238,
+        "ubuntu": [
+          "22.04",
+          "24.04"
+        ],
+        "result": "success"
+      }
     },
     {
       "id": "OM-007",
       "phase": 0,
       "status": "implemented_pending_review",
-      "evidence": "docs/FUNDACAO_3_0.md"
+      "evidence": "docs/FUNDACAO_3_0.md",
+      "validation": {
+        "ci_run": 40095379238,
+        "ubuntu": [
+          "22.04",
+          "24.04"
+        ],
+        "result": "success"
+      }
     },
     {
       "id": "OM-008",
       "phase": 0,
       "status": "implemented_pending_review",
-      "evidence": "docs/FUNDACAO_3_0.md"
+      "evidence": "docs/FUNDACAO_3_0.md",
+      "validation": {
+        "ci_run": 40095379238,
+        "ubuntu": [
+          "22.04",
+          "24.04"
+        ],
+        "result": "success"
+      }
     },
     {
       "id": "OM-009",
       "phase": 0,
       "status": "implemented_pending_review",
-      "evidence": "docs/FUNDACAO_3_0.md"
+      "evidence": "docs/FUNDACAO_3_0.md",
+      "validation": {
+        "ci_run": 40095379238,
+        "ubuntu": [
+          "22.04",
+          "24.04"
+        ],
+        "result": "success"
+      }
     },
     {
       "id": "OM-010",
       "phase": 0,
       "status": "implemented_pending_review",
-      "evidence": "docs/FUNDACAO_3_0.md"
+      "evidence": "docs/FUNDACAO_3_0.md",
+      "validation": {
+        "ci_run": 40095379238,
+        "ubuntu": [
+          "22.04",
+          "24.04"
+        ],
+        "result": "success"
+      }
     },
     {
       "id": "OM-011",
       "phase": 1,
       "status": "implemented_pending_review",
-      "evidence": "docs/SINTAXE_E_SEMANTICA.md"
+      "evidence": "docs/SINTAXE_E_SEMANTICA.md",
+      "validation": {
+        "ci_run": 40095379238,
+        "ubuntu": [
+          "22.04",
+          "24.04"
+        ],
+        "result": "success"
+      }
     },
     {
       "id": "OM-012",
       "phase": 1,
-      "status": "not_started",
-      "evidence": null
+      "status": "implemented_pending_review",
+      "evidence": "roadmap/evidence/om012.json"
     },
     {
       "id": "OM-013",

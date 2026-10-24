@@ -115,9 +115,18 @@ def apply_c(name,args):
     return '({' + ''.join('V a'+str(i)+'='+cexpr(a)+';' for i,a in enumerate(args)) + name+'('+','.join('a'+str(i) for i in range(len(args)))+');})'
 
 
+def c_literal(text):
+    """C string syntax differs from JSON for ASCII control characters."""
+    if '\0' in text:raise ValueError('Embedded NUL is not supported')
+    text.encode('utf-8')
+    special={'"':'\\"','\\':'\\\\','\n':'\\n','\r':'\\r','\t':'\\t'}
+    return '"'+''.join(special.get(c,('\\'+format(ord(c),'03o')) if ord(c)<32 or ord(c)==127 else c)
+                       for c in text)+'"'
+
+
 def cexpr(e):
     kind=e[0]
-    if kind in ('s','n'):return ('o_str' if kind=='s' else 'o_num')+'('+json.dumps(e[1],ensure_ascii=False)+')'
+    if kind in ('s','n'):return ('o_str' if kind=='s' else 'o_num')+'('+c_literal(e[1])+')'
     if kind=='v':return 'v_'+e[1]
     if kind=='index':return apply_c('o_get',e[1:])
     if kind=='call':

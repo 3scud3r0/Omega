@@ -70,6 +70,15 @@ funcao principal() {
         ref=CompiladorV1().programa(analisar(source))
         self.assertEqual(driver.compile_text(source),ref)
 
+    def test_json_control_characters_have_valid_c_string_encoding(self):
+        value=''.join(chr(i) for i in range(1,32))+chr(127)+'a7"\\Ω🚀'
+        source='funcao principal(){print(json('+json.dumps(value,ensure_ascii=False)+'));retornar 0;}'
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);path=root/'controls.omega';path.write_text(source)
+            binary=root/'controls';driver.build(path,binary)
+            self.assertEqual(binary.with_suffix('.c').read_text(),compile_source(source))
+            self.assertEqual(json.loads(isolated_run([binary],check=True).stdout),value)
+
 
 @unittest.skipUnless(KERNEL.is_file(),'Run scripts/setup-native.sh')
 class NativeTensorTests(unittest.TestCase):

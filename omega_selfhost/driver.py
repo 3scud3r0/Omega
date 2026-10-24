@@ -83,13 +83,40 @@ def compiler():
     return BUILD/'omegac-stage2'
 
 
+def source_types(source):
+    """Independent, bounded static pass before native candidate compilation."""
+    from omega.typesystem import infer_program
+    from omega.procedural_types import infer_procedural
+    source=Path(source)
+    if not source.is_file():raise ValueError('Type inference requires a regular source file')
+    with source.open(encoding='utf-8') as stream:text=stream.read(256*1024+1)
+    position=0
+    while position<len(text):
+        if text[position] in ' \t\r\n':position+=1
+        elif text[position]=='#':
+            end=text.find('\n',position)
+            if end<0:break
+            position=end+1
+        else:break
+    end=position+6
+    if text.startswith('funcao',position) and (end==len(text) or not (text[end].isalnum() or text[end]=='_')):
+        return infer_procedural(text)
+    return infer_program(text)
+
+
 def compile_ir(source, optimize=False):
     with tempfile.TemporaryDirectory(prefix='omega-ir-') as tmp:
         out=Path(tmp)/'ir.json'
         isolated_run([compiler(),Path(source).resolve(),out,
                       '--optimized-ir' if optimize else '--ir'],
                      readonly=[source],writable=[tmp],budget=COMPILER_BUDGET,check=True)
-        return json.loads(out.read_text())
+        ir=json.loads(out.read_text())
+        types=source_types(source)
+        if types is not None:
+            expected={name:list(t.shape) for name,t in types.symbols.items()}
+            actual={name:ir['nos'][i]['forma'] for name,i in ir['simbolos'].items()}
+            if expected!=actual:raise ValueError('Native IR types disagree with independent inference')
+        return ir
 
 
 def compile_text(source):
@@ -115,6 +142,7 @@ def build(source, destination, optimize=False):
         argv=[compiler(),Path(source).resolve(),src]
         if optimize:argv.append('--optimize')
         isolated_run(argv,readonly=[source],writable=[tmp],budget=COMPILER_BUDGET,check=True)
+        inferred=source_types(source)
         cc(src,exe)
         optimization=None
         if optimize:
@@ -127,11 +155,13 @@ def build(source, destination, optimize=False):
             destination.with_suffix('.opt.json').write_text(json.dumps(optimization,indent=2)+'\n')
             os.replace(Path(tmp)/'optimization.lean',destination.with_suffix('.opt.lean'))
     provenance={'format':'omega-build-manifest-1','source_sha256':digest(source),
+                'inferred_types':inferred.to_dict() if inferred else None,
                 'compiler_inputs':compiler_inputs(ROOT),
                 'compiler_sha256':digest(BUILD/'omegac-stage2'),
                 'artifacts':artifact_record([p for p in outputs if p!=destination.with_suffix('.build.json')],destination.parent)}
     destination.with_suffix('.build.json').write_text(json.dumps(provenance,indent=2)+'\n')
-    return {'provenance':str(destination.with_suffix('.build.json')),
+    return {'types':inferred.to_dict() if inferred else None,
+            'provenance':str(destination.with_suffix('.build.json')),
             'binary':str(destination),'sha256':digest(destination),
             'compiler':'self-hosted-omega-stage2','optimized':optimize}
 
