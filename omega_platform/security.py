@@ -7,6 +7,8 @@ from pathlib import Path
 import random
 import shutil
 import tempfile
+import os
+import uuid
 
 from .budget import Budget,BUILD_BUDGET,COMPILER_BUDGET
 from .sandbox import run,instrumented,trusted
@@ -25,7 +27,44 @@ def mutations(seed,count=48):
     return list(dict.fromkeys(result))
 
 
-def validate(root,*,count=48):
+ANALYZER_IMAGE='gcc@sha256:b99b86a28812b1e6453a231a947dc43d76fe192788a12f344a9b568bf9f5d24c'
+
+
+def analyze_runtime(root,temporary,cc,engine):
+    flags=['-std=gnu11','-O0','-fanalyzer','-Werror','-Wno-unused-function',
+           '-Wno-unused-variable','-Wno-misleading-indentation']
+    source=root/'testes/foundation/runtime_harness.c'
+    if engine=='host':
+        result=trusted([cc,*flags,'-I',root/'omega_selfhost','-c',source,
+                        '-o',temporary/'analysis.o'],budget=BUILD_BUDGET)
+        return result,str(cc)
+    if engine!='docker':raise ValueError('Unknown static analyzer engine')
+    docker=shutil.which('docker')
+    if not docker:raise RuntimeError('The pinned static analyzer requires Docker')
+    # Explicitly select the local daemon; preserve Docker registry credentials.
+    prefix=['/usr/bin/env','-u','DOCKER_HOST','-u','DOCKER_CONTEXT','-u','DOCKER_TLS',
+            '-u','DOCKER_TLS_VERIFY','-u','DOCKER_CERT_PATH',docker,
+            '--host=unix:///var/run/docker.sock']
+    name='omega-analyzer-'+uuid.uuid4().hex
+    try:
+        result=trusted([*prefix,'run','--rm','--pull=never','--name',name,
+                        '--network=none','--read-only','--cap-drop=ALL',
+                        '--security-opt=no-new-privileges','--memory=4g','--cpus=2',
+                        '--pids-limit=64','--ulimit','cpu=240:240',
+                        '--user',f'{os.getuid()}:{os.getgid()}',
+                        '--tmpfs','/tmp:rw,noexec,nosuid,size=64m',
+                        '--mount',f'type=bind,src={root}/omega_selfhost,dst=/source/omega_selfhost,readonly',
+                        '--mount',f'type=bind,src={source},dst=/source/test.c,readonly',
+                        '--workdir','/tmp',ANALYZER_IMAGE,
+                        'gcc',*flags,'-I','/source/omega_selfhost','-c','/source/test.c',
+                        '-o','/tmp/analysis.o'],budget=BUILD_BUDGET)
+    finally:
+        # A client timeout must not leave its own container running in the daemon.
+        trusted([*prefix,'rm','-f',name],budget=replace(BUILD_BUDGET,wall_seconds=30))
+    return result,ANALYZER_IMAGE
+
+
+def validate(root,*,count=48,analyzer='host'):
     root=Path(root).resolve()
     rows=[]
     def record(target,text,out,expected=None):
@@ -100,11 +139,9 @@ def validate(root,*,count=48):
         # generated compiler is instrumented and fuzzed above; GCC's analyzer
         # exceeds its budget on that unit, so no whole-compiler static claim is
         # made. Every diagnostic from this analyzed unit is fatal.
-        for src in (root/'testes/foundation/runtime_harness.c',):
-            result=trusted([cc,'-std=gnu11','-O0','-fanalyzer','-Werror',
-                            '-Wno-unused-function','-Wno-unused-variable','-Wno-misleading-indentation',
-                            '-I',root/'omega_selfhost','-c',src,'-o',tmp/'analysis.o'],budget=BUILD_BUDGET)
-            rows.append({'target':'gcc-analyzer','source':src.name,'passed':result.ok,'stderr':result.stderr})
+        result,compiler=analyze_runtime(root,tmp,cc,analyzer)
+        rows.append({'target':'gcc-analyzer','source':'runtime_harness.c','compiler':compiler,
+                     'passed':result.ok,'stderr':result.stderr})
     return {'format':'omega-security-report-1','seed':20261024,'mutation_count':count,
             'passed':sum(r['passed'] for r in rows),'failed':sum(not r['passed'] for r in rows),
             'valid':all(r['passed'] for r in rows),'cases':rows,

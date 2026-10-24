@@ -50,6 +50,24 @@ execuções devem produzir os mesmos hashes de wheel e sdist. Isso não afirma
 igualdade de binários produzidos por GCC/GMP diferentes entre as duas versões
 de Ubuntu; a proveniência registra essas diferenças.
 
+A CI usa `scripts/security.py --analyzer docker`: o mesmo GCC 14.2.0 oficial,
+fixado por digest OCI, faz a análise estática em ambos os runners. GCC 11
+reporta vazamentos na arena global que não reproduzem com LSan e com o analisador
+moderno. Nenhum diagnóstico é dispensado: a análise continua com `-Werror`.
+O container não tem rede, capacidades ou escrita no sistema, recebe somente
+headers e o alvo de análise, e tem limites de CPU, memória, processos e scratch.
+Os testes ASan/UBSan/LSan continuam usando o compilador nativo de cada Ubuntu.
+Para repetir o perfil da CI, prepare Docker e execute:
+
+```sh
+docker pull gcc@sha256:b99b86a28812b1e6453a231a947dc43d76fe192788a12f344a9b568bf9f5d24c
+.venv/bin/python scripts/security.py --analyzer docker --output artifacts/foundation/security.json
+```
+
+`--analyzer host` permanece disponível para ambientes com GCC moderno. A análise
+falha, com os diagnósticos preservados, se o compilador escolhido não conseguir
+verificar o alvo; a opção não desabilita verificações.
+
 ## Invariantes de execução e fronteiras de confiança
 
 São não confiáveis: fontes fornecidas, programas compilados, certificados JSON,
@@ -117,7 +135,7 @@ alterações no núcleo estável ou declara as OM-011 a OM-150 concluídas.
 
 ## Resultados locais em 24/10/2026
 
-- Suite completa: 370 testes e 37 subtestes aprovados; um teste CUDA ignorado.
+- Suite completa: 371 testes e 37 subtestes aprovados; um teste CUDA ignorado.
 - Corpus: 24 exemplos aprovados e quatro rejeições previstas, sem falhas de
   infraestrutura ou diferenças contra as referências.
 - Segurança: 250 casos aprovados, incluindo execução tensorial/AD instrumentada,

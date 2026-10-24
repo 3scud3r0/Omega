@@ -22,5 +22,10 @@
     "testes/lean/OperationalExamples.lean": "17a3f693511d9b70f64db6b7bf6c4afcf46efa4ed2ddd9d30038dd2117f5dec2",
     "testes/foundation/test_operational_semantics.py": "59013e42755a8aedc152830bdd22cab4e554c54bde8e1a0e2b5bb33ffdaf014c",
     "docs/SINTAXE_E_SEMANTICA.md": "8ebc6d1cd527aa2ccaccf77c7d421fe7034e99daf08c029e37d18ca210e02e32"
+  },
+  "regression": {
+    "passed": 371,
+    "subtests_passed": 37,
+    "skipped_cuda": 1
   }
 }

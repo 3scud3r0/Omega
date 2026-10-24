@@ -42,7 +42,9 @@ jobs:
       - name: Manifest-based differential corpus
         run: .venv/bin/python scripts/regression.py --output artifacts/foundation/corpus.json
       - name: Native security, fuzzing and sanitizers
-        run: .venv/bin/python scripts/security.py --output artifacts/foundation/security.json
+        run: |
+          docker pull gcc@sha256:b99b86a28812b1e6453a231a947dc43d76fe192788a12f344a9b568bf9f5d24c
+          .venv/bin/python scripts/security.py --analyzer docker --output artifacts/foundation/security.json
       - name: Build packages and provenance
         run: |
           .venv/bin/python scripts/package.py
