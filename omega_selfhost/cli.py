@@ -3,10 +3,12 @@ import json
 from pathlib import Path
 import subprocess
 
-COMMANDS=('bootstrap','native-build','native-run','verify-native','native-types')
+COMMANDS=('bootstrap','native-build','native-run','verify-native','native-types','native-shapes')
 
 
 def register(sub):
+    p=sub.add_parser('native-shapes',help='check every tensor graph dimension and emit a shape certificate')
+    p.add_argument('arquivo',type=Path)
     p=sub.add_parser('native-types',help='infer source types without executing the program')
     p.add_argument('arquivo',type=Path)
     p=sub.add_parser('bootstrap',help='build and compare native compiler stages 0/1/2')
@@ -30,6 +32,9 @@ def execute(args):
         elif args.acao=='native-types':
             result=driver.source_types(args.arquivo)
             result=result.to_dict()
+        elif args.acao=='native-shapes':
+            from omega.dimensions import certify_graph_shapes
+            result=certify_graph_shapes(driver.compile_ir(args.arquivo))
         elif args.acao=='native-build':
             result=driver.build(args.arquivo,args.saida,args.optimize)
         elif args.acao=='native-run':

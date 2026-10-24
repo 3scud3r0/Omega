@@ -1,0 +1,16 @@
+{
+  "task": "OM-013",
+  "scope": "concrete graph shape checking and symbolic equality contracts; not general dependent types",
+  "validation": {
+    "targeted_passed": 41,
+    "subtests_passed": 11,
+    "operator_shape_comparisons": 1235,
+    "numeric_corpus": "all non-compile-rejection tensor graphs checked"
+  },
+  "independent_review": false,
+  "sources": {
+    "omega/dimensions.py": "a906b8b6b79c8fe2f9ab702079ffa671ced4743621a95f36870599dd430a03d3",
+    "testes/foundation/test_dimensions.py": "782bf3ecfa4cae96919d04263ca9c84873de9ad5003deaac23eae934e3ae5daf",
+    "docs/DIMENSOES_3_0.md": "43d019b58db605e83c1734cc7c61280829dfa4bbb1bdf8d61bba60b00abce1b9"
+  }
+}
