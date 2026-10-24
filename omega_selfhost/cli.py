@@ -1,7 +1,7 @@
 """Native Omega build and verification commands."""
 import json
 from pathlib import Path
-import subprocess
+import sys
 
 COMMANDS=('bootstrap','native-build','native-run','verify-native','native-types','native-shapes','native-ir','validate-ir','native-ssa')
 
@@ -31,38 +31,45 @@ def register(sub):
     p.add_argument('arquivo',type=Path)
 
 
-def execute(args):
+def _execute(args):
     from . import driver
-    try:
-        if args.acao=='bootstrap':
-            result=driver.bootstrap(args.saida or driver.BUILD)
-        elif args.acao=='native-types':
-            result=driver.source_types(args.arquivo)
-            result=result.to_dict()
-        elif args.acao=='native-shapes':
-            from omega.dimensions import certify_graph_shapes
-            result=certify_graph_shapes(driver.compile_ir(args.arquivo))
-        elif args.acao=='native-ir':
-            from omega.typed_ir import TypedIR
-            ir=TypedIR.from_legacy(driver.compile_ir(args.arquivo))
-            with args.saida.open('xb') as stream:stream.write(ir.to_bytes())
-            result={'format':'omega-ir-validation-1','valid':True,'sha256':ir.sha256}
-        elif args.acao=='validate-ir':
-            from omega.typed_ir import TypedIR
-            ir=TypedIR.load(args.arquivo)
-            result={'format':'omega-ir-validation-1','valid':True,'sha256':ir.sha256}
-        elif args.acao=='native-ssa':
-            from omega.typed_ir import TypedIR
-            from omega.ssa import analyze_tensor
-            result=analyze_tensor(TypedIR.from_legacy(driver.compile_ir(args.arquivo)))
-        elif args.acao=='native-build':
-            result=driver.build(args.arquivo,args.saida,args.optimize)
-        elif args.acao=='native-run':
-            data,result=driver.run(args.arquivo,destination=args.saida)
-            for line in data['outputs']:print(line)
-        else:
-            result=driver.verify_result(json.loads(args.arquivo.read_text()))
-        print(json.dumps(result,ensure_ascii=False))
-        return 0
-    except (RuntimeError,subprocess.SubprocessError) as exc:
-        raise ValueError(str(exc)) from exc
+    if args.acao=='bootstrap':
+        result=driver.bootstrap(args.saida or driver.BUILD)
+    elif args.acao=='native-types':
+        result=driver.source_types(args.arquivo)
+        result=result.to_dict()
+    elif args.acao=='native-shapes':
+        from omega.dimensions import certify_graph_shapes
+        result=certify_graph_shapes(driver.compile_ir(args.arquivo))
+    elif args.acao=='native-ir':
+        from omega.typed_ir import TypedIR
+        ir=TypedIR.from_legacy(driver.compile_ir(args.arquivo))
+        with args.saida.open('xb') as stream:stream.write(ir.to_bytes())
+        result={'format':'omega-ir-validation-1','valid':True,'sha256':ir.sha256}
+    elif args.acao=='validate-ir':
+        from omega.typed_ir import TypedIR
+        ir=TypedIR.load(args.arquivo)
+        result={'format':'omega-ir-validation-1','valid':True,'sha256':ir.sha256}
+    elif args.acao=='native-ssa':
+        from omega.typed_ir import TypedIR
+        from omega.ssa import analyze_tensor
+        result=analyze_tensor(TypedIR.from_legacy(driver.compile_ir(args.arquivo)))
+    elif args.acao=='native-build':
+        result=driver.build_checked(args.arquivo,args.saida,args.optimize).unwrap()
+    elif args.acao=='native-run':
+        data,result=driver.run_checked(args.arquivo,destination=args.saida).unwrap()
+        for line in data['outputs']:print(line)
+    else:
+        from omega_platform.results import attempt
+        result=attempt('proof',driver.verify_result,json.loads(args.arquivo.read_text())).unwrap()
+    print(json.dumps(result,ensure_ascii=False))
+    return 0
+
+
+def execute(args):
+    from omega_platform.results import attempt,Err
+    result=attempt(args.acao,_execute,args)
+    if isinstance(result,Err):
+        print(json.dumps(result.to_dict(),ensure_ascii=False),file=sys.stderr)
+        return 1
+    return result.unwrap()

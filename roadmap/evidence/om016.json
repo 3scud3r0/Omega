@@ -1,0 +1,20 @@
+{
+  "task": "OM-016",
+  "scope": "tagged pipeline results, explicit supervised resource status, structured native CLI errors and C runtime error checks; normalized Bubblewrap signals remain explicitly ambiguous",
+  "validation": {
+    "full_passed": 499,
+    "subtests_passed": 37,
+    "skipped_cuda": 1,
+    "security_passed": 250,
+    "security_failed": 0
+  },
+  "independent_review": false,
+  "sources": {
+    "omega_platform/results.py": "3560b608d21c45de8ab318989ead990762aee097327018ae97655e84c90c2d51",
+    "omega_platform/sandbox.py": "fee2e5c7603613014ff4fff9d6e33386b6ac5fe5cf3d840f3ebe5638f90be27c",
+    "omega_selfhost/runtime.h": "d28a7cd7a711981ed24f9361d89f4f181d77d07d0e9cc52b1a0e705aa4e3bf54",
+    "omega_selfhost/driver.py": "93e64b61e98a34be420f83f3e3b741ee7d5e920ede28d8e00260a8c59895de99",
+    "testes/foundation/test_results.py": "07f9944a6599a4346d56d509d86c728fb7b4875a302f3757ffaac037b86bf500",
+    "docs/RESULTADOS_3_0.md": "b7581b0690f7a8e70433375838d2fa972319bd5745c27b762c7a84d05a55dec8"
+  }
+}

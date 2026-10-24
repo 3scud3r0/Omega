@@ -141,4 +141,4 @@ def test_cli_exports_validates_and_refuses_overwriting_existing_ir(tmp_path,caps
     assert principal(['validate-ir',str(path)])==0
     assert json.loads(capsys.readouterr().out)['sha256']==first['sha256']
     assert principal(['native-ir',str(source),'--saida',str(path)])==1
-    assert 'ERRO' in capsys.readouterr().err and path.read_bytes()==original
+    assert json.loads(capsys.readouterr().err)['error']['code']=='io.exists' and path.read_bytes()==original

@@ -214,7 +214,11 @@ static V o_push(V a, V v) {
   a->a[a->n++] = v;
   return a;
 }
-static V o_len(V a) { return o_int((long)a->n); }
+static V o_len(V a) {
+  if (a->kind != 1 && a->kind != 2 && a->kind != 3)
+    o_die("Sequence or object required");
+  return o_int((long)a->n);
+}
 static V o_get(V a, V key) {
   if (a->kind == 3) {
     if (key->kind != 1)
@@ -480,7 +484,8 @@ static V o_write(V p, V data) {
 }
 static V o_print(V a) {
   V s = o_text(a);
-  puts(s->s);
+  if (puts(s->s) == EOF || fflush(stdout) == EOF)
+    o_die("Print failed");
   return o_int(0);
 }
 static V o_fail(V a) {

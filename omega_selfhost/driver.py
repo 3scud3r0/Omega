@@ -211,24 +211,60 @@ def verify_optimization(certificate, *, proof_path=None):
 
 
 def run(binary, *, destination=None,budget=Budget()):
-    if destination is not None:
-        target=Path(destination)
-        outputs=[target,target.with_suffix('.lean'),target.with_suffix('.verification.json')]
-        if any(path.exists() for path in outputs):raise ValueError('Result destination already exists')
-    execution=isolated_run([Path(binary).resolve()],budget=budget,check=True)
-    result=json.loads(execution.stdout)
-    optimization=Path(binary).resolve().with_suffix('.opt.json')
-    if optimization.is_file():result['optimization']=json.loads(optimization.read_text())
+    # Preserve exception classes for legacy callers while sharing the checked
+    # implementation. New callers can inspect Err without losing its stage.
+    from omega_platform.results import Err
+    result=run_checked(binary,destination=destination,budget=budget)
+    if isinstance(result,Err) and result.cause is not None:raise result.cause
+    return result.unwrap()
+
+
+def build_checked(source,destination,optimize=False):
+    from omega_platform.results import attempt,Err
+    typed=attempt('types',source_types,source)
+    if isinstance(typed,Err):return typed
+    return attempt('build',build,source,destination,optimize)
+
+
+def compile_ir_checked(source,optimize=False):
+    from omega_platform.results import attempt,Err
+    typed=attempt('types',source_types,source)
+    if isinstance(typed,Err):return typed
+    return attempt('ir',compile_ir,source,optimize)
+
+
+def run_checked(binary,*,destination=None,budget=Budget()):
+    """Tagged preflight, execution, proof and optional artifact-write results."""
+    from omega_platform.results import attempt,Ok,Err
+    def preflight():
+        if destination is not None:
+            target=Path(destination)
+            outputs=[target,target.with_suffix('.lean'),target.with_suffix('.verification.json')]
+            if any(path.exists() for path in outputs):raise FileExistsError('Result destination already exists')
+    ready=attempt('io',preflight)
+    if isinstance(ready,Err):return ready
+    def execute():
+        execution=isolated_run([Path(binary).resolve()],budget=budget,check=True)
+        data=json.loads(execution.stdout)
+        optimization=Path(binary).resolve().with_suffix('.opt.json')
+        if optimization.is_file():data['optimization']=json.loads(optimization.read_text())
+        return execution,data
+    execution=attempt('execute',execute)
+    if isinstance(execution,Err):return execution
+    status,data=execution.unwrap()
     proof_path=Path(destination).with_suffix('.lean') if destination else None
-    verification=verify_result(result,proof_path=proof_path)
-    verification['execution']={'sandboxed':execution.sandboxed,'budget':execution.budget,
-                               'wall_seconds':execution.wall_seconds}
-    if destination is not None:
-        target=Path(destination)
-        if target.exists():raise ValueError('Result file already exists')
-        target.write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')
-        target.with_suffix('.verification.json').write_text(json.dumps(verification,indent=2)+'\n')
-    return result,verification
+    checked=attempt('proof',verify_result,data,proof_path=proof_path)
+    if isinstance(checked,Err):return checked
+    verification=checked.unwrap()
+    verification['execution']={'sandboxed':status.sandboxed,'budget':status.budget,'wall_seconds':status.wall_seconds}
+    def publish():
+        if destination is not None:
+            target=Path(destination)
+            with target.open('x',encoding='utf-8') as stream:stream.write(json.dumps(data,indent=2,ensure_ascii=False)+'\n')
+            with target.with_suffix('.verification.json').open('x',encoding='utf-8') as stream:stream.write(json.dumps(verification,indent=2)+'\n')
+    published=attempt('io',publish)
+    if isinstance(published,Err):return published
+    return Ok((data,verification))
 
 
 def compiler_main():

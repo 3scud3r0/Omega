@@ -6,6 +6,7 @@ Trusted build/proof tools use resource limits but are a separate trust boundary.
 from __future__ import annotations
 from dataclasses import asdict,dataclass
 import errno
+import json
 import os
 from pathlib import Path
 import platform
@@ -35,11 +36,17 @@ class Outcome:
     timed_out: bool
     sandboxed: bool
     budget: dict
+    limit: str|None=None
 
     @property
-    def ok(self):return self.returncode==0 and not self.timed_out
+    def ok(self):return self.returncode==0 and not self.timed_out and self.limit is None
     @property
     def signal(self):return -self.returncode if self.returncode<0 else None
+    @property
+    def termination(self):
+        if self.timed_out:return 'wall_limit'
+        if self.limit=='output':return 'output_limit'
+        return 'signal' if self.signal is not None else 'exit'
 
 
 class ExecutionFailure(RuntimeError):
@@ -112,7 +119,7 @@ def _limits(budget: Budget,instrumented=False,namespace=False):
 
 def _capture(command,original,budget,*,cwd=None,env=None,pass_fds=(),sandboxed=False):
     with tempfile.TemporaryDirectory(prefix='omega-output-') as tmp:
-        out=Path(tmp)/'stdout';err=Path(tmp)/'stderr';started=time.monotonic();expired=False
+        out=Path(tmp)/'stdout';err=Path(tmp)/'stderr';started=time.monotonic();expired=False;limit=None
         with out.open('wb') as stdout,err.open('wb') as stderr:
             try:
                 supervisor=[sys.executable,str(Path(__file__).with_name('_supervisor.py')),
@@ -127,9 +134,9 @@ def _capture(command,original,budget,*,cwd=None,env=None,pass_fds=(),sandboxed=F
                 # disk use if a candidate emits faster than the poll interval.
                 while child.poll() is None:
                     if time.monotonic()-started>budget.wall_seconds:
-                        expired=True;break
+                        expired=True;limit='wall';break
                     if out.stat().st_size+err.stat().st_size>budget.output_bytes:
-                        break
+                        limit='output';break
                     time.sleep(0.01)
                 if child.poll() is None:
                     child.terminate()
@@ -141,10 +148,11 @@ def _capture(command,original,budget,*,cwd=None,env=None,pass_fds=(),sandboxed=F
         with out.open('rb') as stream:stdout=stream.read(budget.output_bytes).decode('utf-8','replace')
         with err.open('rb') as stream:stderr=stream.read(budget.output_bytes).decode('utf-8','replace')
         if out.stat().st_size+err.stat().st_size>budget.output_bytes:
+            if not expired:limit='output'
             stderr+='\nOmega supervisor: output budget exceeded'
             if code==0:code=-signal.SIGXFSZ
         return Outcome(tuple(map(str,original)),code,stdout,stderr,time.monotonic()-started,
-                       expired,sandboxed,asdict(budget))
+                       expired,sandboxed,asdict(budget),limit)
 
 
 def run(argv:Sequence[str|Path],*,budget=Budget(),readonly=(),writable=(),
@@ -153,9 +161,10 @@ def run(argv:Sequence[str|Path],*,budget=Budget(),readonly=(),writable=(),
     exe=Path(argv[0]).resolve(strict=True)
     if not exe.is_file():raise ValueError('Executable must be a file')
     bwrap=_tool('bwrap');prlimit=_tool('prlimit');policy=_seccomp(_instrumented,threads,_subprocesses)
-    with tempfile.TemporaryFile() as filters:
+    with tempfile.TemporaryFile() as filters,tempfile.TemporaryFile() as status:
         filters.write(policy);filters.flush();filters.seek(0)
         args=[bwrap,'--unshare-all','--die-with-parent','--new-session','--cap-drop','ALL',
+              '--json-status-fd',str(status.fileno()),
               '--size',str(budget.file_bytes),'--tmpfs','/']
         for path in ('/usr/lib','/lib','/lib64'):
             if Path(path).exists():args+=['--ro-bind',path,path]
@@ -181,9 +190,15 @@ def run(argv:Sequence[str|Path],*,budget=Budget(),readonly=(),writable=(),
         args+=['--chdir',str(cwd),'--seccomp',str(filters.fileno()),'--',str(Path(prlimit).resolve()),
                f'--nproc={budget.processes}','--',str(exe),*map(str,argv[1:])]
         result=_capture(_limits(budget,_instrumented,namespace=True)+args,argv,budget,env=clean_environment(budget,extra_env),
-                        pass_fds=(filters.fileno(),),sandboxed=True)
-    if result.returncode and ('bwrap:' in result.stderr or 'prlimit:' in result.stderr):
-        raise IsolationUnavailable(result.stderr[-2000:])
+                        pass_fds=(filters.fileno(),status.fileno()),sandboxed=True)
+        status.seek(0)
+        try:
+            documents=[json.loads(line) for line in status.read(4096).decode('utf-8').splitlines() if line.strip()]
+            started=any(type(d) is dict and type(d.get('child-pid')) is int for d in documents)
+        except (ValueError,UnicodeError):started=False
+    # Candidate stderr is data, never evidence of a launcher failure.
+    if not started:
+        raise IsolationUnavailable('Sandbox launcher did not report a child process')
     if check and not result.ok:raise ExecutionFailure(result)
     return result
 

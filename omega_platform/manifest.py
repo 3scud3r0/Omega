@@ -46,7 +46,7 @@ def compiler_inputs(root):
            'omega_selfhost/driver.py','omega_selfhost/runtime.h',
            'omega_selfhost/tensor_runtime.h','omega_selfhost/polynomial.h',
            'omega_platform/manifest.py','omega_platform/budget.py','omega_platform/sandbox.py',
-           'omega_platform/_supervisor.py','omega/typesystem.py','omega/procedural_types.py',
+           'omega_platform/_supervisor.py','omega_platform/results.py','omega/typesystem.py','omega/procedural_types.py',
            'omega/dimensions.py','omega/typed_ir.py']
     record={'sources':{n:sha256(root/n) for n in names},'toolchain':toolchain()}
     return {'sha256':hashlib.sha256(canonical(record)).hexdigest(),**record}
