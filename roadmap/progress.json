@@ -219,8 +219,8 @@
     {
       "id": "OM-018",
       "phase": 1,
-      "status": "not_started",
-      "evidence": null
+      "status": "in_progress",
+      "evidence": "docs/GENERICS_EM_DESENVOLVIMENTO.md"
     },
     {
       "id": "OM-019",
