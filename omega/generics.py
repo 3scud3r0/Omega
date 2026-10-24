@@ -263,3 +263,43 @@ def expand(source,registry):
               'original_symbols':sorted(c.nome for c in commands if c.tipo in ('parametro','parametro_tensor','tensor','vetor','matriz','perda')),
               'types':types.to_dict()}
     return ExpandedProgram(expanded,json.dumps(manifest,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode())
+
+
+def project_ir(program,ir):
+    """Remove implementation names/diagnostics, never nodes or computations.
+
+    Strict unused arguments and node indices are preserved. The resulting IR
+    is independently validated, including all original declaration commands.
+    """
+    from copy import deepcopy
+    from .typed_ir import TypedIR
+    if type(program) is not ExpandedProgram:raise TypeCheckError('Expanded program required')
+    manifest=program.manifest()
+    if hashlib.sha256(program.source.encode()).hexdigest()!=manifest['expanded_sha256']:
+        raise TypeCheckError('Expansion source does not match its manifest')
+    TypedIR.from_legacy(ir)
+    names=set(manifest['original_symbols'])
+    if not names<=set(ir['simbolos']):raise TypeCheckError('Original symbols missing from expansion')
+    result=deepcopy(ir)
+    result['simbolos']={name:index for name,index in result['simbolos'].items() if name in names}
+    result['comandos']=[c for c in result['comandos'] if c['tipo']!='declaracao' or c['nome'] in names]
+    TypedIR.from_legacy(result)
+    return result
+
+
+def project_result(program,result):
+    """A semantic projection must still pass independent Lean admission."""
+    from copy import deepcopy
+    result=deepcopy(result)
+    original=result['ir']
+    encode=lambda value:json.dumps(value,sort_keys=True,separators=(',',':'),allow_nan=False)
+    for certificate in result['certificates']:
+        if certificate.get('tipo')!='identidade_nativa':
+            if encode(certificate.get('ir'))!=encode(original):
+                raise TypeCheckError('Certificate graph differs before specialization projection')
+    result['ir']=project_ir(program,result['ir'])
+    for certificate in result['certificates']:
+        if certificate.get('tipo')!='identidade_nativa':certificate['ir']=deepcopy(result['ir'])
+    names=set(program.manifest()['original_symbols'])
+    result['values']={name:value for name,value in result['values'].items() if name in names}
+    return result
