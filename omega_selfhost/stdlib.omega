@@ -1,0 +1,71 @@
+modulo stdlib;
+exportar queue_new, queue_push, queue_pop, queue_values;
+exportar stack_new, stack_push, stack_pop;
+exportar map_new, map_put, map_has, map_get, map_keys;
+
+funcao check_capacity(n) {
+  se(n%1!=0 || n<1 || n>4096){fail("Capacity must be in 1..4096");}
+  retornar n;
+}
+funcao check_value(v){retornar v+0;}
+funcao check_key(k){
+  se(!isstr(k)){fail("String key required");}
+  se(len(k)>4096){fail("Key exceeds byte budget");}
+  retornar k;
+}
+funcao queue_new(capacity){
+  var n=check_capacity(capacity);var data=[];var i=0;
+  enquanto(i<n){push(data,0);i=i+1;}
+  var q=obj();put(q,"data",data);put(q,"head",0);put(q,"size",0);put(q,"capacity",n);
+  retornar q;
+}
+funcao queue_push(q,value){
+  var v=check_value(value);
+  se(q["size"]>=q["capacity"]){fail("Queue is full");}
+  var index=(q["head"]+q["size"])%q["capacity"];
+  put(q["data"],index,v);put(q,"size",q["size"]+1);retornar 0;
+}
+funcao queue_pop(q){
+  se(q["size"]==0){fail("Queue is empty");}
+  var index=q["head"];var value=q["data"][index];put(q["data"],index,0);
+  put(q,"head",(index+1)%q["capacity"]);put(q,"size",q["size"]-1);retornar value;
+}
+funcao queue_values(q){
+  var result=[];var i=0;
+  enquanto(i<q["size"]){push(result,q["data"][(q["head"]+i)%q["capacity"]]);i=i+1;}
+  retornar result;
+}
+funcao stack_new(capacity){retornar queue_new(capacity);}
+funcao stack_push(s,value){
+  var v=check_value(value);
+  se(s["size"]>=s["capacity"]){fail("Stack is full");}
+  put(s["data"],s["size"],v);put(s,"size",s["size"]+1);retornar 0;
+}
+funcao stack_pop(s){
+  se(s["size"]==0){fail("Stack is empty");}
+  var index=s["size"]-1;var value=s["data"][index];put(s["data"],index,0);put(s,"size",index);
+  retornar value;
+}
+funcao map_new(capacity){
+  var n=check_capacity(capacity);var k=[];var values=[];var i=0;
+  enquanto(i<n){push(k,"");push(values,0);i=i+1;}
+  var m=obj();put(m,"keys",k);put(m,"values",values);put(m,"size",0);put(m,"capacity",n);retornar m;
+}
+funcao map_find(m,key){
+  var k=check_key(key);var i=0;
+  enquanto(i<m["size"]){se(m["keys"][i]==k){retornar i;}i=i+1;}
+  retornar -1;
+}
+funcao map_put(m,key,value){
+  var k=check_key(key);var v=check_value(value);var index=map_find(m,k);
+  se(index<0){
+    se(m["size"]>=m["capacity"]){fail("Map is full");}
+    index=m["size"];put(m["keys"],index,k);put(m,"size",index+1);
+  }
+  put(m["values"],index,v);retornar 0;
+}
+funcao map_has(m,key){retornar map_find(m,key)>=0;}
+funcao map_get(m,key){
+  var index=map_find(m,key);se(index<0){fail("Map key is absent");}retornar m["values"][index];
+}
+funcao map_keys(m){retornar slice(m["keys"],0,m["size"]);}

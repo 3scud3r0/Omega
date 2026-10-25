@@ -1,0 +1,4405 @@
+{
+  "format": "omega-proposed-file-map-1",
+  "scope": "proposed architecture, not completed implementations or a fixed minimum file count",
+  "source": "roadmap/tasks.tsv",
+  "tasks": [
+    {
+      "task": "OM-001",
+      "phase": 0,
+      "title": "Corrigir instalação e compilação da Mathlib",
+      "acceptance": "CI limpa compila os módulos Lean usados por provas geradas",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "omega_selfhost/ProofPrelude.lean",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "omega_selfhost/proof.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "formal/tensor/lakefile.lean",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "scripts/setup-native.sh",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_proof_build.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/phase0-corpus.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-security.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-tests.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-002",
+      "phase": 0,
+      "title": "Corrigir e parametrizar a contagem de exemplos válidos",
+      "acceptance": "Suite diferencia falhas de exemplo, infraestrutura e contagem",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "omega_platform/corpus.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "scripts/regression.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "testes/corpus.json",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_corpus.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/phase0-corpus.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-security.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-tests.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-003",
+      "phase": 0,
+      "title": "CI com matriz Linux, versões fixadas e ambientes limpos",
+      "acceptance": "Build reproduzível, logs e artefatos verificáveis",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": ".github/workflows/tests.yml",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "scripts/setup.sh",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "requirements/cpu-py312.lock",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_proof_build.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/phase0-corpus.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-security.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-tests.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-004",
+      "phase": 0,
+      "title": "Testes de regressão para todos os programas .omega",
+      "acceptance": "Comparação diferencial com implementação de referência",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "omega_platform/corpus.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "testes/corpus.json",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_corpus.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/phase0-corpus.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-security.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-tests.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-005",
+      "phase": 0,
+      "title": "Fuzzing de lexer, parser, IR, JSON e runtime",
+      "acceptance": "Entradas inválidas não causam comportamento indefinido",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "omega_platform/security.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "scripts/security.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "testes/foundation/runtime_harness.c",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_sandbox.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/phase0-corpus.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-security.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-tests.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-006",
+      "phase": 0,
+      "title": "Sanitizers e análise estática de C",
+      "acceptance": "ASan/UBSan e análise de falhas integrados à CI",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "omega_platform/security.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": ".github/workflows/tests.yml",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_sandbox.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/phase0-corpus.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-security.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-tests.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-007",
+      "phase": 0,
+      "title": "Orçamentos de tempo, memória, CPU, profundidade e combustível",
+      "acceptance": "Limites aplicados também fora do interpretador",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "omega_platform/budget.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "omega_platform/sandbox.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "omega_selfhost/runtime.h",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_sandbox.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/phase0-corpus.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-security.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-tests.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-008",
+      "phase": 0,
+      "title": "Sandbox para executar programas não confiáveis",
+      "acceptance": "Sem rede ou escrita externa sem autorização",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "omega_platform/sandbox.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "omega_platform/_supervisor.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "scripts/setup-sandbox.sh",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_sandbox.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/phase0-corpus.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-security.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-tests.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-009",
+      "phase": 0,
+      "title": "Manifesto de builds e hashes dos artefatos",
+      "acceptance": "Cada binário rastreável ao código e dependências",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "omega_platform/manifest.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "scripts/build-manifest.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "scripts/package.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_manifest.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/phase0-corpus.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-security.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-tests.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-010",
+      "phase": 0,
+      "title": "Documentação de invariantes e modelo de ameaças",
+      "acceptance": "Limites das garantias explicitados e testados",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "docs/FUNDACAO_3_0.md",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_sandbox.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/phase0-corpus.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-security.json",
+          "action": "alterar/revalidar"
+        },
+        {
+          "path": "roadmap/evidence/phase0-tests.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-011",
+      "phase": 1,
+      "title": "Especificação formal de sintaxe e semântica Ômega",
+      "acceptance": "Semântica operacional definida para o subconjunto suportado",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "omega_selfhost/OperationalSemantics.lean",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "docs/SINTAXE_E_SEMANTICA.md",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_operational_semantics.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om011.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-012",
+      "phase": 1,
+      "title": "Sistema de tipos estático com inferência",
+      "acceptance": "Programas mal tipados rejeitados antes da execução",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "omega/typesystem.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "omega/procedural_types.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "omega_selfhost/driver.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_type_inference.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om012.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-013",
+      "phase": 1,
+      "title": "Tipos de tensores com dimensões verificáveis",
+      "acceptance": "Operações incompatíveis rejeitadas ou justificadas",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "omega/dimensions.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "omega/typesystem.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_dimensions.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om013.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-014",
+      "phase": 1,
+      "title": "IR canônica, tipada e versionada",
+      "acceptance": "Serialização determinística e validação completa",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "omega/typed_ir.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "omega/nucleo_v1.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_typed_ir.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om014.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-015",
+      "phase": 1,
+      "title": "SSA e grafo de dependências",
+      "acceptance": "Def-use, dominadores e invariantes testados",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "omega/ssa.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_ssa.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om015.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-016",
+      "phase": 1,
+      "title": "Tratamento explícito de erros e resultados",
+      "acceptance": "Sem falhas silenciosas ou valores sentinela ambíguos",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "omega_platform/results.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "omega_platform/sandbox.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "omega_selfhost/runtime.h",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_results.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om016.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-017",
+      "phase": 1,
+      "title": "Módulos, importações e resolução de nomes",
+      "acceptance": "Dependências determinísticas e ciclos diagnosticados",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "omega/modules.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "omega_selfhost/driver.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_modules.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om017.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-018",
+      "phase": 1,
+      "title": "Funções genéricas e abstrações reutilizáveis",
+      "acceptance": "Especialização preserva semântica",
+      "recorded_status": "implemented_pending_review",
+      "implementation": [
+        {
+          "path": "omega/generics.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "omega_selfhost/driver.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "omega_selfhost/cli.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/foundation/test_generics.py",
+          "action": "alterar/revalidar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om018.json",
+          "action": "alterar/revalidar"
+        }
+      ]
+    },
+    {
+      "task": "OM-019",
+      "phase": 1,
+      "title": "Biblioteca padrão de estruturas de dados",
+      "acceptance": "APIs com contratos e testes de propriedade",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_selfhost/stdlib.omega",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega/stdlib.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om019.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om019.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-020",
+      "phase": 1,
+      "title": "Gerenciamento de memória nativa",
+      "acceptance": "Sem vazamentos, uso após liberação ou crescimento ilimitado",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_selfhost/memory.h",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_selfhost/runtime.h",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "omega_selfhost/tensor_runtime.h",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om020.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om020.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-021",
+      "phase": 1,
+      "title": "Execução concorrente determinística quando exigida",
+      "acceptance": "Resultados reproduzíveis e ausência de corridas",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_platform/scheduler.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_platform/sandbox.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om021.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om021.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-022",
+      "phase": 1,
+      "title": "Backend WebAssembly isolável",
+      "acceptance": "Programas executados sob limites explícitos",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_selfhost/wasm_backend.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_selfhost/runtime_wasm.c",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_platform/wasm.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om022.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om022.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-023",
+      "phase": 1,
+      "title": "Backend LLVM ou compilação nativa otimizada",
+      "acceptance": "Equivalência diferencial contra backend de referência",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_selfhost/native_backend.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_selfhost/driver.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om023.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om023.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-024",
+      "phase": 1,
+      "title": "Depurador, profiler e rastreamento de IR",
+      "acceptance": "Passos e estados reproduzíveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega/debugger.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega/profiler.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega/trace.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega/motor_v1.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om024.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om024.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-025",
+      "phase": 1,
+      "title": "Sistema de pacotes com dependências verificadas",
+      "acceptance": "Lockfile, integridade e resolução reproduzível",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega/packages.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega/package_lock.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega/modules.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om025.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om025.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-026",
+      "phase": 2,
+      "title": "Semântica denotacional e operacional do núcleo tensorial",
+      "acceptance": "Teoremas de correspondência para o subconjunto formalizado",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "formal/tensor/Omega/TensorDenotation.lean",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "formal/tensor/Omega/TensorOperational.lean",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om026.py",
+          "action": "criar"
+        },
+        {
+          "path": "testes/lean/OM026.lean",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om026.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-027",
+      "phase": 2,
+      "title": "Prova de preservação de tipos",
+      "acceptance": "Execução não produz estados incompatíveis sob hipóteses formais",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "formal/tensor/Omega/Types.lean",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "formal/tensor/Omega/Preservation.lean",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om027.py",
+          "action": "criar"
+        },
+        {
+          "path": "testes/lean/OM027.lean",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om027.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-028",
+      "phase": 2,
+      "title": "Prova de progresso ou erros tipados",
+      "acceptance": "Estados bem tipados não ficam bloqueados indevidamente",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "formal/tensor/Omega/Progress.lean",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om028.py",
+          "action": "criar"
+        },
+        {
+          "path": "testes/lean/OM028.lean",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om028.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-029",
+      "phase": 2,
+      "title": "Provas de correção das transformações de IR",
+      "acceptance": "Cada otimização tem teorema ou certificado verificável",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "formal/tensor/Omega/IRTransformations.lean",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega/otimizador_v1.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om029.py",
+          "action": "criar"
+        },
+        {
+          "path": "testes/lean/OM029.lean",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om029.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-030",
+      "phase": 2,
+      "title": "Verificador de equivalência entre IR original e otimizada",
+      "acceptance": "Resultados e gradientes preservados no domínio declarado",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega/equivalence.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_selfhost/driver.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om030.py",
+          "action": "criar"
+        },
+        {
+          "path": "testes/lean/OM030.lean",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om030.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-031",
+      "phase": 2,
+      "title": "Refinamento da máquina abstrata para o backend C",
+      "acceptance": "Subconjunto nativo ligado à semântica formal",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "formal/tensor/Omega/CModel.lean",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "formal/tensor/Omega/CRefinement.lean",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om031.py",
+          "action": "criar"
+        },
+        {
+          "path": "testes/lean/OM031.lean",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om031.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-032",
+      "phase": 2,
+      "title": "Contratos formais para primitivas GMP e tensor runtime",
+      "acceptance": "Pré-condições e pós-condições explícitas",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "formal/tensor/Omega/GMPContracts.lean",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "formal/tensor/Omega/RuntimeContracts.lean",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om032.py",
+          "action": "criar"
+        },
+        {
+          "path": "testes/lean/OM032.lean",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om032.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-033",
+      "phase": 2,
+      "title": "Provas de derivação automática e regra da cadeia",
+      "acceptance": "Concordância para operações e pontos diferenciáveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "formal/tensor/Omega/AutodiffCorrectness.lean",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_selfhost/TensorKernel.lean",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om033.py",
+          "action": "criar"
+        },
+        {
+          "path": "testes/lean/OM033.lean",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om033.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-034",
+      "phase": 2,
+      "title": "Semântica explícita de subgradientes e ReLU",
+      "acceptance": "Convenções nos pontos não diferenciáveis documentadas",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "formal/tensor/Omega/Subgradients.lean",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_selfhost/TensorKernel.lean",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om034.py",
+          "action": "criar"
+        },
+        {
+          "path": "testes/lean/OM034.lean",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om034.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-035",
+      "phase": 2,
+      "title": "Provas matriciais abstratas sem escalarização integral",
+      "acceptance": "Teoremas parametrizados por dimensões",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "formal/tensor/Omega/MatrixProofs.lean",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om035.py",
+          "action": "criar"
+        },
+        {
+          "path": "testes/lean/OM035.lean",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om035.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-036",
+      "phase": 2,
+      "title": "Certificados compactos e checagem incremental",
+      "acceptance": "Verificação reutiliza resultados sem perder integridade",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_platform/proof_cache.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om036.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om036.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-037",
+      "phase": 2,
+      "title": "Correspondência entre enunciado e certificado",
+      "acceptance": "Certificados irrelevantes não são aceitos",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_selfhost/statement_binding.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_selfhost/proof.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om037.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om037.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-038",
+      "phase": 2,
+      "title": "Verificação de hipóteses, axiomas e dependências Lean",
+      "acceptance": "Nenhuma prova admitida por axioma não autorizado",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_selfhost/axiom_policy.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_selfhost/proof.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om038.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om038.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-039",
+      "phase": 2,
+      "title": "Protocolo de prova com formato canônico",
+      "acceptance": "Certificados adulterados ou ambíguos rejeitados",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_selfhost/proof_protocol.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om039.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om039.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-040",
+      "phase": 2,
+      "title": "Verificação independente de artefatos compilados",
+      "acceptance": "Resultado auditável sem confiar no gerador",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_platform/artifact_verifier.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_platform/manifest.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om040.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om040.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-041",
+      "phase": 3,
+      "title": "Interface unificada de problemas e objetivos",
+      "acceptance": "Esquema tipado para entradas, restrições e sucesso",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_agent/problem.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om041.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om041.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-042",
+      "phase": 3,
+      "title": "Representação de estados de raciocínio",
+      "acceptance": "Passos, premissas, evidências e incertezas rastreáveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_agent/reasoning_state.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om042.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om042.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-043",
+      "phase": 3,
+      "title": "Planejador hierárquico de tarefas",
+      "acceptance": "Decomposição em subtarefas com dependências",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_agent/hierarchical_planner.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om043.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om043.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-044",
+      "phase": 3,
+      "title": "Planejamento por busca e avaliação de estados",
+      "acceptance": "Algoritmos comparados em problemas verificáveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_agent/search.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om044.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om044.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-045",
+      "phase": 3,
+      "title": "Raciocínio simbólico com regras de inferência",
+      "acceptance": "Conclusões derivadas por regras explícitas",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_agent/inference.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om045.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om045.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-046",
+      "phase": 3,
+      "title": "Raciocínio probabilístico calibrado",
+      "acceptance": "Confiança avaliada por calibração e erro",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_agent/calibration.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om046.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om046.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-047",
+      "phase": 3,
+      "title": "Integração neural-simbólica bidirecional",
+      "acceptance": "Propostas neurais convertidas em objetos verificáveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_agent/neurosymbolic.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_nextorch/pipeline.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om047.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om047.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-048",
+      "phase": 3,
+      "title": "Detecção de contradições e premissas ausentes",
+      "acceptance": "Conflitos identificados sem inventar demonstrações",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_agent/consistency.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om048.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om048.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-049",
+      "phase": 3,
+      "title": "Gerenciamento de hipóteses concorrentes",
+      "acceptance": "Alternativas mantidas até evidência suficiente",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_agent/hypotheses.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om049.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om049.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-050",
+      "phase": 3,
+      "title": "Metacognição operacional",
+      "acceptance": "Decisão entre continuar, buscar evidência, pedir ajuda ou parar",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_agent/metacognition.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om050.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om050.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-051",
+      "phase": 3,
+      "title": "Orçamento adaptativo de raciocínio",
+      "acceptance": "Custo controlado por benefício mensurável",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_agent/reasoning_budget.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om051.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om051.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-052",
+      "phase": 3,
+      "title": "Planejamento de experimentos",
+      "acceptance": "Hipóteses testáveis e resultados interpretáveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_agent/experiments.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om052.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om052.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-053",
+      "phase": 3,
+      "title": "Aprendizado de heurísticas de busca",
+      "acceptance": "Ganho em problemas não vistos contra baseline",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_agent/learned_heuristics.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om053.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om053.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-054",
+      "phase": 3,
+      "title": "Generalização composicional",
+      "acceptance": "Testes com combinações não presentes no treinamento",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_agent/compositional.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om054.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om054.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-055",
+      "phase": 3,
+      "title": "Detecção de distribuição desconhecida",
+      "acceptance": "Abstenção ou escalonamento em situações fora de domínio",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_agent/domain_shift.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om055.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om055.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-056",
+      "phase": 4,
+      "title": "Leitura e indexação semântica de repositórios",
+      "acceptance": "Mapas de símbolos, dependências e chamadas",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_coder/repository_index.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om056.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om056.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-057",
+      "phase": 4,
+      "title": "Tradução de requisitos em especificações executáveis",
+      "acceptance": "Critérios de aceite gerados e revisáveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_coder/specifications.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om057.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om057.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-058",
+      "phase": 4,
+      "title": "Planejamento de alterações em múltiplos arquivos",
+      "acceptance": "Impacto e dependências estimados antes da edição",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_coder/change_plan.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om058.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om058.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-059",
+      "phase": 4,
+      "title": "Geração de código Ômega, Python, C e Lean",
+      "acceptance": "Programas passam validação sintática e testes",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_coder/generation.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om059.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om059.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-060",
+      "phase": 4,
+      "title": "Editor estruturado por AST",
+      "acceptance": "Alterações preservam regiões não relacionadas",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_coder/ast_editor.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om060.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om060.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-061",
+      "phase": 4,
+      "title": "Geração automática de testes",
+      "acceptance": "Testes úteis detectam mutações introduzidas",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_coder/test_generation.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om061.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om061.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-062",
+      "phase": 4,
+      "title": "Reparo de falhas de compilação e execução",
+      "acceptance": "Correções avaliadas sem mascarar erros",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_coder/repair.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om062.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om062.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-063",
+      "phase": 4,
+      "title": "Reparo assistido por contraexemplos formais",
+      "acceptance": "Contraexemplo convertido em tarefa de correção",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_coder/counterexamples.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om063.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om063.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-064",
+      "phase": 4,
+      "title": "Síntese guiada por contratos e tipos",
+      "acceptance": "Busca limitada a candidatos válidos",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_coder/contract_synthesis.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om064.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om064.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-065",
+      "phase": 4,
+      "title": "Busca enumerativa, evolutiva e neural de programas",
+      "acceptance": "Resultados comparados sob orçamento igual",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_coder/program_search.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om065.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om065.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-066",
+      "phase": 4,
+      "title": "Otimização de programas com equivalência verificada",
+      "acceptance": "Melhoria de desempenho sem regressão semântica",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_coder/verified_optimization.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega/equivalence.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om066.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om066.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-067",
+      "phase": 4,
+      "title": "Execução de testes em worktrees isoladas",
+      "acceptance": "Nenhuma modificação direta da versão estável",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_coder/worktrees.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om067.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om067.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-068",
+      "phase": 4,
+      "title": "Revisão automatizada de patches",
+      "acceptance": "Segurança, correção e compatibilidade examinadas",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_coder/patch_review.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om068.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om068.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-069",
+      "phase": 4,
+      "title": "Geração de pull requests auditáveis",
+      "acceptance": "Diff, testes, riscos e justificativa anexados",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_coder/pull_requests.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om069.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om069.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-070",
+      "phase": 4,
+      "title": "Integração de ferramentas externas com permissões",
+      "acceptance": "Acesso limitado por capacidade e aprovação",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_tools/capability_adapter.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om070.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om070.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-071",
+      "phase": 5,
+      "title": "Memória episódica de tarefas e resultados",
+      "acceptance": "Histórico consultável e reproduzível",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_memory/episodes.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om071.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om071.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-072",
+      "phase": 5,
+      "title": "Memória semântica com recuperação híbrida",
+      "acceptance": "Busca lexical e vetorial avaliada por relevância",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_memory/retrieval.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om072.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om072.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-073",
+      "phase": 5,
+      "title": "Base de conhecimento com proveniência",
+      "acceptance": "Cada afirmação vinculada a evidências",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_memory/knowledge.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om073.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om073.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-074",
+      "phase": 5,
+      "title": "Deduplicação, versionamento e expiração de memórias",
+      "acceptance": "Registros contraditórios ou obsoletos identificados",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_memory/lifecycle.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om074.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om074.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-075",
+      "phase": 5,
+      "title": "Buffer de replay certificado",
+      "acceptance": "Amostras revalidadas antes do treinamento",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_memory/certified_replay.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "nextorch/evolution/replay_buffer.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om075.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om075.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-076",
+      "phase": 5,
+      "title": "Treinamento incremental com controles de regressão",
+      "acceptance": "Novas tarefas não destroem capacidades anteriores",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_learning/incremental.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om076.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om076.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-077",
+      "phase": 5,
+      "title": "Detecção de esquecimento catastrófico",
+      "acceptance": "Métricas por habilidade e domínio",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_learning/forgetting.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om077.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om077.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-078",
+      "phase": 5,
+      "title": "Currículo automático de dificuldade",
+      "acceptance": "Progressão baseada em desempenho verificável",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_learning/curriculum.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om078.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om078.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-079",
+      "phase": 5,
+      "title": "Aprendizado ativo e seleção de exemplos",
+      "acceptance": "Melhoria por unidade de custo de rotulagem",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_learning/active_learning.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om079.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om079.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-080",
+      "phase": 5,
+      "title": "Distilação de soluções e trajetórias",
+      "acceptance": "Modelo menor reproduz resultados mensuráveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_learning/distillation.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om080.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om080.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-081",
+      "phase": 5,
+      "title": "Transferência entre domínios",
+      "acceptance": "Ganhos em tarefas fora da distribuição de treino",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_learning/transfer.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om081.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om081.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-082",
+      "phase": 5,
+      "title": "Treinamento com feedback de verificadores",
+      "acceptance": "Recompensas vinculadas a critérios independentes",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_learning/verifier_feedback.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om082.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om082.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-083",
+      "phase": 5,
+      "title": "Prevenção de contaminação de benchmarks",
+      "acceptance": "Separação rigorosa entre treino e avaliação",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_learning/data_splits.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om083.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om083.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-084",
+      "phase": 5,
+      "title": "Versionamento de datasets e checkpoints",
+      "acceptance": "Treinamentos reproduzíveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_learning/versioning.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om084.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om084.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-085",
+      "phase": 5,
+      "title": "Políticas de privacidade e retenção",
+      "acceptance": "Dados sensíveis não reaproveitados sem autorização",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_memory/privacy.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om085.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om085.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-086",
+      "phase": 6,
+      "title": "API estável para modelos de raciocínio",
+      "acceptance": "Arquiteturas substituíveis sem mudar o orquestrador",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_nextorch/model_api.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "nextorch/model.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om086.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om086.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-087",
+      "phase": 6,
+      "title": "Tokenizer e representação de código, provas e texto",
+      "acceptance": "Codificação consistente e versionada",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_nextorch/tokenizer.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om087.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om087.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-088",
+      "phase": 6,
+      "title": "Treinamento supervisionado de programação e raciocínio",
+      "acceptance": "Avaliação em tarefas retidas",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_nextorch/supervised_training.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "nextorch/model.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om088.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om088.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-089",
+      "phase": 6,
+      "title": "Geração condicionada por AST, tipos e contratos",
+      "acceptance": "Taxa de candidatos válidos mensurada",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_nextorch/constrained_generation.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om089.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om089.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-090",
+      "phase": 6,
+      "title": "Busca neural com verificador no ciclo",
+      "acceptance": "Eficiência comparada com busca não neural",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_nextorch/verified_search.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_nextorch/gate.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om090.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om090.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-091",
+      "phase": 6,
+      "title": "Crescimento Net2Net com testes de preservação",
+      "acceptance": "Saídas preservadas dentro das tolerâncias especificadas",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "nextorch/evolution/net2net.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om091.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om091.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-092",
+      "phase": 6,
+      "title": "Mecanismos de expansão e poda de capacidade",
+      "acceptance": "Melhoria líquida de custo e qualidade",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_nextorch/capacity.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "nextorch/evolution/loop.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om092.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om092.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-093",
+      "phase": 6,
+      "title": "Interpretabilidade com SAE e análise causal",
+      "acceptance": "Hipóteses interpretativas testadas por intervenções",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_nextorch/causal_analysis.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "nextorch/interpretability/sae.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om093.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om093.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-094",
+      "phase": 6,
+      "title": "Estimativa de incerteza e abstenção",
+      "acceptance": "Risco seletivo medido",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_nextorch/uncertainty.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om094.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om094.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-095",
+      "phase": 6,
+      "title": "Treinamento distribuído com checkpoints recuperáveis",
+      "acceptance": "Recuperação após interrupção",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_nextorch/distributed_training.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om095.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om095.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-096",
+      "phase": 6,
+      "title": "Suporte CPU, GPU e precisão mista",
+      "acceptance": "Paridade numérica conforme tolerâncias",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_nextorch/devices.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "nextorch/synthesis/triton_kernels.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om096.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om096.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-097",
+      "phase": 6,
+      "title": "Avaliação de eficiência de inferência",
+      "acceptance": "Latência, memória e energia monitoradas",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_nextorch/inference_metrics.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om097.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om097.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-098",
+      "phase": 6,
+      "title": "Roteamento entre especialistas e modelos",
+      "acceptance": "Escolha por desempenho e custo",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_nextorch/routing.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om098.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om098.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-099",
+      "phase": 6,
+      "title": "Prevenção de reward hacking e overfitting ao verificador",
+      "acceptance": "Avaliação externa detecta soluções oportunistas",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_nextorch/reward_integrity.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om099.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om099.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-100",
+      "phase": 6,
+      "title": "Benchmark neural versus métodos simbólicos",
+      "acceptance": "Contribuição real do componente neural quantificada",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_bench/neural_symbolic.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om100.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om100.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-101",
+      "phase": 7,
+      "title": "Inventário formal de componentes modificáveis",
+      "acceptance": "Escopos autorizados e protegidos explícitos",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_evolution/component_registry.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om101.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om101.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-102",
+      "phase": 7,
+      "title": "Motor de propostas de melhoria",
+      "acceptance": "Hipótese, custo e resultado esperado registrados",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_evolution/proposals.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om102.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om102.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-103",
+      "phase": 7,
+      "title": "Modificação de código em ramificações isoladas",
+      "acceptance": "Nenhum patch aplicado diretamente ao núcleo confiável",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_evolution/isolated_patches.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_coder/worktrees.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om103.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om103.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-104",
+      "phase": 7,
+      "title": "Geração de novas heurísticas de síntese",
+      "acceptance": "Melhorias testadas contra baselines",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_evolution/synthesis_heuristics.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om104.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om104.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-105",
+      "phase": 7,
+      "title": "Otimização do próprio compilador",
+      "acceptance": "Equivalência e regressões verificadas",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_evolution/compiler_tuning.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om105.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om105.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-106",
+      "phase": 7,
+      "title": "Otimização do planejador e do mecanismo de busca",
+      "acceptance": "Ganhos em conjunto de avaliação retido",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_evolution/planner_tuning.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om106.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om106.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-107",
+      "phase": 7,
+      "title": "Ajuste de hiperparâmetros sob orçamento",
+      "acceptance": "Experimentos comparáveis e rastreáveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_evolution/hyperparameters.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om107.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om107.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-108",
+      "phase": 7,
+      "title": "Propostas de mudança de arquitetura neural",
+      "acceptance": "Treino, validação e comparação automatizados",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_evolution/architecture_search.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om108.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om108.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-109",
+      "phase": 7,
+      "title": "Seleção estatística de melhorias",
+      "acceptance": "Intervalos de confiança e controle de múltiplas comparações",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_evolution/statistics.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om109.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om109.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-110",
+      "phase": 7,
+      "title": "Portão independente de promoção",
+      "acceptance": "Aprovação externa obrigatória para mudanças críticas",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_evolution/promotion.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om110.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om110.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-111",
+      "phase": 7,
+      "title": "Rollback transacional de versões",
+      "acceptance": "Retorno automático à última versão estável",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_evolution/rollback.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om111.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om111.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-112",
+      "phase": 7,
+      "title": "Detecção de regressão de segurança e capacidade",
+      "acceptance": "Promoção bloqueada quando invariantes falham",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_evolution/regressions.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om112.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om112.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-113",
+      "phase": 7,
+      "title": "Árvore genealógica de versões e experimentos",
+      "acceptance": "Causalidade e proveniência rastreáveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_evolution/lineage.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om113.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om113.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-114",
+      "phase": 7,
+      "title": "Limites de recursos para ciclos evolutivos",
+      "acceptance": "Sem crescimento ilimitado de custo ou processos",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_evolution/resource_limits.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om114.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om114.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-115",
+      "phase": 7,
+      "title": "Parada por estagnação, risco ou incerteza",
+      "acceptance": "Ciclo interrompido quando não há evidência de benefício",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_evolution/stopping.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om115.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om115.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-116",
+      "phase": 8,
+      "title": "Interface de ferramentas com contratos tipados",
+      "acceptance": "Argumentos e respostas validados",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_tools/contracts.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om116.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om116.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-117",
+      "phase": 8,
+      "title": "Navegação e recuperação de informação",
+      "acceptance": "Fontes e datas rastreáveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_tools/web.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om117.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om117.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-118",
+      "phase": 8,
+      "title": "Leitura estruturada de PDFs e documentos",
+      "acceptance": "Extração validada por amostras",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_tools/documents.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om118.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om118.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-119",
+      "phase": 8,
+      "title": "Interpretação de imagens e diagramas",
+      "acceptance": "Avaliação multimodal independente",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_tools/vision.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om119.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om119.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-120",
+      "phase": 8,
+      "title": "Entrada e saída de áudio opcionais",
+      "acceptance": "Qualidade medida em conjuntos próprios",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_tools/audio.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om120.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om120.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-121",
+      "phase": 8,
+      "title": "Execução de código e notebooks isolados",
+      "acceptance": "Recursos e efeitos controlados",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_tools/notebooks.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om121.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om121.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-122",
+      "phase": 8,
+      "title": "Interface com bancos de dados",
+      "acceptance": "Permissões e transações explícitas",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_tools/database.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om122.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om122.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-123",
+      "phase": 8,
+      "title": "Integração com Git, CI e issues",
+      "acceptance": "Operações rastreáveis e reversíveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_tools/git_ci.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om123.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om123.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-124",
+      "phase": 8,
+      "title": "Ambientes simulados para planejamento",
+      "acceptance": "Estados, ações e recompensas verificáveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_tools/simulation.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om124.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om124.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-125",
+      "phase": 8,
+      "title": "Políticas de aprovação de ações externas",
+      "acceptance": "Operações sensíveis exigem autorização",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_tools/approvals.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om125.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om125.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-126",
+      "phase": 9,
+      "title": "Modelo de ameaças para agentes e autoedição",
+      "acceptance": "Ataques e fronteiras de confiança documentados",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "docs/THREAT_MODEL_AGENT.md",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om126.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om126.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-127",
+      "phase": 9,
+      "title": "Controle de acesso por capacidades",
+      "acceptance": "Privilégios mínimos e escopos temporários",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_security/capabilities.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om127.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om127.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-128",
+      "phase": 9,
+      "title": "Separação entre proponente, verificador e promotor",
+      "acceptance": "Nenhum agente aprova sozinho sua própria mudança",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_security/roles.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_evolution/promotion.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om128.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om128.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-129",
+      "phase": 9,
+      "title": "Defesa contra prompt injection e dados adversariais",
+      "acceptance": "Testes de ataques em ferramentas e documentos",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_security/untrusted_data.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om129.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om129.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-130",
+      "phase": 9,
+      "title": "Proteção de segredos e credenciais",
+      "acceptance": "Sem exposição em logs, prompts ou artefatos",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_security/secrets.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om130.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om130.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-131",
+      "phase": 9,
+      "title": "Auditoria imutável de decisões e ações",
+      "acceptance": "Cadeia de eventos verificável",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_security/audit.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om131.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om131.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-132",
+      "phase": 9,
+      "title": "Desligamento e revogação de permissões",
+      "acceptance": "Interrupção efetiva testada",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_security/revocation.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om132.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om132.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-133",
+      "phase": 9,
+      "title": "Controle de objetivos e limites de autonomia",
+      "acceptance": "Nenhuma mudança de objetivo sem autorização",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_security/objectives.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om133.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om133.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-134",
+      "phase": 9,
+      "title": "Monitoramento de comportamento e anomalias",
+      "acceptance": "Alertas, bloqueio e investigação reproduzíveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_security/anomalies.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om134.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om134.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-135",
+      "phase": 9,
+      "title": "Avaliação adversarial independente",
+      "acceptance": "Falhas identificadas fora do conjunto de desenvolvimento",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_security/adversarial.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om135.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om135.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-136",
+      "phase": 10,
+      "title": "Harness unificado de benchmarks",
+      "acceptance": "Execuções reproduzíveis e resultados comparáveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_bench/harness.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om136.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om136.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-137",
+      "phase": 10,
+      "title": "Conjuntos de tarefas de programação inéditas",
+      "acceptance": "Testes ocultos e soluções verificadas",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_bench/programming.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om137.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om137.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-138",
+      "phase": 10,
+      "title": "Benchmarks de prova matemática",
+      "acceptance": "Taxa de teoremas corretos e custo de verificação",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_bench/mathematics.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om138.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om138.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-139",
+      "phase": 10,
+      "title": "Benchmarks de generalização e transferência",
+      "acceptance": "Desempenho em novos domínios",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_bench/generalization.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om139.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om139.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-140",
+      "phase": 10,
+      "title": "Experimentos de autoaperfeiçoamento longitudinal",
+      "acceptance": "Comparação entre gerações sob orçamento fixo",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_bench/longitudinal.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om140.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om140.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-141",
+      "phase": 10,
+      "title": "Ablações de memória, Nextorch, Lean e busca",
+      "acceptance": "Contribuição de cada componente isolada",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_bench/ablations.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om141.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om141.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-142",
+      "phase": 10,
+      "title": "Telemetria de CPU, GPU, RAM, energia e tempo",
+      "acceptance": "Custo por solução correta calculado",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_bench/telemetry.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om142.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om142.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-143",
+      "phase": 10,
+      "title": "Rastreabilidade de datasets, seeds e modelos",
+      "acceptance": "Experimentos reproduzíveis",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_bench/provenance.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om143.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om143.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-144",
+      "phase": 10,
+      "title": "Relatórios estatísticos e análise de falhas",
+      "acceptance": "Resultados negativos preservados",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_bench/statistics.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om144.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om144.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-145",
+      "phase": 10,
+      "title": "Painel de progresso e maturidade",
+      "acceptance": "Indicadores derivados de medições reais",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_bench/dashboard.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om145.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om145.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-146",
+      "phase": 10,
+      "title": "Infraestrutura de execução distribuída",
+      "acceptance": "Workers isolados e agendamento justo",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_platform/workers.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_platform/scheduler.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om146.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om146.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-147",
+      "phase": 10,
+      "title": "Cache de provas e artefatos por hash",
+      "acceptance": "Reutilização sem confiar em cache adulterado",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_platform/content_cache.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_platform/proof_cache.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om147.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om147.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-148",
+      "phase": 10,
+      "title": "Políticas de custo, quota e interrupção",
+      "acceptance": "Orçamentos respeitados",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_platform/quotas.py",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om148.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om148.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-149",
+      "phase": 10,
+      "title": "Empacotamento, releases e documentação de API",
+      "acceptance": "Instalação reproduzível e compatibilidade versionada",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "pyproject.toml",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "MANIFEST.in",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "scripts/package.py",
+          "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "docs/API_3_0.md",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om149.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om149.json",
+          "action": "criar"
+        }
+      ]
+    },
+    {
+      "task": "OM-150",
+      "phase": 10,
+      "title": "Avaliação externa e revisão de resultados",
+      "acceptance": "Reprodução independente dos marcos principais",
+      "recorded_status": "source_written_pending_validation",
+      "implementation": [
+        {
+          "path": "omega_bench/reproduction.py",
+          "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "docs/EXTERNAL_REVIEW.md",
+          "action": "criar",
+          "source_written": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "testes/acceptance/test_om150.py",
+          "action": "criar"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "roadmap/evidence/om150.json",
+          "action": "criar"
+        }
+      ]
+    }
+  ],
+  "shared_files": [
+    "omega/cli.py",
+    "omega_selfhost/cli.py",
+    "omega_selfhost/driver.py",
+    "omega_platform/manifest.py",
+    "formal/tensor/Main.lean",
+    "formal/tensor/lakefile.lean",
+    ".github/workflows/tests.yml",
+    "scripts/setup.sh",
+    "scripts/test.sh",
+    "pyproject.toml",
+    "MANIFEST.in",
+    "requirements/cpu-py312.lock",
+    "roadmap/progress.json",
+    "roadmap/tasks.tsv",
+    "scripts/build-monolith.py",
+    "scripts/monolith-components.py.txt",
+    "omega/omega_3_monolith.py",
+    "MANIFESTO_SHA256.txt"
+  ],
+  "package_initializers": [
+    "omega_agent/__init__.py",
+    "omega_bench/__init__.py",
+    "omega_coder/__init__.py",
+    "omega_evolution/__init__.py",
+    "omega_learning/__init__.py",
+    "omega_memory/__init__.py",
+    "omega_security/__init__.py",
+    "omega_tools/__init__.py"
+  ],
+  "counts": {
+    "tasks": 150,
+    "distinct_paths": 505,
+    "existing": 81,
+    "proposed_new": 424
+  },
+  "source_delivery": {
+    "implementation_paths": 191,
+    "scope": "source files, not acceptance",
+    "validation": "deferred_by_user",
+    "test_files": "deferred",
+    "evidence_reports": "deferred"
+  }
+}
