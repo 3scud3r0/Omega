@@ -154,7 +154,7 @@ def main(argv=None):
             if package is not None:
                 package.__path__=previous_path
 
-MANIFEST = {'format': 'omega-source-tree-1', 'files': {'.github/workflows/tests.yml': {'bytes': 2717, 'sha256': 'cb19c8d64217da137f7d2f4cc06ab208698dd070d87bfb0a2ae74897ca4a3131'}, 'MANIFEST.in': {'bytes': 548, 'sha256': '8f92b99ea1f0f3222bf1986b49807f0a48147f56eaf2ade0bc21881ecd493c29'}, 'README.md': {'bytes': 8105, 'sha256': 'c8c792ca0b1e036fd8ce58d1e65171edf98b22a22656006b0a6a4b58df429d4e'}, 'docs/API_3_0.md': {'bytes': 4337, 'sha256': '2038c1c09b926669ad92bbf72fc1e1ab2301f6381a3f5c49689a8520c8fdbd98'}, 'docs/ARQUIVO_UNICO.md': {'bytes': 3677, 'sha256': '4cfbbf8da9499b0a4030b3acd7b218762407d396da50212ec0f6b186b3371f41'}, 'docs/AUTO_HOSPEDAGEM.md': {'bytes': 3372, 'sha256': 'fe8b5222c4f0b9ac06c7c240d533a7d77070e892527531d4f3e8f1b8200c20f6'}, 'docs/DIMENSOES_3_0.md': {'bytes': 2170, 'sha256': '43d019b58db605e83c1734cc7c61280829dfa4bbb1bdf8d61bba60b00abce1b9'}, 'docs/ESTADO_DOS_TRES_PASSOS.md': {'bytes': 4765, 'sha256': '9f8fdc5aed62d5122a3aec9ff7b706a136cdf17fa18a33780803416b28460fed'}, 'docs/EXTERNAL_REVIEW.md': {'bytes': 1118, 'sha256': '3ae280c7ee0680b6cecb75573c781a342d00ce80e0402f3149faed862ba6a6fe'}, 'docs/FUNDACAO_3_0.md': {'bytes': 10614, 'sha256': '9eaef3ff2b09ec2bd90c48160136b879e652aaea3ec51be37b3b6e4a1d19f99a'}, 'docs/GENERICS_EM_DESENVOLVIMENTO.md': {'bytes': 2341, 'sha256': 'b84fb43da964b17f1b5ea7f614d0765674f21ed513fff203eee8f9b74da4c9bb'}, 'docs/INTEGRACAO_NEXTORCH.md': {'bytes': 6509, 'sha256': '7942c36db444fc1143a8cc68c226dd4981614aecb27c6b6c5f94d5dc289efa71'}, 'docs/IR_CANONICA_3_0.md': {'bytes': 3111, 'sha256': '3092ad76311fb96e92307b71fd512d8e884e33354cf99f377e1197fb97399bf0'}, 'docs/MODULOS_3_0.md': {'bytes': 4221, 'sha256': '254c8906d3b382d553920f12dd7d39b5e04e2443224159557ea1a2bf071ee035'}, 'docs/NATIVO_E_LEAN.md': {'bytes': 3653, 'sha256': '18d9024bcbdda44298367e85987c821f49f35ec2827421618f39c8db7a9e5b82'}, 'docs/NEXTORCH_PROVENANCE.md': {'bytes': 707, 'sha256': '28b7a6ee7d10b3bec0714071636d3bce2c675c0daf002c3701de0a60cd6d8e04'}, 'docs/NEXTORCH_UPSTREAM.md': {'bytes': 7629, 'sha256': '7d7165a7cf6dd073815c9ffcb35ee7b800be6db695ddf2ff0c429cbb1e1e0978'}, 'docs/RESULTADOS_3_0.md': {'bytes': 4172, 'sha256': 'b7581b0690f7a8e70433375838d2fa972319bd5745c27b762c7a84d05a55dec8'}, 'docs/SINTAXE_E_SEMANTICA.md': {'bytes': 7473, 'sha256': '8ebc6d1cd527aa2ccaccf77c7d421fe7034e99daf08c029e37d18ca210e02e32'}, 'docs/SSA_3_0.md': {'bytes': 2484, 'sha256': '49a6ad8d225203437b83fce40851d42cab6aab3e623d662de1f7b43fd7e5d84c'}, 'docs/THREAT_MODEL_AGENT.md': {'bytes': 3095, 'sha256': '4c3670a9b4a0d401e39e96d68328eb288b82528aa32d51ff453f793abf64c6e9'}, 'docs/TIPAGEM_3_0.md': {'bytes': 6039, 'sha256': '95f8677f4a79939f155b537df32caa3ed6553623914221476a3e9d2e4a1bdc60'}, 'docs/VALIDACAO_1_4.md': {'bytes': 2434, 'sha256': 'a548451c3155961b662efa64b3d1217faf4a70eb0ea3f335447a5492fd5da9d8'}, 'docs/VALIDACAO_2_0.md': {'bytes': 3189, 'sha256': '3d9468e97d1405de58f8ddbbdd920a4e514cfb03b11ec57ce53c97ff28199c88'}, 'exemplos/FatosOmega.lean': {'bytes': 1614, 'sha256': 'd690782c843e9403cbb55a585bb1b32fe2e31140ce3994d0f6e11d3cdb8cb605'}, 'exemplos/certificados_matriciais.json': {'bytes': 43797, 'sha256': 'a1ec2a1338caaca9271c242087b1a60b1995af405b3abdee8144ebfa20b132d0'}, 'exemplos/certificados_tensor.json': {'bytes': 26857, 'sha256': '284fa2269e48c9014fe16dcc450d276e65f6b81e5bdee097ac4a437c197a7f0d'}, 'exemplos/certificados_v1.json': {'bytes': 37233, 'sha256': '87ec9b30b6d04fb2d3582bf383f2103d512f4a5de047c363480f5a6d0e68a5cc'}, 'exemplos/dimensoes_invalidas.omega': {'bytes': 170, 'sha256': 'f545aa1b687aec156394efc4dc81e6d679000735ab3e9f72c1715dd6f5febdc7'}, 'exemplos/erro_de_tipo.omega': {'bytes': 175, 'sha256': 'f7a7d11dcf43aca43827eba345a69e7370161747a5d34ebb69d8d9f7fc342c44'}, 'exemplos/evolucao_aberta/cadeia_aberta.json': {'bytes': 36564, 'sha256': '32f1c83a49e6814ca8808f1222208be90c2090e52560a275664ed61bb70d2346'}, 'exemplos/evolucao_aberta/politica_0.omega': {'bytes': 212, 'sha256': 'df8325c0f4daa353c4c9f562180f40b406c7bafd40f4c1c2272fc70df787b682'}, 'exemplos/evolucao_aberta/politica_1.omega': {'bytes': 212, 'sha256': '97c9077f7361c0af1f32713d99fdaf606f581a0e2e2a2d651e6b4411d7ac1f54'}, 'exemplos/evolucao_aberta/politica_ativa.omega': {'bytes': 212, 'sha256': '97c9077f7361c0af1f32713d99fdaf606f581a0e2e2a2d651e6b4411d7ac1f54'}, 'exemplos/evolucao_aberta_cli/cadeia_aberta.json': {'bytes': 36564, 'sha256': '32f1c83a49e6814ca8808f1222208be90c2090e52560a275664ed61bb70d2346'}, 'exemplos/evolucao_aberta_cli/politica_0.omega': {'bytes': 212, 'sha256': 'df8325c0f4daa353c4c9f562180f40b406c7bafd40f4c1c2272fc70df787b682'}, 'exemplos/evolucao_aberta_cli/politica_1.omega': {'bytes': 212, 'sha256': '97c9077f7361c0af1f32713d99fdaf606f581a0e2e2a2d651e6b4411d7ac1f54'}, 'exemplos/evolucao_aberta_cli/politica_ativa.omega': {'bytes': 212, 'sha256': '97c9077f7361c0af1f32713d99fdaf606f581a0e2e2a2d651e6b4411d7ac1f54'}, 'exemplos/evolucao_xor/cadeia_provada.json': {'bytes': 2510, 'sha256': 'cc44ecf2433ec7c47991192c43a903d782e484beb3d0c90bd6b956931f863c81'}, 'exemplos/evolucao_xor/geracao_0.omega': {'bytes': 333, 'sha256': '7f7852321df9d559cab160d4ee8967c787d3288dba89e83e8e8c1ea8544c1255'}, 'exemplos/evolucao_xor/geracao_1.omega': {'bytes': 334, 'sha256': '7c0fbbc9b8a4402a898c0b0159d0e6c30f82c6e834f58f9bff635d79614686e8'}, 'exemplos/evolucao_xor/geracao_2.omega': {'bytes': 334, 'sha256': '9b339367766e416f1d7477bc4947b14fc22a5da3e871edda0b825b98b2a42a99'}, 'exemplos/evolucao_xor/obrigacoes_lean.lean': {'bytes': 804, 'sha256': '9c935b8c1ef64f716cef0ab2daab3860b805a6c32c1dfce845df3580b000d788'}, 'exemplos/evolucao_xor/programa_sucessor.omega': {'bytes': 334, 'sha256': '9b339367766e416f1d7477bc4947b14fc22a5da3e871edda0b825b98b2a42a99'}, 'exemplos/evolucao_xor/prova_auto_otimizacao.json': {'bytes': 9217, 'sha256': 'c7314a078a1c2778e66d1db3dcd5a792438a051b5ad6d5db214439c75ca5b616'}, 'exemplos/metaevolucao/certificado_meta.json': {'bytes': 2281, 'sha256': '48a9ad65bb0c2d8ee4a1b470031d1de8e326c45fa0a3c8fbfbc51fe569aca3b4'}, 'exemplos/metaevolucao/politica_0.omega': {'bytes': 300, 'sha256': '1966de2dbe1cb2a6637ba5c444706f4848b333c1de31b02ff4d3722265825987'}, 'exemplos/metaevolucao/politica_1.omega': {'bytes': 300, 'sha256': 'f3b40e8ce09384a0e0d52a959f16704d0d79ebede7801376b361a42d66c38628'}, 'exemplos/metaevolucao/politica_2.omega': {'bytes': 301, 'sha256': 'a80694b8ed951ffb02d6a4b250597b36708073be5b313bfbc4be5dd9870c00b1'}, 'exemplos/metaevolucao/politica_ativa.omega': {'bytes': 301, 'sha256': 'a80694b8ed951ffb02d6a4b250597b36708073be5b313bfbc4be5dd9870c00b1'}, 'exemplos/nextorch/iris_workflow.py': {'bytes': 2436, 'sha256': '1993543bd6de725b3429ce6c0b06bb4fbeafd95e01c681481d61882d208b9b0c'}, 'exemplos/nextorch/render_gallery.py': {'bytes': 2381, 'sha256': 'ecf778950bf9ffa0b218b12d5ae0474012977e7fa8da07460b781fa0020e1f09'}, 'exemplos/nextorch/transitivity.json': {'bytes': 65, 'sha256': 'd836ff49e415b8632696746d2d31a81cd084911d2328194597d1597fdaad8857'}, 'exemplos/otimizacao_ir.omega': {'bytes': 278, 'sha256': 'c3ed5c1d6b6ee7f76cf143ed6e953bdd2f1d19926e348785130e4a69a74e99ae'}, 'exemplos/parametros_matriciais.omega': {'bytes': 479, 'sha256': '4d296c053e304864b2b53410773377a2db01000eac0e5a028525599bbe1f7e4d'}, 'exemplos/passo_recusado.omega': {'bytes': 138, 'sha256': '4607927630183418f361c302357d873a72d77d9924c66a7d73abbd9dff3ae609'}, 'exemplos/primeiro_programa.omega': {'bytes': 666, 'sha256': 'b56626c4e496432073b430720d7672de50e14c70ca1f365efb280c6f4320cbaf'}, 'exemplos/procedural/soma.omega': {'bytes': 227, 'sha256': '8366dde9016e7e6fc7e7d56e942b7a3fffe880f6a571a30cd0c29018f2565be0'}, 'exemplos/produto_matrizes.omega': {'bytes': 187, 'sha256': '356b7eb864a432eaa4304d48ab059f92d966a1a4c1c8de884a70791faca85410'}, 'exemplos/prova_falsa.omega': {'bytes': 87, 'sha256': '2331e6d8d9d81bb3f72f3cb9554da504e4d66a782cc4c402a2799ee1e6812109'}, 'exemplos/prova_otimizacao_v1.json': {'bytes': 6191, 'sha256': 'f6d96323751ebe3a1ace9f976ff13dd204d621c374acaaf3b7228611e295780b'}, 'exemplos/prova_tensorial.omega': {'bytes': 192, 'sha256': '69f1cd8a20ec9f3885b78b6a137ec3d8e2beac1316614ae41430b0d3629980d8'}, 'exemplos/rede_profunda.omega': {'bytes': 542, 'sha256': '0bb7f60aa56cce7d07927f7b4093111b0e3c7541afe446940202217dc6275a51'}, 'exemplos/sintaxe_inglesa.omega': {'bytes': 223, 'sha256': '18dfad728e99044ecb36bc0806535983e737665e358d18793cdb93cecae0dd0a'}, 'exemplos/tarefas_abertas.json': {'bytes': 420, 'sha256': '67582306f2ceb08cad56ebb4ce20204b9ab449b759c586a4d790b92bafb3776f'}, 'exemplos/tensores_gradientes.omega': {'bytes': 534, 'sha256': '6ca6631d180a425b80dbec7a30f5cfab3912d661f7a0851ac1a444e806ca7cb4'}, 'exemplos/tipos_e_teoremas.omega': {'bytes': 445, 'sha256': '484bd77bc5f68abb14ccd97e21de88c919cb3f1aa9ad7308329a006b3b04197d'}, 'formal/lean/Main.lean': {'bytes': 3122, 'sha256': '87aa1f764829f1e0dab66a838f1b491855e5fa51115418289b3fc5c562127750'}, 'formal/lean/lake-manifest.json': {'bytes': 117, 'sha256': '779dafe979697cc620f3a82cc5c98041e540501fb208472766fdb959ae31396c'}, 'formal/lean/lakefile.lean': {'bytes': 165, 'sha256': '3a29d46241d7e769792909c4eb50938d366cf8f51556e9c08bef0f81c47f5280'}, 'formal/lean/lean-toolchain': {'bytes': 25, 'sha256': '55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea'}, 'formal/tensor/Main.lean': {'bytes': 25812, 'sha256': '258d5df203454eba6330104d371333962418f3cc1a438b004030c65a1e91aa90'}, 'formal/tensor/Omega.lean': {'bytes': 567, 'sha256': 'd44bb3a943e85a471e73ab8035eb4c8c6fbc7984491ce35d34bca1440d869c7d'}, 'formal/tensor/Omega/AutodiffCorrectness.lean': {'bytes': 483, 'sha256': '4e05c7f3f4bb5a6f630f4d788f9bf4ea018de6683216cb892fb5d2ae22098bfa'}, 'formal/tensor/Omega/CModel.lean': {'bytes': 381, 'sha256': '1b126a842b528e563d17baf8d71570a0d7545969e4a43e056649762faeadc9c6'}, 'formal/tensor/Omega/CRefinement.lean': {'bytes': 394, 'sha256': 'da6049f219a3b58f359ce5fdd9418c52a0234c7243e9083b763764ba3a4200c1'}, 'formal/tensor/Omega/GMPContracts.lean': {'bytes': 629, 'sha256': '3fac54ba171749c0dc2980e6c6a24220751943fa125ca82a6096d66c0e73e00d'}, 'formal/tensor/Omega/IRTransformations.lean': {'bytes': 507, 'sha256': '6d2396b70e21cc86f2fd69a9efd59b6cd1407fde806ffaf4a4a608c6d1f2fde3'}, 'formal/tensor/Omega/MatrixProofs.lean': {'bytes': 510, 'sha256': 'ed938c0be1d75bc35ce199be5a44cd3dc75ba0269a61b8eaba74710927c05337'}, 'formal/tensor/Omega/Preservation.lean': {'bytes': 663, 'sha256': 'b9e48b2dfa1e1d6f40dd3daa19dd909e1bc4b346c0f7b87d418634982e414b91'}, 'formal/tensor/Omega/Progress.lean': {'bytes': 257, 'sha256': '1a9bd75403b2119686669e076e055b2d2a3813bc7e84fd242bbf2b12fc192f9e'}, 'formal/tensor/Omega/RuntimeContracts.lean': {'bytes': 539, 'sha256': '62a4205e44afbf362d7323580adbca39bddfc2306fc532fa8f0c0eb2282e16d0'}, 'formal/tensor/Omega/Subgradients.lean': {'bytes': 454, 'sha256': '4982e293938031fb89d2c4bf5aba331cd5e9f3cc7df99702304a98f81a78a595'}, 'formal/tensor/Omega/TensorDenotation.lean': {'bytes': 304, 'sha256': '98ce7816099a25d86591e0ca497fc9603d758d16187d6e0f8265dd4ccfe657cc'}, 'formal/tensor/Omega/TensorOperational.lean': {'bytes': 1030, 'sha256': '9bb35fdfc09cac1b6a8c31d29384537b8cd3a4c4e0dd39945454cc232cf450dc'}, 'formal/tensor/Omega/Types.lean': {'bytes': 873, 'sha256': '97b8f3c923ef38c4312735331c6358bc30b8b1ec9864ce08eb02473f216cdbf5'}, 'formal/tensor/lake-manifest.json': {'bytes': 3142, 'sha256': '77606baf20079a8c0cc40f2e2849b6b65a7d68556866ef054684bb922ed52cec'}, 'formal/tensor/lakefile.lean': {'bytes': 458, 'sha256': 'aeeadc811279a3165515a93c4397790cc919696f7beb125b9ffe0a0a94a04b87'}, 'formal/tensor/lean-toolchain': {'bytes': 25, 'sha256': '55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea'}, 'nextorch/__init__.py': {'bytes': 614, 'sha256': 'ecc0567617586a870e75a47098ea23aff5df0d77ae8ed9ce15e754364a765e6e'}, 'nextorch/__main__.py': {'bytes': 3918, 'sha256': 'df2a483c748649ee40feb27116e2a46c13571e47bbae9c6a1104b81971a4195c'}, 'nextorch/config.py': {'bytes': 1419, 'sha256': 'b4d47308f5688e7cabba27147a6aae792a0de955024aa3733a638018f1e65e8a'}, 'nextorch/core/__init__.py': {'bytes': 127, 'sha256': '8b50771b198f5b74d9ca34f32608b1636ee9089f6fc6d65d6e369d8d1b6d4f22'}, 'nextorch/core/manifold.py': {'bytes': 2357, 'sha256': 'b05743ee3a31687b0907ae8a4ed9f1bcbaa3065c10c93e6dcf863e02df512561'}, 'nextorch/core/orange_bridge.py': {'bytes': 5424, 'sha256': '3042b79bbb95b80d4e868b4af18df9b2183b451803c7e93ecb52fdc77c17cd0e'}, 'nextorch/core/tensor.py': {'bytes': 724, 'sha256': 'b140f4f854909e32f5a79531eac7565474e559dd246ca4a697f052b663e92321'}, 'nextorch/engine/__init__.py': {'bytes': 183, 'sha256': '4a95748b1f4feed22460a816fbb8a64eaac388e1ed30be05515709c285a0d729'}, 'nextorch/engine/dynamic_depth.py': {'bytes': 728, 'sha256': '301368a55ef0e9d43f660632e1aa6cff6df9ab2a08677cc868b5b23c29f39ea0'}, 'nextorch/engine/latent_ttc.py': {'bytes': 7336, 'sha256': '19f3bcd1a0620d937ee00d888d30b739cc8c7931b83714738e15742d184b0dcc'}, 'nextorch/evolution/__init__.py': {'bytes': 282, 'sha256': 'ab6c10ecf8ddae1f6c1cd429bdc29c6321c9da07df8355d1648260f81ee488b2'}, 'nextorch/evolution/loop.py': {'bytes': 8919, 'sha256': 'ff2cd39840b2b4fac9d9fd5d486f828a08a9c8dc8b9dd221b73512e1866ef6dd'}, 'nextorch/evolution/net2net.py': {'bytes': 3497, 'sha256': 'aebdff30775eaa506917a993afd5f89c24adb3a26bc969b50c695066888a454b'}, 'nextorch/evolution/replay_buffer.py': {'bytes': 3496, 'sha256': '0a644ec169e16947f94288ef0dbe3f96531815d013465bca6ede4a5697c12b35'}, 'nextorch/formal/__init__.py': {'bytes': 350, 'sha256': 'edf52f617a9376d2fab7f34a597db44e14cb30e3ed0af410169e9fa769ddf501'}, 'nextorch/formal/barrier.py': {'bytes': 2785, 'sha256': '78032e943644d86ab30aaab4b8bb5bd437ddd254f269a892c45c945e4baad3c4'}, 'nextorch/formal/lean_bridge.py': {'bytes': 4944, 'sha256': '75d65df2411f131a5aabd11f15c15366c354ceb30a12e29b251da2418e108957'}, 'nextorch/formal/z3_gateway.py': {'bytes': 2719, 'sha256': '8c12f94707cb2865117da7ff57cc437ef9573ee5f506ab5883beb1a5778d92a4'}, 'nextorch/interpretability/__init__.py': {'bytes': 220, 'sha256': '08f998b88d8b282a83827f91a6d9d5aef41e2a314ed7b004f4650e65499f2b56'}, 'nextorch/interpretability/pid_sparsity.py': {'bytes': 1539, 'sha256': '3cee1d4fbf2281db155ddd786fa7cf2bfe7879c9e75e6eaed7871ce4c2f75fbc'}, 'nextorch/interpretability/sae.py': {'bytes': 2714, 'sha256': '1ca20bb224b2e0062a63241052d118a1fa1f5aa3066b18f7ca8e36cb736242e3'}, 'nextorch/interpretability/vocabulary.py': {'bytes': 1274, 'sha256': 'cfb375b0821fb0cf05c706430ff7c6e92ffd9df7221401de7f820bf682280233'}, 'nextorch/model.py': {'bytes': 7092, 'sha256': '321f40d06ee728f86953bad228567c4eee17b3c034e61ec00d8af2d6465369c8'}, 'nextorch/orange/OWFormalLoopMonitor.py': {'bytes': 7853, 'sha256': '390bc56ea93b0869a6a17ce234f98ac05cd1f86d5c836ed59cd1a891cb392594'}, 'nextorch/orange/OWLatentInspector.py': {'bytes': 5744, 'sha256': '78484a11e0d77ebbc235c11d2898ce792d9ca0518d6e532dcbea09ac316ab252'}, 'nextorch/orange/OWNextorchSynthesizer.py': {'bytes': 4227, 'sha256': '50015432356db651747bb6af428aebee9d80d9ef14fa8df4862598f8ffd4efad'}, 'nextorch/orange/__init__.py': {'bytes': 260, 'sha256': '3e00dd4c4f7dbe3e527c58e319a31921cdc9cd7dee72ca34805f9127d90a85d3'}, 'nextorch/orange/icons/formal.svg': {'bytes': 270, 'sha256': '640a6ce25f4362c1cba5da88af1967c82712380ac40aaf8e2cee988f1a75fd76'}, 'nextorch/orange/icons/inspector.svg': {'bytes': 262, 'sha256': 'b149b6dab8ba60bcb802a120153fd55108da1122d7a513e4f2004c367b3d9d05'}, 'nextorch/orange/icons/nextorch.svg': {'bytes': 343, 'sha256': 'e3f89a5a32c46582fac58930771732b482ad48c0ec8e5e9c1d6020874d6eee12'}, 'nextorch/orange/icons/synthesizer.svg': {'bytes': 343, 'sha256': 'e3f89a5a32c46582fac58930771732b482ad48c0ec8e5e9c1d6020874d6eee12'}, 'nextorch/synthesis/__init__.py': {'bytes': 291, 'sha256': 'ee37356da58b2b8a580ff266d99d9c5d3f8f416d1a3eff126646cceced5c4d81'}, 'nextorch/synthesis/gflownet.py': {'bytes': 5025, 'sha256': '1d7860f0a44bd4ecd110a0e1b6be3213fa8f2467c214558bc123206fdad84cd6'}, 'nextorch/synthesis/jit_compiler.py': {'bytes': 1550, 'sha256': 'bd1a8a542170199cc2f0a66f54fbabf9a555694bbc5c502ccba7c57718a5cb5c'}, 'nextorch/synthesis/space.py': {'bytes': 4501, 'sha256': 'ccc9bf0732521d1316a328e1b65399c7647b6c72a764e21911c47124774c83b3'}, 'nextorch/synthesis/triton_kernels.py': {'bytes': 1297, 'sha256': 'fff7cb4df20287ac1c990448a604fb724f8b3b0ed66432a10de93cfe80a9bf67'}, 'nextorch/verifier/__init__.py': {'bytes': 270, 'sha256': '69ad5f209505cba107200c037e23ac054025641f1f719613fe0fa8cdb48fe7f2'}, 'nextorch/verifier/curvature.py': {'bytes': 2142, 'sha256': 'ebac685f3ccf6ec868e032e511f90219e1a2ecb7322eb3e9160fd9d4257f0d0e'}, 'nextorch/verifier/mup.py': {'bytes': 1551, 'sha256': '629dae5584d1fc39832ca946dfcef2c21d8f24af657aae11707bba066a76aff0'}, 'nextorch/verifier/zerocost.py': {'bytes': 3435, 'sha256': '2cdd8fed55312698d094814eb66452ece81f85272fc3b92bc6cb8de77d16a339'}, 'omega/__init__.py': {'bytes': 96, 'sha256': 'b64e3b2bca12ddd09e33fc80486ca338e395953a9bc78516c7bba35f4838f22b'}, 'omega/__main__.py': {'bytes': 89, 'sha256': 'da73e592b6a145b80b1eeee3962583233ebefdc2e0eb12801fe516bc72b976eb'}, 'omega/algebra.py': {'bytes': 5473, 'sha256': '77733f75733d78b844f9a3e971c7c43781a05e45c9489cc8d4857accfea23fb6'}, 'omega/autodiff.py': {'bytes': 3528, 'sha256': '7a2f46b256e4f126aacdb28fa05a6b481f036b831f16d47d133a887592517fc1'}, 'omega/autodiff_tensor.py': {'bytes': 7924, 'sha256': 'de139de24c95d904b686cd74aadb693491c6af49fc3b29cca36f341784341398'}, 'omega/cli.py': {'bytes': 13722, 'sha256': '76e47cda7d1aeda69d6445a341056ceb43b0875ca620fb7c1fabea383ca85f35'}, 'omega/debugger.py': {'bytes': 925, 'sha256': 'd7c5f7d4b0ccc89c16158509d827dbeee1beee591f1a716638d34e9a17b0b093'}, 'omega/dimensions.py': {'bytes': 8830, 'sha256': '2400fc20604b17e1e0f9304e2eddadbdc6a40451edc50f31aa47d3ac84839e1f'}, 'omega/equivalence.py': {'bytes': 1037, 'sha256': 'ac3c0f7ca330624235742c7bfd4d3d0d519bee8ed1e1701b22deb10117fd425f'}, 'omega/evolucao.py': {'bytes': 8041, 'sha256': 'ccf261f55566442700a88a4afb0b14bafff4f30bdaa0d70bc5b3fb496325037d'}, 'omega/execucao.py': {'bytes': 18094, 'sha256': 'f9d338d8b11260fdc41f7e15ce860aee607c42c9c0298d07345c8d2984faf2ca'}, 'omega/exportar_lean.py': {'bytes': 2203, 'sha256': '4985b85645eda1dcbcffca8630bc477ddda0b0c375ae19f63cee7cd1bfa0c974'}, 'omega/generics.py': {'bytes': 17323, 'sha256': '9e4b82ce01615be15de53ad59af13c86c3df713f16befa3037caa32bce340088'}, 'omega/meta_programa.py': {'bytes': 812, 'sha256': '50f2291b5249c2711bba22eff95b5522765a7db417f37b376528fe414edd8f42'}, 'omega/metaevolucao.py': {'bytes': 6272, 'sha256': '1e764393f7f3827776096ab9fd06a1318f4035366777957f03c7f06d23a1da88'}, 'omega/modules.py': {'bytes': 11599, 'sha256': 'c0d12ff2312e5856ad7fa5685e55a56868c55ca143509e054581534539be02fd'}, 'omega/monolith_components.py': {'bytes': 7792, 'sha256': '2b7ea4480b06d849ce970a112eb4ce28cf947ff73cafd1095c611f7b8aee1a52'}, 'omega/motor_v1.py': {'bytes': 20989, 'sha256': '97e63fdc439f13570cc7888f8d2139a4bbf16fcc9dd6eee6e1d1f9014740ec8c'}, 'omega/nucleo.py': {'bytes': 8026, 'sha256': 'b5e11e65f305622cdb251082140f6eb54b7a2d5e0bb672a523ae86c29c508896'}, 'omega/nucleo_evolucao.py': {'bytes': 4864, 'sha256': 'eb07d2a6b85b75dcb1b35c765916409dfd12e080c1e90592e8a57fdc1886c183'}, 'omega/nucleo_meta.py': {'bytes': 4181, 'sha256': 'ba6f24a0d90331785d7a15456508022462aff160d3d499a4abe2f2ac4118c4a1'}, 'omega/nucleo_parametros.py': {'bytes': 3148, 'sha256': '53d31efcb7a4a4e77d28fe765c7699998ab545295a7371bc44da38d0e6fec127'}, 'omega/nucleo_tensor.py': {'bytes': 5867, 'sha256': '6a0dae00210250892b51822aa3c9ce232330c643a87a2f38cbc0dd5126beb6ec'}, 'omega/nucleo_v1.py': {'bytes': 15164, 'sha256': 'dd343e94ce33b21c45e129483529c40d0ae7f5281b8f6f5400e49105d5ec0a23'}, 'omega/otimizador_v1.py': {'bytes': 5064, 'sha256': 'c426c169dccf8a201b26da347e1c21b6d6971a4cc2d98ea441464af84f511b28'}, 'omega/package_lock.py': {'bytes': 1964, 'sha256': '99941c08bb89dec88cb9f77eda777588ccc8dc6e9fcf440b66f8eed5290963aa'}, 'omega/packages.py': {'bytes': 1270, 'sha256': '4b92b718e55687aa92d85431a7862eae37f4f4b28920a5c7fef1fd4b2885efb2'}, 'omega/parametros_tensor.py': {'bytes': 1563, 'sha256': 'd22037e2532c9b65d823b83202f9c70ff241d67940b7cb4a4311c0c7f2614b18'}, 'omega/procedural_types.py': {'bytes': 25075, 'sha256': '94e4d0e5cf7ea9a8c9529e4986ab46aa07365818897e4ad0d59d57c8a1f8bd91'}, 'omega/profiler.py': {'bytes': 912, 'sha256': '1fbe759994fbca52e64c59453280d9dc97d03fbca7851ca87e874de0703493d9'}, 'omega/sintaxe.py': {'bytes': 14874, 'sha256': '0fc8566181d2b000197fd75a46f5181a8efe726cadfc6e97bfd6411b8c287cb6'}, 'omega/ssa.py': {'bytes': 11428, 'sha256': 'f338443ba8b9bd25e429b81da809dc88bb46c58c9193456a59f44180999fb425'}, 'omega/stdlib.py': {'bytes': 2345, 'sha256': '1bd805cfa352f488534da00d2052c0662b6e14609f38637cb8828865d299e9f9'}, 'omega/tensores.py': {'bytes': 6447, 'sha256': '1bcbc2b17dbb3de5d94c4e3d46cc05ac8bd1106e828b34a4c663fc03071aa537'}, 'omega/tipos.py': {'bytes': 8181, 'sha256': '27b396437ee614096d2ed60c37f0ee80c47caa9b4d0b92cc8d010ea2f1966545'}, 'omega/trace.py': {'bytes': 1050, 'sha256': 'a74c3f65a23d141980c76ef592ceacbcd736a926d71cabb36379da54ea0c684b'}, 'omega/typed_ir.py': {'bytes': 11158, 'sha256': '2a53b8bf992d57d1743cb0f5b01ae000f03d96e1860ae7883f2f1421ed945950'}, 'omega/typesystem.py': {'bytes': 10534, 'sha256': '174e796e9459ae87498df8de50065ba8ce28c816d0f98bd36e20e3c38a7db8b6'}, 'omega_agent/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_agent/__main__.py': {'bytes': 71, 'sha256': '66d802020b5637e771edcfe3ae4a060499697c4ae341dad3831bd5be79bb3033'}, 'omega_agent/calibration.py': {'bytes': 1123, 'sha256': 'f5de94ad820e2b9fc8aa215723b01b9355179508cd8bd00e231d9da7c49e36ea'}, 'omega_agent/cli.py': {'bytes': 2536, 'sha256': 'fe913026e5b16b772e43820a6bfdd355670908bed6c898625007460007d56e16'}, 'omega_agent/compositional.py': {'bytes': 909, 'sha256': '9bdf526ed6aee19488e4ce8bd305d769854eef29d6cbdfddf60b324d641c66b4'}, 'omega_agent/consistency.py': {'bytes': 640, 'sha256': '5f8a5986ec4c4f45aab7b7885a53c2e3c3adcd8759bf409e0099cd01b8413f9c'}, 'omega_agent/domain_shift.py': {'bytes': 1306, 'sha256': '52d703c71a5a1eb4072f7f1b57fa1a86cc4f9b58c53f9099de4c5f2df1edf6d0'}, 'omega_agent/experiments.py': {'bytes': 760, 'sha256': '52c927ec420b68768a45116d0d6a7a7ad2d360e60b7ac8b1b529e1ee76cb61b8'}, 'omega_agent/hierarchical_planner.py': {'bytes': 1439, 'sha256': '8826cebb16abd9bbb5c72385da6c1fbc813ac18eca1ca10f5ea555269fafaba7'}, 'omega_agent/hypotheses.py': {'bytes': 1084, 'sha256': 'fd7b9c7d4512171116ec15e6c15d1250d98cd618b09c6382e1021ed039cea227'}, 'omega_agent/inference.py': {'bytes': 971, 'sha256': '0ec09985366587128de4eb1458f17dbd2d86589b40b759510805c52aa8c56716'}, 'omega_agent/learned_heuristics.py': {'bytes': 1229, 'sha256': '7fce5f2190f4ff3c26e8f754cad610f1543493c67cd737df8c29a569e6cf3566'}, 'omega_agent/metacognition.py': {'bytes': 482, 'sha256': '4dcfc52d13414f981283cd61f8c0662e5a65475e2b46709800c2ebd380168763'}, 'omega_agent/neurosymbolic.py': {'bytes': 933, 'sha256': 'd5460f7e549541bdc78f4d775366698a21e597a7aa481c68d945a0c5cc1678cc'}, 'omega_agent/problem.py': {'bytes': 1069, 'sha256': 'daa4bf6a8c95937f2b87de5aa8e438ed938b5c366907c256780138348ae15aba'}, 'omega_agent/reasoning_budget.py': {'bytes': 897, 'sha256': 'f879605e7e213da73c2ed40ad630c332486610ed84d6fa363ae0264df2518983'}, 'omega_agent/reasoning_state.py': {'bytes': 1245, 'sha256': '35c29dc99ecad0f5475556f196cf50769df022738300e0bfc089cc934f38dff1'}, 'omega_agent/runtime.py': {'bytes': 2392, 'sha256': 'bcfbf65698c8252dcf9451f9e7b364af73a0285149837776c351ba64d62ebb47'}, 'omega_agent/search.py': {'bytes': 2014, 'sha256': '9421cce1b708666e122fc0bb5f31aa1eed4a047640a8bd357db1eb4a28042daa'}, 'omega_bench/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_bench/ablations.py': {'bytes': 582, 'sha256': 'ebbddec8424b7e6bcd1514c53d9d812bbb0dd0b5827dc0dde6c457febff845a8'}, 'omega_bench/dashboard.py': {'bytes': 856, 'sha256': '7ac3ec5bfde65e49d25dee70165afc61526985166f5d6de4095522f712571a67'}, 'omega_bench/generalization.py': {'bytes': 433, 'sha256': 'b0c2b5d2a0cab2d12a77211ea6a494b0ad3722d6b47868d3e8ef346465686f87'}, 'omega_bench/harness.py': {'bytes': 1820, 'sha256': '80f5744e705c8f315c8c2d1f04f70c0b24d7027622f61c0121d63d1ddcaf68b2'}, 'omega_bench/longitudinal.py': {'bytes': 566, 'sha256': 'ce10336ae2b9b5fd600caa8673edeced79bc3e7a4f324105d19ac98c6aeee158'}, 'omega_bench/mathematics.py': {'bytes': 709, 'sha256': '61b9a275f6eef34383ca424c202cf60eab839da3d85b4e3b21405d40b0693bf6'}, 'omega_bench/neural_symbolic.py': {'bytes': 263, 'sha256': 'd74ec0b40314dd110fbdfde2b978066c9a914ff21e449788a667594ec8084930'}, 'omega_bench/programming.py': {'bytes': 913, 'sha256': '3dae62fb499fde4bf31070252b132f156f55d87a5cfcb8b4f74f854f39ef3e5a'}, 'omega_bench/provenance.py': {'bytes': 644, 'sha256': '68c308acc41a1929083512dbe2f3f753a6cb8e43ae8e387e75b21f2e13d9b38c'}, 'omega_bench/reproduction.py': {'bytes': 1650, 'sha256': '2e2333fc855475d2ad3c9167e2a36a65b06bebb8761496d40e4a4a59ac29773d'}, 'omega_bench/statistics.py': {'bytes': 734, 'sha256': '0b35948e8d5212412ccbe3baf30fef4a9b31e7b84c9d043e58a3d27e18c31634'}, 'omega_bench/telemetry.py': {'bytes': 1214, 'sha256': '7d0b617f3530e7d8da780a1420706c1797610f8b2267b308c6714ed24b4a0ec9'}, 'omega_coder/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_coder/ast_editor.py': {'bytes': 1569, 'sha256': '01b266ee3c30b40abf7f4b206e2392b8055acb54cc6f2465ecdae55983b84fd2'}, 'omega_coder/change_plan.py': {'bytes': 1035, 'sha256': 'b27c6225a36f6d877e30bf9508a882e57bbeb302e8a3f53063c468e3729a502d'}, 'omega_coder/contract_synthesis.py': {'bytes': 1445, 'sha256': 'ad9077b0dbf67bb743e906f5cce6f1862c0754812b1545f82882ad0f28182b22'}, 'omega_coder/counterexamples.py': {'bytes': 708, 'sha256': '0d2906f0c3f25d7b2e18dde0af4f5b3e860d34f36b23ff71b1bbf3d02c400a31'}, 'omega_coder/generation.py': {'bytes': 967, 'sha256': '937d3f9b6cf47152cb09c9e176863bc956487f6b0bebb5993cc3f70acb67d2bc'}, 'omega_coder/patch_review.py': {'bytes': 1077, 'sha256': 'c4549bb11f3fb023d17060a6fb0395464e5d01a96cc0a6d7d7fa31ce18fa02e4'}, 'omega_coder/program_search.py': {'bytes': 932, 'sha256': '9f8436daddb84bf9cd7fa39622864a154eb8f772893dc505f9a80dd3494a8757'}, 'omega_coder/pull_requests.py': {'bytes': 1233, 'sha256': 'cfcaa0215492afbe045cfdcc83e521fed757b51fca98d84cdff5e2e2f63c1e1a'}, 'omega_coder/repair.py': {'bytes': 1068, 'sha256': 'e077e9480b55a8815ce0f707b36510894f311badeb193bc23708c4a314d77db7'}, 'omega_coder/repository_index.py': {'bytes': 1807, 'sha256': 'a635db1066a4a46a982df82725f4226c78682152c7934f3e313d432a033e4108'}, 'omega_coder/specifications.py': {'bytes': 780, 'sha256': 'caa0c7a5ed891dd64d5c9b12afb585a78975e286829536166c6f41111385c0de'}, 'omega_coder/test_generation.py': {'bytes': 1216, 'sha256': '359da50f6a47954b6cf24e0d0ee6ab4c631eda3f6deb6afa79a79bceb2cbd326'}, 'omega_coder/verified_optimization.py': {'bytes': 511, 'sha256': 'dd43822f12084c5d5fc3969dd5d5286d2e7c0c6b056c648b1924bf2934ac1eac'}, 'omega_coder/worktrees.py': {'bytes': 1422, 'sha256': '4dfc2d7b1c7665fbfacdc0561753af9eb787d82ac6706f94f0e53af4f87e5a85'}, 'omega_evolution/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_evolution/architecture_search.py': {'bytes': 848, 'sha256': 'b6f868130813c97b28dce127da3b8378ff8b324a9f84cf82120a3b6d9137b81d'}, 'omega_evolution/compiler_tuning.py': {'bytes': 782, 'sha256': '6ed7c60aa505bb2ade35945035b56f86977f89fc91bb61e39066609e9d66838a'}, 'omega_evolution/component_registry.py': {'bytes': 893, 'sha256': 'c59856a6da77a3d795f826c1e3fcb6afc68c2513d55650ee1a2db78cd9360e77'}, 'omega_evolution/hyperparameters.py': {'bytes': 921, 'sha256': 'f5de038842dfba55ea8168eecf25bb2bcc565329676b90fa8a157c04ff0bed50'}, 'omega_evolution/isolated_patches.py': {'bytes': 1169, 'sha256': '5de997d1b98e1dee6f46a0ae50bff6b9ef7d1c9542fdac62ddc687f3490e0085'}, 'omega_evolution/lineage.py': {'bytes': 819, 'sha256': '98f99a59402c1094d1d8e52b522c7dcf713a12ddbe58be3d2f950b31b1c6cac4'}, 'omega_evolution/planner_tuning.py': {'bytes': 613, 'sha256': 'c78688711f97a7807863be13c66a8b1f5af0b659e80e6af5dca98cf3b0e19360'}, 'omega_evolution/promotion.py': {'bytes': 1331, 'sha256': '6a0363bd3b1fba1aac5f98f7b425332cfe50569a869732e48d15a25ac4e0e11b'}, 'omega_evolution/proposals.py': {'bytes': 755, 'sha256': '309b7be5f7a1f00367ad4c8f9f313669b313b84b6f34765e12ba544401417f40'}, 'omega_evolution/regressions.py': {'bytes': 669, 'sha256': '09088ec56a971cb2ca07ce41b08af228ae664c3bdad5cb419d0359ab8b7cf93e'}, 'omega_evolution/resource_limits.py': {'bytes': 528, 'sha256': 'a584d3733ace2fa34de5aa1ea61e36910aa9bb230f28a0a97cefa470b55aeea2'}, 'omega_evolution/rollback.py': {'bytes': 2423, 'sha256': '116368c66bb0eedc184052b74d9ffb883da6b6f703011ed2a5143b37961517a1'}, 'omega_evolution/statistics.py': {'bytes': 1197, 'sha256': '94ad1191553eff41716a26f9d2e78ec974b976e15094de6d72307e097693dee8'}, 'omega_evolution/stopping.py': {'bytes': 802, 'sha256': 'ce6d96332f00811c7b176716c8237672e00b18d1d96f83b89cfba12b73777390'}, 'omega_evolution/synthesis_heuristics.py': {'bytes': 685, 'sha256': '49ebd6f6e8fb1589f3d32a56749d83efa965006fbc03639e795df044541f4c73'}, 'omega_learning/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_learning/active_learning.py': {'bytes': 605, 'sha256': '566256eb2a4d2d19396a693634f61c086b43fe490531a5fda930a02206561a66'}, 'omega_learning/curriculum.py': {'bytes': 901, 'sha256': '78c85541ae5e18bb82fd23a3ad13736bb00d1c337a077baf3593e7ae69a871cc'}, 'omega_learning/data_splits.py': {'bytes': 762, 'sha256': 'b282a74ff11f65917613f6cd2c7d606d1d83183120f29f90539d8e63f32a91c2'}, 'omega_learning/distillation.py': {'bytes': 926, 'sha256': 'ade304d798b8d2c05838ab43c59f388338782b814bddddaa7e3542d32638ac37'}, 'omega_learning/forgetting.py': {'bytes': 609, 'sha256': '309816cfaf2428e74d225103562e76190aabb3f257b7c72f48cbaa0d0e2a1166'}, 'omega_learning/incremental.py': {'bytes': 756, 'sha256': '5c3a92ebc068a422d66bf401b53106e04a31d0b90be03bb0c9ac96c6be992efd'}, 'omega_learning/transfer.py': {'bytes': 552, 'sha256': '116535cef9a5b53ceb7d4d01ea4bbb857d6e6716ff4c0e47837517522f2de666'}, 'omega_learning/verifier_feedback.py': {'bytes': 529, 'sha256': '32c6eb0c232e237d2d0626c25baccdf1dfaa7a79a572ab85c53e8ba7d9cdb1a2'}, 'omega_learning/versioning.py': {'bytes': 1558, 'sha256': '0b40fc2ddfc6040d13dfd655c9b4b63205774d62c9d5045d840719e2e1d004b1'}, 'omega_memory/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_memory/certified_replay.py': {'bytes': 1174, 'sha256': '65dafa94174e108782d89c2c9525858a6cabe1be81e79a0abc250223fa640fc5'}, 'omega_memory/episodes.py': {'bytes': 2012, 'sha256': '5c049b7960f15b1b9fdf360f1fa589f800d8b61029058da3bed8ad990e2bfa06'}, 'omega_memory/knowledge.py': {'bytes': 1151, 'sha256': '8fb5682e9bde27bcd427bae927345693dc8f241c66b570b43ad0b28baa1da8bf'}, 'omega_memory/lifecycle.py': {'bytes': 1020, 'sha256': 'f5b855f3fdb31469bb333068cdc91a7860eeb908f806b52d04e8cf9986893e86'}, 'omega_memory/privacy.py': {'bytes': 1298, 'sha256': '9cd49cab2eacfc7ec2bd4a477fd62601a2bf33829fc5a12675025dae074e8d20'}, 'omega_memory/retrieval.py': {'bytes': 1791, 'sha256': 'c92f8e8df591f7f5654eb0765ee3750bf3321b2c3ac72a4787d3c9c5523284ca'}, 'omega_nextorch/Kernel.lean': {'bytes': 3350, 'sha256': '80ec4d3720e5293aa4a12d48f0893b9c81c102d1f404455c0c19c1e41d1d139c'}, 'omega_nextorch/__init__.py': {'bytes': 142, 'sha256': '516da4354ac0863ad4f5186f2d28b554ca352c22d70e801911118742f47fc80d'}, 'omega_nextorch/capacity.py': {'bytes': 879, 'sha256': 'beadc424220f1e8b3c0ab9f6d0d3a7e2a54d97490d85ec3bb79e3358f7f92544'}, 'omega_nextorch/causal_analysis.py': {'bytes': 1301, 'sha256': '056cbf993d09506d115b3831b669c0c58bd8a23c13a6a2958af8aeec453037bc'}, 'omega_nextorch/cli.py': {'bytes': 3024, 'sha256': '8b0ff93f4d41491366437fbb698d92dcb8679170f30dc8e08062b5a11aa41a47'}, 'omega_nextorch/constrained_generation.py': {'bytes': 1230, 'sha256': 'ff0c2aa178625eedc5507952346e9c4e3f3d4edb3e78652b50a85c96776810dd'}, 'omega_nextorch/devices.py': {'bytes': 1074, 'sha256': '1b22c791598beaf4dbe70075afc49a327b33c486ac7ad5415ab4db9af23129f3'}, 'omega_nextorch/distributed_training.py': {'bytes': 959, 'sha256': 'b9e0720684b15d7c38f47500e6fd2a606cd55c7a30056e1cf012218622d4cd91'}, 'omega_nextorch/gate.py': {'bytes': 2732, 'sha256': '441ea3c00ba59eb91751c2b4d70102f492f0b661574a52da2f540cc243ff7d43'}, 'omega_nextorch/inference_metrics.py': {'bytes': 1104, 'sha256': '21c258ce170c895fb52d0821b74f31ce163059fbd317a6d1a437b189f0f5f2ea'}, 'omega_nextorch/lean.py': {'bytes': 3694, 'sha256': '7402c906504762507e932c79156b9453f987866bf8f84a5f8df4a7a8bf337a3c'}, 'omega_nextorch/model_api.py': {'bytes': 5081, 'sha256': '8ddbb515dda207d1513885cc1eb45c9bf5d4a27b992b730bcf64141c075015fb'}, 'omega_nextorch/native.py': {'bytes': 3737, 'sha256': '0e3dbcebb937eae6ae5f2514a1f44d36f36465795adf9ba9f9c638e69b8ada82'}, 'omega_nextorch/orange/OWOmegaCertifier.py': {'bytes': 3268, 'sha256': '56dfb692dc522fbee8b4e03e37d0262b5e2530ca946ba26484e62685652fd21f'}, 'omega_nextorch/orange/__init__.py': {'bytes': 223, 'sha256': '0c97e3ba8871daf16bd8e117c618fb5b585c8f5ad1f62a95ccaf3bbed0430ec1'}, 'omega_nextorch/orange/omega.svg': {'bytes': 253, 'sha256': '6e626ca4c781d1384541349595535c3741dcfe4606c3cc8e7aa4b67799045a64'}, 'omega_nextorch/orange_bridge.py': {'bytes': 1557, 'sha256': 'a3cc619a8134b60bfaa4d96e22de0cdfb9e2f464517d668070ee6c52f063537d'}, 'omega_nextorch/pipeline.py': {'bytes': 5721, 'sha256': '803f6886789e0a6ae86b19b3dc3ce80627d7e96ae2f4378c896641760e481ecf'}, 'omega_nextorch/proposer.py': {'bytes': 3020, 'sha256': '0b7bdacdee8c484ab9dea9605d5f0da6e47639eed78cd9f030504f4c2072a7ba'}, 'omega_nextorch/reward_integrity.py': {'bytes': 847, 'sha256': 'a303022e5cf5f02826eb73252a836b5000c19af92fb40831487b2db4daf28cb5'}, 'omega_nextorch/routing.py': {'bytes': 737, 'sha256': '382141c4e49e264b973fb6f07293bff24e57f95406b7b935c47fad166e724b16'}, 'omega_nextorch/supervised_training.py': {'bytes': 1230, 'sha256': 'e61e7ea158a830dd149361abb9e10f21b135b391c2b6a876d6d9a0e187f6d6b6'}, 'omega_nextorch/tokenizer.py': {'bytes': 959, 'sha256': '1308a587c2e3785397445eea33ebc2760af4cf8356665dd41b0da22813e4df21'}, 'omega_nextorch/uncertainty.py': {'bytes': 786, 'sha256': '3231330aab24fe32e50c8867d0cc46f259dcc783d6c4b20f2f53f903fce833cf'}, 'omega_nextorch/verified_search.py': {'bytes': 913, 'sha256': '3e67323f16a415e4f968349b7e1bbf352b317807fed00d24cfc530ecafc202e3'}, 'omega_open/__init__.py': {'bytes': 96, 'sha256': 'ef9d07e7eb92178c55ebf19e08e218d41bb80bdcc3edc757d3674b1d9300022d'}, 'omega_open/__main__.py': {'bytes': 1788, 'sha256': 'b4e070d61821d9d3c34456eaa0cb7c06ea33ec5a9bd90abdb6754cb2a4761758'}, 'omega_open/checker.py': {'bytes': 4502, 'sha256': 'd5d8aa80c5ffd9c1eed5200f744434d664e0f394785e76f537779ede6401aca5'}, 'omega_open/engine.py': {'bytes': 10400, 'sha256': 'f6b74f439c70330ec2faccb65c38671f8fcd484c7a264650ea30d9fcea1267d1'}, 'omega_open/logic.py': {'bytes': 4120, 'sha256': '6de87dfc76f0c0f4ef2854f34c2210224ba6efd6de37ed7dc062ba84b938b0a3'}, 'omega_platform/__init__.py': {'bytes': 82, 'sha256': '4f083b6eca3c6e606305eca8899f7e788313fd25ce8d24fd33d049fc9b1bee6e'}, 'omega_platform/_supervisor.py': {'bytes': 1803, 'sha256': '121684bb7456f61cc2c43fda6bbfec6e10ebe41282a53a39d4cb6e30004d976d'}, 'omega_platform/artifact_verifier.py': {'bytes': 833, 'sha256': 'f5eff31b67a6d2ac18f45a17e8fc5ed9147203862b8306932e8ec0be9616c605'}, 'omega_platform/budget.py': {'bytes': 1775, 'sha256': 'bdd1ed4e7d3377ae3f09fc760dfbf9ed645cdbbfe266d8f0d19d40577612fc66'}, 'omega_platform/content_cache.py': {'bytes': 1893, 'sha256': '3953633dd65853e549afbd9b0b716ae1116e8a4dd1d5d82d0b6d50503a5bb88b'}, 'omega_platform/corpus.py': {'bytes': 6913, 'sha256': '869d400f04cd5f927f4d41d670ecd14eeb458d124b7ee0a4371560043d39a4cf'}, 'omega_platform/manifest.py': {'bytes': 6256, 'sha256': '81a072ac6de0b04ead87f365271e18f2335199f36449ea8ceac4ee8a2dfef3e4'}, 'omega_platform/proof_cache.py': {'bytes': 1160, 'sha256': '7a8ae009b1c4aa659248fd8ddd37568b4f73543602bf1b5c98000a42b2ddb22e'}, 'omega_platform/quotas.py': {'bytes': 1095, 'sha256': '0131cd8272358c30f14b4b8679a5bd993238c2c368ef689ee350b91a660d27e5'}, 'omega_platform/results.py': {'bytes': 5475, 'sha256': '3560b608d21c45de8ab318989ead990762aee097327018ae97655e84c90c2d51'}, 'omega_platform/sandbox.py': {'bytes': 12454, 'sha256': 'fee2e5c7603613014ff4fff9d6e33386b6ac5fe5cf3d840f3ebe5638f90be27c'}, 'omega_platform/scheduler.py': {'bytes': 2903, 'sha256': 'a8bd8092338db5f472b468de6394cfa7b9b7b9846a3c37fa8ad02ead36adce8e'}, 'omega_platform/security.py': {'bytes': 8921, 'sha256': 'f8a2a02108461efbba53fb33402073da2039984da1bc70f88b794430191306f5'}, 'omega_platform/wasm.py': {'bytes': 1263, 'sha256': '9abb11a20a52a5f5c89730cd87e01f3ae681b5e2e1b331b7c70ca6c88390958a'}, 'omega_platform/wasm_worker.py': {'bytes': 1112, 'sha256': '559c6a759cbb712689eadd2ef7c7886c33e3ed776c0da0cb535d198f01d3a746'}, 'omega_platform/workers.py': {'bytes': 4064, 'sha256': 'db8d9babd2ec2abb96783dde9f395fb08e24b1865cc2e4a1d3f07b1b25345b97'}, 'omega_security/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_security/adversarial.py': {'bytes': 976, 'sha256': 'fa6b3e778c723b0f2dc8440f843ff64699c6cf6c4c4d6fedb81eaf2c14ab6f55'}, 'omega_security/anomalies.py': {'bytes': 668, 'sha256': '0a383f0331ac50d05612915da3b94b14e3a642662a705f29bf546cb48ea4a74d'}, 'omega_security/audit.py': {'bytes': 1993, 'sha256': '67b9f6df1c77cd5a2b3c1b1d58fd5ae0c86a318c5a27c33bb423271abb55b629'}, 'omega_security/capabilities.py': {'bytes': 2031, 'sha256': 'b2b8e8173523f8894c25b12d6abde26d6adb3acfc353ed9a4d0495c7b69bfd27'}, 'omega_security/filesystem.py': {'bytes': 2633, 'sha256': '7ba2bddf299b8b7d5365229d7dd143ccab4cce6aab6b282eca710092a5246755'}, 'omega_security/objectives.py': {'bytes': 701, 'sha256': '90566c45def325505fcd725c098f83d91faff07bfd8ad2c890918e8df9e5444a'}, 'omega_security/revocation.py': {'bytes': 884, 'sha256': 'a36aca3028f4dfbaa73f14472c900af6b436570686faa2e37628d94a11826d6c'}, 'omega_security/roles.py': {'bytes': 1166, 'sha256': '1fc311162c5242da2cce6c617be0275547aa42f996fa570e847989b5f484a0f3'}, 'omega_security/secrets.py': {'bytes': 811, 'sha256': '502a48ea33825f231decfaee6546ec498782ce61e5eae833d93d3a1ccbaae76e'}, 'omega_security/signatures.py': {'bytes': 1193, 'sha256': 'c44c5b7844d32c156c93a6ff728ef79487788fc1a2a9f037af53889d71d15656'}, 'omega_security/untrusted_data.py': {'bytes': 1049, 'sha256': '8a03a948c42af583c67a5e4d0db75ab01636a5253ce39b89149b7afa040bd1e2'}, 'omega_selfhost/OperationalSemantics.lean': {'bytes': 3957, 'sha256': '9b93981ad67ebf775cdf57f0291df87e9a72e995b449674034ef9f6f9e19f79e'}, 'omega_selfhost/ProofPrelude.lean': {'bytes': 216, 'sha256': '0fa2298282df4e7544c8b128ff81b8ce1e55ab01f41e5f61b7b81a22792c6e8e'}, 'omega_selfhost/TensorKernel.lean': {'bytes': 8992, 'sha256': '3b40458d549ae01c8cb5eb42981f9644d49a00e11e6c0647fa3df40060a4662f'}, 'omega_selfhost/__init__.py': {'bytes': 281, 'sha256': '294962ff80255cebbd3fe6fd985e578a32273bff22a68cc9edce1af422ccd871'}, 'omega_selfhost/axiom_policy.py': {'bytes': 1102, 'sha256': '77d1bbc9d517291bb6be85efd1d53bb122edfef2e83eb03deddbff70a8fc98c8'}, 'omega_selfhost/bootstrap.py': {'bytes': 7224, 'sha256': '0c910df5eeadf5655f926a98720ab67e90c9db94edd483a6e30e398075c1a423'}, 'omega_selfhost/cli.py': {'bytes': 5547, 'sha256': '2be6d3606fbb101319d93f74fc28a7b9d816ad3210db495d66238ac8e029eab8'}, 'omega_selfhost/compiler.omega': {'bytes': 25507, 'sha256': '000e31f0aae4fc1710adf170efe7083bcf3a0a96b9fcc61701c4788f3d3db071'}, 'omega_selfhost/driver.py': {'bytes': 21091, 'sha256': '616879546b839400bddc975811db8d94b07c50b6593c4d9c4e148e10d13e828b'}, 'omega_selfhost/memory.h': {'bytes': 1429, 'sha256': '38b8c8a858094c4644192a4378ff7700022653b8afb7ce0da017352993ef3752'}, 'omega_selfhost/native_backend.py': {'bytes': 981, 'sha256': '6bc4da03aaa3eff6ae51870b70a082e60419538ecf1a84a9015628499784c7b9'}, 'omega_selfhost/polynomial.h': {'bytes': 6976, 'sha256': '23f0dee22f70ce796214a03df853af4d39e36f5a8c8bc509774c5c3e537fd527'}, 'omega_selfhost/proof.py': {'bytes': 7697, 'sha256': '54ebe598b545a054d9f4c454ce7c96358678c78990458f18109069f74f02d1b3'}, 'omega_selfhost/proof_protocol.py': {'bytes': 1387, 'sha256': '6b379d8967c8bfd286482f10fe3193a29b4e24659a638add3a6d39ccc0c1665e'}, 'omega_selfhost/runtime.h': {'bytes': 19546, 'sha256': '876f86e597bd3c975bb84666097b3aa2dd099597f05f3b5ab25fab7056debc68'}, 'omega_selfhost/runtime_wasm.c': {'bytes': 613, 'sha256': '80a21786c33e0322d2df40edc67b54b1fdb1d48ba0655207bb44c7e972f62403'}, 'omega_selfhost/statement_binding.py': {'bytes': 870, 'sha256': 'bd834c43186b67ff19abf6f04393736ad682aa2c7a68fac6149cb83cd22e814f'}, 'omega_selfhost/stdlib.omega': {'bytes': 2590, 'sha256': '3457c66530e4abf2073019a6248bd54f9c0f65f16c1573c48963e9ce593a4fdc'}, 'omega_selfhost/tensor_runtime.h': {'bytes': 15865, 'sha256': 'cc9a4e3433896091523b61bc23ef39810b02eeb1342f8f6991131f8842b9b355'}, 'omega_selfhost/wasm_backend.py': {'bytes': 3507, 'sha256': '3467e19b06839bfd3a1b1ecb91d64a396e82e7062ca03c0c1f01aecda967f327'}, 'omega_tools/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_tools/approvals.py': {'bytes': 1146, 'sha256': 'e45e71c7399541340fae7f5c195a27030d4764a494593e7a2968b9b9e121294b'}, 'omega_tools/audio.py': {'bytes': 1317, 'sha256': 'a9954485c2676e626b89ff2e62ae4090185c3fbcbdf055f850dcc7e7198927f9'}, 'omega_tools/capability_adapter.py': {'bytes': 840, 'sha256': 'fc15fed7e5a03363e0f551c3c98cf345d1a22091d9a3c8fb7e632611875250a9'}, 'omega_tools/contracts.py': {'bytes': 872, 'sha256': 'e135479caac37f9b2fdf216f44bcdb6f9af15c36c28f77bb435b9d484cf859a9'}, 'omega_tools/database.py': {'bytes': 1133, 'sha256': 'fee6e4da74535cf8ce13189c9cb967e832eeb1580defb8d65859adf54b1c9960'}, 'omega_tools/database_worker.py': {'bytes': 1832, 'sha256': 'ecd1c3e2f6d9f8eacd1f3ca46823a539f4f49b376bd5fa3feb0b9f224eda5f92'}, 'omega_tools/document_worker.py': {'bytes': 1217, 'sha256': 'eadd37197e630ff7fe65faec04f34dab02844b98345dd7a9ec070a83970066da'}, 'omega_tools/documents.py': {'bytes': 608, 'sha256': '8c0505c217ef033302b47b726d43fb67e09e2ba25cf110d89e3efdf2c2840714'}, 'omega_tools/git_ci.py': {'bytes': 1206, 'sha256': '8d61e04dfddf21b9ad32323daf2dd1a8fed3d9fe6e068130d1de56a380147424'}, 'omega_tools/notebooks.py': {'bytes': 1615, 'sha256': '52bc760b9656d735713ead49cb017de03e36cbb02fc95c6e5c6d0e82483b2d6a'}, 'omega_tools/simulation.py': {'bytes': 1426, 'sha256': 'cc20c4c5fc45c3427169988ac368d7cda6aa7a57c734213079eb367f4c1430a6'}, 'omega_tools/vision.py': {'bytes': 1193, 'sha256': 'fe7db2c2661832464418f5ce9fc39c84d53fd9e580c8ebb9b654c85f1a22c59e'}, 'omega_tools/web.py': {'bytes': 1731, 'sha256': '24e255b72a3a6d450dda7a82b8a6ec451a47ed65b145306e9bd6e80789d869e0'}, 'omega_tools/worker.py': {'bytes': 957, 'sha256': '1f6fb550b1493200a5d558c470dc5f283d775a0459c3d18d2cc087f2d317e6a6'}, 'pyproject.toml': {'bytes': 1502, 'sha256': '10f49737b6f8fdfe00f613c01a813cdda6839cae096283c10b92b8f78e3f054c'}, 'requirements/cpu-py312.lock': {'bytes': 2076, 'sha256': '78735388c5c424f7d9b912082bc38d85c9b2396af72f93c10fbd4715fadf9414'}, 'roadmap/FILES_TO_150.md': {'bytes': 37372, 'sha256': '4bcc51972ba56161bf941526adf87a7c5bb6f5c2661656facde79a2d95a79cfd'}, 'roadmap/evidence/om011.json': {'bytes': 1007, 'sha256': '58aff5c669e8595a3662d25e8de5e09bad166ab291421cd6f9769ac376dc7059'}, 'roadmap/evidence/om012.json': {'bytes': 1496, 'sha256': '2850392eeee259a04970848fb0a6670003e3ab2610469a55bbb22672caaefb91'}, 'roadmap/evidence/om013.json': {'bytes': 778, 'sha256': '03ffd6db88874599eeb459a2d607fc913af0247fa0bc7c97230a530688a2abe3'}, 'roadmap/evidence/om014.json': {'bytes': 684, 'sha256': 'f23fe4262eaa3104f4dd122a8b5aa37ed880af3e5e59e79e31379b04ab805ded'}, 'roadmap/evidence/om015.json': {'bytes': 683, 'sha256': '117591eb0e66e469eab4fdf41e76056cc795bc3f50fe77cca79885d833f32e9c'}, 'roadmap/evidence/om016.json': {'bytes': 1023, 'sha256': 'fb74fb7582fb896edcefb4f2e916d2b8cd817de3393e86d3b075d01c60ae8a13'}, 'roadmap/evidence/om017.json': {'bytes': 784, 'sha256': 'bfb62d63dd0e4fee7dc05cb13d2c0cc95544af98f3509530366febd4822e600e'}, 'roadmap/evidence/om018.json': {'bytes': 1017, 'sha256': '35bf7da2e532028a4b8bf0973eacf46e88c309b25e04ec555fabe547d0651040'}, 'roadmap/evidence/phase0-corpus.json': {'bytes': 5288, 'sha256': '39b3bfd3182686dea1db568bf9c2abdb54c8124e619ce8d767638a632f2dfe8a'}, 'roadmap/evidence/phase0-security.json': {'bytes': 80207, 'sha256': '7db286de5ac8a7b9f91092f570048c8b64a52ddf31c8732485af2440bda54151'}, 'roadmap/evidence/phase0-tests.json': {'bytes': 499, 'sha256': '3fbd4db1b24d6438255a92fa56d2b0f8c75f598daae731ed65a9ec20e7036d61'}, 'roadmap/files-to-150.json': {'bytes': 114758, 'sha256': 'cfbc5e8e43dc7cea9dfb0a5fab22a46885da433586e07aa4a8458d57901a5b44'}, 'roadmap/progress.json': {'bytes': 23219, 'sha256': '5fa5a27cb5f045f36089d264a8b4714d055b7572a089356336f96d659da0cfb5'}, 'roadmap/tasks.tsv': {'bytes': 14974, 'sha256': '4bcf408de16b01f439a8478ca1f2279c60b07a0011e24cbb5a80d17d66119593'}, 'scripts/build-manifest.py': {'bytes': 1448, 'sha256': '163eec6df0d8ee111c3c91788a29f7df9c8efe2786ec13c56453f792bf4ab42b'}, 'scripts/build-monolith.py': {'bytes': 9673, 'sha256': 'f1833339f461b60be2f9fe20521a9f997d1e78c83dbf0e730b4dda1d39e5d868'}, 'scripts/monolith-components.py.txt': {'bytes': 7792, 'sha256': '2b7ea4480b06d849ce970a112eb4ce28cf947ff73cafd1095c611f7b8aee1a52'}, 'scripts/package.py': {'bytes': 2045, 'sha256': '179210e90648f1de3ccb230a8e37ba08f5de2c9a106b2c96f94082ff1473ceae'}, 'scripts/regression.py': {'bytes': 716, 'sha256': 'b63b151bcc5cad3370a3dc3fe4a45f6b61e746eed986f613cf97a02a6b80b95e'}, 'scripts/security.py': {'bytes': 1321, 'sha256': '892560b53800a18f4e4e8aa7716a05453209cd6658b157befdb060856afdfbfe'}, 'scripts/setup-native.sh': {'bytes': 2030, 'sha256': '51864dcb68ed7028c85e1eef9becf44325ac698cbbc8d74f13693448483ab733'}, 'scripts/setup-sandbox.sh': {'bytes': 1685, 'sha256': '5261a2d58d3ab95939b3308951101469a44e526993ffe7ebe3b578b5ca9345dd'}, 'scripts/setup.sh': {'bytes': 1862, 'sha256': '193d76dacde2fa90d74081e0d67e1d0e0778f2072a23237e18e06502ee49964f'}, 'scripts/test.sh': {'bytes': 679, 'sha256': 'c2a1850101eca0c08edba6dde6cfa555d75d9148590258c2768c147eb3792512'}, 'testes/corpus.json': {'bytes': 4505, 'sha256': 'c50519d0cce43178c5b70ef617b50bf8bfc73badd63b4f37701da854b67bdf6a'}, 'testes/foundation/runtime_harness.c': {'bytes': 730, 'sha256': 'e7c5d03dd68a3ed459b56e262ab244a021a86ef189399a3f60645deee8c4527f'}, 'testes/foundation/test_corpus.py': {'bytes': 1787, 'sha256': 'd3e54774a45aa200cbdcfa6f493a8b67ce5c0b4c1e87aaced612838df554a60b'}, 'testes/foundation/test_dimensions.py': {'bytes': 4727, 'sha256': '4b85f26dbeff1b9ad81cb204461db242aea8fc561130380e79c80d3918f655c1'}, 'testes/foundation/test_generics.py': {'bytes': 5673, 'sha256': '874cd1bce88ddd834df0da99e8ca6abbb7942fbe5ce528dd702ff5da162b1a65'}, 'testes/foundation/test_manifest.py': {'bytes': 746, 'sha256': '0ddb8df2f6425b17d851fd30c5c7b5d760273a5adf8a3f107cd13b06eb926516'}, 'testes/foundation/test_modules.py': {'bytes': 7977, 'sha256': 'ef98a320325e09991f74b09a1c4828b21fe4f7a87c5754f6a5cc5feca52af1d9'}, 'testes/foundation/test_operational_semantics.py': {'bytes': 508, 'sha256': '59013e42755a8aedc152830bdd22cab4e554c54bde8e1a0e2b5bb33ffdaf014c'}, 'testes/foundation/test_procedural_types.py': {'bytes': 5775, 'sha256': '453c9e8239c652ea2a32ef94a39416f296944dce4e16e0e5fc5bbd441f344f76'}, 'testes/foundation/test_proof_build.py': {'bytes': 1648, 'sha256': '7e8ad364c3a837cb12f7bb153ed9e21bbc9b7c4a763574bb2290efccf2239597'}, 'testes/foundation/test_results.py': {'bytes': 6096, 'sha256': '07f9944a6599a4346d56d509d86c728fb7b4875a302f3757ffaac037b86bf500'}, 'testes/foundation/test_sandbox.py': {'bytes': 4725, 'sha256': '0316e5b07248784d8007a6ab6c2e191854ab9cbf33938874c6b0662d02e90538'}, 'testes/foundation/test_single_file.py': {'bytes': 3630, 'sha256': '0263f18d69c24a0dd96a81891cccd1137a21c14efb826930481624892d6f8f7c'}, 'testes/foundation/test_ssa.py': {'bytes': 7129, 'sha256': '54e35fdcb6e5656b4476d5e0ff113683ff3b6a82278eb105fe2828ab01fb5538'}, 'testes/foundation/test_type_inference.py': {'bytes': 2918, 'sha256': '4be2acb96ba652dbf59018c2ecc60eee555fec537a00a592c691d86c6b268ba4'}, 'testes/foundation/test_typed_ir.py': {'bytes': 6315, 'sha256': '253612deb91a413638515be369be7e44972a1fa130542efb6aba58ded650e6d8'}, 'testes/foundation/type_ops_harness.c': {'bytes': 853, 'sha256': '0af5af10096944492cb98ac07fdc9761affc3e6939ab411d57eb8e277e204c03'}, 'testes/lean/OperationalExamples.lean': {'bytes': 834, 'sha256': '17a3f693511d9b70f64db6b7bf6c4afcf46efa4ed2ddd9d30038dd2117f5dec2'}, 'testes/nextorch/conftest.py': {'bytes': 510, 'sha256': '02980bb3031851883a041e5cc7d29d1fcc22d88055e80bb824d6de84dccb0136'}, 'testes/nextorch/test_cli.py': {'bytes': 1116, 'sha256': 'd9dac93a01b40d4b34448e7128590de0340b3dfd51f13962f53cdb3729eeaddf'}, 'testes/nextorch/test_core.py': {'bytes': 1802, 'sha256': 'a51f5654c8450223d1dadd65bf8d157d5660de86b84510ff75a8c76b5ea51de8'}, 'testes/nextorch/test_engine.py': {'bytes': 4777, 'sha256': '09bfe201c8c7b9d9a2ab74f15aeff7eafd423bf974e255190d6445a0a6ebb803'}, 'testes/nextorch/test_evolution.py': {'bytes': 5163, 'sha256': '4af85444ee1612ca28db438b441d9307ac703b6c3aef06b7b64c1f98adcef619'}, 'testes/nextorch/test_formal.py': {'bytes': 6353, 'sha256': 'a76d746096e9dfcb905eefb867591137fa6ad7ae259d5e49efd1fdf21cfe7f02'}, 'testes/nextorch/test_orange_bridge.py': {'bytes': 3893, 'sha256': '838b378571a95b5c9daee18303f59e05aeccde3153e396de2e194a19ea705d40'}, 'testes/nextorch/test_synthesis.py': {'bytes': 4570, 'sha256': '08192bc225050457b28ce4352d02ad96c44733334550186329e16bceefab70e1'}, 'testes/nextorch/test_verifier.py': {'bytes': 3555, 'sha256': '98553cc010b02a439777418f49a53f64d06e4f41e5af34a6349214b87ce7a585'}, 'testes/nextorch/test_widgets.py': {'bytes': 7325, 'sha256': '5c062d8246a9be671fef4fdfa94037285fdbdcd46a049d890b10ce968ff68b51'}, 'testes/test_evolucao_v11.py': {'bytes': 7451, 'sha256': 'b8ab50a0f4ef1ffd6da3bd23354fa6d7501c2bffce306f7cdc0b59ee2cf52a03'}, 'testes/test_meta_v12.py': {'bytes': 5201, 'sha256': '0bd517b3b2db498987da1e37b32f4ff03080c03b50826af8906a164ab3a17114'}, 'testes/test_nextorch_integration.py': {'bytes': 8712, 'sha256': '128dd0893cb36dc6704c1e123cb5548e96c6c0043c66b191520bd9920119b2fd'}, 'testes/test_omega.py': {'bytes': 8597, 'sha256': 'd02dc93d5a3931cba5515dbaddfd37d874ed45569ddfe21ba848cc569adca76c'}, 'testes/test_omega_orange.py': {'bytes': 3898, 'sha256': 'cd36801853fae2a06b5188572c64266856ef3e2ab4c7d4637c3115feb92aa5a5'}, 'testes/test_open_v13.py': {'bytes': 3504, 'sha256': 'c3f5f95d25dc0952705b139265952d125b7f7e74c2717616d17c486c8a1b8b90'}, 'testes/test_selfhost.py': {'bytes': 9693, 'sha256': '26b5a024b4e2efabe77bc75a5beab419666beda85d5a90668e648895428d3c8d'}, 'testes/test_v02.py': {'bytes': 6541, 'sha256': '02291ac2f9a29dcd354de00db9656cd95748ab1fd4ef96e7f2fd33813b5e0279'}, 'testes/test_v03.py': {'bytes': 12111, 'sha256': '3ab189f206bc9342b06a2b40e92314b89fce9b02eb12acd4fef62d41970af90a'}, 'testes/test_v04.py': {'bytes': 8825, 'sha256': 'adf8ce7c87f3ce4df2dcb300ef00963668ca02ff4da1e52ff7671bd63f1eab05'}, 'testes/test_v1.py': {'bytes': 11496, 'sha256': 'f090892e0494b8fc0688873423f6d1603f0dfdf41810b2b5e5fccb554f1fec1f'}}, 'tree_sha256': '04f59cfaea3a1fe03b026e3aae380ff6e2e135f96dcb28d29729760aa903b880', 'embedded_code_lines': 21785}
+MANIFEST = {'format': 'omega-source-tree-1', 'files': {'.github/workflows/tests.yml': {'bytes': 2717, 'sha256': 'cb19c8d64217da137f7d2f4cc06ab208698dd070d87bfb0a2ae74897ca4a3131'}, 'MANIFEST.in': {'bytes': 548, 'sha256': '8f92b99ea1f0f3222bf1986b49807f0a48147f56eaf2ade0bc21881ecd493c29'}, 'README.md': {'bytes': 8105, 'sha256': 'c8c792ca0b1e036fd8ce58d1e65171edf98b22a22656006b0a6a4b58df429d4e'}, 'docs/API_3_0.md': {'bytes': 13398, 'sha256': 'c23cf0616219065acc416be883e0504a1ec0482b189e3dc1569411604cb528c3'}, 'docs/ARQUIVO_UNICO.md': {'bytes': 3677, 'sha256': '4cfbbf8da9499b0a4030b3acd7b218762407d396da50212ec0f6b186b3371f41'}, 'docs/AUTO_HOSPEDAGEM.md': {'bytes': 3372, 'sha256': 'fe8b5222c4f0b9ac06c7c240d533a7d77070e892527531d4f3e8f1b8200c20f6'}, 'docs/DIMENSOES_3_0.md': {'bytes': 2170, 'sha256': '43d019b58db605e83c1734cc7c61280829dfa4bbb1bdf8d61bba60b00abce1b9'}, 'docs/ESTADO_DOS_TRES_PASSOS.md': {'bytes': 4765, 'sha256': '9f8fdc5aed62d5122a3aec9ff7b706a136cdf17fa18a33780803416b28460fed'}, 'docs/EXTERNAL_REVIEW.md': {'bytes': 1118, 'sha256': '3ae280c7ee0680b6cecb75573c781a342d00ce80e0402f3149faed862ba6a6fe'}, 'docs/FUNDACAO_3_0.md': {'bytes': 10614, 'sha256': '9eaef3ff2b09ec2bd90c48160136b879e652aaea3ec51be37b3b6e4a1d19f99a'}, 'docs/GENERICS_EM_DESENVOLVIMENTO.md': {'bytes': 2341, 'sha256': 'b84fb43da964b17f1b5ea7f614d0765674f21ed513fff203eee8f9b74da4c9bb'}, 'docs/INTEGRACAO_NEXTORCH.md': {'bytes': 6509, 'sha256': '7942c36db444fc1143a8cc68c226dd4981614aecb27c6b6c5f94d5dc289efa71'}, 'docs/IR_CANONICA_3_0.md': {'bytes': 3111, 'sha256': '3092ad76311fb96e92307b71fd512d8e884e33354cf99f377e1197fb97399bf0'}, 'docs/MODULOS_3_0.md': {'bytes': 4221, 'sha256': '254c8906d3b382d553920f12dd7d39b5e04e2443224159557ea1a2bf071ee035'}, 'docs/NATIVO_E_LEAN.md': {'bytes': 3653, 'sha256': '18d9024bcbdda44298367e85987c821f49f35ec2827421618f39c8db7a9e5b82'}, 'docs/NEXTORCH_PROVENANCE.md': {'bytes': 707, 'sha256': '28b7a6ee7d10b3bec0714071636d3bce2c675c0daf002c3701de0a60cd6d8e04'}, 'docs/NEXTORCH_UPSTREAM.md': {'bytes': 7629, 'sha256': '7d7165a7cf6dd073815c9ffcb35ee7b800be6db695ddf2ff0c429cbb1e1e0978'}, 'docs/RESULTADOS_3_0.md': {'bytes': 4172, 'sha256': 'b7581b0690f7a8e70433375838d2fa972319bd5745c27b762c7a84d05a55dec8'}, 'docs/SINTAXE_E_SEMANTICA.md': {'bytes': 7473, 'sha256': '8ebc6d1cd527aa2ccaccf77c7d421fe7034e99daf08c029e37d18ca210e02e32'}, 'docs/SSA_3_0.md': {'bytes': 2484, 'sha256': '49a6ad8d225203437b83fce40851d42cab6aab3e623d662de1f7b43fd7e5d84c'}, 'docs/THREAT_MODEL_AGENT.md': {'bytes': 5071, 'sha256': '23a41fc16e679da44d2be43cd53c1ae47af9aa6c65f8fee64f482695acbce3e9'}, 'docs/TIPAGEM_3_0.md': {'bytes': 6039, 'sha256': '95f8677f4a79939f155b537df32caa3ed6553623914221476a3e9d2e4a1bdc60'}, 'docs/VALIDACAO_1_4.md': {'bytes': 2434, 'sha256': 'a548451c3155961b662efa64b3d1217faf4a70eb0ea3f335447a5492fd5da9d8'}, 'docs/VALIDACAO_2_0.md': {'bytes': 3189, 'sha256': '3d9468e97d1405de58f8ddbbdd920a4e514cfb03b11ec57ce53c97ff28199c88'}, 'exemplos/FatosOmega.lean': {'bytes': 1614, 'sha256': 'd690782c843e9403cbb55a585bb1b32fe2e31140ce3994d0f6e11d3cdb8cb605'}, 'exemplos/certificados_matriciais.json': {'bytes': 43797, 'sha256': 'a1ec2a1338caaca9271c242087b1a60b1995af405b3abdee8144ebfa20b132d0'}, 'exemplos/certificados_tensor.json': {'bytes': 26857, 'sha256': '284fa2269e48c9014fe16dcc450d276e65f6b81e5bdee097ac4a437c197a7f0d'}, 'exemplos/certificados_v1.json': {'bytes': 37233, 'sha256': '87ec9b30b6d04fb2d3582bf383f2103d512f4a5de047c363480f5a6d0e68a5cc'}, 'exemplos/dimensoes_invalidas.omega': {'bytes': 170, 'sha256': 'f545aa1b687aec156394efc4dc81e6d679000735ab3e9f72c1715dd6f5febdc7'}, 'exemplos/erro_de_tipo.omega': {'bytes': 175, 'sha256': 'f7a7d11dcf43aca43827eba345a69e7370161747a5d34ebb69d8d9f7fc342c44'}, 'exemplos/evolucao_aberta/cadeia_aberta.json': {'bytes': 36564, 'sha256': '32f1c83a49e6814ca8808f1222208be90c2090e52560a275664ed61bb70d2346'}, 'exemplos/evolucao_aberta/politica_0.omega': {'bytes': 212, 'sha256': 'df8325c0f4daa353c4c9f562180f40b406c7bafd40f4c1c2272fc70df787b682'}, 'exemplos/evolucao_aberta/politica_1.omega': {'bytes': 212, 'sha256': '97c9077f7361c0af1f32713d99fdaf606f581a0e2e2a2d651e6b4411d7ac1f54'}, 'exemplos/evolucao_aberta/politica_ativa.omega': {'bytes': 212, 'sha256': '97c9077f7361c0af1f32713d99fdaf606f581a0e2e2a2d651e6b4411d7ac1f54'}, 'exemplos/evolucao_aberta_cli/cadeia_aberta.json': {'bytes': 36564, 'sha256': '32f1c83a49e6814ca8808f1222208be90c2090e52560a275664ed61bb70d2346'}, 'exemplos/evolucao_aberta_cli/politica_0.omega': {'bytes': 212, 'sha256': 'df8325c0f4daa353c4c9f562180f40b406c7bafd40f4c1c2272fc70df787b682'}, 'exemplos/evolucao_aberta_cli/politica_1.omega': {'bytes': 212, 'sha256': '97c9077f7361c0af1f32713d99fdaf606f581a0e2e2a2d651e6b4411d7ac1f54'}, 'exemplos/evolucao_aberta_cli/politica_ativa.omega': {'bytes': 212, 'sha256': '97c9077f7361c0af1f32713d99fdaf606f581a0e2e2a2d651e6b4411d7ac1f54'}, 'exemplos/evolucao_xor/cadeia_provada.json': {'bytes': 2510, 'sha256': 'cc44ecf2433ec7c47991192c43a903d782e484beb3d0c90bd6b956931f863c81'}, 'exemplos/evolucao_xor/geracao_0.omega': {'bytes': 333, 'sha256': '7f7852321df9d559cab160d4ee8967c787d3288dba89e83e8e8c1ea8544c1255'}, 'exemplos/evolucao_xor/geracao_1.omega': {'bytes': 334, 'sha256': '7c0fbbc9b8a4402a898c0b0159d0e6c30f82c6e834f58f9bff635d79614686e8'}, 'exemplos/evolucao_xor/geracao_2.omega': {'bytes': 334, 'sha256': '9b339367766e416f1d7477bc4947b14fc22a5da3e871edda0b825b98b2a42a99'}, 'exemplos/evolucao_xor/obrigacoes_lean.lean': {'bytes': 804, 'sha256': '9c935b8c1ef64f716cef0ab2daab3860b805a6c32c1dfce845df3580b000d788'}, 'exemplos/evolucao_xor/programa_sucessor.omega': {'bytes': 334, 'sha256': '9b339367766e416f1d7477bc4947b14fc22a5da3e871edda0b825b98b2a42a99'}, 'exemplos/evolucao_xor/prova_auto_otimizacao.json': {'bytes': 9217, 'sha256': 'c7314a078a1c2778e66d1db3dcd5a792438a051b5ad6d5db214439c75ca5b616'}, 'exemplos/metaevolucao/certificado_meta.json': {'bytes': 2281, 'sha256': '48a9ad65bb0c2d8ee4a1b470031d1de8e326c45fa0a3c8fbfbc51fe569aca3b4'}, 'exemplos/metaevolucao/politica_0.omega': {'bytes': 300, 'sha256': '1966de2dbe1cb2a6637ba5c444706f4848b333c1de31b02ff4d3722265825987'}, 'exemplos/metaevolucao/politica_1.omega': {'bytes': 300, 'sha256': 'f3b40e8ce09384a0e0d52a959f16704d0d79ebede7801376b361a42d66c38628'}, 'exemplos/metaevolucao/politica_2.omega': {'bytes': 301, 'sha256': 'a80694b8ed951ffb02d6a4b250597b36708073be5b313bfbc4be5dd9870c00b1'}, 'exemplos/metaevolucao/politica_ativa.omega': {'bytes': 301, 'sha256': 'a80694b8ed951ffb02d6a4b250597b36708073be5b313bfbc4be5dd9870c00b1'}, 'exemplos/nextorch/iris_workflow.py': {'bytes': 2436, 'sha256': '1993543bd6de725b3429ce6c0b06bb4fbeafd95e01c681481d61882d208b9b0c'}, 'exemplos/nextorch/render_gallery.py': {'bytes': 2381, 'sha256': 'ecf778950bf9ffa0b218b12d5ae0474012977e7fa8da07460b781fa0020e1f09'}, 'exemplos/nextorch/transitivity.json': {'bytes': 65, 'sha256': 'd836ff49e415b8632696746d2d31a81cd084911d2328194597d1597fdaad8857'}, 'exemplos/otimizacao_ir.omega': {'bytes': 278, 'sha256': 'c3ed5c1d6b6ee7f76cf143ed6e953bdd2f1d19926e348785130e4a69a74e99ae'}, 'exemplos/parametros_matriciais.omega': {'bytes': 479, 'sha256': '4d296c053e304864b2b53410773377a2db01000eac0e5a028525599bbe1f7e4d'}, 'exemplos/passo_recusado.omega': {'bytes': 138, 'sha256': '4607927630183418f361c302357d873a72d77d9924c66a7d73abbd9dff3ae609'}, 'exemplos/primeiro_programa.omega': {'bytes': 666, 'sha256': 'b56626c4e496432073b430720d7672de50e14c70ca1f365efb280c6f4320cbaf'}, 'exemplos/procedural/soma.omega': {'bytes': 227, 'sha256': '8366dde9016e7e6fc7e7d56e942b7a3fffe880f6a571a30cd0c29018f2565be0'}, 'exemplos/produto_matrizes.omega': {'bytes': 187, 'sha256': '356b7eb864a432eaa4304d48ab059f92d966a1a4c1c8de884a70791faca85410'}, 'exemplos/prova_falsa.omega': {'bytes': 87, 'sha256': '2331e6d8d9d81bb3f72f3cb9554da504e4d66a782cc4c402a2799ee1e6812109'}, 'exemplos/prova_otimizacao_v1.json': {'bytes': 6191, 'sha256': 'f6d96323751ebe3a1ace9f976ff13dd204d621c374acaaf3b7228611e295780b'}, 'exemplos/prova_tensorial.omega': {'bytes': 192, 'sha256': '69f1cd8a20ec9f3885b78b6a137ec3d8e2beac1316614ae41430b0d3629980d8'}, 'exemplos/rede_profunda.omega': {'bytes': 542, 'sha256': '0bb7f60aa56cce7d07927f7b4093111b0e3c7541afe446940202217dc6275a51'}, 'exemplos/sintaxe_inglesa.omega': {'bytes': 223, 'sha256': '18dfad728e99044ecb36bc0806535983e737665e358d18793cdb93cecae0dd0a'}, 'exemplos/tarefas_abertas.json': {'bytes': 420, 'sha256': '67582306f2ceb08cad56ebb4ce20204b9ab449b759c586a4d790b92bafb3776f'}, 'exemplos/tensores_gradientes.omega': {'bytes': 534, 'sha256': '6ca6631d180a425b80dbec7a30f5cfab3912d661f7a0851ac1a444e806ca7cb4'}, 'exemplos/tipos_e_teoremas.omega': {'bytes': 445, 'sha256': '484bd77bc5f68abb14ccd97e21de88c919cb3f1aa9ad7308329a006b3b04197d'}, 'formal/lean/Main.lean': {'bytes': 3122, 'sha256': '87aa1f764829f1e0dab66a838f1b491855e5fa51115418289b3fc5c562127750'}, 'formal/lean/lake-manifest.json': {'bytes': 117, 'sha256': '779dafe979697cc620f3a82cc5c98041e540501fb208472766fdb959ae31396c'}, 'formal/lean/lakefile.lean': {'bytes': 165, 'sha256': '3a29d46241d7e769792909c4eb50938d366cf8f51556e9c08bef0f81c47f5280'}, 'formal/lean/lean-toolchain': {'bytes': 25, 'sha256': '55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea'}, 'formal/tensor/Main.lean': {'bytes': 25812, 'sha256': '258d5df203454eba6330104d371333962418f3cc1a438b004030c65a1e91aa90'}, 'formal/tensor/Omega.lean': {'bytes': 567, 'sha256': 'd44bb3a943e85a471e73ab8035eb4c8c6fbc7984491ce35d34bca1440d869c7d'}, 'formal/tensor/Omega/AutodiffCorrectness.lean': {'bytes': 483, 'sha256': '4e05c7f3f4bb5a6f630f4d788f9bf4ea018de6683216cb892fb5d2ae22098bfa'}, 'formal/tensor/Omega/CModel.lean': {'bytes': 381, 'sha256': '1b126a842b528e563d17baf8d71570a0d7545969e4a43e056649762faeadc9c6'}, 'formal/tensor/Omega/CRefinement.lean': {'bytes': 394, 'sha256': 'da6049f219a3b58f359ce5fdd9418c52a0234c7243e9083b763764ba3a4200c1'}, 'formal/tensor/Omega/GMPContracts.lean': {'bytes': 629, 'sha256': '3fac54ba171749c0dc2980e6c6a24220751943fa125ca82a6096d66c0e73e00d'}, 'formal/tensor/Omega/IRTransformations.lean': {'bytes': 507, 'sha256': '6d2396b70e21cc86f2fd69a9efd59b6cd1407fde806ffaf4a4a608c6d1f2fde3'}, 'formal/tensor/Omega/MatrixProofs.lean': {'bytes': 510, 'sha256': 'ed938c0be1d75bc35ce199be5a44cd3dc75ba0269a61b8eaba74710927c05337'}, 'formal/tensor/Omega/Preservation.lean': {'bytes': 663, 'sha256': 'b9e48b2dfa1e1d6f40dd3daa19dd909e1bc4b346c0f7b87d418634982e414b91'}, 'formal/tensor/Omega/Progress.lean': {'bytes': 257, 'sha256': '1a9bd75403b2119686669e076e055b2d2a3813bc7e84fd242bbf2b12fc192f9e'}, 'formal/tensor/Omega/RuntimeContracts.lean': {'bytes': 539, 'sha256': '62a4205e44afbf362d7323580adbca39bddfc2306fc532fa8f0c0eb2282e16d0'}, 'formal/tensor/Omega/Subgradients.lean': {'bytes': 454, 'sha256': '4982e293938031fb89d2c4bf5aba331cd5e9f3cc7df99702304a98f81a78a595'}, 'formal/tensor/Omega/TensorDenotation.lean': {'bytes': 304, 'sha256': '98ce7816099a25d86591e0ca497fc9603d758d16187d6e0f8265dd4ccfe657cc'}, 'formal/tensor/Omega/TensorOperational.lean': {'bytes': 1030, 'sha256': '9bb35fdfc09cac1b6a8c31d29384537b8cd3a4c4e0dd39945454cc232cf450dc'}, 'formal/tensor/Omega/Types.lean': {'bytes': 873, 'sha256': '97b8f3c923ef38c4312735331c6358bc30b8b1ec9864ce08eb02473f216cdbf5'}, 'formal/tensor/lake-manifest.json': {'bytes': 3142, 'sha256': '77606baf20079a8c0cc40f2e2849b6b65a7d68556866ef054684bb922ed52cec'}, 'formal/tensor/lakefile.lean': {'bytes': 458, 'sha256': 'aeeadc811279a3165515a93c4397790cc919696f7beb125b9ffe0a0a94a04b87'}, 'formal/tensor/lean-toolchain': {'bytes': 25, 'sha256': '55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea'}, 'nextorch/__init__.py': {'bytes': 614, 'sha256': 'ecc0567617586a870e75a47098ea23aff5df0d77ae8ed9ce15e754364a765e6e'}, 'nextorch/__main__.py': {'bytes': 3918, 'sha256': 'df2a483c748649ee40feb27116e2a46c13571e47bbae9c6a1104b81971a4195c'}, 'nextorch/config.py': {'bytes': 1419, 'sha256': 'b4d47308f5688e7cabba27147a6aae792a0de955024aa3733a638018f1e65e8a'}, 'nextorch/core/__init__.py': {'bytes': 127, 'sha256': '8b50771b198f5b74d9ca34f32608b1636ee9089f6fc6d65d6e369d8d1b6d4f22'}, 'nextorch/core/manifold.py': {'bytes': 2357, 'sha256': 'b05743ee3a31687b0907ae8a4ed9f1bcbaa3065c10c93e6dcf863e02df512561'}, 'nextorch/core/orange_bridge.py': {'bytes': 5424, 'sha256': '3042b79bbb95b80d4e868b4af18df9b2183b451803c7e93ecb52fdc77c17cd0e'}, 'nextorch/core/tensor.py': {'bytes': 724, 'sha256': 'b140f4f854909e32f5a79531eac7565474e559dd246ca4a697f052b663e92321'}, 'nextorch/engine/__init__.py': {'bytes': 183, 'sha256': '4a95748b1f4feed22460a816fbb8a64eaac388e1ed30be05515709c285a0d729'}, 'nextorch/engine/dynamic_depth.py': {'bytes': 728, 'sha256': '301368a55ef0e9d43f660632e1aa6cff6df9ab2a08677cc868b5b23c29f39ea0'}, 'nextorch/engine/latent_ttc.py': {'bytes': 7336, 'sha256': '19f3bcd1a0620d937ee00d888d30b739cc8c7931b83714738e15742d184b0dcc'}, 'nextorch/evolution/__init__.py': {'bytes': 282, 'sha256': 'ab6c10ecf8ddae1f6c1cd429bdc29c6321c9da07df8355d1648260f81ee488b2'}, 'nextorch/evolution/loop.py': {'bytes': 8919, 'sha256': 'ff2cd39840b2b4fac9d9fd5d486f828a08a9c8dc8b9dd221b73512e1866ef6dd'}, 'nextorch/evolution/net2net.py': {'bytes': 3497, 'sha256': 'aebdff30775eaa506917a993afd5f89c24adb3a26bc969b50c695066888a454b'}, 'nextorch/evolution/replay_buffer.py': {'bytes': 3496, 'sha256': '0a644ec169e16947f94288ef0dbe3f96531815d013465bca6ede4a5697c12b35'}, 'nextorch/formal/__init__.py': {'bytes': 350, 'sha256': 'edf52f617a9376d2fab7f34a597db44e14cb30e3ed0af410169e9fa769ddf501'}, 'nextorch/formal/barrier.py': {'bytes': 2785, 'sha256': '78032e943644d86ab30aaab4b8bb5bd437ddd254f269a892c45c945e4baad3c4'}, 'nextorch/formal/lean_bridge.py': {'bytes': 4944, 'sha256': '75d65df2411f131a5aabd11f15c15366c354ceb30a12e29b251da2418e108957'}, 'nextorch/formal/z3_gateway.py': {'bytes': 2719, 'sha256': '8c12f94707cb2865117da7ff57cc437ef9573ee5f506ab5883beb1a5778d92a4'}, 'nextorch/interpretability/__init__.py': {'bytes': 220, 'sha256': '08f998b88d8b282a83827f91a6d9d5aef41e2a314ed7b004f4650e65499f2b56'}, 'nextorch/interpretability/pid_sparsity.py': {'bytes': 1539, 'sha256': '3cee1d4fbf2281db155ddd786fa7cf2bfe7879c9e75e6eaed7871ce4c2f75fbc'}, 'nextorch/interpretability/sae.py': {'bytes': 2714, 'sha256': '1ca20bb224b2e0062a63241052d118a1fa1f5aa3066b18f7ca8e36cb736242e3'}, 'nextorch/interpretability/vocabulary.py': {'bytes': 1274, 'sha256': 'cfb375b0821fb0cf05c706430ff7c6e92ffd9df7221401de7f820bf682280233'}, 'nextorch/model.py': {'bytes': 7092, 'sha256': '321f40d06ee728f86953bad228567c4eee17b3c034e61ec00d8af2d6465369c8'}, 'nextorch/orange/OWFormalLoopMonitor.py': {'bytes': 7853, 'sha256': '390bc56ea93b0869a6a17ce234f98ac05cd1f86d5c836ed59cd1a891cb392594'}, 'nextorch/orange/OWLatentInspector.py': {'bytes': 5744, 'sha256': '78484a11e0d77ebbc235c11d2898ce792d9ca0518d6e532dcbea09ac316ab252'}, 'nextorch/orange/OWNextorchSynthesizer.py': {'bytes': 4227, 'sha256': '50015432356db651747bb6af428aebee9d80d9ef14fa8df4862598f8ffd4efad'}, 'nextorch/orange/__init__.py': {'bytes': 260, 'sha256': '3e00dd4c4f7dbe3e527c58e319a31921cdc9cd7dee72ca34805f9127d90a85d3'}, 'nextorch/orange/icons/formal.svg': {'bytes': 270, 'sha256': '640a6ce25f4362c1cba5da88af1967c82712380ac40aaf8e2cee988f1a75fd76'}, 'nextorch/orange/icons/inspector.svg': {'bytes': 262, 'sha256': 'b149b6dab8ba60bcb802a120153fd55108da1122d7a513e4f2004c367b3d9d05'}, 'nextorch/orange/icons/nextorch.svg': {'bytes': 343, 'sha256': 'e3f89a5a32c46582fac58930771732b482ad48c0ec8e5e9c1d6020874d6eee12'}, 'nextorch/orange/icons/synthesizer.svg': {'bytes': 343, 'sha256': 'e3f89a5a32c46582fac58930771732b482ad48c0ec8e5e9c1d6020874d6eee12'}, 'nextorch/synthesis/__init__.py': {'bytes': 291, 'sha256': 'ee37356da58b2b8a580ff266d99d9c5d3f8f416d1a3eff126646cceced5c4d81'}, 'nextorch/synthesis/gflownet.py': {'bytes': 5025, 'sha256': '1d7860f0a44bd4ecd110a0e1b6be3213fa8f2467c214558bc123206fdad84cd6'}, 'nextorch/synthesis/jit_compiler.py': {'bytes': 1550, 'sha256': 'bd1a8a542170199cc2f0a66f54fbabf9a555694bbc5c502ccba7c57718a5cb5c'}, 'nextorch/synthesis/space.py': {'bytes': 4501, 'sha256': 'ccc9bf0732521d1316a328e1b65399c7647b6c72a764e21911c47124774c83b3'}, 'nextorch/synthesis/triton_kernels.py': {'bytes': 1297, 'sha256': 'fff7cb4df20287ac1c990448a604fb724f8b3b0ed66432a10de93cfe80a9bf67'}, 'nextorch/verifier/__init__.py': {'bytes': 270, 'sha256': '69ad5f209505cba107200c037e23ac054025641f1f719613fe0fa8cdb48fe7f2'}, 'nextorch/verifier/curvature.py': {'bytes': 2142, 'sha256': 'ebac685f3ccf6ec868e032e511f90219e1a2ecb7322eb3e9160fd9d4257f0d0e'}, 'nextorch/verifier/mup.py': {'bytes': 1551, 'sha256': '629dae5584d1fc39832ca946dfcef2c21d8f24af657aae11707bba066a76aff0'}, 'nextorch/verifier/zerocost.py': {'bytes': 3435, 'sha256': '2cdd8fed55312698d094814eb66452ece81f85272fc3b92bc6cb8de77d16a339'}, 'omega/__init__.py': {'bytes': 96, 'sha256': 'b64e3b2bca12ddd09e33fc80486ca338e395953a9bc78516c7bba35f4838f22b'}, 'omega/__main__.py': {'bytes': 89, 'sha256': 'da73e592b6a145b80b1eeee3962583233ebefdc2e0eb12801fe516bc72b976eb'}, 'omega/algebra.py': {'bytes': 5473, 'sha256': '77733f75733d78b844f9a3e971c7c43781a05e45c9489cc8d4857accfea23fb6'}, 'omega/autodiff.py': {'bytes': 3528, 'sha256': '7a2f46b256e4f126aacdb28fa05a6b481f036b831f16d47d133a887592517fc1'}, 'omega/autodiff_tensor.py': {'bytes': 7924, 'sha256': 'de139de24c95d904b686cd74aadb693491c6af49fc3b29cca36f341784341398'}, 'omega/cli.py': {'bytes': 13722, 'sha256': '76e47cda7d1aeda69d6445a341056ceb43b0875ca620fb7c1fabea383ca85f35'}, 'omega/debugger.py': {'bytes': 925, 'sha256': 'd7c5f7d4b0ccc89c16158509d827dbeee1beee591f1a716638d34e9a17b0b093'}, 'omega/dimensions.py': {'bytes': 8830, 'sha256': '2400fc20604b17e1e0f9304e2eddadbdc6a40451edc50f31aa47d3ac84839e1f'}, 'omega/equivalence.py': {'bytes': 1037, 'sha256': 'ac3c0f7ca330624235742c7bfd4d3d0d519bee8ed1e1701b22deb10117fd425f'}, 'omega/evolucao.py': {'bytes': 8041, 'sha256': 'ccf261f55566442700a88a4afb0b14bafff4f30bdaa0d70bc5b3fb496325037d'}, 'omega/execucao.py': {'bytes': 18094, 'sha256': 'f9d338d8b11260fdc41f7e15ce860aee607c42c9c0298d07345c8d2984faf2ca'}, 'omega/exportar_lean.py': {'bytes': 2203, 'sha256': '4985b85645eda1dcbcffca8630bc477ddda0b0c375ae19f63cee7cd1bfa0c974'}, 'omega/generics.py': {'bytes': 17323, 'sha256': '9e4b82ce01615be15de53ad59af13c86c3df713f16befa3037caa32bce340088'}, 'omega/meta_programa.py': {'bytes': 812, 'sha256': '50f2291b5249c2711bba22eff95b5522765a7db417f37b376528fe414edd8f42'}, 'omega/metaevolucao.py': {'bytes': 6272, 'sha256': '1e764393f7f3827776096ab9fd06a1318f4035366777957f03c7f06d23a1da88'}, 'omega/modules.py': {'bytes': 11599, 'sha256': 'c0d12ff2312e5856ad7fa5685e55a56868c55ca143509e054581534539be02fd'}, 'omega/monolith_components.py': {'bytes': 7792, 'sha256': '2b7ea4480b06d849ce970a112eb4ce28cf947ff73cafd1095c611f7b8aee1a52'}, 'omega/motor_v1.py': {'bytes': 20989, 'sha256': '97e63fdc439f13570cc7888f8d2139a4bbf16fcc9dd6eee6e1d1f9014740ec8c'}, 'omega/nucleo.py': {'bytes': 8026, 'sha256': 'b5e11e65f305622cdb251082140f6eb54b7a2d5e0bb672a523ae86c29c508896'}, 'omega/nucleo_evolucao.py': {'bytes': 4864, 'sha256': 'eb07d2a6b85b75dcb1b35c765916409dfd12e080c1e90592e8a57fdc1886c183'}, 'omega/nucleo_meta.py': {'bytes': 4181, 'sha256': 'ba6f24a0d90331785d7a15456508022462aff160d3d499a4abe2f2ac4118c4a1'}, 'omega/nucleo_parametros.py': {'bytes': 3148, 'sha256': '53d31efcb7a4a4e77d28fe765c7699998ab545295a7371bc44da38d0e6fec127'}, 'omega/nucleo_tensor.py': {'bytes': 5867, 'sha256': '6a0dae00210250892b51822aa3c9ce232330c643a87a2f38cbc0dd5126beb6ec'}, 'omega/nucleo_v1.py': {'bytes': 15164, 'sha256': 'dd343e94ce33b21c45e129483529c40d0ae7f5281b8f6f5400e49105d5ec0a23'}, 'omega/otimizador_v1.py': {'bytes': 5064, 'sha256': 'c426c169dccf8a201b26da347e1c21b6d6971a4cc2d98ea441464af84f511b28'}, 'omega/package_lock.py': {'bytes': 1964, 'sha256': '99941c08bb89dec88cb9f77eda777588ccc8dc6e9fcf440b66f8eed5290963aa'}, 'omega/packages.py': {'bytes': 1270, 'sha256': '4b92b718e55687aa92d85431a7862eae37f4f4b28920a5c7fef1fd4b2885efb2'}, 'omega/parametros_tensor.py': {'bytes': 1563, 'sha256': 'd22037e2532c9b65d823b83202f9c70ff241d67940b7cb4a4311c0c7f2614b18'}, 'omega/procedural_types.py': {'bytes': 25075, 'sha256': '94e4d0e5cf7ea9a8c9529e4986ab46aa07365818897e4ad0d59d57c8a1f8bd91'}, 'omega/profiler.py': {'bytes': 912, 'sha256': '1fbe759994fbca52e64c59453280d9dc97d03fbca7851ca87e874de0703493d9'}, 'omega/sintaxe.py': {'bytes': 14874, 'sha256': '0fc8566181d2b000197fd75a46f5181a8efe726cadfc6e97bfd6411b8c287cb6'}, 'omega/ssa.py': {'bytes': 11428, 'sha256': 'f338443ba8b9bd25e429b81da809dc88bb46c58c9193456a59f44180999fb425'}, 'omega/stdlib.py': {'bytes': 2345, 'sha256': '1bd805cfa352f488534da00d2052c0662b6e14609f38637cb8828865d299e9f9'}, 'omega/tensores.py': {'bytes': 6447, 'sha256': '1bcbc2b17dbb3de5d94c4e3d46cc05ac8bd1106e828b34a4c663fc03071aa537'}, 'omega/tipos.py': {'bytes': 8181, 'sha256': '27b396437ee614096d2ed60c37f0ee80c47caa9b4d0b92cc8d010ea2f1966545'}, 'omega/trace.py': {'bytes': 1050, 'sha256': 'a74c3f65a23d141980c76ef592ceacbcd736a926d71cabb36379da54ea0c684b'}, 'omega/typed_ir.py': {'bytes': 11158, 'sha256': '2a53b8bf992d57d1743cb0f5b01ae000f03d96e1860ae7883f2f1421ed945950'}, 'omega/typesystem.py': {'bytes': 10534, 'sha256': '174e796e9459ae87498df8de50065ba8ce28c816d0f98bd36e20e3c38a7db8b6'}, 'omega_agent/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_agent/__main__.py': {'bytes': 71, 'sha256': '66d802020b5637e771edcfe3ae4a060499697c4ae341dad3831bd5be79bb3033'}, 'omega_agent/calibration.py': {'bytes': 1123, 'sha256': 'f5de94ad820e2b9fc8aa215723b01b9355179508cd8bd00e231d9da7c49e36ea'}, 'omega_agent/cli.py': {'bytes': 2536, 'sha256': 'fe913026e5b16b772e43820a6bfdd355670908bed6c898625007460007d56e16'}, 'omega_agent/compositional.py': {'bytes': 909, 'sha256': '9bdf526ed6aee19488e4ce8bd305d769854eef29d6cbdfddf60b324d641c66b4'}, 'omega_agent/consistency.py': {'bytes': 640, 'sha256': '5f8a5986ec4c4f45aab7b7885a53c2e3c3adcd8759bf409e0099cd01b8413f9c'}, 'omega_agent/domain_shift.py': {'bytes': 1306, 'sha256': '52d703c71a5a1eb4072f7f1b57fa1a86cc4f9b58c53f9099de4c5f2df1edf6d0'}, 'omega_agent/experiments.py': {'bytes': 760, 'sha256': '52c927ec420b68768a45116d0d6a7a7ad2d360e60b7ac8b1b529e1ee76cb61b8'}, 'omega_agent/hierarchical_planner.py': {'bytes': 1439, 'sha256': '8826cebb16abd9bbb5c72385da6c1fbc813ac18eca1ca10f5ea555269fafaba7'}, 'omega_agent/hypotheses.py': {'bytes': 1084, 'sha256': 'fd7b9c7d4512171116ec15e6c15d1250d98cd618b09c6382e1021ed039cea227'}, 'omega_agent/inference.py': {'bytes': 971, 'sha256': '0ec09985366587128de4eb1458f17dbd2d86589b40b759510805c52aa8c56716'}, 'omega_agent/integration.py': {'bytes': 2981, 'sha256': '236911bdfa5bddff7e6334d8db0b4fe204912ea39945bad2fac3226e80c9ca0e'}, 'omega_agent/learned_heuristics.py': {'bytes': 1229, 'sha256': '7fce5f2190f4ff3c26e8f754cad610f1543493c67cd737df8c29a569e6cf3566'}, 'omega_agent/metacognition.py': {'bytes': 482, 'sha256': '4dcfc52d13414f981283cd61f8c0662e5a65475e2b46709800c2ebd380168763'}, 'omega_agent/neurosymbolic.py': {'bytes': 933, 'sha256': 'd5460f7e549541bdc78f4d775366698a21e597a7aa481c68d945a0c5cc1678cc'}, 'omega_agent/problem.py': {'bytes': 2244, 'sha256': 'f91ac9291cd410403ed69dda31fbedf0b58882a77a094714b966125e2e78be3f'}, 'omega_agent/reasoning_budget.py': {'bytes': 1214, 'sha256': '53de84a910b68a4d25e0b3329e3680037c243e9361aee73abdf0f2acdc793570'}, 'omega_agent/reasoning_state.py': {'bytes': 1245, 'sha256': '35c29dc99ecad0f5475556f196cf50769df022738300e0bfc089cc934f38dff1'}, 'omega_agent/runtime.py': {'bytes': 9823, 'sha256': '514d81672d9dc6801de30e8cdf44472ee7872ccfb384dcb2724d0a1238bc8e08'}, 'omega_agent/search.py': {'bytes': 2014, 'sha256': '9421cce1b708666e122fc0bb5f31aa1eed4a047640a8bd357db1eb4a28042daa'}, 'omega_bench/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_bench/ablations.py': {'bytes': 582, 'sha256': 'ebbddec8424b7e6bcd1514c53d9d812bbb0dd0b5827dc0dde6c457febff845a8'}, 'omega_bench/dashboard.py': {'bytes': 856, 'sha256': '7ac3ec5bfde65e49d25dee70165afc61526985166f5d6de4095522f712571a67'}, 'omega_bench/generalization.py': {'bytes': 433, 'sha256': 'b0c2b5d2a0cab2d12a77211ea6a494b0ad3722d6b47868d3e8ef346465686f87'}, 'omega_bench/harness.py': {'bytes': 1820, 'sha256': '80f5744e705c8f315c8c2d1f04f70c0b24d7027622f61c0121d63d1ddcaf68b2'}, 'omega_bench/longitudinal.py': {'bytes': 566, 'sha256': 'ce10336ae2b9b5fd600caa8673edeced79bc3e7a4f324105d19ac98c6aeee158'}, 'omega_bench/mathematics.py': {'bytes': 709, 'sha256': '61b9a275f6eef34383ca424c202cf60eab839da3d85b4e3b21405d40b0693bf6'}, 'omega_bench/neural_symbolic.py': {'bytes': 263, 'sha256': 'd74ec0b40314dd110fbdfde2b978066c9a914ff21e449788a667594ec8084930'}, 'omega_bench/programming.py': {'bytes': 913, 'sha256': '3dae62fb499fde4bf31070252b132f156f55d87a5cfcb8b4f74f854f39ef3e5a'}, 'omega_bench/provenance.py': {'bytes': 644, 'sha256': '68c308acc41a1929083512dbe2f3f753a6cb8e43ae8e387e75b21f2e13d9b38c'}, 'omega_bench/reproduction.py': {'bytes': 1650, 'sha256': '2e2333fc855475d2ad3c9167e2a36a65b06bebb8761496d40e4a4a59ac29773d'}, 'omega_bench/statistics.py': {'bytes': 734, 'sha256': '0b35948e8d5212412ccbe3baf30fef4a9b31e7b84c9d043e58a3d27e18c31634'}, 'omega_bench/telemetry.py': {'bytes': 1214, 'sha256': '7d0b617f3530e7d8da780a1420706c1797610f8b2267b308c6714ed24b4a0ec9'}, 'omega_coder/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_coder/ast_editor.py': {'bytes': 1569, 'sha256': '01b266ee3c30b40abf7f4b206e2392b8055acb54cc6f2465ecdae55983b84fd2'}, 'omega_coder/change_plan.py': {'bytes': 1035, 'sha256': 'b27c6225a36f6d877e30bf9508a882e57bbeb302e8a3f53063c468e3729a502d'}, 'omega_coder/contract_synthesis.py': {'bytes': 1445, 'sha256': 'ad9077b0dbf67bb743e906f5cce6f1862c0754812b1545f82882ad0f28182b22'}, 'omega_coder/counterexamples.py': {'bytes': 708, 'sha256': '0d2906f0c3f25d7b2e18dde0af4f5b3e860d34f36b23ff71b1bbf3d02c400a31'}, 'omega_coder/generation.py': {'bytes': 967, 'sha256': '937d3f9b6cf47152cb09c9e176863bc956487f6b0bebb5993cc3f70acb67d2bc'}, 'omega_coder/patch_review.py': {'bytes': 1077, 'sha256': 'c4549bb11f3fb023d17060a6fb0395464e5d01a96cc0a6d7d7fa31ce18fa02e4'}, 'omega_coder/program_search.py': {'bytes': 932, 'sha256': '9f8436daddb84bf9cd7fa39622864a154eb8f772893dc505f9a80dd3494a8757'}, 'omega_coder/pull_requests.py': {'bytes': 1233, 'sha256': 'cfcaa0215492afbe045cfdcc83e521fed757b51fca98d84cdff5e2e2f63c1e1a'}, 'omega_coder/repair.py': {'bytes': 1068, 'sha256': 'e077e9480b55a8815ce0f707b36510894f311badeb193bc23708c4a314d77db7'}, 'omega_coder/repository_index.py': {'bytes': 1807, 'sha256': 'a635db1066a4a46a982df82725f4226c78682152c7934f3e313d432a033e4108'}, 'omega_coder/specifications.py': {'bytes': 780, 'sha256': 'caa0c7a5ed891dd64d5c9b12afb585a78975e286829536166c6f41111385c0de'}, 'omega_coder/test_generation.py': {'bytes': 1216, 'sha256': '359da50f6a47954b6cf24e0d0ee6ab4c631eda3f6deb6afa79a79bceb2cbd326'}, 'omega_coder/verified_optimization.py': {'bytes': 511, 'sha256': 'dd43822f12084c5d5fc3969dd5d5286d2e7c0c6b056c648b1924bf2934ac1eac'}, 'omega_coder/worktrees.py': {'bytes': 1422, 'sha256': '4dfc2d7b1c7665fbfacdc0561753af9eb787d82ac6706f94f0e53af4f87e5a85'}, 'omega_evolution/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_evolution/architecture_search.py': {'bytes': 848, 'sha256': 'b6f868130813c97b28dce127da3b8378ff8b324a9f84cf82120a3b6d9137b81d'}, 'omega_evolution/compiler_tuning.py': {'bytes': 782, 'sha256': '6ed7c60aa505bb2ade35945035b56f86977f89fc91bb61e39066609e9d66838a'}, 'omega_evolution/component_registry.py': {'bytes': 3356, 'sha256': '9535d7094a8017f452237d05c49084586e7a9673c6e207423fce1177915132ab'}, 'omega_evolution/hyperparameters.py': {'bytes': 921, 'sha256': 'f5de038842dfba55ea8168eecf25bb2bcc565329676b90fa8a157c04ff0bed50'}, 'omega_evolution/isolated_patches.py': {'bytes': 1169, 'sha256': '5de997d1b98e1dee6f46a0ae50bff6b9ef7d1c9542fdac62ddc687f3490e0085'}, 'omega_evolution/lineage.py': {'bytes': 819, 'sha256': '98f99a59402c1094d1d8e52b522c7dcf713a12ddbe58be3d2f950b31b1c6cac4'}, 'omega_evolution/planner_tuning.py': {'bytes': 613, 'sha256': 'c78688711f97a7807863be13c66a8b1f5af0b659e80e6af5dca98cf3b0e19360'}, 'omega_evolution/promotion.py': {'bytes': 6233, 'sha256': '69163ecef3f1c091e359c2480942fdadcae99fe739a0d2192b2125b1b7b9bc4e'}, 'omega_evolution/proposals.py': {'bytes': 1158, 'sha256': 'dfb88f3368581b9b1f2c6d296d8d74362c196771f9a61ee17278640c2edb09a2'}, 'omega_evolution/regressions.py': {'bytes': 669, 'sha256': '09088ec56a971cb2ca07ce41b08af228ae664c3bdad5cb419d0359ab8b7cf93e'}, 'omega_evolution/resource_limits.py': {'bytes': 528, 'sha256': 'a584d3733ace2fa34de5aa1ea61e36910aa9bb230f28a0a97cefa470b55aeea2'}, 'omega_evolution/rollback.py': {'bytes': 9904, 'sha256': '07fedafedf74578ff319824eadc363603475cf7c3aae0626beb46508683247de'}, 'omega_evolution/statistics.py': {'bytes': 1197, 'sha256': '94ad1191553eff41716a26f9d2e78ec974b976e15094de6d72307e097693dee8'}, 'omega_evolution/stopping.py': {'bytes': 802, 'sha256': 'ce6d96332f00811c7b176716c8237672e00b18d1d96f83b89cfba12b73777390'}, 'omega_evolution/synthesis_heuristics.py': {'bytes': 685, 'sha256': '49ebd6f6e8fb1589f3d32a56749d83efa965006fbc03639e795df044541f4c73'}, 'omega_learning/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_learning/active_learning.py': {'bytes': 605, 'sha256': '566256eb2a4d2d19396a693634f61c086b43fe490531a5fda930a02206561a66'}, 'omega_learning/curriculum.py': {'bytes': 901, 'sha256': '78c85541ae5e18bb82fd23a3ad13736bb00d1c337a077baf3593e7ae69a871cc'}, 'omega_learning/data_splits.py': {'bytes': 762, 'sha256': 'b282a74ff11f65917613f6cd2c7d606d1d83183120f29f90539d8e63f32a91c2'}, 'omega_learning/distillation.py': {'bytes': 926, 'sha256': 'ade304d798b8d2c05838ab43c59f388338782b814bddddaa7e3542d32638ac37'}, 'omega_learning/forgetting.py': {'bytes': 609, 'sha256': '309816cfaf2428e74d225103562e76190aabb3f257b7c72f48cbaa0d0e2a1166'}, 'omega_learning/incremental.py': {'bytes': 756, 'sha256': '5c3a92ebc068a422d66bf401b53106e04a31d0b90be03bb0c9ac96c6be992efd'}, 'omega_learning/transfer.py': {'bytes': 552, 'sha256': '116535cef9a5b53ceb7d4d01ea4bbb857d6e6716ff4c0e47837517522f2de666'}, 'omega_learning/verifier_feedback.py': {'bytes': 529, 'sha256': '32c6eb0c232e237d2d0626c25baccdf1dfaa7a79a572ab85c53e8ba7d9cdb1a2'}, 'omega_learning/versioning.py': {'bytes': 1558, 'sha256': '0b40fc2ddfc6040d13dfd655c9b4b63205774d62c9d5045d840719e2e1d004b1'}, 'omega_memory/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_memory/certified_replay.py': {'bytes': 1174, 'sha256': '65dafa94174e108782d89c2c9525858a6cabe1be81e79a0abc250223fa640fc5'}, 'omega_memory/episodes.py': {'bytes': 2012, 'sha256': '5c049b7960f15b1b9fdf360f1fa589f800d8b61029058da3bed8ad990e2bfa06'}, 'omega_memory/knowledge.py': {'bytes': 1151, 'sha256': '8fb5682e9bde27bcd427bae927345693dc8f241c66b570b43ad0b28baa1da8bf'}, 'omega_memory/lifecycle.py': {'bytes': 1020, 'sha256': 'f5b855f3fdb31469bb333068cdc91a7860eeb908f806b52d04e8cf9986893e86'}, 'omega_memory/privacy.py': {'bytes': 1298, 'sha256': '9cd49cab2eacfc7ec2bd4a477fd62601a2bf33829fc5a12675025dae074e8d20'}, 'omega_memory/retrieval.py': {'bytes': 1791, 'sha256': 'c92f8e8df591f7f5654eb0765ee3750bf3321b2c3ac72a4787d3c9c5523284ca'}, 'omega_nextorch/Kernel.lean': {'bytes': 3350, 'sha256': '80ec4d3720e5293aa4a12d48f0893b9c81c102d1f404455c0c19c1e41d1d139c'}, 'omega_nextorch/__init__.py': {'bytes': 142, 'sha256': '516da4354ac0863ad4f5186f2d28b554ca352c22d70e801911118742f47fc80d'}, 'omega_nextorch/capacity.py': {'bytes': 879, 'sha256': 'beadc424220f1e8b3c0ab9f6d0d3a7e2a54d97490d85ec3bb79e3358f7f92544'}, 'omega_nextorch/causal_analysis.py': {'bytes': 1301, 'sha256': '056cbf993d09506d115b3831b669c0c58bd8a23c13a6a2958af8aeec453037bc'}, 'omega_nextorch/cli.py': {'bytes': 3024, 'sha256': '8b0ff93f4d41491366437fbb698d92dcb8679170f30dc8e08062b5a11aa41a47'}, 'omega_nextorch/constrained_generation.py': {'bytes': 1230, 'sha256': 'ff0c2aa178625eedc5507952346e9c4e3f3d4edb3e78652b50a85c96776810dd'}, 'omega_nextorch/devices.py': {'bytes': 1074, 'sha256': '1b22c791598beaf4dbe70075afc49a327b33c486ac7ad5415ab4db9af23129f3'}, 'omega_nextorch/distributed_training.py': {'bytes': 959, 'sha256': 'b9e0720684b15d7c38f47500e6fd2a606cd55c7a30056e1cf012218622d4cd91'}, 'omega_nextorch/gate.py': {'bytes': 2732, 'sha256': '441ea3c00ba59eb91751c2b4d70102f492f0b661574a52da2f540cc243ff7d43'}, 'omega_nextorch/inference_metrics.py': {'bytes': 1104, 'sha256': '21c258ce170c895fb52d0821b74f31ce163059fbd317a6d1a437b189f0f5f2ea'}, 'omega_nextorch/lean.py': {'bytes': 3694, 'sha256': '7402c906504762507e932c79156b9453f987866bf8f84a5f8df4a7a8bf337a3c'}, 'omega_nextorch/model_api.py': {'bytes': 5081, 'sha256': '8ddbb515dda207d1513885cc1eb45c9bf5d4a27b992b730bcf64141c075015fb'}, 'omega_nextorch/native.py': {'bytes': 3737, 'sha256': '0e3dbcebb937eae6ae5f2514a1f44d36f36465795adf9ba9f9c638e69b8ada82'}, 'omega_nextorch/orange/OWOmegaCertifier.py': {'bytes': 3268, 'sha256': '56dfb692dc522fbee8b4e03e37d0262b5e2530ca946ba26484e62685652fd21f'}, 'omega_nextorch/orange/__init__.py': {'bytes': 223, 'sha256': '0c97e3ba8871daf16bd8e117c618fb5b585c8f5ad1f62a95ccaf3bbed0430ec1'}, 'omega_nextorch/orange/omega.svg': {'bytes': 253, 'sha256': '6e626ca4c781d1384541349595535c3741dcfe4606c3cc8e7aa4b67799045a64'}, 'omega_nextorch/orange_bridge.py': {'bytes': 1557, 'sha256': 'a3cc619a8134b60bfaa4d96e22de0cdfb9e2f464517d668070ee6c52f063537d'}, 'omega_nextorch/pipeline.py': {'bytes': 5721, 'sha256': '803f6886789e0a6ae86b19b3dc3ce80627d7e96ae2f4378c896641760e481ecf'}, 'omega_nextorch/proposer.py': {'bytes': 3020, 'sha256': '0b7bdacdee8c484ab9dea9605d5f0da6e47639eed78cd9f030504f4c2072a7ba'}, 'omega_nextorch/reward_integrity.py': {'bytes': 847, 'sha256': 'a303022e5cf5f02826eb73252a836b5000c19af92fb40831487b2db4daf28cb5'}, 'omega_nextorch/routing.py': {'bytes': 737, 'sha256': '382141c4e49e264b973fb6f07293bff24e57f95406b7b935c47fad166e724b16'}, 'omega_nextorch/supervised_training.py': {'bytes': 1230, 'sha256': 'e61e7ea158a830dd149361abb9e10f21b135b391c2b6a876d6d9a0e187f6d6b6'}, 'omega_nextorch/tokenizer.py': {'bytes': 959, 'sha256': '1308a587c2e3785397445eea33ebc2760af4cf8356665dd41b0da22813e4df21'}, 'omega_nextorch/uncertainty.py': {'bytes': 786, 'sha256': '3231330aab24fe32e50c8867d0cc46f259dcc783d6c4b20f2f53f903fce833cf'}, 'omega_nextorch/verified_search.py': {'bytes': 913, 'sha256': '3e67323f16a415e4f968349b7e1bbf352b317807fed00d24cfc530ecafc202e3'}, 'omega_open/__init__.py': {'bytes': 96, 'sha256': 'ef9d07e7eb92178c55ebf19e08e218d41bb80bdcc3edc757d3674b1d9300022d'}, 'omega_open/__main__.py': {'bytes': 1788, 'sha256': 'b4e070d61821d9d3c34456eaa0cb7c06ea33ec5a9bd90abdb6754cb2a4761758'}, 'omega_open/checker.py': {'bytes': 4502, 'sha256': 'd5d8aa80c5ffd9c1eed5200f744434d664e0f394785e76f537779ede6401aca5'}, 'omega_open/engine.py': {'bytes': 10400, 'sha256': 'f6b74f439c70330ec2faccb65c38671f8fcd484c7a264650ea30d9fcea1267d1'}, 'omega_open/logic.py': {'bytes': 4120, 'sha256': '6de87dfc76f0c0f4ef2854f34c2210224ba6efd6de37ed7dc062ba84b938b0a3'}, 'omega_platform/__init__.py': {'bytes': 82, 'sha256': '4f083b6eca3c6e606305eca8899f7e788313fd25ce8d24fd33d049fc9b1bee6e'}, 'omega_platform/_supervisor.py': {'bytes': 1803, 'sha256': '121684bb7456f61cc2c43fda6bbfec6e10ebe41282a53a39d4cb6e30004d976d'}, 'omega_platform/artifact_verifier.py': {'bytes': 2274, 'sha256': 'b1dd9e65776ef2893628cbd4b2573600ce3fd88d69f620bd87f1ad1d2e2d2416'}, 'omega_platform/budget.py': {'bytes': 1775, 'sha256': 'bdd1ed4e7d3377ae3f09fc760dfbf9ed645cdbbfe266d8f0d19d40577612fc66'}, 'omega_platform/content_cache.py': {'bytes': 1893, 'sha256': '3953633dd65853e549afbd9b0b716ae1116e8a4dd1d5d82d0b6d50503a5bb88b'}, 'omega_platform/corpus.py': {'bytes': 6913, 'sha256': '869d400f04cd5f927f4d41d670ecd14eeb458d124b7ee0a4371560043d39a4cf'}, 'omega_platform/manifest.py': {'bytes': 6256, 'sha256': '81a072ac6de0b04ead87f365271e18f2335199f36449ea8ceac4ee8a2dfef3e4'}, 'omega_platform/proof_cache.py': {'bytes': 1160, 'sha256': '7a8ae009b1c4aa659248fd8ddd37568b4f73543602bf1b5c98000a42b2ddb22e'}, 'omega_platform/quotas.py': {'bytes': 1095, 'sha256': '0131cd8272358c30f14b4b8679a5bd993238c2c368ef689ee350b91a660d27e5'}, 'omega_platform/results.py': {'bytes': 5475, 'sha256': '3560b608d21c45de8ab318989ead990762aee097327018ae97655e84c90c2d51'}, 'omega_platform/sandbox.py': {'bytes': 12802, 'sha256': 'bbd55cf5d373678bad2d2781bdd766a98286a417c484a912ad3ced7fc86359a7'}, 'omega_platform/scheduler.py': {'bytes': 4585, 'sha256': '63d633f53ebfd1ade11d1f15e45613ab3f14f058d9fc5f131ce1379511413fe5'}, 'omega_platform/security.py': {'bytes': 8921, 'sha256': 'f8a2a02108461efbba53fb33402073da2039984da1bc70f88b794430191306f5'}, 'omega_platform/wasm.py': {'bytes': 1263, 'sha256': '9abb11a20a52a5f5c89730cd87e01f3ae681b5e2e1b331b7c70ca6c88390958a'}, 'omega_platform/wasm_worker.py': {'bytes': 1112, 'sha256': '559c6a759cbb712689eadd2ef7c7886c33e3ed776c0da0cb535d198f01d3a746'}, 'omega_platform/workers.py': {'bytes': 14642, 'sha256': '694f94981b94838f731fcd6922e4ef7ac809e635a703274780e34125165006dd'}, 'omega_security/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_security/adversarial.py': {'bytes': 976, 'sha256': 'fa6b3e778c723b0f2dc8440f843ff64699c6cf6c4c4d6fedb81eaf2c14ab6f55'}, 'omega_security/anomalies.py': {'bytes': 668, 'sha256': '0a383f0331ac50d05612915da3b94b14e3a642662a705f29bf546cb48ea4a74d'}, 'omega_security/audit.py': {'bytes': 1993, 'sha256': '67b9f6df1c77cd5a2b3c1b1d58fd5ae0c86a318c5a27c33bb423271abb55b629'}, 'omega_security/capabilities.py': {'bytes': 3219, 'sha256': '8ac59d7af73abb62c655c56610a1a7f0b126877ba95d60a534f167adaadab836'}, 'omega_security/encoding.py': {'bytes': 4166, 'sha256': '1991d7eb46dcaa322be1b1ec5f5bee4df923f219609a6837413f35597ef37d41'}, 'omega_security/filesystem.py': {'bytes': 2633, 'sha256': '7ba2bddf299b8b7d5365229d7dd143ccab4cce6aab6b282eca710092a5246755'}, 'omega_security/objectives.py': {'bytes': 701, 'sha256': '90566c45def325505fcd725c098f83d91faff07bfd8ad2c890918e8df9e5444a'}, 'omega_security/revocation.py': {'bytes': 1152, 'sha256': '066674eb5d6479fa9523285654c4e4c5547100bf1a14957b4d90fe1b010e27bf'}, 'omega_security/roles.py': {'bytes': 2352, 'sha256': '4578a2f3083b3ad6285afbd45afd0a1aa2f777d5897b4f677b0565d2279e5eb5'}, 'omega_security/secrets.py': {'bytes': 811, 'sha256': '502a48ea33825f231decfaee6546ec498782ce61e5eae833d93d3a1ccbaae76e'}, 'omega_security/signatures.py': {'bytes': 1163, 'sha256': '7a8031d47d17967afd37ce7c4d64a82583f1578eaa34f6a0a0d20f834aa10f91'}, 'omega_security/untrusted_data.py': {'bytes': 1049, 'sha256': '8a03a948c42af583c67a5e4d0db75ab01636a5253ce39b89149b7afa040bd1e2'}, 'omega_selfhost/OperationalSemantics.lean': {'bytes': 3957, 'sha256': '9b93981ad67ebf775cdf57f0291df87e9a72e995b449674034ef9f6f9e19f79e'}, 'omega_selfhost/ProofPrelude.lean': {'bytes': 216, 'sha256': '0fa2298282df4e7544c8b128ff81b8ce1e55ab01f41e5f61b7b81a22792c6e8e'}, 'omega_selfhost/TensorKernel.lean': {'bytes': 8992, 'sha256': '3b40458d549ae01c8cb5eb42981f9644d49a00e11e6c0647fa3df40060a4662f'}, 'omega_selfhost/__init__.py': {'bytes': 281, 'sha256': '294962ff80255cebbd3fe6fd985e578a32273bff22a68cc9edce1af422ccd871'}, 'omega_selfhost/axiom_policy.py': {'bytes': 1102, 'sha256': '77d1bbc9d517291bb6be85efd1d53bb122edfef2e83eb03deddbff70a8fc98c8'}, 'omega_selfhost/bootstrap.py': {'bytes': 7224, 'sha256': '0c910df5eeadf5655f926a98720ab67e90c9db94edd483a6e30e398075c1a423'}, 'omega_selfhost/cli.py': {'bytes': 5547, 'sha256': '2be6d3606fbb101319d93f74fc28a7b9d816ad3210db495d66238ac8e029eab8'}, 'omega_selfhost/compiler.omega': {'bytes': 25507, 'sha256': '000e31f0aae4fc1710adf170efe7083bcf3a0a96b9fcc61701c4788f3d3db071'}, 'omega_selfhost/driver.py': {'bytes': 21091, 'sha256': '616879546b839400bddc975811db8d94b07c50b6593c4d9c4e148e10d13e828b'}, 'omega_selfhost/memory.h': {'bytes': 1429, 'sha256': '38b8c8a858094c4644192a4378ff7700022653b8afb7ce0da017352993ef3752'}, 'omega_selfhost/native_backend.py': {'bytes': 981, 'sha256': '6bc4da03aaa3eff6ae51870b70a082e60419538ecf1a84a9015628499784c7b9'}, 'omega_selfhost/polynomial.h': {'bytes': 6976, 'sha256': '23f0dee22f70ce796214a03df853af4d39e36f5a8c8bc509774c5c3e537fd527'}, 'omega_selfhost/proof.py': {'bytes': 7697, 'sha256': '54ebe598b545a054d9f4c454ce7c96358678c78990458f18109069f74f02d1b3'}, 'omega_selfhost/proof_protocol.py': {'bytes': 1387, 'sha256': '6b379d8967c8bfd286482f10fe3193a29b4e24659a638add3a6d39ccc0c1665e'}, 'omega_selfhost/runtime.h': {'bytes': 19546, 'sha256': '876f86e597bd3c975bb84666097b3aa2dd099597f05f3b5ab25fab7056debc68'}, 'omega_selfhost/runtime_wasm.c': {'bytes': 613, 'sha256': '80a21786c33e0322d2df40edc67b54b1fdb1d48ba0655207bb44c7e972f62403'}, 'omega_selfhost/statement_binding.py': {'bytes': 870, 'sha256': 'bd834c43186b67ff19abf6f04393736ad682aa2c7a68fac6149cb83cd22e814f'}, 'omega_selfhost/stdlib.omega': {'bytes': 2590, 'sha256': '3457c66530e4abf2073019a6248bd54f9c0f65f16c1573c48963e9ce593a4fdc'}, 'omega_selfhost/tensor_runtime.h': {'bytes': 15865, 'sha256': 'cc9a4e3433896091523b61bc23ef39810b02eeb1342f8f6991131f8842b9b355'}, 'omega_selfhost/wasm_backend.py': {'bytes': 3507, 'sha256': '3467e19b06839bfd3a1b1ecb91d64a396e82e7062ca03c0c1f01aecda967f327'}, 'omega_tools/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_tools/approvals.py': {'bytes': 1701, 'sha256': '15ee5471ebffc24d27911ebe79c23f1529ce71fef02d5e9d40244b0145a565e5'}, 'omega_tools/audio.py': {'bytes': 1317, 'sha256': 'a9954485c2676e626b89ff2e62ae4090185c3fbcbdf055f850dcc7e7198927f9'}, 'omega_tools/capability_adapter.py': {'bytes': 3035, 'sha256': '512e893aa1555cdd1b729c962d32a68ba171b0176edd5908239b0323f33bf476'}, 'omega_tools/contracts.py': {'bytes': 2619, 'sha256': 'a7af9941218d3cee6ed48bd4e9d9651740c795b98159da236cddb472184cd724'}, 'omega_tools/database.py': {'bytes': 1133, 'sha256': 'fee6e4da74535cf8ce13189c9cb967e832eeb1580defb8d65859adf54b1c9960'}, 'omega_tools/database_worker.py': {'bytes': 1832, 'sha256': 'ecd1c3e2f6d9f8eacd1f3ca46823a539f4f49b376bd5fa3feb0b9f224eda5f92'}, 'omega_tools/document_worker.py': {'bytes': 1217, 'sha256': 'eadd37197e630ff7fe65faec04f34dab02844b98345dd7a9ec070a83970066da'}, 'omega_tools/documents.py': {'bytes': 608, 'sha256': '8c0505c217ef033302b47b726d43fb67e09e2ba25cf110d89e3efdf2c2840714'}, 'omega_tools/git_ci.py': {'bytes': 1206, 'sha256': '8d61e04dfddf21b9ad32323daf2dd1a8fed3d9fe6e068130d1de56a380147424'}, 'omega_tools/local_files.py': {'bytes': 3113, 'sha256': '3a2ffd92ce283823d51c8212dda46729c4e2181636cfb405398e1f42d934df5b'}, 'omega_tools/memory.py': {'bytes': 1046, 'sha256': 'c71ecb5a7ee09a152d16b32a8288ed2e3c5a59e06b60dd9e170309f085c451a1'}, 'omega_tools/notebooks.py': {'bytes': 1615, 'sha256': '52bc760b9656d735713ead49cb017de03e36cbb02fc95c6e5c6d0e82483b2d6a'}, 'omega_tools/simulation.py': {'bytes': 1426, 'sha256': 'cc20c4c5fc45c3427169988ac368d7cda6aa7a57c734213079eb367f4c1430a6'}, 'omega_tools/vision.py': {'bytes': 1193, 'sha256': 'fe7db2c2661832464418f5ce9fc39c84d53fd9e580c8ebb9b654c85f1a22c59e'}, 'omega_tools/web.py': {'bytes': 1731, 'sha256': '24e255b72a3a6d450dda7a82b8a6ec451a47ed65b145306e9bd6e80789d869e0'}, 'omega_tools/worker.py': {'bytes': 957, 'sha256': '1f6fb550b1493200a5d558c470dc5f283d775a0459c3d18d2cc087f2d317e6a6'}, 'pyproject.toml': {'bytes': 1502, 'sha256': '10f49737b6f8fdfe00f613c01a813cdda6839cae096283c10b92b8f78e3f054c'}, 'requirements/cpu-py312.lock': {'bytes': 2076, 'sha256': '78735388c5c424f7d9b912082bc38d85c9b2396af72f93c10fbd4715fadf9414'}, 'roadmap/FILES_TO_150.md': {'bytes': 38125, 'sha256': 'f4b9a0486e83dbb3f9738cf7c26a5bbf6f0090b2907b0cb026162b315810b064'}, 'roadmap/evidence/om011.json': {'bytes': 1007, 'sha256': '58aff5c669e8595a3662d25e8de5e09bad166ab291421cd6f9769ac376dc7059'}, 'roadmap/evidence/om012.json': {'bytes': 1496, 'sha256': '2850392eeee259a04970848fb0a6670003e3ab2610469a55bbb22672caaefb91'}, 'roadmap/evidence/om013.json': {'bytes': 778, 'sha256': '03ffd6db88874599eeb459a2d607fc913af0247fa0bc7c97230a530688a2abe3'}, 'roadmap/evidence/om014.json': {'bytes': 684, 'sha256': 'f23fe4262eaa3104f4dd122a8b5aa37ed880af3e5e59e79e31379b04ab805ded'}, 'roadmap/evidence/om015.json': {'bytes': 683, 'sha256': '117591eb0e66e469eab4fdf41e76056cc795bc3f50fe77cca79885d833f32e9c'}, 'roadmap/evidence/om016.json': {'bytes': 1023, 'sha256': 'fb74fb7582fb896edcefb4f2e916d2b8cd817de3393e86d3b075d01c60ae8a13'}, 'roadmap/evidence/om017.json': {'bytes': 784, 'sha256': 'bfb62d63dd0e4fee7dc05cb13d2c0cc95544af98f3509530366febd4822e600e'}, 'roadmap/evidence/om018.json': {'bytes': 1017, 'sha256': '35bf7da2e532028a4b8bf0973eacf46e88c309b25e04ec555fabe547d0651040'}, 'roadmap/evidence/phase0-corpus.json': {'bytes': 5288, 'sha256': '39b3bfd3182686dea1db568bf9c2abdb54c8124e619ce8d767638a632f2dfe8a'}, 'roadmap/evidence/phase0-security.json': {'bytes': 80207, 'sha256': '7db286de5ac8a7b9f91092f570048c8b64a52ddf31c8732485af2440bda54151'}, 'roadmap/evidence/phase0-tests.json': {'bytes': 499, 'sha256': '3fbd4db1b24d6438255a92fa56d2b0f8c75f598daae731ed65a9ec20e7036d61'}, 'roadmap/files-to-150.json': {'bytes': 116564, 'sha256': 'd26cf740794b95044e26cb40c0a35d821a9110cf538d15525e18d204ccf6b7ca'}, 'roadmap/progress.json': {'bytes': 23626, 'sha256': 'b265f9d21b65b34af0440c39c7aae2c37bc4d3aaf2d227d77fe0d90d215e24c3'}, 'roadmap/tasks.tsv': {'bytes': 14974, 'sha256': '4bcf408de16b01f439a8478ca1f2279c60b07a0011e24cbb5a80d17d66119593'}, 'scripts/build-manifest.py': {'bytes': 1448, 'sha256': '163eec6df0d8ee111c3c91788a29f7df9c8efe2786ec13c56453f792bf4ab42b'}, 'scripts/build-monolith.py': {'bytes': 9673, 'sha256': 'f1833339f461b60be2f9fe20521a9f997d1e78c83dbf0e730b4dda1d39e5d868'}, 'scripts/monolith-components.py.txt': {'bytes': 7792, 'sha256': '2b7ea4480b06d849ce970a112eb4ce28cf947ff73cafd1095c611f7b8aee1a52'}, 'scripts/package.py': {'bytes': 2045, 'sha256': '179210e90648f1de3ccb230a8e37ba08f5de2c9a106b2c96f94082ff1473ceae'}, 'scripts/regression.py': {'bytes': 716, 'sha256': 'b63b151bcc5cad3370a3dc3fe4a45f6b61e746eed986f613cf97a02a6b80b95e'}, 'scripts/security.py': {'bytes': 1321, 'sha256': '892560b53800a18f4e4e8aa7716a05453209cd6658b157befdb060856afdfbfe'}, 'scripts/setup-native.sh': {'bytes': 2030, 'sha256': '51864dcb68ed7028c85e1eef9becf44325ac698cbbc8d74f13693448483ab733'}, 'scripts/setup-sandbox.sh': {'bytes': 1685, 'sha256': '5261a2d58d3ab95939b3308951101469a44e526993ffe7ebe3b578b5ca9345dd'}, 'scripts/setup.sh': {'bytes': 1862, 'sha256': '193d76dacde2fa90d74081e0d67e1d0e0778f2072a23237e18e06502ee49964f'}, 'scripts/test.sh': {'bytes': 679, 'sha256': 'c2a1850101eca0c08edba6dde6cfa555d75d9148590258c2768c147eb3792512'}, 'testes/corpus.json': {'bytes': 4505, 'sha256': 'c50519d0cce43178c5b70ef617b50bf8bfc73badd63b4f37701da854b67bdf6a'}, 'testes/foundation/runtime_harness.c': {'bytes': 730, 'sha256': 'e7c5d03dd68a3ed459b56e262ab244a021a86ef189399a3f60645deee8c4527f'}, 'testes/foundation/test_corpus.py': {'bytes': 1787, 'sha256': 'd3e54774a45aa200cbdcfa6f493a8b67ce5c0b4c1e87aaced612838df554a60b'}, 'testes/foundation/test_dimensions.py': {'bytes': 4727, 'sha256': '4b85f26dbeff1b9ad81cb204461db242aea8fc561130380e79c80d3918f655c1'}, 'testes/foundation/test_generics.py': {'bytes': 5673, 'sha256': '874cd1bce88ddd834df0da99e8ca6abbb7942fbe5ce528dd702ff5da162b1a65'}, 'testes/foundation/test_manifest.py': {'bytes': 746, 'sha256': '0ddb8df2f6425b17d851fd30c5c7b5d760273a5adf8a3f107cd13b06eb926516'}, 'testes/foundation/test_modules.py': {'bytes': 7977, 'sha256': 'ef98a320325e09991f74b09a1c4828b21fe4f7a87c5754f6a5cc5feca52af1d9'}, 'testes/foundation/test_operational_semantics.py': {'bytes': 508, 'sha256': '59013e42755a8aedc152830bdd22cab4e554c54bde8e1a0e2b5bb33ffdaf014c'}, 'testes/foundation/test_procedural_types.py': {'bytes': 5775, 'sha256': '453c9e8239c652ea2a32ef94a39416f296944dce4e16e0e5fc5bbd441f344f76'}, 'testes/foundation/test_proof_build.py': {'bytes': 1648, 'sha256': '7e8ad364c3a837cb12f7bb153ed9e21bbc9b7c4a763574bb2290efccf2239597'}, 'testes/foundation/test_results.py': {'bytes': 6096, 'sha256': '07f9944a6599a4346d56d509d86c728fb7b4875a302f3757ffaac037b86bf500'}, 'testes/foundation/test_sandbox.py': {'bytes': 4725, 'sha256': '0316e5b07248784d8007a6ab6c2e191854ab9cbf33938874c6b0662d02e90538'}, 'testes/foundation/test_single_file.py': {'bytes': 3630, 'sha256': '0263f18d69c24a0dd96a81891cccd1137a21c14efb826930481624892d6f8f7c'}, 'testes/foundation/test_ssa.py': {'bytes': 7129, 'sha256': '54e35fdcb6e5656b4476d5e0ff113683ff3b6a82278eb105fe2828ab01fb5538'}, 'testes/foundation/test_type_inference.py': {'bytes': 2918, 'sha256': '4be2acb96ba652dbf59018c2ecc60eee555fec537a00a592c691d86c6b268ba4'}, 'testes/foundation/test_typed_ir.py': {'bytes': 6315, 'sha256': '253612deb91a413638515be369be7e44972a1fa130542efb6aba58ded650e6d8'}, 'testes/foundation/type_ops_harness.c': {'bytes': 853, 'sha256': '0af5af10096944492cb98ac07fdc9761affc3e6939ab411d57eb8e277e204c03'}, 'testes/lean/OperationalExamples.lean': {'bytes': 834, 'sha256': '17a3f693511d9b70f64db6b7bf6c4afcf46efa4ed2ddd9d30038dd2117f5dec2'}, 'testes/nextorch/conftest.py': {'bytes': 510, 'sha256': '02980bb3031851883a041e5cc7d29d1fcc22d88055e80bb824d6de84dccb0136'}, 'testes/nextorch/test_cli.py': {'bytes': 1116, 'sha256': 'd9dac93a01b40d4b34448e7128590de0340b3dfd51f13962f53cdb3729eeaddf'}, 'testes/nextorch/test_core.py': {'bytes': 1802, 'sha256': 'a51f5654c8450223d1dadd65bf8d157d5660de86b84510ff75a8c76b5ea51de8'}, 'testes/nextorch/test_engine.py': {'bytes': 4777, 'sha256': '09bfe201c8c7b9d9a2ab74f15aeff7eafd423bf974e255190d6445a0a6ebb803'}, 'testes/nextorch/test_evolution.py': {'bytes': 5163, 'sha256': '4af85444ee1612ca28db438b441d9307ac703b6c3aef06b7b64c1f98adcef619'}, 'testes/nextorch/test_formal.py': {'bytes': 6353, 'sha256': 'a76d746096e9dfcb905eefb867591137fa6ad7ae259d5e49efd1fdf21cfe7f02'}, 'testes/nextorch/test_orange_bridge.py': {'bytes': 3893, 'sha256': '838b378571a95b5c9daee18303f59e05aeccde3153e396de2e194a19ea705d40'}, 'testes/nextorch/test_synthesis.py': {'bytes': 4570, 'sha256': '08192bc225050457b28ce4352d02ad96c44733334550186329e16bceefab70e1'}, 'testes/nextorch/test_verifier.py': {'bytes': 3555, 'sha256': '98553cc010b02a439777418f49a53f64d06e4f41e5af34a6349214b87ce7a585'}, 'testes/nextorch/test_widgets.py': {'bytes': 7325, 'sha256': '5c062d8246a9be671fef4fdfa94037285fdbdcd46a049d890b10ce968ff68b51'}, 'testes/test_evolucao_v11.py': {'bytes': 7451, 'sha256': 'b8ab50a0f4ef1ffd6da3bd23354fa6d7501c2bffce306f7cdc0b59ee2cf52a03'}, 'testes/test_meta_v12.py': {'bytes': 5201, 'sha256': '0bd517b3b2db498987da1e37b32f4ff03080c03b50826af8906a164ab3a17114'}, 'testes/test_nextorch_integration.py': {'bytes': 8712, 'sha256': '128dd0893cb36dc6704c1e123cb5548e96c6c0043c66b191520bd9920119b2fd'}, 'testes/test_omega.py': {'bytes': 8597, 'sha256': 'd02dc93d5a3931cba5515dbaddfd37d874ed45569ddfe21ba848cc569adca76c'}, 'testes/test_omega_orange.py': {'bytes': 3898, 'sha256': 'cd36801853fae2a06b5188572c64266856ef3e2ab4c7d4637c3115feb92aa5a5'}, 'testes/test_open_v13.py': {'bytes': 3504, 'sha256': 'c3f5f95d25dc0952705b139265952d125b7f7e74c2717616d17c486c8a1b8b90'}, 'testes/test_selfhost.py': {'bytes': 9693, 'sha256': '26b5a024b4e2efabe77bc75a5beab419666beda85d5a90668e648895428d3c8d'}, 'testes/test_v02.py': {'bytes': 6541, 'sha256': '02291ac2f9a29dcd354de00db9656cd95748ab1fd4ef96e7f2fd33813b5e0279'}, 'testes/test_v03.py': {'bytes': 12111, 'sha256': '3ab189f206bc9342b06a2b40e92314b89fce9b02eb12acd4fef62d41970af90a'}, 'testes/test_v04.py': {'bytes': 8825, 'sha256': 'adf8ce7c87f3ce4df2dcb300ef00963668ca02ff4da1e52ff7671bd63f1eab05'}, 'testes/test_v1.py': {'bytes': 11496, 'sha256': 'f090892e0494b8fc0688873423f6d1603f0dfdf41810b2b5e5fccb554f1fec1f'}}, 'tree_sha256': 'dd79360f6bd33a44393e25791c9a2d1f8fe5798bb80ffe0ed6ab4b9cdfc72d21', 'embedded_code_lines': 22867}
 
 SOURCES = (
     ('.github/workflows/tests.yml',
@@ -446,6 +446,147 @@ SOURCES = (
         'Esses comandos não invocam serviços externos, não alteram o próprio código e\n'
         'não declaram provas universais a partir de exemplos. Sua execução também ficou\n'
         'adiada nesta entrega de fontes.\n'
+        '\n'
+        '## Integração do supervisor, ainda sem execução\n'
+        '\n'
+        'A montagem concreta fica em `omega_agent.integration`. `boolean_problem(task)`\n'
+        'converte a tarefa `{id, arity, outputs}` no contrato\n'
+        '`omega-nextorch:exact-bounded-truth-table:1`. `boolean_agent(model, ...)` conecta\n'
+        'um modelo com protocolo `propose`, o checker `omega_nextorch.gate.certify`, o\n'
+        'verificador de capacidades, auditoria, ferramentas opcionais e um destino de\n'
+        'metadados episódicos. `NextorchBooleanAdapter` implementa o lado das propostas.\n'
+        'O checker dessa montagem aceita somente esse contrato, sem restrições extras;\n'
+        'não certifica minimalidade, objetivos de texto livre ou outros domínios.\n'
+        '\n'
+        'O host entrega um `Goal` e uma capacidade assinada com ação `agent.solve`.\n'
+        'O campo `subject` dessa capacidade é obrigatório e deve ser igual a\n'
+        '`goal.subject(problem.fingerprint())`; `goal.authorized_by` identifica o emissor\n'
+        'configurado da capacidade. Trocar entradas, objetivo, contrato de sucesso ou\n'
+        'limite de ações invalida a vinculação. As propostas e as entradas do checker\n'
+        'são cópias de dados; o resultado registra o checker usado e `promoted=False`.\n'
+        'Metadados gravados em `EpisodeStore` são marcados como sensíveis e não incluem\n'
+        'as entradas, as propostas ou os conteúdos brutos de ferramentas.\n'
+        '\n'
+        '`omega_security.encoding` define a representação compartilhada: JSON UTF-8,\n'
+        'chaves ordenadas, sem espaços, valores finitos, sem chaves repetidas e com\n'
+        'limites de bytes, nós e profundidade. O tamanho é contabilizado antes de gerar\n'
+        'a string serializada. Assinaturas devem usar esses bytes exatos. Chaves\n'
+        'privadas e emissão de capacidades continuam fora destes módulos.\n'
+        '\n'
+        '### Pedidos de ferramentas\n'
+        '\n'
+        'Um modelo pode devolver um objeto de dados com exatamente estes campos:\n'
+        '\n'
+        '```json\n'
+        '{"kind":"tool_request","name":"files.read_text","arguments":{"path":"/raiz/arquivo.txt"}}\n'
+        '```\n'
+        '\n'
+        '`decode_proposal` converte esse objeto em `ToolRequest`. O callback confiável\n'
+        '`authorize_tool(goal_subject, request)` recebe uma cópia do pedido concreto do\n'
+        'adaptador, com os campos `tool`, `action`, `arguments` e `principal`. Ele deve\n'
+        'consultar a política do supervisor e devolver `ToolAuthorization(capability,\n'
+        'approval)` ou `None`. O modelo não fornece nem escolhe a capacidade. `None`\n'
+        'encerra a rodada como `awaiting_approval`, com o pedido e seu hash para revisão;\n'
+        'a ferramenta ainda não é chamada. Esta interface não persiste nem retoma uma\n'
+        'sessão automaticamente: o host deve reautorizar a continuação explicitamente.\n'
+        '\n'
+        '`CapabilityAdapter` exige o contrato dos argumentos e da resposta, verifica\n'
+        'cada `path_field`, aplica um limite de chamadas e sela o registro após iniciar\n'
+        'seu uso. Uma capacidade com `subject` precisa corresponder ao digest do pedido\n'
+        'concreto; capacidades sem esse campo continuam sendo escopos concedidos pelo\n'
+        'host, com ações explícitas, raiz absoluta, expiração e revogação. Uma capacidade\n'
+        'vinculada a um assunto não pode ser usada por uma API que omite esse assunto.\n'
+        'Ações mutáveis conhecidas exigem `approval_required=True` e um `ApprovalGate`.\n'
+        'A aprovação vincula todos os argumentos, tem prazo e exige um ator diferente\n'
+        'do principal executor. O adaptador audita hashes e estados de início/fim/falha,\n'
+        'sem registrar os argumentos ou saídas brutas.\n'
+        '\n'
+        '`register_files(adapter, root, writable=False)` registra leitura UTF-8 limitada\n'
+        'com operações ancoradas em descritores e sem seguir symlinks. O modo de escrita\n'
+        'é uma opção do host e exige aprovação e o hash esperado do arquivo existente;\n'
+        'não oferece criação de arquivos nessa interface. O root configurado e o root\n'
+        'da capacidade restringem conjuntamente o acesso. A comparação do hash e a\n'
+        'substituição não constituem CAS contra escritores externos não coordenados;\n'
+        'o host deve serializar as alterações de um mesmo arquivo.\n'
+        '`register_memory(adapter, private_memory, consent_resolver)` registra somente\n'
+        'recuperação por `PrivateMemory`, com retenção e consentimento conferidos pela\n'
+        'política configurada; não expõe treino ou exportação.\n'
+        '\n'
+        'Saídas de ferramentas recebem `authority=False`. Por padrão, só seus hashes\n'
+        'retornam ao contexto do modelo. `observe_tool` é um filtro do host para fornecer\n'
+        'uma observação selecionada; ele não recebe autoridade para alterar o objetivo.\n'
+        'O contexto acumulado e o número de passos continuam limitados. Deadlines do\n'
+        'agente são cooperativos, conferidos antes/depois dos adaptadores; interromper\n'
+        'um callback bloqueado exige o worker/processo isolado configurado pelo host.\n'
+        '\n'
+        '### RPC de workers e cancelamento\n'
+        '\n'
+        '`Coordinator.dispatch` admite um lote limitado antes de enviar o primeiro RPC,\n'
+        'confere capacidades, distribui jobs pelas vagas configuradas e preserva a ordem\n'
+        'dos resultados. Quotas de CPU e número de jobs valem para a vida da instância;\n'
+        'reservas de memória e concorrência são compartilhadas entre chamadas. O host\n'
+        'renova essas instâncias e quotas por política, sem conceder esse controle ao\n'
+        'modelo. `capabilities` aceita chaves `(worker_id, job_id)` para capacidades de\n'
+        'um job, ou `worker_id` para um escopo do host que autorize vários jobs.\n'
+        '`job_subject(job)` fornece o hash para uma capacidade opcionalmente vinculada.\n'
+        '\n'
+        'O transporte tem assinatura `transport(endpoint, request, *, timeout)` e deve\n'
+        'impor timeout de I/O, TLS e a identidade do endpoint configurado. O envelope\n'
+        '`omega-worker-request-1` contém destino, `request_id`, job, seu hash e a\n'
+        'capacidade serializada. O servidor verifica a ação `worker.execute:<id>` e os\n'
+        'escopos de leitura/execução. A resposta `omega-worker-response-1` vincula worker,\n'
+        'job, hash e `request_id`; o cliente confere esses campos e a autenticação do\n'
+        'host. `verify_response(worker, response, signature_verifier)` oferece a\n'
+        'conferência dos bytes assinados para esse autenticador. Não há retentativas\n'
+        'automáticas de execução em caso de falha de transporte.\n'
+        '\n'
+        '`WorkerServer` compartilha quotas e rejeita a repetição de `request_id` durante\n'
+        'a vida da instância. Registra um callback de revogação e um timer de expiração,\n'
+        'que sinalizam o evento de cancelamento observado pelo supervisor do sandbox.\n'
+        'O callback é removido após a execução. Revogações remotas precisam chegar ao\n'
+        'registro desse servidor pelo serviço configurado pelo host. Replay de RPCs e\n'
+        'aprovações de ferramentas usam estado em memória: reinícios exigem persistência\n'
+        'externa antes de permitir reutilização de tickets. Os artefatos montados devem\n'
+        'ser imutáveis e pertencentes ao supervisor; o hash do job vincula caminhos,\n'
+        'argumentos e orçamento, não mede sozinho o conteúdo de cada mount.\n'
+        '\n'
+        '### Promoção e ponteiro de versões\n'
+        '\n'
+        '`PromotionGate.prepare` gera os bytes que verificador e promotor independentes\n'
+        'devem examinar e assinar. O payload inclui proposta completa, baseline, versão\n'
+        'alvo, caminhos, resultados declarados e manifesto de artefatos. Esse manifesto\n'
+        'contém `patch_sha256`, `baseline_version`, `baseline_artifacts_sha256` e um mapa\n'
+        '`files` de caminhos relativos para hashes completos. O registry rejeita caminhos\n'
+        'fora do componente e sobreposição de componentes mutáveis com protegidos.\n'
+        '\n'
+        '`Attestation` inclui `expires` nos bytes assinados; promoção exige prazo nos\n'
+        'dois registros e três atores distintos. `PromotionDecision` é um envelope de\n'
+        'dados, sem flag que conceda autoridade. `Versions.activate` chama novamente\n'
+        '`PromotionGate.authorize` dentro da transação, compara a baseline e seu hash,\n'
+        'confere os artefatos e executa o healthcheck do host antes de publicar o ponteiro.\n'
+        '`ArtifactVerifier.promotion` fornece a conferência dos arquivos do manifesto;\n'
+        'isso confere integridade de bytes, sem provar equivalência entre fonte e binário.\n'
+        'Os atestadores independentes continuam responsáveis pela verdade das evidências.\n'
+        '\n'
+        'O root privado de `Versions` precisa de `promotion_gate` e auditoria. Na primeira\n'
+        'ativação, exige `initial_version` junto de `initial_artifacts_sha256`, definidos\n'
+        'pelo supervisor a partir da versão estável. O ponteiro novo usa formato\n'
+        '`omega-version-pointer-1`; ponteiros antigos exigem migração explícita. Um ledger\n'
+        'persistente consome a autorização antes da escrita do ponteiro. Falhas de escrita\n'
+        'ou auditoria tentam restaurar o ponteiro anterior e mantêm o ticket consumido.\n'
+        'Um crash pode exigir recuperação pelo supervisor; esta transação não substitui\n'
+        'um protocolo de deploy de todos os serviços em execução.\n'
+        '\n'
+        '`rollback(authorization, healthcheck)` exige um verificador independente\n'
+        '`authorize_rollback(action, authorization)` fornecido pelo host. Esse callback\n'
+        'revalida, sem consumir, a autorização do alvo concreto e é chamado antes e após\n'
+        'o healthcheck. Sem essa configuração, rollback manual é recusado. O retorno por\n'
+        'falha da transação usa o estado anterior já capturado. Nenhuma dessas operações\n'
+        'é invocada automaticamente pelo agente ou pela importação dos módulos.\n'
+        '\n'
+        'Esta continuação altera apenas fontes e documentação. Não foram executados\n'
+        'imports dos módulos novos, builds, testes, benchmarks ou avaliações de segurança.\n'
+        'Os estados de aceite do backlog permanecem pendentes.\n'
     ),
     ('docs/ARQUIVO_UNICO.md',
         '# Distribuição em arquivo único\n'
@@ -1726,6 +1867,37 @@ SOURCES = (
         'rollback, preservação matemática, quotas, redaction e controle de objetivos.\n'
         'Medir os adaptadores e algoritmos com casos adversariais e dados retidos.\n'
         'Os módulos de avaliação não constituem uma avaliação externa por existirem.\n'
+        '\n'
+        '## Integração de autorizações nesta continuação\n'
+        '\n'
+        'O agente vincula `agent.solve` ao hash do problema completo e do objetivo\n'
+        'assinado. O modelo pode pedir ferramentas, mas a resolução da capacidade e da\n'
+        'aprovação permanece em um callback do supervisor. O registro de ferramentas\n'
+        'confere caminhos, contratos, quantidade de chamadas e aprovações; as saídas\n'
+        'não obtêm autoridade e só chegam ao modelo por um filtro do host. As operações\n'
+        'ancoradas em arquivos recusam symlinks; hashes esperados não substituem a\n'
+        'coordenação com outros escritores do mesmo arquivo.\n'
+        '\n'
+        'Os workers vinculam respostas assinadas à identidade do worker, do job e da\n'
+        'requisição. Quotas são compartilhadas entre chamadas da instância. Revogação\n'
+        'e expiração sinalizam cancelamento ao supervisor do sandbox, sem herdar\n'
+        'credenciais. Entrega de revogação entre máquinas, enforcement de TLS/timeouts\n'
+        'e persistência de replay após reinício continuam obrigações do transporte e\n'
+        'do serviço confiável; não são fornecidos por um callback permissivo.\n'
+        '\n'
+        'O portão de promoção recebe o payload completo e suas atestações, e o ponteiro\n'
+        'de versões revalida essa autorização ao ativar. A versão de origem inclui o\n'
+        'hash do manifesto de artefatos para evitar confusão entre baselines com o mesmo\n'
+        'nome. Tickets de promoção consumidos ficam no root privado do supervisor.\n'
+        'Esse root, sua âncora de auditoria e as chaves públicas precisam ficar fora do\n'
+        'alcance de candidatos. Uma falha de energia entre a escrita do ticket e a\n'
+        'publicação pode exigir recuperação manual, recusando reutilização automática.\n'
+        'Healthchecks e verificadores de artefatos não podem ser escolhidos pelo modelo.\n'
+        '\n'
+        'As novas fronteiras têm apenas implementação em código-fonte nesta entrega.\n'
+        'Cancelamento, replay, serialização, concorrência, rollback e assinaturas ainda\n'
+        'precisam de testes e avaliação independente. Não houve ativação ou promoção\n'
+        'real de versão nesta continuação.\n'
     ),
     ('docs/TIPAGEM_3_0.md',
         '# OM-012 — inferência de tipos antes da execução\n'
@@ -21356,6 +21528,71 @@ SOURCES = (
         '                known.add(rule.conclusion);proof[rule.conclusion]=(rule.id,tuple(sorted(rule.premises)));changed=True\n'
         '    return frozenset(known),proof\n'
     ),
+    ('omega_agent/integration.py',
+        '"""Host assembly of existing Nextorch proposals and finite Boolean admission.\n'
+        '\n'
+        'No model is trained, capability minted, tool invoked or database opened at\n'
+        'import time. The checker certifies a truth table, not general goal fulfillment,\n'
+        'minimal circuits, unrestricted mathematics or general intelligence.\n'
+        '"""\n'
+        'from .problem import Problem\n'
+        'from .runtime import CognitiveAgent, ToolRequest\n'
+        'from omega_security.encoding import decode, snapshot\n'
+        '\n'
+        "BOOLEAN_DOMAIN = 'boolean.truth-table'\n"
+        "BOOLEAN_CONTRACT = 'omega-nextorch:exact-bounded-truth-table:1'\n"
+        '\n'
+        '\n'
+        'def boolean_problem(task):\n'
+        '    from omega_nextorch.gate import validate_domain\n'
+        '    copied = snapshot(task)\n'
+        '    validate_domain(copied)\n'
+        "    return Problem(copied['id'], BOOLEAN_DOMAIN, copied, (), BOOLEAN_CONTRACT)\n"
+        '\n'
+        '\n'
+        'def decode_proposal(raw):\n'
+        '    """Decode data envelopes without allowing models to supply authorization."""\n'
+        '    if type(raw) is str:\n'
+        "        if len(raw)>1024*1024:raise ValueError('Proposal text budget exceeded')\n"
+        "        value = decode(raw.encode('utf-8'))\n"
+        '    elif type(raw) is bytes:\n'
+        '        value = decode(raw)\n'
+        '    else:\n'
+        '        value = snapshot(raw)\n'
+        "    if type(value) is dict and value.get('kind') == 'tool_request':\n"
+        "        if set(value) != {'kind', 'name', 'arguments'}:\n"
+        "            raise ValueError('Tool proposals cannot contain authority fields')\n"
+        "        return ToolRequest(value['name'], value['arguments'])\n"
+        '    return value\n'
+        '\n'
+        '\n'
+        'def check_boolean(problem, candidate):\n'
+        '    from omega_nextorch.gate import certify, validate_domain\n'
+        '    if type(problem) is not Problem or problem.domain != BOOLEAN_DOMAIN or problem.success_contract != BOOLEAN_CONTRACT or problem.constraints:\n'
+        "        raise ValueError('Checker does not support this success contract')\n"
+        '    validate_domain(problem.inputs)\n'
+        "    if problem.id != problem.inputs['id']:\n"
+        "        raise ValueError('Problem/task binding mismatch')\n"
+        '    try:\n'
+        "        certificate = certify(problem.inputs, candidate, 'omega-agent:bounded-proposal')\n"
+        '    except (ValueError, TypeError, KeyError, IndexError, RecursionError, OverflowError) as exc:\n'
+        "        return {'valid': False, 'error_type': type(exc).__name__}\n"
+        "    return {'valid': True, 'certificate': certificate}\n"
+        '\n'
+        '\n'
+        'def boolean_agent(model, *, verifier, principal, audit, tools=None,\n'
+        '                  authorize_tool=None, observe_tool=None, episode_store=None):\n'
+        '    """Wire a host-selected ReasoningModel, tools and an optional metadata sink.\n'
+        '\n'
+        '    NextorchBooleanAdapter implements the proposal side without granting neural\n'
+        '    scores any admission authority. Retention/reuse of episodes remains the\n'
+        '    responsibility of the private memory facade and its consent policy.\n'
+        '    """\n'
+        '    return CognitiveAgent(model, decode_proposal, check_boolean, verifier, principal, audit,\n'
+        '                          tools=tools, authorize_tool=authorize_tool, observe_tool=observe_tool,\n'
+        '                          record_episode=episode_store.append if episode_store is not None else None,\n'
+        '                          checker_id=BOOLEAN_CONTRACT)\n'
+    ),
     ('omega_agent/learned_heuristics.py',
         '"""Online ridge heuristic; learning is separated from held-out evaluation."""\n'
         'import math\n'
@@ -21415,8 +21652,12 @@ SOURCES = (
     ),
     ('omega_agent/problem.py',
         '"""Data-only problem contracts; success must be decided by an external evaluator."""\n'
-        'from dataclasses import dataclass,field\n'
-        'import hashlib,json\n'
+        'from dataclasses import dataclass\n'
+        'from omega_security.encoding import canonical,decode,digest\n'
+        '\n'
+        '\n'
+        'def _text(value,limit=256):\n'
+        '    return type(value) is str and 0<len(value)<=limit and not any(ord(c)<32 for c in value)\n'
         '@dataclass(frozen=True)\n'
         'class Problem:\n'
         '    id: str\n'
@@ -21425,11 +21666,17 @@ SOURCES = (
         '    constraints: tuple[str,...]\n'
         '    success_contract: str\n'
         '    def __post_init__(self):\n'
-        "        if not self.id or not self.domain or not self.success_contract:raise ValueError('Incomplete problem')\n"
-        '        encoded=json.dumps(self.inputs,sort_keys=True,allow_nan=False)\n'
-        "        if len(encoded)>1024*1024 or len(self.constraints)>256:raise ValueError('Problem budget exceeded')\n"
-        '    def fingerprint(self):\n'
-        "        return hashlib.sha256(json.dumps(self.__dict__,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()\n"
+        "        if not _text(self.id) or not _text(self.domain) or type(self.success_contract) is not str or not 0<len(self.success_contract)<=16384:raise ValueError('Incomplete problem')\n"
+        "        if type(self.inputs) is not dict or type(self.constraints) is not tuple or len(self.constraints)>256 or any(type(c) is not str or len(c)>4096 for c in self.constraints):raise ValueError('Invalid problem constraints/input')\n"
+        '        canonical(self.to_dict())\n'
+        "    def to_dict(self):return {'id':self.id,'domain':self.domain,'inputs':self.inputs,'constraints':list(self.constraints),'success_contract':self.success_contract}\n"
+        '    def snapshot(self):return canonical(self.to_dict())\n'
+        '    def fingerprint(self):return digest(self.to_dict())\n'
+        '    @classmethod\n'
+        '    def from_snapshot(cls,data):\n'
+        '        value=decode(data)\n'
+        "        if type(value) is not dict or set(value)!={'id','domain','inputs','constraints','success_contract'} or type(value['constraints']) is not list:raise ValueError('Unknown problem schema')\n"
+        "        value['constraints']=tuple(value['constraints']);return cls(**value)\n"
         '@dataclass(frozen=True)\n'
         'class Goal:\n'
         '    problem_id: str\n'
@@ -21437,18 +21684,23 @@ SOURCES = (
         '    authorized_by: str\n'
         '    max_actions: int=100\n'
         '    def __post_init__(self):\n'
-        "        if not self.problem_id or not self.objective or not self.authorized_by or not 0<self.max_actions<=10000:raise ValueError('Invalid authorized goal')\n"
+        "        if not _text(self.problem_id) or type(self.objective) is not str or not 0<len(self.objective)<=16384 or not _text(self.authorized_by) or type(self.max_actions) is not int or not 0<self.max_actions<=10000:raise ValueError('Invalid authorized goal')\n"
+        "    def to_dict(self):return {'problem_id':self.problem_id,'objective':self.objective,'authorized_by':self.authorized_by,'max_actions':self.max_actions}\n"
+        "    def subject(self,problem_sha256):return digest({'format':'omega-authorized-goal-1','problem_sha256':problem_sha256,'goal':self.to_dict()})\n"
     ),
     ('omega_agent/reasoning_budget.py',
         'import time,math\n'
         'class ReasoningBudget:\n'
         '    def __init__(self,steps=1000,seconds=30):\n'
-        "        if type(steps) is not int or not 0<steps<=1000000 or not math.isfinite(seconds) or not 0<seconds<=3600:raise ValueError('Invalid reasoning budget')\n"
+        "        if type(steps) is not int or not 0<steps<=1000000 or type(seconds) not in (int,float) or not math.isfinite(seconds) or not 0<seconds<=3600:raise ValueError('Invalid reasoning budget')\n"
         '        self.remaining=steps;self.deadline=time.monotonic()+seconds;self.history=[]\n'
         '    def spend(self,steps=1,*,benefit=None):\n'
         "        if type(steps) is not int or steps<1:raise ValueError('Invalid reasoning cost')\n"
         "        if steps>self.remaining or time.monotonic()>=self.deadline:raise TimeoutError('Reasoning budget exhausted')\n"
         "        self.remaining-=steps;self.history.append({'steps':steps,'benefit':benefit})\n"
+        '    def check(self,*,require_step=True):\n'
+        "        if time.monotonic()>=self.deadline or (require_step and self.remaining<=0):raise TimeoutError('Reasoning budget exhausted')\n"
+        "        return {'remaining_steps':self.remaining,'remaining_seconds':max(0,self.deadline-time.monotonic())}\n"
         '    def allocate(self,benefits,costs):\n'
         "        if set(benefits)!=set(costs) or any(v<=0 for v in costs.values()):raise ValueError('Invalid allocation options')\n"
         '        return tuple(sorted(benefits,key=lambda k:(-benefits[k]/costs[k],k)))\n'
@@ -21483,37 +21735,155 @@ SOURCES = (
         '        return tuple(sorted(seen))\n'
     ),
     ('omega_agent/runtime.py',
-        '"""Composition root for bounded host model adapters and independent checkers.\n'
+        '"""Bind reasoning, checked tools and metadata-only episodic recording.\n'
         '\n'
-        'The model receives a copied public problem only. Tool invocation is separately\n'
-        'capability-controlled; the solver does not auto-promote or auto-train itself.\n'
+        'Models/checkers/authorization callbacks are bounded host adapters. Calls are\n'
+        'cooperatively checked before/after; hard CPU/wall isolation requires the host\n'
+        'worker/sandbox. No proposal can manufacture its own capability or approval.\n'
         '"""\n'
-        'from dataclasses import asdict\n'
-        'import hashlib,json\n'
+        'from dataclasses import dataclass\n'
+        'import hashlib\n'
+        'import uuid\n'
         'from .problem import Problem,Goal\n'
         'from .reasoning_budget import ReasoningBudget\n'
+        'from omega_security.capabilities import Capability\n'
+        'from omega_security.encoding import canonical,decode,digest,snapshot\n'
+        '\n'
+        '\n'
+        '@dataclass(frozen=True)\n'
+        'class ToolRequest:\n'
+        '    name: str\n'
+        '    arguments: dict\n'
+        '    def __post_init__(self):\n'
+        "        if type(self.name) is not str or not 0<len(self.name)<=256 or type(self.arguments) is not dict:raise ValueError('Typed tool request required')\n"
+        '        canonical(self.arguments)\n'
+        '\n'
+        '\n'
+        '@dataclass(frozen=True)\n'
+        'class ToolAuthorization:\n'
+        '    capability: Capability\n'
+        '    approval: object=None\n'
+        '    def __post_init__(self):\n'
+        "        if type(self.capability) is not Capability:raise TypeError('Host-issued tool capability required')\n"
+        '\n'
+        '\n'
+        'class _Proposals:\n'
+        '    def __init__(self,model):self.model=model;self.stream=None\n'
+        '    def replace(self,context,limit):\n'
+        '        self.close();self.stream=iter(self.model.propose(snapshot(context,max_bytes=2*1024**2,max_nodes=20000),limit))\n'
+        '    def next(self):return next(self.stream)\n'
+        '    def close(self):\n'
+        '        stream,self.stream=self.stream,None\n'
+        "        close=getattr(stream,'close',None)\n"
+        '        if close is not None:close()\n'
+        '\n'
+        '\n'
         'class CognitiveAgent:\n'
-        '    def __init__(self,model,decode,checker,capabilities,principal,audit):\n'
-        '        self.model=model;self.decode=decode;self.checker=checker;self.capabilities=capabilities;self.principal=principal;self.audit=audit\n'
+        '    def __init__(self,model,decode,checker,capabilities,principal,audit,*,tools=None,\n'
+        "                 authorize_tool=None,observe_tool=None,record_episode=None,checker_id='host-checker'):\n"
+        "        if not callable(decode) or not callable(checker) or not callable(getattr(model,'propose',None)):raise TypeError('Bounded model/decoder/checker adapters required')\n"
+        '        if tools is not None and (tools.principal!=principal or tools.verifier is not capabilities or not callable(authorize_tool)):\n'
+        "            raise ValueError('Tools must share the supervisor and have an authorization resolver')\n"
+        "        if observe_tool is not None and not callable(observe_tool):raise TypeError('Host observation filter required')\n"
+        "        if record_episode is not None and not callable(record_episode):raise TypeError('Host episode sink required')\n"
+        "        if type(checker_id) is not str or not checker_id:raise ValueError('Checker identity required')\n"
+        '        self.model=model;self.decode=decode;self.checker=checker;self.capabilities=capabilities\n'
+        '        self.principal=principal;self.audit=audit;self.tools=tools;self.authorize_tool=authorize_tool\n'
+        '        self.observe_tool=observe_tool;self.record_episode=record_episode;self.checker_id=checker_id\n'
+        '\n'
+        '    def _event(self,run_id,event,**metadata):\n'
+        "        self.audit.append({'run_id':run_id,'event':event,**metadata})\n"
+        '\n'
         '    def solve(self,problem,goal,capability,*,limit=32,seconds=30):\n'
         "        if type(problem) is not Problem or type(goal) is not Goal or goal.problem_id!=problem.id:raise ValueError('Problem/authorized goal mismatch')\n"
-        "        self.capabilities.require(capability,self.principal,'agent.solve')\n"
-        "        if not 1<=limit<=min(goal.max_actions,256):raise ValueError('Agent proposal limit exceeds authorized objective')\n"
-        "        snapshot=json.dumps(asdict(problem),sort_keys=True,separators=(',',':'),allow_nan=False)\n"
-        "        claims=json.loads(snapshot);claims['constraints']=tuple(claims['constraints']);bound=Problem(**claims)\n"
-        '        digest=hashlib.sha256(snapshot.encode()).hexdigest();budget=ReasoningBudget(limit,seconds);attempts=[]\n'
-        '        for raw in self.model.propose(json.loads(snapshot),limit):\n'
-        '            budget.spend()\n'
-        "            if problem.fingerprint()!=digest:raise PermissionError('Problem changed during reasoning')\n"
-        "            self.capabilities.require(capability,self.principal,'agent.solve')\n"
-        '            candidate=self.decode(raw);decision=self.checker(bound,candidate)\n'
+        "        if type(limit) is not int or not 1<=limit<=min(goal.max_actions,256):raise ValueError('Action budget exceeds authorized goal')\n"
+        '        data=problem.snapshot();input_digest=hashlib.sha256(data).hexdigest();subject=goal.subject(input_digest)\n'
+        "        if type(capability) is not Capability or capability.issuer!=goal.authorized_by:raise PermissionError('Goal issuer does not match authorization')\n"
+        '        budget=ReasoningBudget(limit,seconds);run_id=uuid.uuid4().hex\n'
+        '        def authorize():\n'
+        '            budget.check(require_step=False)\n'
+        "            if problem.fingerprint()!=input_digest or goal.subject(input_digest)!=subject:raise PermissionError('Objective/input changed during reasoning')\n"
+        "            return self.capabilities.require(capability,self.principal,'agent.solve',subject=subject)\n"
+        '        authorize()\n'
+        "        public=decode(data);public['goal']={'objective':goal.objective,'max_actions':goal.max_actions}\n"
+        "        public['observations']=[];attempts=[];proposals=_Proposals(self.model)\n"
+        "        self._event(run_id,'agent_started',problem_sha256=input_digest,goal_sha256=subject)\n"
+        '        try:\n'
+        '            proposals.replace(public,budget.remaining)\n'
+        '            result=self._solve(problem,goal,subject,data,public,budget,proposals,attempts,authorize,run_id)\n'
+        '        except BaseException as exc:\n'
+        "            try:self._event(run_id,'agent_failed',error_type=type(exc).__name__,goal_sha256=subject)\n"
+        '            except Exception:pass\n'
+        '            raise\n'
+        '        finally:\n'
+        '            try:proposals.close()\n'
+        '            except Exception as exc:\n'
+        "                self._event(run_id,'provider_cleanup_failed',error_type=type(exc).__name__)\n"
+        '                raise\n'
+        '        authorize()\n'
+        '        result.update(run_id=run_id,goal_sha256=subject,checker_id=self.checker_id,promoted=False)\n'
+        "        result['remaining_actions']=budget.remaining\n"
+        "        self._event(run_id,'agent_finished',status=result['status'],attempts=len(attempts),goal_sha256=subject)\n"
+        '        if self.record_episode is not None:\n'
+        '            from omega_memory.episodes import Episode\n'
+        '            # Store only identifiers/digests; raw problem/tool data is not replayed.\n'
+        "            outcome={'status':result['status'],'problem_sha256':input_digest,'goal_sha256':subject,'attempts':len(attempts)}\n"
+        "            if result['candidate'] is not None:outcome['candidate_sha256']=digest(result['candidate'])\n"
+        "            evidence=(digest(result['certificate']),) if result['certificate'] is not None else ()\n"
+        '            self.record_episode(Episode(run_id,problem.id,outcome,evidence,goal.authorized_by,sensitive=True))\n'
+        '        return result\n'
+        '\n'
+        '    def _solve(self,problem,goal,subject,data,public,budget,proposals,attempts,authorize,run_id):\n'
+        '        for _ in range(budget.remaining):\n'
+        '            budget.check();authorize()\n'
+        '            try:raw=proposals.next()\n'
+        '            except StopIteration:break\n'
+        '            budget.spend();authorize()\n'
+        '            try:\n'
+        '                candidate=self.decode(raw)\n'
+        '                if not isinstance(candidate,ToolRequest):candidate_bytes=canonical(candidate)\n'
+        '            except (ValueError,TypeError,UnicodeError,RecursionError) as exc:\n'
+        "                attempts.append({'index':len(attempts),'kind':'candidate','valid':False,'error_type':type(exc).__name__})\n"
+        "                self._event(run_id,'candidate_rejected',index=len(attempts)-1,error_type=type(exc).__name__)\n"
+        '                continue\n'
+        '            if isinstance(candidate,ToolRequest):\n'
+        "                if self.tools is None:raise PermissionError('No tools configured for this agent')\n"
+        '                request=self.tools.request(candidate.name,candidate.arguments);request_sha=digest(request)\n'
+        '                authorization=self.authorize_tool(subject,snapshot(request))\n'
+        '                authorize()\n'
+        '                if authorization is None:\n'
+        "                    attempts.append({'index':len(attempts),'kind':'tool','tool':candidate.name,'request_sha256':request_sha,'status':'awaiting_approval'})\n"
+        "                    self._event(run_id,'tool_approval_required',request_sha256=request_sha)\n"
+        "                    return {'status':'awaiting_approval','problem':problem.id,'candidate':None,'certificate':None,\n"
+        "                            'request':request,'request_sha256':request_sha,'attempts':tuple(attempts)}\n"
+        "                if type(authorization) is not ToolAuthorization:raise PermissionError('Invalid host tool authorization')\n"
+        "                output=self.tools.call(candidate.name,request['arguments'],authorization.capability,approval=authorization.approval)\n"
+        '                authorize()\n'
+        "                observation={'kind':'untrusted_tool_output','tool':candidate.name,'request_sha256':request_sha,\n"
+        "                             'response_sha256':digest(output,max_bytes=8*1024**2),'authority':False}\n"
+        '                if self.observe_tool is not None:\n'
+        '                    filtered=self.observe_tool(subject,snapshot(request),snapshot(output,max_bytes=8*1024**2))\n'
+        "                    if filtered is not None:observation['data']=snapshot(filtered,max_bytes=65536)\n"
+        "                public['observations'].append(observation)\n"
+        '                # The accumulated context remains bounded even if all actions use tools.\n'
+        '                canonical(public,max_bytes=2*1024**2,max_nodes=20000)\n'
+        "                attempts.append({'index':len(attempts),'kind':'tool','tool':candidate.name,'request_sha256':request_sha,'status':'completed'})\n"
+        "                self._event(run_id,'tool_observed',request_sha256=request_sha,response_sha256=observation['response_sha256'])\n"
+        '                if budget.remaining:proposals.replace(public,budget.remaining)\n'
+        '                continue\n'
+        '            checked_candidate=decode(candidate_bytes)\n'
+        '            decision=self.checker(Problem.from_snapshot(data),checked_candidate)\n'
+        '            authorize()\n'
+        "            if canonical(checked_candidate)!=candidate_bytes:raise ValueError('Checker mutated the proposed candidate')\n"
+        '            decision=snapshot(decision)\n'
         "            if type(decision) is not dict or type(decision.get('valid')) is not bool:raise ValueError('Independent checker protocol violation')\n"
-        "            attempts.append({'index':len(attempts),'valid':decision['valid']})\n"
+        '            candidate_sha=hashlib.sha256(candidate_bytes).hexdigest()\n'
+        "            attempts.append({'index':len(attempts),'kind':'candidate','valid':decision['valid'],'candidate_sha256':candidate_sha})\n"
+        "            self._event(run_id,'candidate_checked',candidate_sha256=candidate_sha,valid=decision['valid'])\n"
         "            if decision['valid']:\n"
-        "                self.audit.append({'event':'problem_solved','problem':problem.id,'input_sha256':digest,'attempts':len(attempts)})\n"
-        "                return {'problem':problem.id,'candidate':candidate,'certificate':decision.get('certificate'),'attempts':tuple(attempts),'promoted':False}\n"
-        '            if len(attempts)>=limit:break\n'
-        "        return {'problem':problem.id,'candidate':None,'certificate':None,'attempts':tuple(attempts),'promoted':False}\n"
+        "                return {'status':'solved','problem':problem.id,'candidate':decode(candidate_bytes),\n"
+        "                        'certificate':decision.get('certificate'),'attempts':tuple(attempts)}\n"
+        "        return {'status':'exhausted','problem':problem.id,'candidate':None,'certificate':None,'attempts':tuple(attempts)}\n"
     ),
     ('omega_agent/search.py',
         '"""Budgeted uniform-cost/A* search over caller-supplied pure state transitions."""\n'
@@ -22086,24 +22456,80 @@ SOURCES = (
         "    return {'candidates':results,'selected_for_review':min(results,key=lambda r:r['cost']),'promoted':False}\n"
     ),
     ('omega_evolution/component_registry.py',
+        '"""A supervisor-owned, immutable inventory of permitted source boundaries."""\n'
         'from dataclasses import dataclass\n'
         'from pathlib import PurePosixPath\n'
+        'from types import MappingProxyType\n'
+        '\n'
+        '\n'
+        'def _path(value):\n'
+        "    if type(value) is not str or not 0 < len(value) <= 4096 or '\\\\' in value or ':' in value or '\\0' in value:\n"
+        "        raise PermissionError('Invalid component path')\n"
+        '    path = PurePosixPath(value)\n'
+        "    if path.is_absolute() or str(path) != value or not path.parts or any(p in {'.', '..', '.git'} for p in path.parts):\n"
+        "        raise PermissionError('Unsafe component path')\n"
+        '    return value\n'
+        '\n'
+        '\n'
         '@dataclass(frozen=True)\n'
         'class Component:\n'
         '    id: str\n'
-        '    paths: tuple[str,...]\n'
+        '    paths: tuple[str, ...]\n'
         '    mutable: bool\n'
-        '    required_checks: tuple[str,...]\n'
+        '    required_checks: tuple[str, ...]\n'
+        '\n'
+        '    def __post_init__(self):\n'
+        '        if type(self.id) is not str or not 0 < len(self.id) <= 256 or type(self.mutable) is not bool:\n'
+        "            raise ValueError('Invalid component identity/policy')\n"
+        '        if type(self.paths) is not tuple or not 1 <= len(self.paths) <= 256:\n'
+        "            raise ValueError('Explicit component paths required')\n"
+        '        for path in self.paths:\n'
+        '            _path(path)\n'
+        '        if type(self.required_checks) is not tuple or not 1 <= len(self.required_checks) <= 128:\n'
+        "            raise ValueError('Required invariant names must be explicit')\n"
+        '        if any(type(name) is not str or not 0 < len(name) <= 256 for name in self.required_checks):\n'
+        "            raise ValueError('Invalid invariant name')\n"
+        '        if len(set(self.paths)) != len(self.paths) or len(set(self.required_checks)) != len(self.required_checks):\n'
+        "            raise ValueError('Duplicate component paths/checks')\n"
+        '\n'
+        '\n'
         'class ComponentRegistry:\n'
-        '    def __init__(self,components):\n'
-        '        components=tuple(components);self.components={c.id:c for c in components}\n'
-        "        if len(components)!=len(self.components):raise ValueError('Duplicate component')\n"
-        '    def require_patch(self,component,paths):\n'
-        '        item=self.components[component]\n'
-        "        if not item.mutable:raise PermissionError('Protected component')\n"
+        '    def __init__(self, components):\n'
+        '        items = []\n'
+        '        for component in components:\n'
+        '            if len(items) >= 1024 or type(component) is not Component:\n'
+        "                raise ValueError('Bounded typed component inventory required')\n"
+        '            items.append(component)\n'
+        '        mapped = {c.id: c for c in items}\n'
+        '        if len(mapped) != len(items):\n'
+        "            raise ValueError('Duplicate component')\n"
+        '        # A protected subtree must not become writable through a broader component.\n'
+        '        for mutable in items:\n'
+        '            if not mutable.mutable:\n'
+        '                continue\n'
+        '            for protected in items:\n'
+        '                if protected.mutable:\n'
+        '                    continue\n'
+        '                for allowed in mutable.paths:\n'
+        '                    for denied in protected.paths:\n'
+        "                        if allowed == denied or allowed.startswith(denied + '/') or denied.startswith(allowed + '/'):\n"
+        "                            raise ValueError('Mutable component overlaps a protected component')\n"
+        '        self.components = MappingProxyType(mapped)\n'
+        '\n'
+        '    def require_patch(self, component, paths):\n'
+        '        item = self.components[component]\n'
+        '        if not item.mutable:\n'
+        "            raise PermissionError('Protected component')\n"
+        '        count = 0\n'
         '        for path in paths:\n'
-        '            p=PurePosixPath(path)\n'
-        "            if p.is_absolute() or '..' in p.parts or not any(path==allowed or path.startswith(allowed.rstrip('/')+'/') for allowed in item.paths):raise PermissionError('Patch exceeds authorized component')\n"
+        '            count += 1\n'
+        '            if count > 1024:\n'
+        "                raise ValueError('Patch path budget exceeded')\n"
+        '            _path(path)\n'
+        "            if not any(path == allowed or path.startswith(allowed + '/') for allowed in item.paths):\n"
+        "                raise PermissionError('Patch exceeds authorized component')\n"
+        '        if count == 0:\n'
+        "            raise ValueError('Empty patch scope')\n"
         '        return item.required_checks\n'
     ),
     ('omega_evolution/hyperparameters.py',
@@ -22174,28 +22600,116 @@ SOURCES = (
         "    return {'candidates':tuple(results),'heldout_ids':tuple(c['id'] for c in cases),'promoted':False}\n"
     ),
     ('omega_evolution/promotion.py',
-        '"""Promotion authority is external to proposal generation and verification."""\n'
-        'from dataclasses import dataclass\n'
-        'import hashlib,json\n'
+        '"""Re-authenticate the exact proposal and artifact manifest at activation time."""\n'
+        'from dataclasses import dataclass, asdict\n'
+        'import hashlib\n'
+        'import re\n'
+        'from .proposals import Proposal\n'
+        'from .component_registry import _path\n'
+        'from omega_security.encoding import canonical, decode, digest, snapshot\n'
+        'from omega_security.roles import Attestation\n'
+        '\n'
+        '\n'
         '@dataclass(frozen=True)\n'
         'class PromotionDecision:\n'
-        '    subject: str\n'
-        '    approved: bool\n'
-        '    promoter: str\n'
+        '    """A data envelope, never authority merely because it was constructed."""\n'
+        '    payload: bytes\n'
+        '    verification: Attestation\n'
+        '    approval: Attestation\n'
+        '\n'
+        '    @property\n'
+        '    def subject(self):\n'
+        '        return hashlib.sha256(self.payload).hexdigest()\n'
+        '\n'
+        '    @property\n'
+        '    def receipt(self):\n'
+        "        return digest({'subject': self.subject,\n"
+        "                       'verification': self.verification.signature.hex(),\n"
+        "                       'verifier': self.verification.actor,\n"
+        "                       'approval': self.approval.signature.hex(),\n"
+        "                       'promoter': self.approval.actor})\n"
+        '\n'
+        '\n'
         'class PromotionGate:\n'
-        '    def __init__(self,roles,registry,verify_artifacts,audit):self.roles=roles;self.registry=registry;self.verify_artifacts=verify_artifacts;self.audit=audit\n'
-        '    def approve(self,proposal,paths,checks,verification,approval,artifacts):\n'
-        '        required=self.registry.require_patch(proposal.component,paths)\n'
-        "        if not set(required)<=set(checks) or any(checks[name] is not True for name in required):raise PermissionError('Required invariants failed or missing')\n"
-        "        subject=hashlib.sha256(json.dumps({'proposal':proposal.id,'checks':checks,'artifacts':artifacts},sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()\n"
-        '        self.roles.promotion(subject,proposal.proposer,verification,approval)\n'
-        "        if self.verify_artifacts(artifacts) is not True:raise PermissionError('Artifact verification failed')\n"
-        "        self.audit.append({'subject':subject,'proposal':proposal.id,'proposer':proposal.proposer,'verifier':verification.actor,'promoter':approval.actor,'decision':'approve'})\n"
-        '        return PromotionDecision(proposal.id,True,approval.actor)\n'
+        '    def __init__(self, roles, registry, verify_artifacts, audit):\n'
+        '        self.roles = roles\n'
+        '        self.registry = registry\n'
+        '        self.verify_artifacts = verify_artifacts\n'
+        '        self.audit = audit\n'
+        '\n'
+        '    def prepare(self, proposal, paths, checks, artifacts, *, version=None):\n'
+        '        """Return canonical bytes for independent actors to examine and sign."""\n'
+        '        if type(proposal) is not Proposal:\n'
+        "            raise TypeError('Typed proposal required')\n"
+        '        if type(paths) not in (list, tuple) or not 1 <= len(paths) <= 1024 or any(type(p) is not str for p in paths):\n'
+        "            raise ValueError('Bounded explicit changed paths required')\n"
+        '        if len(set(paths)) != len(paths):\n'
+        "            raise ValueError('Duplicate changed path')\n"
+        '        required = self.registry.require_patch(proposal.component, paths)\n'
+        '        if type(checks) is not dict or any(type(value) is not bool for value in checks.values()):\n'
+        "            raise ValueError('Explicit invariant outcomes required')\n"
+        '        if not set(required) <= set(checks) or any(checks[name] is not True for name in required):\n'
+        "            raise PermissionError('Required invariants failed or missing')\n"
+        '        if type(artifacts) is not dict or not artifacts:\n'
+        "            raise ValueError('Artifact manifest required')\n"
+        "        if artifacts.get('patch_sha256') != proposal.patch_sha256 or artifacts.get('baseline_version') != proposal.baseline_version:\n"
+        "            raise PermissionError('Artifact provenance does not match the proposed patch/baseline')\n"
+        "        if type(artifacts.get('baseline_artifacts_sha256')) is not str or not re.fullmatch('[0-9a-f]{64}', artifacts['baseline_artifacts_sha256']):\n"
+        "            raise ValueError('Baseline artifact manifest digest required')\n"
+        "        if type(artifacts.get('files')) is not dict or not artifacts['files']:\n"
+        "            raise ValueError('Explicit artifact file digests required')\n"
+        "        for path, sha in artifacts['files'].items():\n"
+        '            _path(path)\n'
+        "            if type(sha) is not str or not re.fullmatch('[0-9a-f]{64}', sha):\n"
+        "                raise ValueError('Full artifact byte digests required')\n"
+        '        version = proposal.id if version is None else version\n'
+        '        if type(version) is not str or not 0 < len(version) <= 256:\n'
+        "            raise ValueError('Bounded target version required')\n"
+        "        return canonical({'format': 'omega-promotion-1', 'version': version,\n"
+        "                          'proposal': asdict(proposal), 'paths': sorted(paths),\n"
+        "                          'checks': checks, 'artifacts': artifacts})\n"
+        '\n'
+        '    def approve(self, proposal, paths, checks, verification, approval, artifacts, *, version=None):\n'
+        '        payload = self.prepare(proposal, paths, checks, artifacts, version=version)\n'
+        '        decision = PromotionDecision(payload, verification, approval)\n'
+        "        self.authorize(decision, decode(payload)['version'], proposal.baseline_version)\n"
+        "        self.audit.append({'event': 'promotion_authorized', 'subject': decision.subject,\n"
+        "                           'proposal': proposal.id, 'proposer': proposal.proposer,\n"
+        "                           'verifier': verification.actor, 'promoter': approval.actor})\n"
+        '        return decision\n'
+        '\n'
+        '    def authorize(self, decision, version, baseline, *, baseline_artifacts_sha256=None):\n'
+        '        """The version store calls this again, inside its activation transaction."""\n'
+        '        if type(decision) is not PromotionDecision or type(decision.verification) is not Attestation or type(decision.approval) is not Attestation:\n'
+        "            raise PermissionError('Authenticated promotion envelope required')\n"
+        '        value = decode(decision.payload)\n'
+        "        fields = {'format', 'version', 'proposal', 'paths', 'checks', 'artifacts'}\n"
+        "        if type(value) is not dict or set(value) != fields or value['format'] != 'omega-promotion-1':\n"
+        "            raise PermissionError('Unknown promotion protocol')\n"
+        "        proposal = Proposal(**value['proposal'])\n"
+        "        expected = self.prepare(proposal, value['paths'], value['checks'], value['artifacts'], version=value['version'])\n"
+        "        if expected != decision.payload or value['version'] != version or proposal.baseline_version != baseline:\n"
+        "            raise PermissionError('Promotion version/baseline binding mismatch')\n"
+        "        if baseline_artifacts_sha256 is not None and value['artifacts']['baseline_artifacts_sha256'] != baseline_artifacts_sha256:\n"
+        "            raise PermissionError('Promotion refers to different baseline artifacts')\n"
+        '        self.roles.promotion(decision.subject, proposal.proposer, decision.verification, decision.approval)\n'
+        "        checked = snapshot(value['artifacts'])\n"
+        "        if self.verify_artifacts(checked) is not True or canonical(checked) != canonical(value['artifacts']):\n"
+        "            raise PermissionError('Artifact verification failed or mutated its input')\n"
+        '        # Artifact callbacks can be slow: do not allow expiry/revocation meanwhile.\n'
+        '        self.roles.promotion(decision.subject, proposal.proposer, decision.verification, decision.approval)\n'
+        "        return {'version': version, 'baseline': baseline, 'proposal': proposal.id,\n"
+        "                'subject': decision.subject, 'receipt': decision.receipt,\n"
+        "                'artifacts_sha256': digest(value['artifacts']), 'promoter': decision.approval.actor}\n"
     ),
     ('omega_evolution/proposals.py',
-        'from dataclasses import dataclass,asdict\n'
-        'import hashlib,json,math\n'
+        '"""Immutable improvement claims; measurements and approvals remain separate."""\n'
+        'from dataclasses import dataclass, asdict\n'
+        'import math\n'
+        'import re\n'
+        'from omega_security.encoding import digest\n'
+        '\n'
+        '\n'
         '@dataclass(frozen=True)\n'
         'class Proposal:\n'
         '    component: str\n'
@@ -22205,11 +22719,20 @@ SOURCES = (
         '    patch_sha256: str\n'
         '    proposer: str\n'
         '    baseline_version: str\n'
+        '\n'
         '    def __post_init__(self):\n'
-        "        if not self.hypothesis or not self.proposer or not self.baseline_version or len(self.patch_sha256)!=64:raise ValueError('Incomplete improvement hypothesis')\n"
-        "        if not math.isfinite(self.expected_gain) or not math.isfinite(self.reserved_cost) or self.reserved_cost<=0:raise ValueError('Invalid improvement estimate')\n"
+        "        for name, limit in (('component', 256), ('hypothesis', 16384), ('proposer', 256), ('baseline_version', 256)):\n"
+        '            value = getattr(self, name)\n'
+        '            if type(value) is not str or not 0 < len(value) <= limit:\n'
+        "                raise ValueError('Incomplete improvement hypothesis: ' + name)\n"
+        "        if type(self.patch_sha256) is not str or not re.fullmatch('[0-9a-f]{64}', self.patch_sha256):\n"
+        "            raise ValueError('Full patch digest required')\n"
+        '        if any(type(v) not in (int, float) or not math.isfinite(v) for v in (self.expected_gain, self.reserved_cost)) or self.reserved_cost <= 0:\n'
+        "            raise ValueError('Invalid improvement estimate')\n"
+        '\n'
         '    @property\n'
-        "    def id(self):return hashlib.sha256(json.dumps(asdict(self),sort_keys=True,separators=(',',':')).encode()).hexdigest()\n"
+        '    def id(self):\n'
+        '        return digest(asdict(self))\n'
     ),
     ('omega_evolution/regressions.py',
         'import math\n'
@@ -22234,52 +22757,199 @@ SOURCES = (
         '    def stop(self):self.total.revoke();self.concurrent.revoke()\n'
     ),
     ('omega_evolution/rollback.py',
-        '"""Atomic version-pointer changes. Stable artifacts must already be authenticated."""\n'
-        'import json,os,tempfile,fcntl\n'
-        'from threading import RLock\n'
+        '"""Version pointers guarded by an independently configured promotion authority.\n'
+        '\n'
+        'The private root belongs to the supervisor, never a candidate worktree. A\n'
+        'failed activation consumes its ticket conservatively; it cannot auto-retry an\n'
+        'external approval after a crash. This is a pointer transaction, not atomic\n'
+        'replacement of every running service or an OS-level deployment transaction.\n'
+        '"""\n'
+        'import fcntl\n'
+        'import os\n'
+        'import re\n'
+        'import stat\n'
+        'import tempfile\n'
         'from contextlib import contextmanager\n'
         'from pathlib import Path\n'
+        'from threading import RLock\n'
+        'from omega_security.encoding import canonical, decode, digest, snapshot\n'
+        '\n'
+        '\n'
         'class Versions:\n'
-        "    def __init__(self,root):self.root=Path(root).resolve();self.root.mkdir(parents=True,exist_ok=True);self.pointer=self.root/'current.json';self.lock=RLock()\n"
-        '    def current(self):\n'
-        '        if not self.pointer.exists():return None\n'
-        '        value=json.loads(self.pointer.read_text())\n'
-        "        if not isinstance(value.get('version'),str):raise ValueError('Invalid version pointer')\n"
+        '    def __init__(self, root, *, promotion_gate=None, initial_version=None,\n'
+        '                 initial_artifacts_sha256=None, authorize_rollback=None, audit=None):\n'
+        '        if initial_version is not None:\n'
+        '            self._version(initial_version)\n'
+        "            if type(initial_artifacts_sha256) is not str or not re.fullmatch('[0-9a-f]{64}', initial_artifacts_sha256):\n"
+        "                raise ValueError('Authenticated initial artifact manifest digest required')\n"
+        '        elif initial_artifacts_sha256 is not None:\n'
+        "            raise ValueError('Initial artifact digest requires an initial version')\n"
+        '        self.root = Path(root).resolve()\n'
+        '        self.root.mkdir(parents=True, exist_ok=True, mode=0o700)\n'
+        "        self.pointer = self.root / 'current.json'\n"
+        '        self.lock = RLock()\n'
+        '        self.promotion_gate = promotion_gate\n'
+        '        self.initial_version = initial_version\n'
+        '        self.initial_artifacts_sha256 = initial_artifacts_sha256\n'
+        '        self.authorize_rollback = authorize_rollback\n'
+        "        self.audit = audit if audit is not None else getattr(promotion_gate, 'audit', None)\n"
+        '\n'
+        '    @staticmethod\n'
+        '    def _version(value):\n'
+        '        if type(value) is not str or not 0 < len(value) <= 256 or any(ord(c) < 32 for c in value):\n'
+        "            raise ValueError('Invalid version identity')\n"
         '        return value\n'
-        '    def _write(self,value):\n'
-        "        fd,name=tempfile.mkstemp(prefix='.version-',dir=self.root)\n"
+        '\n'
+        '    def _read(self, path, limit):\n'
+        '        fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)\n'
+        "        with os.fdopen(fd, 'rb') as stream:\n"
+        '            if not stat.S_ISREG(os.fstat(stream.fileno()).st_mode):\n'
+        "                raise ValueError('Regular supervisor state required')\n"
+        '            data = stream.read(limit + 1)\n'
+        '        if len(data) > limit:\n'
+        "            raise ValueError('Supervisor state quota exceeded')\n"
+        '        return data\n'
+        '\n'
+        '    def current(self):\n'
         '        try:\n'
-        "            with os.fdopen(fd,'w') as stream:json.dump(value,stream,sort_keys=True);stream.flush();os.fsync(stream.fileno())\n"
-        '            os.replace(name,self.pointer)\n'
-        '            directory=os.open(self.root,os.O_RDONLY)\n'
-        '            try:os.fsync(directory)\n'
-        '            finally:os.close(directory)\n'
-        '        finally:Path(name).unlink(missing_ok=True)\n'
+        '            raw = self._read(self.pointer, 65536)\n'
+        '        except FileNotFoundError:\n'
+        '            return None\n'
+        '        value = decode(raw, max_bytes=65536)\n'
+        "        fields = {'format', 'version', 'previous', 'artifacts_sha256', 'authorization_sha256'}\n"
+        "        if type(value) is not dict or set(value) != fields or value['format'] != 'omega-version-pointer-1':\n"
+        "            raise ValueError('Unknown version pointer; explicit migration required')\n"
+        "        self._version(value['version'])\n"
+        "        for name in ('artifacts_sha256', 'authorization_sha256'):\n"
+        "            if type(value[name]) is not str or not re.fullmatch('[0-9a-f]{64}', value[name]):\n"
+        "                raise ValueError('Invalid version provenance')\n"
+        "        previous = value['previous']\n"
+        '        if previous is not None:\n'
+        "            if type(previous) is not dict or set(previous) != {'version', 'artifacts_sha256'}:\n"
+        "                raise ValueError('Invalid previous version')\n"
+        "            self._version(previous['version'])\n"
+        "            if type(previous['artifacts_sha256']) is not str or not re.fullmatch('[0-9a-f]{64}', previous['artifacts_sha256']):\n"
+        "                raise ValueError('Invalid previous artifact digest')\n"
+        '        if canonical(value, max_bytes=65536) != raw:\n'
+        "            raise ValueError('Noncanonical version pointer')\n"
+        '        return value\n'
+        '\n'
+        '    def _sync_directory(self):\n'
+        '        directory = os.open(self.root, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)\n'
+        '        try:\n'
+        '            os.fsync(directory)\n'
+        '        finally:\n'
+        '            os.close(directory)\n'
+        '\n'
+        '    def _write(self, value):\n'
+        '        data = canonical(value, max_bytes=65536)\n'
+        "        fd, name = tempfile.mkstemp(prefix='.version-', dir=self.root)\n"
+        '        try:\n'
+        "            with os.fdopen(fd, 'wb') as stream:\n"
+        '                stream.write(data)\n'
+        '                stream.flush()\n'
+        '                os.fsync(stream.fileno())\n'
+        '            os.replace(name, self.pointer)\n'
+        '            self._sync_directory()\n'
+        '        finally:\n'
+        '            Path(name).unlink(missing_ok=True)\n'
+        '\n'
+        '    def _restore(self, previous):\n'
+        '        if previous is not None:\n'
+        '            self._write(previous)\n'
+        '        else:\n'
+        '            self.pointer.unlink(missing_ok=True)\n'
+        '            self._sync_directory()\n'
+        '\n'
         '    @contextmanager\n'
         '    def transaction(self):\n'
         '        with self.lock:\n'
-        "            fd=os.open(self.root/'.version-lock',os.O_RDWR|os.O_CREAT|os.O_NOFOLLOW,0o600)\n"
-        "            with os.fdopen(fd,'r+b') as stream:\n"
-        '                fcntl.flock(stream,fcntl.LOCK_EX)\n'
+        "            fd = os.open(self.root / '.version-lock', os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW, 0o600)\n"
+        "            with os.fdopen(fd, 'r+b') as stream:\n"
+        '                fcntl.flock(stream, fcntl.LOCK_EX)\n'
         '                yield\n'
-        '    def activate(self,version,decision,healthcheck):\n'
-        '        with self.transaction():return self._activate(version,decision,healthcheck)\n'
-        '    def _activate(self,version,decision,healthcheck):\n'
-        "        if decision.approved is not True or decision.subject!=version:raise PermissionError('Authenticated promotion decision required')\n"
-        "        previous=self.current();self._write({'version':version,'previous':previous['version'] if previous else None})\n"
-        '        try:\n'
-        "            if healthcheck(version) is not True:raise ValueError('Version failed health gate')\n"
-        '        except Exception:\n'
-        '            if previous is not None:self._write(previous)\n'
-        '            else:self.pointer.unlink(missing_ok=True)\n'
-        '            raise\n'
-        '        return self.current()\n'
-        '    def rollback(self):\n'
-        '        with self.transaction():return self._rollback()\n'
-        '    def _rollback(self):\n'
-        '        current=self.current()\n'
-        "        if not current or not current['previous']:raise ValueError('No previous stable version')\n"
-        "        self._write({'version':current['previous'],'previous':None});return self.current()\n"
+        '\n'
+        '    def _consume(self, receipt):\n'
+        '        """Durable replay record, written before publishing any new pointer."""\n'
+        "        if not re.fullmatch('[0-9a-f]{64}', receipt):\n"
+        "            raise ValueError('Invalid activation receipt')\n"
+        "        path = self.root / 'consumed-promotions.txt'\n"
+        '        fd = os.open(path, os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW | os.O_NONBLOCK, 0o600)\n'
+        "        with os.fdopen(fd, 'r+b') as stream:\n"
+        '            if not stat.S_ISREG(os.fstat(stream.fileno()).st_mode):\n'
+        "                raise ValueError('Regular replay ledger required')\n"
+        '            raw = stream.read(8 * 1024**2 + 1)\n'
+        '            if len(raw) > 8 * 1024**2 - 65:\n'
+        "                raise ValueError('Promotion ledger full; supervisor maintenance required')\n"
+        '            entries = raw.splitlines()\n'
+        "            if (raw and not raw.endswith(b'\\n')) or any(not re.fullmatch(b'[0-9a-f]{64}', entry) for entry in entries):\n"
+        "                raise ValueError('Damaged promotion replay ledger')\n"
+        "            if receipt.encode('ascii') in entries:\n"
+        "                raise PermissionError('Promotion approval already consumed')\n"
+        '            stream.seek(0, 2)\n'
+        "            stream.write(receipt.encode('ascii') + b'\\n')\n"
+        '            stream.flush()\n'
+        '            os.fsync(stream.fileno())\n'
+        '        self._sync_directory()\n'
+        '\n'
+        '    def activate(self, version, decision, healthcheck):\n'
+        '        self._version(version)\n'
+        '        if self.promotion_gate is None or self.audit is None or not callable(healthcheck):\n'
+        "            raise PermissionError('Independent promotion authority, audit and health adapter required')\n"
+        '        with self.transaction():\n'
+        '            previous = self.current()\n'
+        "            baseline = previous['version'] if previous else self.initial_version\n"
+        "            baseline_sha = previous['artifacts_sha256'] if previous else self.initial_artifacts_sha256\n"
+        '            if baseline is None or version == baseline:\n'
+        "                raise PermissionError('Explicit initial baseline and a distinct target required')\n"
+        '            authorization = self.promotion_gate.authorize(decision, version, baseline, baseline_artifacts_sha256=baseline_sha)\n'
+        '            if healthcheck(version) is not True:\n'
+        "                raise ValueError('Version failed health gate')\n"
+        '            # No failed candidate becomes globally current during its health check.\n'
+        '            authorization = self.promotion_gate.authorize(decision, version, baseline, baseline_artifacts_sha256=baseline_sha)\n'
+        "            value = {'format': 'omega-version-pointer-1', 'version': version,\n"
+        "                     'previous': {'version': baseline, 'artifacts_sha256': baseline_sha},\n"
+        "                     'artifacts_sha256': authorization['artifacts_sha256'],\n"
+        "                     'authorization_sha256': authorization['subject']}\n"
+        "            self.audit.append({'event': 'activation_started', **authorization})\n"
+        "            self._consume(authorization['receipt'])\n"
+        '            try:\n'
+        '                self.promotion_gate.authorize(decision, version, baseline, baseline_artifacts_sha256=baseline_sha)\n'
+        '                self._write(value)\n'
+        "                self.audit.append({'event': 'activation_committed', **authorization})\n"
+        '            except BaseException:\n'
+        '                self._restore(previous)\n'
+        '                raise\n'
+        '            return snapshot(value)\n'
+        '\n'
+        '    def rollback(self, authorization, healthcheck):\n'
+        '        """Manual rollback also needs a host approval bound to the exact target."""\n'
+        '        if not callable(self.authorize_rollback) or self.audit is None or not callable(healthcheck):\n'
+        "            raise PermissionError('Independent rollback authority required')\n"
+        '        with self.transaction():\n'
+        '            current = self.current()\n'
+        "            if not current or current['previous'] is None:\n"
+        "                raise ValueError('No previous authenticated version')\n"
+        "            target = current['previous']\n"
+        "            action = {'format': 'omega-rollback-1', 'current': current['version'], 'target': target,\n"
+        "                      'authorization_sha256': current['authorization_sha256']}\n"
+        '            subject = digest(action)\n'
+        '            if self.authorize_rollback(snapshot(action), authorization) is not True:\n'
+        "                raise PermissionError('Rollback approval absent')\n"
+        "            if healthcheck(target['version']) is not True:\n"
+        "                raise ValueError('Rollback target failed health gate')\n"
+        '            if self.authorize_rollback(snapshot(action), authorization) is not True:\n'
+        "                raise PermissionError('Rollback approval expired or revoked')\n"
+        "            value = {'format': 'omega-version-pointer-1', 'version': target['version'], 'previous': None,\n"
+        "                     'artifacts_sha256': target['artifacts_sha256'], 'authorization_sha256': subject}\n"
+        "            self.audit.append({'event': 'rollback_started', 'subject': subject})\n"
+        '            try:\n'
+        '                self._write(value)\n'
+        "                self.audit.append({'event': 'rollback_committed', 'subject': subject})\n"
+        '            except BaseException:\n'
+        '                self._restore(current)\n'
+        '                raise\n'
+        '            return snapshot(value)\n'
     ),
     ('omega_evolution/statistics.py',
         '"""Paired bootstrap and Holm correction; sample evidence is not a universal guarantee."""\n'
@@ -24185,6 +24855,7 @@ SOURCES = (
     ('omega_platform/artifact_verifier.py',
         '"""Verify declared build bytes separately from generator execution."""\n'
         'import json\n'
+        'import re\n'
         'from pathlib import Path\n'
         'from .manifest import verify,sha256\n'
         'from omega_selfhost.driver import verify_result\n'
@@ -24194,6 +24865,28 @@ SOURCES = (
         '        verify(manifest,self.root)\n'
         "        return {'valid':True,'artifacts':len(manifest['artifacts']),'scope':'recorded byte integrity, not source-to-binary proof'}\n"
         '    def execution(self,result):return verify_result(result)\n'
+        '    def promotion(self,manifest):\n'
+        '        """Byte integrity callback for PromotionGate, not source/binary equivalence.\n'
+        '\n'
+        '        Independent attestations bind the manifest to a patch and baseline;\n'
+        '        this callback checks only the declared artifacts in a pinned root.\n'
+        '        """\n'
+        '        from omega_security.encoding import canonical\n'
+        '        from omega_evolution.component_registry import _path\n'
+        '        canonical(manifest)\n'
+        "        if type(manifest) is not dict or type(manifest.get('files')) is not dict or not manifest['files']:\n"
+        "            raise ValueError('Promotion artifact files required')\n"
+        "        if type(manifest.get('patch_sha256')) is not str or not re.fullmatch('[0-9a-f]{64}',manifest['patch_sha256']):\n"
+        "            raise ValueError('Patch provenance required')\n"
+        "        if type(manifest.get('baseline_version')) is not str or not manifest['baseline_version']:\n"
+        "            raise ValueError('Baseline provenance required')\n"
+        "        if type(manifest.get('baseline_artifacts_sha256')) is not str or not re.fullmatch('[0-9a-f]{64}',manifest['baseline_artifacts_sha256']):\n"
+        "            raise ValueError('Baseline artifact manifest digest required')\n"
+        "        for path,expected in manifest['files'].items():\n"
+        '            _path(path)\n'
+        "            if type(expected) is not str or not re.fullmatch('[0-9a-f]{64}',expected):raise ValueError('Full artifact digest required')\n"
+        '            self.compare(path,expected)\n'
+        '        return True\n'
         '    def compare(self,path,expected):\n'
         '        resolved=(self.root/path).resolve(strict=True)\n'
         "        if not resolved.is_relative_to(self.root):raise ValueError('Artifact escapes root')\n"
@@ -24753,6 +25446,7 @@ SOURCES = (
         '    def termination(self):\n'
         "        if self.timed_out:return 'wall_limit'\n"
         "        if self.limit=='output':return 'output_limit'\n"
+        "        if self.limit=='revoked':return 'revoked'\n"
         "        return 'signal' if self.signal is not None else 'exit'\n"
         '\n'
         '\n'
@@ -24824,7 +25518,8 @@ SOURCES = (
         "            f'--nofile={budget.open_files}',f'--stack={budget.stack_bytes}','--core=0','--']\n"
         '\n'
         '\n'
-        'def _capture(command,original,budget,*,cwd=None,env=None,pass_fds=(),sandboxed=False):\n'
+        'def _capture(command,original,budget,*,cwd=None,env=None,pass_fds=(),sandboxed=False,cancel_event=None):\n'
+        "    if cancel_event is not None and cancel_event.is_set():raise PermissionError('Execution revoked before launch')\n"
         "    with tempfile.TemporaryDirectory(prefix='omega-output-') as tmp:\n"
         "        out=Path(tmp)/'stdout';err=Path(tmp)/'stderr';started=time.monotonic();expired=False;limit=None\n"
         "        with out.open('wb') as stdout,err.open('wb') as stderr:\n"
@@ -24840,6 +25535,8 @@ SOURCES = (
         '                # Poll output size as well as wall time. File limits also protect\n'
         '                # disk use if a candidate emits faster than the poll interval.\n'
         '                while child.poll() is None:\n'
+        '                    if cancel_event is not None and cancel_event.is_set():\n'
+        "                        limit='revoked';break\n"
         '                    if time.monotonic()-started>budget.wall_seconds:\n'
         "                        expired=True;limit='wall';break\n"
         '                    if out.stat().st_size+err.stat().st_size>budget.output_bytes:\n'
@@ -24863,7 +25560,7 @@ SOURCES = (
         '\n'
         '\n'
         'def run(argv:Sequence[str|Path],*,budget=Budget(),readonly=(),writable=(),\n'
-        "        cwd='/work',extra_env=None,check=False,_instrumented=False,threads=False,_subprocesses=False):\n"
+        "        cwd='/work',extra_env=None,check=False,_instrumented=False,threads=False,_subprocesses=False,cancel_event=None):\n"
         "    if not argv:raise ValueError('An executable is required')\n"
         '    exe=Path(argv[0]).resolve(strict=True)\n'
         "    if not exe.is_file():raise ValueError('Executable must be a file')\n"
@@ -24897,7 +25594,7 @@ SOURCES = (
         "        args+=['--chdir',str(cwd),'--seccomp',str(filters.fileno()),'--',str(Path(prlimit).resolve()),\n"
         "               f'--nproc={budget.processes}','--',str(exe),*map(str,argv[1:])]\n"
         '        result=_capture(_limits(budget,_instrumented,namespace=True)+args,argv,budget,env=clean_environment(budget,extra_env),\n'
-        '                        pass_fds=(filters.fileno(),status.fileno()),sandboxed=True)\n'
+        '                        pass_fds=(filters.fileno(),status.fileno()),sandboxed=True,cancel_event=cancel_event)\n'
         '        status.seek(0)\n'
         '        try:\n'
         "            documents=[json.loads(line) for line in status.read(4096).decode('utf-8').splitlines() if line.strip()]\n"
@@ -24946,60 +25643,99 @@ SOURCES = (
         "        'LSAN_OPTIONS':'exitcode=86','UBSAN_OPTIONS':'halt_on_error=1:print_stacktrace=1'},**kwargs)\n"
     ),
     ('omega_platform/scheduler.py',
-        '"""Bounded concurrent execution of readonly jobs; result order follows input."""\n'
+        '"""Bounded readonly process batches with complete admission before dispatch."""\n'
         'from concurrent.futures import ThreadPoolExecutor\n'
         'from dataclasses import dataclass\n'
         'from pathlib import Path\n'
         'from .budget import Budget\n'
         'from .sandbox import run\n'
+        '\n'
+        '\n'
         '@dataclass(frozen=True)\n'
         'class Job:\n'
         '    id: str\n'
-        '    argv: tuple[str,...]\n'
-        '    readonly: tuple[str,...]=()\n'
-        '    budget: Budget=Budget()\n'
+        '    argv: tuple[str, ...]\n'
+        '    readonly: tuple[str, ...] = ()\n'
+        '    budget: Budget = Budget()\n'
+        '\n'
         '    def __post_init__(self):\n'
-        "        if not self.id or not self.argv or type(self.argv) is not tuple:raise ValueError('Invalid job')\n"
-        "        if any(type(v) is not str for v in (*self.argv,*self.readonly)):raise TypeError('String paths required')\n"
+        '        if type(self.id) is not str or not 0 < len(self.id) <= 256 or any(ord(c) < 32 for c in self.id):\n'
+        "            raise ValueError('Invalid job identity')\n"
+        '        if type(self.argv) is not tuple or not 1 <= len(self.argv) <= 256:\n'
+        "            raise ValueError('Bounded argv tuple required')\n"
+        '        if type(self.readonly) is not tuple or len(self.readonly) > 64 or type(self.budget) is not Budget:\n'
+        "            raise ValueError('Readonly mounts and OS budget required')\n"
+        "        if any(type(v) is not str or not v or '\\0' in v or len(v.encode('utf-8')) > 65536 for v in (*self.argv, *self.readonly)):\n"
+        "            raise ValueError('Bounded string arguments and paths required')\n"
+        "        if sum(len(v.encode('utf-8')) for v in (*self.argv, *self.readonly)) > 256 * 1024:\n"
+        "            raise ValueError('Argument byte budget exceeded')\n"
+        '        if not Path(self.argv[0]).is_absolute() or any(not Path(p).is_absolute() for p in self.readonly):\n'
+        "            raise ValueError('Absolute executable and mount paths required')\n"
+        '        if len(set(self.readonly)) != len(self.readonly):\n'
+        "            raise ValueError('Duplicate readonly mount')\n"
+        '\n'
+        '\n'
         '@dataclass(frozen=True)\n'
         'class BatchLimits:\n'
-        '    workers: int=4\n'
-        '    jobs: int=64\n'
-        '    reserved_cpu_seconds: int=120\n'
-        '    concurrent_memory_bytes: int=2*1024**3\n'
+        '    workers: int = 4\n'
+        '    jobs: int = 64\n'
+        '    reserved_cpu_seconds: int = 120\n'
+        '    concurrent_memory_bytes: int = 2 * 1024**3\n'
+        '\n'
         '    def __post_init__(self):\n'
-        "        if not 1<=self.workers<=8 or not 1<=self.jobs<=64:raise ValueError('Invalid concurrency limits')\n"
-        "        if self.reserved_cpu_seconds<1 or self.concurrent_memory_bytes<32*1024**2:raise ValueError('Invalid resource reservation')\n"
-        'def execute(jobs,limits=BatchLimits()):\n'
-        '    sequence=[]\n'
+        '        if any(type(v) is not int for v in (self.workers, self.jobs, self.reserved_cpu_seconds, self.concurrent_memory_bytes)):\n'
+        "            raise TypeError('Integer batch limits required')\n"
+        '        if not 1 <= self.workers <= 8 or not 1 <= self.jobs <= 64:\n'
+        "            raise ValueError('Invalid concurrency limits')\n"
+        '        if not 1 <= self.reserved_cpu_seconds <= 64 * 3600 or not 32 * 1024**2 <= self.concurrent_memory_bytes <= 512 * 1024**3:\n'
+        "            raise ValueError('Invalid resource reservation')\n"
+        '\n'
+        '\n'
+        'def admit(jobs, limits=BatchLimits(), *, repetitions=1):\n'
+        '    """Materialize only a bounded batch; do not start any candidate here."""\n'
+        '    if type(limits) is not BatchLimits or type(repetitions) is not int or not 1 <= repetitions <= 8:\n'
+        "        raise ValueError('Invalid admission limits')\n"
+        '    sequence = []\n'
         '    for job in jobs:\n'
-        "        if len(sequence)>=limits.jobs:raise ValueError('Job count budget exceeded')\n"
-        "        if type(job) is not Job:raise TypeError('Job required')\n"
+        '        if len(sequence) >= limits.jobs:\n'
+        "            raise ValueError('Job count budget exceeded')\n"
+        '        if type(job) is not Job:\n'
+        "            raise TypeError('Job required')\n"
         '        sequence.append(job)\n'
-        "    if len({j.id for j in sequence})!=len(sequence):raise ValueError('Duplicate job id')\n"
-        "    if sum(j.budget.cpu_seconds for j in sequence)>limits.reserved_cpu_seconds:raise ValueError('CPU reservation exceeded')\n"
-        '    memory=sorted((j.budget.memory_bytes for j in sequence),reverse=True)\n'
-        "    if sum(memory[:limits.workers])>limits.concurrent_memory_bytes:raise ValueError('Memory reservation exceeded')\n"
+        '    if len({j.id for j in sequence}) != len(sequence):\n'
+        "        raise ValueError('Duplicate job id')\n"
+        '    if sum(j.budget.cpu_seconds for j in sequence) * repetitions > limits.reserved_cpu_seconds:\n'
+        "        raise ValueError('CPU reservation exceeded')\n"
+        '    memory = sorted((j.budget.memory_bytes for j in sequence), reverse=True)\n'
+        '    if sum(memory[:limits.workers]) > limits.concurrent_memory_bytes:\n'
+        "        raise ValueError('Memory reservation exceeded')\n"
+        '    return tuple(sequence)\n'
+        '\n'
+        '\n'
+        'def execute(jobs, limits=BatchLimits(), *, cancel_event=None):\n'
+        '    sequence = admit(jobs, limits)\n'
         '    def one(job):\n'
-        '        return job.id,run(job.argv,readonly=job.readonly,budget=job.budget)\n'
-        '    with ThreadPoolExecutor(max_workers=limits.workers) as pool:return tuple(pool.map(one,sequence))\n'
+        '        return job.id, run(job.argv, readonly=job.readonly, budget=job.budget, cancel_event=cancel_event)\n'
+        '    with ThreadPoolExecutor(max_workers=limits.workers) as pool:\n'
+        '        return tuple(pool.map(one, sequence))\n'
         '\n'
         '\n'
-        'def execute_reproducible(jobs,limits=BatchLimits(),repetitions=2):\n'
-        '    """Require identical completed outputs over requested repetitions.\n'
-        '\n'
-        '    Separate processes and readonly mounts prevent cross-job writable-memory\n'
-        '    sharing. This does not prove arbitrary programs deterministic on all runs.\n'
-        '    """\n'
-        "    if type(repetitions) is not int or not 2<=repetitions<=8:raise ValueError('Invalid reproducibility repetition budget')\n"
-        '    jobs=tuple(jobs)\n'
-        "    if sum(job.budget.cpu_seconds for job in jobs)*repetitions>limits.reserved_cpu_seconds:raise ValueError('Repeated jobs exceed total CPU reservation')\n"
-        '    reference=None;records=[]\n'
+        'def execute_reproducible(jobs, limits=BatchLimits(), repetitions=2, *, cancel_event=None):\n'
+        '    """Compare completed outputs, without proving universal determinism."""\n'
+        '    if type(repetitions) is not int or not 2 <= repetitions <= 8:\n'
+        "        raise ValueError('Invalid reproducibility repetition budget')\n"
+        '    sequence = admit(jobs, limits, repetitions=repetitions)\n'
+        '    reference = None\n'
+        '    records = []\n'
         '    for _ in range(repetitions):\n'
-        '        outcomes=execute(jobs,limits)\n'
-        '        values=tuple((id,outcome.returncode,outcome.stdout,outcome.stderr,outcome.termination) for id,outcome in outcomes)\n'
-        "        if reference is not None and values!=reference:raise ValueError('Job outputs are not reproducible')\n"
-        '        reference=values;records.append(outcomes)\n'
+        '        outcomes = execute(sequence, limits, cancel_event=cancel_event)\n'
+        '        if any(not outcome.ok for _, outcome in outcomes):\n'
+        "            raise ValueError('Reproducibility requires successful completed executions')\n"
+        '        values = tuple((id, outcome.returncode, outcome.stdout, outcome.stderr, outcome.termination) for id, outcome in outcomes)\n'
+        '        if reference is not None and values != reference:\n'
+        "            raise ValueError('Job outputs are not reproducible')\n"
+        '        reference = values\n'
+        '        records.append(outcomes)\n'
         '    return tuple(records)\n'
     ),
     ('omega_platform/security.py',
@@ -25196,68 +25932,276 @@ SOURCES = (
         "if __name__=='__main__':main()\n"
     ),
     ('omega_platform/workers.py',
-        '"""Authenticated worker RPC adapter; transport/network authority belongs to the host."""\n'
-        'from dataclasses import dataclass,asdict\n'
-        'import hashlib,json,base64\n'
-        'from .scheduler import Job,execute,BatchLimits\n'
+        '"""Bounded authenticated worker RPC; the host supplies TLS transport and keys.\n'
+        '\n'
+        'Transport must enforce its timeout and TLS verification. This module opens no\n'
+        'connections on import and provides no ambient credentials to candidate jobs.\n'
+        'Quotas are per supervisor-owned instance, not reset for each incoming RPC.\n'
+        '"""\n'
+        'from concurrent.futures import ThreadPoolExecutor\n'
+        'from dataclasses import dataclass, asdict\n'
+        'from threading import BoundedSemaphore, Event, RLock, Timer\n'
+        'from urllib.parse import urlsplit\n'
+        'import base64\n'
+        'import re\n'
+        'import time\n'
+        'import uuid\n'
+        'from pathlib import Path\n'
+        'from .budget import Budget\n'
+        'from .quotas import Quota\n'
+        'from .scheduler import Job, execute, admit, BatchLimits\n'
+        'from omega_security.capabilities import Capability\n'
+        'from omega_security.encoding import canonical, digest, snapshot\n'
+        '\n'
+        "REQUEST_FORMAT = 'omega-worker-request-1'\n"
+        "RESPONSE_FORMAT = 'omega-worker-response-1'\n"
+        'MAX_REQUEST_BYTES = 1024 * 1024\n'
+        'MAX_RESPONSE_BYTES = 128 * 1024**2 + 65536\n'
+        "RESPONSE_FIELDS = {'format', 'worker', 'request_id', 'job_id', 'job_sha256',\n"
+        "                   'returncode', 'stdout', 'stderr', 'termination', 'sandboxed', 'signature'}\n"
+        '\n'
+        '\n'
+        'def _id(value):\n'
+        "    return type(value) is str and re.fullmatch(r'[A-Za-z0-9_.-]{1,128}', value) is not None\n"
+        '\n'
+        '\n'
+        'def _authorize(verifier, capability, principal, action, subject, *, path=None):\n'
+        '    if type(capability) is not Capability:\n'
+        "        raise PermissionError('Signed worker capability required')\n"
+        "    bound = subject if 'subject' in capability.claims() else None\n"
+        '    return verifier.require(capability, principal, action, path=path, subject=bound)\n'
+        '\n'
+        '\n'
+        'def _encode_capability(token):\n'
+        '    if type(token) is not Capability:\n'
+        "        raise PermissionError('Signed worker capability required')\n"
+        '    token.claims()  # Bounded parsing, before constructing a transport envelope.\n'
+        '    if type(token.signature) is not bytes or not 0 < len(token.signature) <= 1024:\n'
+        "        raise ValueError('Invalid worker capability signature')\n"
+        "    return {'issuer': token.issuer, 'payload': base64.b64encode(token.payload).decode('ascii'),\n"
+        "            'signature': base64.b64encode(token.signature).decode('ascii')}\n"
+        '\n'
+        '\n'
+        'def _decode_capability(value):\n'
+        "    if type(value) is not dict or set(value) != {'issuer', 'payload', 'signature'}:\n"
+        "        raise ValueError('Unknown capability envelope')\n"
+        "    if type(value['issuer']) is not str or not 0 < len(value['issuer']) <= 256:\n"
+        "        raise ValueError('Invalid capability issuer')\n"
+        '    if any(type(value[name]) is not str or not 0 < len(value[name]) <= limit\n'
+        "           for name, limit in (('payload', 32768), ('signature', 2048))):\n"
+        "        raise ValueError('Capability envelope budget exceeded')\n"
+        "    return Capability(base64.b64decode(value['payload'], validate=True),\n"
+        "                      base64.b64decode(value['signature'], validate=True), value['issuer'])\n"
+        '\n'
+        '\n'
+        'def job_subject(job):\n'
+        '    """Digest a typed job, used by optional per-job signed capabilities."""\n'
+        '    if type(job) is not Job:\n'
+        "        raise TypeError('Job required')\n"
+        '    return digest(asdict(job))\n'
+        '\n'
+        '\n'
         '@dataclass(frozen=True)\n'
         'class Worker:\n'
         '    id: str\n'
         '    endpoint: str\n'
         '    slots: int\n'
+        '\n'
         '    def __post_init__(self):\n'
-        "        if not self.id or not self.endpoint.startswith('https://') or not 1<=self.slots<=8:raise ValueError('Invalid worker')\n"
+        '        if not _id(self.id) or type(self.endpoint) is not str or len(self.endpoint) > 4096:\n'
+        "            raise ValueError('Invalid worker identity/endpoint')\n"
+        '        url = urlsplit(self.endpoint)\n'
+        "        if url.scheme != 'https' or not url.hostname or url.username is not None or url.password is not None or url.fragment or url.query:\n"
+        "            raise ValueError('Pinned HTTPS worker endpoint required')\n"
+        '        if type(self.slots) is not int or not 1 <= self.slots <= 8:\n'
+        "            raise ValueError('Invalid worker slots')\n"
+        '\n'
+        '\n'
         'class Coordinator:\n'
-        '    def __init__(self,workers,transport,authenticate,verifier,principal):\n'
-        '        self.workers=tuple(sorted(workers,key=lambda w:w.id));self.transport=transport;self.authenticate=authenticate;self.verifier=verifier;self.principal=principal\n'
-        "        if not self.workers or len({w.id for w in self.workers})!=len(self.workers):raise ValueError('Unique authenticated workers required')\n"
-        '    def dispatch(self,jobs,capabilities):\n'
-        '        results=[]\n'
-        '        for index,job in enumerate(jobs):\n'
-        "            if index>=64:raise ValueError('Distributed queue budget exceeded')\n"
-        "            worker=self.workers[index%len(self.workers)];self.verifier.require(capabilities[worker.id],self.principal,'worker.execute:'+worker.id)\n"
-        "            payload=asdict(job);digest=hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()\n"
-        "            response=self.transport(worker.endpoint,{'job':payload,'sha256':digest})\n"
-        "            if response.get('job_sha256')!=digest or self.authenticate(worker,response) is not True:raise PermissionError('Worker response authentication failed')\n"
-        '            results.append((job.id,response))\n'
-        '        return tuple(results)\n'
-        'def local(jobs,limits=BatchLimits()):return execute(jobs,limits)\n'
+        '    def __init__(self, workers, transport, authenticate, verifier, principal, *, limits=BatchLimits()):\n'
+        '        items = []\n'
+        '        for worker in workers:\n'
+        '            if type(worker) is not Worker or len(items) >= 64:\n'
+        "                raise ValueError('Bounded typed worker inventory required')\n"
+        '            items.append(worker)\n'
+        '        self.workers = tuple(sorted(items, key=lambda w: w.id))\n'
+        '        if not items or len({w.id for w in items}) != len(items) or type(limits) is not BatchLimits:\n'
+        "            raise ValueError('Unique authenticated workers and typed limits required')\n"
+        '        if not callable(transport) or not callable(authenticate):\n'
+        "            raise TypeError('Bounded transport and response authenticator required')\n"
+        '        self.transport = transport\n'
+        '        self.authenticate = authenticate\n'
+        '        self.verifier = verifier\n'
+        '        self.principal = principal\n'
+        '        self.limits = limits\n'
+        '        self._slots = {w.id: BoundedSemaphore(w.slots) for w in items}\n'
+        '        self._total = Quota(jobs=limits.jobs, cpu_seconds=limits.reserved_cpu_seconds)\n'
+        '        self._concurrent = Quota(jobs=limits.workers, memory_bytes=limits.concurrent_memory_bytes)\n'
+        '        self._order = tuple(w for slot in range(max(w.slots for w in items)) for w in self.workers if slot < w.slots)\n'
+        '\n'
+        '    def dispatch(self, jobs, capabilities):\n'
+        '        sequence = admit(jobs, self.limits)\n'
+        '        if type(capabilities) is not dict:\n'
+        "            raise TypeError('Host capability mapping required')\n"
+        '        prepared = []\n'
+        '        # All jobs, known mount scopes and reservations are admitted before RPC.\n'
+        '        for index, job in enumerate(sequence):\n'
+        '            worker = self._order[index % len(self._order)]\n'
+        '            token = capabilities.get((worker.id, job.id), capabilities.get(worker.id))\n'
+        '            subject = job_subject(job)\n'
+        "            _authorize(self.verifier, token, self.principal, 'worker.execute:' + worker.id, subject)\n"
+        '            for path in job.readonly:\n'
+        "                _authorize(self.verifier, token, self.principal, 'artifact.read', subject, path=path)\n"
+        "            request = {'format': REQUEST_FORMAT, 'request_id': uuid.uuid4().hex,\n"
+        "                       'worker': worker.id, 'job': asdict(job), 'job_sha256': subject,\n"
+        "                       'capability': _encode_capability(token)}\n"
+        '            prepared.append((worker, job, token, subject, snapshot(request, max_bytes=MAX_REQUEST_BYTES)))\n'
+        '        self._total.consume(jobs=len(sequence), cpu_seconds=sum(job.budget.cpu_seconds for job in sequence))\n'
+        '\n'
+        '        def dispatch_one(item):\n'
+        '            worker, job, token, subject, request = item\n'
+        '            with self._slots[worker.id], self._concurrent.reserve(jobs=1, memory_bytes=job.budget.memory_bytes):\n'
+        "                _authorize(self.verifier, token, self.principal, 'worker.execute:' + worker.id, subject)\n"
+        '                # Transport owns enforced I/O deadlines; no unsafe retry fallback.\n'
+        '                response = self.transport(worker.endpoint, snapshot(request), timeout=job.budget.wall_seconds + 10)\n'
+        '                response = snapshot(response, max_bytes=min(MAX_RESPONSE_BYTES, 2 * job.budget.output_bytes + 65536))\n'
+        '                _check_response(worker, response)\n'
+        "                if response['request_id'] != request['request_id'] or response['job_id'] != job.id or response['job_sha256'] != subject:\n"
+        "                    raise PermissionError('Worker response does not match the dispatched job')\n"
+        '                if self.authenticate(worker, snapshot(response, max_bytes=MAX_RESPONSE_BYTES)) is not True:\n'
+        "                    raise PermissionError('Worker response authentication failed')\n"
+        "                _authorize(self.verifier, token, self.principal, 'worker.execute:' + worker.id, subject)\n"
+        '                return job.id, response\n'
+        '\n'
+        '        with ThreadPoolExecutor(max_workers=self.limits.workers) as pool:\n'
+        '            return tuple(pool.map(dispatch_one, prepared))\n'
+        '\n'
+        '\n'
+        'def local(jobs, limits=BatchLimits(), *, cancel_event=None):\n'
+        '    return execute(jobs, limits, cancel_event=cancel_event)\n'
+        '\n'
         '\n'
         'class WorkerServer:\n'
-        '    """Transport-neutral server handler; a host supplies authentication/signing.\n'
+        '    """One supervisor-owned service, with shared quotas across concurrent RPCs.\n'
         '\n'
-        '    Only explicitly whitelisted system executables bypass artifact-root scope.\n'
-        '    The request grants no writable mounts and cannot inherit host credentials.\n'
+        '    Replay records last for the instance lifetime. A persistent deployment must\n'
+        '    retain them outside process memory before allowing restarts/retries. Only\n'
+        '    pinned system executables bypass the artifact-root executable check.\n'
         '    """\n'
-        '    def __init__(self,id,verifier,principal,sign,system_executables=(),limits=BatchLimits()):\n'
-        '        from pathlib import Path\n'
-        '        self.id=id;self.verifier=verifier;self.principal=principal;self.sign=sign\n'
-        '        self.executables=frozenset(str(Path(p).resolve(strict=True)) for p in system_executables);self.limits=limits\n'
-        '    def handle(self,request,capability):\n'
-        '        from pathlib import Path\n'
-        '        from .budget import Budget\n'
-        "        self.verifier.require(capability,self.principal,'worker.execute:'+self.id)\n"
-        "        payload=request['job'];digest=hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()\n"
-        "        if request.get('sha256')!=digest:raise ValueError('Worker request digest mismatch')\n"
-        "        if set(payload)!={'id','argv','readonly','budget'}:raise ValueError('Unknown worker job fields')\n"
-        "        job=Job(payload['id'],tuple(payload['argv']),tuple(payload['readonly']),Budget(**payload['budget']))\n"
-        '        executable=str(Path(job.argv[0]).resolve(strict=True))\n'
-        "        if executable not in self.executables:self.verifier.require(capability,self.principal,'code.execute',path=executable)\n"
-        "        for path in job.readonly:self.verifier.require(capability,self.principal,'artifact.read',path=path)\n"
-        '        id,outcome=execute((job,),self.limits)[0]\n'
-        "        result={'worker':self.id,'job_id':id,'job_sha256':digest,'returncode':outcome.returncode,\n"
-        "                'stdout':outcome.stdout,'stderr':outcome.stderr,'termination':outcome.termination,'sandboxed':outcome.sandboxed}\n"
-        "        canonical=json.dumps(result,sort_keys=True,separators=(',',':')).encode()\n"
-        "        result['signature']=base64.b64encode(self.sign(canonical)).decode('ascii')\n"
-        '        return result\n'
+        '    def __init__(self, id, verifier, principal, sign, system_executables=(), limits=BatchLimits()):\n'
+        '        if not _id(id) or type(limits) is not BatchLimits or not callable(sign):\n'
+        "            raise ValueError('Typed worker configuration required')\n"
+        '        executables = []\n'
+        '        for path in system_executables:\n'
+        '            if len(executables) >= 64:\n'
+        "                raise ValueError('System executable inventory exceeded')\n"
+        '            resolved = Path(path).resolve(strict=True)\n'
+        '            if not resolved.is_file():\n'
+        "                raise ValueError('System executable must be a regular file')\n"
+        '            executables.append(str(resolved))\n'
+        '        self.id = id\n'
+        '        self.verifier = verifier\n'
+        '        self.principal = principal\n'
+        '        self.sign = sign\n'
+        '        self.executables = frozenset(executables)\n'
+        '        self.limits = limits\n'
+        '        self._total = Quota(jobs=limits.jobs, cpu_seconds=limits.reserved_cpu_seconds)\n'
+        '        self._concurrent = Quota(jobs=limits.workers, memory_bytes=limits.concurrent_memory_bytes)\n'
+        '        self._seen = set()\n'
+        '        self._lock = RLock()\n'
+        '\n'
+        '    def handle(self, request, capability=None):\n'
+        '        request = snapshot(request, max_bytes=MAX_REQUEST_BYTES)\n'
+        "        fields = {'format', 'request_id', 'worker', 'job', 'job_sha256', 'capability'}\n"
+        "        if type(request) is not dict or set(request) != fields or request['format'] != REQUEST_FORMAT or request['worker'] != self.id:\n"
+        "            raise ValueError('Unknown worker request protocol/destination')\n"
+        "        nonce = request['request_id']\n"
+        "        if type(nonce) is not str or not re.fullmatch('[0-9a-f]{32}', nonce):\n"
+        "            raise ValueError('Bounded request identity required')\n"
+        "        transmitted = _decode_capability(request['capability'])\n"
+        '        if capability is not None and capability != transmitted:\n'
+        "            raise PermissionError('Transport capability mismatch')\n"
+        '        capability = transmitted\n'
+        "        payload = request['job']\n"
+        "        if type(payload) is not dict or set(payload) != {'id', 'argv', 'readonly', 'budget'}:\n"
+        "            raise ValueError('Unknown worker job fields')\n"
+        "        if type(payload['argv']) is not list or type(payload['readonly']) is not list or type(payload['budget']) is not dict:\n"
+        "            raise ValueError('Typed job envelope required')\n"
+        "        job = Job(payload['id'], tuple(payload['argv']), tuple(payload['readonly']), Budget(**payload['budget']))\n"
+        '        admit((job,), self.limits)\n'
+        '        subject = job_subject(job)\n'
+        "        if request['job_sha256'] != subject:\n"
+        "            raise ValueError('Worker request digest mismatch')\n"
+        '\n'
+        '        def authorize():\n'
+        "            claim = _authorize(self.verifier, capability, self.principal, 'worker.execute:' + self.id, subject)\n"
+        '            executable = str(Path(job.argv[0]).resolve(strict=True))\n'
+        '            if executable not in self.executables:\n'
+        "                _authorize(self.verifier, capability, self.principal, 'code.execute', subject, path=executable)\n"
+        '            for path in job.readonly:\n'
+        "                _authorize(self.verifier, capability, self.principal, 'artifact.read', subject, path=path)\n"
+        '            return claim\n'
+        '\n'
+        '        claim = authorize()\n'
+        '        cancelled = Event()\n'
+        '        cancel = cancelled.set\n'
+        '        with self._concurrent.reserve(jobs=1, memory_bytes=job.budget.memory_bytes):\n'
+        '            with self._lock:\n'
+        '                if nonce in self._seen:\n'
+        "                    raise PermissionError('Worker request already consumed')\n"
+        '                self._total.consume(jobs=1, cpu_seconds=job.budget.cpu_seconds)\n'
+        '                self._seen.add(nonce)\n'
+        "            self.verifier.revocations.register(claim['id'], cancel)\n"
+        "            expiry = Timer(max(0, claim['expires']-time.time()), cancel)\n"
+        '            expiry.daemon = True\n'
+        '            try:\n'
+        '                expiry.start()\n'
+        '                authorize()\n'
+        '                job_id, outcome = execute((job,), self.limits, cancel_event=cancelled)[0]\n'
+        '                authorize()\n'
+        "                result = {'format': RESPONSE_FORMAT, 'worker': self.id, 'request_id': nonce,\n"
+        "                          'job_id': job_id, 'job_sha256': subject, 'returncode': outcome.returncode,\n"
+        "                          'stdout': outcome.stdout, 'stderr': outcome.stderr,\n"
+        "                          'termination': outcome.termination, 'sandboxed': outcome.sandboxed}\n"
+        '                signature = self.sign(canonical(result, max_bytes=MAX_RESPONSE_BYTES))\n'
+        '                if type(signature) is not bytes or not 0 < len(signature) <= 1024:\n'
+        "                    raise ValueError('Worker signer returned an invalid signature')\n"
+        '                authorize()\n'
+        "                result['signature'] = base64.b64encode(signature).decode('ascii')\n"
+        '                return result\n'
+        '            finally:\n'
+        '                expiry.cancel()\n'
+        "                self.verifier.revocations.unregister(claim['id'], cancel)\n"
         '\n'
         '\n'
-        'def verify_response(worker,response,verify_signature):\n'
-        '    value=dict(response)\n'
-        "    try:signature=base64.b64decode(value.pop('signature'),validate=True)\n"
-        '    except (ValueError,KeyError,TypeError):return False\n'
-        "    payload=json.dumps(value,sort_keys=True,separators=(',',':')).encode()\n"
-        "    return value.get('worker')==worker.id and verify_signature(worker.id,payload,signature) is True\n"
+        'def _check_response(worker, response):\n'
+        "    if type(response) is not dict or set(response) != RESPONSE_FIELDS or response['format'] != RESPONSE_FORMAT or response['worker'] != worker.id:\n"
+        "        raise PermissionError('Unknown worker response protocol/identity')\n"
+        "    if type(response['request_id']) is not str or not re.fullmatch('[0-9a-f]{32}', response['request_id']):\n"
+        "        raise ValueError('Invalid response request identity')\n"
+        "    if type(response['job_id']) is not str or not 0 < len(response['job_id']) <= 256:\n"
+        "        raise ValueError('Invalid response job identity')\n"
+        "    if type(response['job_sha256']) is not str or not re.fullmatch('[0-9a-f]{64}', response['job_sha256']):\n"
+        "        raise ValueError('Invalid response job digest')\n"
+        "    if type(response['returncode']) is not int or type(response['stdout']) is not str or type(response['stderr']) is not str:\n"
+        "        raise ValueError('Invalid worker outcome fields')\n"
+        "    if response['sandboxed'] is not True or response['termination'] not in {'exit', 'signal', 'wall_limit', 'output_limit', 'revoked'}:\n"
+        "        raise PermissionError('Worker did not report isolated execution')\n"
+        "    if type(response['signature']) is not str or not 0 < len(response['signature']) <= 2048:\n"
+        "        raise ValueError('Invalid worker signature envelope')\n"
+        '\n'
+        '\n'
+        'def verify_response(worker, response, verify_signature):\n'
+        '    try:\n'
+        '        value = snapshot(response, max_bytes=MAX_RESPONSE_BYTES)\n'
+        '        _check_response(worker, value)\n'
+        "        signature = base64.b64decode(value.pop('signature'), validate=True)\n"
+        '        if not 0 < len(signature) <= 1024:\n'
+        '            return False\n'
+        '        payload = canonical(value, max_bytes=MAX_RESPONSE_BYTES)\n'
+        '        return verify_signature(worker.id, payload, signature) is True\n'
+        '    except (ValueError, KeyError, TypeError, UnicodeError, RecursionError):\n'
+        '        return False\n'
     ),
     ('omega_security/__init__.py',
         '"""Omega 3.0 source components; acceptance requires separate evidence."""\n'
@@ -25343,32 +26287,167 @@ SOURCES = (
         'trusted supervisor and must authenticate against configured public keys.\n'
         '"""\n'
         'from dataclasses import dataclass\n'
-        'import json,time,math\n'
+        'import time,math,re\n'
         'from pathlib import Path\n'
+        'from .encoding import canonical,decode\n'
+        '\n'
+        '\n'
+        'def _text(value,limit=256):\n'
+        '    return type(value) is str and 0<len(value)<=limit and not any(ord(c)<32 for c in value)\n'
+        '\n'
+        '\n'
         '@dataclass(frozen=True)\n'
         'class Capability:\n'
         '    payload: bytes\n'
         '    signature: bytes\n'
         '    issuer: str\n'
         '    def claims(self):\n'
-        "        if type(self.payload) is not bytes or len(self.payload)>16384:raise ValueError('Capability budget exceeded')\n"
-        '        return json.loads(self.payload)\n'
+        '        return decode(self.payload,max_bytes=16384,max_nodes=1024,max_depth=8)\n'
         'class CapabilityVerifier:\n'
         '    def __init__(self,verify_signature,revocations):self.verify_signature=verify_signature;self.revocations=revocations\n'
-        '    def require(self,token,principal,action,*,path=None):\n'
+        '    def require(self,token,principal,action,*,path=None,subject=None):\n'
         "        if type(token) is not Capability:raise PermissionError('Signed capability required')\n"
-        "        if self.verify_signature(token.issuer,token.payload,token.signature) is not True:raise PermissionError('Invalid capability signature')\n"
+        "        if not _text(token.issuer) or not _text(principal) or not _text(action):raise PermissionError('Invalid capability identity/action')\n"
         "        claim=token.claims();required={'id','principal','actions','root','expires'}\n"
-        "        if type(claim) is not dict or set(claim)!=required:raise PermissionError('Unknown capability claims')\n"
-        "        canonical=json.dumps(claim,sort_keys=True,separators=(',',':'),allow_nan=False).encode()\n"
-        "        if canonical!=token.payload:raise PermissionError('Noncanonical capability')\n"
-        "        if claim['principal']!=principal or action not in claim['actions']:raise PermissionError('Capability scope denied')\n"
+        "        if type(claim) is not dict or not required<=set(claim)<=required|{'subject'}:raise PermissionError('Unknown capability claims')\n"
+        "        if any(not _text(claim[key]) for key in ('id','principal')):raise PermissionError('Invalid capability identity')\n"
+        "        actions=claim['actions']\n"
+        '        if type(actions) is not list or not 1<=len(actions)<=128 or any(not _text(a) for a in actions) or len(set(actions))!=len(actions):\n'
+        "            raise PermissionError('Explicit unique action list required')\n"
+        "        if not _text(claim['root'],4096) or not Path(claim['root']).is_absolute():raise PermissionError('Absolute capability root required')\n"
+        "        if canonical(claim,max_bytes=16384)!=token.payload:raise PermissionError('Noncanonical capability')\n"
+        "        if type(token.signature) is not bytes or not 0<len(token.signature)<=1024:raise PermissionError('Invalid signature representation')\n"
+        "        if self.verify_signature(token.issuer,token.payload,token.signature) is not True:raise PermissionError('Invalid capability signature')\n"
+        "        if claim['principal']!=principal or action not in actions:raise PermissionError('Capability scope denied')\n"
         "        if type(claim['expires']) not in (int,float) or not math.isfinite(claim['expires']) or time.time()>=claim['expires']:raise PermissionError('Capability expired')\n"
         "        if not self.revocations.active(claim['id']):raise PermissionError('Capability revoked')\n"
+        "        if subject is not None or 'subject' in claim:\n"
+        "            if type(subject) is not str or not re.fullmatch('[0-9a-f]{64}',subject) or claim.get('subject')!=subject:\n"
+        "                raise PermissionError('Capability does not authorize this exact subject')\n"
         '        if path is not None:\n'
+        "            if not Path(path).is_absolute():raise PermissionError('Absolute scoped path required')\n"
         "            root=Path(claim['root']).resolve(strict=True);target=Path(path).resolve()\n"
         "            if not target.is_relative_to(root):raise PermissionError('Path outside capability')\n"
         '        return claim\n'
+    ),
+    ('omega_security/encoding.py',
+        '"""Bounded canonical UTF-8 JSON for signed requests and data-only boundaries."""\n'
+        'import hashlib\n'
+        'import json\n'
+        'import math\n'
+        '\n'
+        '\n'
+        'def _string_size(value, remaining):\n'
+        '    # Account before serialization, including JSON escaping and UTF-8 width.\n'
+        '    # Repeated references must not expand into an unbounded temporary string.\n'
+        '    size = 2\n'
+        '    if len(value) + size > remaining:\n'
+        "        raise ValueError('Data byte budget exceeded')\n"
+        '    for char in value:\n'
+        '        code = ord(char)\n'
+        '        if char in (\'"\', \'\\\\\', \'\\b\', \'\\f\', \'\\n\', \'\\r\', \'\\t\'):\n'
+        '            size += 2\n'
+        '        elif code < 32:\n'
+        '            size += 6\n'
+        '        elif code < 128:\n'
+        '            size += 1\n'
+        '        elif code < 2048:\n'
+        '            size += 2\n'
+        '        elif 0xD800 <= code <= 0xDFFF:\n'
+        "            raise ValueError('Unpaired Unicode surrogate')\n"
+        '        elif code < 65536:\n'
+        '            size += 3\n'
+        '        else:\n'
+        '            size += 4\n'
+        '        if size > remaining:\n'
+        "            raise ValueError('Data byte budget exceeded')\n"
+        '    return size\n'
+        '\n'
+        '\n'
+        'def canonical(value, *, max_bytes=1024*1024, max_nodes=10000, max_depth=64):\n'
+        '    if any(type(v) is not int or v < 1 for v in (max_bytes, max_nodes, max_depth)):\n'
+        "        raise ValueError('Positive data budgets required')\n"
+        '    pending = [(value, 0)]\n'
+        '    count = 0\n'
+        '    size = 0\n'
+        '    while pending:\n'
+        '        item, depth = pending.pop()\n'
+        '        count += 1\n'
+        '        if depth > max_depth or count > max_nodes:\n'
+        "            raise ValueError('Data structure budget exceeded')\n"
+        '        kind = type(item)\n'
+        '        if kind is dict:\n'
+        '            if count + len(pending) + len(item) > max_nodes:\n'
+        "                raise ValueError('Data structure budget exceeded')\n"
+        '            size += 2 + max(0, len(item)-1) + len(item)\n'
+        '            for key in item:\n'
+        '                if type(key) is not str or len(key) > 1024:\n'
+        "                    raise ValueError('Bounded string object keys required')\n"
+        '                size += _string_size(key, max_bytes-size)\n'
+        '            pending.extend((child, depth+1) for child in item.values())\n'
+        '        elif kind in (list, tuple):\n'
+        '            if count + len(pending) + len(item) > max_nodes:\n'
+        "                raise ValueError('Data structure budget exceeded')\n"
+        '            size += 2 + max(0, len(item)-1)\n'
+        '            pending.extend((child, depth+1) for child in item)\n'
+        '        elif kind is str:\n'
+        '            size += _string_size(item, max_bytes-size)\n'
+        '        elif kind is int:\n'
+        '            if item.bit_length() > 4096:\n'
+        "                raise ValueError('Integer data budget exceeded')\n"
+        '            size += len(str(item))\n'
+        '        elif kind is float:\n'
+        '            if not math.isfinite(item):\n'
+        "                raise ValueError('Finite numeric data required')\n"
+        '            size += len(json.dumps(item, allow_nan=False))\n'
+        '        elif kind is bool:\n'
+        '            size += 4 if item else 5\n'
+        '        elif kind is type(None):\n'
+        '            size += 4\n'
+        '        else:\n'
+        "            raise TypeError('Only JSON data may cross this boundary')\n"
+        '        if size > max_bytes:\n'
+        "            raise ValueError('Data byte budget exceeded')\n"
+        "    return json.dumps(value, sort_keys=True, separators=(',', ':'), ensure_ascii=False, allow_nan=False).encode('utf-8')\n"
+        '\n'
+        '\n'
+        'def _pairs(pairs):\n'
+        '    result = {}\n'
+        '    for key, value in pairs:\n'
+        '        if key in result:\n'
+        "            raise ValueError('Duplicate JSON key')\n"
+        '        result[key] = value\n'
+        '    return result\n'
+        '\n'
+        '\n'
+        'def _integer(text):\n'
+        '    if len(text) > 1240:\n'
+        "        raise ValueError('Integer text budget exceeded')\n"
+        '    return int(text)\n'
+        '\n'
+        '\n'
+        'def _constant(text):\n'
+        "    raise ValueError('Nonfinite JSON constant')\n"
+        '\n'
+        '\n'
+        'def decode(data, *, max_bytes=1024*1024, **limits):\n'
+        '    if type(data) is not bytes or len(data) > max_bytes:\n'
+        "        raise ValueError('Data byte budget exceeded')\n"
+        '    try:\n'
+        "        value = json.loads(data.decode('utf-8'), object_pairs_hook=_pairs,\n"
+        '                           parse_int=_integer, parse_constant=_constant)\n'
+        '        canonical(value, max_bytes=max_bytes, **limits)\n'
+        '    except (UnicodeError, RecursionError) as exc:\n'
+        "        raise ValueError('Malformed JSON data') from exc\n"
+        '    return value\n'
+        '\n'
+        '\n'
+        'def snapshot(value, **limits):\n'
+        '    return decode(canonical(value, **limits), **limits)\n'
+        '\n'
+        '\n'
+        'def digest(value, **limits):\n'
+        '    return hashlib.sha256(canonical(value, **limits)).hexdigest()\n'
     ),
     ('omega_security/filesystem.py',
         '"""Root-anchored POSIX file operations; no directory-component symlink traversal."""\n'
@@ -25440,6 +26519,11 @@ SOURCES = (
         '        with self.lock:\n'
         "            if not self.active(id):raise PermissionError('Capability revoked')\n"
         '            self.callbacks.setdefault(id,[]).append(cancel)\n'
+        '    def unregister(self,id,cancel):\n'
+        '        with self.lock:\n'
+        '            callbacks=self.callbacks.get(id,[])\n'
+        '            self.callbacks[id]=[callback for callback in callbacks if callback is not cancel]\n'
+        '            if not self.callbacks[id]:self.callbacks.pop(id,None)\n'
         '    def revoke(self,id):\n'
         '        with self.lock:self.revoked.add(id);callbacks=self.callbacks.pop(id,[])\n'
         '        failures=[]\n'
@@ -25453,24 +26537,56 @@ SOURCES = (
         '        return {id:self.revoke(id) for id in ids}\n'
     ),
     ('omega_security/roles.py',
-        '"""Role assignment is supervisor configuration, never candidate-supplied data."""\n'
+        '"""Role assignment belongs to the supervisor; signed decisions bind exact data."""\n'
         'from dataclasses import dataclass\n'
+        'import math\n'
+        'import re\n'
+        'import time\n'
+        '\n'
+        '\n'
         '@dataclass(frozen=True)\n'
         'class Attestation:\n'
         '    actor: str\n'
         '    subject: str\n'
         '    decision: str\n'
         '    signature: bytes\n'
+        '    expires: float | None = None\n'
+        '\n'
+        '    def __post_init__(self):\n'
+        '        if type(self.actor) is not str or not 0 < len(self.actor) <= 256:\n'
+        "            raise ValueError('Invalid attestation actor')\n"
+        "        if type(self.subject) is not str or not re.fullmatch('[0-9a-f]{64}', self.subject):\n"
+        "            raise ValueError('Invalid attestation subject')\n"
+        "        if self.decision not in ('approve', 'reject') or type(self.signature) is not bytes or not 0 < len(self.signature) <= 1024:\n"
+        "            raise ValueError('Invalid signed decision')\n"
+        '        if self.expires is not None and (type(self.expires) not in (int, float) or not math.isfinite(self.expires) or self.expires <= 0):\n'
+        "            raise ValueError('Invalid attestation expiry')\n"
+        '\n'
+        '\n'
         'class Roles:\n'
-        '    def __init__(self,assignments,authenticate):self.assignments={k:frozenset(v) for k,v in assignments.items()};self.authenticate=authenticate\n'
-        '    def require(self,attestation,role,subject):\n'
-        "        if type(attestation) is not Attestation or attestation.subject!=subject:raise PermissionError('Attestation subject mismatch')\n"
-        "        if role not in self.assignments.get(attestation.actor,()):raise PermissionError('Role denied')\n"
-        "        if self.authenticate(attestation) is not True:raise PermissionError('Attestation authentication failed')\n"
-        "        if attestation.decision!='approve':raise PermissionError('Approval absent')\n"
-        '    def promotion(self,subject,proposer,verification,approval):\n'
-        "        self.require(verification,'verifier',subject);self.require(approval,'promoter',subject)\n"
-        "        if len({proposer,verification.actor,approval.actor})!=3:raise PermissionError('Independent actors required')\n"
+        '    def __init__(self, assignments, authenticate):\n'
+        '        self.assignments = {k: frozenset(v) for k, v in assignments.items()}\n'
+        '        self.authenticate = authenticate\n'
+        '\n'
+        '    def require(self, attestation, role, subject):\n'
+        '        if type(attestation) is not Attestation or attestation.subject != subject:\n'
+        "            raise PermissionError('Attestation subject mismatch')\n"
+        '        if role not in self.assignments.get(attestation.actor, ()):\n'
+        "            raise PermissionError('Role denied')\n"
+        '        if attestation.expires is not None and time.time() >= attestation.expires:\n'
+        "            raise PermissionError('Attestation expired')\n"
+        '        if self.authenticate(attestation) is not True:\n'
+        "            raise PermissionError('Attestation authentication failed')\n"
+        "        if attestation.decision != 'approve':\n"
+        "            raise PermissionError('Approval absent')\n"
+        '\n'
+        '    def promotion(self, subject, proposer, verification, approval):\n'
+        "        self.require(verification, 'verifier', subject)\n"
+        "        self.require(approval, 'promoter', subject)\n"
+        '        if verification.expires is None or approval.expires is None:\n'
+        "            raise PermissionError('Promotion attestations require signed expirations')\n"
+        '        if len({proposer, verification.actor, approval.actor}) != 3:\n'
+        "            raise PermissionError('Independent actors required')\n"
         '        return True\n'
     ),
     ('omega_security/secrets.py',
@@ -25491,6 +26607,7 @@ SOURCES = (
         '"""Ed25519 verification with supervisor-pinned public keys; no private keys here."""\n'
         'from dataclasses import asdict\n'
         'import json\n'
+        'from .encoding import canonical\n'
         'class SignatureVerifier:\n'
         '    def __init__(self,public_keys):\n'
         '        self.public_keys={name:bytes(value) for name,value in public_keys.items()}\n'
@@ -25504,7 +26621,7 @@ SOURCES = (
         '        return True\n'
         '    def record(self,record):\n'
         "        values=asdict(record);signature=values.pop('signature');issuer=values.get('actor',values.get('reviewer'))\n"
-        "        payload=json.dumps(values,sort_keys=True,separators=(',',':'),allow_nan=False).encode()\n"
+        '        payload=canonical(values)\n'
         '        return self(issuer,payload,signature)\n'
     ),
     ('omega_security/untrusted_data.py',
@@ -28885,17 +30002,23 @@ SOURCES = (
     ),
     ('omega_tools/approvals.py',
         'from dataclasses import dataclass\n'
-        'import hashlib,json,time\n'
+        'import hashlib,json,time,math,re\n'
         'from threading import RLock\n'
+        'from omega_security.encoding import digest as action_digest\n'
         '@dataclass(frozen=True)\n'
         'class Approval:\n'
         '    actor: str\n'
         '    action_digest: str\n'
         '    expires: float\n'
         '    signature: bytes\n'
+        '    def __post_init__(self):\n'
+        "        if type(self.actor) is not str or not self.actor or len(self.actor)>256:raise ValueError('Invalid approval actor')\n"
+        "        if type(self.action_digest) is not str or not re.fullmatch('[0-9a-f]{64}',self.action_digest):raise ValueError('Invalid approval subject')\n"
+        "        if type(self.expires) not in (int,float) or not math.isfinite(self.expires) or self.expires<=0:raise ValueError('Invalid approval expiry')\n"
+        "        if type(self.signature) is not bytes or not 0<len(self.signature)<=1024:raise ValueError('Invalid approval signature')\n"
         'class ApprovalGate:\n'
         '    def __init__(self,authenticate,approvers):self.authenticate=authenticate;self.approvers=frozenset(approvers);self.used=set();self.lock=RLock()\n'
-        "    def digest(self,action):return hashlib.sha256(json.dumps(action,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()\n"
+        '    def digest(self,action):return action_digest(action)\n'
         '    def consume(self,action,approval,proposer):\n'
         "        if type(approval) is not Approval or approval.actor not in self.approvers or approval.actor==proposer:raise PermissionError('Independent approver required')\n"
         '        digest=self.digest(action)\n'
@@ -28925,38 +30048,84 @@ SOURCES = (
         '    data=provider(text);inspect_wav(data);return data\n'
     ),
     ('omega_tools/capability_adapter.py',
-        '"""Tool implementations are supplied by the host; documents cannot register tools."""\n'
+        '"""Registered host tools retain capability, path and approval boundaries."""\n'
+        'from threading import RLock\n'
+        'from .contracts import Tool\n'
+        'from omega_security.encoding import digest\n'
+        'from omega_security.capabilities import Capability\n'
+        '\n'
+        '\n'
         'class CapabilityAdapter:\n'
-        '    def __init__(self,verifier,principal,audit):self.verifier=verifier;self.principal=principal;self.audit=audit;self.tools={}\n'
+        '    def __init__(self,verifier,principal,audit,*,approval_gate=None,max_calls=128):\n'
+        "        if type(max_calls) is not int or not 1<=max_calls<=10000:raise ValueError('Invalid tool call budget')\n"
+        '        self.verifier=verifier;self.principal=principal;self.audit=audit\n'
+        '        self.approval_gate=approval_gate;self.max_calls=max_calls\n'
+        '        self._tools={};self._calls=0;self._lock=RLock();self._sealed=False\n'
+        '\n'
         '    def register(self,tool):\n'
-        "        if tool.name in self.tools:raise ValueError('Duplicate tool')\n"
-        '        self.tools[tool.name]=tool\n'
-        '    def call(self,name,arguments,capability):\n'
-        "        if name not in self.tools:raise PermissionError('Unknown tool')\n"
-        '        tool=self.tools[name];tool.arguments.check(arguments)\n'
-        '        claim=self.verifier.require(capability,self.principal,tool.action)\n'
-        '        result=tool.invoke(arguments)\n'
-        '        tool.response.check(result)\n'
-        "        self.audit.append({'tool':name,'principal':self.principal,'capability_id':claim['id'],'status':'completed'})\n"
+        "        if type(tool) is not Tool:raise TypeError('Typed tool registration required')\n"
+        '        with self._lock:\n'
+        "            if self._sealed or tool.name in self._tools:raise ValueError('Tool registry is sealed or name is duplicated')\n"
+        "            if tool.approval_required and self.approval_gate is None:raise ValueError('Independent approval gate is missing')\n"
+        '            self._tools[tool.name]=tool\n'
+        '\n'
+        '    def request(self,name,arguments):\n'
+        '        with self._lock:\n'
+        "            if name not in self._tools:raise PermissionError('Unknown tool')\n"
+        '            tool=self._tools[name]\n'
+        "        return {'tool':name,'action':tool.action,'arguments':tool.arguments.copy(arguments),'principal':self.principal}\n"
+        '\n'
+        '    def call(self,name,arguments,capability,*,approval=None):\n'
+        "        if type(capability) is not Capability:raise PermissionError('Host-issued capability required')\n"
+        '        request=self.request(name,arguments);tool=self._tools[name];subject=digest(request)\n'
+        "        bound_subject=subject if 'subject' in capability.claims() else None\n"
+        '        def authorize():\n'
+        '            claim=self.verifier.require(capability,self.principal,tool.action,subject=bound_subject)\n'
+        '            for field in tool.path_fields:\n'
+        "                self.verifier.require(capability,self.principal,tool.action,path=request['arguments'][field],subject=bound_subject)\n"
+        '            return claim\n'
+        '        claim=authorize()\n'
+        '        with self._lock:\n'
+        "            if self._calls>=self.max_calls:raise ValueError('Tool call budget exhausted')\n"
+        '            self._sealed=True;self._calls+=1\n'
+        '        if tool.approval_required:self.approval_gate.consume(request,approval,self.principal)\n'
+        "        self.audit.append({'tool':name,'principal':self.principal,'capability_id':claim['id'],'request_sha256':subject,'status':'started'})\n"
+        '        authorize()\n'
+        '        try:\n'
+        "            result=tool.response.copy(tool.invoke(tool.arguments.copy(request['arguments'])))\n"
+        '            authorize()\n'
+        '        except Exception as exc:\n'
+        "            try:self.audit.append({'tool':name,'request_sha256':subject,'status':'failed','error_type':type(exc).__name__,'effect_may_have_happened':True})\n"
+        '            except Exception:pass\n'
+        '            raise\n'
+        "        self.audit.append({'tool':name,'request_sha256':subject,'response_sha256':digest(result,max_bytes=tool.response.max_bytes),'status':'completed'})\n"
         '        return result\n'
     ),
     ('omega_tools/contracts.py',
         '"""Bounded JSON-schema subset for tool boundaries. No implicit coercion."""\n'
         'from dataclasses import dataclass\n'
-        'import math\n'
+        'from types import MappingProxyType\n'
+        'from omega_security.encoding import canonical,snapshot\n'
         '@dataclass(frozen=True)\n'
         'class Contract:\n'
         '    fields: dict\n'
         '    required: frozenset[str]\n'
         '    max_bytes: int=1024*1024\n'
+        '    def __post_init__(self):\n'
+        '        allowed={str,int,float,bool,list,dict,type(None)}\n'
+        "        if type(self.fields) is not dict or any(type(k) is not str or not k or v not in allowed for k,v in self.fields.items()):raise ValueError('Invalid tool schema')\n"
+        '        required=frozenset(self.required)\n'
+        "        if not required<=set(self.fields) or type(self.max_bytes) is not int or not 1<=self.max_bytes<=8*1024**2:raise ValueError('Invalid contract bounds')\n"
+        "        object.__setattr__(self,'fields',MappingProxyType(dict(self.fields)))\n"
+        "        object.__setattr__(self,'required',required)\n"
         '    def check(self,value):\n'
-        '        import json\n'
         "        if type(value) is not dict or not self.required<=set(value)<=set(self.fields):raise ValueError('Tool fields do not match contract')\n"
-        "        if len(json.dumps(value,allow_nan=False).encode())>self.max_bytes:raise ValueError('Tool payload budget exceeded')\n"
+        '        canonical(value,max_bytes=self.max_bytes)\n'
         '        for name,item in value.items():\n'
         '            expected=self.fields[name]\n'
         "            if type(item) is not expected:raise TypeError('Tool field type mismatch: '+name)\n"
         '        return value\n'
+        '    def copy(self,value):return snapshot(self.check(value),max_bytes=self.max_bytes)\n'
         '@dataclass(frozen=True)\n'
         'class Tool:\n'
         '    name: str\n'
@@ -28964,6 +30133,16 @@ SOURCES = (
         '    arguments: Contract\n'
         '    response: Contract\n'
         '    invoke: object\n'
+        '    path_fields: tuple[str,...]=()\n'
+        '    approval_required: bool=False\n'
+        '    def __post_init__(self):\n'
+        "        if type(self.name) is not str or not self.name or type(self.action) is not str or not self.action or not callable(self.invoke):raise ValueError('Invalid tool registration')\n"
+        "        if type(self.arguments) is not Contract or type(self.response) is not Contract:raise TypeError('Tool contracts required')\n"
+        "        if type(self.path_fields) is not tuple or len(set(self.path_fields))!=len(self.path_fields):raise ValueError('Invalid tool path fields')\n"
+        "        if any(self.arguments.fields.get(name) is not str or name not in self.arguments.required for name in self.path_fields):raise ValueError('Scoped paths must be required string fields')\n"
+        "        if type(self.approval_required) is not bool:raise TypeError('Explicit tool approval policy required')\n"
+        "        if self.action in {'file.write','code.write','database.write','git.write','github.pr.create','github.issue.create'} and not self.approval_required:\n"
+        "            raise ValueError('Mutating tool needs an independent approval gate')\n"
     ),
     ('omega_tools/database.py',
         'from pathlib import Path\n'
@@ -29062,6 +30241,89 @@ SOURCES = (
         "    verifier.require(capability,principal,'github.ci.read')\n"
         "    result=trusted(['gh','run','list','--repo',repository,'--limit','20','--json','databaseId,headSha,status,conclusion'],budget=BUILD_BUDGET,check=True)\n"
         '    return json.loads(result.stdout)\n'
+    ),
+    ('omega_tools/local_files.py',
+        '"""Register bounded UTF-8 file tools anchored in a supervisor-selected root."""\n'
+        'import hashlib\n'
+        'import re\n'
+        'from pathlib import Path\n'
+        'from .contracts import Contract, Tool\n'
+        'from omega_security.filesystem import read, write\n'
+        '\n'
+        '\n'
+        'def register_files(adapter, root, *, writable=False, max_bytes=256 * 1024):\n'
+        '    root = Path(root).resolve(strict=True)\n'
+        '    if not root.is_dir() or type(writable) is not bool or type(max_bytes) is not int or not 1 <= max_bytes <= 256 * 1024:\n'
+        "        raise ValueError('Explicit file root and bounded byte limit required')\n"
+        '    if writable and adapter.approval_gate is None:\n'
+        "        raise PermissionError('Independent file mutation approval gate required')\n"
+        '\n'
+        '    def relative(path):\n'
+        '        if type(path) is not str:\n'
+        "            raise TypeError('Absolute file path required')\n"
+        '        target = Path(path)\n'
+        "        if not target.is_absolute() or str(target) != path or '..' in target.parts:\n"
+        "            raise PermissionError('Normalized absolute file path required')\n"
+        '        # Do not resolve the candidate path: anchored operations reject symlinks.\n'
+        '        try:\n'
+        '            value = target.relative_to(root).as_posix()\n'
+        '        except ValueError as exc:\n'
+        "            raise PermissionError('File outside configured tool root') from exc\n"
+        "        if value == '.':\n"
+        "            raise PermissionError('A file, not the root directory, is required')\n"
+        '        return value\n'
+        '\n'
+        '    def read_text(arguments):\n'
+        "        content = read(root, relative(arguments['path']), limit=max_bytes)\n"
+        "        return {'path': arguments['path'], 'content': content.decode('utf-8'),\n"
+        "                'sha256': hashlib.sha256(content).hexdigest(), 'authority': False}\n"
+        '\n'
+        "    adapter.register(Tool('files.read_text', 'file.read',\n"
+        "                          Contract({'path': str}, frozenset({'path'}), 8192),\n"
+        "                          Contract({'path': str, 'content': str, 'sha256': str, 'authority': bool},\n"
+        "                                   frozenset({'path', 'content', 'sha256', 'authority'}), 2 * 1024**2),\n"
+        "                          read_text, path_fields=('path',)))\n"
+        '    if not writable:\n'
+        '        return\n'
+        '\n'
+        '    def replace_text(arguments):\n'
+        "        expected = arguments['expected_sha256']\n"
+        "        if not re.fullmatch('[0-9a-f]{64}', expected):\n"
+        "            raise ValueError('Full expected content digest required')\n"
+        "        content = arguments['content'].encode('utf-8')\n"
+        '        if len(content) > max_bytes:\n'
+        "            raise ValueError('File write byte budget exceeded')\n"
+        "        sha = write(root, relative(arguments['path']), content, expected_sha256=expected)\n"
+        "        return {'path': arguments['path'], 'sha256': sha, 'bytes': len(content)}\n"
+        '\n'
+        "    adapter.register(Tool('files.replace_text', 'file.write',\n"
+        "                          Contract({'path': str, 'content': str, 'expected_sha256': str},\n"
+        "                                   frozenset({'path', 'content', 'expected_sha256'}), 2 * 1024**2),\n"
+        "                          Contract({'path': str, 'sha256': str, 'bytes': int},\n"
+        "                                   frozenset({'path', 'sha256', 'bytes'}), 8192),\n"
+        "                          replace_text, path_fields=('path',), approval_required=True))\n"
+    ),
+    ('omega_tools/memory.py',
+        '"""Read episodic memory through the consent facade, never through a raw DB."""\n'
+        'from .contracts import Contract, Tool\n'
+        'from omega_memory.privacy import PrivateMemory\n'
+        '\n'
+        '\n'
+        'def register_memory(adapter, memory, consent_resolver):\n'
+        '    if type(memory) is not PrivateMemory or memory.principal != adapter.principal or not callable(consent_resolver):\n'
+        "        raise ValueError('Private memory and a host consent resolver required')\n"
+        '\n'
+        '    def retrieve(arguments):\n'
+        "        id = arguments['id']\n"
+        '        if not 0 < len(id) <= 256:\n'
+        "            raise ValueError('Bounded episode identity required')\n"
+        '        consent = consent_resolver(id, adapter.principal)\n'
+        "        return {'episode': memory.get(id, purpose='retrieve', consent=consent), 'authority': False}\n"
+        '\n'
+        "    adapter.register(Tool('memory.retrieve', 'memory.retrieve',\n"
+        "                          Contract({'id': str}, frozenset({'id'}), 4096),\n"
+        "                          Contract({'episode': dict, 'authority': bool},\n"
+        "                                   frozenset({'episode', 'authority'}), 2 * 1024**2), retrieve))\n"
     ),
     ('omega_tools/notebooks.py',
         '"""Notebook code executes only in a process sandbox, without inherited credentials."""\n'
@@ -29409,20 +30671,20 @@ SOURCES = (
         '| OM-036 | Certificados compactos e checagem incremental | `omega_platform/proof_cache.py` (criar) | `testes/acceptance/test_om036.py` (criar) | `roadmap/evidence/om036.json` (criar) |\n'
         '| OM-037 | Correspondência entre enunciado e certificado | `omega_selfhost/statement_binding.py` (criar)<br>`omega_selfhost/proof.py` (alterar/revalidar) | `testes/acceptance/test_om037.py` (criar) | `roadmap/evidence/om037.json` (criar) |\n'
         '| OM-038 | Verificação de hipóteses, axiomas e dependências Lean | `omega_selfhost/axiom_policy.py` (criar)<br>`omega_selfhost/proof.py` (alterar/revalidar) | `testes/acceptance/test_om038.py` (criar) | `roadmap/evidence/om038.json` (criar) |\n'
-        '| OM-039 | Protocolo de prova com formato canônico | `omega_selfhost/proof_protocol.py` (criar) | `testes/acceptance/test_om039.py` (criar) | `roadmap/evidence/om039.json` (criar) |\n'
+        '| OM-039 | Protocolo de prova com formato canônico | `omega_selfhost/proof_protocol.py` (criar)<br>`omega_security/encoding.py` (integrar) | `testes/acceptance/test_om039.py` (criar) | `roadmap/evidence/om039.json` (criar) |\n'
         '| OM-040 | Verificação independente de artefatos compilados | `omega_platform/artifact_verifier.py` (criar)<br>`omega_platform/manifest.py` (alterar/revalidar) | `testes/acceptance/test_om040.py` (criar) | `roadmap/evidence/om040.json` (criar) |\n'
         '\n'
         '## Fase 3\n'
         '\n'
         '| Tarefa | Entrega | Implementação | Testes | Evidências |\n'
         '|---|---|---|---|---|\n'
-        '| OM-041 | Interface unificada de problemas e objetivos | `omega_agent/problem.py` (criar) | `testes/acceptance/test_om041.py` (criar) | `roadmap/evidence/om041.json` (criar) |\n'
+        '| OM-041 | Interface unificada de problemas e objetivos | `omega_agent/problem.py` (criar)<br>`omega_agent/integration.py` (integrar) | `testes/acceptance/test_om041.py` (criar) | `roadmap/evidence/om041.json` (criar) |\n'
         '| OM-042 | Representação de estados de raciocínio | `omega_agent/reasoning_state.py` (criar) | `testes/acceptance/test_om042.py` (criar) | `roadmap/evidence/om042.json` (criar) |\n'
         '| OM-043 | Planejador hierárquico de tarefas | `omega_agent/hierarchical_planner.py` (criar) | `testes/acceptance/test_om043.py` (criar) | `roadmap/evidence/om043.json` (criar) |\n'
         '| OM-044 | Planejamento por busca e avaliação de estados | `omega_agent/search.py` (criar) | `testes/acceptance/test_om044.py` (criar) | `roadmap/evidence/om044.json` (criar) |\n'
         '| OM-045 | Raciocínio simbólico com regras de inferência | `omega_agent/inference.py` (criar) | `testes/acceptance/test_om045.py` (criar) | `roadmap/evidence/om045.json` (criar) |\n'
         '| OM-046 | Raciocínio probabilístico calibrado | `omega_agent/calibration.py` (criar) | `testes/acceptance/test_om046.py` (criar) | `roadmap/evidence/om046.json` (criar) |\n'
-        '| OM-047 | Integração neural-simbólica bidirecional | `omega_agent/neurosymbolic.py` (criar)<br>`omega_nextorch/pipeline.py` (alterar/revalidar) | `testes/acceptance/test_om047.py` (criar) | `roadmap/evidence/om047.json` (criar) |\n'
+        '| OM-047 | Integração neural-simbólica bidirecional | `omega_agent/neurosymbolic.py` (criar)<br>`omega_nextorch/pipeline.py` (alterar/revalidar)<br>`omega_agent/integration.py` (integrar) | `testes/acceptance/test_om047.py` (criar) | `roadmap/evidence/om047.json` (criar) |\n'
         '| OM-048 | Detecção de contradições e premissas ausentes | `omega_agent/consistency.py` (criar) | `testes/acceptance/test_om048.py` (criar) | `roadmap/evidence/om048.json` (criar) |\n'
         '| OM-049 | Gerenciamento de hipóteses concorrentes | `omega_agent/hypotheses.py` (criar) | `testes/acceptance/test_om049.py` (criar) | `roadmap/evidence/om049.json` (criar) |\n'
         '| OM-050 | Metacognição operacional | `omega_agent/metacognition.py` (criar) | `testes/acceptance/test_om050.py` (criar) | `roadmap/evidence/om050.json` (criar) |\n'
@@ -29450,13 +30712,13 @@ SOURCES = (
         '| OM-067 | Execução de testes em worktrees isoladas | `omega_coder/worktrees.py` (criar) | `testes/acceptance/test_om067.py` (criar) | `roadmap/evidence/om067.json` (criar) |\n'
         '| OM-068 | Revisão automatizada de patches | `omega_coder/patch_review.py` (criar) | `testes/acceptance/test_om068.py` (criar) | `roadmap/evidence/om068.json` (criar) |\n'
         '| OM-069 | Geração de pull requests auditáveis | `omega_coder/pull_requests.py` (criar) | `testes/acceptance/test_om069.py` (criar) | `roadmap/evidence/om069.json` (criar) |\n'
-        '| OM-070 | Integração de ferramentas externas com permissões | `omega_tools/capability_adapter.py` (criar) | `testes/acceptance/test_om070.py` (criar) | `roadmap/evidence/om070.json` (criar) |\n'
+        '| OM-070 | Integração de ferramentas externas com permissões | `omega_tools/capability_adapter.py` (criar)<br>`omega_tools/local_files.py` (integrar)<br>`omega_tools/memory.py` (integrar) | `testes/acceptance/test_om070.py` (criar) | `roadmap/evidence/om070.json` (criar) |\n'
         '\n'
         '## Fase 5\n'
         '\n'
         '| Tarefa | Entrega | Implementação | Testes | Evidências |\n'
         '|---|---|---|---|---|\n'
-        '| OM-071 | Memória episódica de tarefas e resultados | `omega_memory/episodes.py` (criar) | `testes/acceptance/test_om071.py` (criar) | `roadmap/evidence/om071.json` (criar) |\n'
+        '| OM-071 | Memória episódica de tarefas e resultados | `omega_memory/episodes.py` (criar)<br>`omega_tools/memory.py` (integrar)<br>`omega_agent/runtime.py` (integrar) | `testes/acceptance/test_om071.py` (criar) | `roadmap/evidence/om071.json` (criar) |\n'
         '| OM-072 | Memória semântica com recuperação híbrida | `omega_memory/retrieval.py` (criar) | `testes/acceptance/test_om072.py` (criar) | `roadmap/evidence/om072.json` (criar) |\n'
         '| OM-073 | Base de conhecimento com proveniência | `omega_memory/knowledge.py` (criar) | `testes/acceptance/test_om073.py` (criar) | `roadmap/evidence/om073.json` (criar) |\n'
         '| OM-074 | Deduplicação, versionamento e expiração de memórias | `omega_memory/lifecycle.py` (criar) | `testes/acceptance/test_om074.py` (criar) | `roadmap/evidence/om074.json` (criar) |\n'
@@ -29470,13 +30732,13 @@ SOURCES = (
         '| OM-082 | Treinamento com feedback de verificadores | `omega_learning/verifier_feedback.py` (criar) | `testes/acceptance/test_om082.py` (criar) | `roadmap/evidence/om082.json` (criar) |\n'
         '| OM-083 | Prevenção de contaminação de benchmarks | `omega_learning/data_splits.py` (criar) | `testes/acceptance/test_om083.py` (criar) | `roadmap/evidence/om083.json` (criar) |\n'
         '| OM-084 | Versionamento de datasets e checkpoints | `omega_learning/versioning.py` (criar) | `testes/acceptance/test_om084.py` (criar) | `roadmap/evidence/om084.json` (criar) |\n'
-        '| OM-085 | Políticas de privacidade e retenção | `omega_memory/privacy.py` (criar) | `testes/acceptance/test_om085.py` (criar) | `roadmap/evidence/om085.json` (criar) |\n'
+        '| OM-085 | Políticas de privacidade e retenção | `omega_memory/privacy.py` (criar)<br>`omega_tools/memory.py` (integrar) | `testes/acceptance/test_om085.py` (criar) | `roadmap/evidence/om085.json` (criar) |\n'
         '\n'
         '## Fase 6\n'
         '\n'
         '| Tarefa | Entrega | Implementação | Testes | Evidências |\n'
         '|---|---|---|---|---|\n'
-        '| OM-086 | API estável para modelos de raciocínio | `omega_nextorch/model_api.py` (criar)<br>`nextorch/model.py` (alterar/revalidar) | `testes/acceptance/test_om086.py` (criar) | `roadmap/evidence/om086.json` (criar) |\n'
+        '| OM-086 | API estável para modelos de raciocínio | `omega_nextorch/model_api.py` (criar)<br>`nextorch/model.py` (alterar/revalidar)<br>`omega_agent/integration.py` (integrar) | `testes/acceptance/test_om086.py` (criar) | `roadmap/evidence/om086.json` (criar) |\n'
         '| OM-087 | Tokenizer e representação de código, provas e texto | `omega_nextorch/tokenizer.py` (criar) | `testes/acceptance/test_om087.py` (criar) | `roadmap/evidence/om087.json` (criar) |\n'
         '| OM-088 | Treinamento supervisionado de programação e raciocínio | `omega_nextorch/supervised_training.py` (criar)<br>`nextorch/model.py` (alterar/revalidar) | `testes/acceptance/test_om088.py` (criar) | `roadmap/evidence/om088.json` (criar) |\n'
         '| OM-089 | Geração condicionada por AST, tipos e contratos | `omega_nextorch/constrained_generation.py` (criar) | `testes/acceptance/test_om089.py` (criar) | `roadmap/evidence/om089.json` (criar) |\n'
@@ -29516,7 +30778,7 @@ SOURCES = (
         '\n'
         '| Tarefa | Entrega | Implementação | Testes | Evidências |\n'
         '|---|---|---|---|---|\n'
-        '| OM-116 | Interface de ferramentas com contratos tipados | `omega_tools/contracts.py` (criar) | `testes/acceptance/test_om116.py` (criar) | `roadmap/evidence/om116.json` (criar) |\n'
+        '| OM-116 | Interface de ferramentas com contratos tipados | `omega_tools/contracts.py` (criar)<br>`omega_tools/local_files.py` (integrar)<br>`omega_tools/memory.py` (integrar) | `testes/acceptance/test_om116.py` (criar) | `roadmap/evidence/om116.json` (criar) |\n'
         '| OM-117 | Navegação e recuperação de informação | `omega_tools/web.py` (criar) | `testes/acceptance/test_om117.py` (criar) | `roadmap/evidence/om117.json` (criar) |\n'
         '| OM-118 | Leitura estruturada de PDFs e documentos | `omega_tools/documents.py` (criar) | `testes/acceptance/test_om118.py` (criar) | `roadmap/evidence/om118.json` (criar) |\n'
         '| OM-119 | Interpretação de imagens e diagramas | `omega_tools/vision.py` (criar) | `testes/acceptance/test_om119.py` (criar) | `roadmap/evidence/om119.json` (criar) |\n'
@@ -29532,7 +30794,7 @@ SOURCES = (
         '| Tarefa | Entrega | Implementação | Testes | Evidências |\n'
         '|---|---|---|---|---|\n'
         '| OM-126 | Modelo de ameaças para agentes e autoedição | `docs/THREAT_MODEL_AGENT.md` (criar) | `testes/acceptance/test_om126.py` (criar) | `roadmap/evidence/om126.json` (criar) |\n'
-        '| OM-127 | Controle de acesso por capacidades | `omega_security/capabilities.py` (criar) | `testes/acceptance/test_om127.py` (criar) | `roadmap/evidence/om127.json` (criar) |\n'
+        '| OM-127 | Controle de acesso por capacidades | `omega_security/capabilities.py` (criar)<br>`omega_security/encoding.py` (integrar) | `testes/acceptance/test_om127.py` (criar) | `roadmap/evidence/om127.json` (criar) |\n'
         '| OM-128 | Separação entre proponente, verificador e promotor | `omega_security/roles.py` (criar)<br>`omega_evolution/promotion.py` (criar) | `testes/acceptance/test_om128.py` (criar) | `roadmap/evidence/om128.json` (criar) |\n'
         '| OM-129 | Defesa contra prompt injection e dados adversariais | `omega_security/untrusted_data.py` (criar) | `testes/acceptance/test_om129.py` (criar) | `roadmap/evidence/om129.json` (criar) |\n'
         '| OM-130 | Proteção de segredos e credenciais | `omega_security/secrets.py` (criar) | `testes/acceptance/test_om130.py` (criar) | `roadmap/evidence/om130.json` (criar) |\n'
@@ -29572,7 +30834,11 @@ SOURCES = (
         '\n'
         '## Contagem desta proposta\n'
         '\n'
-        '{"tasks": 150, "distinct_paths": 505, "existing": 81, "proposed_new": 424}\n'
+        '{"tasks": 150, "distinct_paths": 510, "existing": 81, "proposed_new": 429}\n'
+        '\n'
+        'Os números de arquivos existentes/novos usam o planejamento original como base.\n'
+        'A integração acrescenta quatro auxiliares de código e não altera os estados de aceite.\n'
+        'Testes, execução e novas evidências continuam adiados por solicitação do usuário.\n'
     ),
     ('roadmap/evidence/om011.json',
         '{\n'
@@ -33591,6 +34857,11 @@ SOURCES = (
         '          "path": "omega_selfhost/proof_protocol.py",\n'
         '          "action": "criar",\n'
         '          "source_written": true\n'
+        '        },\n'
+        '        {\n'
+        '          "path": "omega_security/encoding.py",\n'
+        '          "action": "integrar",\n'
+        '          "source_written": true\n'
         '        }\n'
         '      ],\n'
         '      "tests": [\n'
@@ -33647,6 +34918,11 @@ SOURCES = (
         '        {\n'
         '          "path": "omega_agent/problem.py",\n'
         '          "action": "criar",\n'
+        '          "source_written": true\n'
+        '        },\n'
+        '        {\n'
+        '          "path": "omega_agent/integration.py",\n'
+        '          "action": "integrar",\n'
         '          "source_written": true\n'
         '        }\n'
         '      ],\n'
@@ -33808,6 +35084,11 @@ SOURCES = (
         '        {\n'
         '          "path": "omega_nextorch/pipeline.py",\n'
         '          "action": "alterar/revalidar",\n'
+        '          "source_written": true\n'
+        '        },\n'
+        '        {\n'
+        '          "path": "omega_agent/integration.py",\n'
+        '          "action": "integrar",\n'
         '          "source_written": true\n'
         '        }\n'
         '      ],\n'
@@ -34412,6 +35693,16 @@ SOURCES = (
         '          "path": "omega_tools/capability_adapter.py",\n'
         '          "action": "criar",\n'
         '          "source_written": true\n'
+        '        },\n'
+        '        {\n'
+        '          "path": "omega_tools/local_files.py",\n'
+        '          "action": "integrar",\n'
+        '          "source_written": true\n'
+        '        },\n'
+        '        {\n'
+        '          "path": "omega_tools/memory.py",\n'
+        '          "action": "integrar",\n'
+        '          "source_written": true\n'
         '        }\n'
         '      ],\n'
         '      "tests": [\n'
@@ -34437,6 +35728,16 @@ SOURCES = (
         '        {\n'
         '          "path": "omega_memory/episodes.py",\n'
         '          "action": "criar",\n'
+        '          "source_written": true\n'
+        '        },\n'
+        '        {\n'
+        '          "path": "omega_tools/memory.py",\n'
+        '          "action": "integrar",\n'
+        '          "source_written": true\n'
+        '        },\n'
+        '        {\n'
+        '          "path": "omega_agent/runtime.py",\n'
+        '          "action": "integrar",\n'
         '          "source_written": true\n'
         '        }\n'
         '      ],\n'
@@ -34807,6 +36108,11 @@ SOURCES = (
         '          "path": "omega_memory/privacy.py",\n'
         '          "action": "criar",\n'
         '          "source_written": true\n'
+        '        },\n'
+        '        {\n'
+        '          "path": "omega_tools/memory.py",\n'
+        '          "action": "integrar",\n'
+        '          "source_written": true\n'
         '        }\n'
         '      ],\n'
         '      "tests": [\n'
@@ -34837,6 +36143,11 @@ SOURCES = (
         '        {\n'
         '          "path": "nextorch/model.py",\n'
         '          "action": "alterar/revalidar",\n'
+        '          "source_written": true\n'
+        '        },\n'
+        '        {\n'
+        '          "path": "omega_agent/integration.py",\n'
+        '          "action": "integrar",\n'
         '          "source_written": true\n'
         '        }\n'
         '      ],\n'
@@ -35648,6 +36959,16 @@ SOURCES = (
         '          "path": "omega_tools/contracts.py",\n'
         '          "action": "criar",\n'
         '          "source_written": true\n'
+        '        },\n'
+        '        {\n'
+        '          "path": "omega_tools/local_files.py",\n'
+        '          "action": "integrar",\n'
+        '          "source_written": true\n'
+        '        },\n'
+        '        {\n'
+        '          "path": "omega_tools/memory.py",\n'
+        '          "action": "integrar",\n'
+        '          "source_written": true\n'
         '        }\n'
         '      ],\n'
         '      "tests": [\n'
@@ -35933,6 +37254,11 @@ SOURCES = (
         '        {\n'
         '          "path": "omega_security/capabilities.py",\n'
         '          "action": "criar",\n'
+        '          "source_written": true\n'
+        '        },\n'
+        '        {\n'
+        '          "path": "omega_security/encoding.py",\n'
+        '          "action": "integrar",\n'
         '          "source_written": true\n'
         '        }\n'
         '      ],\n'
@@ -36615,16 +37941,23 @@ SOURCES = (
         '  ],\n'
         '  "counts": {\n'
         '    "tasks": 150,\n'
-        '    "distinct_paths": 505,\n'
+        '    "distinct_paths": 510,\n'
         '    "existing": 81,\n'
-        '    "proposed_new": 424\n'
+        '    "proposed_new": 429\n'
         '  },\n'
         '  "source_delivery": {\n'
-        '    "implementation_paths": 191,\n'
+        '    "implementation_paths": 196,\n'
         '    "scope": "source files, not acceptance",\n'
         '    "validation": "deferred_by_user",\n'
         '    "test_files": "deferred",\n'
-        '    "evidence_reports": "deferred"\n'
+        '    "evidence_reports": "deferred",\n'
+        '    "integration": "supervisor, agent, tools, private memory, workers, promotion; source only"\n'
+        '  },\n'
+        '  "planning_snapshot_counts": {\n'
+        '    "tasks": 150,\n'
+        '    "distinct_paths": 505,\n'
+        '    "existing": 81,\n'
+        '    "proposed_new": 424\n'
         '  }\n'
         '}\n'
     ),
@@ -37670,7 +39003,20 @@ SOURCES = (
         '    "new_test_files": "deferred",\n'
         '    "new_evidence_reports": "deferred",\n'
         '    "acceptance_complete": false,\n'
-        '    "historical_validation_only": true\n'
+        '    "historical_validation_only": true,\n'
+        '    "integration": {\n'
+        '      "status": "source_wired_pending_validation",\n'
+        '      "base_pull_request": 5,\n'
+        '      "modules": [\n'
+        '        "agent/Nextorch/checker",\n'
+        '        "tools/private memory/files",\n'
+        '        "worker RPC/sandbox/revocation",\n'
+        '        "independent promotion/version pointer"\n'
+        '      ],\n'
+        '      "runtime_executed": false,\n'
+        '      "tests_executed": false,\n'
+        '      "acceptance_evidence_generated": false\n'
+        '    }\n'
         '  }\n'
         '}\n'
     ),

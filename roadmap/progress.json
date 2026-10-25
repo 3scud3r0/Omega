@@ -1039,6 +1039,19 @@
     "new_test_files": "deferred",
     "new_evidence_reports": "deferred",
     "acceptance_complete": false,
-    "historical_validation_only": true
+    "historical_validation_only": true,
+    "integration": {
+      "status": "source_wired_pending_validation",
+      "base_pull_request": 5,
+      "modules": [
+        "agent/Nextorch/checker",
+        "tools/private memory/files",
+        "worker RPC/sandbox/revocation",
+        "independent promotion/version pointer"
+      ],
+      "runtime_executed": false,
+      "tests_executed": false,
+      "acceptance_evidence_generated": false
+    }
   }
 }

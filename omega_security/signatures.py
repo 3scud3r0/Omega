@@ -1,6 +1,7 @@
 """Ed25519 verification with supervisor-pinned public keys; no private keys here."""
 from dataclasses import asdict
 import json
+from .encoding import canonical
 class SignatureVerifier:
     def __init__(self,public_keys):
         self.public_keys={name:bytes(value) for name,value in public_keys.items()}
@@ -14,5 +15,5 @@ class SignatureVerifier:
         return True
     def record(self,record):
         values=asdict(record);signature=values.pop('signature');issuer=values.get('actor',values.get('reviewer'))
-        payload=json.dumps(values,sort_keys=True,separators=(',',':'),allow_nan=False).encode()
+        payload=canonical(values)
         return self(issuer,payload,signature)
