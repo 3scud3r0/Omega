@@ -1,0 +1,40 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-018",
+  "phase": 1,
+  "acceptance": "Especialização preserva semântica",
+  "sources": [
+    "omega/generics.py",
+    "omega_selfhost/driver.py",
+    "omega_selfhost/cli.py"
+  ],
+  "test_files": [
+    "testes/foundation/test_generics.py",
+    "testes/acceptance/test_om018.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/foundation/test_generics.py",
+        "testes/acceptance/test_om018.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "native"
+    }
+  ],
+  "additional_obligations": [
+    "Comparar backends e programas de referência no subconjunto declarado; revisar limites e compatibilidade da API.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa.",
+    "Reexecutar os testes antigos e novos de genéricos, CLI e build nativo; artefatos gerados com manifestos antigos precisam ser reconstruídos."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

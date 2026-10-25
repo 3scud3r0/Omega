@@ -1,0 +1,37 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-034",
+  "phase": 2,
+  "acceptance": "Convenções nos pontos não diferenciáveis documentadas",
+  "sources": [
+    "formal/tensor/Omega/Subgradients.lean",
+    "omega_selfhost/TensorKernel.lean"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om034.py",
+    "testes/lean/OM034.lean"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om034.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "formal"
+    }
+  ],
+  "additional_obligations": [
+    "Compilar Lean e conferir axiomas, hipóteses, enunciados e certificados; provas condicionais não descarregam a implementação C real.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

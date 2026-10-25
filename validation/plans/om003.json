@@ -1,0 +1,37 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-003",
+  "phase": 0,
+  "acceptance": "Build reproduzível, logs e artefatos verificáveis",
+  "sources": [
+    ".github/workflows/tests.yml",
+    "scripts/setup.sh",
+    "requirements/cpu-py312.lock"
+  ],
+  "test_files": [
+    "testes/foundation/test_proof_build.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/foundation/test_proof_build.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "formal"
+    }
+  ],
+  "additional_obligations": [
+    "Reproduzir a matriz Linux limpa, regressão diferencial, fuzzing e sanitizers antes de aceitar a fundação.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

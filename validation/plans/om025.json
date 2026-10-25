@@ -1,0 +1,37 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-025",
+  "phase": 1,
+  "acceptance": "Lockfile, integridade e resolução reproduzível",
+  "sources": [
+    "omega/packages.py",
+    "omega/package_lock.py",
+    "omega/modules.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om025.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om025.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "unit"
+    }
+  ],
+  "additional_obligations": [
+    "Comparar backends e programas de referência no subconjunto declarado; revisar limites e compatibilidade da API.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

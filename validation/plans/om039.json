@@ -1,0 +1,36 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-039",
+  "phase": 2,
+  "acceptance": "Certificados adulterados ou ambíguos rejeitados",
+  "sources": [
+    "omega_selfhost/proof_protocol.py",
+    "omega_security/encoding.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om039.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om039.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "unit"
+    }
+  ],
+  "additional_obligations": [
+    "Compilar Lean e conferir axiomas, hipóteses, enunciados e certificados; provas condicionais não descarregam a implementação C real.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

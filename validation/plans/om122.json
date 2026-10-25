@@ -1,0 +1,35 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-122",
+  "phase": 8,
+  "acceptance": "Permissões e transações explícitas",
+  "sources": [
+    "omega_tools/database.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om122.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om122.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "isolation"
+    }
+  ],
+  "additional_obligations": [
+    "Validar providers e ambientes reais com permissões explícitas; mocks verificam interfaces e não qualidade perceptiva.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

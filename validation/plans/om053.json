@@ -1,0 +1,36 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-053",
+  "phase": 3,
+  "acceptance": "Ganho em problemas não vistos contra baseline",
+  "sources": [
+    "omega_agent/learned_heuristics.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om053.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om053.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "unit"
+    }
+  ],
+  "additional_obligations": [
+    "Avaliar raciocínio e planejamento em casos retidos, com baseline e orçamento equivalente.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa.",
+    "Preservar resultados negativos e apresentar avaliação retida, comparação com baseline e custos; o ensaio funcional é insuficiente para o aceite científico."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

@@ -1,0 +1,35 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-101",
+  "phase": 7,
+  "acceptance": "Escopos autorizados e protegidos explícitos",
+  "sources": [
+    "omega_evolution/component_registry.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om101.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om101.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "unit"
+    }
+  ],
+  "additional_obligations": [
+    "Exigir evidências independentes de capacidade e segurança, sem autoaprovação ou promoção automática.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

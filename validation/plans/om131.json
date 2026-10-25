@@ -1,0 +1,35 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-131",
+  "phase": 9,
+  "acceptance": "Cadeia de eventos verificável",
+  "sources": [
+    "omega_security/audit.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om131.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om131.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "unit"
+    }
+  ],
+  "additional_obligations": [
+    "Executar avaliação adversarial independente e revisar a configuração de autoridades, chaves, processos e persistência.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

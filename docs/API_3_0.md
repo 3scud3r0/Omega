@@ -213,3 +213,26 @@ falha da transação usa o estado anterior já capturado. Nenhuma dessas operaç
 Esta continuação altera apenas fontes e documentação. Não foram executados
 imports dos módulos novos, builds, testes, benchmarks ou avaliações de segurança.
 Os estados de aceite do backlog permanecem pendentes.
+
+## Entrega de testes e revisão da OM-018
+
+Os fontes de testes e planos foram acrescentados posteriormente em
+`testes/acceptance/`, `testes/lean/` e `validation/`, sem execução. O executor
+`scripts/validate-roadmap.py` só inicia testes com `--execute`; os descritores
+novos em `roadmap/evidence/` têm status `not_run` e resultados nulos. O histórico
+de execuções anteriores foi preservado e não valida estes fontes modificados.
+
+A revisão da OM-018 acrescenta `Registry.specialize` e `Specialization`, com
+vinculação explícita de dimensões e identificador determinístico. Templates
+permanecem fechados e imutáveis, sem captura ou recursão; argumentos continuam
+sendo avaliados estritamente, inclusive quando não usados pelo corpo.
+`ExpansionLimits` limita bytes de entrada/saída, passos, profundidade, bindings,
+chamadas e especializações. Os limites constam do manifesto e são reaplicados
+na reconstrução da proveniência. `Registry.from_bytes` permite ao build usar a
+mesma captura dos templates que será preservada como artefato, sem reabertura.
+
+Os comandos `generic-ir` e `generic-build` aceitam `--max-expansion-steps`,
+`--max-specializations` e `--max-generic-calls`. Os defaults preservam as cotas
+anteriores; não é permitido ampliar além dos tetos da API. Manifestos de builds
+genéricos anteriores à revisão devem ser reconstruídos. A correção dessa
+revisão ainda depende de executar os testes antigos e novos e o checker Lean.

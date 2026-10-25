@@ -5,18 +5,39 @@ and symbolic dimensions are checked for each concrete instantiation.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass,replace
+from dataclasses import dataclass,replace,asdict
 from fractions import Fraction
 import hashlib
 import json
 from types import MappingProxyType
 
-from .sintaxe import Numero,Variavel,Unario,Binario,Lista,Chamada,Comando,ALIAS,analisar
+from .sintaxe import Numero,Variavel,Unario,Binario,Lista,Chamada,Comando,ALIAS,analisar,ErroOmega
 from .typesystem import NumericType,TypeCheckError,infer_expression,infer_program
 from .dimensions import _shape
-from .typed_ir import _pairs,_fields
+from .typed_ir import _fields
+from omega_security.encoding import canonical,decode
 
 BUILTINS=frozenset({'zeros','identidade','relu','soma','dot','transposta'})
+
+
+@dataclass(frozen=True)
+class ExpansionLimits:
+    source_bytes: int=256*1024
+    steps: int=12000
+    depth: int=128
+    emitted_bindings: int=12000
+    calls: int=4096
+    specializations: int=128
+    output_bytes: int=4*1024*1024
+
+    def __post_init__(self):
+        bounds={'source_bytes':(1,256*1024),'steps':(1,12000),'depth':(1,128),
+                'emitted_bindings':(1,12000),'calls':(1,4096),
+                'specializations':(1,128),'output_bytes':(1,4*1024*1024)}
+        for name,(lower,upper) in bounds.items():
+            value=getattr(self,name)
+            if type(value) is not int or not lower<=value<=upper:
+                raise TypeCheckError('Invalid generic expansion limit: '+name)
 
 
 def _name(value):
@@ -32,9 +53,19 @@ def _walk(expression):
         yield node
         if type(node) is Binario:children=[node.esquerda,node.direita]
         elif type(node) is Unario:children=[node.argumento]
-        elif type(node) is Lista:children=node.elementos
-        elif type(node) is Chamada:children=node.argumentos
-        elif type(node) in (Numero,Variavel):children=[]
+        elif type(node) is Lista:
+            if type(node.elementos) is not tuple:raise TypeCheckError('Immutable generic list required')
+            children=node.elementos
+        elif type(node) is Chamada:
+            _name(node.funcao)
+            if type(node.argumentos) is not tuple:raise TypeCheckError('Immutable generic call required')
+            children=node.argumentos
+        elif type(node) is Numero:
+            if type(node.valor) not in (int,Fraction):raise TypeCheckError('Exact generic literal required')
+            value=Fraction(node.valor)
+            if max(value.numerator.bit_length(),value.denominator.bit_length())>4096:raise TypeCheckError('Generic literal budget exceeded')
+            children=[]
+        elif type(node) is Variavel:_name(node.nome);children=[]
         else:raise TypeCheckError('Unsupported generic expression')
         pending.extend((child,depth+1) for child in reversed(children))
 
@@ -95,8 +126,12 @@ class Function:
 
 class Registry:
     def __init__(self,functions):
-        functions=tuple(functions)
-        if not 1<=len(functions)<=64 or any(type(f) is not Function for f in functions):raise TypeCheckError('Generic definition budget exceeded')
+        items=[]
+        for function in functions:
+            if len(items)>=64 or type(function) is not Function:raise TypeCheckError('Generic definition budget exceeded')
+            items.append(function)
+        functions=tuple(items)
+        if not functions:raise TypeCheckError('Generic definitions required')
         table={f.name:f for f in functions}
         if len(table)!=len(functions):raise TypeCheckError('Repeated generic function')
         dependencies={}
@@ -114,8 +149,15 @@ class Registry:
         for name in sorted(table):visit(name)
         self.functions=MappingProxyType(table)
 
+    def specialize(self,name,arguments):
+        if name not in self.functions:raise TypeCheckError('Unknown generic function')
+        dimensions,result=self.functions[name].bind(arguments)
+        return Specialization(name,arguments,tuple(sorted(dimensions.items())),result)
+
     @classmethod
     def from_dict(cls,value):
+        try:canonical(value,max_bytes=1024*1024,max_nodes=10000)
+        except (ValueError,TypeError,RecursionError) as exc:raise TypeCheckError('Generic definition data budget exceeded') from exc
         _fields(value,('format','schema_version','functions'))
         if value['format']!='omega-generics-1' or value['schema_version']!='1.0.0' or type(value['functions']) is not list or not 1<=len(value['functions'])<=64:
             raise TypeCheckError('Unsupported generic definition schema')
@@ -130,7 +172,7 @@ class Registry:
                 if type(p['shape']) is not list:raise TypeCheckError('Malformed generic parameter shape')
                 parameters.append(Parameter(p['name'],tuple(p['shape'])))
             try:commands=analisar('tensor om_body='+f['body']+';')
-            except (ValueError,RecursionError) as exc:raise TypeCheckError('Generic expression parsing failed') from exc
+            except (ValueError,RecursionError,ErroOmega) as exc:raise TypeCheckError('Generic expression parsing failed') from exc
             if len(commands)!=1 or commands[0].tipo!='tensor' or commands[0].nome!='om_body':raise TypeCheckError('A generic body must be one expression')
             functions.append(Function(f['name'],tuple(parameters),tuple(f['returns']),commands[0].expressao))
         return cls(functions)
@@ -138,8 +180,13 @@ class Registry:
     @classmethod
     def load(cls,path):
         with open(path,'rb') as stream:data=stream.read(1024*1024+1)
+        return cls.from_bytes(data)
+
+    @classmethod
+    def from_bytes(cls,data):
+        if type(data) is not bytes:raise TypeCheckError('Generic JSON bytes required')
         if len(data)>1024*1024:raise TypeCheckError('Generic definition byte budget exceeded')
-        try:value=json.loads(data,object_pairs_hook=_pairs)
+        try:value=decode(data,max_bytes=1024*1024)
         except (ValueError,UnicodeError,RecursionError) as exc:raise TypeCheckError('Malformed generic JSON') from exc
         return cls.from_dict(value)
 
@@ -150,6 +197,21 @@ class Registry:
 
 
 @dataclass(frozen=True)
+class Specialization:
+    function: str
+    arguments: tuple[NumericType,...]
+    dimensions: tuple[tuple[str,int],...]
+    result: NumericType
+
+    def to_dict(self):
+        return {'function':self.function,'arguments':[t.to_dict() for t in self.arguments],
+                'dimensions':dict(self.dimensions),'result':self.result.to_dict()}
+
+    @property
+    def sha256(self):return hashlib.sha256(canonical(self.to_dict())).hexdigest()
+
+
+@dataclass(frozen=True)
 class ExpandedProgram:
     source: str
     _manifest: bytes
@@ -157,9 +219,9 @@ class ExpandedProgram:
 
 
 class _Expander:
-    def __init__(self,registry,commands):
+    def __init__(self,registry,commands,limits):
         self.registry=registry;self.commands=commands;self.output=[];self.types={};self.reserved=set();self.next_id=0
-        self.steps=12000;self.calls=[];self.instances={}
+        self.limits=limits;self.steps=limits.steps;self.calls=[];self.instances={};self.call_count=0;self.binding_count=0
         for command in commands:
             self.reserved.update((command.nome,command.parametro))
             for expression in (command.expressao,command.direita,command.taxa):
@@ -169,6 +231,8 @@ class _Expander:
             self.reserved.update(e.nome for e in _walk(function.body) if type(e) is Variavel)
 
     def bind(self,expression):
+        if self.binding_count>=self.limits.emitted_bindings:raise TypeCheckError('Generic binding budget exceeded')
+        self.binding_count+=1
         inferred=infer_expression(expression,self.types)
         while True:
             name='om_generic_'+str(self.next_id);self.next_id+=1
@@ -184,7 +248,7 @@ class _Expander:
 
     def expression(self,expression,environment=None,depth=0):
         self.steps-=1;environment={} if environment is None else environment
-        if self.steps<0 or depth>200:raise TypeCheckError('Generic expansion budget exceeded')
+        if self.steps<0 or depth>self.limits.depth:raise TypeCheckError('Generic expansion budget exceeded')
         expand=lambda e:self.expression(e,environment,depth+1)
         if type(expression) is Numero:return self.bind(expression)
         if type(expression) is Variavel:
@@ -205,16 +269,19 @@ class _Expander:
             arguments=tuple(expand(e) for e in expression.argumentos)
             if expression.funcao not in self.registry.functions:return self.bind(Chamada(expression.funcao,arguments))
             function=self.registry.functions[expression.funcao]
-            types=tuple(self.types[e.nome] for e in arguments);dimensions,expected=function.bind(types)
+            self.call_count+=1
+            if self.call_count>self.limits.calls:raise TypeCheckError('Generic call budget exceeded')
+            types=tuple(self.types[e.nome] for e in arguments)
+            specialization=self.registry.specialize(function.name,types)
+            dimensions=dict(specialization.dimensions);expected=specialization.result
             key=(function.name,tuple(t.shape for t in types))
-            if key not in self.instances and len(self.instances)>=128:raise TypeCheckError('Generic specialization budget exceeded')
+            if key not in self.instances and len(self.instances)>=self.limits.specializations:raise TypeCheckError('Generic specialization budget exceeded')
             self.instances.setdefault(key,None)
             local={p.name:a for p,a in zip(function.parameters,arguments)}
             local.update({name:Numero(Fraction(value)) for name,value in dimensions.items()})
             result=self.expression(function.body,local,depth+1)
             if self.types[result.nome]!=expected:raise TypeCheckError('Generic return shape disagrees with contract')
-            record={'function':function.name,'arguments':[t.to_dict() for t in types],
-                    'dimensions':dict(sorted(dimensions.items())),'result':expected.to_dict()}
+            record={**specialization.to_dict(),'specialization_sha256':specialization.sha256}
             self.calls.append(record);self.instances[key]=record
             return result
         raise TypeCheckError('Unsupported generic expression')
@@ -250,14 +317,17 @@ def _command(c):
     raise TypeCheckError('Unsupported generic program command')
 
 
-def expand(source,registry):
-    if type(registry) is not Registry or type(source) is not str or len(source)>256*1024:raise TypeCheckError('Generic input budget exceeded')
+def expand(source,registry,*,limits=ExpansionLimits()):
+    if type(limits) is not ExpansionLimits or type(registry) is not Registry or type(source) is not str:raise TypeCheckError('Typed generic expansion inputs required')
+    if len(source)>limits.source_bytes or len(source.encode('utf-8'))>limits.source_bytes:raise TypeCheckError('Generic input budget exceeded')
     try:commands=analisar(source)
-    except (ValueError,RecursionError) as exc:raise TypeCheckError('Generic program parsing failed') from exc
-    expander=_Expander(registry,commands)
+    except (ValueError,RecursionError,ErroOmega) as exc:raise TypeCheckError('Generic program parsing failed') from exc
+    expander=_Expander(registry,commands,limits)
     expanded='\n'.join(_command(command) for command in expander.program())+'\n'
+    if len(expanded.encode('utf-8'))>limits.output_bytes:raise TypeCheckError('Expanded source byte budget exceeded')
     types=infer_program(expanded)
     manifest={'format':'omega-specializations-1','input_sha256':hashlib.sha256(source.encode()).hexdigest(),
+              'limits':asdict(limits),
               'expanded_sha256':hashlib.sha256(expanded.encode()).hexdigest(),'templates':registry.to_dict(),
               'calls':expander.calls,'instances':[v for _,v in sorted(expander.instances.items())],
               'original_symbols':sorted(c.nome for c in commands if c.tipo in ('parametro','parametro_tensor','tensor','vetor','matriz','perda')),

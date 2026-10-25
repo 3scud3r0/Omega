@@ -12,7 +12,7 @@ import subprocess
 
 ROOT=Path(__file__).resolve().parents[1]
 OUTPUT=ROOT/'omega/omega_3_monolith.py'
-FOLDERS={'omega_agent','omega_coder','omega_memory','omega_learning','omega_evolution','omega_tools','omega_security','omega_bench','omega','omega_open','omega_selfhost','omega_platform','omega_nextorch','nextorch',
+FOLDERS={'validation','omega_agent','omega_coder','omega_memory','omega_learning','omega_evolution','omega_tools','omega_security','omega_bench','omega','omega_open','omega_selfhost','omega_platform','omega_nextorch','nextorch',
          'formal','scripts','requirements','roadmap','docs','testes','exemplos','.github'}
 EXTENSIONS={'.py','.h','.omega','.lean','.json','.lock','.tsv','.md','.sh','.yml','.c','.svg'}
 

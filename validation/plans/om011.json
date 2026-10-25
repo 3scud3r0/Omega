@@ -1,0 +1,36 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-011",
+  "phase": 1,
+  "acceptance": "Semântica operacional definida para o subconjunto suportado",
+  "sources": [
+    "omega_selfhost/OperationalSemantics.lean",
+    "docs/SINTAXE_E_SEMANTICA.md"
+  ],
+  "test_files": [
+    "testes/foundation/test_operational_semantics.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/foundation/test_operational_semantics.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "formal"
+    }
+  ],
+  "additional_obligations": [
+    "Comparar backends e programas de referência no subconjunto declarado; revisar limites e compatibilidade da API.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

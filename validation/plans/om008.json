@@ -1,0 +1,37 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-008",
+  "phase": 0,
+  "acceptance": "Sem rede ou escrita externa sem autorização",
+  "sources": [
+    "omega_platform/sandbox.py",
+    "omega_platform/_supervisor.py",
+    "scripts/setup-sandbox.sh"
+  ],
+  "test_files": [
+    "testes/foundation/test_sandbox.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/foundation/test_sandbox.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "isolation"
+    }
+  ],
+  "additional_obligations": [
+    "Reproduzir a matriz Linux limpa, regressão diferencial, fuzzing e sanitizers antes de aceitar a fundação.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

@@ -1,0 +1,35 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-064",
+  "phase": 4,
+  "acceptance": "Busca limitada a candidatos válidos",
+  "sources": [
+    "omega_coder/contract_synthesis.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om064.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om064.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "unit"
+    }
+  ],
+  "additional_obligations": [
+    "Executar tarefas inéditas em worktrees/sandbox e revisar patches e efeitos; não publicar PRs reais durante testes automáticos.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

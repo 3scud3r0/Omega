@@ -1,0 +1,36 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-004",
+  "phase": 0,
+  "acceptance": "Comparação diferencial com implementação de referência",
+  "sources": [
+    "omega_platform/corpus.py",
+    "testes/corpus.json"
+  ],
+  "test_files": [
+    "testes/foundation/test_corpus.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/foundation/test_corpus.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "unit"
+    }
+  ],
+  "additional_obligations": [
+    "Reproduzir a matriz Linux limpa, regressão diferencial, fuzzing e sanitizers antes de aceitar a fundação.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

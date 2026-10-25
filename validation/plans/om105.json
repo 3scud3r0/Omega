@@ -1,0 +1,35 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-105",
+  "phase": 7,
+  "acceptance": "Equivalência e regressões verificadas",
+  "sources": [
+    "omega_evolution/compiler_tuning.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om105.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om105.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "native"
+    }
+  ],
+  "additional_obligations": [
+    "Exigir evidências independentes de capacidade e segurança, sem autoaprovação ou promoção automática.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

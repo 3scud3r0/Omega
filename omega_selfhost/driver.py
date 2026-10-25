@@ -306,12 +306,13 @@ def _bounded_text(path,limit):
     return data.decode('utf-8')
 
 
-def build_generic(source,templates,destination):
-    from omega.generics import Registry,expand
+def build_generic(source,templates,destination,*,limits=None):
+    from omega.generics import Registry,expand,ExpansionLimits
     from omega_platform.manifest import canonical
     original=_bounded_text(source,1024*1024)
     template_text=_bounded_text(templates,1024*1024)
-    program=expand(original,Registry.load(templates))
+    program=expand(original,Registry.from_bytes(template_text.encode('utf-8')),
+                   limits=ExpansionLimits() if limits is None else limits)
     destination=Path(destination).resolve()
     additions={'.generic-input.omega':original,'.generic-templates.json':template_text,
                '.expanded.omega':program.source,'.generics.json':canonical(program.manifest()).decode()}
@@ -334,7 +335,7 @@ def build_generic(source,templates,destination):
 
 
 def _generic_program(binary):
-    from omega.generics import Registry,expand
+    from omega.generics import Registry,expand,ExpansionLimits
     from omega_platform.manifest import verify,canonical
     binary=Path(binary).resolve();manifest=binary.with_suffix('.generics.json')
     if not manifest.exists():
@@ -346,8 +347,10 @@ def _generic_program(binary):
     verify(record,binary.parent)
     required=[binary.with_suffix(s).name for s in ('.generic-input.omega','.generic-templates.json','.expanded.omega','.generics.json')]
     if not set(required)<=set(record['artifacts']):raise ValueError('Missing generic provenance artifacts')
+    recorded=record.get('generic_expansion',{})
+    limits=ExpansionLimits(**recorded.get('limits',{}))
     program=expand(_bounded_text(binary.with_suffix('.generic-input.omega'),1024*1024),
-                   Registry.load(binary.with_suffix('.generic-templates.json')))
+                   Registry.load(binary.with_suffix('.generic-templates.json')),limits=limits)
     expected=canonical(program.manifest())
     if manifest.read_bytes()!=expected or canonical(record.get('generic_expansion'))!=expected:
         raise ValueError('Generic expansion cannot be reproduced')
@@ -356,9 +359,10 @@ def _generic_program(binary):
     return program
 
 
-def generic_ir(source,templates):
-    from omega.generics import Registry,expand,project_ir
-    program=expand(_bounded_text(source,1024*1024),Registry.load(templates))
+def generic_ir(source,templates,*,limits=None):
+    from omega.generics import Registry,expand,project_ir,ExpansionLimits
+    program=expand(_bounded_text(source,1024*1024),Registry.load(templates),
+                   limits=ExpansionLimits() if limits is None else limits)
     with tempfile.TemporaryDirectory(prefix='omega-generic-ir-') as tmp:
         path=Path(tmp)/'expanded.omega';path.write_text(program.source,encoding='utf-8')
         return project_ir(program,compile_ir(path))

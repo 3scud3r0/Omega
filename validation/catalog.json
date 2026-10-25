@@ -1,0 +1,761 @@
+{
+  "format": "omega-validation-catalog-1",
+  "status": "not_run",
+  "tasks": [
+    {
+      "task": "OM-001",
+      "plan": "validation/plans/om001.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-002",
+      "plan": "validation/plans/om002.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-003",
+      "plan": "validation/plans/om003.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-004",
+      "plan": "validation/plans/om004.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-005",
+      "plan": "validation/plans/om005.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-006",
+      "plan": "validation/plans/om006.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-007",
+      "plan": "validation/plans/om007.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-008",
+      "plan": "validation/plans/om008.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-009",
+      "plan": "validation/plans/om009.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-010",
+      "plan": "validation/plans/om010.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-011",
+      "plan": "validation/plans/om011.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-012",
+      "plan": "validation/plans/om012.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-013",
+      "plan": "validation/plans/om013.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-014",
+      "plan": "validation/plans/om014.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-015",
+      "plan": "validation/plans/om015.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-016",
+      "plan": "validation/plans/om016.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-017",
+      "plan": "validation/plans/om017.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-018",
+      "plan": "validation/plans/om018.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-019",
+      "plan": "validation/plans/om019.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-020",
+      "plan": "validation/plans/om020.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-021",
+      "plan": "validation/plans/om021.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-022",
+      "plan": "validation/plans/om022.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-023",
+      "plan": "validation/plans/om023.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-024",
+      "plan": "validation/plans/om024.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-025",
+      "plan": "validation/plans/om025.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-026",
+      "plan": "validation/plans/om026.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-027",
+      "plan": "validation/plans/om027.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-028",
+      "plan": "validation/plans/om028.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-029",
+      "plan": "validation/plans/om029.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-030",
+      "plan": "validation/plans/om030.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-031",
+      "plan": "validation/plans/om031.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-032",
+      "plan": "validation/plans/om032.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-033",
+      "plan": "validation/plans/om033.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-034",
+      "plan": "validation/plans/om034.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-035",
+      "plan": "validation/plans/om035.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-036",
+      "plan": "validation/plans/om036.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-037",
+      "plan": "validation/plans/om037.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-038",
+      "plan": "validation/plans/om038.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-039",
+      "plan": "validation/plans/om039.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-040",
+      "plan": "validation/plans/om040.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-041",
+      "plan": "validation/plans/om041.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-042",
+      "plan": "validation/plans/om042.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-043",
+      "plan": "validation/plans/om043.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-044",
+      "plan": "validation/plans/om044.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-045",
+      "plan": "validation/plans/om045.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-046",
+      "plan": "validation/plans/om046.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-047",
+      "plan": "validation/plans/om047.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-048",
+      "plan": "validation/plans/om048.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-049",
+      "plan": "validation/plans/om049.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-050",
+      "plan": "validation/plans/om050.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-051",
+      "plan": "validation/plans/om051.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-052",
+      "plan": "validation/plans/om052.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-053",
+      "plan": "validation/plans/om053.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-054",
+      "plan": "validation/plans/om054.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-055",
+      "plan": "validation/plans/om055.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-056",
+      "plan": "validation/plans/om056.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-057",
+      "plan": "validation/plans/om057.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-058",
+      "plan": "validation/plans/om058.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-059",
+      "plan": "validation/plans/om059.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-060",
+      "plan": "validation/plans/om060.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-061",
+      "plan": "validation/plans/om061.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-062",
+      "plan": "validation/plans/om062.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-063",
+      "plan": "validation/plans/om063.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-064",
+      "plan": "validation/plans/om064.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-065",
+      "plan": "validation/plans/om065.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-066",
+      "plan": "validation/plans/om066.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-067",
+      "plan": "validation/plans/om067.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-068",
+      "plan": "validation/plans/om068.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-069",
+      "plan": "validation/plans/om069.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-070",
+      "plan": "validation/plans/om070.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-071",
+      "plan": "validation/plans/om071.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-072",
+      "plan": "validation/plans/om072.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-073",
+      "plan": "validation/plans/om073.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-074",
+      "plan": "validation/plans/om074.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-075",
+      "plan": "validation/plans/om075.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-076",
+      "plan": "validation/plans/om076.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-077",
+      "plan": "validation/plans/om077.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-078",
+      "plan": "validation/plans/om078.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-079",
+      "plan": "validation/plans/om079.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-080",
+      "plan": "validation/plans/om080.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-081",
+      "plan": "validation/plans/om081.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-082",
+      "plan": "validation/plans/om082.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-083",
+      "plan": "validation/plans/om083.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-084",
+      "plan": "validation/plans/om084.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-085",
+      "plan": "validation/plans/om085.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-086",
+      "plan": "validation/plans/om086.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-087",
+      "plan": "validation/plans/om087.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-088",
+      "plan": "validation/plans/om088.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-089",
+      "plan": "validation/plans/om089.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-090",
+      "plan": "validation/plans/om090.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-091",
+      "plan": "validation/plans/om091.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-092",
+      "plan": "validation/plans/om092.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-093",
+      "plan": "validation/plans/om093.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-094",
+      "plan": "validation/plans/om094.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-095",
+      "plan": "validation/plans/om095.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-096",
+      "plan": "validation/plans/om096.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-097",
+      "plan": "validation/plans/om097.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-098",
+      "plan": "validation/plans/om098.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-099",
+      "plan": "validation/plans/om099.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-100",
+      "plan": "validation/plans/om100.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-101",
+      "plan": "validation/plans/om101.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-102",
+      "plan": "validation/plans/om102.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-103",
+      "plan": "validation/plans/om103.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-104",
+      "plan": "validation/plans/om104.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-105",
+      "plan": "validation/plans/om105.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-106",
+      "plan": "validation/plans/om106.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-107",
+      "plan": "validation/plans/om107.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-108",
+      "plan": "validation/plans/om108.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-109",
+      "plan": "validation/plans/om109.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-110",
+      "plan": "validation/plans/om110.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-111",
+      "plan": "validation/plans/om111.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-112",
+      "plan": "validation/plans/om112.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-113",
+      "plan": "validation/plans/om113.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-114",
+      "plan": "validation/plans/om114.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-115",
+      "plan": "validation/plans/om115.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-116",
+      "plan": "validation/plans/om116.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-117",
+      "plan": "validation/plans/om117.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-118",
+      "plan": "validation/plans/om118.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-119",
+      "plan": "validation/plans/om119.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-120",
+      "plan": "validation/plans/om120.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-121",
+      "plan": "validation/plans/om121.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-122",
+      "plan": "validation/plans/om122.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-123",
+      "plan": "validation/plans/om123.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-124",
+      "plan": "validation/plans/om124.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-125",
+      "plan": "validation/plans/om125.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-126",
+      "plan": "validation/plans/om126.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-127",
+      "plan": "validation/plans/om127.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-128",
+      "plan": "validation/plans/om128.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-129",
+      "plan": "validation/plans/om129.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-130",
+      "plan": "validation/plans/om130.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-131",
+      "plan": "validation/plans/om131.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-132",
+      "plan": "validation/plans/om132.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-133",
+      "plan": "validation/plans/om133.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-134",
+      "plan": "validation/plans/om134.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-135",
+      "plan": "validation/plans/om135.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-136",
+      "plan": "validation/plans/om136.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-137",
+      "plan": "validation/plans/om137.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-138",
+      "plan": "validation/plans/om138.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-139",
+      "plan": "validation/plans/om139.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-140",
+      "plan": "validation/plans/om140.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-141",
+      "plan": "validation/plans/om141.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-142",
+      "plan": "validation/plans/om142.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-143",
+      "plan": "validation/plans/om143.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-144",
+      "plan": "validation/plans/om144.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-145",
+      "plan": "validation/plans/om145.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-146",
+      "plan": "validation/plans/om146.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-147",
+      "plan": "validation/plans/om147.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-148",
+      "plan": "validation/plans/om148.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-149",
+      "plan": "validation/plans/om149.json",
+      "status": "not_run"
+    },
+    {
+      "task": "OM-150",
+      "plan": "validation/plans/om150.json",
+      "status": "not_run"
+    }
+  ],
+  "shared_tests": [
+    "testes/acceptance/test_validation_runner.py",
+    "testes/acceptance/test_supervised_flow.py"
+  ],
+  "review_rule": "No acceptance without actual results and independent review."
+}

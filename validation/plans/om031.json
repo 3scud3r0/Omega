@@ -1,0 +1,38 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-031",
+  "phase": 2,
+  "acceptance": "Subconjunto nativo ligado à semântica formal",
+  "sources": [
+    "formal/tensor/Omega/CModel.lean",
+    "formal/tensor/Omega/CRefinement.lean"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om031.py",
+    "testes/lean/OM031.lean"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om031.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "formal"
+    }
+  ],
+  "additional_obligations": [
+    "Compilar Lean e conferir axiomas, hipóteses, enunciados e certificados; provas condicionais não descarregam a implementação C real.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa.",
+    "Demonstrar NativeContract.implements para o backend real; o exemplo Lean atual é explicitamente condicional."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}
