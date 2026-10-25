@@ -52,7 +52,7 @@ das strings geradas: altere os originais e regenere.
 
 ## Cobertura real
 
-A entrega **não conclui OM-018 a OM-150**. OM-018 tem implementação limitada ao núcleo puro e aguarda revisão;
+A entrega de fontes **não demonstra os aceites OM-019 a OM-150**. OM-018 tem implementação limitada ao núcleo puro e aguarda revisão;
 `coverage` preserva cada critério de aceite e o estado real do backlog. Não há
 stubs declarados como funcionalidades concluídas. A distribuição reaproveita
 capacidades existentes, mas não produz as novas provas, pesquisas, treinamento,
@@ -60,3 +60,5 @@ ganhos em tarefas retidas ou revisão externa exigidos pelas tarefas restantes.
 O número de linhas, isoladamente, não satisfaz esses critérios. A versão
 continua 2.0.0. O PR novo substitui a tentativa de enviar os commits posteriores
 à aprovação do PR #3 pela sua branch antiga.
+
+Os novos pacotes de implementação foram acrescentados ao inventário. Nesta revisão, testes, compilação e relatórios novos foram adiados pelo usuário; o bundle apenas incorpora os fontes escritos, sem certificá-los.

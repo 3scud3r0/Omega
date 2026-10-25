@@ -54,6 +54,8 @@ def principal(argumentos: list[str] | None = None) -> int:
     p=argparse.ArgumentParser(prog='omega',description='Ômega 2.0 — auto-hospedagem, execução nativa e certificação')
     p.add_argument('--versao', action='version',version='Ômega '+VERSAO)
     sub=p.add_subparsers(dest='acao',required=True)
+    agent_parser=sub.add_parser('agent',help='finite reasoning, planning and rational expression synthesis')
+    agent_parser.add_argument('arguments',nargs=argparse.REMAINDER)
     from omega_nextorch.cli import register, execute, COMMANDS
     register(sub)
     from omega_selfhost import cli as native_cli
@@ -79,6 +81,9 @@ def principal(argumentos: list[str] | None = None) -> int:
         if acao in ('run','check','types','compile'):sp.add_argument('--motor',choices=['auto','classico','v1'],default='auto')
     args=p.parse_args(argumentos)
     try:
+        if args.acao=='agent':
+            from omega_agent.cli import main as agent_main
+            return agent_main(args.arguments)
         if args.acao in COMMANDS:
             return execute(args)
         if args.acao in native_cli.COMMANDS:

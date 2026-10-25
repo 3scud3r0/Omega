@@ -29,22 +29,15 @@ static char **omega_argv;
 static unsigned long long omega_ticks = 0, omega_fuel = 500000000ULL;
 static size_t omega_allocated = 0;
 static unsigned omega_depth = 0, omega_max_depth = 512;
-struct OmegaBlock {
-  struct OmegaBlock *next;
-  _Alignas(max_align_t) unsigned char data[];
-};
-static struct OmegaBlock *omega_blocks = NULL;
+#include "memory.h"
+static OmegaArena omega_arena={.quota=2147483648ULL};
 static V omega_rationals = NULL;
 static int omega_cleanup_registered = 0;
 static void o_cleanup(void) {
   for (V q = omega_rationals; q; q = q->qnext)
     mpq_clear(q->q);
   omega_rationals = NULL;
-  while (omega_blocks) {
-    struct OmegaBlock *block = omega_blocks;
-    omega_blocks = block->next;
-    free(block);
-  }
+  omega_arena_reset(&omega_arena);
   omega_allocated = 0;
 }
 static void o_qinit(V v) {
@@ -72,20 +65,10 @@ static V o_ret(V v) {
   return v;
 }
 static void *o_alloc(size_t n) {
-  if (!n)
-    n = 1;
-  if (n > SIZE_MAX - sizeof(struct OmegaBlock))
-    o_die("Allocation overflow");
-  size_t total = sizeof(struct OmegaBlock) + n;
-  if (total > 2147483648ULL || omega_allocated > 2147483648ULL - total)
-    o_die("Memory budget exceeded");
-  struct OmegaBlock *block = calloc(1, total);
-  if (!block)
-    o_die("Out of memory");
-  block->next = omega_blocks;
-  omega_blocks = block;
-  omega_allocated += total;
-  return block->data;
+  void *value=omega_arena_alloc(&omega_arena,n);
+  if (!value) o_die(omega_arena.error==OM_MEMORY_LIMIT ? "Memory budget exceeded" : "Out of memory");
+  omega_allocated=omega_arena.used;
+  return value;
 }
 static char *o_copy(const char *s, size_t n) {
   char *p = o_alloc(n + 1);

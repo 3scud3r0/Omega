@@ -43,7 +43,7 @@ def toolchain():
 def compiler_inputs(root):
     root=Path(root)
     names=['omega_selfhost/compiler.omega','omega_selfhost/bootstrap.py',
-           'omega_selfhost/driver.py','omega_selfhost/runtime.h',
+           'omega_selfhost/driver.py','omega_selfhost/runtime.h','omega_selfhost/memory.h',
            'omega_selfhost/tensor_runtime.h','omega_selfhost/polynomial.h',
            'omega_platform/manifest.py','omega_platform/budget.py','omega_platform/sandbox.py',
            'omega_platform/_supervisor.py','omega_platform/results.py','omega/typesystem.py','omega/procedural_types.py',
