@@ -51,3 +51,34 @@ Revisar isolamento, superfícies de parsing, concorrência, assinaturas, revoga�
 rollback, preservação matemática, quotas, redaction e controle de objetivos.
 Medir os adaptadores e algoritmos com casos adversariais e dados retidos.
 Os módulos de avaliação não constituem uma avaliação externa por existirem.
+
+## Integração de autorizações nesta continuação
+
+O agente vincula `agent.solve` ao hash do problema completo e do objetivo
+assinado. O modelo pode pedir ferramentas, mas a resolução da capacidade e da
+aprovação permanece em um callback do supervisor. O registro de ferramentas
+confere caminhos, contratos, quantidade de chamadas e aprovações; as saídas
+não obtêm autoridade e só chegam ao modelo por um filtro do host. As operações
+ancoradas em arquivos recusam symlinks; hashes esperados não substituem a
+coordenação com outros escritores do mesmo arquivo.
+
+Os workers vinculam respostas assinadas à identidade do worker, do job e da
+requisição. Quotas são compartilhadas entre chamadas da instância. Revogação
+e expiração sinalizam cancelamento ao supervisor do sandbox, sem herdar
+credenciais. Entrega de revogação entre máquinas, enforcement de TLS/timeouts
+e persistência de replay após reinício continuam obrigações do transporte e
+do serviço confiável; não são fornecidos por um callback permissivo.
+
+O portão de promoção recebe o payload completo e suas atestações, e o ponteiro
+de versões revalida essa autorização ao ativar. A versão de origem inclui o
+hash do manifesto de artefatos para evitar confusão entre baselines com o mesmo
+nome. Tickets de promoção consumidos ficam no root privado do supervisor.
+Esse root, sua âncora de auditoria e as chaves públicas precisam ficar fora do
+alcance de candidatos. Uma falha de energia entre a escrita do ticket e a
+publicação pode exigir recuperação manual, recusando reutilização automática.
+Healthchecks e verificadores de artefatos não podem ser escolhidos pelo modelo.
+
+As novas fronteiras têm apenas implementação em código-fonte nesta entrega.
+Cancelamento, replay, serialização, concorrência, rollback e assinaturas ainda
+precisam de testes e avaliação independente. Não houve ativação ou promoção
+real de versão nesta continuação.

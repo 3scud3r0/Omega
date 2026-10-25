@@ -1367,6 +1367,11 @@
           "path": "omega_selfhost/proof_protocol.py",
           "action": "criar",
           "source_written": true
+        },
+        {
+          "path": "omega_security/encoding.py",
+          "action": "integrar",
+          "source_written": true
         }
       ],
       "tests": [
@@ -1423,6 +1428,11 @@
         {
           "path": "omega_agent/problem.py",
           "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_agent/integration.py",
+          "action": "integrar",
           "source_written": true
         }
       ],
@@ -1584,6 +1594,11 @@
         {
           "path": "omega_nextorch/pipeline.py",
           "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "omega_agent/integration.py",
+          "action": "integrar",
           "source_written": true
         }
       ],
@@ -2188,6 +2203,16 @@
           "path": "omega_tools/capability_adapter.py",
           "action": "criar",
           "source_written": true
+        },
+        {
+          "path": "omega_tools/local_files.py",
+          "action": "integrar",
+          "source_written": true
+        },
+        {
+          "path": "omega_tools/memory.py",
+          "action": "integrar",
+          "source_written": true
         }
       ],
       "tests": [
@@ -2213,6 +2238,16 @@
         {
           "path": "omega_memory/episodes.py",
           "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_tools/memory.py",
+          "action": "integrar",
+          "source_written": true
+        },
+        {
+          "path": "omega_agent/runtime.py",
+          "action": "integrar",
           "source_written": true
         }
       ],
@@ -2583,6 +2618,11 @@
           "path": "omega_memory/privacy.py",
           "action": "criar",
           "source_written": true
+        },
+        {
+          "path": "omega_tools/memory.py",
+          "action": "integrar",
+          "source_written": true
         }
       ],
       "tests": [
@@ -2613,6 +2653,11 @@
         {
           "path": "nextorch/model.py",
           "action": "alterar/revalidar",
+          "source_written": true
+        },
+        {
+          "path": "omega_agent/integration.py",
+          "action": "integrar",
           "source_written": true
         }
       ],
@@ -3424,6 +3469,16 @@
           "path": "omega_tools/contracts.py",
           "action": "criar",
           "source_written": true
+        },
+        {
+          "path": "omega_tools/local_files.py",
+          "action": "integrar",
+          "source_written": true
+        },
+        {
+          "path": "omega_tools/memory.py",
+          "action": "integrar",
+          "source_written": true
         }
       ],
       "tests": [
@@ -3709,6 +3764,11 @@
         {
           "path": "omega_security/capabilities.py",
           "action": "criar",
+          "source_written": true
+        },
+        {
+          "path": "omega_security/encoding.py",
+          "action": "integrar",
           "source_written": true
         }
       ],
@@ -4391,15 +4451,22 @@
   ],
   "counts": {
     "tasks": 150,
-    "distinct_paths": 505,
+    "distinct_paths": 510,
     "existing": 81,
-    "proposed_new": 424
+    "proposed_new": 429
   },
   "source_delivery": {
-    "implementation_paths": 191,
+    "implementation_paths": 196,
     "scope": "source files, not acceptance",
     "validation": "deferred_by_user",
     "test_files": "deferred",
-    "evidence_reports": "deferred"
+    "evidence_reports": "deferred",
+    "integration": "supervisor, agent, tools, private memory, workers, promotion; source only"
+  },
+  "planning_snapshot_counts": {
+    "tasks": 150,
+    "distinct_paths": 505,
+    "existing": 81,
+    "proposed_new": 424
   }
 }

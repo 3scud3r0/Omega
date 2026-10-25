@@ -46,6 +46,7 @@ class Outcome:
     def termination(self):
         if self.timed_out:return 'wall_limit'
         if self.limit=='output':return 'output_limit'
+        if self.limit=='revoked':return 'revoked'
         return 'signal' if self.signal is not None else 'exit'
 
 
@@ -117,7 +118,8 @@ def _limits(budget: Budget,instrumented=False,namespace=False):
             f'--nofile={budget.open_files}',f'--stack={budget.stack_bytes}','--core=0','--']
 
 
-def _capture(command,original,budget,*,cwd=None,env=None,pass_fds=(),sandboxed=False):
+def _capture(command,original,budget,*,cwd=None,env=None,pass_fds=(),sandboxed=False,cancel_event=None):
+    if cancel_event is not None and cancel_event.is_set():raise PermissionError('Execution revoked before launch')
     with tempfile.TemporaryDirectory(prefix='omega-output-') as tmp:
         out=Path(tmp)/'stdout';err=Path(tmp)/'stderr';started=time.monotonic();expired=False;limit=None
         with out.open('wb') as stdout,err.open('wb') as stderr:
@@ -133,6 +135,8 @@ def _capture(command,original,budget,*,cwd=None,env=None,pass_fds=(),sandboxed=F
                 # Poll output size as well as wall time. File limits also protect
                 # disk use if a candidate emits faster than the poll interval.
                 while child.poll() is None:
+                    if cancel_event is not None and cancel_event.is_set():
+                        limit='revoked';break
                     if time.monotonic()-started>budget.wall_seconds:
                         expired=True;limit='wall';break
                     if out.stat().st_size+err.stat().st_size>budget.output_bytes:
@@ -156,7 +160,7 @@ def _capture(command,original,budget,*,cwd=None,env=None,pass_fds=(),sandboxed=F
 
 
 def run(argv:Sequence[str|Path],*,budget=Budget(),readonly=(),writable=(),
-        cwd='/work',extra_env=None,check=False,_instrumented=False,threads=False,_subprocesses=False):
+        cwd='/work',extra_env=None,check=False,_instrumented=False,threads=False,_subprocesses=False,cancel_event=None):
     if not argv:raise ValueError('An executable is required')
     exe=Path(argv[0]).resolve(strict=True)
     if not exe.is_file():raise ValueError('Executable must be a file')
@@ -190,7 +194,7 @@ def run(argv:Sequence[str|Path],*,budget=Budget(),readonly=(),writable=(),
         args+=['--chdir',str(cwd),'--seccomp',str(filters.fileno()),'--',str(Path(prlimit).resolve()),
                f'--nproc={budget.processes}','--',str(exe),*map(str,argv[1:])]
         result=_capture(_limits(budget,_instrumented,namespace=True)+args,argv,budget,env=clean_environment(budget,extra_env),
-                        pass_fds=(filters.fileno(),status.fileno()),sandboxed=True)
+                        pass_fds=(filters.fileno(),status.fileno()),sandboxed=True,cancel_event=cancel_event)
         status.seek(0)
         try:
             documents=[json.loads(line) for line in status.read(4096).decode('utf-8').splitlines() if line.strip()]

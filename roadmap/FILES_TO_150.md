@@ -82,20 +82,20 @@ Os testes abaixo são arquivos de aceitação propostos, com casos positivos, ne
 | OM-036 | Certificados compactos e checagem incremental | `omega_platform/proof_cache.py` (criar) | `testes/acceptance/test_om036.py` (criar) | `roadmap/evidence/om036.json` (criar) |
 | OM-037 | Correspondência entre enunciado e certificado | `omega_selfhost/statement_binding.py` (criar)<br>`omega_selfhost/proof.py` (alterar/revalidar) | `testes/acceptance/test_om037.py` (criar) | `roadmap/evidence/om037.json` (criar) |
 | OM-038 | Verificação de hipóteses, axiomas e dependências Lean | `omega_selfhost/axiom_policy.py` (criar)<br>`omega_selfhost/proof.py` (alterar/revalidar) | `testes/acceptance/test_om038.py` (criar) | `roadmap/evidence/om038.json` (criar) |
-| OM-039 | Protocolo de prova com formato canônico | `omega_selfhost/proof_protocol.py` (criar) | `testes/acceptance/test_om039.py` (criar) | `roadmap/evidence/om039.json` (criar) |
+| OM-039 | Protocolo de prova com formato canônico | `omega_selfhost/proof_protocol.py` (criar)<br>`omega_security/encoding.py` (integrar) | `testes/acceptance/test_om039.py` (criar) | `roadmap/evidence/om039.json` (criar) |
 | OM-040 | Verificação independente de artefatos compilados | `omega_platform/artifact_verifier.py` (criar)<br>`omega_platform/manifest.py` (alterar/revalidar) | `testes/acceptance/test_om040.py` (criar) | `roadmap/evidence/om040.json` (criar) |
 
 ## Fase 3
 
 | Tarefa | Entrega | Implementação | Testes | Evidências |
 |---|---|---|---|---|
-| OM-041 | Interface unificada de problemas e objetivos | `omega_agent/problem.py` (criar) | `testes/acceptance/test_om041.py` (criar) | `roadmap/evidence/om041.json` (criar) |
+| OM-041 | Interface unificada de problemas e objetivos | `omega_agent/problem.py` (criar)<br>`omega_agent/integration.py` (integrar) | `testes/acceptance/test_om041.py` (criar) | `roadmap/evidence/om041.json` (criar) |
 | OM-042 | Representação de estados de raciocínio | `omega_agent/reasoning_state.py` (criar) | `testes/acceptance/test_om042.py` (criar) | `roadmap/evidence/om042.json` (criar) |
 | OM-043 | Planejador hierárquico de tarefas | `omega_agent/hierarchical_planner.py` (criar) | `testes/acceptance/test_om043.py` (criar) | `roadmap/evidence/om043.json` (criar) |
 | OM-044 | Planejamento por busca e avaliação de estados | `omega_agent/search.py` (criar) | `testes/acceptance/test_om044.py` (criar) | `roadmap/evidence/om044.json` (criar) |
 | OM-045 | Raciocínio simbólico com regras de inferência | `omega_agent/inference.py` (criar) | `testes/acceptance/test_om045.py` (criar) | `roadmap/evidence/om045.json` (criar) |
 | OM-046 | Raciocínio probabilístico calibrado | `omega_agent/calibration.py` (criar) | `testes/acceptance/test_om046.py` (criar) | `roadmap/evidence/om046.json` (criar) |
-| OM-047 | Integração neural-simbólica bidirecional | `omega_agent/neurosymbolic.py` (criar)<br>`omega_nextorch/pipeline.py` (alterar/revalidar) | `testes/acceptance/test_om047.py` (criar) | `roadmap/evidence/om047.json` (criar) |
+| OM-047 | Integração neural-simbólica bidirecional | `omega_agent/neurosymbolic.py` (criar)<br>`omega_nextorch/pipeline.py` (alterar/revalidar)<br>`omega_agent/integration.py` (integrar) | `testes/acceptance/test_om047.py` (criar) | `roadmap/evidence/om047.json` (criar) |
 | OM-048 | Detecção de contradições e premissas ausentes | `omega_agent/consistency.py` (criar) | `testes/acceptance/test_om048.py` (criar) | `roadmap/evidence/om048.json` (criar) |
 | OM-049 | Gerenciamento de hipóteses concorrentes | `omega_agent/hypotheses.py` (criar) | `testes/acceptance/test_om049.py` (criar) | `roadmap/evidence/om049.json` (criar) |
 | OM-050 | Metacognição operacional | `omega_agent/metacognition.py` (criar) | `testes/acceptance/test_om050.py` (criar) | `roadmap/evidence/om050.json` (criar) |
@@ -123,13 +123,13 @@ Os testes abaixo são arquivos de aceitação propostos, com casos positivos, ne
 | OM-067 | Execução de testes em worktrees isoladas | `omega_coder/worktrees.py` (criar) | `testes/acceptance/test_om067.py` (criar) | `roadmap/evidence/om067.json` (criar) |
 | OM-068 | Revisão automatizada de patches | `omega_coder/patch_review.py` (criar) | `testes/acceptance/test_om068.py` (criar) | `roadmap/evidence/om068.json` (criar) |
 | OM-069 | Geração de pull requests auditáveis | `omega_coder/pull_requests.py` (criar) | `testes/acceptance/test_om069.py` (criar) | `roadmap/evidence/om069.json` (criar) |
-| OM-070 | Integração de ferramentas externas com permissões | `omega_tools/capability_adapter.py` (criar) | `testes/acceptance/test_om070.py` (criar) | `roadmap/evidence/om070.json` (criar) |
+| OM-070 | Integração de ferramentas externas com permissões | `omega_tools/capability_adapter.py` (criar)<br>`omega_tools/local_files.py` (integrar)<br>`omega_tools/memory.py` (integrar) | `testes/acceptance/test_om070.py` (criar) | `roadmap/evidence/om070.json` (criar) |
 
 ## Fase 5
 
 | Tarefa | Entrega | Implementação | Testes | Evidências |
 |---|---|---|---|---|
-| OM-071 | Memória episódica de tarefas e resultados | `omega_memory/episodes.py` (criar) | `testes/acceptance/test_om071.py` (criar) | `roadmap/evidence/om071.json` (criar) |
+| OM-071 | Memória episódica de tarefas e resultados | `omega_memory/episodes.py` (criar)<br>`omega_tools/memory.py` (integrar)<br>`omega_agent/runtime.py` (integrar) | `testes/acceptance/test_om071.py` (criar) | `roadmap/evidence/om071.json` (criar) |
 | OM-072 | Memória semântica com recuperação híbrida | `omega_memory/retrieval.py` (criar) | `testes/acceptance/test_om072.py` (criar) | `roadmap/evidence/om072.json` (criar) |
 | OM-073 | Base de conhecimento com proveniência | `omega_memory/knowledge.py` (criar) | `testes/acceptance/test_om073.py` (criar) | `roadmap/evidence/om073.json` (criar) |
 | OM-074 | Deduplicação, versionamento e expiração de memórias | `omega_memory/lifecycle.py` (criar) | `testes/acceptance/test_om074.py` (criar) | `roadmap/evidence/om074.json` (criar) |
@@ -143,13 +143,13 @@ Os testes abaixo são arquivos de aceitação propostos, com casos positivos, ne
 | OM-082 | Treinamento com feedback de verificadores | `omega_learning/verifier_feedback.py` (criar) | `testes/acceptance/test_om082.py` (criar) | `roadmap/evidence/om082.json` (criar) |
 | OM-083 | Prevenção de contaminação de benchmarks | `omega_learning/data_splits.py` (criar) | `testes/acceptance/test_om083.py` (criar) | `roadmap/evidence/om083.json` (criar) |
 | OM-084 | Versionamento de datasets e checkpoints | `omega_learning/versioning.py` (criar) | `testes/acceptance/test_om084.py` (criar) | `roadmap/evidence/om084.json` (criar) |
-| OM-085 | Políticas de privacidade e retenção | `omega_memory/privacy.py` (criar) | `testes/acceptance/test_om085.py` (criar) | `roadmap/evidence/om085.json` (criar) |
+| OM-085 | Políticas de privacidade e retenção | `omega_memory/privacy.py` (criar)<br>`omega_tools/memory.py` (integrar) | `testes/acceptance/test_om085.py` (criar) | `roadmap/evidence/om085.json` (criar) |
 
 ## Fase 6
 
 | Tarefa | Entrega | Implementação | Testes | Evidências |
 |---|---|---|---|---|
-| OM-086 | API estável para modelos de raciocínio | `omega_nextorch/model_api.py` (criar)<br>`nextorch/model.py` (alterar/revalidar) | `testes/acceptance/test_om086.py` (criar) | `roadmap/evidence/om086.json` (criar) |
+| OM-086 | API estável para modelos de raciocínio | `omega_nextorch/model_api.py` (criar)<br>`nextorch/model.py` (alterar/revalidar)<br>`omega_agent/integration.py` (integrar) | `testes/acceptance/test_om086.py` (criar) | `roadmap/evidence/om086.json` (criar) |
 | OM-087 | Tokenizer e representação de código, provas e texto | `omega_nextorch/tokenizer.py` (criar) | `testes/acceptance/test_om087.py` (criar) | `roadmap/evidence/om087.json` (criar) |
 | OM-088 | Treinamento supervisionado de programação e raciocínio | `omega_nextorch/supervised_training.py` (criar)<br>`nextorch/model.py` (alterar/revalidar) | `testes/acceptance/test_om088.py` (criar) | `roadmap/evidence/om088.json` (criar) |
 | OM-089 | Geração condicionada por AST, tipos e contratos | `omega_nextorch/constrained_generation.py` (criar) | `testes/acceptance/test_om089.py` (criar) | `roadmap/evidence/om089.json` (criar) |
@@ -189,7 +189,7 @@ Os testes abaixo são arquivos de aceitação propostos, com casos positivos, ne
 
 | Tarefa | Entrega | Implementação | Testes | Evidências |
 |---|---|---|---|---|
-| OM-116 | Interface de ferramentas com contratos tipados | `omega_tools/contracts.py` (criar) | `testes/acceptance/test_om116.py` (criar) | `roadmap/evidence/om116.json` (criar) |
+| OM-116 | Interface de ferramentas com contratos tipados | `omega_tools/contracts.py` (criar)<br>`omega_tools/local_files.py` (integrar)<br>`omega_tools/memory.py` (integrar) | `testes/acceptance/test_om116.py` (criar) | `roadmap/evidence/om116.json` (criar) |
 | OM-117 | Navegação e recuperação de informação | `omega_tools/web.py` (criar) | `testes/acceptance/test_om117.py` (criar) | `roadmap/evidence/om117.json` (criar) |
 | OM-118 | Leitura estruturada de PDFs e documentos | `omega_tools/documents.py` (criar) | `testes/acceptance/test_om118.py` (criar) | `roadmap/evidence/om118.json` (criar) |
 | OM-119 | Interpretação de imagens e diagramas | `omega_tools/vision.py` (criar) | `testes/acceptance/test_om119.py` (criar) | `roadmap/evidence/om119.json` (criar) |
@@ -205,7 +205,7 @@ Os testes abaixo são arquivos de aceitação propostos, com casos positivos, ne
 | Tarefa | Entrega | Implementação | Testes | Evidências |
 |---|---|---|---|---|
 | OM-126 | Modelo de ameaças para agentes e autoedição | `docs/THREAT_MODEL_AGENT.md` (criar) | `testes/acceptance/test_om126.py` (criar) | `roadmap/evidence/om126.json` (criar) |
-| OM-127 | Controle de acesso por capacidades | `omega_security/capabilities.py` (criar) | `testes/acceptance/test_om127.py` (criar) | `roadmap/evidence/om127.json` (criar) |
+| OM-127 | Controle de acesso por capacidades | `omega_security/capabilities.py` (criar)<br>`omega_security/encoding.py` (integrar) | `testes/acceptance/test_om127.py` (criar) | `roadmap/evidence/om127.json` (criar) |
 | OM-128 | Separação entre proponente, verificador e promotor | `omega_security/roles.py` (criar)<br>`omega_evolution/promotion.py` (criar) | `testes/acceptance/test_om128.py` (criar) | `roadmap/evidence/om128.json` (criar) |
 | OM-129 | Defesa contra prompt injection e dados adversariais | `omega_security/untrusted_data.py` (criar) | `testes/acceptance/test_om129.py` (criar) | `roadmap/evidence/om129.json` (criar) |
 | OM-130 | Proteção de segredos e credenciais | `omega_security/secrets.py` (criar) | `testes/acceptance/test_om130.py` (criar) | `roadmap/evidence/om130.json` (criar) |
@@ -245,4 +245,8 @@ Os testes abaixo são arquivos de aceitação propostos, com casos positivos, ne
 
 ## Contagem desta proposta
 
-{"tasks": 150, "distinct_paths": 505, "existing": 81, "proposed_new": 424}
+{"tasks": 150, "distinct_paths": 510, "existing": 81, "proposed_new": 429}
+
+Os números de arquivos existentes/novos usam o planejamento original como base.
+A integração acrescenta quatro auxiliares de código e não altera os estados de aceite.
+Testes, execução e novas evidências continuam adiados por solicitação do usuário.
