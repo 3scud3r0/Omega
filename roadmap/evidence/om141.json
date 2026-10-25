@@ -1,0 +1,10 @@
+{
+  "format": "omega-validation-pending-1",
+  "task": "OM-141",
+  "status": "not_run",
+  "plan": "validation/plans/om141.json",
+  "results": null,
+  "acceptance_passed": null,
+  "independent_review": null,
+  "note": "Descritor pendente, não evidência de aprovação. Resultados reais serão gravados em artifacts/validation/<run-id>/ após execução explícita."
+}

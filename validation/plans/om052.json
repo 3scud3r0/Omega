@@ -1,0 +1,35 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-052",
+  "phase": 3,
+  "acceptance": "Hipóteses testáveis e resultados interpretáveis",
+  "sources": [
+    "omega_agent/experiments.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om052.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om052.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "unit"
+    }
+  ],
+  "additional_obligations": [
+    "Avaliar raciocínio e planejamento em casos retidos, com baseline e orçamento equivalente.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

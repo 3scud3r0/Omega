@@ -1,0 +1,36 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-085",
+  "phase": 5,
+  "acceptance": "Dados sensíveis não reaproveitados sem autorização",
+  "sources": [
+    "omega_memory/privacy.py",
+    "omega_tools/memory.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om085.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om085.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "unit"
+    }
+  ],
+  "additional_obligations": [
+    "Avaliar retenção, relevância e esquecimento em dados autorizados com separação de treino e avaliação.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

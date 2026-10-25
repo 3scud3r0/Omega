@@ -1,0 +1,37 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-096",
+  "phase": 6,
+  "acceptance": "Paridade numérica conforme tolerâncias",
+  "sources": [
+    "omega_nextorch/devices.py",
+    "nextorch/synthesis/triton_kernels.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om096.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om096.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "neural"
+    }
+  ],
+  "additional_obligations": [
+    "Avaliar modelos e verificadores em tarefas retidas; testes sintéticos não demonstram ganhos neurais gerais.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa.",
+    "Registrar hardware, serviços/provedores e ambiente realmente utilizados; capacidades indisponíveis permanecem pendentes."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

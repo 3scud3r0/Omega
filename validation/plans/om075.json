@@ -1,0 +1,36 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-075",
+  "phase": 5,
+  "acceptance": "Amostras revalidadas antes do treinamento",
+  "sources": [
+    "omega_memory/certified_replay.py",
+    "nextorch/evolution/replay_buffer.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om075.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om075.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "neural"
+    }
+  ],
+  "additional_obligations": [
+    "Avaliar retenção, relevância e esquecimento em dados autorizados com separação de treino e avaliação.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

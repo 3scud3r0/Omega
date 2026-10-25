@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Omega validation plan",
+  "type": "object",
+  "required": [
+    "format",
+    "task",
+    "phase",
+    "acceptance",
+    "sources",
+    "test_files",
+    "steps",
+    "additional_obligations",
+    "independent_review_required",
+    "status"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "omega-validation-plan-1"
+    },
+    "task": {
+      "type": "string",
+      "pattern": "^OM-[0-9]{3}$"
+    },
+    "phase": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "acceptance": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "test_files": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "argv",
+          "cwd",
+          "resource_profile"
+        ],
+        "properties": {
+          "id": {
+            "const": "pytest"
+          },
+          "kind": {
+            "const": "pytest"
+          },
+          "argv": {
+            "type": "array",
+            "minItems": 7,
+            "items": {
+              "type": "string"
+            }
+          },
+          "cwd": {
+            "const": "."
+          },
+          "resource_profile": {
+            "enum": [
+              "unit",
+              "native",
+              "formal",
+              "isolation",
+              "neural",
+              "packaging"
+            ]
+          }
+        }
+      }
+    },
+    "additional_obligations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "independent_review_required": {
+      "const": true
+    },
+    "status": {
+      "const": "not_run"
+    }
+  }
+}

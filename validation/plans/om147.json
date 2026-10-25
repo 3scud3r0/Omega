@@ -1,0 +1,36 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-147",
+  "phase": 10,
+  "acceptance": "Reutilização sem confiar em cache adulterado",
+  "sources": [
+    "omega_platform/content_cache.py",
+    "omega_platform/proof_cache.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om147.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om147.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "unit"
+    }
+  ],
+  "additional_obligations": [
+    "Reproduzir medições e marcos com datasets, seeds, artefatos e revisores independentes.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

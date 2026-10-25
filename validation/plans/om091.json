@@ -1,0 +1,35 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-091",
+  "phase": 6,
+  "acceptance": "Saídas preservadas dentro das tolerâncias especificadas",
+  "sources": [
+    "nextorch/evolution/net2net.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om091.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om091.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "neural"
+    }
+  ],
+  "additional_obligations": [
+    "Avaliar modelos e verificadores em tarefas retidas; testes sintéticos não demonstram ganhos neurais gerais.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

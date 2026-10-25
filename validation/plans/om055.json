@@ -1,0 +1,36 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-055",
+  "phase": 3,
+  "acceptance": "Abstenção ou escalonamento em situações fora de domínio",
+  "sources": [
+    "omega_agent/domain_shift.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om055.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om055.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "unit"
+    }
+  ],
+  "additional_obligations": [
+    "Avaliar raciocínio e planejamento em casos retidos, com baseline e orçamento equivalente.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa.",
+    "Preservar resultados negativos e apresentar avaliação retida, comparação com baseline e custos; o ensaio funcional é insuficiente para o aceite científico."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

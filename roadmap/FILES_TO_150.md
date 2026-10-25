@@ -1,7 +1,7 @@
 # Inventário proposto de arquivos para OM-001 a OM-150
-Este mapa preserva as ações do planejamento anterior à entrega dos fontes. Os caminhos de implementação foram agora preenchidos; testes e evidências novas ficaram para depois por solicitação do usuário. “Alterar/revalidar” indica um arquivo existente; “criar” indica uma proposta de arquitetura. Não é uma lista de funcionalidades já implementadas, nem uma quantidade mínima inevitável de arquivos. Nomes podem mudar após o desenho detalhado.
-OM-001 a OM-018 têm implementação registrada no backlog; OM-019 a OM-150 estão como `source_written_pending_validation`. O backlog ainda registra revisão pendente: existência de código não demonstra todos os critérios de aceite. As pequenas rotinas incorporadas no monólito não mudam esses estados.
-Os testes abaixo são arquivos de aceitação propostos, com casos positivos, negativos e de integração conforme o critério de cada tarefa; não são instrução para substituir ou enfraquecer os testes atuais. Evidências são relatórios gerados de resultados reais, não código a preencher com sucesso fictício. Datasets, modelos treinados, medições de hardware e revisões externas não são substituídos por esses arquivos.
+Este mapa preserva as ações do planejamento original. Fontes de implementação e testes foram preenchidos; os planos de validação foram acrescentados, sem execução. “Criar” e “alterar/revalidar” mantêm a intenção histórica e não registram aceite.
+OM-001 a OM-017 têm implementação anterior e revisão/revalidação pendentes. A OM-018 foi refeita e aguarda validação. OM-019 a OM-150 têm fontes e checks escritos, com execução pendente. Presença de arquivos não demonstra os critérios de aceite.
+Os testes abaixo têm fontes entregues, ainda sem execução nesta revisão. Os descritores novos de evidência estão marcados `not_run`, com resultados nulos; não representam aprovação. O índice e as instruções estão em `validation/README.md`.
 ## Arquivos compartilhados
 - `omega/cli.py` — alterar/revalidar.
 - `omega_selfhost/cli.py` — alterar/revalidar.
@@ -56,7 +56,7 @@ Os testes abaixo são arquivos de aceitação propostos, com casos positivos, ne
 | OM-015 | SSA e grafo de dependências | `omega/ssa.py` (alterar/revalidar) | `testes/foundation/test_ssa.py` (alterar/revalidar) | `roadmap/evidence/om015.json` (alterar/revalidar) |
 | OM-016 | Tratamento explícito de erros e resultados | `omega_platform/results.py` (alterar/revalidar)<br>`omega_platform/sandbox.py` (alterar/revalidar)<br>`omega_selfhost/runtime.h` (alterar/revalidar) | `testes/foundation/test_results.py` (alterar/revalidar) | `roadmap/evidence/om016.json` (alterar/revalidar) |
 | OM-017 | Módulos, importações e resolução de nomes | `omega/modules.py` (alterar/revalidar)<br>`omega_selfhost/driver.py` (alterar/revalidar) | `testes/foundation/test_modules.py` (alterar/revalidar) | `roadmap/evidence/om017.json` (alterar/revalidar) |
-| OM-018 | Funções genéricas e abstrações reutilizáveis | `omega/generics.py` (alterar/revalidar)<br>`omega_selfhost/driver.py` (alterar/revalidar)<br>`omega_selfhost/cli.py` (alterar/revalidar) | `testes/foundation/test_generics.py` (alterar/revalidar) | `roadmap/evidence/om018.json` (alterar/revalidar) |
+| OM-018 | Funções genéricas e abstrações reutilizáveis | `omega/generics.py` (alterar/revalidar)<br>`omega_selfhost/driver.py` (alterar/revalidar)<br>`omega_selfhost/cli.py` (alterar/revalidar) | `testes/foundation/test_generics.py` (preservado)<br>`testes/acceptance/test_om018.py` (criar) | `roadmap/evidence/om018.json` (alterar/revalidar) |
 | OM-019 | Biblioteca padrão de estruturas de dados | `omega_selfhost/stdlib.omega` (criar)<br>`omega/stdlib.py` (criar) | `testes/acceptance/test_om019.py` (criar) | `roadmap/evidence/om019.json` (criar) |
 | OM-020 | Gerenciamento de memória nativa | `omega_selfhost/memory.h` (criar)<br>`omega_selfhost/runtime.h` (alterar/revalidar)<br>`omega_selfhost/tensor_runtime.h` (alterar/revalidar) | `testes/acceptance/test_om020.py` (criar) | `roadmap/evidence/om020.json` (criar) |
 | OM-021 | Execução concorrente determinística quando exigida | `omega_platform/scheduler.py` (criar)<br>`omega_platform/sandbox.py` (alterar/revalidar) | `testes/acceptance/test_om021.py` (criar) | `roadmap/evidence/om021.json` (criar) |
@@ -245,8 +245,14 @@ Os testes abaixo são arquivos de aceitação propostos, com casos positivos, ne
 
 ## Contagem desta proposta
 
-{"tasks": 150, "distinct_paths": 510, "existing": 81, "proposed_new": 429}
+{"tasks": 150, "distinct_paths": 671, "existing": 81, "proposed_new": 590}
 
 Os números de arquivos existentes/novos usam o planejamento original como base.
-A integração acrescenta quatro auxiliares de código e não altera os estados de aceite.
-Testes, execução e novas evidências continuam adiados por solicitação do usuário.
+A entrega inclui os auxiliares de integração, testes e 150 planos; nenhum estado passa a aceito por essas contagens.
+Execução, resultados reais e novas evidências de aceite continuam adiados por solicitação do usuário.
+
+## Entrega de validação sem execução
+
+Os 150 planos e os formatos dos relatórios estão em [validation/README.md](../validation/README.md).
+Os 132 descritores novos em `roadmap/evidence/` são pendências, sem resultados ou aceite.
+Os relatórios históricos de OM-001 a OM-018 foram preservados e não validam esta revisão.

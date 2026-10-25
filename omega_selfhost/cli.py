@@ -12,6 +12,9 @@ def register(sub):
         p.add_argument('arquivo',type=Path)
         p.add_argument('--templates',type=Path,required=True)
         p.add_argument('--saida',type=Path,required=True)
+        p.add_argument('--max-expansion-steps',type=int,default=12000)
+        p.add_argument('--max-specializations',type=int,default=128)
+        p.add_argument('--max-generic-calls',type=int,default=4096)
     for action in ('module-link','module-build'):
         p=sub.add_parser(action,help='link local procedural modules with explicit exports and a bounded import root')
         p.add_argument('arquivo',type=Path)
@@ -67,10 +70,14 @@ def _execute(args):
     elif args.acao=='native-build':
         result=driver.build_checked(args.arquivo,args.saida,args.optimize).unwrap()
     elif args.acao=='generic-build':
-        result=driver.build_generic(args.arquivo,args.templates,args.saida)
+        from omega.generics import ExpansionLimits
+        limits=ExpansionLimits(steps=args.max_expansion_steps,specializations=args.max_specializations,calls=args.max_generic_calls)
+        result=driver.build_generic(args.arquivo,args.templates,args.saida,limits=limits)
     elif args.acao=='generic-ir':
+        from omega.generics import ExpansionLimits
         from omega.typed_ir import TypedIR
-        ir=TypedIR.from_legacy(driver.generic_ir(args.arquivo,args.templates))
+        limits=ExpansionLimits(steps=args.max_expansion_steps,specializations=args.max_specializations,calls=args.max_generic_calls)
+        ir=TypedIR.from_legacy(driver.generic_ir(args.arquivo,args.templates,limits=limits))
         with args.saida.open('xb') as stream:stream.write(ir.to_bytes())
         result={'format':'omega-ir-validation-1','valid':True,'sha256':ir.sha256}
     elif args.acao=='module-build':

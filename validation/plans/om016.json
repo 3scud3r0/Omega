@@ -1,0 +1,37 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-016",
+  "phase": 1,
+  "acceptance": "Sem falhas silenciosas ou valores sentinela ambíguos",
+  "sources": [
+    "omega_platform/results.py",
+    "omega_platform/sandbox.py",
+    "omega_selfhost/runtime.h"
+  ],
+  "test_files": [
+    "testes/foundation/test_results.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/foundation/test_results.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "unit"
+    }
+  ],
+  "additional_obligations": [
+    "Comparar backends e programas de referência no subconjunto declarado; revisar limites e compatibilidade da API.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

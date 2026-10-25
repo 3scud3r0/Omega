@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Unexecuted validation descriptor",
+  "type": "object",
+  "required": [
+    "format",
+    "task",
+    "status",
+    "plan",
+    "results",
+    "acceptance_passed",
+    "independent_review",
+    "note"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "omega-validation-pending-1"
+    },
+    "task": {
+      "type": "string",
+      "pattern": "^OM-[0-9]{3}$"
+    },
+    "status": {
+      "const": "not_run"
+    },
+    "plan": {
+      "type": "string"
+    },
+    "results": {
+      "type": "null"
+    },
+    "acceptance_passed": {
+      "type": "null"
+    },
+    "independent_review": {
+      "type": "null"
+    },
+    "note": {
+      "type": "string"
+    }
+  }
+}

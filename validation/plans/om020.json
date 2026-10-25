@@ -1,0 +1,37 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-020",
+  "phase": 1,
+  "acceptance": "Sem vazamentos, uso após liberação ou crescimento ilimitado",
+  "sources": [
+    "omega_selfhost/memory.h",
+    "omega_selfhost/runtime.h",
+    "omega_selfhost/tensor_runtime.h"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om020.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om020.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "native"
+    }
+  ],
+  "additional_obligations": [
+    "Comparar backends e programas de referência no subconjunto declarado; revisar limites e compatibilidade da API.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

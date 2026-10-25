@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Observed validation report, not acceptance",
+  "type": "object",
+  "required": [
+    "format",
+    "task",
+    "status",
+    "acceptance_passed",
+    "independent_review",
+    "source_hashes",
+    "step",
+    "failure",
+    "elapsed_seconds",
+    "additional_obligations"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "omega-validation-report-1"
+    },
+    "task": {
+      "type": "string",
+      "pattern": "^OM-[0-9]{3}$"
+    },
+    "status": {
+      "enum": [
+        "infrastructure_error",
+        "budget_exceeded",
+        "failed",
+        "incomplete",
+        "checks_passed_acceptance_pending"
+      ]
+    },
+    "acceptance_passed": {
+      "type": "null"
+    },
+    "independent_review": {
+      "type": "null"
+    },
+    "source_hashes": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    },
+    "step": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "failure": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "elapsed_seconds": {
+      "type": "number",
+      "minimum": 0
+    },
+    "additional_obligations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

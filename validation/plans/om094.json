@@ -1,0 +1,36 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-094",
+  "phase": 6,
+  "acceptance": "Risco seletivo medido",
+  "sources": [
+    "omega_nextorch/uncertainty.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om094.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om094.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "unit"
+    }
+  ],
+  "additional_obligations": [
+    "Avaliar modelos e verificadores em tarefas retidas; testes sintéticos não demonstram ganhos neurais gerais.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa.",
+    "Preservar resultados negativos e apresentar avaliação retida, comparação com baseline e custos; o ensaio funcional é insuficiente para o aceite científico."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

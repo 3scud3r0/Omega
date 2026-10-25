@@ -1,0 +1,36 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-138",
+  "phase": 10,
+  "acceptance": "Taxa de teoremas corretos e custo de verificação",
+  "sources": [
+    "omega_bench/mathematics.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om138.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om138.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "unit"
+    }
+  ],
+  "additional_obligations": [
+    "Reproduzir medições e marcos com datasets, seeds, artefatos e revisores independentes.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa.",
+    "Preservar resultados negativos e apresentar avaliação retida, comparação com baseline e custos; o ensaio funcional é insuficiente para o aceite científico."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

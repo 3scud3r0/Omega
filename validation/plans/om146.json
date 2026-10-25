@@ -1,0 +1,37 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-146",
+  "phase": 10,
+  "acceptance": "Workers isolados e agendamento justo",
+  "sources": [
+    "omega_platform/workers.py",
+    "omega_platform/scheduler.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om146.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om146.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "isolation"
+    }
+  ],
+  "additional_obligations": [
+    "Reproduzir medições e marcos com datasets, seeds, artefatos e revisores independentes.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa.",
+    "Registrar hardware, serviços/provedores e ambiente realmente utilizados; capacidades indisponíveis permanecem pendentes."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

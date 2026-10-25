@@ -1,0 +1,36 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-098",
+  "phase": 6,
+  "acceptance": "Escolha por desempenho e custo",
+  "sources": [
+    "omega_nextorch/routing.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om098.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om098.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "unit"
+    }
+  ],
+  "additional_obligations": [
+    "Avaliar modelos e verificadores em tarefas retidas; testes sintéticos não demonstram ganhos neurais gerais.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa.",
+    "Preservar resultados negativos e apresentar avaliação retida, comparação com baseline e custos; o ensaio funcional é insuficiente para o aceite científico."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

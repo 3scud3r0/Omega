@@ -1,0 +1,38 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-149",
+  "phase": 10,
+  "acceptance": "Instalação reproduzível e compatibilidade versionada",
+  "sources": [
+    "pyproject.toml",
+    "MANIFEST.in",
+    "scripts/package.py",
+    "docs/API_3_0.md"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om149.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om149.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "packaging"
+    }
+  ],
+  "additional_obligations": [
+    "Reproduzir medições e marcos com datasets, seeds, artefatos e revisores independentes.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

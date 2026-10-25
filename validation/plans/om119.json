@@ -1,0 +1,36 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-119",
+  "phase": 8,
+  "acceptance": "Avaliação multimodal independente",
+  "sources": [
+    "omega_tools/vision.py"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om119.py"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om119.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "unit"
+    }
+  ],
+  "additional_obligations": [
+    "Validar providers e ambientes reais com permissões explícitas; mocks verificam interfaces e não qualidade perceptiva.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa.",
+    "Registrar hardware, serviços/provedores e ambiente realmente utilizados; capacidades indisponíveis permanecem pendentes."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}

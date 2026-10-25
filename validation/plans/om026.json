@@ -1,0 +1,37 @@
+{
+  "format": "omega-validation-plan-1",
+  "task": "OM-026",
+  "phase": 2,
+  "acceptance": "Teoremas de correspondência para o subconjunto formalizado",
+  "sources": [
+    "formal/tensor/Omega/TensorDenotation.lean",
+    "formal/tensor/Omega/TensorOperational.lean"
+  ],
+  "test_files": [
+    "testes/acceptance/test_om026.py",
+    "testes/lean/OM026.lean"
+  ],
+  "steps": [
+    {
+      "id": "pytest",
+      "kind": "pytest",
+      "argv": [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "testes/acceptance/test_om026.py",
+        "--junitxml",
+        "{junit}"
+      ],
+      "cwd": ".",
+      "resource_profile": "formal"
+    }
+  ],
+  "additional_obligations": [
+    "Compilar Lean e conferir axiomas, hipóteses, enunciados e certificados; provas condicionais não descarregam a implementação C real.",
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+  ],
+  "independent_review_required": true,
+  "status": "not_run"
+}
