@@ -72,3 +72,32 @@ executados passaram sem skips. `acceptance_passed` e revisão independente
 permanecem nulos. O runner não altera o ledger, não mescla PRs, não ativa versões
 e não converte testes sintéticos em resultados científicos. As obrigações
 adicionais de cada plano exigem avaliações reais posteriores.
+
+## Correção das falhas da primeira execução
+
+A revisão posterior corrige a string da OM-131, a elaboração dos valores
+escalares no núcleo Lean, os exemplos formais OM-026/028 e a normalização exata
+de entradas do trace. Inteiros e `Fraction` são aceitos; floats e bools continuam
+recusados. Formas são conferidas durante a conversão, antes de percorrer dados
+que excedam o contrato do grafo.
+
+O perfil `sanitizer` da OM-020 mantém o limite virtual normal de 8 GiB como
+soft limit do pytest confiável e permite um hard limit de 32 TiB somente para
+seus filhos de diagnóstico ASan. A reserva virtual do ASan não é uma quota de
+RAM física. Os candidatos normais continuam com soft e hard limits iguais ao
+orçamento; o caminho de execução de candidatos não recebe essa opção. CPU,
+saídas, arquivos, namespaces, seccomp e o watchdog RSS do diagnóstico permanecem.
+Testes de regressão conferem tanto a permissão explícita do diagnóstico quanto
+a impossibilidade de elevar o limite no perfil normal.
+
+O lock agora inclui as dependências opcionais de documentos, WASM e schemas.
+A faixa de cryptography do extra `tools` foi alinhada à versão 50.0.2 já fixada
+no lock CPU. A CI constrói também a biblioteca Lean `Omega` e repete os planos
+anteriormente falhos, preservando os relatórios como artefatos.
+
+Os dois testes que exigem CUDA permanecem presentes. Em um ambiente CPU são
+pulados explicitamente, e a OM-096 continua incompleta no executor estrito.
+Isso não é convertido em aprovação: somente um runner CUDA pode concluir essa
+parte da validação. A CI CPU pode passar sem certificar a execução em GPU.
+Os resultados atuais estão nos artefatos da CI do commit correspondente; os
+descritores `not_run` da entrega original continuam sendo templates históricos.

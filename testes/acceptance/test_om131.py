@@ -7,7 +7,5 @@ def test_hash_chain_and_external_anchor_detect_tampered_decision(tmp_path):
     path=tmp_path/'audit';log=AuditLog(path);log.append({'decision':'deny'});anchor=log.append({'decision':'review'})
     assert len(AuditLog(path,anchor=anchor).read())==2
     lines=path.read_text().splitlines();item=json.loads(lines[0]);item['payload']['decision']='approve';lines[0]=json.dumps(item)
-    path.write_text('
-'.join(lines)+'
-')
+    path.write_text('\n'.join(lines)+'\n')
     with pytest.raises(ValueError):AuditLog(path,anchor=anchor).read()

@@ -5064,7 +5064,8 @@
     "validation/plans/om147.json",
     "validation/plans/om148.json",
     "validation/plans/om149.json",
-    "validation/plans/om150.json"
+    "validation/plans/om150.json",
+    "testes/acceptance/test_validation_fixes.py"
   ],
   "package_initializers": [
     "omega_agent/__init__.py",
@@ -5078,9 +5079,9 @@
   ],
   "counts": {
     "tasks": 150,
-    "distinct_paths": 671,
+    "distinct_paths": 672,
     "existing": 81,
-    "proposed_new": 590
+    "proposed_new": 591
   },
   "source_delivery": {
     "implementation_paths": 196,

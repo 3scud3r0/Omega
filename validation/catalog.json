@@ -755,7 +755,8 @@
   ],
   "shared_tests": [
     "testes/acceptance/test_validation_runner.py",
-    "testes/acceptance/test_supervised_flow.py"
+    "testes/acceptance/test_supervised_flow.py",
+    "testes/acceptance/test_validation_fixes.py"
   ],
   "review_rule": "No acceptance without actual results and independent review."
 }

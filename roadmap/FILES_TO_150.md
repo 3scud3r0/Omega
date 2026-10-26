@@ -245,7 +245,7 @@ Os testes abaixo têm fontes entregues, ainda sem execução nesta revisão. Os 
 
 ## Contagem desta proposta
 
-{"tasks": 150, "distinct_paths": 671, "existing": 81, "proposed_new": 590}
+{"tasks": 150, "distinct_paths": 672, "existing": 81, "proposed_new": 591}
 
 Os números de arquivos existentes/novos usam o planejamento original como base.
 A entrega inclui os auxiliares de integração, testes e 150 planos; nenhum estado passa a aceito por essas contagens.
