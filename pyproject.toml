@@ -15,9 +15,9 @@ omegac = "omega_selfhost.driver:compiler_main"
 [project.optional-dependencies]
 neural = ["torch>=2.5,<3", "numpy>=1.26,<3", "z3-solver>=4.13,<5"]
 orange = ["Orange3>=3.38,<4", "PyQt6>=6.7,<7", "pyqtgraph>=0.13"]
-dev = ["pytest>=8", "build>=1"]
+dev = ["pytest>=8", "build>=1", "jsonschema>=4,<5"]
 umap = ["umap-learn>=0.5,<1"]
-tools = ["pypdf>=5,<7", "wasmtime>=31,<40", "cryptography>=44,<47"]
+tools = ["pypdf>=5,<7", "wasmtime>=31,<40", "cryptography>=44,<51"]
 gpu = ["triton>=3; platform_system == 'Linux'"]
 
 [project.entry-points."orange.widgets"]

@@ -4,11 +4,11 @@ inductive Ty where
   | scalar
   | matrix (rows cols : Nat)
   deriving DecidableEq
-def Value : Ty → Type
+abbrev Value : Ty → Type
   | .scalar => ℚ
   | .matrix m n => Fin m → Fin n → ℚ
 def addValue : {t : Ty} → Value t → Value t → Value t
-  | .scalar, a, b => a+b
+  | .scalar, a, b => (a : ℚ)+(b : ℚ)
   | .matrix _ _, a, b => fun i j => a i j+b i j
 def multiply {m k n : Nat} (a : Value (.matrix m k)) (b : Value (.matrix k n)) : Value (.matrix m n) :=
   fun i j => ((List.finRange k).map (fun x => a i x * b x j)).sum

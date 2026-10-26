@@ -10,6 +10,6 @@ export MKL_NUM_THREADS="${MKL_NUM_THREADS:-1}"
 export QT_QPA_PLATFORM="${QT_QPA_PLATFORM:-offscreen}"
 export PYTHONDONTWRITEBYTECODE=1
 (cd formal/lean && lake build)
-(cd formal/tensor && lake build)
+(cd formal/tensor && lake build omega_tensor_kernel Omega)
 .venv/bin/python -c 'from omega_selfhost.driver import compiler; compiler()'
 exec .venv/bin/python -m pytest -ra "$@"

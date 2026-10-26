@@ -6,10 +6,14 @@
   "sources": [
     "omega_selfhost/memory.h",
     "omega_selfhost/runtime.h",
-    "omega_selfhost/tensor_runtime.h"
+    "omega_selfhost/tensor_runtime.h",
+    "omega_platform/sandbox.py",
+    "omega_platform/budget.py",
+    "omega/trace.py"
   ],
   "test_files": [
-    "testes/acceptance/test_om020.py"
+    "testes/acceptance/test_om020.py",
+    "testes/acceptance/test_validation_fixes.py"
   ],
   "steps": [
     {
@@ -21,11 +25,12 @@
         "pytest",
         "-q",
         "testes/acceptance/test_om020.py",
+        "testes/acceptance/test_validation_fixes.py",
         "--junitxml",
         "{junit}"
       ],
       "cwd": ".",
-      "resource_profile": "native"
+      "resource_profile": "sanitizer"
     }
   ],
   "additional_obligations": [

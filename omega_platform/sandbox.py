@@ -112,8 +112,15 @@ def clean_environment(budget: Budget,extra: Mapping[str,str]|None=None):
     return env
 
 
-def _limits(budget: Budget,instrumented=False,namespace=False):
-    return [_tool('prlimit'),f'--as={32*1024**4 if instrumented else budget.memory_bytes}',f'--cpu={budget.cpu_seconds}',
+ASAN_VIRTUAL_BYTES=32*1024**4
+
+def _limits(budget: Budget,instrumented=False,namespace=False,instrumented_children=False):
+    address_space=str(ASAN_VIRTUAL_BYTES if instrumented else budget.memory_bytes)
+    if instrumented_children:
+        # Reviewed test supervisors retain their normal soft limit. Only their
+        # hard ceiling permits the existing ASan diagnostic child reservation.
+        address_space=f'{budget.memory_bytes}:{ASAN_VIRTUAL_BYTES}'
+    return [_tool('prlimit'),f'--as={address_space}',f'--cpu={budget.cpu_seconds}',
             f'--fsize={max(budget.output_bytes,budget.file_bytes)}',*([f'--nproc={budget.processes}'] if not namespace else []),
             f'--nofile={budget.open_files}',f'--stack={budget.stack_bytes}','--core=0','--']
 
@@ -207,9 +214,10 @@ def run(argv:Sequence[str|Path],*,budget=Budget(),readonly=(),writable=(),
     return result
 
 
-def trusted(argv,*,budget,cwd=None,check=False):
+def trusted(argv,*,budget,cwd=None,check=False,instrumented_children=False):
     """Resource-limit a trusted tool; do not call this for candidate programs."""
-    result=_capture(_limits(budget)+list(map(str,argv)),argv,budget,cwd=cwd,
+    if type(instrumented_children) is not bool:raise TypeError('Explicit child diagnostic policy required')
+    result=_capture(_limits(budget,instrumented_children=instrumented_children)+list(map(str,argv)),argv,budget,cwd=cwd,
                     env=os.environ.copy(),sandboxed=False)
     if check and not result.ok:raise ExecutionFailure(result)
     return result

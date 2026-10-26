@@ -28,6 +28,7 @@ PROFILES = {
     'formal': {'wall_seconds': 1800, 'cpu_seconds': 1800, 'memory_bytes': 8 * 1024**3},
     'neural': {'wall_seconds': 900, 'cpu_seconds': 900, 'memory_bytes': 8 * 1024**3},
     'packaging': {'wall_seconds': 900, 'cpu_seconds': 900, 'memory_bytes': 8 * 1024**3},
+    'sanitizer': {'wall_seconds': 900, 'cpu_seconds': 900, 'memory_bytes': 8 * 1024**3},
 }
 
 
@@ -140,7 +141,8 @@ def execute_plan(plan, run_directory):
         argv = [sys.executable if item == '{python}' else str(junit) if item == '{junit}' else item for item in step['argv']]
         budget = Budget(**PROFILES[step['resource_profile']], output_bytes=8*1024**2,
                         processes=1024, open_files=4096, file_bytes=1024**3)
-        outcome = trusted(argv, cwd=ROOT, budget=budget)
+        outcome = trusted(argv, cwd=ROOT, budget=budget,
+                          instrumented_children=step['resource_profile']=='sanitizer')
         stdout = redact(outcome.stdout).encode('utf-8')
         stderr = redact(outcome.stderr).encode('utf-8')
         (task_directory / 'stdout.log').write_bytes(stdout)

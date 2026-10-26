@@ -39,6 +39,11 @@ jobs:
       - run: bash scripts/setup.sh
       - name: Complete regression
         run: bash scripts/test.sh -q --junitxml=artifacts/test-results.xml
+      - name: Regressions of previously failing validation plans
+        run: |
+          .venv/bin/python scripts/validate-roadmap.py \
+            --task OM-020 --task OM-024 --task OM-026 --task OM-027 \
+            --task OM-028 --task OM-131 --execute
       - name: Manifest-based differential corpus
         run: .venv/bin/python scripts/regression.py --output artifacts/foundation/corpus.json
       - name: Native security, fuzzing and sanitizers
@@ -57,6 +62,7 @@ jobs:
             artifacts/test-results.xml
             artifacts/foundation
             artifacts/build-manifest.json
+            artifacts/validation
             build/selfhost/bootstrap.json
             dist/*.whl
             dist/*.tar.gz
