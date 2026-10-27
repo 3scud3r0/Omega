@@ -4,10 +4,17 @@
   "phase": 4,
   "acceptance": "Busca limitada a candidatos válidos",
   "sources": [
-    "omega_coder/contract_synthesis.py"
+    "omega_coder/contract_synthesis.py",
+    "omega_coder/native_synthesis.py",
+    "omega_coder/synthesis_worker.py",
+    "omega_agent/cli.py",
+    "omega_selfhost/driver.py",
+    "exemplos/sintese_racional.json",
+    "omega_platform/manifest.py"
   ],
   "test_files": [
-    "testes/acceptance/test_om064.py"
+    "testes/acceptance/test_om064.py",
+    "testes/acceptance/test_native_synthesis.py"
   ],
   "steps": [
     {
@@ -19,16 +26,18 @@
         "pytest",
         "-q",
         "testes/acceptance/test_om064.py",
+        "testes/acceptance/test_native_synthesis.py",
         "--junitxml",
         "{junit}"
       ],
       "cwd": ".",
-      "resource_profile": "unit"
+      "resource_profile": "native"
     }
   ],
   "additional_obligations": [
     "Executar tarefas inéditas em worktrees/sandbox e revisar patches e efeitos; não publicar PRs reais durante testes automáticos.",
-    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa."
+    "Revisão independente obrigatória; um teste aprovado não aceita automaticamente a tarefa.",
+    "A síntese nativa adicional cobre somente expressões racionais e observações finitas; não certifica os outros geradores nem generalização universal."
   ],
   "independent_review_required": true,
   "status": "not_run"

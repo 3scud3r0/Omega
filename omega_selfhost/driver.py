@@ -148,15 +148,15 @@ def build(source, destination, optimize=False, *, optimization='-O2'):
         isolated_run(argv,readonly=[source],writable=[tmp],budget=COMPILER_BUDGET,check=True)
         inferred=source_types(source)
         cc(src,exe,optimization=optimization)
-        optimization=None
+        optimization_certificate=None
         if optimize:
-            optimization=json.loads(Path(str(src)+'.opt.json').read_text())
-            verify_optimization(optimization,
+            optimization_certificate=json.loads(Path(str(src)+'.opt.json').read_text())
+            verify_optimization(optimization_certificate,
                                 proof_path=Path(tmp)/'optimization.lean')
         os.replace(src,destination.with_suffix('.c'))
         os.replace(exe,destination)
-        if optimization is not None:
-            destination.with_suffix('.opt.json').write_text(json.dumps(optimization,indent=2)+'\n')
+        if optimization_certificate is not None:
+            destination.with_suffix('.opt.json').write_text(json.dumps(optimization_certificate,indent=2)+'\n')
             os.replace(Path(tmp)/'optimization.lean',destination.with_suffix('.opt.lean'))
     provenance={'format':'omega-build-manifest-1','source_sha256':digest(source),
                 'native_c_flags':['-std=gnu11',optimization,'-s','-lgmp'],

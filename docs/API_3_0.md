@@ -236,3 +236,11 @@ Os comandos `generic-ir` e `generic-build` aceitam `--max-expansion-steps`,
 anteriores; não é permitido ampliar além dos tetos da API. Manifestos de builds
 genéricos anteriores à revisão devem ser reconstruídos. A correção dessa
 revisão ainda depende de executar os testes antigos e novos e o checker Lean.
+
+## Fluxo executável posterior
+
+`omega agent synthesize-native` e `audit-synthesis` integram busca racional
+isolada, build, execução, conferência Lean e replay com casos reservados.
+O contrato, os comandos e as pendências estão em
+[SINTESE_NATIVA_3_0.md](SINTESE_NATIVA_3_0.md). As seções anteriores registram
+o estágio de entrega dos fontes; não são um relatório de validação atual.
