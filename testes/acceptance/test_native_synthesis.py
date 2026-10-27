@@ -237,3 +237,21 @@ def test_global_build_provenance_covers_new_subsystems():
                  'omega_tools/capability_adapter.py', 'omega_learning/active_learning.py',
                  'omega_bench/reproduction.py', 'omega_open/engine.py'):
         assert record['sources'][path] == hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
+
+
+@pytest.mark.parametrize('artifact', ['program', 'program.c', 'program.build.json'])
+def test_replay_links_delivered_native_artifacts_to_rebuilt_source(native_bundle, tmp_path, artifact):
+    import shutil
+    directory, _ = native_bundle
+    copy = tmp_path / 'copy'
+    shutil.copytree(directory, copy)
+    # Rehashing malicious bytes is not sufficient to establish source/binary
+    # correspondence. The independent rebuild must reproduce those bytes too.
+    path = copy / artifact
+    path.write_bytes(path.read_bytes() + b'\n')
+    data = path.read_bytes()
+    manifest = json.loads((copy / 'manifest.json').read_text())
+    manifest['files'][artifact] = {'sha256': hashlib.sha256(data).hexdigest(), 'bytes': len(data)}
+    (copy / 'manifest.json').write_bytes(canonical(manifest))
+    with pytest.raises(ValueError, match='synthesis replay disagreement'):
+        workflow.audit(copy)

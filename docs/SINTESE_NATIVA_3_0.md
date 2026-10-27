@@ -51,7 +51,11 @@ artefatos. Orçamentos gravados no arquivo não podem ampliar a política do
 supervisor: por padrão, valem os mesmos tetos do fluxo original. O manifesto
 global de build também registra os fontes de todos os novos subsistemas. Reexecuta a busca em sandbox, regenera a fonte, recompila em uma
 pasta temporária, executa e verifica de novo, comparando casos, resultados e
-alegações com o arquivo. Não executa o binário arquivado. Para vincular o
+alegações com o arquivo. Exige também reprodução exata do C, binário e
+manifesto de build, usando as mesmas fontes e toolchain fixada. Um manifesto
+recalculado sobre um binário adulterado não basta. Diferenças de toolchain
+exigem produzir uma nova entrega; não são aceitas como reprodução do binário
+anterior. Não executa o binário arquivado. Para vincular o
 problema autorizado pelo supervisor, passe `--problem-sha256` com o hash do
 problema normalizado conhecido antes da revisão. Hashes internos sem esse
 vínculo não autenticam origem: modificar problema e manifesto juntos muda o

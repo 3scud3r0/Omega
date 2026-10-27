@@ -264,7 +264,8 @@ def audit(directory, *, expected_problem_sha256=None,
     with tempfile.TemporaryDirectory(prefix='omega-synthesis-audit-') as tmp:
         rebuilt = Path(tmp) / 'replay'
         current = run(problem, rebuilt, **limits, search_budget=search_budget, execution_budget=execution_budget)
-        for name in ('problem.json', 'search.json', 'candidate.json', 'program.omega', 'native-result.json'):
+        for name in ('problem.json', 'search.json', 'candidate.json', 'program.omega',
+                     'program.c', 'program', 'program.build.json', 'native-result.json'):
             if (rebuilt / name).exists():
                 if name not in files or _read(directory / name, 64 * MAX_BYTES) != _read(rebuilt / name, 64 * MAX_BYTES):
                     raise ValueError('Independent synthesis replay disagreement: ' + name)
