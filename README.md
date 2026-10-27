@@ -48,6 +48,18 @@ Veja [linguagem procedural e bootstrap](docs/AUTO_HOSPEDAGEM.md),
 [execução nativa e provas](docs/NATIVO_E_LEAN.md) e
 [integração Nextorch/Orange](docs/INTEGRACAO_NEXTORCH.md).
 
+## Síntese racional integrada em desenvolvimento para 3.0
+
+```sh
+.venv/bin/python -m omega agent synthesize-native exemplos/sintese_racional.json \
+  --max-size 3 --max-candidates 100 --saida artifacts/sintese-racional
+.venv/bin/python -m omega agent audit-synthesis artifacts/sintese-racional
+```
+
+Busca isolada, geração de Ômega, build C/GMP, execução nativa, admissão Lean e
+casos reservados ficam unidos em uma entrega auditável. Consulte
+[contrato, artefatos e limites](docs/SINTESE_NATIVA_3_0.md).
+
 ## Subsistema neural incorporado
 
 ```sh

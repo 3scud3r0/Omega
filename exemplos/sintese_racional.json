@@ -1,0 +1,12 @@
+{
+  "variables": ["x"],
+  "constants": [0, 1],
+  "examples": [
+    {"inputs": {"x": "1"}, "output": "2"},
+    {"inputs": {"x": "2"}, "output": "3"}
+  ],
+  "validation_examples": [
+    {"inputs": {"x": "-3/2"}, "output": "-1/2"},
+    {"inputs": {"x": "100"}, "output": "101"}
+  ]
+}

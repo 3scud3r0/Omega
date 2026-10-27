@@ -25,20 +25,36 @@ def solve(mode,data,max_candidates=10000,max_size=7):
 
 def main(argv=None):
     parser=argparse.ArgumentParser(prog='omega agent')
-    parser.add_argument('mode',choices=['infer','plan','synthesize'])
+    parser.add_argument('mode',choices=['infer','plan','synthesize','synthesize-native','audit-synthesis'])
     parser.add_argument('problem',type=Path)
     parser.add_argument('--max-candidates',type=int,default=10000)
     parser.add_argument('--max-size',type=int,default=7)
+    parser.add_argument('--saida',type=Path,help='Fresh directory for native synthesis artifacts')
+    parser.add_argument('--problem-sha256',help='Expected problem digest for independent synthesis replay')
     args=parser.parse_args(argv)
     def operation():
         if not 1<=args.max_candidates<=100000 or not 1<=args.max_size<=31:raise ValueError('Invalid finite reasoning budget')
+        if args.mode=='audit-synthesis':
+            if args.saida is not None:raise ValueError('Replay creates only temporary build artifacts')
+            from omega_coder.native_synthesis import audit
+            return audit(args.problem,expected_problem_sha256=args.problem_sha256)
+        if args.problem_sha256 is not None:raise ValueError('Expected problem digest is an audit option')
+        if args.mode=='synthesize-native' and args.saida is None:raise ValueError('Native synthesis requires --saida with a fresh directory')
+        if args.mode!='synthesize-native' and args.saida is not None:raise ValueError('--saida requires synthesize-native')
         with args.problem.open('rb') as stream:data=stream.read(1024*1024+1)
         if len(data)>1024*1024:raise ValueError('Problem byte budget exceeded')
-        return solve(args.mode,json.loads(data),args.max_candidates,args.max_size)
+        from omega_security.encoding import decode
+        problem=decode(data,max_nodes=20000)
+        if args.mode=='synthesize-native':
+            from omega_coder.native_synthesis import run
+            return run(problem,args.saida,max_nodes=args.max_size,max_candidates=args.max_candidates)
+        return solve(args.mode,problem,args.max_candidates,args.max_size)
     result=attempt('agent',operation)
     def encode(value):
         if isinstance(value,Fraction):return str(value)
         raise TypeError('Unsupported agent result field')
     if isinstance(result,Err):
         print(json.dumps(result.to_dict(),ensure_ascii=False),file=sys.stderr);return 1
-    print(json.dumps(result.to_dict(),ensure_ascii=False,default=encode));return 0
+    print(json.dumps(result.to_dict(),ensure_ascii=False,default=encode))
+    if args.mode in ('synthesize-native','audit-synthesis') and not result.value['checks_passed']:return 1
+    return 0
