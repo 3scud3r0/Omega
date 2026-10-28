@@ -16,7 +16,7 @@ BUILTINS = {'list': 'list', 'obj': 'obj', 'len': 'len', 'get': 'get', 'put': 'pu
  'print': 'print', 'fail': 'fail', 'json': 'json', 'parsejson': 'parsejson'}
 OPS = {'+':'add','-':'sub','*':'mul','/':'div','%':'mod','==':'eq','!=':'ne',
        '<':'lt','<=':'le','>':'gt','>=':'ge'}
-TOKEN = re.compile(r'\s+|\#[^\n]*|"(?:[^"\\]|\\.)*"|\d+(?:\.\d+)?|[^\W\d]\w*|==|!=|<=|>=|&&|\|\||[{}();,\[\]+*/%<>=!-]', re.UNICODE)
+TOKEN = re.compile(r'\s+|\#[^\n]*|//[^\n]*|"(?:[^"\\]|\\.)*"|\d+(?:\.\d+)?|[^\W\d]\w*|==|!=|<=|>=|&&|\|\||[{}();,\[\]+*/%<>=!:.\-]', re.UNICODE)
 
 
 def tokenize(source):
@@ -24,7 +24,7 @@ def tokenize(source):
     for m in TOKEN.finditer(source):
         if m.start()!=pos: raise ValueError(f'Invalid source at byte {pos}')
         pos=m.end();s=m.group()
-        if not s.isspace() and not s.startswith('#'): out.append(s)
+        if not s.isspace() and not s.startswith(('#','//')): out.append(s)
     if pos!=len(source): raise ValueError('Trailing source data')
     return out+['<fim>']
 

@@ -56,6 +56,13 @@ racionais com limites reais conferidos pelo Lean, binários C/GMP reutilizáveis
 certificados assinados por entrada e famílias de comprimentos limitados.
 Veja [Micro-Transformer e benchmark comparativo](docs/TRANSFORMER_CERTIFICADO.md).
 
+O [Caminho C](docs/CAMINHO_C.md) acrescenta tipos refinados, síntese MCTS com
+admissão universal em Lean, automutação restrita com quatro estágios de
+bootstrap e ações portadoras de prova. Inclui C freestanding com buffers
+reutilizados, rastros de inferência, memória linear, escalonamento finito e
+uma Q-PU de referência em RTL. O documento lista os arquivos e os limites de
+cada garantia.
+
 Os três passos e sua base de confiança estão descritos em
 [estado dos três passos](docs/ESTADO_DOS_TRES_PASSOS.md).
 Veja [linguagem procedural e bootstrap](docs/AUTO_HOSPEDAGEM.md),

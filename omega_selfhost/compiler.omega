@@ -12,7 +12,7 @@ funcao lex(source) {
     var c=source[i];
     se (contains(" \t\r\n",c)) { i=i+1; }
     senao {
-      se (c=="#") { enquanto (i<len(source) && source[i]!="\n") { i=i+1; } }
+      se (c=="#" || (c=="/" && i+1<len(source) && source[i+1]=="/")) { enquanto (i<len(source) && source[i]!="\n") { i=i+1; } }
       senao {
         se (c=="\"") {
           var start=i; i=i+1;
@@ -44,7 +44,7 @@ funcao lex(source) {
               se (i+1<len(source)) { two=slice(source,i,i+2); }
               se (contains(["==","!=","<=",">=","&&","||"],two)) { push(tokens,two); i=i+2; }
               senao {
-                se (!contains("{}();,[]+*/%<>=!-@^",c)) { fail("Caractere inesperado: "+c); }
+                se (!contains("{}();,[]+*/%<>=!-@^:.",c)) { fail("Caractere inesperado: "+c); }
                 push(tokens,c); i=i+1;
               }
             }
@@ -476,9 +476,29 @@ funcao optimize(ir) {
   i=0;enquanto (i<len(result["comandos"])) { var c=result["comandos"][i];se (has(c,"taxa")) { put(c,"taxa",mapping[c["taxa"]]); }i=i+1; }
   var cert=obj();put(cert,"tipo","reescrita_ir");put(cert,"formato","omega-opt-cert-1");put(cert,"original",ir);put(cert,"otimizado",result);put(cert,"mapeamento",mapping);put(cert,"regras",proofs);retornar cert;
 }
+funcao refinement_source(source) {
+  var p=parser(source);var types=[];var bindings=[];var output=[];
+  enquanto (accept(p,"type")) {
+    var label=name(p);need(p,"=");var base=[];
+    enquanto (peek(p)!="where") { push(base,take(p)); }
+    need(p,"where");need(p,"{");var predicate=[];
+    enquanto (peek(p)!="}") { push(predicate,take(p)); }
+    need(p,"}");accept(p,";");var record=obj();put(record,"name",label);put(record,"base",base);put(record,"predicate",predicate);push(types,record);
+  }
+  enquanto (peek(p)!="<fim>") {
+    var item=take(p);push(output,item);
+    se (contains(["parametro","tensor","vetor","matriz","perda"],item)) {
+      var label=name(p);push(output,label);
+      se (accept(p,":")) { var record=obj();put(record,"kind",item);put(record,"name",label);put(record,"type",name(p));push(bindings,record); }
+    }
+  }
+  var result=obj();put(result,"format","omega-refinement-source-1");put(result,"types",types);put(result,"bindings",bindings);put(result,"source",join(output," "));retornar result;
+}
 funcao principal() {
   se (argc()<3 || argc()>4) { fail("Uso: omegac fonte.omega destino [--ir|--optimize|--optimized-ir]"); }
   var source=read(arg(1));var p=parser(source);
+  se (argc()==4 && arg(3)=="--refinement-ir") { write(arg(2),json(refinement_source(source)));retornar 0; }
+  se (peek(p)=="type") { fail("Refinement types require the proof-checking build frontend"); }
   se (peek(p)=="funcao") { se (argc()!=3) { fail("Modo procedural nao aceita flags de IR tensorial"); }write(arg(2),compile_procedural(source)); }
   senao {
     var ir=tensor_ir(source);var mode="";se (argc()==4) { mode=arg(3); }

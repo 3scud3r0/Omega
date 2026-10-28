@@ -81,6 +81,9 @@ def bootstrap(destination=BUILD, *, force=True):
 
 
 def compiler():
+    from omega_self_mutate.activation import load_active
+    selected=load_active()
+    if selected is not None:return selected
     bootstrap(force=False)
     return BUILD/'omegac-stage2'
 
@@ -92,10 +95,14 @@ def source_types(source):
     source=Path(source)
     if not source.is_file():raise ValueError('Type inference requires a regular source file')
     with source.open(encoding='utf-8') as stream:text=stream.read(256*1024+1)
+    from omega_refine_check.compiler import is_refined
+    if is_refined(text):
+        from omega_refine_check.syntax import lower
+        return infer_program(lower(text)['source'])
     position=0
     while position<len(text):
         if text[position] in ' \t\r\n':position+=1
-        elif text[position]=='#':
+        elif text[position]=='#' or text.startswith('//',position):
             end=text.find('\n',position)
             if end<0:break
             position=end+1
@@ -107,6 +114,13 @@ def source_types(source):
 
 
 def compile_ir(source, optimize=False):
+    from omega_refine_check.compiler import is_refined
+    if is_refined(Path(source).read_text()):
+        from omega_refine_check.contracts import check_program
+        proof=check_program(Path(source).read_text())
+        with tempfile.TemporaryDirectory(prefix='omega-refined-ir-') as temporary:
+            lowered=Path(temporary)/'lowered.omega';lowered.write_text(proof['metadata']['source'])
+            return compile_ir(lowered,optimize)
     with tempfile.TemporaryDirectory(prefix='omega-ir-') as tmp:
         out=Path(tmp)/'ir.json'
         isolated_run([compiler(),Path(source).resolve(),out,
@@ -135,6 +149,10 @@ def compile_text(source):
 
 
 def build(source, destination, optimize=False, *, optimization='-O2', static=False):
+    from omega_refine_check.compiler import is_refined
+    if is_refined(Path(source).read_text()):
+        from omega_refine_check.compiler import build as refined_build
+        return refined_build(source,destination,optimize=optimize,optimization=optimization,static=static)
     destination=Path(destination).resolve()
     outputs=[destination,destination.with_suffix('.c'),destination.with_suffix('.build.json')]
     if optimize:outputs.extend([destination.with_suffix('.opt.json'),destination.with_suffix('.opt.lean')])
@@ -163,7 +181,7 @@ def build(source, destination, optimize=False, *, optimization='-O2', static=Fal
                 'native_c_flags':['-std=gnu11',optimization,*(['-static'] if static else []),'-s','-lgmp'],
                 'inferred_types':inferred.to_dict() if inferred else None,
                 'compiler_inputs':compiler_inputs(ROOT),
-                'compiler_sha256':digest(BUILD/'omegac-stage2'),
+                'compiler_sha256':digest(compiler()),
                 'artifacts':artifact_record([p for p in outputs if p!=destination.with_suffix('.build.json')],destination.parent)}
     destination.with_suffix('.build.json').write_text(json.dumps(provenance,indent=2)+'\n')
     return {'types':inferred.to_dict() if inferred else None,
@@ -182,15 +200,21 @@ def verify_result(result, *, proof_path=None):
                 str(ROOT/'formal/tensor/.lake/build/bin/omega_tensor_kernel')))
     if not kernel.is_file():
         raise IsolationUnavailable('Build the Lean tensor kernel with scripts/setup-native.sh')
+    synthesized=None
+    checked_result=result
+    if result.get('optimization',{}).get('formato')=='omega-opt-cert-2':
+        if result['optimization']['otimizado']!=result['ir']:raise ValueError('Synthesized optimization proves another graph')
+        synthesized=verify_optimization(result['optimization'])
+        checked_result={k:v for k,v in result.items() if k!='optimization'}
     with tempfile.TemporaryDirectory(prefix='omega-native-admission-') as tmp:
         data=Path(tmp)/'result.json'
-        data.write_text(json.dumps(result,ensure_ascii=False))
+        data.write_text(json.dumps(checked_result,ensure_ascii=False))
         response=json.loads(isolated_run([kernel,data],readonly=[data],threads=True,
                                         budget=PROOF_BUDGET,check=True).stdout)
         if not response.get('valid') or response['certificates']!=len(others) or \
            response.get('universal_identities')!=len(identity):
             raise ValueError('Lean kernel did not confirm all tensor certificates')
-    optimization=verify_optimization(result['optimization']) if 'optimization' in result else None
+    optimization=synthesized or (verify_optimization(result['optimization']) if 'optimization' in result else None)
     proof=check_identities(identity,proof_path=proof_path) if identity else None
     return {'valid':True,'tensor_certificates':len(others),
             'universal_identities':len(identity),'lean':response,'proof':proof,
@@ -205,7 +229,8 @@ def verify_optimization(certificate, *, proof_path=None):
     with tempfile.TemporaryDirectory(prefix='omega-optimization-') as tmp:
         data=Path(tmp)/'cert.json';data.write_text(json.dumps(certificate))
         proof=Path(tmp)/'Optimization.lean'
-        isolated_run([kernel,'--prove-opt',data,proof],readonly=[data],writable=[tmp],
+        mode='--prove-map' if certificate.get('formato')=='omega-opt-cert-2' else '--prove-opt'
+        isolated_run([kernel,mode,data,proof],readonly=[data],writable=[tmp],
                      threads=True,budget=PROOF_BUDGET,check=True)
         generated=proof.read_text()
         result=check_generated(generated)

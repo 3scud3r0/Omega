@@ -15,7 +15,7 @@ from .real_graph import execute
 from omega_selfhost.proof_protocol import encode
 
 
-def program(graph, input_bounds):
+def program(graph, input_bounds, *, trace_values=False):
     validate(graph)
     bounds=bounds_contract(input_bounds,graph['inputs'])
     def q(value):
@@ -36,13 +36,17 @@ def program(graph, input_bounds):
             expr=f'x{node["left"]}{"*" if op=="mul" else "/"}x{node["right"]}'
         else:expr=f'omega_{op}(x{node["input"]})'
         lines.append(f'var x{i}={expr};')
-    lines += ['retornar ['+','.join(f'text(x{i})' for i in graph['outputs'])+'];','}',
+    result='['+','.join(f'text(x{i})' for i in graph['outputs'])+']'
+    if trace_values:
+        lines += ['var trace=obj();put(trace,"outputs",'+result+');put(trace,"values",['+','.join(f'text(x{i})' for i in range(graph['inputs']+len(graph['nodes'])))+']);retornar trace;']
+    else:lines.append('retornar '+result+';')
+    lines += ['}',
               'funcao principal(){se(argc()!=2){fail("expected input JSON path");}var inputs=parsejson(read(arg(1)));',
               'print(json(infer(inputs)));retornar 0;}']
     return '\n'.join(lines)+'\n'
 
 
-def build_runtime(graph, directory, input_bounds, *, static=True):
+def build_runtime(graph, directory, input_bounds, *, static=True, trace_values=False):
     from omega_selfhost.driver import compiler,cc,PACKAGE
     from omega_platform.sandbox import run
     from omega_platform.budget import COMPILER_BUDGET
@@ -50,7 +54,7 @@ def build_runtime(graph, directory, input_bounds, *, static=True):
     root=Path(directory).absolute()
     source=root/'model.omega';c=root/'model.c';binary=root/'model'
     if any(p.exists() for p in (source,c,binary)):raise ValueError('Native destinations already exist')
-    root.mkdir(parents=True,exist_ok=True);source.write_text(program(graph,input_bounds))
+    root.mkdir(parents=True,exist_ok=True);source.write_text(program(graph,input_bounds,trace_values=trace_values))
     run([compiler(),source,c],readonly=[source],writable=[root],budget=COMPILER_BUDGET,check=True)
     text=c.read_text();bits=graph.get('precision_bits',32)
     start=text.index('static V fn_omega_exp(V v_x){')
@@ -75,7 +79,7 @@ def build_runtime(graph, directory, input_bounds, *, static=True):
                 'runtime_sha256':hashlib.sha256((PACKAGE/'runtime.h').read_bytes()).hexdigest(),
                 'artifacts':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (source,c,binary)},
                 'input_bounds':[[str(a),str(b)] for a,b in bounds_contract(input_bounds,graph['inputs'])],
-                'static':static}
+                'static':static,'trace_values':trace_values}
     (root/'model.build.json').write_bytes(encode(provenance))
     return provenance
 
@@ -90,8 +94,13 @@ def run_runtime(graph, binary, inputs):
         outcome=run([binary,path],readonly=[path],check=True)
     observed=json.loads(outcome.stdout)
     values=execute(graph,inputs);expected=[str(values[i]) for i in graph['outputs']]
+    native_trace=None
+    if type(observed) is dict:
+        if set(observed)!={'outputs','values'} or observed['values']!=list(map(str,values)):raise ValueError('Changed native intermediate trace')
+        native_trace=observed['values'];observed=observed['outputs']
     if observed!=expected:raise ValueError('Native transcendental execution differs from rational oracle')
     return observed,{'valid':True,'checker':'independent exact rational oracle replay',
+                     **({'native_trace':native_trace} if native_trace is not None else {}),
                      'outputs_sha256':hashlib.sha256(encode(observed)).hexdigest(),
                      'scope':'observed native output equality; real semantics are checked separately by Lean'}
 

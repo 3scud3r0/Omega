@@ -56,6 +56,11 @@ def principal(argumentos: list[str] | None = None) -> int:
     sub=p.add_subparsers(dest='acao',required=True)
     agent_parser=sub.add_parser('agent',help='finite reasoning, planning and rational expression synthesis')
     agent_parser.add_argument('arguments',nargs=argparse.REMAINDER)
+    extensions={'refine':'omega_refine_check.cli','synth':'omega_synth_mcts.cli',
+                'mutate':'omega_self_mutate.cli','action':'omega_agent_sandbox.cli','cognition':'omega_cognition.cli'}
+    for name,module in extensions.items():
+        sp=sub.add_parser(name,help=module)
+        sp.add_argument('arguments',nargs=argparse.REMAINDER)
     from omega_nextorch.cli import register, execute, COMMANDS
     register(sub)
     from omega_selfhost import cli as native_cli
@@ -77,10 +82,28 @@ def principal(argumentos: list[str] | None = None) -> int:
         if acao=='evolve':sp.add_argument('--raio',type=int,default=2)
         if acao in ('compile','optimize','export-lean'):
             sp.add_argument('-o','--saida',type=Path)
+        if acao=='compile':
+            sp.add_argument('--standalone',action='store_true')
+            sp.add_argument('--target',type=Path)
+            sp.add_argument('--contracts',type=Path,help='JSON architecture, input/output bounds and input_scale for a weights-only checkpoint')
         if acao=='optimize':sp.add_argument('--prova',type=Path)
         if acao in ('run','check','types','compile'):sp.add_argument('--motor',choices=['auto','classico','v1'],default='auto')
     args=p.parse_args(argumentos)
     try:
+        if args.acao in extensions:
+            from importlib import import_module
+            return import_module(extensions[args.acao]).main(args.arguments)
+        if args.acao=='compile' and args.standalone:
+            if args.contracts is None or args.target is None:p.error('--standalone requires --contracts and --target')
+            if args.target.suffix!='.c' or args.target.exists():raise ValueError('A fresh .c target is required')
+            from omega_cognition.standalone import export
+            manifest=ler_json(args.contracts)
+            bundle=args.target.parent/(args.target.stem+'.certified')
+            result=export(args.arquivo,manifest['architecture'],bundle,input_bounds=manifest['input_bounds'],
+                          output_bounds=manifest['output_bounds'],input_scale=manifest.get('input_scale',1))
+            args.target.parent.mkdir(parents=True,exist_ok=True)
+            args.target.write_bytes(Path(result['source']).read_bytes())
+            print(json.dumps(result,sort_keys=True,indent=2));return 0
         if args.acao=='agent':
             from omega_agent.cli import main as agent_main
             return agent_main(args.arguments)

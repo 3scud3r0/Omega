@@ -2,6 +2,12 @@
   "format": "omega-corpus-1",
   "cases": [
     {
+      "path": "exemplos/path_c/probability.omega",
+      "language": "refined",
+      "expected": "accept",
+      "reference": "v1"
+    },
+    {
       "path": "exemplos/dimensoes_invalidas.omega",
       "language": "tensor",
       "expected": "compile_reject",
