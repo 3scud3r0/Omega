@@ -51,6 +51,11 @@ backend racional com escalas fixas freestanding, ações de recursos verificadas
 finita e experimentos de superotimização com recompilação auto-hospedada.
 Consulte [APIs, exemplos e domínios das garantias](docs/FLUXOS_CERTIFICADOS.md).
 
+Softmax, RMSNorm e Self-Attention causal/multi-head agora têm aproximações
+racionais com limites reais conferidos pelo Lean, binários C/GMP reutilizáveis,
+certificados assinados por entrada e famílias de comprimentos limitados.
+Veja [Micro-Transformer e benchmark comparativo](docs/TRANSFORMER_CERTIFICADO.md).
+
 Os três passos e sua base de confiança estão descritos em
 [estado dos três passos](docs/ESTADO_DOS_TRES_PASSOS.md).
 Veja [linguagem procedural e bootstrap](docs/AUTO_HOSPEDAGEM.md),

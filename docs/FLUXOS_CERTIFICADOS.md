@@ -4,6 +4,10 @@ As APIs abaixo têm contratos executáveis e rejeitam resultados sem as provas
 exigidas. Elas não transformam testes em provas universais do compilador C/GMP.
 Os limites são parte da API, inclusive quando uma busca não encontra solução.
 
+Este documento descreve o fluxo racional afim/ReLU original. A extensão com
+Softmax, RMSNorm, Self-Attention, executáveis reutilizáveis e benchmark está em
+[Transformer certificado](TRANSFORMER_CERTIFICADO.md).
+
 | Pedido | API implementada | Domínio da garantia |
 |---|---|---|
 | Poda Stern–Brocot/frações contínuas | `omega.rational_pruning.approximate`, `certify_argmax`, `certify_bounded_graph` | Melhor aproximação com denominador limitado; limites locais Lean; argmax único com margem estrita. O fluxo de grafo arredonda valores e intervalos intermediários para fora. |

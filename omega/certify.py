@@ -9,55 +9,24 @@ from .pci import issue
 
 
 def trace(model, example_inputs):
-    import torch
-    from torch.fx import symbolic_trace
-    if not isinstance(example_inputs, torch.Tensor) or example_inputs.ndim != 1 or not 1 <= example_inputs.numel() <= 256:
-        raise ValueError('One static 1D tensor input required')
-    frozen = copy.deepcopy(model).cpu().eval()
-    traced = symbolic_trace(frozen)
-    graph = {'inputs': example_inputs.numel(), 'nodes': [], 'outputs': []}
-    refs = {}
-    for node in traced.graph.nodes:
-        if node.op == 'placeholder':
-            if refs:
-                raise ValueError('Exactly one model input supported')
-            refs[node] = list(range(graph['inputs']))
-        elif node.op == 'call_module':
-            if len(node.args) != 1 or node.kwargs or node.args[0] not in refs:
-                raise ValueError('Only unary static module calls supported')
-            source = refs[node.args[0]]
-            layer = traced.get_submodule(node.target)
-            out = []
-            if type(layer) is torch.nn.Linear:
-                if len(source) != layer.in_features:
-                    raise ValueError('Linear input shape mismatch')
-                for i in range(layer.out_features):
-                    bias = Fraction(float(layer.bias[i].detach())) if layer.bias is not None else Fraction(0)
-                    terms = [[r, str(Fraction(float(layer.weight[i, j].detach())))] for j, r in enumerate(source)]
-                    out.append(graph['inputs'] + len(graph['nodes']))
-                    graph['nodes'].append({'op': 'affine', 'terms': terms, 'bias': str(bias)})
-            elif type(layer) is torch.nn.ReLU and not layer.inplace:
-                for ref in source:
-                    out.append(graph['inputs'] + len(graph['nodes']))
-                    graph['nodes'].append({'op': 'relu', 'input': ref})
-            else:
-                raise ValueError(f'Unsupported module: {type(layer).__name__}')
-            refs[node] = out
-        elif node.op == 'output':
-            if len(node.args) != 1 or node.args[0] not in refs:
-                raise ValueError('One tensor output required')
-            graph['outputs'] = refs[node.args[0]]
-        else:
-            raise ValueError(f'Unsupported FX operation: {node.op}/{node.target}')
-        if len(graph['nodes']) > 4096:
-            raise ValueError('Static graph node budget exceeded')
-    return validate(graph)
+    from .transformer import trace_model
+    return trace_model(model, example_inputs)
 
 
 def export(model, example_inputs, directory, *, input_bounds, output_bounds,
-           signing_key, nonce, static=True, target='critical-system'):
+           signing_key, nonce, static=True, target='critical-system', max_error=None,
+           precision_bits=32):
     graph = trace(model, example_inputs)
-    inputs = [Fraction(float(x)) for x in example_inputs.detach().cpu()]
+    inputs = [Fraction(float(x)) for x in example_inputs.detach().cpu().reshape(-1)]
+    from .certified_graph import real_operations
+    if real_operations(graph):
+        from .transformer_certificate import export_real
+        if max_error is None:
+            raise ValueError('Real operations require an explicit max_error contract')
+        graph['precision_bits'] = precision_bits
+        return export_real(graph, inputs, directory, input_bounds=input_bounds,
+                           output_bounds=output_bounds, signing_key=signing_key, nonce=nonce,
+                           static=static, target=target, max_error=max_error)
     certificate = issue(graph, inputs, input_bounds=input_bounds, output_bounds=output_bounds,
                         signing_key=signing_key, nonce=nonce, context=target)
     root = Path(directory).absolute()
@@ -91,12 +60,14 @@ def export(model, example_inputs, directory, *, input_bounds, output_bounds,
 
 
 def certify(*, target='critical-system', precision='exact-rational'):
-    if precision != 'exact-rational' or type(target) is not str or not target:
-        raise ValueError('A named target and exact-rational precision are required')
+    if precision not in ('exact-rational', 'certified-rational') or type(target) is not str or not target:
+        raise ValueError('A named target and an explicit rational precision mode are required')
     def decorate(cls):
         if hasattr(cls, 'export_certified'):
             raise ValueError('export_certified already exists')
         def export_certified(self, example_inputs, directory, **kwargs):
+            if precision == 'exact-rational' and kwargs.get('max_error') is not None:
+                raise ValueError('Use precision="certified-rational" to permit transcendental approximation')
             return export(self, example_inputs, directory, target=target, **kwargs)
         cls.export_certified = export_certified
         return cls

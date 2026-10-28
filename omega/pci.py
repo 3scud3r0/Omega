@@ -36,6 +36,9 @@ def issue(graph, inputs, *, input_bounds, output_bounds, signing_key, nonce, con
     """Caller supplies a private-key object; no implicit keys or trust anchors."""
     if type(nonce) is not str or not 1 <= len(nonce) <= 256 or type(context) is not str or not 1 <= len(context) <= 256:
         raise ValueError('Bounded nonce and deployment context required')
+    from .certified_graph import real_operations
+    if real_operations(graph):
+        raise ValueError('Real graphs require issue_real with an explicit error contract')
     statement = _statement(graph, inputs, input_bounds, output_bounds)
     source, admission = certify_bounds(statement['graph'], statement['input_bounds'], statement['output_bounds'])
     # Concrete execution equality is independently rendered and kernel checked.
@@ -61,8 +64,15 @@ def issue(graph, inputs, *, input_bounds, output_bounds, signing_key, nonce, con
 
 
 def verify(certificate, *, public_key, expected_graph_sha256, expected_inputs,
-           expected_nonce, expected_context, expected_input_bounds, expected_output_bounds):
+           expected_nonce, expected_context, expected_input_bounds, expected_output_bounds,
+           expected_max_error=None):
     """Authenticate and recheck against caller-pinned model, input and request."""
+    if type(certificate) is dict and type(certificate.get('payload')) is dict and certificate['payload'].get('format') == 'omega-pci-real-1':
+        from .transformer_certificate import verify_real
+        return verify_real(certificate, public_key=public_key, expected_graph_sha256=expected_graph_sha256,
+                           expected_inputs=expected_inputs, expected_nonce=expected_nonce, expected_context=expected_context,
+                           expected_input_bounds=expected_input_bounds, expected_output_bounds=expected_output_bounds,
+                           expected_max_error=expected_max_error)
     if type(certificate) is not dict or set(certificate) != {
             'payload', 'signature', 'proof', 'execution_proof', 'admission'}:
         raise ValueError('Unknown PCI envelope')
@@ -112,7 +122,8 @@ def verify_export(directory, *, public_key, **expected):
     bundle = json.loads(read('certificate.json', 8 * 1024**2), object_pairs_hook=_pairs)
     if type(bundle) is not dict or set(bundle) != {'pci', 'artifacts', 'artifact_signature'}:
         raise ValueError('Unknown export bundle')
-    if type(bundle['artifacts']) is not dict or set(bundle['artifacts']) != {'model.omega', 'model.c', 'model'}:
+    required={'model.omega','model.c','model'}
+    if type(bundle['artifacts']) is not dict or not required <= set(bundle['artifacts']) <= required | {'model.build.json'}:
         raise ValueError('Unknown artifact membership')
     binding = {'pci_sha256': digest(bundle['pci']), 'artifacts': bundle['artifacts']}
     public_key.verify(bytes.fromhex(bundle['artifact_signature']), encode(binding))

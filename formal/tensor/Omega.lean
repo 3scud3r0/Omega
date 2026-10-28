@@ -12,6 +12,7 @@ import Omega.AutodiffCorrectness
 import Omega.Subgradients
 import Omega.MatrixProofs
 import Omega.SafeEvolution
+import Omega.Transcendental
 /- Source-only formal library. Compilation and axiom-policy evidence are pending.
    Intrinsically typed finite-core and conditional native-contract statements
    are not a completed proof for the C/GMP/LLVM toolchain. -/
