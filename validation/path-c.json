@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-28",
+  "format": "omega-path-c-validation-1",
+  "junit": {
+    "errors": 0,
+    "failures": 0,
+    "skipped": 2,
+    "tests": 905
+  },
+  "limitations": "Scoped rational/static contracts and controlled compiler templates; reference RTL is co-simulated, not formally verified silicon; no universal correctness, alignment, timing or minimality claim.",
+  "mutation": {
+    "compiler_sha256": "e93be1d8a6d7bfa1d84edd38df52b642a2c7218d77e03c007b6672655292d138",
+    "default_activated": true,
+    "fixed_point": true,
+    "native_valid": true,
+    "objective": {
+      "after": 5,
+      "before": 7,
+      "metric": "IR nodes on the generated probe"
+    },
+    "proof_sha256": "42f2065247632308b062596cc102ba521e81f5dbeea8959674149145de3f98d8",
+    "rule": {
+      "id": "34c23237b666684dd8060e859c3780a5eea938590cc89f60816068806429bad8",
+      "lhs": [
+        "-",
+        [
+          "*",
+          [
+            "var",
+            "x"
+          ],
+          [
+            "const",
+            "2"
+          ]
+        ],
+        [
+          "var",
+          "x"
+        ]
+      ],
+      "rhs": [
+        "var",
+        "x"
+      ]
+    },
+    "stages": [
+      {
+        "binary_sha256": "e93be1d8a6d7bfa1d84edd38df52b642a2c7218d77e03c007b6672655292d138",
+        "build_ns": 2224524165,
+        "c_sha256": "6977ba594d6d1fc14b4666c17bc15570662a042976dddeeba6927b113ecdcce7",
+        "stage": 0
+      },
+      {
+        "binary_sha256": "e93be1d8a6d7bfa1d84edd38df52b642a2c7218d77e03c007b6672655292d138",
+        "build_ns": 2609567307,
+        "c_sha256": "6977ba594d6d1fc14b4666c17bc15570662a042976dddeeba6927b113ecdcce7",
+        "stage": 1
+      },
+      {
+        "binary_sha256": "e93be1d8a6d7bfa1d84edd38df52b642a2c7218d77e03c007b6672655292d138",
+        "build_ns": 2436110930,
+        "c_sha256": "6977ba594d6d1fc14b4666c17bc15570662a042976dddeeba6927b113ecdcce7",
+        "stage": 2
+      },
+      {
+        "binary_sha256": "e93be1d8a6d7bfa1d84edd38df52b642a2c7218d77e03c007b6672655292d138",
+        "build_ns": 2335496956,
+        "c_sha256": "6977ba594d6d1fc14b4666c17bc15570662a042976dddeeba6927b113ecdcce7",
+        "stage": 3
+      }
+    ],
+    "theorems": 21
+  },
+  "new_test_cases": 48,
+  "rtl": {
+    "alu_cases": 732,
+    "gcd_cases": 6,
+    "simulator": "Icarus Verilog 12.0",
+    "widths": [
+      8,
+      16,
+      32
+    ]
+  }
+}

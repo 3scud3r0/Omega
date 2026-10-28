@@ -1,0 +1,13 @@
+{
+  "id": "cooling",
+  "version": 1,
+  "state": {"temperature": "self>=0 and self<=4"},
+  "actions": {
+    "cool": {
+      "parameters": {"amount": "self>=0 and self<=1"},
+      "requires": ["amount<=temperature"],
+      "updates": {"temperature": "temperature-amount"},
+      "effect": "motor"
+    }
+  }
+}

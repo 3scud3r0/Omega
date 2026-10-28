@@ -14,3 +14,4 @@ prune formal/tensor/.lake
 
 recursive-include roadmap *.tsv *.json *.md
 recursive-include validation *.json *.md
+recursive-include hardware *.sv *.md

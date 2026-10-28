@@ -17,7 +17,7 @@ from omega_selfhost.bootstrap import Bootstrap,TOKEN,BUILTINS
 from .typesystem import TypeCheckError
 
 
-_TOKEN=re.compile(TOKEN.pattern+r'|::',re.UNICODE)
+_TOKEN=re.compile(r'::|'+TOKEN.pattern,re.UNICODE)
 
 
 def _tokens(source):
@@ -26,7 +26,7 @@ def _tokens(source):
     for match in _TOKEN.finditer(source):
         if match.start()!=position:raise TypeCheckError('Invalid module source token')
         position=match.end();token=match.group()
-        if not token.isspace() and not token.startswith('#'):result.append(token)
+        if not token.isspace() and not token.startswith(('#','//')):result.append(token)
         if len(result)>120000:raise TypeCheckError('Module token budget exceeded')
     if position!=len(source):raise TypeCheckError('Trailing module source data')
     return result+['<fim>']

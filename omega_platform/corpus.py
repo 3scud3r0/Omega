@@ -44,7 +44,7 @@ def load(path,root):
     for c in cases:
         p=(Path(root)/c.path).resolve()
         if not p.is_relative_to(Path(root).resolve()):raise CorpusError('Example escapes repository')
-        if c.language not in ('tensor','procedural') or c.expected not in ('accept','compile_reject','run_reject'):
+        if c.language not in ('tensor','procedural','refined') or c.expected not in ('accept','compile_reject','run_reject'):
             raise CorpusError('Invalid case classification')
         if c.reference not in ('v1','classic','bootstrap','rejection'):raise CorpusError('Reference required')
         if c.expected!='accept' and not c.stderr_pattern:raise CorpusError('Negative cases need a precise rejection pattern')
@@ -58,7 +58,12 @@ def _serial(value):
 
 def compare_reference(path,result,reference):
     from omega.sintaxe import analisar
-    commands=analisar(path.read_text())
+    text=path.read_text()
+    from omega_refine_check.compiler import is_refined
+    if is_refined(text):
+        from omega_refine_check.contracts import check_program
+        text=check_program(text)['metadata']['source']
+    commands=analisar(text)
     if reference=='v1':
         from omega.motor_v1 import CompiladorV1,MaquinaV1,num
         from omega_selfhost.driver import compile_ir

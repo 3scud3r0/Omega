@@ -303,8 +303,9 @@ def localRule (node : Json) (nodes : Array Json) : Except String (Option (String
       return some ((if op = "neg" then "double_neg" else "double_transpose"),target)
   return none
 
-def verifyOptimization (cert : Json) : Except String Unit := do
-  if (← (← cert.getObjVal? "formato").getStr?) != "omega-opt-cert-1" then throw "Invalid optimization format"
+def verifyOptimization (cert : Json) (allowSynth : Bool := false) : Except String Unit := do
+  let format ← (← cert.getObjVal? "formato").getStr?
+  if format != "omega-opt-cert-1" && !(allowSynth && format = "omega-opt-cert-2") then throw "Invalid optimization format"
   let old ← cert.getObjVal? "original"
   let new ← cert.getObjVal? "otimizado"
   let oldParams ← parameters old
@@ -332,10 +333,13 @@ def verifyOptimization (cert : Json) : Except String Unit := do
       (p.getObjVal? "indice" >>= Json.getNat?).toOption = some i)
     match entry with
     | some proof =>
-      let some (rule,target) ← localRule clone (newNodes.extract 0 pos) | throw "Unrecognized rewrite"
-      if (← (← proof.getObjVal? "regra").getStr?) != rule ||
-         (← (← proof.getObjVal? "resultado").getNat?) != target || mapping[i]! != target then
-        throw "Rewrite witness mismatch"
+      let target ← (← proof.getObjVal? "resultado").getNat?
+      if allowSynth && format = "omega-opt-cert-2" then
+        if mapping[i]! != target then throw "Synthesized map witness mismatch"
+      else
+        let some (rule,expected) ← localRule clone (newNodes.extract 0 pos) | throw "Unrecognized rewrite"
+        if (← (← proof.getObjVal? "regra").getStr?) != rule || expected != target || mapping[i]! != target then
+          throw "Rewrite witness mismatch"
       if target ≥ pos || (← node.getObjVal? "forma").compress !=
          (← newNodes[target]!.getObjVal? "forma").compress then throw "Rewrite changes shape"
     | none =>
@@ -468,8 +472,8 @@ def exprSource : OmegaTensor.Expr → String
   | .relu a => s!"(.relu {exprSource a})"
   | .gate a b => s!"(.gate {exprSource a} {exprSource b})"
 
-def optimizationProof (cert : Json) : Except String String := do
-  verifyOptimization cert
+def optimizationProof (cert : Json) (allowSynth : Bool := false) : Except String String := do
+  verifyOptimization cert allowSynth
   let old ← cert.getObjVal? "original"
   let new ← cert.getObjVal? "otimizado"
   let oldCodes ← scalarize old (← parameters old)
@@ -484,10 +488,20 @@ def optimizationProof (cert : Json) : Except String String := do
       let b := exprSource newCodes[target]!.cells[j]!
       result := result ++ s!"theorem value_{i}_{j} (s : Env) : eval s {a} = eval s {b} := by\n  simp only [eval] <;> (try split_ifs) <;> simp_all <;> ring\n#print axioms value_{i}_{j}\n"
       result := result ++ s!"theorem gradient_{i}_{j} (s : Env) (x : Nat) : eval s (derive {a} x) = eval s (derive {b} x) := by\n  simp only [derive, eval] <;> (try split_ifs) <;> simp_all <;> ring\n#print axioms gradient_{i}_{j}\n"
+      if allowSynth then
+        result := result ++ s!"theorem domain_{i}_{j} (s : Env) : defined s {a} = defined s {b} := by\n  simp [defined, eval]\n#print axioms domain_{i}_{j}\n"
   return result ++ "end OmegaOptimizationProof\n"
 
 def main (args : List String) : IO UInt32 := do
   match args with
+  | ["--prove-map", file, output] =>
+    try
+      let input ← IO.FS.readFile file
+      let parsed := Json.parse input
+      match parsed >>= (fun cert => optimizationProof cert true) with
+      | .ok proof => IO.FS.writeFile output proof; return (0 : UInt32)
+      | .error error => IO.eprintln error; return (1 : UInt32)
+    catch error => IO.eprintln error.toString; return (1 : UInt32)
   | ["--prove-opt", file, output] =>
     try
       let input ← IO.FS.readFile file

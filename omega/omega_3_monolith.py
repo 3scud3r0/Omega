@@ -154,7 +154,7 @@ def main(argv=None):
             if package is not None:
                 package.__path__=previous_path
 
-MANIFEST = {'format': 'omega-source-tree-1', 'files': {'.github/workflows/tests.yml': {'bytes': 3007, 'sha256': 'bb09fb4278346ccb4bba21aba37c38ee6f197f378cea0b5dcc268d0f9186fc6a'}, 'MANIFEST.in': {'bytes': 589, 'sha256': 'dc646303b19de02c5b733eaee4d0d9ed5c5287fe61aca40c274c2dd26f79cb07'}, 'README.md': {'bytes': 9459, 'sha256': '884afe2b564e21517eeec7461829e722a2279fde3a2b3d1f6eaf3d250a8144db'}, 'docs/API_3_0.md': {'bytes': 15268, 'sha256': '32df48b8446ea31a06cf2d9ca39d4f2d69ad314cd39d17b31638d35d8adb8620'}, 'docs/ARQUIVO_UNICO.md': {'bytes': 3677, 'sha256': '4cfbbf8da9499b0a4030b3acd7b218762407d396da50212ec0f6b186b3371f41'}, 'docs/AUTO_HOSPEDAGEM.md': {'bytes': 3372, 'sha256': 'fe8b5222c4f0b9ac06c7c240d533a7d77070e892527531d4f3e8f1b8200c20f6'}, 'docs/DIMENSOES_3_0.md': {'bytes': 2170, 'sha256': '43d019b58db605e83c1734cc7c61280829dfa4bbb1bdf8d61bba60b00abce1b9'}, 'docs/ESTADO_DOS_TRES_PASSOS.md': {'bytes': 4765, 'sha256': '9f8fdc5aed62d5122a3aec9ff7b706a136cdf17fa18a33780803416b28460fed'}, 'docs/EXTERNAL_REVIEW.md': {'bytes': 1118, 'sha256': '3ae280c7ee0680b6cecb75573c781a342d00ce80e0402f3149faed862ba6a6fe'}, 'docs/FLUXOS_CERTIFICADOS.md': {'bytes': 10300, 'sha256': '6ce3cc49607721c4e905119b4ac26eece9557218181b67fcfb9d005f19473831'}, 'docs/FUNDACAO_3_0.md': {'bytes': 10614, 'sha256': '9eaef3ff2b09ec2bd90c48160136b879e652aaea3ec51be37b3b6e4a1d19f99a'}, 'docs/GENERICS_EM_DESENVOLVIMENTO.md': {'bytes': 2341, 'sha256': 'b84fb43da964b17f1b5ea7f614d0765674f21ed513fff203eee8f9b74da4c9bb'}, 'docs/INTEGRACAO_NEXTORCH.md': {'bytes': 6509, 'sha256': '7942c36db444fc1143a8cc68c226dd4981614aecb27c6b6c5f94d5dc289efa71'}, 'docs/IR_CANONICA_3_0.md': {'bytes': 3111, 'sha256': '3092ad76311fb96e92307b71fd512d8e884e33354cf99f377e1197fb97399bf0'}, 'docs/MODULOS_3_0.md': {'bytes': 4221, 'sha256': '254c8906d3b382d553920f12dd7d39b5e04e2443224159557ea1a2bf071ee035'}, 'docs/NATIVO_E_LEAN.md': {'bytes': 3653, 'sha256': '18d9024bcbdda44298367e85987c821f49f35ec2827421618f39c8db7a9e5b82'}, 'docs/NEXTORCH_PROVENANCE.md': {'bytes': 707, 'sha256': '28b7a6ee7d10b3bec0714071636d3bce2c675c0daf002c3701de0a60cd6d8e04'}, 'docs/NEXTORCH_UPSTREAM.md': {'bytes': 7629, 'sha256': '7d7165a7cf6dd073815c9ffcb35ee7b800be6db695ddf2ff0c429cbb1e1e0978'}, 'docs/RESULTADOS_3_0.md': {'bytes': 4172, 'sha256': 'b7581b0690f7a8e70433375838d2fa972319bd5745c27b762c7a84d05a55dec8'}, 'docs/SINTAXE_E_SEMANTICA.md': {'bytes': 7473, 'sha256': '8ebc6d1cd527aa2ccaccf77c7d421fe7034e99daf08c029e37d18ca210e02e32'}, 'docs/SINTESE_NATIVA_3_0.md': {'bytes': 5761, 'sha256': '1ddbffcf002107bc6a988f1c54e521291b771669b2a69f9180b2dd8f72f4d9c3'}, 'docs/SSA_3_0.md': {'bytes': 2484, 'sha256': '49a6ad8d225203437b83fce40851d42cab6aab3e623d662de1f7b43fd7e5d84c'}, 'docs/THREAT_MODEL_AGENT.md': {'bytes': 5071, 'sha256': '23a41fc16e679da44d2be43cd53c1ae47af9aa6c65f8fee64f482695acbce3e9'}, 'docs/TIPAGEM_3_0.md': {'bytes': 6039, 'sha256': '95f8677f4a79939f155b537df32caa3ed6553623914221476a3e9d2e4a1bdc60'}, 'docs/TRANSFORMER_CERTIFICADO.md': {'bytes': 12484, 'sha256': 'f3839c4b4e2f95d7c723f0468318889ccbb24d4782a0d87a457193b086de32bb'}, 'docs/VALIDACAO_1_4.md': {'bytes': 2434, 'sha256': 'a548451c3155961b662efa64b3d1217faf4a70eb0ea3f335447a5492fd5da9d8'}, 'docs/VALIDACAO_2_0.md': {'bytes': 3189, 'sha256': '3d9468e97d1405de58f8ddbbdd920a4e514cfb03b11ec57ce53c97ff28199c88'}, 'exemplos/FatosOmega.lean': {'bytes': 1614, 'sha256': 'd690782c843e9403cbb55a585bb1b32fe2e31140ce3994d0f6e11d3cdb8cb605'}, 'exemplos/certificados_matriciais.json': {'bytes': 43797, 'sha256': 'a1ec2a1338caaca9271c242087b1a60b1995af405b3abdee8144ebfa20b132d0'}, 'exemplos/certificados_tensor.json': {'bytes': 26857, 'sha256': '284fa2269e48c9014fe16dcc450d276e65f6b81e5bdee097ac4a437c197a7f0d'}, 'exemplos/certificados_v1.json': {'bytes': 37233, 'sha256': '87ec9b30b6d04fb2d3582bf383f2103d512f4a5de047c363480f5a6d0e68a5cc'}, 'exemplos/dimensoes_invalidas.omega': {'bytes': 170, 'sha256': 'f545aa1b687aec156394efc4dc81e6d679000735ab3e9f72c1715dd6f5febdc7'}, 'exemplos/erro_de_tipo.omega': {'bytes': 175, 'sha256': 'f7a7d11dcf43aca43827eba345a69e7370161747a5d34ebb69d8d9f7fc342c44'}, 'exemplos/evolucao_aberta/cadeia_aberta.json': {'bytes': 36564, 'sha256': '32f1c83a49e6814ca8808f1222208be90c2090e52560a275664ed61bb70d2346'}, 'exemplos/evolucao_aberta/politica_0.omega': {'bytes': 212, 'sha256': 'df8325c0f4daa353c4c9f562180f40b406c7bafd40f4c1c2272fc70df787b682'}, 'exemplos/evolucao_aberta/politica_1.omega': {'bytes': 212, 'sha256': '97c9077f7361c0af1f32713d99fdaf606f581a0e2e2a2d651e6b4411d7ac1f54'}, 'exemplos/evolucao_aberta/politica_ativa.omega': {'bytes': 212, 'sha256': '97c9077f7361c0af1f32713d99fdaf606f581a0e2e2a2d651e6b4411d7ac1f54'}, 'exemplos/evolucao_aberta_cli/cadeia_aberta.json': {'bytes': 36564, 'sha256': '32f1c83a49e6814ca8808f1222208be90c2090e52560a275664ed61bb70d2346'}, 'exemplos/evolucao_aberta_cli/politica_0.omega': {'bytes': 212, 'sha256': 'df8325c0f4daa353c4c9f562180f40b406c7bafd40f4c1c2272fc70df787b682'}, 'exemplos/evolucao_aberta_cli/politica_1.omega': {'bytes': 212, 'sha256': '97c9077f7361c0af1f32713d99fdaf606f581a0e2e2a2d651e6b4411d7ac1f54'}, 'exemplos/evolucao_aberta_cli/politica_ativa.omega': {'bytes': 212, 'sha256': '97c9077f7361c0af1f32713d99fdaf606f581a0e2e2a2d651e6b4411d7ac1f54'}, 'exemplos/evolucao_xor/cadeia_provada.json': {'bytes': 2510, 'sha256': 'cc44ecf2433ec7c47991192c43a903d782e484beb3d0c90bd6b956931f863c81'}, 'exemplos/evolucao_xor/geracao_0.omega': {'bytes': 333, 'sha256': '7f7852321df9d559cab160d4ee8967c787d3288dba89e83e8e8c1ea8544c1255'}, 'exemplos/evolucao_xor/geracao_1.omega': {'bytes': 334, 'sha256': '7c0fbbc9b8a4402a898c0b0159d0e6c30f82c6e834f58f9bff635d79614686e8'}, 'exemplos/evolucao_xor/geracao_2.omega': {'bytes': 334, 'sha256': '9b339367766e416f1d7477bc4947b14fc22a5da3e871edda0b825b98b2a42a99'}, 'exemplos/evolucao_xor/obrigacoes_lean.lean': {'bytes': 804, 'sha256': '9c935b8c1ef64f716cef0ab2daab3860b805a6c32c1dfce845df3580b000d788'}, 'exemplos/evolucao_xor/programa_sucessor.omega': {'bytes': 334, 'sha256': '9b339367766e416f1d7477bc4947b14fc22a5da3e871edda0b825b98b2a42a99'}, 'exemplos/evolucao_xor/prova_auto_otimizacao.json': {'bytes': 9217, 'sha256': 'c7314a078a1c2778e66d1db3dcd5a792438a051b5ad6d5db214439c75ca5b616'}, 'exemplos/metaevolucao/certificado_meta.json': {'bytes': 2281, 'sha256': '48a9ad65bb0c2d8ee4a1b470031d1de8e326c45fa0a3c8fbfbc51fe569aca3b4'}, 'exemplos/metaevolucao/politica_0.omega': {'bytes': 300, 'sha256': '1966de2dbe1cb2a6637ba5c444706f4848b333c1de31b02ff4d3722265825987'}, 'exemplos/metaevolucao/politica_1.omega': {'bytes': 300, 'sha256': 'f3b40e8ce09384a0e0d52a959f16704d0d79ebede7801376b361a42d66c38628'}, 'exemplos/metaevolucao/politica_2.omega': {'bytes': 301, 'sha256': 'a80694b8ed951ffb02d6a4b250597b36708073be5b313bfbc4be5dd9870c00b1'}, 'exemplos/metaevolucao/politica_ativa.omega': {'bytes': 301, 'sha256': 'a80694b8ed951ffb02d6a4b250597b36708073be5b313bfbc4be5dd9870c00b1'}, 'exemplos/nextorch/iris_workflow.py': {'bytes': 2436, 'sha256': '1993543bd6de725b3429ce6c0b06bb4fbeafd95e01c681481d61882d208b9b0c'}, 'exemplos/nextorch/render_gallery.py': {'bytes': 2381, 'sha256': 'ecf778950bf9ffa0b218b12d5ae0474012977e7fa8da07460b781fa0020e1f09'}, 'exemplos/nextorch/transitivity.json': {'bytes': 65, 'sha256': 'd836ff49e415b8632696746d2d31a81cd084911d2328194597d1597fdaad8857'}, 'exemplos/otimizacao_ir.omega': {'bytes': 278, 'sha256': 'c3ed5c1d6b6ee7f76cf143ed6e953bdd2f1d19926e348785130e4a69a74e99ae'}, 'exemplos/parametros_matriciais.omega': {'bytes': 479, 'sha256': '4d296c053e304864b2b53410773377a2db01000eac0e5a028525599bbe1f7e4d'}, 'exemplos/passo_recusado.omega': {'bytes': 138, 'sha256': '4607927630183418f361c302357d873a72d77d9924c66a7d73abbd9dff3ae609'}, 'exemplos/primeiro_programa.omega': {'bytes': 666, 'sha256': 'b56626c4e496432073b430720d7672de50e14c70ca1f365efb280c6f4320cbaf'}, 'exemplos/procedural/soma.omega': {'bytes': 227, 'sha256': '8366dde9016e7e6fc7e7d56e942b7a3fffe880f6a571a30cd0c29018f2565be0'}, 'exemplos/produto_matrizes.omega': {'bytes': 187, 'sha256': '356b7eb864a432eaa4304d48ab059f92d966a1a4c1c8de884a70791faca85410'}, 'exemplos/prova_falsa.omega': {'bytes': 87, 'sha256': '2331e6d8d9d81bb3f72f3cb9554da504e4d66a782cc4c402a2799ee1e6812109'}, 'exemplos/prova_otimizacao_v1.json': {'bytes': 6191, 'sha256': 'f6d96323751ebe3a1ace9f976ff13dd204d621c374acaaf3b7228611e295780b'}, 'exemplos/prova_tensorial.omega': {'bytes': 192, 'sha256': '69f1cd8a20ec9f3885b78b6a137ec3d8e2beac1316614ae41430b0d3629980d8'}, 'exemplos/rede_profunda.omega': {'bytes': 542, 'sha256': '0bb7f60aa56cce7d07927f7b4093111b0e3c7541afe446940202217dc6275a51'}, 'exemplos/sintaxe_inglesa.omega': {'bytes': 223, 'sha256': '18dfad728e99044ecb36bc0806535983e737665e358d18793cdb93cecae0dd0a'}, 'exemplos/sintese_racional.json': {'bytes': 281, 'sha256': '62f44ffc9dfab47b9f514559d8bbb038bc98d318327f8f678ec226bbd8d2b36f'}, 'exemplos/tarefas_abertas.json': {'bytes': 420, 'sha256': '67582306f2ceb08cad56ebb4ce20204b9ab449b759c586a4d790b92bafb3776f'}, 'exemplos/tensores_gradientes.omega': {'bytes': 534, 'sha256': '6ca6631d180a425b80dbec7a30f5cfab3912d661f7a0851ac1a444e806ca7cb4'}, 'exemplos/tipos_e_teoremas.omega': {'bytes': 445, 'sha256': '484bd77bc5f68abb14ccd97e21de88c919cb3f1aa9ad7308329a006b3b04197d'}, 'formal/lean/Main.lean': {'bytes': 3122, 'sha256': '87aa1f764829f1e0dab66a838f1b491855e5fa51115418289b3fc5c562127750'}, 'formal/lean/lake-manifest.json': {'bytes': 117, 'sha256': '779dafe979697cc620f3a82cc5c98041e540501fb208472766fdb959ae31396c'}, 'formal/lean/lakefile.lean': {'bytes': 165, 'sha256': '3a29d46241d7e769792909c4eb50938d366cf8f51556e9c08bef0f81c47f5280'}, 'formal/lean/lean-toolchain': {'bytes': 25, 'sha256': '55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea'}, 'formal/tensor/Main.lean': {'bytes': 26417, 'sha256': '81bc5c6fa2a6db0aa107d2ca044c1f9d2649c09655a109895b05aa9937522505'}, 'formal/tensor/Omega.lean': {'bytes': 622, 'sha256': '8f323cf80e8616f1ca3cf7f7dccac6d29ade7f3471d271f4cac5b00c694ff09e'}, 'formal/tensor/Omega/AutodiffCorrectness.lean': {'bytes': 483, 'sha256': '4e05c7f3f4bb5a6f630f4d788f9bf4ea018de6683216cb892fb5d2ae22098bfa'}, 'formal/tensor/Omega/CModel.lean': {'bytes': 381, 'sha256': '1b126a842b528e563d17baf8d71570a0d7545969e4a43e056649762faeadc9c6'}, 'formal/tensor/Omega/CRefinement.lean': {'bytes': 394, 'sha256': 'da6049f219a3b58f359ce5fdd9418c52a0234c7243e9083b763764ba3a4200c1'}, 'formal/tensor/Omega/GMPContracts.lean': {'bytes': 629, 'sha256': '3fac54ba171749c0dc2980e6c6a24220751943fa125ca82a6096d66c0e73e00d'}, 'formal/tensor/Omega/IRTransformations.lean': {'bytes': 507, 'sha256': '6d2396b70e21cc86f2fd69a9efd59b6cd1407fde806ffaf4a4a608c6d1f2fde3'}, 'formal/tensor/Omega/MatrixProofs.lean': {'bytes': 510, 'sha256': 'ed938c0be1d75bc35ce199be5a44cd3dc75ba0269a61b8eaba74710927c05337'}, 'formal/tensor/Omega/Preservation.lean': {'bytes': 663, 'sha256': 'b9e48b2dfa1e1d6f40dd3daa19dd909e1bc4b346c0f7b87d418634982e414b91'}, 'formal/tensor/Omega/Progress.lean': {'bytes': 257, 'sha256': '1a9bd75403b2119686669e076e055b2d2a3813bc7e84fd242bbf2b12fc192f9e'}, 'formal/tensor/Omega/RuntimeContracts.lean': {'bytes': 539, 'sha256': '62a4205e44afbf362d7323580adbca39bddfc2306fc532fa8f0c0eb2282e16d0'}, 'formal/tensor/Omega/SafeEvolution.lean': {'bytes': 581, 'sha256': '336de40ee974a644ad66a1975e37165a1d581decb742e24e7413fa9be4003e5a'}, 'formal/tensor/Omega/Subgradients.lean': {'bytes': 454, 'sha256': '4982e293938031fb89d2c4bf5aba331cd5e9f3cc7df99702304a98f81a78a595'}, 'formal/tensor/Omega/TensorDenotation.lean': {'bytes': 304, 'sha256': '98ce7816099a25d86591e0ca497fc9603d758d16187d6e0f8265dd4ccfe657cc'}, 'formal/tensor/Omega/TensorOperational.lean': {'bytes': 1030, 'sha256': '9bb35fdfc09cac1b6a8c31d29384537b8cd3a4c4e0dd39945454cc232cf450dc'}, 'formal/tensor/Omega/Transcendental.lean': {'bytes': 4291, 'sha256': '76368a737b984bc941c5416cb3a2a6a3a1211c864d597a49bb951dc793e03024'}, 'formal/tensor/Omega/Types.lean': {'bytes': 892, 'sha256': 'd3de5a3e1355e489affcf5baea5288782f24459d3b3cc0fbf4afe0deaca2f4ac'}, 'formal/tensor/lake-manifest.json': {'bytes': 3142, 'sha256': '77606baf20079a8c0cc40f2e2849b6b65a7d68556866ef054684bb922ed52cec'}, 'formal/tensor/lakefile.lean': {'bytes': 458, 'sha256': 'aeeadc811279a3165515a93c4397790cc919696f7beb125b9ffe0a0a94a04b87'}, 'formal/tensor/lean-toolchain': {'bytes': 25, 'sha256': '55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea'}, 'nextorch/__init__.py': {'bytes': 614, 'sha256': 'ecc0567617586a870e75a47098ea23aff5df0d77ae8ed9ce15e754364a765e6e'}, 'nextorch/__main__.py': {'bytes': 3918, 'sha256': 'df2a483c748649ee40feb27116e2a46c13571e47bbae9c6a1104b81971a4195c'}, 'nextorch/config.py': {'bytes': 1419, 'sha256': 'b4d47308f5688e7cabba27147a6aae792a0de955024aa3733a638018f1e65e8a'}, 'nextorch/core/__init__.py': {'bytes': 127, 'sha256': '8b50771b198f5b74d9ca34f32608b1636ee9089f6fc6d65d6e369d8d1b6d4f22'}, 'nextorch/core/manifold.py': {'bytes': 2357, 'sha256': 'b05743ee3a31687b0907ae8a4ed9f1bcbaa3065c10c93e6dcf863e02df512561'}, 'nextorch/core/orange_bridge.py': {'bytes': 5424, 'sha256': '3042b79bbb95b80d4e868b4af18df9b2183b451803c7e93ecb52fdc77c17cd0e'}, 'nextorch/core/tensor.py': {'bytes': 724, 'sha256': 'b140f4f854909e32f5a79531eac7565474e559dd246ca4a697f052b663e92321'}, 'nextorch/engine/__init__.py': {'bytes': 183, 'sha256': '4a95748b1f4feed22460a816fbb8a64eaac388e1ed30be05515709c285a0d729'}, 'nextorch/engine/dynamic_depth.py': {'bytes': 728, 'sha256': '301368a55ef0e9d43f660632e1aa6cff6df9ab2a08677cc868b5b23c29f39ea0'}, 'nextorch/engine/latent_ttc.py': {'bytes': 7336, 'sha256': '19f3bcd1a0620d937ee00d888d30b739cc8c7931b83714738e15742d184b0dcc'}, 'nextorch/evolution/__init__.py': {'bytes': 282, 'sha256': 'ab6c10ecf8ddae1f6c1cd429bdc29c6321c9da07df8355d1648260f81ee488b2'}, 'nextorch/evolution/loop.py': {'bytes': 8919, 'sha256': 'ff2cd39840b2b4fac9d9fd5d486f828a08a9c8dc8b9dd221b73512e1866ef6dd'}, 'nextorch/evolution/net2net.py': {'bytes': 3497, 'sha256': 'aebdff30775eaa506917a993afd5f89c24adb3a26bc969b50c695066888a454b'}, 'nextorch/evolution/replay_buffer.py': {'bytes': 3496, 'sha256': '0a644ec169e16947f94288ef0dbe3f96531815d013465bca6ede4a5697c12b35'}, 'nextorch/formal/__init__.py': {'bytes': 350, 'sha256': 'edf52f617a9376d2fab7f34a597db44e14cb30e3ed0af410169e9fa769ddf501'}, 'nextorch/formal/barrier.py': {'bytes': 2785, 'sha256': '78032e943644d86ab30aaab4b8bb5bd437ddd254f269a892c45c945e4baad3c4'}, 'nextorch/formal/lean_bridge.py': {'bytes': 4944, 'sha256': '75d65df2411f131a5aabd11f15c15366c354ceb30a12e29b251da2418e108957'}, 'nextorch/formal/z3_gateway.py': {'bytes': 2719, 'sha256': '8c12f94707cb2865117da7ff57cc437ef9573ee5f506ab5883beb1a5778d92a4'}, 'nextorch/interpretability/__init__.py': {'bytes': 220, 'sha256': '08f998b88d8b282a83827f91a6d9d5aef41e2a314ed7b004f4650e65499f2b56'}, 'nextorch/interpretability/pid_sparsity.py': {'bytes': 1539, 'sha256': '3cee1d4fbf2281db155ddd786fa7cf2bfe7879c9e75e6eaed7871ce4c2f75fbc'}, 'nextorch/interpretability/sae.py': {'bytes': 2714, 'sha256': '1ca20bb224b2e0062a63241052d118a1fa1f5aa3066b18f7ca8e36cb736242e3'}, 'nextorch/interpretability/vocabulary.py': {'bytes': 1274, 'sha256': 'cfb375b0821fb0cf05c706430ff7c6e92ffd9df7221401de7f820bf682280233'}, 'nextorch/model.py': {'bytes': 7092, 'sha256': '321f40d06ee728f86953bad228567c4eee17b3c034e61ec00d8af2d6465369c8'}, 'nextorch/orange/OWFormalLoopMonitor.py': {'bytes': 7853, 'sha256': '390bc56ea93b0869a6a17ce234f98ac05cd1f86d5c836ed59cd1a891cb392594'}, 'nextorch/orange/OWLatentInspector.py': {'bytes': 5744, 'sha256': '78484a11e0d77ebbc235c11d2898ce792d9ca0518d6e532dcbea09ac316ab252'}, 'nextorch/orange/OWNextorchSynthesizer.py': {'bytes': 4227, 'sha256': '50015432356db651747bb6af428aebee9d80d9ef14fa8df4862598f8ffd4efad'}, 'nextorch/orange/__init__.py': {'bytes': 260, 'sha256': '3e00dd4c4f7dbe3e527c58e319a31921cdc9cd7dee72ca34805f9127d90a85d3'}, 'nextorch/orange/icons/formal.svg': {'bytes': 270, 'sha256': '640a6ce25f4362c1cba5da88af1967c82712380ac40aaf8e2cee988f1a75fd76'}, 'nextorch/orange/icons/inspector.svg': {'bytes': 262, 'sha256': 'b149b6dab8ba60bcb802a120153fd55108da1122d7a513e4f2004c367b3d9d05'}, 'nextorch/orange/icons/nextorch.svg': {'bytes': 343, 'sha256': 'e3f89a5a32c46582fac58930771732b482ad48c0ec8e5e9c1d6020874d6eee12'}, 'nextorch/orange/icons/synthesizer.svg': {'bytes': 343, 'sha256': 'e3f89a5a32c46582fac58930771732b482ad48c0ec8e5e9c1d6020874d6eee12'}, 'nextorch/synthesis/__init__.py': {'bytes': 291, 'sha256': 'ee37356da58b2b8a580ff266d99d9c5d3f8f416d1a3eff126646cceced5c4d81'}, 'nextorch/synthesis/gflownet.py': {'bytes': 5025, 'sha256': '1d7860f0a44bd4ecd110a0e1b6be3213fa8f2467c214558bc123206fdad84cd6'}, 'nextorch/synthesis/jit_compiler.py': {'bytes': 1550, 'sha256': 'bd1a8a542170199cc2f0a66f54fbabf9a555694bbc5c502ccba7c57718a5cb5c'}, 'nextorch/synthesis/space.py': {'bytes': 4501, 'sha256': 'ccc9bf0732521d1316a328e1b65399c7647b6c72a764e21911c47124774c83b3'}, 'nextorch/synthesis/triton_kernels.py': {'bytes': 1297, 'sha256': 'fff7cb4df20287ac1c990448a604fb724f8b3b0ed66432a10de93cfe80a9bf67'}, 'nextorch/verifier/__init__.py': {'bytes': 270, 'sha256': '69ad5f209505cba107200c037e23ac054025641f1f719613fe0fa8cdb48fe7f2'}, 'nextorch/verifier/curvature.py': {'bytes': 2142, 'sha256': 'ebac685f3ccf6ec868e032e511f90219e1a2ecb7322eb3e9160fd9d4257f0d0e'}, 'nextorch/verifier/mup.py': {'bytes': 1551, 'sha256': '629dae5584d1fc39832ca946dfcef2c21d8f24af657aae11707bba066a76aff0'}, 'nextorch/verifier/zerocost.py': {'bytes': 3435, 'sha256': '2cdd8fed55312698d094814eb66452ece81f85272fc3b92bc6cb8de77d16a339'}, 'omega/__init__.py': {'bytes': 194, 'sha256': 'e0567f242669943cc4307bc769d08c8b0a332c6c2f52d9240fb4413887fc94df'}, 'omega/__main__.py': {'bytes': 89, 'sha256': 'da73e592b6a145b80b1eeee3962583233ebefdc2e0eb12801fe516bc72b976eb'}, 'omega/algebra.py': {'bytes': 5473, 'sha256': '77733f75733d78b844f9a3e971c7c43781a05e45c9489cc8d4857accfea23fb6'}, 'omega/autodiff.py': {'bytes': 3528, 'sha256': '7a2f46b256e4f126aacdb28fa05a6b481f036b831f16d47d133a887592517fc1'}, 'omega/autodiff_tensor.py': {'bytes': 7924, 'sha256': 'de139de24c95d904b686cd74aadb693491c6af49fc3b29cca36f341784341398'}, 'omega/certified_graph.py': {'bytes': 10642, 'sha256': '6400f2405d36bee164de260c811610d2ba3b0400dd6cc0f92df8e3f19320e686'}, 'omega/certified_proof.py': {'bytes': 2184, 'sha256': '175d9ad55360f748768c94845106128c1e95eba449a0d9e76b3523569e314257'}, 'omega/certify.py': {'bytes': 4079, 'sha256': '98e11fb6e3129be90c4f0ebf119f28663bb75e4cba7987c0072d8599489372fa'}, 'omega/cli.py': {'bytes': 13722, 'sha256': '76e47cda7d1aeda69d6445a341056ceb43b0875ca620fb7c1fabea383ca85f35'}, 'omega/debugger.py': {'bytes': 925, 'sha256': 'd7c5f7d4b0ccc89c16158509d827dbeee1beee591f1a716638d34e9a17b0b093'}, 'omega/dimensions.py': {'bytes': 8830, 'sha256': '2400fc20604b17e1e0f9304e2eddadbdc6a40451edc50f31aa47d3ac84839e1f'}, 'omega/edge.py': {'bytes': 3992, 'sha256': '8efd84677fa841d63eef8bc217cd0a48d0cc63e061547abed0f10766245c7631'}, 'omega/equivalence.py': {'bytes': 1037, 'sha256': 'ac3c0f7ca330624235742c7bfd4d3d0d519bee8ed1e1701b22deb10117fd425f'}, 'omega/evolucao.py': {'bytes': 8041, 'sha256': 'ccf261f55566442700a88a4afb0b14bafff4f30bdaa0d70bc5b3fb496325037d'}, 'omega/execucao.py': {'bytes': 18094, 'sha256': 'f9d338d8b11260fdc41f7e15ce860aee607c42c9c0298d07345c8d2984faf2ca'}, 'omega/exportar_lean.py': {'bytes': 2203, 'sha256': '4985b85645eda1dcbcffca8630bc477ddda0b0c375ae19f63cee7cd1bfa0c974'}, 'omega/generics.py': {'bytes': 20764, 'sha256': '4ca63011dc75ed964058a5d52fe4ad215d9a51788ec023ce66d83395f0fcecea'}, 'omega/meta_programa.py': {'bytes': 812, 'sha256': '50f2291b5249c2711bba22eff95b5522765a7db417f37b376528fe414edd8f42'}, 'omega/metaevolucao.py': {'bytes': 6272, 'sha256': '1e764393f7f3827776096ab9fd06a1318f4035366777957f03c7f06d23a1da88'}, 'omega/modules.py': {'bytes': 11599, 'sha256': 'c0d12ff2312e5856ad7fa5685e55a56868c55ca143509e054581534539be02fd'}, 'omega/monolith_components.py': {'bytes': 7792, 'sha256': '2b7ea4480b06d849ce970a112eb4ce28cf947ff73cafd1095c611f7b8aee1a52'}, 'omega/motor_v1.py': {'bytes': 20989, 'sha256': '97e63fdc439f13570cc7888f8d2139a4bbf16fcc9dd6eee6e1d1f9014740ec8c'}, 'omega/nucleo.py': {'bytes': 8026, 'sha256': 'b5e11e65f305622cdb251082140f6eb54b7a2d5e0bb672a523ae86c29c508896'}, 'omega/nucleo_evolucao.py': {'bytes': 4864, 'sha256': 'eb07d2a6b85b75dcb1b35c765916409dfd12e080c1e90592e8a57fdc1886c183'}, 'omega/nucleo_meta.py': {'bytes': 4181, 'sha256': 'ba6f24a0d90331785d7a15456508022462aff160d3d499a4abe2f2ac4118c4a1'}, 'omega/nucleo_parametros.py': {'bytes': 3148, 'sha256': '53d31efcb7a4a4e77d28fe765c7699998ab545295a7371bc44da38d0e6fec127'}, 'omega/nucleo_tensor.py': {'bytes': 5867, 'sha256': '6a0dae00210250892b51822aa3c9ce232330c643a87a2f38cbc0dd5126beb6ec'}, 'omega/nucleo_v1.py': {'bytes': 15164, 'sha256': 'dd343e94ce33b21c45e129483529c40d0ae7f5281b8f6f5400e49105d5ec0a23'}, 'omega/otimizador_v1.py': {'bytes': 5064, 'sha256': 'c426c169dccf8a201b26da347e1c21b6d6971a4cc2d98ea441464af84f511b28'}, 'omega/package_lock.py': {'bytes': 1964, 'sha256': '99941c08bb89dec88cb9f77eda777588ccc8dc6e9fcf440b66f8eed5290963aa'}, 'omega/packages.py': {'bytes': 1270, 'sha256': '4b92b718e55687aa92d85431a7862eae37f4f4b28920a5c7fef1fd4b2885efb2'}, 'omega/parametros_tensor.py': {'bytes': 1563, 'sha256': 'd22037e2532c9b65d823b83202f9c70ff241d67940b7cb4a4311c0c7f2614b18'}, 'omega/pci.py': {'bytes': 8035, 'sha256': '9aaa264118add5514812752a1fe4e43d5fb91b084dcf616aa86d6553251591dd'}, 'omega/procedural_types.py': {'bytes': 25075, 'sha256': '94e4d0e5cf7ea9a8c9529e4986ab46aa07365818897e4ad0d59d57c8a1f8bd91'}, 'omega/profiler.py': {'bytes': 912, 'sha256': '1fbe759994fbca52e64c59453280d9dc97d03fbca7851ca87e874de0703493d9'}, 'omega/rational_pruning.py': {'bytes': 6942, 'sha256': '73c7f88390d4728ce1b9a6a3a776dfc11756c9fc86f8430c7368d11e63696c6e'}, 'omega/real_graph.py': {'bytes': 17226, 'sha256': 'a7a140fb584e7cf294e30ea94c8ca5c0a222270a4185e8b6576b0db936555b6f'}, 'omega/real_native.py': {'bytes': 8075, 'sha256': '80802631fd272f9191163188879ae5bada83f6409153dcf55500798a6df22152'}, 'omega/sequence_family.py': {'bytes': 4740, 'sha256': 'd296a5f5ddb27ba38d25e945e052ecb31ed3c5949fab047c7d1eda2fbb183175'}, 'omega/sintaxe.py': {'bytes': 14874, 'sha256': '0fc8566181d2b000197fd75a46f5181a8efe726cadfc6e97bfd6411b8c287cb6'}, 'omega/ssa.py': {'bytes': 11428, 'sha256': 'f338443ba8b9bd25e429b81da809dc88bb46c58c9193456a59f44180999fb425'}, 'omega/stdlib.py': {'bytes': 2345, 'sha256': '1bd805cfa352f488534da00d2052c0662b6e14609f38637cb8828865d299e9f9'}, 'omega/tensores.py': {'bytes': 6447, 'sha256': '1bcbc2b17dbb3de5d94c4e3d46cc05ac8bd1106e828b34a4c663fc03071aa537'}, 'omega/tipos.py': {'bytes': 8181, 'sha256': '27b396437ee614096d2ed60c37f0ee80c47caa9b4d0b92cc8d010ea2f1966545'}, 'omega/trace.py': {'bytes': 1589, 'sha256': 'afd91b07712934d4f8fc899d747924c3d097fcb38b9dd39dee465ca01c021c23'}, 'omega/transcendental.py': {'bytes': 7202, 'sha256': 'fd286db8059fe2e1bc2ce482bc9c3ab6c5f994574d8bd5e2693e6e726de1e7a5'}, 'omega/transformer.py': {'bytes': 14981, 'sha256': '77162d37c777475bf34e5ca0aa96913a94edc376583265842fdf285414cdcd89'}, 'omega/transformer_certificate.py': {'bytes': 6132, 'sha256': 'b2c5dcd00d80ff922b3f2c09dbdfe560a98d6016c0d3c370f8a279260f7b4ad6'}, 'omega/typed_ir.py': {'bytes': 11158, 'sha256': '2a53b8bf992d57d1743cb0f5b01ae000f03d96e1860ae7883f2f1421ed945950'}, 'omega/typesystem.py': {'bytes': 10534, 'sha256': '174e796e9459ae87498df8de50065ba8ce28c816d0f98bd36e20e3c38a7db8b6'}, 'omega_agent/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_agent/__main__.py': {'bytes': 71, 'sha256': '66d802020b5637e771edcfe3ae4a060499697c4ae341dad3831bd5be79bb3033'}, 'omega_agent/calibration.py': {'bytes': 1123, 'sha256': 'f5de94ad820e2b9fc8aa215723b01b9355179508cd8bd00e231d9da7c49e36ea'}, 'omega_agent/cli.py': {'bytes': 3840, 'sha256': '73d28c6fd1c5761ac8b80a76f0622576ef5186ead24a7a4b4e9f4773a150ca23'}, 'omega_agent/compositional.py': {'bytes': 909, 'sha256': '9bdf526ed6aee19488e4ce8bd305d769854eef29d6cbdfddf60b324d641c66b4'}, 'omega_agent/consistency.py': {'bytes': 640, 'sha256': '5f8a5986ec4c4f45aab7b7885a53c2e3c3adcd8759bf409e0099cd01b8413f9c'}, 'omega_agent/constitutional.py': {'bytes': 4837, 'sha256': 'a40118ff9a35b55e412adf61e4e99160c0c63fa01589f172f048fbf1389e8626'}, 'omega_agent/domain_shift.py': {'bytes': 1306, 'sha256': '52d703c71a5a1eb4072f7f1b57fa1a86cc4f9b58c53f9099de4c5f2df1edf6d0'}, 'omega_agent/experiments.py': {'bytes': 760, 'sha256': '52c927ec420b68768a45116d0d6a7a7ad2d360e60b7ac8b1b529e1ee76cb61b8'}, 'omega_agent/hierarchical_planner.py': {'bytes': 1439, 'sha256': '8826cebb16abd9bbb5c72385da6c1fbc813ac18eca1ca10f5ea555269fafaba7'}, 'omega_agent/hypotheses.py': {'bytes': 1084, 'sha256': 'fd7b9c7d4512171116ec15e6c15d1250d98cd618b09c6382e1021ed039cea227'}, 'omega_agent/inference.py': {'bytes': 971, 'sha256': '0ec09985366587128de4eb1458f17dbd2d86589b40b759510805c52aa8c56716'}, 'omega_agent/integration.py': {'bytes': 2981, 'sha256': '236911bdfa5bddff7e6334d8db0b4fe204912ea39945bad2fac3226e80c9ca0e'}, 'omega_agent/inverse_distillation.py': {'bytes': 3524, 'sha256': 'f907db860acbc032f8ea55d6a868660ba01376427850fdb4b848bfcbd4877977'}, 'omega_agent/learned_heuristics.py': {'bytes': 1229, 'sha256': '7fce5f2190f4ff3c26e8f754cad610f1543493c67cd737df8c29a569e6cf3566'}, 'omega_agent/metacognition.py': {'bytes': 482, 'sha256': '4dcfc52d13414f981283cd61f8c0662e5a65475e2b46709800c2ebd380168763'}, 'omega_agent/neurosymbolic.py': {'bytes': 933, 'sha256': 'd5460f7e549541bdc78f4d775366698a21e597a7aa481c68d945a0c5cc1678cc'}, 'omega_agent/problem.py': {'bytes': 2244, 'sha256': 'f91ac9291cd410403ed69dda31fbedf0b58882a77a094714b966125e2e78be3f'}, 'omega_agent/reasoning_budget.py': {'bytes': 1214, 'sha256': '53de84a910b68a4d25e0b3329e3680037c243e9361aee73abdf0f2acdc793570'}, 'omega_agent/reasoning_state.py': {'bytes': 1245, 'sha256': '35c29dc99ecad0f5475556f196cf50769df022738300e0bfc089cc934f38dff1'}, 'omega_agent/runtime.py': {'bytes': 9823, 'sha256': '514d81672d9dc6801de30e8cdf44472ee7872ccfb384dcb2724d0a1238bc8e08'}, 'omega_agent/search.py': {'bytes': 2014, 'sha256': '9421cce1b708666e122fc0bb5f31aa1eed4a047640a8bd357db1eb4a28042daa'}, 'omega_bench/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_bench/ablations.py': {'bytes': 582, 'sha256': 'ebbddec8424b7e6bcd1514c53d9d812bbb0dd0b5827dc0dde6c457febff845a8'}, 'omega_bench/certified_control.py': {'bytes': 15412, 'sha256': '06d9e36d4e504b18146eab07a418351273d2168e035be8196a5354e391c1cc0c'}, 'omega_bench/certified_control_worker.py': {'bytes': 1472, 'sha256': 'af4329a09db08be24fc6908ab2e7fbe144d3baa5e10a6f8d2607fd5a9566fbdb'}, 'omega_bench/dashboard.py': {'bytes': 856, 'sha256': '7ac3ec5bfde65e49d25dee70165afc61526985166f5d6de4095522f712571a67'}, 'omega_bench/generalization.py': {'bytes': 433, 'sha256': 'b0c2b5d2a0cab2d12a77211ea6a494b0ad3722d6b47868d3e8ef346465686f87'}, 'omega_bench/harness.py': {'bytes': 1820, 'sha256': '80f5744e705c8f315c8c2d1f04f70c0b24d7027622f61c0121d63d1ddcaf68b2'}, 'omega_bench/longitudinal.py': {'bytes': 566, 'sha256': 'ce10336ae2b9b5fd600caa8673edeced79bc3e7a4f324105d19ac98c6aeee158'}, 'omega_bench/mathematics.py': {'bytes': 709, 'sha256': '61b9a275f6eef34383ca424c202cf60eab839da3d85b4e3b21405d40b0693bf6'}, 'omega_bench/neural_symbolic.py': {'bytes': 263, 'sha256': 'd74ec0b40314dd110fbdfde2b978066c9a914ff21e449788a667594ec8084930'}, 'omega_bench/programming.py': {'bytes': 913, 'sha256': '3dae62fb499fde4bf31070252b132f156f55d87a5cfcb8b4f74f854f39ef3e5a'}, 'omega_bench/provenance.py': {'bytes': 644, 'sha256': '68c308acc41a1929083512dbe2f3f753a6cb8e43ae8e387e75b21f2e13d9b38c'}, 'omega_bench/reproduction.py': {'bytes': 1650, 'sha256': '2e2333fc855475d2ad3c9167e2a36a65b06bebb8761496d40e4a4a59ac29773d'}, 'omega_bench/statistics.py': {'bytes': 734, 'sha256': '0b35948e8d5212412ccbe3baf30fef4a9b31e7b84c9d043e58a3d27e18c31634'}, 'omega_bench/telemetry.py': {'bytes': 1214, 'sha256': '7d0b617f3530e7d8da780a1420706c1797610f8b2267b308c6714ed24b4a0ec9'}, 'omega_coder/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_coder/ast_editor.py': {'bytes': 1569, 'sha256': '01b266ee3c30b40abf7f4b206e2392b8055acb54cc6f2465ecdae55983b84fd2'}, 'omega_coder/change_plan.py': {'bytes': 1035, 'sha256': 'b27c6225a36f6d877e30bf9508a882e57bbeb302e8a3f53063c468e3729a502d'}, 'omega_coder/contract_synthesis.py': {'bytes': 4565, 'sha256': '2216d82fdb035da5488db72fd40a64149f25e2c864ee89c61743dd1193cc4cb4'}, 'omega_coder/counterexamples.py': {'bytes': 708, 'sha256': '0d2906f0c3f25d7b2e18dde0af4f5b3e860d34f36b23ff71b1bbf3d02c400a31'}, 'omega_coder/generation.py': {'bytes': 967, 'sha256': '937d3f9b6cf47152cb09c9e176863bc956487f6b0bebb5993cc3f70acb67d2bc'}, 'omega_coder/native_synthesis.py': {'bytes': 15155, 'sha256': '34c45c5cb54d165aa3766cc10322f9f6ef9e5438ea14abf6f5e15873af7cbfd1'}, 'omega_coder/patch_review.py': {'bytes': 1077, 'sha256': 'c4549bb11f3fb023d17060a6fb0395464e5d01a96cc0a6d7d7fa31ce18fa02e4'}, 'omega_coder/program_search.py': {'bytes': 932, 'sha256': '9f8436daddb84bf9cd7fa39622864a154eb8f772893dc505f9a80dd3494a8757'}, 'omega_coder/pull_requests.py': {'bytes': 1233, 'sha256': 'cfcaa0215492afbe045cfdcc83e521fed757b51fca98d84cdff5e2e2f63c1e1a'}, 'omega_coder/repair.py': {'bytes': 1068, 'sha256': 'e077e9480b55a8815ce0f707b36510894f311badeb193bc23708c4a314d77db7'}, 'omega_coder/repository_index.py': {'bytes': 1807, 'sha256': 'a635db1066a4a46a982df82725f4226c78682152c7934f3e313d432a033e4108'}, 'omega_coder/specifications.py': {'bytes': 780, 'sha256': 'caa0c7a5ed891dd64d5c9b12afb585a78975e286829536166c6f41111385c0de'}, 'omega_coder/synthesis_worker.py': {'bytes': 1219, 'sha256': '0bb29bfe8cb10dca73499f640f0198d68dd58da6d9e8d671207d2cf3441d3b15'}, 'omega_coder/test_generation.py': {'bytes': 1216, 'sha256': '359da50f6a47954b6cf24e0d0ee6ab4c631eda3f6deb6afa79a79bceb2cbd326'}, 'omega_coder/verified_optimization.py': {'bytes': 511, 'sha256': 'dd43822f12084c5d5fc3969dd5d5286d2e7c0c6b056c648b1924bf2934ac1eac'}, 'omega_coder/worktrees.py': {'bytes': 1422, 'sha256': '4dfc2d7b1c7665fbfacdc0561753af9eb787d82ac6706f94f0e53af4f87e5a85'}, 'omega_evolution/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_evolution/architecture_search.py': {'bytes': 848, 'sha256': 'b6f868130813c97b28dce127da3b8378ff8b324a9f84cf82120a3b6d9137b81d'}, 'omega_evolution/compiler_tuning.py': {'bytes': 782, 'sha256': '6ed7c60aa505bb2ade35945035b56f86977f89fc91bb61e39066609e9d66838a'}, 'omega_evolution/component_registry.py': {'bytes': 3356, 'sha256': '9535d7094a8017f452237d05c49084586e7a9673c6e207423fce1177915132ab'}, 'omega_evolution/hyperparameters.py': {'bytes': 921, 'sha256': 'f5de038842dfba55ea8168eecf25bb2bcc565329676b90fa8a157c04ff0bed50'}, 'omega_evolution/isolated_patches.py': {'bytes': 1169, 'sha256': '5de997d1b98e1dee6f46a0ae50bff6b9ef7d1c9542fdac62ddc687f3490e0085'}, 'omega_evolution/lineage.py': {'bytes': 819, 'sha256': '98f99a59402c1094d1d8e52b522c7dcf713a12ddbe58be3d2f950b31b1c6cac4'}, 'omega_evolution/planner_tuning.py': {'bytes': 613, 'sha256': 'c78688711f97a7807863be13c66a8b1f5af0b659e80e6af5dca98cf3b0e19360'}, 'omega_evolution/promotion.py': {'bytes': 6233, 'sha256': '69163ecef3f1c091e359c2480942fdadcae99fe739a0d2192b2125b1b7b9bc4e'}, 'omega_evolution/proposals.py': {'bytes': 1158, 'sha256': 'dfb88f3368581b9b1f2c6d296d8d74362c196771f9a61ee17278640c2edb09a2'}, 'omega_evolution/regressions.py': {'bytes': 669, 'sha256': '09088ec56a971cb2ca07ce41b08af228ae664c3bdad5cb419d0359ab8b7cf93e'}, 'omega_evolution/resource_limits.py': {'bytes': 528, 'sha256': 'a584d3733ace2fa34de5aa1ea61e36910aa9bb230f28a0a97cefa470b55aeea2'}, 'omega_evolution/rollback.py': {'bytes': 9904, 'sha256': '07fedafedf74578ff319824eadc363603475cf7c3aae0626beb46508683247de'}, 'omega_evolution/statistics.py': {'bytes': 1197, 'sha256': '94ad1191553eff41716a26f9d2e78ec974b976e15094de6d72307e097693dee8'}, 'omega_evolution/stopping.py': {'bytes': 802, 'sha256': 'ce6d96332f00811c7b176716c8237672e00b18d1d96f83b89cfba12b73777390'}, 'omega_evolution/superoptimization.py': {'bytes': 7800, 'sha256': 'ae828bd4573e1094c656d93ec40e1825a89e176ee2a348ac4b0d453b9751fccf'}, 'omega_evolution/synthesis_heuristics.py': {'bytes': 685, 'sha256': '49ebd6f6e8fb1589f3d32a56749d83efa965006fbc03639e795df044541f4c73'}, 'omega_learning/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_learning/active_learning.py': {'bytes': 605, 'sha256': '566256eb2a4d2d19396a693634f61c086b43fe490531a5fda930a02206561a66'}, 'omega_learning/curriculum.py': {'bytes': 901, 'sha256': '78c85541ae5e18bb82fd23a3ad13736bb00d1c337a077baf3593e7ae69a871cc'}, 'omega_learning/data_splits.py': {'bytes': 762, 'sha256': 'b282a74ff11f65917613f6cd2c7d606d1d83183120f29f90539d8e63f32a91c2'}, 'omega_learning/distillation.py': {'bytes': 926, 'sha256': 'ade304d798b8d2c05838ab43c59f388338782b814bddddaa7e3542d32638ac37'}, 'omega_learning/forgetting.py': {'bytes': 609, 'sha256': '309816cfaf2428e74d225103562e76190aabb3f257b7c72f48cbaa0d0e2a1166'}, 'omega_learning/incremental.py': {'bytes': 756, 'sha256': '5c3a92ebc068a422d66bf401b53106e04a31d0b90be03bb0c9ac96c6be992efd'}, 'omega_learning/transfer.py': {'bytes': 552, 'sha256': '116535cef9a5b53ceb7d4d01ea4bbb857d6e6716ff4c0e47837517522f2de666'}, 'omega_learning/verifier_feedback.py': {'bytes': 529, 'sha256': '32c6eb0c232e237d2d0626c25baccdf1dfaa7a79a572ab85c53e8ba7d9cdb1a2'}, 'omega_learning/versioning.py': {'bytes': 1558, 'sha256': '0b40fc2ddfc6040d13dfd655c9b4b63205774d62c9d5045d840719e2e1d004b1'}, 'omega_memory/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_memory/certified_replay.py': {'bytes': 1174, 'sha256': '65dafa94174e108782d89c2c9525858a6cabe1be81e79a0abc250223fa640fc5'}, 'omega_memory/episodes.py': {'bytes': 2012, 'sha256': '5c049b7960f15b1b9fdf360f1fa589f800d8b61029058da3bed8ad990e2bfa06'}, 'omega_memory/knowledge.py': {'bytes': 1151, 'sha256': '8fb5682e9bde27bcd427bae927345693dc8f241c66b570b43ad0b28baa1da8bf'}, 'omega_memory/lifecycle.py': {'bytes': 1020, 'sha256': 'f5b855f3fdb31469bb333068cdc91a7860eeb908f806b52d04e8cf9986893e86'}, 'omega_memory/privacy.py': {'bytes': 1298, 'sha256': '9cd49cab2eacfc7ec2bd4a477fd62601a2bf33829fc5a12675025dae074e8d20'}, 'omega_memory/retrieval.py': {'bytes': 1791, 'sha256': 'c92f8e8df591f7f5654eb0765ee3750bf3321b2c3ac72a4787d3c9c5523284ca'}, 'omega_nextorch/Kernel.lean': {'bytes': 3350, 'sha256': '80ec4d3720e5293aa4a12d48f0893b9c81c102d1f404455c0c19c1e41d1d139c'}, 'omega_nextorch/__init__.py': {'bytes': 142, 'sha256': '516da4354ac0863ad4f5186f2d28b554ca352c22d70e801911118742f47fc80d'}, 'omega_nextorch/capacity.py': {'bytes': 879, 'sha256': 'beadc424220f1e8b3c0ab9f6d0d3a7e2a54d97490d85ec3bb79e3358f7f92544'}, 'omega_nextorch/causal_analysis.py': {'bytes': 1301, 'sha256': '056cbf993d09506d115b3831b669c0c58bd8a23c13a6a2958af8aeec453037bc'}, 'omega_nextorch/cli.py': {'bytes': 3024, 'sha256': '8b0ff93f4d41491366437fbb698d92dcb8679170f30dc8e08062b5a11aa41a47'}, 'omega_nextorch/constrained_generation.py': {'bytes': 1230, 'sha256': 'ff0c2aa178625eedc5507952346e9c4e3f3d4edb3e78652b50a85c96776810dd'}, 'omega_nextorch/devices.py': {'bytes': 1074, 'sha256': '1b22c791598beaf4dbe70075afc49a327b33c486ac7ad5415ab4db9af23129f3'}, 'omega_nextorch/distributed_training.py': {'bytes': 959, 'sha256': 'b9e0720684b15d7c38f47500e6fd2a606cd55c7a30056e1cf012218622d4cd91'}, 'omega_nextorch/gate.py': {'bytes': 2732, 'sha256': '441ea3c00ba59eb91751c2b4d70102f492f0b661574a52da2f540cc243ff7d43'}, 'omega_nextorch/inference_metrics.py': {'bytes': 1104, 'sha256': '21c258ce170c895fb52d0821b74f31ce163059fbd317a6d1a437b189f0f5f2ea'}, 'omega_nextorch/lean.py': {'bytes': 3694, 'sha256': '7402c906504762507e932c79156b9453f987866bf8f84a5f8df4a7a8bf337a3c'}, 'omega_nextorch/model_api.py': {'bytes': 5081, 'sha256': '8ddbb515dda207d1513885cc1eb45c9bf5d4a27b992b730bcf64141c075015fb'}, 'omega_nextorch/native.py': {'bytes': 3737, 'sha256': '0e3dbcebb937eae6ae5f2514a1f44d36f36465795adf9ba9f9c638e69b8ada82'}, 'omega_nextorch/orange/OWOmegaCertifier.py': {'bytes': 3268, 'sha256': '56dfb692dc522fbee8b4e03e37d0262b5e2530ca946ba26484e62685652fd21f'}, 'omega_nextorch/orange/__init__.py': {'bytes': 223, 'sha256': '0c97e3ba8871daf16bd8e117c618fb5b585c8f5ad1f62a95ccaf3bbed0430ec1'}, 'omega_nextorch/orange/omega.svg': {'bytes': 253, 'sha256': '6e626ca4c781d1384541349595535c3741dcfe4606c3cc8e7aa4b67799045a64'}, 'omega_nextorch/orange_bridge.py': {'bytes': 1557, 'sha256': 'a3cc619a8134b60bfaa4d96e22de0cdfb9e2f464517d668070ee6c52f063537d'}, 'omega_nextorch/pipeline.py': {'bytes': 5721, 'sha256': '803f6886789e0a6ae86b19b3dc3ce80627d7e96ae2f4378c896641760e481ecf'}, 'omega_nextorch/proposer.py': {'bytes': 3020, 'sha256': '0b7bdacdee8c484ab9dea9605d5f0da6e47639eed78cd9f030504f4c2072a7ba'}, 'omega_nextorch/reward_integrity.py': {'bytes': 847, 'sha256': 'a303022e5cf5f02826eb73252a836b5000c19af92fb40831487b2db4daf28cb5'}, 'omega_nextorch/routing.py': {'bytes': 737, 'sha256': '382141c4e49e264b973fb6f07293bff24e57f95406b7b935c47fad166e724b16'}, 'omega_nextorch/supervised_training.py': {'bytes': 1230, 'sha256': 'e61e7ea158a830dd149361abb9e10f21b135b391c2b6a876d6d9a0e187f6d6b6'}, 'omega_nextorch/tokenizer.py': {'bytes': 959, 'sha256': '1308a587c2e3785397445eea33ebc2760af4cf8356665dd41b0da22813e4df21'}, 'omega_nextorch/uncertainty.py': {'bytes': 786, 'sha256': '3231330aab24fe32e50c8867d0cc46f259dcc783d6c4b20f2f53f903fce833cf'}, 'omega_nextorch/verified_search.py': {'bytes': 913, 'sha256': '3e67323f16a415e4f968349b7e1bbf352b317807fed00d24cfc530ecafc202e3'}, 'omega_open/__init__.py': {'bytes': 96, 'sha256': 'ef9d07e7eb92178c55ebf19e08e218d41bb80bdcc3edc757d3674b1d9300022d'}, 'omega_open/__main__.py': {'bytes': 1788, 'sha256': 'b4e070d61821d9d3c34456eaa0cb7c06ea33ec5a9bd90abdb6754cb2a4761758'}, 'omega_open/checker.py': {'bytes': 4502, 'sha256': 'd5d8aa80c5ffd9c1eed5200f744434d664e0f394785e76f537779ede6401aca5'}, 'omega_open/engine.py': {'bytes': 10400, 'sha256': 'f6b74f439c70330ec2faccb65c38671f8fcd484c7a264650ea30d9fcea1267d1'}, 'omega_open/logic.py': {'bytes': 4120, 'sha256': '6de87dfc76f0c0f4ef2854f34c2210224ba6efd6de37ed7dc062ba84b938b0a3'}, 'omega_platform/__init__.py': {'bytes': 82, 'sha256': '4f083b6eca3c6e606305eca8899f7e788313fd25ce8d24fd33d049fc9b1bee6e'}, 'omega_platform/_supervisor.py': {'bytes': 1803, 'sha256': '121684bb7456f61cc2c43fda6bbfec6e10ebe41282a53a39d4cb6e30004d976d'}, 'omega_platform/artifact_verifier.py': {'bytes': 2274, 'sha256': 'b1dd9e65776ef2893628cbd4b2573600ce3fd88d69f620bd87f1ad1d2e2d2416'}, 'omega_platform/budget.py': {'bytes': 1775, 'sha256': 'bdd1ed4e7d3377ae3f09fc760dfbf9ed645cdbbfe266d8f0d19d40577612fc66'}, 'omega_platform/content_cache.py': {'bytes': 1893, 'sha256': '3953633dd65853e549afbd9b0b716ae1116e8a4dd1d5d82d0b6d50503a5bb88b'}, 'omega_platform/corpus.py': {'bytes': 6913, 'sha256': '869d400f04cd5f927f4d41d670ecd14eeb458d124b7ee0a4371560043d39a4cf'}, 'omega_platform/manifest.py': {'bytes': 6432, 'sha256': '1d0edd1d8f471032bd220429deaed52cd78942366cc7c51854e4490bb32333f9'}, 'omega_platform/proof_cache.py': {'bytes': 1160, 'sha256': '7a8ae009b1c4aa659248fd8ddd37568b4f73543602bf1b5c98000a42b2ddb22e'}, 'omega_platform/quotas.py': {'bytes': 1095, 'sha256': '0131cd8272358c30f14b4b8679a5bd993238c2c368ef689ee350b91a660d27e5'}, 'omega_platform/results.py': {'bytes': 5475, 'sha256': '3560b608d21c45de8ab318989ead990762aee097327018ae97655e84c90c2d51'}, 'omega_platform/sandbox.py': {'bytes': 13342, 'sha256': '0cc4b37acfc199416b6bdd6f66d5da258e1bc02878c15da0c306b6af1dae3924'}, 'omega_platform/scheduler.py': {'bytes': 4585, 'sha256': '63d633f53ebfd1ade11d1f15e45613ab3f14f058d9fc5f131ce1379511413fe5'}, 'omega_platform/security.py': {'bytes': 8921, 'sha256': 'f8a2a02108461efbba53fb33402073da2039984da1bc70f88b794430191306f5'}, 'omega_platform/wasm.py': {'bytes': 1263, 'sha256': '9abb11a20a52a5f5c89730cd87e01f3ae681b5e2e1b331b7c70ca6c88390958a'}, 'omega_platform/wasm_worker.py': {'bytes': 1112, 'sha256': '559c6a759cbb712689eadd2ef7c7886c33e3ed776c0da0cb535d198f01d3a746'}, 'omega_platform/workers.py': {'bytes': 14642, 'sha256': '694f94981b94838f731fcd6922e4ef7ac809e635a703274780e34125165006dd'}, 'omega_security/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_security/adversarial.py': {'bytes': 976, 'sha256': 'fa6b3e778c723b0f2dc8440f843ff64699c6cf6c4c4d6fedb81eaf2c14ab6f55'}, 'omega_security/anomalies.py': {'bytes': 668, 'sha256': '0a383f0331ac50d05612915da3b94b14e3a642662a705f29bf546cb48ea4a74d'}, 'omega_security/audit.py': {'bytes': 1993, 'sha256': '67b9f6df1c77cd5a2b3c1b1d58fd5ae0c86a318c5a27c33bb423271abb55b629'}, 'omega_security/capabilities.py': {'bytes': 3219, 'sha256': '8ac59d7af73abb62c655c56610a1a7f0b126877ba95d60a534f167adaadab836'}, 'omega_security/encoding.py': {'bytes': 4166, 'sha256': '1991d7eb46dcaa322be1b1ec5f5bee4df923f219609a6837413f35597ef37d41'}, 'omega_security/filesystem.py': {'bytes': 2633, 'sha256': '7ba2bddf299b8b7d5365229d7dd143ccab4cce6aab6b282eca710092a5246755'}, 'omega_security/objectives.py': {'bytes': 701, 'sha256': '90566c45def325505fcd725c098f83d91faff07bfd8ad2c890918e8df9e5444a'}, 'omega_security/revocation.py': {'bytes': 1152, 'sha256': '066674eb5d6479fa9523285654c4e4c5547100bf1a14957b4d90fe1b010e27bf'}, 'omega_security/roles.py': {'bytes': 2352, 'sha256': '4578a2f3083b3ad6285afbd45afd0a1aa2f777d5897b4f677b0565d2279e5eb5'}, 'omega_security/secrets.py': {'bytes': 811, 'sha256': '502a48ea33825f231decfaee6546ec498782ce61e5eae833d93d3a1ccbaae76e'}, 'omega_security/signatures.py': {'bytes': 1163, 'sha256': '7a8031d47d17967afd37ce7c4d64a82583f1578eaa34f6a0a0d20f834aa10f91'}, 'omega_security/untrusted_data.py': {'bytes': 1049, 'sha256': '8a03a948c42af583c67a5e4d0db75ab01636a5253ce39b89149b7afa040bd1e2'}, 'omega_selfhost/OperationalSemantics.lean': {'bytes': 3957, 'sha256': '9b93981ad67ebf775cdf57f0291df87e9a72e995b449674034ef9f6f9e19f79e'}, 'omega_selfhost/ProofPrelude.lean': {'bytes': 216, 'sha256': '0fa2298282df4e7544c8b128ff81b8ce1e55ab01f41e5f61b7b81a22792c6e8e'}, 'omega_selfhost/TensorKernel.lean': {'bytes': 8992, 'sha256': '3b40458d549ae01c8cb5eb42981f9644d49a00e11e6c0647fa3df40060a4662f'}, 'omega_selfhost/__init__.py': {'bytes': 281, 'sha256': '294962ff80255cebbd3fe6fd985e578a32273bff22a68cc9edce1af422ccd871'}, 'omega_selfhost/axiom_policy.py': {'bytes': 1102, 'sha256': '77d1bbc9d517291bb6be85efd1d53bb122edfef2e83eb03deddbff70a8fc98c8'}, 'omega_selfhost/bootstrap.py': {'bytes': 7224, 'sha256': '0c910df5eeadf5655f926a98720ab67e90c9db94edd483a6e30e398075c1a423'}, 'omega_selfhost/certified_transcendental.h': {'bytes': 4291, 'sha256': '948739235589d4abd21bdffbe85834f5e85f2662d3f5a2ed791afafba35ea543'}, 'omega_selfhost/cli.py': {'bytes': 6151, 'sha256': '60150b5c7f08bcac04a4431b0dfc7b2ab65b2c531e3ad317c5003953cdb722be'}, 'omega_selfhost/compiler.omega': {'bytes': 25507, 'sha256': '000e31f0aae4fc1710adf170efe7083bcf3a0a96b9fcc61701c4788f3d3db071'}, 'omega_selfhost/driver.py': {'bytes': 21715, 'sha256': 'e386006957d8d89d155947fff9ffd8bb842f892cdb41101155448c63d9481bdf'}, 'omega_selfhost/memory.h': {'bytes': 1429, 'sha256': '38b8c8a858094c4644192a4378ff7700022653b8afb7ce0da017352993ef3752'}, 'omega_selfhost/native_backend.py': {'bytes': 981, 'sha256': '6bc4da03aaa3eff6ae51870b70a082e60419538ecf1a84a9015628499784c7b9'}, 'omega_selfhost/polynomial.h': {'bytes': 6976, 'sha256': '23f0dee22f70ce796214a03df853af4d39e36f5a8c8bc509774c5c3e537fd527'}, 'omega_selfhost/proof.py': {'bytes': 7697, 'sha256': '54ebe598b545a054d9f4c454ce7c96358678c78990458f18109069f74f02d1b3'}, 'omega_selfhost/proof_protocol.py': {'bytes': 1387, 'sha256': '6b379d8967c8bfd286482f10fe3193a29b4e24659a638add3a6d39ccc0c1665e'}, 'omega_selfhost/rational_pruning.h': {'bytes': 1665, 'sha256': 'a642c15b813f9628cb7b3be36eae2feca740b957ece9f402089190b93e4c2095'}, 'omega_selfhost/runtime.h': {'bytes': 19546, 'sha256': '876f86e597bd3c975bb84666097b3aa2dd099597f05f3b5ab25fab7056debc68'}, 'omega_selfhost/runtime_wasm.c': {'bytes': 613, 'sha256': '80a21786c33e0322d2df40edc67b54b1fdb1d48ba0655207bb44c7e972f62403'}, 'omega_selfhost/statement_binding.py': {'bytes': 870, 'sha256': 'bd834c43186b67ff19abf6f04393736ad682aa2c7a68fac6149cb83cd22e814f'}, 'omega_selfhost/stdlib.omega': {'bytes': 2590, 'sha256': '3457c66530e4abf2073019a6248bd54f9c0f65f16c1573c48963e9ce593a4fdc'}, 'omega_selfhost/tensor_runtime.h': {'bytes': 15865, 'sha256': 'cc9a4e3433896091523b61bc23ef39810b02eeb1342f8f6991131f8842b9b355'}, 'omega_selfhost/wasm_backend.py': {'bytes': 3507, 'sha256': '3467e19b06839bfd3a1b1ecb91d64a396e82e7062ca03c0c1f01aecda967f327'}, 'omega_tools/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_tools/approvals.py': {'bytes': 1701, 'sha256': '15ee5471ebffc24d27911ebe79c23f1529ce71fef02d5e9d40244b0145a565e5'}, 'omega_tools/audio.py': {'bytes': 1317, 'sha256': 'a9954485c2676e626b89ff2e62ae4090185c3fbcbdf055f850dcc7e7198927f9'}, 'omega_tools/capability_adapter.py': {'bytes': 3035, 'sha256': '512e893aa1555cdd1b729c962d32a68ba171b0176edd5908239b0323f33bf476'}, 'omega_tools/contracts.py': {'bytes': 2619, 'sha256': 'a7af9941218d3cee6ed48bd4e9d9651740c795b98159da236cddb472184cd724'}, 'omega_tools/database.py': {'bytes': 1133, 'sha256': 'fee6e4da74535cf8ce13189c9cb967e832eeb1580defb8d65859adf54b1c9960'}, 'omega_tools/database_worker.py': {'bytes': 1832, 'sha256': 'ecd1c3e2f6d9f8eacd1f3ca46823a539f4f49b376bd5fa3feb0b9f224eda5f92'}, 'omega_tools/document_worker.py': {'bytes': 1217, 'sha256': 'eadd37197e630ff7fe65faec04f34dab02844b98345dd7a9ec070a83970066da'}, 'omega_tools/documents.py': {'bytes': 608, 'sha256': '8c0505c217ef033302b47b726d43fb67e09e2ba25cf110d89e3efdf2c2840714'}, 'omega_tools/git_ci.py': {'bytes': 1206, 'sha256': '8d61e04dfddf21b9ad32323daf2dd1a8fed3d9fe6e068130d1de56a380147424'}, 'omega_tools/local_files.py': {'bytes': 3113, 'sha256': '3a2ffd92ce283823d51c8212dda46729c4e2181636cfb405398e1f42d934df5b'}, 'omega_tools/memory.py': {'bytes': 1046, 'sha256': 'c71ecb5a7ee09a152d16b32a8288ed2e3c5a59e06b60dd9e170309f085c451a1'}, 'omega_tools/notebooks.py': {'bytes': 1615, 'sha256': '52bc760b9656d735713ead49cb017de03e36cbb02fc95c6e5c6d0e82483b2d6a'}, 'omega_tools/simulation.py': {'bytes': 1426, 'sha256': 'cc20c4c5fc45c3427169988ac368d7cda6aa7a57c734213079eb367f4c1430a6'}, 'omega_tools/vision.py': {'bytes': 1193, 'sha256': 'fe7db2c2661832464418f5ce9fc39c84d53fd9e580c8ebb9b654c85f1a22c59e'}, 'omega_tools/web.py': {'bytes': 1731, 'sha256': '24e255b72a3a6d450dda7a82b8a6ec451a47ed65b145306e9bd6e80789d869e0'}, 'omega_tools/worker.py': {'bytes': 957, 'sha256': '1f6fb550b1493200a5d558c470dc5f283d775a0459c3d18d2cc087f2d317e6a6'}, 'pyproject.toml': {'bytes': 1522, 'sha256': 'dd881578abe0cc3578eab6fa9a58c72bc69dcaf1b918753877ea13bdb552df10'}, 'requirements/cpu-py312.lock': {'bytes': 2227, 'sha256': 'c6b6998d9ee32b98e189b45105e800bfb1cb298bfade940822138a1214ad4b86'}, 'roadmap/FILES_TO_150.md': {'bytes': 38110, 'sha256': '60e40b8f0230b881bad4f405e0a486db4b2fcb06ae97005d064bdbe75b9a667b'}, 'roadmap/evidence/om011.json': {'bytes': 1007, 'sha256': '58aff5c669e8595a3662d25e8de5e09bad166ab291421cd6f9769ac376dc7059'}, 'roadmap/evidence/om012.json': {'bytes': 1496, 'sha256': '2850392eeee259a04970848fb0a6670003e3ab2610469a55bbb22672caaefb91'}, 'roadmap/evidence/om013.json': {'bytes': 778, 'sha256': '03ffd6db88874599eeb459a2d607fc913af0247fa0bc7c97230a530688a2abe3'}, 'roadmap/evidence/om014.json': {'bytes': 684, 'sha256': 'f23fe4262eaa3104f4dd122a8b5aa37ed880af3e5e59e79e31379b04ab805ded'}, 'roadmap/evidence/om015.json': {'bytes': 683, 'sha256': '117591eb0e66e469eab4fdf41e76056cc795bc3f50fe77cca79885d833f32e9c'}, 'roadmap/evidence/om016.json': {'bytes': 1023, 'sha256': 'fb74fb7582fb896edcefb4f2e916d2b8cd817de3393e86d3b075d01c60ae8a13'}, 'roadmap/evidence/om017.json': {'bytes': 784, 'sha256': 'bfb62d63dd0e4fee7dc05cb13d2c0cc95544af98f3509530366febd4822e600e'}, 'roadmap/evidence/om018.json': {'bytes': 1017, 'sha256': '35bf7da2e532028a4b8bf0973eacf46e88c309b25e04ec555fabe547d0651040'}, 'roadmap/evidence/om019.json': {'bytes': 368, 'sha256': '5f75ebd774cefeec0d3abcc0cc744bbf04f53384c4cf0ab8568cfa4040024839'}, 'roadmap/evidence/om020.json': {'bytes': 368, 'sha256': '2d71e222f206799e6477a7f318a56878d7787b253c185b20ad6c7b6e78f3ec8a'}, 'roadmap/evidence/om021.json': {'bytes': 368, 'sha256': 'f0f42dff2e56ca005ec9b57e5f0ba7f8d6994027deda7862145411f37baff338'}, 'roadmap/evidence/om022.json': {'bytes': 368, 'sha256': '476bc751077b41576625968215d133d73a281c6b833eebe1148a730b5e5180c2'}, 'roadmap/evidence/om023.json': {'bytes': 368, 'sha256': '95a33ee6eef07e974e8ac4ed553a500480a86e4ee9094b585f49448711d8482d'}, 'roadmap/evidence/om024.json': {'bytes': 368, 'sha256': 'a949e7cbe72516b3a95fec151bd17dbcda85f81b5c020080bbf0916a852e9e4d'}, 'roadmap/evidence/om025.json': {'bytes': 368, 'sha256': 'a8f652d53986345e253466c3ea153f6585ee41474245fe6d610638577e68f859'}, 'roadmap/evidence/om026.json': {'bytes': 368, 'sha256': '4f3184402df7d24f660b9c687a8467fa48375cd1b265b298c8574daf28c291bd'}, 'roadmap/evidence/om027.json': {'bytes': 368, 'sha256': 'b0ebbe9e542e85a867bef7b1b2fbbbc06a958eb1f9db8788f31582ddd9daf9aa'}, 'roadmap/evidence/om028.json': {'bytes': 368, 'sha256': 'f4e2e667d56217fc766d63b8d2fdb92669306e01efea20958ab34ba9b9354b34'}, 'roadmap/evidence/om029.json': {'bytes': 368, 'sha256': 'f9d09e8df926a0447117549248c8c99e5d17638d994e110348940c9a1f186891'}, 'roadmap/evidence/om030.json': {'bytes': 368, 'sha256': '2579d1b57241f9acc11ee3d581e6f5c02ba9a18f3017602412e33b2882bd687c'}, 'roadmap/evidence/om031.json': {'bytes': 368, 'sha256': '2343e7a74359fb7701eef72681504b3d22716be868cc987ebd933fefe5123734'}, 'roadmap/evidence/om032.json': {'bytes': 368, 'sha256': 'db68fa29c9f8a9ad9468af04f18c76ed5e64c87b796fa734afe7752b98fabb33'}, 'roadmap/evidence/om033.json': {'bytes': 368, 'sha256': 'c67b397703598422b2e2dd8a65299ab4ca92c19ff4379c07854fbff2b1bab842'}, 'roadmap/evidence/om034.json': {'bytes': 368, 'sha256': 'f45ee34b1e7dd68186c5f007313bb31d7d4ed2deff4763ef80a102d14574b1a6'}, 'roadmap/evidence/om035.json': {'bytes': 368, 'sha256': 'eaf689976b798d2e96b05291f4c66a6a09a871825e6765cfbea0746a4643fdc0'}, 'roadmap/evidence/om036.json': {'bytes': 368, 'sha256': 'ad5ab34456306778cfdd95609b7aaaedbe74081ec6b52c12a8628b9654f020a1'}, 'roadmap/evidence/om037.json': {'bytes': 368, 'sha256': '1e05c36a619991503f59f887da3a69cb7f5b72211c4edfaf51fc8f56f6c7ed2d'}, 'roadmap/evidence/om038.json': {'bytes': 368, 'sha256': '96c8d0cff3fa568e06713d70f49e355e28e9210451a8df8f1b322492a551ec14'}, 'roadmap/evidence/om039.json': {'bytes': 368, 'sha256': '051daf4772cbbe9d203b18bd197843b79f7aded2ad802a44f4451a5a937ffadb'}, 'roadmap/evidence/om040.json': {'bytes': 368, 'sha256': '48ec74c6324c9f0cc71cb8966fe612ddb8f219f3ab774aa8a46db8eab07fd221'}, 'roadmap/evidence/om041.json': {'bytes': 368, 'sha256': '57cff96593e14f86b1e1d02b4f31c33a43d903fd3a5b495b5367d2aed60dde55'}, 'roadmap/evidence/om042.json': {'bytes': 368, 'sha256': 'faed9ac8051624722c1baf44b3ae5379f83797b3d3e1607a3ecc4a0dbb497ae3'}, 'roadmap/evidence/om043.json': {'bytes': 368, 'sha256': '0ce9621518980cf1a9cf1f8c5c2728efd4d0f13a010f2356e89f7a8d1f54d370'}, 'roadmap/evidence/om044.json': {'bytes': 368, 'sha256': '014bd2f7f163359eefc1f2164adac3bdbfbcd3fb56bbaea15ed3c151265ebdd4'}, 'roadmap/evidence/om045.json': {'bytes': 368, 'sha256': 'b3244f60796134b73d57a1a3d1801eb9d7014f5f2346244e99b58ee145ad4322'}, 'roadmap/evidence/om046.json': {'bytes': 368, 'sha256': 'b3844fd0861adf36d6b2fbeee1b66f8e68eb6f769d647dd679d59febb8e6dff1'}, 'roadmap/evidence/om047.json': {'bytes': 368, 'sha256': '9733e6b907c82dea10d2fc01fa262affaa48fb58871b22d1ebee93585e396b31'}, 'roadmap/evidence/om048.json': {'bytes': 368, 'sha256': '87e4e99da418dc0584bfeabb6a54ede1b2bae8b3dc644312b2887c0822e7ae8b'}, 'roadmap/evidence/om049.json': {'bytes': 368, 'sha256': '5589ff87e91534079d892bf13bb8edc850e35cdba8634afa1c423d57032bdd08'}, 'roadmap/evidence/om050.json': {'bytes': 368, 'sha256': '31c1d8323561a9f7c901b068e82974dfdd1b6e08b3f0d993e79a544a49a20d84'}, 'roadmap/evidence/om051.json': {'bytes': 368, 'sha256': '515d518e47128f43da9cc52661e2119f9c95e11cb260485fc8fce51d99958762'}, 'roadmap/evidence/om052.json': {'bytes': 368, 'sha256': '27320dfe9ae2b262bffeb2c95baaf231e173e357db591b973c3859e3650b076d'}, 'roadmap/evidence/om053.json': {'bytes': 368, 'sha256': 'd6198b9749a15e749ddce6897fbc4e0d4627367fb6c0cde1b6d4dd735e4d0b05'}, 'roadmap/evidence/om054.json': {'bytes': 368, 'sha256': '92ef13ed661a9581893ea99b7030fb7f799e620883ab637bb84399f0f3358c41'}, 'roadmap/evidence/om055.json': {'bytes': 368, 'sha256': '391ea67acc0d74c5687a0b23c4fe7e89297b613e7fd73400b84c14b91bcccf10'}, 'roadmap/evidence/om056.json': {'bytes': 368, 'sha256': 'ea3ff3b5f6043613c1b6a72e41e05a2998d35e8e0042ced1f292f062bfdd7df0'}, 'roadmap/evidence/om057.json': {'bytes': 368, 'sha256': '0103ea9ee58d2bae35b1d4462f1a636746d6d04f2b0f5aa45268e9cd5aba5bfb'}, 'roadmap/evidence/om058.json': {'bytes': 368, 'sha256': 'b121fdd3e18e2bf0c0a5663bc66acd3563c1f5bb6133b49cf7290ced2f8a6784'}, 'roadmap/evidence/om059.json': {'bytes': 368, 'sha256': '39c5c4066436a090b6dc3f458e3bd07231a14a5871e64b9b0009146c52be94f8'}, 'roadmap/evidence/om060.json': {'bytes': 368, 'sha256': '5762a915474fd6d0c25d4302173cceee933c1c6f78385d4277f6c3f8d29cc050'}, 'roadmap/evidence/om061.json': {'bytes': 368, 'sha256': 'b1a54b55927ce4118a2923c2eada611a36a32d75d3e0313d2dc8bf8117d5b664'}, 'roadmap/evidence/om062.json': {'bytes': 368, 'sha256': '5373b3f1d8329aa75d6b98a668a924ddd3886c22cd8231d0c82952c8f82414f9'}, 'roadmap/evidence/om063.json': {'bytes': 368, 'sha256': '2982ae5284c00e8d94ded4dbf8c414b2a4b3d70a9041078b83c3dd53cbd546b1'}, 'roadmap/evidence/om064.json': {'bytes': 368, 'sha256': '4ca6aaf3d169b4269e4e5b34730eb8e4f6253d648c51ccfa8700baa11d0ee937'}, 'roadmap/evidence/om065.json': {'bytes': 368, 'sha256': 'efcb3376c6c29a8768e1310bf50c6cbce37f59c656299a650738246d6f5da898'}, 'roadmap/evidence/om066.json': {'bytes': 368, 'sha256': '165c9c0f31d97c217d819bf22c217296da3fd4c078057c2f74dff1b67ee45dbb'}, 'roadmap/evidence/om067.json': {'bytes': 368, 'sha256': '9759ac87ca5faf76dee5f54364e8b5a729b521363a8cef6d770af27e606bcc69'}, 'roadmap/evidence/om068.json': {'bytes': 368, 'sha256': '464fc191da043619bf7ffb44ac85502ba9044877c869a1021213b09c09d686c6'}, 'roadmap/evidence/om069.json': {'bytes': 368, 'sha256': 'e689ccdf65052f67ff169ceb7bd95e11a169033ce0f9fce70ec5ade38e07d19a'}, 'roadmap/evidence/om070.json': {'bytes': 368, 'sha256': 'be21158281a0d7e3f5a97f81a2f1764fe3583245444dfbcb9749618e5753312e'}, 'roadmap/evidence/om071.json': {'bytes': 368, 'sha256': '129201e8605c109223eec5d6a4c4b2357298e75d02f4b115af0707942c915bf0'}, 'roadmap/evidence/om072.json': {'bytes': 368, 'sha256': 'b0774e48b71fc0e2d10f2d5b7e8b2601152dd0a83b38cd3e4c280b3414d5d4e4'}, 'roadmap/evidence/om073.json': {'bytes': 368, 'sha256': 'a597fcbb796d15f87260ef34973c245364c982b9180a24085168cf45edebe6b4'}, 'roadmap/evidence/om074.json': {'bytes': 368, 'sha256': 'b08fb12456deb5dd5399a6cfdf5380e7dd0f365a6ce3a0942ee44c60874caf99'}, 'roadmap/evidence/om075.json': {'bytes': 368, 'sha256': 'd2c17b6609055c79d8bec6f2e1ff3e270cd4c7967ea40b378e930353598e251c'}, 'roadmap/evidence/om076.json': {'bytes': 368, 'sha256': 'c8247b4d18b69f6f76cdc8924a8ee122e9a72054eadb139670dd77c5640d3f9e'}, 'roadmap/evidence/om077.json': {'bytes': 368, 'sha256': 'e4ca32da41eec0efdd73d26b624816c32772f86292321ece5abb3bc61b1c423e'}, 'roadmap/evidence/om078.json': {'bytes': 368, 'sha256': '850833e4a7a00bbbbbb8a1ba5b99e1dbf0f0f51d00f00d0e9b64fd9333149751'}, 'roadmap/evidence/om079.json': {'bytes': 368, 'sha256': '2047676aa80e3a584f35c6e4082792a2111665a0d8c0f077ddad29f90ff80651'}, 'roadmap/evidence/om080.json': {'bytes': 368, 'sha256': '07ce05a794bd2168e2058ac179888be7988a85ea425174bb17d3e17819ab9ccd'}, 'roadmap/evidence/om081.json': {'bytes': 368, 'sha256': '69ba975980af67fb30161e383272fe377a4fac55bca7adf67f235d20f5eadd37'}, 'roadmap/evidence/om082.json': {'bytes': 368, 'sha256': 'c839dfbfa9f3b9609906e3509d2004a809fad5c3775dc1d0c6bd351acc6d09c0'}, 'roadmap/evidence/om083.json': {'bytes': 368, 'sha256': 'deb78da9e8e3e90c0c28ece2394367fe0913036d20152aa8c00a4a4cf306dbf0'}, 'roadmap/evidence/om084.json': {'bytes': 368, 'sha256': '03d0d1c2ddf4cde929d9306c2f26f3df2f60ce08b13de6ee0742761e67f16699'}, 'roadmap/evidence/om085.json': {'bytes': 368, 'sha256': '018b9491c480c5584a2fd77f222df898aa04b84632691512d850960bcdb1fe9c'}, 'roadmap/evidence/om086.json': {'bytes': 368, 'sha256': '6c6827a003f42a73bf55189b2b7b8730bd5dff728a5b32e4f455ef007503107d'}, 'roadmap/evidence/om087.json': {'bytes': 368, 'sha256': 'ef33f6587bd18e939d776bc00f10ffc4f43219f1c36618fb8edf2501e2326131'}, 'roadmap/evidence/om088.json': {'bytes': 368, 'sha256': '756ff0391cf5322ec64cbea708b19e0da9da501fffd0b9d9c564947b44d00acf'}, 'roadmap/evidence/om089.json': {'bytes': 368, 'sha256': '0fe9bc9baeeb06bef622a9a049eaab6a5a8a06404fb821111bb7804ebdf9a94c'}, 'roadmap/evidence/om090.json': {'bytes': 368, 'sha256': 'f8827fc09a9c0da35efe61948d723f445bc022e75a5bb16d7a2d93f7cfc878f2'}, 'roadmap/evidence/om091.json': {'bytes': 368, 'sha256': 'ef1a2bf174ede3737bc051162bef4b5cf6d1cff9d95f6280466463dfbca37806'}, 'roadmap/evidence/om092.json': {'bytes': 368, 'sha256': '12d47ba9347ce36dcfee5e1836749526dff6f2fa2e00704bba6bc858e9b793c8'}, 'roadmap/evidence/om093.json': {'bytes': 368, 'sha256': '675ffe477c1d1577de6a0452b62565cce02b3bca68e0e1c2620ca89a49255c1b'}, 'roadmap/evidence/om094.json': {'bytes': 368, 'sha256': '7bfdca16d056fee1443ec40a8a7421dca127b2ae8903574e90c001abe761cabd'}, 'roadmap/evidence/om095.json': {'bytes': 368, 'sha256': 'cfb83279923839835802017166e59fd6d07f24f5fdd29b57de81c4b58e386f61'}, 'roadmap/evidence/om096.json': {'bytes': 368, 'sha256': '59c5f2ba32a5e70052c6c52d0180ff30108dc02d23f43f0336371d993fa4ce8c'}, 'roadmap/evidence/om097.json': {'bytes': 368, 'sha256': 'a4994fbe66b4d2549019f3cf23801480af39612940ac471d80544ecece1ea88d'}, 'roadmap/evidence/om098.json': {'bytes': 368, 'sha256': '79a7480d8c95c2232d26c4537c11864f925d8c2be26f360a9761a72c338fcc39'}, 'roadmap/evidence/om099.json': {'bytes': 368, 'sha256': 'e42a3d7a040e45161271a605f5f1464382330fa64327f617d7ec43d8dc4eab25'}, 'roadmap/evidence/om100.json': {'bytes': 368, 'sha256': '5de4647f68d2348436bddb7800fca7f33a9115b8098de69fd403286f67e9c281'}, 'roadmap/evidence/om101.json': {'bytes': 368, 'sha256': '1232128818ec770b61ed99de452883d8a907aab6da25cb9a676c384bb1b168f1'}, 'roadmap/evidence/om102.json': {'bytes': 368, 'sha256': 'd6edb9040e461cc6f8364fa76670a95507df623592c557ea459ea854a87f96c0'}, 'roadmap/evidence/om103.json': {'bytes': 368, 'sha256': 'c334d4bad195090121d1c8302496acff1380ec7025ab472b68a771ba8e81e4a1'}, 'roadmap/evidence/om104.json': {'bytes': 368, 'sha256': 'b9072dd9d56379d9822de1784d18b8ecba15535a4adc8a46bc4c3023b39c3517'}, 'roadmap/evidence/om105.json': {'bytes': 368, 'sha256': '00a3c9052b75c5e023b5e3e40b6b03bff77f384a7ffb6f20c0528e10ea550d12'}, 'roadmap/evidence/om106.json': {'bytes': 368, 'sha256': '5049b577d2234c35a86916732a660464be136b20fe12ab3fb0c8b05c58b4d68e'}, 'roadmap/evidence/om107.json': {'bytes': 368, 'sha256': '2c306f183a625a3de06d435d69ef1f7c4b6ca28893b19d83d6f9264f4710bfd9'}, 'roadmap/evidence/om108.json': {'bytes': 368, 'sha256': '52129488283bea9c94d0e953c7a9a5195845c88d33f60affbfafbd93b2673cb0'}, 'roadmap/evidence/om109.json': {'bytes': 368, 'sha256': '586b5f5553f1369f0d6a11ea76e7baaaf7d27c633309bc796ba5303135f007e7'}, 'roadmap/evidence/om110.json': {'bytes': 368, 'sha256': '0d4ba7b5247fcd30dc4494b2c21548c28d1843083e117d6d82b86ac6195fa6a5'}, 'roadmap/evidence/om111.json': {'bytes': 368, 'sha256': 'e8b8da6b619e49042bbd9bbf2fbf101c0488e4e84632c02e79f80615d69dbf95'}, 'roadmap/evidence/om112.json': {'bytes': 368, 'sha256': 'c0fd38414794e3b660c6974c3d9d9786dcc0ea12249c4de8e47f15c8269fa24b'}, 'roadmap/evidence/om113.json': {'bytes': 368, 'sha256': '5465da0939bac8642f7b156cb4fb1f345f8e8e4d06fd26f1bf3a32e342e64466'}, 'roadmap/evidence/om114.json': {'bytes': 368, 'sha256': '5e56c9211add303b591fa9cf7206a1e20ee5c64d283b118d5efc31cb5afab5c9'}, 'roadmap/evidence/om115.json': {'bytes': 368, 'sha256': '209d564b5d46808affd17a8e7af25edc442b5d1b097300a6666dbe45ff12d681'}, 'roadmap/evidence/om116.json': {'bytes': 368, 'sha256': 'ef374eb0991c4073d0919b8504eed74206d843fb363fc45cd118e212a871cd89'}, 'roadmap/evidence/om117.json': {'bytes': 368, 'sha256': '74791158db51ab3a5ed05f3000018b647e1722917d5ebf1e3601bc7aaf7c81de'}, 'roadmap/evidence/om118.json': {'bytes': 368, 'sha256': '1e381fe8b3e7d5340ecb3e7dd60c7ff273fa5c1126b3557cd91531d1a24de018'}, 'roadmap/evidence/om119.json': {'bytes': 368, 'sha256': '34ba925b649e1ab92e82cd0d5a2f60cdbc81846332327f0c17aed84c13faa686'}, 'roadmap/evidence/om120.json': {'bytes': 368, 'sha256': 'dff1a7b037d50147ee00a3d00ca7d0f3c790dfed2f8c6c0a80bf34db036d7138'}, 'roadmap/evidence/om121.json': {'bytes': 368, 'sha256': 'afba378435b272cda768ef7997ac72fbf39fecf06322a390c7ea5ab3aff54017'}, 'roadmap/evidence/om122.json': {'bytes': 368, 'sha256': '3c08a3d8d752e5d3560afc45041af9031f2e2dddd95265db95ab85b9458ebfa9'}, 'roadmap/evidence/om123.json': {'bytes': 368, 'sha256': '63cf0e3619eeff9b6f433ad6e9bd1871844cb50b5537198502b74992786a6207'}, 'roadmap/evidence/om124.json': {'bytes': 368, 'sha256': 'd6a657fdd2f4b83b8c3e3a531b29a13f5dde32ef17040c64f32fef8620ea7fd1'}, 'roadmap/evidence/om125.json': {'bytes': 368, 'sha256': '7b68e164fddbbe2732735a6c28abb860d7e9f7c3b39b512202f056e9acbfd517'}, 'roadmap/evidence/om126.json': {'bytes': 368, 'sha256': '4275d9da147c7f65e0f516f78c7e086fb507d6c2ade408cbed53b70916039d8b'}, 'roadmap/evidence/om127.json': {'bytes': 368, 'sha256': '0b8bff78f4e09fb1d7408af1dae177ecb583a5f07a0ab926befcbfe5daa445d8'}, 'roadmap/evidence/om128.json': {'bytes': 368, 'sha256': '20bffbf10fb09ffca79e1e4ffce5cabe84f902be5c85a7e2c740c415b52f1e18'}, 'roadmap/evidence/om129.json': {'bytes': 368, 'sha256': '0641af020db2da62115594d77ec864fa963e0e586007edb37e8bc7e9d2e0cd41'}, 'roadmap/evidence/om130.json': {'bytes': 368, 'sha256': 'a7a7053b10c4c3e19f7a9e8e49e8c4b33fee8b60136df9c0e3f351f7985e8f28'}, 'roadmap/evidence/om131.json': {'bytes': 368, 'sha256': '3695615b1064bc80347de9937eb1f132c92e1eb84d77d0779c235966a265084f'}, 'roadmap/evidence/om132.json': {'bytes': 368, 'sha256': '831b05e6e7f6560726007b305dd3b591a26caff998a09b616f9fa5c75637ebe5'}, 'roadmap/evidence/om133.json': {'bytes': 368, 'sha256': 'acda8e466265e7789b08c7c1a748c75b1cfe1ddd78f8aabf80a8da50db493338'}, 'roadmap/evidence/om134.json': {'bytes': 368, 'sha256': '12fad5192198b17f0ba2e27d986e81077e8f28b59d9fa2f7b7275c6b054133b2'}, 'roadmap/evidence/om135.json': {'bytes': 368, 'sha256': 'b5d512889e35419f390f4123718b1c469713a6409e3708cb48ea6daeee30fd0b'}, 'roadmap/evidence/om136.json': {'bytes': 368, 'sha256': '0ad617f4ce1a8be59aba6ece0bf6546f155e1dca0ddfb7475337e8d31b781cea'}, 'roadmap/evidence/om137.json': {'bytes': 368, 'sha256': 'e0625c595058dbbca4fa7b844cf685333565f62fef9b173eed37095283938bfa'}, 'roadmap/evidence/om138.json': {'bytes': 368, 'sha256': 'b408683e19de4b55a29c742cde5e5a767302f4a0a69ac9a46cfd89ea4cf9bd29'}, 'roadmap/evidence/om139.json': {'bytes': 368, 'sha256': '7c985308b9c05b266d32a142badda2d2da093182883f3d2fb14758f61727c33b'}, 'roadmap/evidence/om140.json': {'bytes': 368, 'sha256': '262808b8f6d6b50d0c2ffc3596e70f4df5d5dbd638108e1bdd3990a2c6d354aa'}, 'roadmap/evidence/om141.json': {'bytes': 368, 'sha256': '4092e1c7a356677d3243f9bba09300fc11678b15655e93bfae8181399b8594b6'}, 'roadmap/evidence/om142.json': {'bytes': 368, 'sha256': 'cb171680bc5fde33921b92949c2b8f902545fdbebe6ea60f2bfd215f5a97de39'}, 'roadmap/evidence/om143.json': {'bytes': 368, 'sha256': 'aafa5f12492960ac08bbf7caa70d55392d02a5ab45f030d7aca7953a6894311b'}, 'roadmap/evidence/om144.json': {'bytes': 368, 'sha256': '9464dfa8ef72e7310d44ede5f91903e73753472fca3b2a93d4fb3aacb1226461'}, 'roadmap/evidence/om145.json': {'bytes': 368, 'sha256': '7b18ea228cdc219fbe7b8d5ede3286eb1520a9429ddf0142088d73ea9d8189c5'}, 'roadmap/evidence/om146.json': {'bytes': 368, 'sha256': 'd1ff3badf726cc34478a8506ad44a92e894f39930d5961795eec381954c71dde'}, 'roadmap/evidence/om147.json': {'bytes': 368, 'sha256': '46bf9b5fe69b41f739d0c6e0fe1b7d6546a8aa8df3ac773c4515d3eb4957fd0d'}, 'roadmap/evidence/om148.json': {'bytes': 368, 'sha256': '04412f9d35c5b78684db1f8a91e9400cb8f73997c6dc72d38256d36b7f2c6730'}, 'roadmap/evidence/om149.json': {'bytes': 368, 'sha256': 'b99e213672f70b57d360080e8730ddccac016c6abb8f8c8556a65f9e990c3d7d'}, 'roadmap/evidence/om150.json': {'bytes': 368, 'sha256': 'f2a57cb9cdd91f8e2f5b84891b8554eecbb6d63352a53f0d92ab00dc90b0904a'}, 'roadmap/evidence/phase0-corpus.json': {'bytes': 5288, 'sha256': '39b3bfd3182686dea1db568bf9c2abdb54c8124e619ce8d767638a632f2dfe8a'}, 'roadmap/evidence/phase0-security.json': {'bytes': 80207, 'sha256': '7db286de5ac8a7b9f91092f570048c8b64a52ddf31c8732485af2440bda54151'}, 'roadmap/evidence/phase0-tests.json': {'bytes': 499, 'sha256': '3fbd4db1b24d6438255a92fa56d2b0f8c75f598daae731ed65a9ec20e7036d61'}, 'roadmap/files-to-150.json': {'bytes': 140894, 'sha256': '9cc38423b0d346574f7b7b1e8860214ac94bc494db3a4864ef0d4664c27fedfb'}, 'roadmap/progress.json': {'bytes': 53748, 'sha256': 'fc26b7bc8b0090fb48111e8bf206e410596a5df335bbf6e45bc757d5b9f31f91'}, 'roadmap/tasks.tsv': {'bytes': 14974, 'sha256': '4bcf408de16b01f439a8478ca1f2279c60b07a0011e24cbb5a80d17d66119593'}, 'scripts/build-manifest.py': {'bytes': 1448, 'sha256': '163eec6df0d8ee111c3c91788a29f7df9c8efe2786ec13c56453f792bf4ab42b'}, 'scripts/build-monolith.py': {'bytes': 9686, 'sha256': '39277ee657de8cb42dd7d9a43250adaeeccc3f1eb7d6b9372c66d7cbd6e39934'}, 'scripts/monolith-components.py.txt': {'bytes': 7792, 'sha256': '2b7ea4480b06d849ce970a112eb4ce28cf947ff73cafd1095c611f7b8aee1a52'}, 'scripts/package.py': {'bytes': 2045, 'sha256': '179210e90648f1de3ccb230a8e37ba08f5de2c9a106b2c96f94082ff1473ceae'}, 'scripts/regression.py': {'bytes': 716, 'sha256': 'b63b151bcc5cad3370a3dc3fe4a45f6b61e746eed986f613cf97a02a6b80b95e'}, 'scripts/security.py': {'bytes': 1321, 'sha256': '892560b53800a18f4e4e8aa7716a05453209cd6658b157befdb060856afdfbfe'}, 'scripts/setup-native.sh': {'bytes': 2056, 'sha256': 'ee2e7a60e268846728eaf2fbc8a4c1e5fb93741f0f8e57fd7b9e28f5c30c1a8c'}, 'scripts/setup-sandbox.sh': {'bytes': 1685, 'sha256': '5261a2d58d3ab95939b3308951101469a44e526993ffe7ebe3b578b5ca9345dd'}, 'scripts/setup.sh': {'bytes': 1862, 'sha256': '193d76dacde2fa90d74081e0d67e1d0e0778f2072a23237e18e06502ee49964f'}, 'scripts/test.sh': {'bytes': 705, 'sha256': '6b12948d1c4ccabcd25860fb38051386cd11824717f3871c6bc462d0ccfafbf3'}, 'scripts/validate-roadmap.py': {'bytes': 11457, 'sha256': '5f7920db563bb268b98a14c7b9439857ad05cee7c6ec641a754037ddb7005677'}, 'testes/acceptance/conftest.py': {'bytes': 5767, 'sha256': '833eb099e16c15a0d13867753ad2c907b0681c9d6659112763973f58677eba98'}, 'testes/acceptance/memory_harness.c': {'bytes': 717, 'sha256': '2919a3430979055494fc1cef2d0b73aef1aeccd52ff11dc67d0917a89e3bba6a'}, 'testes/acceptance/test_native_synthesis.py': {'bytes': 12298, 'sha256': 'bb724813f3ba9071c65637690627d08d7a90ec9403a4de05ba63578df3b676ac'}, 'testes/acceptance/test_om018.py': {'bytes': 4271, 'sha256': '47d67cb9b9f53d77e4237cf3b1988deb46290082885c3d8f6684a430e075aa9e'}, 'testes/acceptance/test_om019.py': {'bytes': 853, 'sha256': '0fa449554fc5db99e46e656d3f1c91b45dbdbcf63b7328732b4c6e286f3aee9f'}, 'testes/acceptance/test_om020.py': {'bytes': 1052, 'sha256': 'a52ba209f72cf212216227ebf1dd21bef3aafa968bed45d23962137b7855a323'}, 'testes/acceptance/test_om021.py': {'bytes': 937, 'sha256': 'c00590cb97454870d6f4f7731f9afe3eb5afce70850fa335ef25dae6ab759973'}, 'testes/acceptance/test_om022.py': {'bytes': 685, 'sha256': '115e1f9fb627923e11695236a6280b10588a0a4eb5080a8d32fe46236a1da962'}, 'testes/acceptance/test_om023.py': {'bytes': 742, 'sha256': '45fa5c1172c704f28c0734a6c995ab8cc5cb1678388fae9d0deee5ef02ce0e46'}, 'testes/acceptance/test_om024.py': {'bytes': 752, 'sha256': 'd1e4105f30ea027eaa677d9dc6169d566123e1898c2617ea19a6a02d3d19f44a'}, 'testes/acceptance/test_om025.py': {'bytes': 911, 'sha256': '9c28ed735ebd8d3755ba5dc896df32f07fd9cbf0b60498ad8f786bd4b265063b'}, 'testes/acceptance/test_om026.py': {'bytes': 199, 'sha256': 'c1e75d2b587dc89dfbab182b8c86ea1f960767f73b7f05999275ea2362513b4a'}, 'testes/acceptance/test_om027.py': {'bytes': 199, 'sha256': '593d1b1c85692748cc60d678aa6894209605eb669d892d02b0a07fba9b9e1dee'}, 'testes/acceptance/test_om028.py': {'bytes': 199, 'sha256': 'e6d943de8c74f811222d02e245d78791b3e843a85d43774d59af7e76608f9c83'}, 'testes/acceptance/test_om029.py': {'bytes': 199, 'sha256': '85094456b30bf821acdc656eaac6f492af5bc13360b8290401eac2937d653102'}, 'testes/acceptance/test_om030.py': {'bytes': 762, 'sha256': 'd90687c164ad6150e57acbcb13496b8df66c6441b947e6486de48267ee9da7ed'}, 'testes/acceptance/test_om031.py': {'bytes': 199, 'sha256': 'b71a2b332bd0c86371a5326eb16ef9cc2e518d9dc645d423fd2dea70b599eb25'}, 'testes/acceptance/test_om032.py': {'bytes': 199, 'sha256': '497ebc694b820564778a0585af11e41ecc12ed8442dfb72fed329777d96782bd'}, 'testes/acceptance/test_om033.py': {'bytes': 199, 'sha256': '4520014ba4cad0397f2fa5d8c4e0168bbfed1fdc2be0c133a8e03e141f554d6f'}, 'testes/acceptance/test_om034.py': {'bytes': 199, 'sha256': '4ff8cbe88e2a8befc57cb6d08ea7cbcdadd42d7586f02ee8d47674aaa75a7566'}, 'testes/acceptance/test_om035.py': {'bytes': 199, 'sha256': '1ec2492dcc6f77b13acf98c83fb37ff03720c50bde6a6dbb38fcd5f08ca096a1'}, 'testes/acceptance/test_om036.py': {'bytes': 570, 'sha256': '0fa9a4ef09396c2da81d7bdb1813835291c0ac68dd3e36e6f393db6f2a8bbbcf'}, 'testes/acceptance/test_om037.py': {'bytes': 645, 'sha256': 'ba99a36edd231d88be67749e711a7c1ee6e4c84ee58c37c5b3ddf761a69c2524'}, 'testes/acceptance/test_om038.py': {'bytes': 697, 'sha256': '0dd107718d80729c38ca8a101b4b8daa2ecca3466dcf86d507a7951a6e0fedc7'}, 'testes/acceptance/test_om039.py': {'bytes': 794, 'sha256': 'a44bccbff431ee9e9f9f0642a1d5b9847c0cbdb75709344204820fcb16778b70'}, 'testes/acceptance/test_om040.py': {'bytes': 598, 'sha256': '5847acfbfd6f0ffa3c55d686ca1832eac52531ba6f4724c7b938501007abb47f'}, 'testes/acceptance/test_om041.py': {'bytes': 833, 'sha256': '3fe04d8c22e64f93613a8f4b08437e68071a8611344fd502b41934f120e82be5'}, 'testes/acceptance/test_om042.py': {'bytes': 531, 'sha256': '0869eb04aa0e9651e462bd88089fff33070989c6307996a23efc52c142004a57'}, 'testes/acceptance/test_om043.py': {'bytes': 475, 'sha256': 'f38a888dcdab695d9e935546fd61d6a2c411eb902ea546771fffbc4ae0c2a1d5'}, 'testes/acceptance/test_om044.py': {'bytes': 701, 'sha256': '7b1a84c4bd45f8007eebb093071741563d0fff22c31cc44777f75f0e14e3bc9e'}, 'testes/acceptance/test_om045.py': {'bytes': 495, 'sha256': '1394a0ed505c87da952e50035db89c7f4709951a05ba6a0e9cb4f3fc4d3f05a6'}, 'testes/acceptance/test_om046.py': {'bytes': 443, 'sha256': 'b812c31012d6fb6583d083e6eb4be9dcedcda15822494050b8f1e6536f6e31cf'}, 'testes/acceptance/test_om047.py': {'bytes': 1004, 'sha256': '8e24d3325d50e4d4bee835f07a1fc0f31e29de258fce9e191f9daf1219fc1dda'}, 'testes/acceptance/test_om048.py': {'bytes': 479, 'sha256': '5152971cd024b9ad426560ab12b3c0b9573df81d783635a64e4cfb956de5b082'}, 'testes/acceptance/test_om049.py': {'bytes': 494, 'sha256': '847f77b6271a008c8ed874cd69e560462052e095169baa86111722cc5ddc6e56'}, 'testes/acceptance/test_om050.py': {'bytes': 532, 'sha256': 'c38f35e001aec2c95539f1d2506cbecaec1fcbaf2a3b6405e0be912673dcf106'}, 'testes/acceptance/test_om051.py': {'bytes': 522, 'sha256': 'b82231249105e61e80979e86b2fc24a96595c88b9cf97156791603fe8eceee97'}, 'testes/acceptance/test_om052.py': {'bytes': 602, 'sha256': '1364a3170c63f706928f3a5ed13cdc0ecf1942a9dc246ff4c5a98596d9c7e8b0'}, 'testes/acceptance/test_om053.py': {'bytes': 521, 'sha256': 'e78cc4c7c50ec17803731e6c7a6e132dc8d2ed73096e9995cc563f292ab14e98'}, 'testes/acceptance/test_om054.py': {'bytes': 470, 'sha256': '8fe2c3b9339302daa5365095fd9454b89355d9f5767c32ee4f314ad1bd19b160'}, 'testes/acceptance/test_om055.py': {'bytes': 402, 'sha256': '69e4621bb519975fd98ea56fc8b89d9fe677ad88d0b44631fbead0f8865cc75f'}, 'testes/acceptance/test_om056.py': {'bytes': 630, 'sha256': '8c567541e429a4ad27653cdb1f0110f0c099f55fc4f7340355ea264de2ff96ed'}, 'testes/acceptance/test_om057.py': {'bytes': 525, 'sha256': '628b7c4c9e103a215df3b3c56fb7599e7f62b7e90d5589eb58631b21b57e90a7'}, 'testes/acceptance/test_om058.py': {'bytes': 513, 'sha256': '0cdcce7f861d621789d34ba5639c84f643d4a373f9a3d548e4264b971c6f7786'}, 'testes/acceptance/test_om059.py': {'bytes': 615, 'sha256': '467b273d1714c7c81fd5658490d27567a5a84a24367d039c12e4232108f6b3b9'}, 'testes/acceptance/test_om060.py': {'bytes': 553, 'sha256': '1d70d755e4e2dd5c3df26172fe791a160ed24d74b5ca962ecd5e0e2568d394ee'}, 'testes/acceptance/test_om061.py': {'bytes': 556, 'sha256': '4332b989af5ab8f5bc64cbcbd9344655df8cfdfd5d01cc0599cb3162cfd2d680'}, 'testes/acceptance/test_om062.py': {'bytes': 599, 'sha256': '377ba947998d50141fa3d8d1f99b5140e4c02c66a7756b42a208bbb2c6155b18'}, 'testes/acceptance/test_om063.py': {'bytes': 516, 'sha256': '03ca49a70e712c77ed0a1c6a00f633a0d46e717ae8fc6d2345ae8663367af1e4'}, 'testes/acceptance/test_om064.py': {'bytes': 479, 'sha256': 'f188d870aacd51d011e2e500c1b783d5267a0ae97973408ed8a76190d448c336'}, 'testes/acceptance/test_om065.py': {'bytes': 485, 'sha256': 'ebfbb907f5433b3cc21c7e413aa4bd62a38f414cdeab9fd27a2ed5f876d4aeb6'}, 'testes/acceptance/test_om066.py': {'bytes': 420, 'sha256': 'c85d93dc01228ef9eeadc75b31d7d4b40ec30bc3b9a43f78888112ad70696891'}, 'testes/acceptance/test_om067.py': {'bytes': 954, 'sha256': '7dff7bc1d09957dcc044b8cdc32565a40b7deaff36e369f6c8d0abe4606202c3'}, 'testes/acceptance/test_om068.py': {'bytes': 496, 'sha256': 'f1a588621a6e90f924b0eec075d1380d7b40abf622770132465126c5bca96ef2'}, 'testes/acceptance/test_om069.py': {'bytes': 637, 'sha256': '5f89d1b22c5bdfdfc7d72e88a68194078649af1082f8b4ca6cac9c7c89231ace'}, 'testes/acceptance/test_om070.py': {'bytes': 1345, 'sha256': '2ea6b109b82cc9217b402865d9873d492279e018e6977c84d5ae2e2a2eea4fe4'}, 'testes/acceptance/test_om071.py': {'bytes': 658, 'sha256': '8e2029a7f43043f557bcee7e929f7d4868a781191d9282fd9e78abadf5ee4a52'}, 'testes/acceptance/test_om072.py': {'bytes': 532, 'sha256': '60b67a48b4c41600d44e7806dfe532763e52310a2887e891cd2d987ab030be8f'}, 'testes/acceptance/test_om073.py': {'bytes': 562, 'sha256': '26f5543de9781eefec50991485ffae58d0360cb8a53db39b1ddd598c27428f10'}, 'testes/acceptance/test_om074.py': {'bytes': 569, 'sha256': 'ea07af1441f5ac180de715b623d3408ab37f0c5154c6254005ba3eb99e80314a'}, 'testes/acceptance/test_om075.py': {'bytes': 590, 'sha256': '135a6e47852eb8d93d57ed948c9b9eb71e8d35a461b2e233c4458af9f23f627f'}, 'testes/acceptance/test_om076.py': {'bytes': 542, 'sha256': '51e320cc9ee889316443a298b72faf38e6981efae53012a8a8d46d70bba80d6a'}, 'testes/acceptance/test_om077.py': {'bytes': 441, 'sha256': '2355b5ff4d71268c0a7b79a9a3aac1a0073f4a2f5af842c86afd3acaccc39ca4'}, 'testes/acceptance/test_om078.py': {'bytes': 477, 'sha256': 'e30323b689549db101cc0b23bf3ef3186bc2b96ac8d4d3825232aaf42ec047a8'}, 'testes/acceptance/test_om079.py': {'bytes': 420, 'sha256': 'f2902fab2fcb49fd851e7c0b1fc442bed6180615149e16208c040e38c29b9ea6'}, 'testes/acceptance/test_om080.py': {'bytes': 807, 'sha256': '8f842461bbf78845c5dc32eed11d9387685a58776718ee7632a888f8a9ac4f2a'}, 'testes/acceptance/test_om081.py': {'bytes': 440, 'sha256': '6539c2e34ebadc6f0a127cceaa0ceef88c14429506e19ea5849de618e09a34e7'}, 'testes/acceptance/test_om082.py': {'bytes': 482, 'sha256': 'b4c9827fa3f03c13527301ea0ba1b236a80cd867b92202ed911a5ef8e92d3341'}, 'testes/acceptance/test_om083.py': {'bytes': 568, 'sha256': '785b59f7d700ad2abc2ebf49ca3ca847c4c6d4caf9413a6b2f0db8c96d836327'}, 'testes/acceptance/test_om084.py': {'bytes': 659, 'sha256': 'e35b9222e92dfa19a3a6e088006c85ce740e083c329018eac49df92ad9eef13b'}, 'testes/acceptance/test_om085.py': {'bytes': 616, 'sha256': '70d78dd9cc360db8eff0904ca80ad51b9aa85c2a6c6e9ab10eeae20d27adee76'}, 'testes/acceptance/test_om086.py': {'bytes': 621, 'sha256': '78a9eb6e35c1847fa9664a80b3b44d144287ace84233ad5126751d0c19328e58'}, 'testes/acceptance/test_om087.py': {'bytes': 452, 'sha256': 'ce831b5ef59c0850df9d844fc9ccadfb541797a997f169f91ddfdd629aeda0ed'}, 'testes/acceptance/test_om088.py': {'bytes': 668, 'sha256': '499c65e537e234f0a1c69b491e6d9b2b5816a629ea9298ad39c7bc7dd12504c6'}, 'testes/acceptance/test_om089.py': {'bytes': 656, 'sha256': 'b20225369ac89f8285549ab6197ac82b78c4dbc30fa10c80e492fb5a2db95b27'}, 'testes/acceptance/test_om090.py': {'bytes': 545, 'sha256': '6fc6fed679beee34c8edcb0febf57597e4a30653fb2a4bf48adb259c49ad0780'}, 'testes/acceptance/test_om091.py': {'bytes': 902, 'sha256': '0d28e38cde3fba2e51c23aaffd2ecca06cb2c5f87c2bd20511c9394cbcfe5a40'}, 'testes/acceptance/test_om092.py': {'bytes': 562, 'sha256': 'e2a41b40d36ed6c38e95d2eb6dae6a900f32872b5e9fcc52e96c6f55612f5cb6'}, 'testes/acceptance/test_om093.py': {'bytes': 599, 'sha256': '2d7d714d10313d45f2279e4c977d79ba785a8144df8cdb003495e2442619589e'}, 'testes/acceptance/test_om094.py': {'bytes': 436, 'sha256': 'c460aa9c7db30d6fa254a1940ed586940a32742c457d2aad8fe348632549b40f'}, 'testes/acceptance/test_om095.py': {'bytes': 470, 'sha256': '4c10863aa3c0f9c9b92ed04c47dca3393d745c2f0c34493d91ac4ccda59cc799'}, 'testes/acceptance/test_om096.py': {'bytes': 806, 'sha256': 'e85d90d15d7295f72ff41df07a35e1a555d516072e7813d8e43a9997f01e4c38'}, 'testes/acceptance/test_om097.py': {'bytes': 499, 'sha256': 'f71df0482e043fdc37b881a3314e18d469dab23b52a59b5bc077f5aabb2875c6'}, 'testes/acceptance/test_om098.py': {'bytes': 405, 'sha256': 'b6233b60f25458b602d91411ddf0c111b246abecac52181b00a9dd99c0740a4a'}, 'testes/acceptance/test_om099.py': {'bytes': 428, 'sha256': 'c68c6324b1e017e8ac00e2e6fb8d45afeb46a55405faab30d57a95421c2ab47e'}, 'testes/acceptance/test_om100.py': {'bytes': 629, 'sha256': '94e74cd3135c5bc33d1f673009a81db1a86e930c8157e8af01445a971ea18374'}, 'testes/acceptance/test_om101.py': {'bytes': 653, 'sha256': 'c96ed8df6ddea6cf82d121d84df8e46be7f9429a7071cfc4b806b1055c9604fe'}, 'testes/acceptance/test_om102.py': {'bytes': 548, 'sha256': '2a86d2600113424afa666c0ce2d77b454c023ab5e294654139781e090ac343b8'}, 'testes/acceptance/test_om103.py': {'bytes': 930, 'sha256': '0b971bcd3cda8a268dbe98daa2f353c030cba1fd957c70ff25bf3039bb396061'}, 'testes/acceptance/test_om104.py': {'bytes': 559, 'sha256': 'c14766bd3fb571d40ccb5fa9d082379e001b61c624d0467a79f94d28e0cd2d25'}, 'testes/acceptance/test_om105.py': {'bytes': 566, 'sha256': '2ec17883aac1247ac67ab9090aac61370e1259a17bd96d9e57a02804c5923371'}, 'testes/acceptance/test_om106.py': {'bytes': 594, 'sha256': '2b071fcb629b7a1d27a5c4847fe2ad4659757f123c5c2ff9483dcdf03361450e'}, 'testes/acceptance/test_om107.py': {'bytes': 543, 'sha256': 'b23bddd836971b777ebf071b8e7b3d15a9ae6694edaaec9e50140d551eabf6f0'}, 'testes/acceptance/test_om108.py': {'bytes': 634, 'sha256': '1c0093188ae911005709d074f91e58ba391d4c8ccbf8cd5cec00df03aebb1e03'}, 'testes/acceptance/test_om109.py': {'bytes': 524, 'sha256': '67c6ef526f6155ccb44a7ed281cda4af64988c66c2fad35d8ac3d063a869c38f'}, 'testes/acceptance/test_om110.py': {'bytes': 985, 'sha256': '49aca2df8aa63acf3a80d8489ac176429b0eeacb39b946d5377dfb5329e92f87'}, 'testes/acceptance/test_om111.py': {'bytes': 1683, 'sha256': 'e637b8dc4da642c6d5a8eb27a2abdc24bcb310903ddff1c2cf8179b3229c48f8'}, 'testes/acceptance/test_om112.py': {'bytes': 485, 'sha256': '02f2b670eeadd584c4bd53bfadd78768c651465274756845a700f4de6247f076'}, 'testes/acceptance/test_om113.py': {'bytes': 460, 'sha256': 'a0b63d3cdafc84d0da24e95e3b0babddf7ff3d8461b87ac37810e3906ed280b7'}, 'testes/acceptance/test_om114.py': {'bytes': 688, 'sha256': 'd1a16d11d550db7d46e09a53aa16e1bee05b62da1bc30de1e72aa32ff3f85b0b'}, 'testes/acceptance/test_om115.py': {'bytes': 422, 'sha256': '4e75343bc4b6a8c3ee7083070fb5b19945fb4151b96729e6e534093829f53c0c'}, 'testes/acceptance/test_om116.py': {'bytes': 1483, 'sha256': '778560e3b18a85d79a3f73a00e206dc8b76f45392dcab0f5d0302243dadb1808'}, 'testes/acceptance/test_om117.py': {'bytes': 1002, 'sha256': 'f199a9c481fb00d78c72793df7ba8d08b388dcd4a423813a5e4db6534f6efe07'}, 'testes/acceptance/test_om118.py': {'bytes': 697, 'sha256': 'd5431666e6da36297def51b2759cc36d14fe778d75c8170611185275b5c4c468'}, 'testes/acceptance/test_om119.py': {'bytes': 726, 'sha256': 'd8b7fba70e2c008b4b74361cef4a5cd7f598ec8d9bb32aed4ae3e20906cc29c4'}, 'testes/acceptance/test_om120.py': {'bytes': 750, 'sha256': 'a7a6d51c31c2b47899e4a4de3b986ae83cf5066e7c4a42253dc3f13cd5887dc2'}, 'testes/acceptance/test_om121.py': {'bytes': 786, 'sha256': 'ca4ee8d3b316b856ccbf73c53846e98c1f64da4aba00f7ee211fb700ba12cd54'}, 'testes/acceptance/test_om122.py': {'bytes': 966, 'sha256': '83b5870ba43242621b7e0958b480b800a0340dac87fd88c44f2b0f0a5de9c4df'}, 'testes/acceptance/test_om123.py': {'bytes': 644, 'sha256': 'c20c30af12b42fbe88fd0a2a7a1a09528e70fd9d560988eb042e6f4b66d58d81'}, 'testes/acceptance/test_om124.py': {'bytes': 552, 'sha256': '8d2cf9270451dbbe28fada779b4087d581c2926aa8c13f4f8ae80cfb41e8f621'}, 'testes/acceptance/test_om125.py': {'bytes': 702, 'sha256': 'b602cf0fc555bded09a3c2a80702a3c22bea7a906e957f242404162f4e63f24f'}, 'testes/acceptance/test_om126.py': {'bytes': 849, 'sha256': '430478221ccefb95e6c397506901f545a8afb051f19081de9d3e7d180e23bf01'}, 'testes/acceptance/test_om127.py': {'bytes': 1057, 'sha256': '37cd613c21f876a25706ccd4ca844a6d5bd1605b6ef915ab2bc0719b8e679ad0'}, 'testes/acceptance/test_om128.py': {'bytes': 456, 'sha256': 'bbc6dbf2f0381f349d8b9c93188f08914fb35e41513762de220f2a46ed049c9f'}, 'testes/acceptance/test_om129.py': {'bytes': 674, 'sha256': 'aee583422203650af5d8f7e4cc7cd1029644c43422b9e3c1d485ae9a95fbd984'}, 'testes/acceptance/test_om130.py': {'bytes': 606, 'sha256': '4d78fa46443f8e7f24145ca7fa10f8c67b5460cbb8a75873c2dde5eb2627dca3'}, 'testes/acceptance/test_om131.py': {'bytes': 633, 'sha256': '7ec318a197444e2f60c87391a10bba3ad984bf8440194dc73b04f76ed6f796a4'}, 'testes/acceptance/test_om132.py': {'bytes': 1029, 'sha256': '78aab5507c325e34eb537250df8ef116c4774ecefa9f2c3728e3605b6ab5af24'}, 'testes/acceptance/test_om133.py': {'bytes': 591, 'sha256': '8b179e72f9c8e4adccb2633f54e677bfaab1d8a16e2d77a19256f3be15c760d0'}, 'testes/acceptance/test_om134.py': {'bytes': 487, 'sha256': 'aa287f8f3fdf940cb606834a3a36791f8838c5326f2cce68b5be8060747713a9'}, 'testes/acceptance/test_om135.py': {'bytes': 709, 'sha256': '58b0657b70cad5d40a65291ba0b108ad2929fd5701aae7d794d1f394c757448a'}, 'testes/acceptance/test_om136.py': {'bytes': 673, 'sha256': '6149ee7609f1895bf77d45744643732d959710d8a1540b81e81c849343890ce0'}, 'testes/acceptance/test_om137.py': {'bytes': 679, 'sha256': 'be9c52c69e4be2209faeaf0c3b6641660c55dc3581358b3adab2cff21f66d33f'}, 'testes/acceptance/test_om138.py': {'bytes': 714, 'sha256': 'afa8d8234c1c6a3bcf7ed5211c41d805f4f7ccf84acbb4e79fe9696ba0937a5d'}, 'testes/acceptance/test_om139.py': {'bytes': 568, 'sha256': 'c67c62be2232ccc2ff964ed80014cf34b249c91991f0edccb542b01366dddf78'}, 'testes/acceptance/test_om140.py': {'bytes': 625, 'sha256': 'f46f4c4dcb13916ff35ac7cc9a608da29a84aab14d0d54b5ac13688c53c38a37'}, 'testes/acceptance/test_om141.py': {'bytes': 754, 'sha256': '564589e9107cc81c8ceb54d95908626b9bb586374fb773838eaedac069bccc8c'}, 'testes/acceptance/test_om142.py': {'bytes': 564, 'sha256': '79ef2b7b59c53d05a99cd7685bfc8fbcb01a3ba4ce354ef833ffd00d72389c60'}, 'testes/acceptance/test_om143.py': {'bytes': 671, 'sha256': '3bfe954e3b8351e7536d771875d56ab1566dff5b49f45698da08ac9387c2c63a'}, 'testes/acceptance/test_om144.py': {'bytes': 603, 'sha256': '8ad1488ef9409e92f75369da490e60cf7837bc33ad0edc7204c5b0bd68331a9e'}, 'testes/acceptance/test_om145.py': {'bytes': 527, 'sha256': '25ad9cd1ace341def3a085f42bc261e31cdc94350693edd1f446ba0aada0f292'}, 'testes/acceptance/test_om146.py': {'bytes': 1676, 'sha256': '75af6f0a4efc0fe6ebd88bf5c1dbccc10f5ae3cdcb768c59acdac4214f08e1ed'}, 'testes/acceptance/test_om147.py': {'bytes': 513, 'sha256': '0de2ffdad4b516cd3277f5944d58a132c054b67fbb25e7dd6f8af3b656cbc345'}, 'testes/acceptance/test_om148.py': {'bytes': 584, 'sha256': '76cf2660b7510eceb704cc849e48724d8f284cf7ae16d3abdf7667374c3e0881'}, 'testes/acceptance/test_om149.py': {'bytes': 2062, 'sha256': '8015baa0b36234d909dd8f59d49f7e4613f4d7499708949a2e866b24039ebf32'}, 'testes/acceptance/test_om150.py': {'bytes': 1185, 'sha256': '708e07d755ce1abd9f166f5e56836d2a9a3e2a62d2dd52f32553d2f8a1fb1475'}, 'testes/acceptance/test_supervised_flow.py': {'bytes': 2695, 'sha256': '34f90253c25856905d47235a27d98c06245db2415eb9fe169854c6b834501c2e'}, 'testes/acceptance/test_validation_fixes.py': {'bytes': 3252, 'sha256': '882bef2ab8299476ac4d357bbe1e1311543bb2318998ddb613547a317eec70a6'}, 'testes/acceptance/test_validation_runner.py': {'bytes': 1952, 'sha256': 'ac99a11e229f6f6e86f7ddfaa945347fbf436f3abe76234d9ab63a1e9db7c9d8'}, 'testes/corpus.json': {'bytes': 4505, 'sha256': 'c50519d0cce43178c5b70ef617b50bf8bfc73badd63b4f37701da854b67bdf6a'}, 'testes/foundation/runtime_harness.c': {'bytes': 730, 'sha256': 'e7c5d03dd68a3ed459b56e262ab244a021a86ef189399a3f60645deee8c4527f'}, 'testes/foundation/test_corpus.py': {'bytes': 1787, 'sha256': 'd3e54774a45aa200cbdcfa6f493a8b67ce5c0b4c1e87aaced612838df554a60b'}, 'testes/foundation/test_dimensions.py': {'bytes': 4727, 'sha256': '4b85f26dbeff1b9ad81cb204461db242aea8fc561130380e79c80d3918f655c1'}, 'testes/foundation/test_generics.py': {'bytes': 5673, 'sha256': '874cd1bce88ddd834df0da99e8ca6abbb7942fbe5ce528dd702ff5da162b1a65'}, 'testes/foundation/test_manifest.py': {'bytes': 746, 'sha256': '0ddb8df2f6425b17d851fd30c5c7b5d760273a5adf8a3f107cd13b06eb926516'}, 'testes/foundation/test_modules.py': {'bytes': 7977, 'sha256': 'ef98a320325e09991f74b09a1c4828b21fe4f7a87c5754f6a5cc5feca52af1d9'}, 'testes/foundation/test_operational_semantics.py': {'bytes': 508, 'sha256': '59013e42755a8aedc152830bdd22cab4e554c54bde8e1a0e2b5bb33ffdaf014c'}, 'testes/foundation/test_procedural_types.py': {'bytes': 5775, 'sha256': '453c9e8239c652ea2a32ef94a39416f296944dce4e16e0e5fc5bbd441f344f76'}, 'testes/foundation/test_proof_build.py': {'bytes': 1648, 'sha256': '7e8ad364c3a837cb12f7bb153ed9e21bbc9b7c4a763574bb2290efccf2239597'}, 'testes/foundation/test_results.py': {'bytes': 6096, 'sha256': '07f9944a6599a4346d56d509d86c728fb7b4875a302f3757ffaac037b86bf500'}, 'testes/foundation/test_sandbox.py': {'bytes': 4725, 'sha256': '0316e5b07248784d8007a6ab6c2e191854ab9cbf33938874c6b0662d02e90538'}, 'testes/foundation/test_single_file.py': {'bytes': 3630, 'sha256': '0263f18d69c24a0dd96a81891cccd1137a21c14efb826930481624892d6f8f7c'}, 'testes/foundation/test_ssa.py': {'bytes': 7129, 'sha256': '54e35fdcb6e5656b4476d5e0ff113683ff3b6a82278eb105fe2828ab01fb5538'}, 'testes/foundation/test_type_inference.py': {'bytes': 2918, 'sha256': '4be2acb96ba652dbf59018c2ecc60eee555fec537a00a592c691d86c6b268ba4'}, 'testes/foundation/test_typed_ir.py': {'bytes': 6315, 'sha256': '253612deb91a413638515be369be7e44972a1fa130542efb6aba58ded650e6d8'}, 'testes/foundation/type_ops_harness.c': {'bytes': 853, 'sha256': '0af5af10096944492cb98ac07fdc9761affc3e6939ab411d57eb8e277e204c03'}, 'testes/lean/OM026.lean': {'bytes': 402, 'sha256': '811843adfac2f0431de4ddf03747e8bd1ad96912076bd26ebe121ebc0a82c46a'}, 'testes/lean/OM027.lean': {'bytes': 311, 'sha256': '0aa7cec810b933f65dd44a62bf8815392e7a0a66c0c845613fbdb0a684d0ec2a'}, 'testes/lean/OM028.lean': {'bytes': 254, 'sha256': 'cb2e37026e5969c314985df26aa3dc8af739df07e658f877abe81150c34a2a86'}, 'testes/lean/OM029.lean': {'bytes': 259, 'sha256': '1118da722f3e481033066ceedf601c0104436a3725d377cdfb5a42efcbe3b223'}, 'testes/lean/OM030.lean': {'bytes': 251, 'sha256': '8f556f1a11a6af2ed3a2a60eb61db3b39a43516301e403f982846904c000a79d'}, 'testes/lean/OM031.lean': {'bytes': 357, 'sha256': '1addffb8ba5a210cff3baa0be07fcb576bd5cb47b4b73518584cd5e577975c7c'}, 'testes/lean/OM032.lean': {'bytes': 422, 'sha256': '5d4842bc155ca8563f1174cc50020112bbf5bb1693584e131aa13048753f8cd6'}, 'testes/lean/OM033.lean': {'bytes': 374, 'sha256': 'e93a916bbea9b3844328b84e2d95f3b32414e26e830ab790a9f58341221ace8a'}, 'testes/lean/OM034.lean': {'bytes': 276, 'sha256': 'f89cc5a311ccf5fa1c2b47cad2a059235c9f2fb524a83eb60d72ea57e0bdc7b5'}, 'testes/lean/OM035.lean': {'bytes': 473, 'sha256': 'a82b16b742ab2e1bbadb156e36a8bc673a78b4ca1b9884fc8e66ccb348f0aea2'}, 'testes/lean/OperationalExamples.lean': {'bytes': 834, 'sha256': '17a3f693511d9b70f64db6b7bf6c4afcf46efa4ed2ddd9d30038dd2117f5dec2'}, 'testes/nextorch/conftest.py': {'bytes': 510, 'sha256': '02980bb3031851883a041e5cc7d29d1fcc22d88055e80bb824d6de84dccb0136'}, 'testes/nextorch/test_cli.py': {'bytes': 1116, 'sha256': 'd9dac93a01b40d4b34448e7128590de0340b3dfd51f13962f53cdb3729eeaddf'}, 'testes/nextorch/test_core.py': {'bytes': 1802, 'sha256': 'a51f5654c8450223d1dadd65bf8d157d5660de86b84510ff75a8c76b5ea51de8'}, 'testes/nextorch/test_engine.py': {'bytes': 4777, 'sha256': '09bfe201c8c7b9d9a2ab74f15aeff7eafd423bf974e255190d6445a0a6ebb803'}, 'testes/nextorch/test_evolution.py': {'bytes': 5163, 'sha256': '4af85444ee1612ca28db438b441d9307ac703b6c3aef06b7b64c1f98adcef619'}, 'testes/nextorch/test_formal.py': {'bytes': 6353, 'sha256': 'a76d746096e9dfcb905eefb867591137fa6ad7ae259d5e49efd1fdf21cfe7f02'}, 'testes/nextorch/test_orange_bridge.py': {'bytes': 3893, 'sha256': '838b378571a95b5c9daee18303f59e05aeccde3153e396de2e194a19ea705d40'}, 'testes/nextorch/test_synthesis.py': {'bytes': 4570, 'sha256': '08192bc225050457b28ce4352d02ad96c44733334550186329e16bceefab70e1'}, 'testes/nextorch/test_verifier.py': {'bytes': 3555, 'sha256': '98553cc010b02a439777418f49a53f64d06e4f41e5af34a6349214b87ce7a585'}, 'testes/nextorch/test_widgets.py': {'bytes': 7325, 'sha256': '5c062d8246a9be671fef4fdfa94037285fdbdcd46a049d890b10ce968ff68b51'}, 'testes/test_certified_workflows.py': {'bytes': 11581, 'sha256': 'f14a6823720f722f82c0371c588e985a4f8861d826adb42efb588b63676b926f'}, 'testes/test_evolucao_v11.py': {'bytes': 7451, 'sha256': 'b8ab50a0f4ef1ffd6da3bd23354fa6d7501c2bffce306f7cdc0b59ee2cf52a03'}, 'testes/test_meta_v12.py': {'bytes': 5201, 'sha256': '0bd517b3b2db498987da1e37b32f4ff03080c03b50826af8906a164ab3a17114'}, 'testes/test_nextorch_integration.py': {'bytes': 8712, 'sha256': '128dd0893cb36dc6704c1e123cb5548e96c6c0043c66b191520bd9920119b2fd'}, 'testes/test_omega.py': {'bytes': 8597, 'sha256': 'd02dc93d5a3931cba5515dbaddfd37d874ed45569ddfe21ba848cc569adca76c'}, 'testes/test_omega_orange.py': {'bytes': 3898, 'sha256': 'cd36801853fae2a06b5188572c64266856ef3e2ab4c7d4637c3115feb92aa5a5'}, 'testes/test_open_v13.py': {'bytes': 3504, 'sha256': 'c3f5f95d25dc0952705b139265952d125b7f7e74c2717616d17c486c8a1b8b90'}, 'testes/test_selfhost.py': {'bytes': 9693, 'sha256': '26b5a024b4e2efabe77bc75a5beab419666beda85d5a90668e648895428d3c8d'}, 'testes/test_transformer_certification.py': {'bytes': 15743, 'sha256': '9097171904a5d59cb0199346ede52691141dd40a035f0d83a6cafd5d3b8f0eb1'}, 'testes/test_v02.py': {'bytes': 6541, 'sha256': '02291ac2f9a29dcd354de00db9656cd95748ab1fd4ef96e7f2fd33813b5e0279'}, 'testes/test_v03.py': {'bytes': 12111, 'sha256': '3ab189f206bc9342b06a2b40e92314b89fce9b02eb12acd4fef62d41970af90a'}, 'testes/test_v04.py': {'bytes': 8825, 'sha256': 'adf8ce7c87f3ce4df2dcb300ef00963668ca02ff4da1e52ff7671bd63f1eab05'}, 'testes/test_v1.py': {'bytes': 11496, 'sha256': 'f090892e0494b8fc0688873423f6d1603f0dfdf41810b2b5e5fccb554f1fec1f'}, 'validation/README.md': {'bytes': 5977, 'sha256': '7c122484e7f8d516ea37b3f5adaf892c9f5ecd59449e9a3652acdf085f8034a2'}, 'validation/catalog.json': {'bytes': 16540, 'sha256': '403fce93f629b281513a60ab77365a3e1273e9a7586941464c4f42f84318afce'}, 'validation/certified-transformer-benchmark.json': {'bytes': 20404, 'sha256': '7fff7e821b80205c810a4e786b6225b74cab62e64d36f21524d492ae39e87802'}, 'validation/certified-transformer-benchmark.svg': {'bytes': 58968, 'sha256': 'ab35f643a73def08a56f86b6891f9d78d965822836cc2f33d82e2d1557ca65e6'}, 'validation/pending.schema.json': {'bytes': 773, 'sha256': '7e46a270bb5d8a8ce6f9e57f700e312a8357fcd984368a1db745d51e3bd9425b'}, 'validation/plan.schema.json': {'bytes': 2150, 'sha256': '441bbe4abb508d4961f4df84e911bf81897edef895058b5ea4597c4df8ab9511'}, 'validation/plans/om001.json': {'bytes': 998, 'sha256': 'a4f5f2835e9da143ae373ce96fd2bd4bca943d0a27d596250a8d2e0794c69ce2'}, 'validation/plans/om002.json': {'bytes': 938, 'sha256': '0ab13df4b785982fabd3db133fabb63644b07a3aa8cd243b50e50716454aa005'}, 'validation/plans/om003.json': {'bytes': 947, 'sha256': 'a91ec492c9d47bdbdeb911ad709ef7546ca7190a2d91551b29b8087ef2db10a4'}, 'validation/plans/om004.json': {'bytes': 907, 'sha256': 'c7cd30a3d9d2488a89dfd2f42de6499813ac1c1981bec07f22a4777b2b088fba'}, 'validation/plans/om005.json': {'bytes': 957, 'sha256': 'b2ef3b88ac26ceaca8717001dd6ccd0ad5fdc59178213768969f00b76772a797'}, 'validation/plans/om006.json': {'bytes': 914, 'sha256': 'f513909902f6a6b51899dae63a34d4251fb712c8ded7c0259c6be8620af079aa'}, 'validation/plans/om007.json': {'bytes': 941, 'sha256': 'cae188b779d3b9bde63018fb590f52d5b48d38bce9ff38929f13df52a66570f8'}, 'validation/plans/om008.json': {'bytes': 944, 'sha256': '7e805fbd6f88956086c1408f7d8ac041b2b52587ea938bb3cdabca805d1b90e8'}, 'validation/plans/om009.json': {'bytes': 939, 'sha256': '38220e14b9529e814e24be24dbfcdff9cf1ad61fba61f79efc8ab17119fb8532'}, 'validation/plans/om010.json': {'bytes': 865, 'sha256': 'e12b047ae54a18e5488a8a2eee26e1fa09ca93d9782bae19c71c76b0ebe17739'}, 'validation/plans/om011.json': {'bytes': 969, 'sha256': '3e3a316788a7be55c2251afeeef809e55133c79584b10ec35ba1ebc69a51cc28'}, 'validation/plans/om012.json': {'bytes': 954, 'sha256': '0bd7db8396a07356acfdfbf7c705ac75aa6968b9d0f364fd939e12944ef81fcb'}, 'validation/plans/om013.json': {'bytes': 909, 'sha256': 'fbc92df86bec0d8920d894e65f8e5df766981b6d2dee9ab72d73c98c36724cd9'}, 'validation/plans/om014.json': {'bytes': 902, 'sha256': '5d73f0820fb872a821ff7eeb4d954157fb23e40a112d2a0f83989d08f6067815'}, 'validation/plans/om015.json': {'bytes': 851, 'sha256': '99a5d18df285b74574017aa64c5c7b86cd738ac0933a0b4c825589f1ee125bae'}, 'validation/plans/om016.json': {'bytes': 947, 'sha256': 'd9e4098a32b3432b2ba2da9df70b86e15692174ed5b5154ae0303b9d3c323d61'}, 'validation/plans/om017.json': {'bytes': 906, 'sha256': 'b8d97d01a127b45bd5a08f4d6a1b9fe9f3ef38f6b9d9a3eb6d40b691bc488ce8'}, 'validation/plans/om018.json': {'bytes': 1153, 'sha256': 'aa472e72ca8b69d7cbddcd98ee5b43801eac71cac67d4ccd02c1a1c618151a65'}, 'validation/plans/om019.json': {'bytes': 892, 'sha256': 'b30e81d339a6b31528eabfd662c7ebff315d477297c91a47b40b6172c9eaa177'}, 'validation/plans/om020.json': {'bytes': 1152, 'sha256': '25c565d9994c77097e0776fee4f95f5575c731538bcbcad18f96d1993b9fb733'}, 'validation/plans/om021.json': {'bytes': 914, 'sha256': 'ffd6792f52c71f4223dd984d547be0dfdb91df2262dcc06b19eab324779b79d8'}, 'validation/plans/om022.json': {'bytes': 946, 'sha256': '5a7ba41bcebaa83129368bda7b7a4dc11838f2faa6307626cd7dcfcae3e94ae3'}, 'validation/plans/om023.json': {'bytes': 921, 'sha256': 'ae2188a8a002e4525f5694a3290c935eb94678b2f278c625293aa56689f60fd4'}, 'validation/plans/om024.json': {'bytes': 920, 'sha256': '3603ba3fb491bc148d356d218387f6ea8056fc49988a4ccbf12b7d10c2502eab'}, 'validation/plans/om025.json': {'bytes': 919, 'sha256': 'b0130de6dc8f4dedce9e0aa42ea3e8275bab29ff134e47bb584be17e6f08125d'}, 'validation/plans/om026.json': {'bytes': 1005, 'sha256': 'be5d2470a9a8d2b08f9c08f1a7ce2194661c1b9575487732f69d942dda5b4b7f'}, 'validation/plans/om027.json': {'bytes': 998, 'sha256': '5fcc438b9cfdc87c66245980c71fb45e102f1443aa9edc566deaa40e89f609b6'}, 'validation/plans/om028.json': {'bytes': 943, 'sha256': '37727edd4e57a7f4282efbaf5bb8ac3184ba529792e8b4bf20435ade31400664'}, 'validation/plans/om029.json': {'bytes': 984, 'sha256': '3cda801d32cf6da5203c2e03dd5e68695952cff7353ac7048481663af31b06cd'}, 'validation/plans/om030.json': {'bytes': 964, 'sha256': '3cd3aee8028abd20ff8738ca732b622872cfd6dd49ac04524b21aba0fba48bb5'}, 'validation/plans/om031.json': {'bytes': 1093, 'sha256': 'da14ad94ea555f4ef95c3a13fc6fa7681fc93a247fb66d70a86b858542f6c06d'}, 'validation/plans/om032.json': {'bytes': 988, 'sha256': 'f4b02e58bbb9db5b04ab0c92eafe25f6cd5dafc5f4a3d323668da42743851730'}, 'validation/plans/om033.json': {'bytes': 994, 'sha256': 'c40aedf4f960bf3bcf981819bae2821449eed68d564b6dcdd9204e36fb46784e'}, 'validation/plans/om034.json': {'bytes': 989, 'sha256': 'cbda3e3b410987237252b01fc7485ba147af701549828f7ec8b4c70802a8a23d'}, 'validation/plans/om035.json': {'bytes': 930, 'sha256': 'aedb56d316aa53d1d851288166af2559c50ff1632f24e79e559914bdbf1e914c'}, 'validation/plans/om036.json': {'bytes': 909, 'sha256': '52d85a6af4c20435591ff931b7bd94510df0cfe70c2648c986adae6317a4eb0a'}, 'validation/plans/om037.json': {'bytes': 932, 'sha256': '055b62bf7b83707e4aa1431544c7310813ba54f5af412b657d9274b9d75f8926'}, 'validation/plans/om038.json': {'bytes': 933, 'sha256': 'c7599657a83f473e392b6b4abc2a35483d02905f1138f741df9c695907f647f0'}, 'validation/plans/om039.json': {'bytes': 937, 'sha256': 'bb924f7f90fef14fe5463e58dee1760210a977192c5ec11fca5d254d243ca0e2'}, 'validation/plans/om040.json': {'bytes': 935, 'sha256': '72cd7896d89263f3e51e1769815d576ddfda70ab64f3197893b0f9860fd5877a'}, 'validation/plans/om041.json': {'bytes': 887, 'sha256': 'b5c08fbca01e92a3b751cc112100ecb6a4a6485bea45a9555b7f17a0b6b85f80'}, 'validation/plans/om042.json': {'bytes': 865, 'sha256': '1d7484d20c94f88d8682e0de110b2a5326de98858d8963077b8a1cf83f1f0697'}, 'validation/plans/om043.json': {'bytes': 860, 'sha256': '63c732852f081d635edcd42a90a649abd0c6c614d11a4ee13415e8ce0ed3f279'}, 'validation/plans/om044.json': {'bytes': 1017, 'sha256': '999435d397cdcc8ad391ea6b0175f0441fb09f149a8db5c071bf1fd83146971e'}, 'validation/plans/om045.json': {'bytes': 847, 'sha256': 'e5a9d8b07a7f362925e65cc1fe31328fff8ab77fa85ab485139aea0263432d63'}, 'validation/plans/om046.json': {'bytes': 1017, 'sha256': 'c0cd269864a9d557d04f3bf6ed19d124473c1dd3a3ed9607a76ef02b1fd0ef97'}, 'validation/plans/om047.json': {'bytes': 929, 'sha256': '4498359972d6f08b1dfd4e03ce0854ed1a85583c58b85cc8c1fefc4659135498'}, 'validation/plans/om048.json': {'bytes': 857, 'sha256': '4fed0eb95e12886fa485f58af5e8cfec86faf6b1eef21307635a2c21d217214a'}, 'validation/plans/om049.json': {'bytes': 852, 'sha256': 'ea92816a2ede642c6a3479505ac00a032a0b1c247d51d71104b089c716404863'}, 'validation/plans/om050.json': {'bytes': 872, 'sha256': 'a9f8f39f02f9e02030a94342bf0e02e20e8b4f916ad6bc9aefc98b6f81236949'}, 'validation/plans/om051.json': {'bytes': 853, 'sha256': 'b40f25f6e8a5a5836f2fdb91965def65f7f5d17818910e276cbc505cb36cb19d'}, 'validation/plans/om052.json': {'bytes': 855, 'sha256': 'a0eba0500f793c71a9acddb2e98e2484dfb3365d2fee9ca6ee21f8daeffba021'}, 'validation/plans/om053.json': {'bytes': 1027, 'sha256': '945ee40aa90d406760dc30d5b4e8c21fea3cb0321919c938dcf7a3fb2f6cc2ac'}, 'validation/plans/om054.json': {'bytes': 1030, 'sha256': '9c4580d9f40f64ea767c345edb8967d0b316c0881e0f6e4c3e2f8a7a0c51c92c'}, 'validation/plans/om055.json': {'bytes': 1035, 'sha256': '3ff34e3f3f2604d86fd234531923bf66d7a9ce981708945ff04707cd75546514'}, 'validation/plans/om056.json': {'bytes': 892, 'sha256': '807c57f32d26fc69553ac3902ddf0984465212cc00b98ab8cde5e4c1fd32041c'}, 'validation/plans/om057.json': {'bytes': 888, 'sha256': '31a9bc7121eb21c7cb8fc7dcfd82863e6a3d8282df405e5c9e7c362b50da7920'}, 'validation/plans/om058.json': {'bytes': 894, 'sha256': '588e2f1c94ceefa434cef568a84605ef3cee0102af5c2ef2531c1ea0d9901543'}, 'validation/plans/om059.json': {'bytes': 1407, 'sha256': 'f38121ff4345f8d014f644afb5430f74d559f6807d48cb6de06428f82e3eb6b6'}, 'validation/plans/om060.json': {'bytes': 891, 'sha256': 'db3bb25704176c6d97f09babe8239382253c6118b96cacc6849173a2702daa02'}, 'validation/plans/om061.json': {'bytes': 1062, 'sha256': '62ea7cc65db79fa72a8dbb5ee2ac5cf9db356a72228c17ce3766975aa1075ed3'}, 'validation/plans/om062.json': {'bytes': 878, 'sha256': 'db8209ebd5869db959cafd88379d6acf5508da58aa4579380a916d0fbc9895c7'}, 'validation/plans/om063.json': {'bytes': 895, 'sha256': '333bac3965bff8f1109c46b887a9b020e946eefc09c717202529b228212d064c'}, 'validation/plans/om064.json': {'bytes': 1362, 'sha256': 'beb0f9cade9b408eb906bf5c069b7fcbc69ce6f885db06dad05c066fed8dcfd1'}, 'validation/plans/om065.json': {'bytes': 1057, 'sha256': '0d72e42392235d71dd6137c07788f519bb865efbe6f4e806b9af40c4b6cec2a5'}, 'validation/plans/om066.json': {'bytes': 931, 'sha256': '9141fa5a40e0107d9827ae1e48a87a9bae5edc9f17d903a4d0b2fbe424b0f796'}, 'validation/plans/om067.json': {'bytes': 894, 'sha256': '530a96e83115620b798ac5d89adaf8c6479b316dea879a41101cf94d78e4e806'}, 'validation/plans/om068.json': {'bytes': 895, 'sha256': 'b628e4ebb7dd616eda9e686c3c60a801d24fba075e296f9d852ac503833fc5f2'}, 'validation/plans/om069.json': {'bytes': 890, 'sha256': 'bc8ad4eab86465b1efd94d44ec9908bab97d5930ea41123f243d4a80b0768eb5'}, 'validation/plans/om070.json': {'bytes': 957, 'sha256': '660d875d92578fa80f21143c39b74c3db8f8fe37780bfde4995ecae0b1cfbc44'}, 'validation/plans/om071.json': {'bytes': 918, 'sha256': '926b52d228872c70be97bbc7ac27ea913e4991e5271dceb16016c68f5cdeb6c7'}, 'validation/plans/om072.json': {'bytes': 870, 'sha256': 'a043e5de61c024271cd17d694822c8775a7f3016e0952f212b5d4a3908a4c457'}, 'validation/plans/om073.json': {'bytes': 861, 'sha256': 'efcf9e5267ca4753ddb3566a9042f1de6e4f9cf95e2c59832e90a1114e0a410f'}, 'validation/plans/om074.json': {'bytes': 873, 'sha256': '17e633899c5bdbd56fc9fb9f1a50f60b5d1f66b4b95e309e512a8f9e35104475'}, 'validation/plans/om075.json': {'bytes': 914, 'sha256': '75612007e3fc8acc076d99e89f9a58e1c5f7a825671750a89d06f35163effaca'}, 'validation/plans/om076.json': {'bytes': 1044, 'sha256': '6d01c342e5c601dba9eaaba1b72b02d32d61804db5d475227bc9eb55382eb284'}, 'validation/plans/om077.json': {'bytes': 1028, 'sha256': '615f9f416e04f9b3c2c25722c5b9c2834477f83f97d9d4203362bd15cb6116f7'}, 'validation/plans/om078.json': {'bytes': 1039, 'sha256': '65b99478d91d9d1738497b2960dd30f920c730ba0d80d3b135bd71de0a771e29'}, 'validation/plans/om079.json': {'bytes': 1040, 'sha256': '1e1e89e09916be10dedf52b662a4f7049770bf8282599450ed22f38a4f6a9374'}, 'validation/plans/om080.json': {'bytes': 1042, 'sha256': 'fe59a44678a98e085d153dff0a3c0bd88b0d7a7ec43531bb4390b1c6a2ca03f9'}, 'validation/plans/om081.json': {'bytes': 1041, 'sha256': '584deaccf449152c2d2e65c266c0a1525c781da12068811d1f73fac2d3022818'}, 'validation/plans/om082.json': {'bytes': 1049, 'sha256': 'a3ff455abd26f7299628176e53bba94f723fa319c679b754e38d926bb15b9db9'}, 'validation/plans/om083.json': {'bytes': 872, 'sha256': '97e5a18a55f530a681ebd8943c09055b1817279252c69a7386ee9752caaad331'}, 'validation/plans/om084.json': {'bytes': 853, 'sha256': '4e23eb647c17d87b6f0379771607e50552d64041fc32db5ea8db552def6a4211'}, 'validation/plans/om085.json': {'bytes': 902, 'sha256': '9ed9a7b6ea5f48cf436b1374a84a8ff00e2e3db2774027e4b603bf3943b2c45c'}, 'validation/plans/om086.json': {'bytes': 937, 'sha256': '805b496823b54c957bd68ef78d107ee6a3ce350514d4235032599cbe8e52604b'}, 'validation/plans/om087.json': {'bytes': 862, 'sha256': 'f1309e881242d3f97c822fe0ef9afad2f4b4095081487f99a3b1d6dc9023398c'}, 'validation/plans/om088.json': {'bytes': 1060, 'sha256': '79117f029f8d7edb5d67edbf7f98230f854d750705320a69a7136a1d2bccd9f9'}, 'validation/plans/om089.json': {'bytes': 1043, 'sha256': 'acfbf6571eed16a022b8e0a62743958406289f111577b803ec9bfc3b4828d096'}, 'validation/plans/om090.json': {'bytes': 1072, 'sha256': '5ee96b39f3218402e5ead4f7d6991a9a36eef31aa7328e8e379f293706a49ded'}, 'validation/plans/om091.json': {'bytes': 885, 'sha256': '911ae92cbb79c79070a3430cfd3a086013c2bafcf20c1faf584332d4b447ff47'}, 'validation/plans/om092.json': {'bytes': 1066, 'sha256': 'c4b4df7408e1abd243c772f4b5e23842ccdb768fb24121f71d3b622a7ace7f40'}, 'validation/plans/om093.json': {'bytes': 1095, 'sha256': 'fc02352f366e2c5d329bb4ffa9bf179660c8268459ee102132dbfba22dad91e8'}, 'validation/plans/om094.json': {'bytes': 1016, 'sha256': '9487ca5c74d18a8efb9d78f3cd2cd1bd0453e18293cb5b89ca3d4cb96cf1c9d9'}, 'validation/plans/om095.json': {'bytes': 1000, 'sha256': 'c2be796f9920ee60594b098e19a99cb85c9be0691fb07d7afa38a94f5d881489'}, 'validation/plans/om096.json': {'bytes': 1038, 'sha256': '9d853dc62464cad4c4ecf5047a43a0434fcb36f04f8bc6daf2c722eda4eda185'}, 'validation/plans/om097.json': {'bytes': 1044, 'sha256': '3889ca4211c3f997fb512026c1b636161b8f26aa7ce6e0075cfc0ab08ba5fddb'}, 'validation/plans/om098.json': {'bytes': 1021, 'sha256': 'a1b27dc3cb922fb2be8010aafc72533b7a603a5abd0ff03ce762e4fbc3f6d566'}, 'validation/plans/om099.json': {'bytes': 1051, 'sha256': '4cb76d529825ed0e5058944cfbdaf389c9ddbde4ecb909337f1e5b2f12f439f8'}, 'validation/plans/om100.json': {'bytes': 1049, 'sha256': 'dd27aac8a5fc653d91450f77817969b8c17894d63ccfa84345f7d2060247a9a0'}, 'validation/plans/om101.json': {'bytes': 876, 'sha256': '15dcdddde5d13caa7d3b4d28d1eac86cab27dfd159f250cb66869821a5a046b5'}, 'validation/plans/om102.json': {'bytes': 872, 'sha256': '223650f56d0a1f34d70461a079590612316822844aded8c436d25b164c0de9c6'}, 'validation/plans/om103.json': {'bytes': 917, 'sha256': '85bcaa5778120361dcb306adaa7193fc2a0b4bc81f88ec31792ca9e068e7bcef'}, 'validation/plans/om104.json': {'bytes': 1038, 'sha256': '646f81eb3e98c481358ccad8b5d8ceb34518499cde9d2d9a526a246159442917'}, 'validation/plans/om105.json': {'bytes': 870, 'sha256': 'a8a3aa7b8bacf1d6c7ff28e75f9b8bf4b1e1230f393d11707a978bb87e1f0b39'}, 'validation/plans/om106.json': {'bytes': 1037, 'sha256': '7349f5f072557ad835ac6830b2b21b47038120cf596f059904c120cc63d80e76'}, 'validation/plans/om107.json': {'bytes': 1038, 'sha256': '65a4347ddb90313360094756d7660d08d2916b7ba6553d7266050188f454ec09'}, 'validation/plans/om108.json': {'bytes': 1050, 'sha256': '8ce2af5d9b8a16c4b48aa4c621afa78cebc33d816da37898f326ad8b545cd9d7'}, 'validation/plans/om109.json': {'bytes': 1056, 'sha256': '3a1114e77470ea6464afcb7816508839c0a9eb17fdf107719d332d8be86736f9'}, 'validation/plans/om110.json': {'bytes': 880, 'sha256': 'e7fa83f0d19babb5602191b01fbf5b1ff467dddd386ec1c023ce22d0cbe4949c'}, 'validation/plans/om111.json': {'bytes': 869, 'sha256': 'ee140e49986702a6b4e74edce82b6eb1367365051732be81b580781969c99b2c'}, 'validation/plans/om112.json': {'bytes': 871, 'sha256': '29e31fc54c8bb48e16786d15640e918b0411f298d8616a9656b2b832140446b3'}, 'validation/plans/om113.json': {'bytes': 861, 'sha256': '8b4101f1eb9461a95e604da9aa95877b0557d7ecb271cdd7c5299f2273f2fef7'}, 'validation/plans/om114.json': {'bytes': 876, 'sha256': 'b8935b7fb98d4468e202f6ac1d0c169a7ebc0d4ec306941ddaeddd61f90300ce'}, 'validation/plans/om115.json': {'bytes': 881, 'sha256': 'b6b4602e5574dae7afdf2323d85cec58b39c50411dc29bdd2d82cf60f8d0a4e6'}, 'validation/plans/om116.json': {'bytes': 927, 'sha256': 'b57c48fbf4752b588f4bc435903cf3a4d17373bf6ab6746e4732723b7d718360'}, 'validation/plans/om117.json': {'bytes': 853, 'sha256': '61eeff36b472a7ec584ef53b4a9d5d139948ab94838293befdc3e315c3c05a2e'}, 'validation/plans/om118.json': {'bytes': 869, 'sha256': '4441da329c01bd3e0e129cc9d16e7075d9c13d5148bf19d9200aec3a493a1f6f'}, 'validation/plans/om119.json': {'bytes': 994, 'sha256': '8617a0d84cfb9bdefc3c033cccbfb08918259f285fcc0306223635e6849426d0'}, 'validation/plans/om120.json': {'bytes': 997, 'sha256': '0862aad5bd924a1966c4eacf5085cac44fdb5676d08587833ecbfc536e71d9a3'}, 'validation/plans/om121.json': {'bytes': 867, 'sha256': '372e32848c999292ab3f8eeb226165224f17a969fa9ae5d182c7255f08a5bed5'}, 'validation/plans/om122.json': {'bytes': 874, 'sha256': 'ad6086b6ef2ac2a27367fe40afbe6c5d6056f8dd7154c4c175560ec8246440e7'}, 'validation/plans/om123.json': {'bytes': 868, 'sha256': '8b8625178d38a8d8315529b4281c5d963f04a2c1e79423e965701e72f6ff3890'}, 'validation/plans/om124.json': {'bytes': 877, 'sha256': 'a5d34c50a2a7dbb3e003a090e4621a2eee022013a283153538729c052b2466c5'}, 'validation/plans/om125.json': {'bytes': 875, 'sha256': '9fa7c5f3e4034822cd6094559f3309298c61c07df3c9f15966c4d0c657058918'}, 'validation/plans/om126.json': {'bytes': 884, 'sha256': '519bb45e56dc950b5db89cd8833323a0c7976c5cc61e60293b1cd6fc67567414'}, 'validation/plans/om127.json': {'bytes': 919, 'sha256': '6d1af417708234a384f294e8be35cd68618606c9c878b95138ea81856418666b'}, 'validation/plans/om128.json': {'bytes': 920, 'sha256': '62ffabc2f535872ad11810ea358bc6cf43517fe31a7f92d0d71f02a2e66dce8b'}, 'validation/plans/om129.json': {'bytes': 888, 'sha256': 'f0dedef37ed04d7a18f1cce1dfdc99c7309f210275150279c43df5c8a05f16ee'}, 'validation/plans/om130.json': {'bytes': 881, 'sha256': '06934927a783a34c06a425ecedf4325cbb05356be51489baeaeb49d0a2d59db6'}, 'validation/plans/om131.json': {'bytes': 864, 'sha256': '40cd0c0a40b479f6072f2fce48135dc1a21b2bfd2763c509a2ff983ad0d8e264'}, 'validation/plans/om132.json': {'bytes': 873, 'sha256': '2ef1780eac91fe9ea04ccce6fb0ad2578a384eb4e1c0e8823ec6a000de62da4f'}, 'validation/plans/om133.json': {'bytes': 885, 'sha256': 'b5008dae6175492dfcce4e6347de4f265fa2033452b268ad06734193e66b35e7'}, 'validation/plans/om134.json': {'bytes': 887, 'sha256': 'c854e57815c2108fd5f521181d0eaef81aa87c9cdcfd6471e915b2a1b1a8649e'}, 'validation/plans/om135.json': {'bytes': 1065, 'sha256': 'de27a8bd84f3dddfa0062a479482955c88e907413eff14d6f4fc13be784a05b8'}, 'validation/plans/om136.json': {'bytes': 1020, 'sha256': '3781bf706ef8c27a17088ca6882c5e2e33657b096e0f5d0e3ab0b8bf6728f9b3'}, 'validation/plans/om137.json': {'bytes': 1011, 'sha256': '65fd384084b0a3e164c828c7bbb13acfd57149305cb306ef2dbfd37425bb703f'}, 'validation/plans/om138.json': {'bytes': 1022, 'sha256': '9a65591a33ea39279f90871e5e667ba3093ebe845b4787dc6694f9c35b9ddce9'}, 'validation/plans/om139.json': {'bytes': 1004, 'sha256': 'e68706fe80409d56af57777903e12f65b103864a08f87302c71d17015bc08de1'}, 'validation/plans/om140.json': {'bytes': 1022, 'sha256': '9dea20de7b7e8664dba5042319619d9143dc7723ab987bfe9719f98c3399a44f'}, 'validation/plans/om141.json': {'bytes': 1011, 'sha256': 'f440ab4799937cbb5b39ed62116f1180e8b8a8f6c06a9124007909afe1fdd32a'}, 'validation/plans/om142.json': {'bytes': 1137, 'sha256': '84df52dac390aade500efce0fad0c7f17e376aac35fd70e75589e93eed91b034'}, 'validation/plans/om143.json': {'bytes': 829, 'sha256': '85612a8790cceb6ddbd060d71d9e9a4d6a832abba32a05e706c5f6daab3ab8ab'}, 'validation/plans/om144.json': {'bytes': 1003, 'sha256': 'fed12d41e0becbdec04dc8d2f113d146e754bfe7c67415a9adb4b0e2199d6d12'}, 'validation/plans/om145.json': {'bytes': 842, 'sha256': '0e6fae6a79ee8165e73bce43303b20d8fae6ecbcdbb0ad9148d3200f8a00f3e3'}, 'validation/plans/om146.json': {'bytes': 1008, 'sha256': '15aeb8ccbe1722b5be51c54d8cf0bab6ec7ba8609e4ba3d5cae631eb5675cb32'}, 'validation/plans/om147.json': {'bytes': 891, 'sha256': '73526a72680e91af5f774221850445c703230e01ef89fa5492d2bf81ff90c64f'}, 'validation/plans/om148.json': {'bytes': 824, 'sha256': '9b427e90ea1705aadfe6295f06bb49b66b3a23180974d1d05726931c34063af8'}, 'validation/plans/om149.json': {'bytes': 919, 'sha256': 'e218b62b961afa75c3ed32c2c361e35d8207abc33bd0c75eda4cba1295968e79'}, 'validation/plans/om150.json': {'bytes': 1051, 'sha256': 'a50b31e96a560862a96a36c3250ca6b3cb13b0ce6db25ab25073135ba72f4564'}, 'validation/report.schema.json': {'bytes': 1388, 'sha256': '240242032bf2b4b012e2cc71da883ff915fa5403aa1ec5324465eeaaa056fdb7'}}, 'tree_sha256': 'af38fe8f2644d7d8aaf2d8ea6eda3bc9618fa8a159a117d4fc1109973ae719bc', 'embedded_code_lines': 28818}
+MANIFEST = {'format': 'omega-source-tree-1', 'files': {'.github/workflows/tests.yml': {'bytes': 3007, 'sha256': 'bb09fb4278346ccb4bba21aba37c38ee6f197f378cea0b5dcc268d0f9186fc6a'}, 'MANIFEST.in': {'bytes': 626, 'sha256': 'f0390483b025c37e32b1a9ea52c56196c2024705945799a83ac3517e6b83c134'}, 'README.md': {'bytes': 9861, 'sha256': 'cab152646d25c651f0267e109ef440088a12dda44674edce1c55268892d047dd'}, 'docs/API_3_0.md': {'bytes': 15268, 'sha256': '32df48b8446ea31a06cf2d9ca39d4f2d69ad314cd39d17b31638d35d8adb8620'}, 'docs/ARQUIVO_UNICO.md': {'bytes': 3677, 'sha256': '4cfbbf8da9499b0a4030b3acd7b218762407d396da50212ec0f6b186b3371f41'}, 'docs/AUTO_HOSPEDAGEM.md': {'bytes': 3372, 'sha256': 'fe8b5222c4f0b9ac06c7c240d533a7d77070e892527531d4f3e8f1b8200c20f6'}, 'docs/CAMINHO_C.md': {'bytes': 10459, 'sha256': 'e530c4a2bd67f08515550bebc9b92cc6037645c32d90eaace4965c1ac3c2cdeb'}, 'docs/DIMENSOES_3_0.md': {'bytes': 2170, 'sha256': '43d019b58db605e83c1734cc7c61280829dfa4bbb1bdf8d61bba60b00abce1b9'}, 'docs/ESTADO_DOS_TRES_PASSOS.md': {'bytes': 4765, 'sha256': '9f8fdc5aed62d5122a3aec9ff7b706a136cdf17fa18a33780803416b28460fed'}, 'docs/EXTERNAL_REVIEW.md': {'bytes': 1118, 'sha256': '3ae280c7ee0680b6cecb75573c781a342d00ce80e0402f3149faed862ba6a6fe'}, 'docs/FLUXOS_CERTIFICADOS.md': {'bytes': 10300, 'sha256': '6ce3cc49607721c4e905119b4ac26eece9557218181b67fcfb9d005f19473831'}, 'docs/FUNDACAO_3_0.md': {'bytes': 10614, 'sha256': '9eaef3ff2b09ec2bd90c48160136b879e652aaea3ec51be37b3b6e4a1d19f99a'}, 'docs/GENERICS_EM_DESENVOLVIMENTO.md': {'bytes': 2341, 'sha256': 'b84fb43da964b17f1b5ea7f614d0765674f21ed513fff203eee8f9b74da4c9bb'}, 'docs/INTEGRACAO_NEXTORCH.md': {'bytes': 6509, 'sha256': '7942c36db444fc1143a8cc68c226dd4981614aecb27c6b6c5f94d5dc289efa71'}, 'docs/IR_CANONICA_3_0.md': {'bytes': 3111, 'sha256': '3092ad76311fb96e92307b71fd512d8e884e33354cf99f377e1197fb97399bf0'}, 'docs/MODULOS_3_0.md': {'bytes': 4221, 'sha256': '254c8906d3b382d553920f12dd7d39b5e04e2443224159557ea1a2bf071ee035'}, 'docs/NATIVO_E_LEAN.md': {'bytes': 3653, 'sha256': '18d9024bcbdda44298367e85987c821f49f35ec2827421618f39c8db7a9e5b82'}, 'docs/NEXTORCH_PROVENANCE.md': {'bytes': 707, 'sha256': '28b7a6ee7d10b3bec0714071636d3bce2c675c0daf002c3701de0a60cd6d8e04'}, 'docs/NEXTORCH_UPSTREAM.md': {'bytes': 7629, 'sha256': '7d7165a7cf6dd073815c9ffcb35ee7b800be6db695ddf2ff0c429cbb1e1e0978'}, 'docs/RESULTADOS_3_0.md': {'bytes': 4172, 'sha256': 'b7581b0690f7a8e70433375838d2fa972319bd5745c27b762c7a84d05a55dec8'}, 'docs/SINTAXE_E_SEMANTICA.md': {'bytes': 7473, 'sha256': '8ebc6d1cd527aa2ccaccf77c7d421fe7034e99daf08c029e37d18ca210e02e32'}, 'docs/SINTESE_NATIVA_3_0.md': {'bytes': 5761, 'sha256': '1ddbffcf002107bc6a988f1c54e521291b771669b2a69f9180b2dd8f72f4d9c3'}, 'docs/SSA_3_0.md': {'bytes': 2484, 'sha256': '49a6ad8d225203437b83fce40851d42cab6aab3e623d662de1f7b43fd7e5d84c'}, 'docs/THREAT_MODEL_AGENT.md': {'bytes': 5071, 'sha256': '23a41fc16e679da44d2be43cd53c1ae47af9aa6c65f8fee64f482695acbce3e9'}, 'docs/TIPAGEM_3_0.md': {'bytes': 6039, 'sha256': '95f8677f4a79939f155b537df32caa3ed6553623914221476a3e9d2e4a1bdc60'}, 'docs/TRANSFORMER_CERTIFICADO.md': {'bytes': 12484, 'sha256': 'f3839c4b4e2f95d7c723f0468318889ccbb24d4782a0d87a457193b086de32bb'}, 'docs/VALIDACAO_1_4.md': {'bytes': 2434, 'sha256': 'a548451c3155961b662efa64b3d1217faf4a70eb0ea3f335447a5492fd5da9d8'}, 'docs/VALIDACAO_2_0.md': {'bytes': 3189, 'sha256': '3d9468e97d1405de58f8ddbbdd920a4e514cfb03b11ec57ce53c97ff28199c88'}, 'exemplos/FatosOmega.lean': {'bytes': 1614, 'sha256': 'd690782c843e9403cbb55a585bb1b32fe2e31140ce3994d0f6e11d3cdb8cb605'}, 'exemplos/certificados_matriciais.json': {'bytes': 43797, 'sha256': 'a1ec2a1338caaca9271c242087b1a60b1995af405b3abdee8144ebfa20b132d0'}, 'exemplos/certificados_tensor.json': {'bytes': 26857, 'sha256': '284fa2269e48c9014fe16dcc450d276e65f6b81e5bdee097ac4a437c197a7f0d'}, 'exemplos/certificados_v1.json': {'bytes': 37233, 'sha256': '87ec9b30b6d04fb2d3582bf383f2103d512f4a5de047c363480f5a6d0e68a5cc'}, 'exemplos/dimensoes_invalidas.omega': {'bytes': 170, 'sha256': 'f545aa1b687aec156394efc4dc81e6d679000735ab3e9f72c1715dd6f5febdc7'}, 'exemplos/erro_de_tipo.omega': {'bytes': 175, 'sha256': 'f7a7d11dcf43aca43827eba345a69e7370161747a5d34ebb69d8d9f7fc342c44'}, 'exemplos/evolucao_aberta/cadeia_aberta.json': {'bytes': 36564, 'sha256': '32f1c83a49e6814ca8808f1222208be90c2090e52560a275664ed61bb70d2346'}, 'exemplos/evolucao_aberta/politica_0.omega': {'bytes': 212, 'sha256': 'df8325c0f4daa353c4c9f562180f40b406c7bafd40f4c1c2272fc70df787b682'}, 'exemplos/evolucao_aberta/politica_1.omega': {'bytes': 212, 'sha256': '97c9077f7361c0af1f32713d99fdaf606f581a0e2e2a2d651e6b4411d7ac1f54'}, 'exemplos/evolucao_aberta/politica_ativa.omega': {'bytes': 212, 'sha256': '97c9077f7361c0af1f32713d99fdaf606f581a0e2e2a2d651e6b4411d7ac1f54'}, 'exemplos/evolucao_aberta_cli/cadeia_aberta.json': {'bytes': 36564, 'sha256': '32f1c83a49e6814ca8808f1222208be90c2090e52560a275664ed61bb70d2346'}, 'exemplos/evolucao_aberta_cli/politica_0.omega': {'bytes': 212, 'sha256': 'df8325c0f4daa353c4c9f562180f40b406c7bafd40f4c1c2272fc70df787b682'}, 'exemplos/evolucao_aberta_cli/politica_1.omega': {'bytes': 212, 'sha256': '97c9077f7361c0af1f32713d99fdaf606f581a0e2e2a2d651e6b4411d7ac1f54'}, 'exemplos/evolucao_aberta_cli/politica_ativa.omega': {'bytes': 212, 'sha256': '97c9077f7361c0af1f32713d99fdaf606f581a0e2e2a2d651e6b4411d7ac1f54'}, 'exemplos/evolucao_xor/cadeia_provada.json': {'bytes': 2510, 'sha256': 'cc44ecf2433ec7c47991192c43a903d782e484beb3d0c90bd6b956931f863c81'}, 'exemplos/evolucao_xor/geracao_0.omega': {'bytes': 333, 'sha256': '7f7852321df9d559cab160d4ee8967c787d3288dba89e83e8e8c1ea8544c1255'}, 'exemplos/evolucao_xor/geracao_1.omega': {'bytes': 334, 'sha256': '7c0fbbc9b8a4402a898c0b0159d0e6c30f82c6e834f58f9bff635d79614686e8'}, 'exemplos/evolucao_xor/geracao_2.omega': {'bytes': 334, 'sha256': '9b339367766e416f1d7477bc4947b14fc22a5da3e871edda0b825b98b2a42a99'}, 'exemplos/evolucao_xor/obrigacoes_lean.lean': {'bytes': 804, 'sha256': '9c935b8c1ef64f716cef0ab2daab3860b805a6c32c1dfce845df3580b000d788'}, 'exemplos/evolucao_xor/programa_sucessor.omega': {'bytes': 334, 'sha256': '9b339367766e416f1d7477bc4947b14fc22a5da3e871edda0b825b98b2a42a99'}, 'exemplos/evolucao_xor/prova_auto_otimizacao.json': {'bytes': 9217, 'sha256': 'c7314a078a1c2778e66d1db3dcd5a792438a051b5ad6d5db214439c75ca5b616'}, 'exemplos/metaevolucao/certificado_meta.json': {'bytes': 2281, 'sha256': '48a9ad65bb0c2d8ee4a1b470031d1de8e326c45fa0a3c8fbfbc51fe569aca3b4'}, 'exemplos/metaevolucao/politica_0.omega': {'bytes': 300, 'sha256': '1966de2dbe1cb2a6637ba5c444706f4848b333c1de31b02ff4d3722265825987'}, 'exemplos/metaevolucao/politica_1.omega': {'bytes': 300, 'sha256': 'f3b40e8ce09384a0e0d52a959f16704d0d79ebede7801376b361a42d66c38628'}, 'exemplos/metaevolucao/politica_2.omega': {'bytes': 301, 'sha256': 'a80694b8ed951ffb02d6a4b250597b36708073be5b313bfbc4be5dd9870c00b1'}, 'exemplos/metaevolucao/politica_ativa.omega': {'bytes': 301, 'sha256': 'a80694b8ed951ffb02d6a4b250597b36708073be5b313bfbc4be5dd9870c00b1'}, 'exemplos/nextorch/iris_workflow.py': {'bytes': 2436, 'sha256': '1993543bd6de725b3429ce6c0b06bb4fbeafd95e01c681481d61882d208b9b0c'}, 'exemplos/nextorch/render_gallery.py': {'bytes': 2381, 'sha256': 'ecf778950bf9ffa0b218b12d5ae0474012977e7fa8da07460b781fa0020e1f09'}, 'exemplos/nextorch/transitivity.json': {'bytes': 65, 'sha256': 'd836ff49e415b8632696746d2d31a81cd084911d2328194597d1597fdaad8857'}, 'exemplos/otimizacao_ir.omega': {'bytes': 278, 'sha256': 'c3ed5c1d6b6ee7f76cf143ed6e953bdd2f1d19926e348785130e4a69a74e99ae'}, 'exemplos/parametros_matriciais.omega': {'bytes': 479, 'sha256': '4d296c053e304864b2b53410773377a2db01000eac0e5a028525599bbe1f7e4d'}, 'exemplos/passo_recusado.omega': {'bytes': 138, 'sha256': '4607927630183418f361c302357d873a72d77d9924c66a7d73abbd9dff3ae609'}, 'exemplos/path_c/cooling-action.json': {'bytes': 96, 'sha256': 'fdb1d9417e0e563d53f8f915863db98355e16657a7bcd9c3d1eae13bc843f280'}, 'exemplos/path_c/cooling-policy.json': {'bytes': 307, 'sha256': 'c5842e83b469abcc1ed8cba4c9bc9af8371dbfef15708f88bc90de19d115d452'}, 'exemplos/path_c/cooling-state.json': {'bytes': 47, 'sha256': '9984e5246b8bd65301cac13e58665ef08951c8c7dca547fbc0dcaca7e5f020d9'}, 'exemplos/path_c/increment.json': {'bytes': 214, 'sha256': '6fed8cd457af2b096aff5e115630a1046827d6b2f4fb7099de02a2b183d27693'}, 'exemplos/path_c/probability.omega': {'bytes': 230, 'sha256': '15fd44cd2f77dd36e15977b377d08d2a861f53929c8b5c783eb7645130798d98'}, 'exemplos/primeiro_programa.omega': {'bytes': 666, 'sha256': 'b56626c4e496432073b430720d7672de50e14c70ca1f365efb280c6f4320cbaf'}, 'exemplos/procedural/soma.omega': {'bytes': 227, 'sha256': '8366dde9016e7e6fc7e7d56e942b7a3fffe880f6a571a30cd0c29018f2565be0'}, 'exemplos/produto_matrizes.omega': {'bytes': 187, 'sha256': '356b7eb864a432eaa4304d48ab059f92d966a1a4c1c8de884a70791faca85410'}, 'exemplos/prova_falsa.omega': {'bytes': 87, 'sha256': '2331e6d8d9d81bb3f72f3cb9554da504e4d66a782cc4c402a2799ee1e6812109'}, 'exemplos/prova_otimizacao_v1.json': {'bytes': 6191, 'sha256': 'f6d96323751ebe3a1ace9f976ff13dd204d621c374acaaf3b7228611e295780b'}, 'exemplos/prova_tensorial.omega': {'bytes': 192, 'sha256': '69f1cd8a20ec9f3885b78b6a137ec3d8e2beac1316614ae41430b0d3629980d8'}, 'exemplos/rede_profunda.omega': {'bytes': 542, 'sha256': '0bb7f60aa56cce7d07927f7b4093111b0e3c7541afe446940202217dc6275a51'}, 'exemplos/sintaxe_inglesa.omega': {'bytes': 223, 'sha256': '18dfad728e99044ecb36bc0806535983e737665e358d18793cdb93cecae0dd0a'}, 'exemplos/sintese_racional.json': {'bytes': 281, 'sha256': '62f44ffc9dfab47b9f514559d8bbb038bc98d318327f8f678ec226bbd8d2b36f'}, 'exemplos/tarefas_abertas.json': {'bytes': 420, 'sha256': '67582306f2ceb08cad56ebb4ce20204b9ab449b759c586a4d790b92bafb3776f'}, 'exemplos/tensores_gradientes.omega': {'bytes': 534, 'sha256': '6ca6631d180a425b80dbec7a30f5cfab3912d661f7a0851ac1a444e806ca7cb4'}, 'exemplos/tipos_e_teoremas.omega': {'bytes': 445, 'sha256': '484bd77bc5f68abb14ccd97e21de88c919cb3f1aa9ad7308329a006b3b04197d'}, 'formal/lean/Main.lean': {'bytes': 3122, 'sha256': '87aa1f764829f1e0dab66a838f1b491855e5fa51115418289b3fc5c562127750'}, 'formal/lean/lake-manifest.json': {'bytes': 117, 'sha256': '779dafe979697cc620f3a82cc5c98041e540501fb208472766fdb959ae31396c'}, 'formal/lean/lakefile.lean': {'bytes': 165, 'sha256': '3a29d46241d7e769792909c4eb50938d366cf8f51556e9c08bef0f81c47f5280'}, 'formal/lean/lean-toolchain': {'bytes': 25, 'sha256': '55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea'}, 'formal/tensor/Main.lean': {'bytes': 27298, 'sha256': 'f48d1fabd44e7a6a84e7f125c5a66dbd5e6d599656f9bd8f83ff504f90b354f5'}, 'formal/tensor/Omega.lean': {'bytes': 767, 'sha256': 'a7c6c92405ebed4ae36b1ed78e3690845f7a61ab9bacb3c7ca6f01bcda300367'}, 'formal/tensor/Omega/AutodiffCorrectness.lean': {'bytes': 483, 'sha256': '4e05c7f3f4bb5a6f630f4d788f9bf4ea018de6683216cb892fb5d2ae22098bfa'}, 'formal/tensor/Omega/CModel.lean': {'bytes': 381, 'sha256': '1b126a842b528e563d17baf8d71570a0d7545969e4a43e056649762faeadc9c6'}, 'formal/tensor/Omega/CRefinement.lean': {'bytes': 394, 'sha256': 'da6049f219a3b58f359ce5fdd9418c52a0234c7243e9083b763764ba3a4200c1'}, 'formal/tensor/Omega/GMPContracts.lean': {'bytes': 629, 'sha256': '3fac54ba171749c0dc2980e6c6a24220751943fa125ca82a6096d66c0e73e00d'}, 'formal/tensor/Omega/Glass.lean': {'bytes': 461, 'sha256': '71e932ca5f4691081522963ca905bf06bd503f81cfafb5b55e366ddec772f344'}, 'formal/tensor/Omega/IRTransformations.lean': {'bytes': 507, 'sha256': '6d2396b70e21cc86f2fd69a9efd59b6cd1407fde806ffaf4a4a608c6d1f2fde3'}, 'formal/tensor/Omega/LinearMemory.lean': {'bytes': 464, 'sha256': '8f2a0f3dc8d7571bb0662aeb90288203ca1c543cc15b60f6a6644d519c8bbea0'}, 'formal/tensor/Omega/Lyapunov.lean': {'bytes': 636, 'sha256': 'c44f8dacaba09e6942ac8666e52653a0bb1fdb08ba494d82751f03f59bd1d5b2'}, 'formal/tensor/Omega/MCTSPruning.lean': {'bytes': 593, 'sha256': 'c2f8ec9bf7ae578f68913559c3c023b1a27337f3f4f2cafb3b32aa21cbb0b6e7'}, 'formal/tensor/Omega/MatrixProofs.lean': {'bytes': 510, 'sha256': 'ed938c0be1d75bc35ce199be5a44cd3dc75ba0269a61b8eaba74710927c05337'}, 'formal/tensor/Omega/Preservation.lean': {'bytes': 663, 'sha256': 'b9e48b2dfa1e1d6f40dd3daa19dd909e1bc4b346c0f7b87d418634982e414b91'}, 'formal/tensor/Omega/Progress.lean': {'bytes': 257, 'sha256': '1a9bd75403b2119686669e076e055b2d2a3813bc7e84fd242bbf2b12fc192f9e'}, 'formal/tensor/Omega/Refinement.lean': {'bytes': 914, 'sha256': '55e6b1ddb684fe5473356adebc20865fb47f24db609567184a0d582b25763873'}, 'formal/tensor/Omega/RuntimeContracts.lean': {'bytes': 539, 'sha256': '62a4205e44afbf362d7323580adbca39bddfc2306fc532fa8f0c0eb2282e16d0'}, 'formal/tensor/Omega/SafeEvolution.lean': {'bytes': 581, 'sha256': '336de40ee974a644ad66a1975e37165a1d581decb742e24e7413fa9be4003e5a'}, 'formal/tensor/Omega/Subgradients.lean': {'bytes': 454, 'sha256': '4982e293938031fb89d2c4bf5aba331cd5e9f3cc7df99702304a98f81a78a595'}, 'formal/tensor/Omega/TensorDenotation.lean': {'bytes': 304, 'sha256': '98ce7816099a25d86591e0ca497fc9603d758d16187d6e0f8265dd4ccfe657cc'}, 'formal/tensor/Omega/TensorOperational.lean': {'bytes': 1030, 'sha256': '9bb35fdfc09cac1b6a8c31d29384537b8cd3a4c4e0dd39945454cc232cf450dc'}, 'formal/tensor/Omega/Transcendental.lean': {'bytes': 4291, 'sha256': '76368a737b984bc941c5416cb3a2a6a3a1211c864d597a49bb951dc793e03024'}, 'formal/tensor/Omega/Types.lean': {'bytes': 892, 'sha256': 'd3de5a3e1355e489affcf5baea5288782f24459d3b3cc0fbf4afe0deaca2f4ac'}, 'formal/tensor/Omega/VerifiedRewrite.lean': {'bytes': 1012, 'sha256': '38fba21744af131a24ee5d5b23ceff4a54974c4f0adeac7af72186fd984758a7'}, 'formal/tensor/lake-manifest.json': {'bytes': 3142, 'sha256': '77606baf20079a8c0cc40f2e2849b6b65a7d68556866ef054684bb922ed52cec'}, 'formal/tensor/lakefile.lean': {'bytes': 458, 'sha256': 'aeeadc811279a3165515a93c4397790cc919696f7beb125b9ffe0a0a94a04b87'}, 'formal/tensor/lean-toolchain': {'bytes': 25, 'sha256': '55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea'}, 'hardware/qpu/README.md': {'bytes': 1615, 'sha256': '12ecd7d4ee09cb8d1c8dd6d9ce800735389f97e808064fd0705d3dd613b726b6'}, 'hardware/qpu/gcd_stein.sv': {'bytes': 755, 'sha256': '17f9416d240987bd38b9f3c281b08012e2db5957d195ba37d1671de383bc4ea6'}, 'hardware/qpu/rational_alu.sv': {'bytes': 1836, 'sha256': '9323c736503ece8ead6bfe0cd2e34cac81a568e19e6c09dfade5a0fd9594fdf2'}, 'hardware/qpu/stern_brocot.sv': {'bytes': 1871, 'sha256': '008a56aea5d6c2ad3a21997caba1c79acfa1c654fb09e05e10c77928db137b1c'}, 'nextorch/__init__.py': {'bytes': 614, 'sha256': 'ecc0567617586a870e75a47098ea23aff5df0d77ae8ed9ce15e754364a765e6e'}, 'nextorch/__main__.py': {'bytes': 3918, 'sha256': 'df2a483c748649ee40feb27116e2a46c13571e47bbae9c6a1104b81971a4195c'}, 'nextorch/config.py': {'bytes': 1419, 'sha256': 'b4d47308f5688e7cabba27147a6aae792a0de955024aa3733a638018f1e65e8a'}, 'nextorch/core/__init__.py': {'bytes': 127, 'sha256': '8b50771b198f5b74d9ca34f32608b1636ee9089f6fc6d65d6e369d8d1b6d4f22'}, 'nextorch/core/manifold.py': {'bytes': 2357, 'sha256': 'b05743ee3a31687b0907ae8a4ed9f1bcbaa3065c10c93e6dcf863e02df512561'}, 'nextorch/core/orange_bridge.py': {'bytes': 5424, 'sha256': '3042b79bbb95b80d4e868b4af18df9b2183b451803c7e93ecb52fdc77c17cd0e'}, 'nextorch/core/tensor.py': {'bytes': 724, 'sha256': 'b140f4f854909e32f5a79531eac7565474e559dd246ca4a697f052b663e92321'}, 'nextorch/engine/__init__.py': {'bytes': 183, 'sha256': '4a95748b1f4feed22460a816fbb8a64eaac388e1ed30be05515709c285a0d729'}, 'nextorch/engine/dynamic_depth.py': {'bytes': 728, 'sha256': '301368a55ef0e9d43f660632e1aa6cff6df9ab2a08677cc868b5b23c29f39ea0'}, 'nextorch/engine/latent_ttc.py': {'bytes': 7336, 'sha256': '19f3bcd1a0620d937ee00d888d30b739cc8c7931b83714738e15742d184b0dcc'}, 'nextorch/evolution/__init__.py': {'bytes': 282, 'sha256': 'ab6c10ecf8ddae1f6c1cd429bdc29c6321c9da07df8355d1648260f81ee488b2'}, 'nextorch/evolution/loop.py': {'bytes': 8919, 'sha256': 'ff2cd39840b2b4fac9d9fd5d486f828a08a9c8dc8b9dd221b73512e1866ef6dd'}, 'nextorch/evolution/net2net.py': {'bytes': 3497, 'sha256': 'aebdff30775eaa506917a993afd5f89c24adb3a26bc969b50c695066888a454b'}, 'nextorch/evolution/replay_buffer.py': {'bytes': 3496, 'sha256': '0a644ec169e16947f94288ef0dbe3f96531815d013465bca6ede4a5697c12b35'}, 'nextorch/formal/__init__.py': {'bytes': 350, 'sha256': 'edf52f617a9376d2fab7f34a597db44e14cb30e3ed0af410169e9fa769ddf501'}, 'nextorch/formal/barrier.py': {'bytes': 2785, 'sha256': '78032e943644d86ab30aaab4b8bb5bd437ddd254f269a892c45c945e4baad3c4'}, 'nextorch/formal/lean_bridge.py': {'bytes': 4944, 'sha256': '75d65df2411f131a5aabd11f15c15366c354ceb30a12e29b251da2418e108957'}, 'nextorch/formal/z3_gateway.py': {'bytes': 2719, 'sha256': '8c12f94707cb2865117da7ff57cc437ef9573ee5f506ab5883beb1a5778d92a4'}, 'nextorch/interpretability/__init__.py': {'bytes': 220, 'sha256': '08f998b88d8b282a83827f91a6d9d5aef41e2a314ed7b004f4650e65499f2b56'}, 'nextorch/interpretability/pid_sparsity.py': {'bytes': 1539, 'sha256': '3cee1d4fbf2281db155ddd786fa7cf2bfe7879c9e75e6eaed7871ce4c2f75fbc'}, 'nextorch/interpretability/sae.py': {'bytes': 2714, 'sha256': '1ca20bb224b2e0062a63241052d118a1fa1f5aa3066b18f7ca8e36cb736242e3'}, 'nextorch/interpretability/vocabulary.py': {'bytes': 1274, 'sha256': 'cfb375b0821fb0cf05c706430ff7c6e92ffd9df7221401de7f820bf682280233'}, 'nextorch/model.py': {'bytes': 7092, 'sha256': '321f40d06ee728f86953bad228567c4eee17b3c034e61ec00d8af2d6465369c8'}, 'nextorch/orange/OWFormalLoopMonitor.py': {'bytes': 7853, 'sha256': '390bc56ea93b0869a6a17ce234f98ac05cd1f86d5c836ed59cd1a891cb392594'}, 'nextorch/orange/OWLatentInspector.py': {'bytes': 5744, 'sha256': '78484a11e0d77ebbc235c11d2898ce792d9ca0518d6e532dcbea09ac316ab252'}, 'nextorch/orange/OWNextorchSynthesizer.py': {'bytes': 4227, 'sha256': '50015432356db651747bb6af428aebee9d80d9ef14fa8df4862598f8ffd4efad'}, 'nextorch/orange/__init__.py': {'bytes': 260, 'sha256': '3e00dd4c4f7dbe3e527c58e319a31921cdc9cd7dee72ca34805f9127d90a85d3'}, 'nextorch/orange/icons/formal.svg': {'bytes': 270, 'sha256': '640a6ce25f4362c1cba5da88af1967c82712380ac40aaf8e2cee988f1a75fd76'}, 'nextorch/orange/icons/inspector.svg': {'bytes': 262, 'sha256': 'b149b6dab8ba60bcb802a120153fd55108da1122d7a513e4f2004c367b3d9d05'}, 'nextorch/orange/icons/nextorch.svg': {'bytes': 343, 'sha256': 'e3f89a5a32c46582fac58930771732b482ad48c0ec8e5e9c1d6020874d6eee12'}, 'nextorch/orange/icons/synthesizer.svg': {'bytes': 343, 'sha256': 'e3f89a5a32c46582fac58930771732b482ad48c0ec8e5e9c1d6020874d6eee12'}, 'nextorch/synthesis/__init__.py': {'bytes': 291, 'sha256': 'ee37356da58b2b8a580ff266d99d9c5d3f8f416d1a3eff126646cceced5c4d81'}, 'nextorch/synthesis/gflownet.py': {'bytes': 5025, 'sha256': '1d7860f0a44bd4ecd110a0e1b6be3213fa8f2467c214558bc123206fdad84cd6'}, 'nextorch/synthesis/jit_compiler.py': {'bytes': 1550, 'sha256': 'bd1a8a542170199cc2f0a66f54fbabf9a555694bbc5c502ccba7c57718a5cb5c'}, 'nextorch/synthesis/space.py': {'bytes': 4501, 'sha256': 'ccc9bf0732521d1316a328e1b65399c7647b6c72a764e21911c47124774c83b3'}, 'nextorch/synthesis/triton_kernels.py': {'bytes': 1297, 'sha256': 'fff7cb4df20287ac1c990448a604fb724f8b3b0ed66432a10de93cfe80a9bf67'}, 'nextorch/verifier/__init__.py': {'bytes': 270, 'sha256': '69ad5f209505cba107200c037e23ac054025641f1f719613fe0fa8cdb48fe7f2'}, 'nextorch/verifier/curvature.py': {'bytes': 2142, 'sha256': 'ebac685f3ccf6ec868e032e511f90219e1a2ecb7322eb3e9160fd9d4257f0d0e'}, 'nextorch/verifier/mup.py': {'bytes': 1551, 'sha256': '629dae5584d1fc39832ca946dfcef2c21d8f24af657aae11707bba066a76aff0'}, 'nextorch/verifier/zerocost.py': {'bytes': 3435, 'sha256': '2cdd8fed55312698d094814eb66452ece81f85272fc3b92bc6cb8de77d16a339'}, 'omega/__init__.py': {'bytes': 194, 'sha256': 'e0567f242669943cc4307bc769d08c8b0a332c6c2f52d9240fb4413887fc94df'}, 'omega/__main__.py': {'bytes': 89, 'sha256': 'da73e592b6a145b80b1eeee3962583233ebefdc2e0eb12801fe516bc72b976eb'}, 'omega/algebra.py': {'bytes': 5473, 'sha256': '77733f75733d78b844f9a3e971c7c43781a05e45c9489cc8d4857accfea23fb6'}, 'omega/autodiff.py': {'bytes': 3528, 'sha256': '7a2f46b256e4f126aacdb28fa05a6b481f036b831f16d47d133a887592517fc1'}, 'omega/autodiff_tensor.py': {'bytes': 7924, 'sha256': 'de139de24c95d904b686cd74aadb693491c6af49fc3b29cca36f341784341398'}, 'omega/certified_graph.py': {'bytes': 10642, 'sha256': '6400f2405d36bee164de260c811610d2ba3b0400dd6cc0f92df8e3f19320e686'}, 'omega/certified_proof.py': {'bytes': 2184, 'sha256': '175d9ad55360f748768c94845106128c1e95eba449a0d9e76b3523569e314257'}, 'omega/certify.py': {'bytes': 4079, 'sha256': '98e11fb6e3129be90c4f0ebf119f28663bb75e4cba7987c0072d8599489372fa'}, 'omega/cli.py': {'bytes': 15408, 'sha256': '8eadc6ed3b9ae9d9e43ec8dd5ee202d142c566fecd78e7440c4b4247a83394f3'}, 'omega/debugger.py': {'bytes': 925, 'sha256': 'd7c5f7d4b0ccc89c16158509d827dbeee1beee591f1a716638d34e9a17b0b093'}, 'omega/dimensions.py': {'bytes': 8830, 'sha256': '2400fc20604b17e1e0f9304e2eddadbdc6a40451edc50f31aa47d3ac84839e1f'}, 'omega/edge.py': {'bytes': 3992, 'sha256': '8efd84677fa841d63eef8bc217cd0a48d0cc63e061547abed0f10766245c7631'}, 'omega/equivalence.py': {'bytes': 1037, 'sha256': 'ac3c0f7ca330624235742c7bfd4d3d0d519bee8ed1e1701b22deb10117fd425f'}, 'omega/evolucao.py': {'bytes': 8041, 'sha256': 'ccf261f55566442700a88a4afb0b14bafff4f30bdaa0d70bc5b3fb496325037d'}, 'omega/execucao.py': {'bytes': 18094, 'sha256': 'f9d338d8b11260fdc41f7e15ce860aee607c42c9c0298d07345c8d2984faf2ca'}, 'omega/exportar_lean.py': {'bytes': 2203, 'sha256': '4985b85645eda1dcbcffca8630bc477ddda0b0c375ae19f63cee7cd1bfa0c974'}, 'omega/generics.py': {'bytes': 20764, 'sha256': '4ca63011dc75ed964058a5d52fe4ad215d9a51788ec023ce66d83395f0fcecea'}, 'omega/meta_programa.py': {'bytes': 812, 'sha256': '50f2291b5249c2711bba22eff95b5522765a7db417f37b376528fe414edd8f42'}, 'omega/metaevolucao.py': {'bytes': 6272, 'sha256': '1e764393f7f3827776096ab9fd06a1318f4035366777957f03c7f06d23a1da88'}, 'omega/modules.py': {'bytes': 11606, 'sha256': '0f2a40fc35c1079537faedf367737aa165e28f7922290e045c5574d800a155bb'}, 'omega/monolith_components.py': {'bytes': 7792, 'sha256': '2b7ea4480b06d849ce970a112eb4ce28cf947ff73cafd1095c611f7b8aee1a52'}, 'omega/motor_v1.py': {'bytes': 20989, 'sha256': '97e63fdc439f13570cc7888f8d2139a4bbf16fcc9dd6eee6e1d1f9014740ec8c'}, 'omega/nucleo.py': {'bytes': 8026, 'sha256': 'b5e11e65f305622cdb251082140f6eb54b7a2d5e0bb672a523ae86c29c508896'}, 'omega/nucleo_evolucao.py': {'bytes': 4864, 'sha256': 'eb07d2a6b85b75dcb1b35c765916409dfd12e080c1e90592e8a57fdc1886c183'}, 'omega/nucleo_meta.py': {'bytes': 4181, 'sha256': 'ba6f24a0d90331785d7a15456508022462aff160d3d499a4abe2f2ac4118c4a1'}, 'omega/nucleo_parametros.py': {'bytes': 3148, 'sha256': '53d31efcb7a4a4e77d28fe765c7699998ab545295a7371bc44da38d0e6fec127'}, 'omega/nucleo_tensor.py': {'bytes': 5867, 'sha256': '6a0dae00210250892b51822aa3c9ce232330c643a87a2f38cbc0dd5126beb6ec'}, 'omega/nucleo_v1.py': {'bytes': 15164, 'sha256': 'dd343e94ce33b21c45e129483529c40d0ae7f5281b8f6f5400e49105d5ec0a23'}, 'omega/otimizador_v1.py': {'bytes': 5064, 'sha256': 'c426c169dccf8a201b26da347e1c21b6d6971a4cc2d98ea441464af84f511b28'}, 'omega/package_lock.py': {'bytes': 1964, 'sha256': '99941c08bb89dec88cb9f77eda777588ccc8dc6e9fcf440b66f8eed5290963aa'}, 'omega/packages.py': {'bytes': 1270, 'sha256': '4b92b718e55687aa92d85431a7862eae37f4f4b28920a5c7fef1fd4b2885efb2'}, 'omega/parametros_tensor.py': {'bytes': 1563, 'sha256': 'd22037e2532c9b65d823b83202f9c70ff241d67940b7cb4a4311c0c7f2614b18'}, 'omega/pci.py': {'bytes': 8035, 'sha256': '9aaa264118add5514812752a1fe4e43d5fb91b084dcf616aa86d6553251591dd'}, 'omega/procedural_types.py': {'bytes': 25075, 'sha256': '94e4d0e5cf7ea9a8c9529e4986ab46aa07365818897e4ad0d59d57c8a1f8bd91'}, 'omega/profiler.py': {'bytes': 912, 'sha256': '1fbe759994fbca52e64c59453280d9dc97d03fbca7851ca87e874de0703493d9'}, 'omega/rational_pruning.py': {'bytes': 6942, 'sha256': '73c7f88390d4728ce1b9a6a3a776dfc11756c9fc86f8430c7368d11e63696c6e'}, 'omega/real_graph.py': {'bytes': 17226, 'sha256': 'a7a140fb584e7cf294e30ea94c8ca5c0a222270a4185e8b6576b0db936555b6f'}, 'omega/real_native.py': {'bytes': 8787, 'sha256': '6464b9f8feb2c87ab0beebc171db0c7fdad720fd246d552a8ea0f6fdb34f2c1d'}, 'omega/sequence_family.py': {'bytes': 4740, 'sha256': 'd296a5f5ddb27ba38d25e945e052ecb31ed3c5949fab047c7d1eda2fbb183175'}, 'omega/sintaxe.py': {'bytes': 14883, 'sha256': '5b63dbb717831f94ee09e8ff037e46ab3454a9b99ad95b96152be6e234dbee61'}, 'omega/ssa.py': {'bytes': 11428, 'sha256': 'f338443ba8b9bd25e429b81da809dc88bb46c58c9193456a59f44180999fb425'}, 'omega/stdlib.py': {'bytes': 2345, 'sha256': '1bd805cfa352f488534da00d2052c0662b6e14609f38637cb8828865d299e9f9'}, 'omega/tensores.py': {'bytes': 6447, 'sha256': '1bcbc2b17dbb3de5d94c4e3d46cc05ac8bd1106e828b34a4c663fc03071aa537'}, 'omega/tipos.py': {'bytes': 8181, 'sha256': '27b396437ee614096d2ed60c37f0ee80c47caa9b4d0b92cc8d010ea2f1966545'}, 'omega/trace.py': {'bytes': 1589, 'sha256': 'afd91b07712934d4f8fc899d747924c3d097fcb38b9dd39dee465ca01c021c23'}, 'omega/transcendental.py': {'bytes': 7202, 'sha256': 'fd286db8059fe2e1bc2ce482bc9c3ab6c5f994574d8bd5e2693e6e726de1e7a5'}, 'omega/transformer.py': {'bytes': 14981, 'sha256': '77162d37c777475bf34e5ca0aa96913a94edc376583265842fdf285414cdcd89'}, 'omega/transformer_certificate.py': {'bytes': 6132, 'sha256': 'b2c5dcd00d80ff922b3f2c09dbdfe560a98d6016c0d3c370f8a279260f7b4ad6'}, 'omega/typed_ir.py': {'bytes': 11158, 'sha256': '2a53b8bf992d57d1743cb0f5b01ae000f03d96e1860ae7883f2f1421ed945950'}, 'omega/typesystem.py': {'bytes': 10534, 'sha256': '174e796e9459ae87498df8de50065ba8ce28c816d0f98bd36e20e3c38a7db8b6'}, 'omega_agent/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_agent/__main__.py': {'bytes': 71, 'sha256': '66d802020b5637e771edcfe3ae4a060499697c4ae341dad3831bd5be79bb3033'}, 'omega_agent/calibration.py': {'bytes': 1123, 'sha256': 'f5de94ad820e2b9fc8aa215723b01b9355179508cd8bd00e231d9da7c49e36ea'}, 'omega_agent/cli.py': {'bytes': 3840, 'sha256': '73d28c6fd1c5761ac8b80a76f0622576ef5186ead24a7a4b4e9f4773a150ca23'}, 'omega_agent/compositional.py': {'bytes': 909, 'sha256': '9bdf526ed6aee19488e4ce8bd305d769854eef29d6cbdfddf60b324d641c66b4'}, 'omega_agent/consistency.py': {'bytes': 640, 'sha256': '5f8a5986ec4c4f45aab7b7885a53c2e3c3adcd8759bf409e0099cd01b8413f9c'}, 'omega_agent/constitutional.py': {'bytes': 4837, 'sha256': 'a40118ff9a35b55e412adf61e4e99160c0c63fa01589f172f048fbf1389e8626'}, 'omega_agent/domain_shift.py': {'bytes': 1306, 'sha256': '52d703c71a5a1eb4072f7f1b57fa1a86cc4f9b58c53f9099de4c5f2df1edf6d0'}, 'omega_agent/experiments.py': {'bytes': 760, 'sha256': '52c927ec420b68768a45116d0d6a7a7ad2d360e60b7ac8b1b529e1ee76cb61b8'}, 'omega_agent/hierarchical_planner.py': {'bytes': 1439, 'sha256': '8826cebb16abd9bbb5c72385da6c1fbc813ac18eca1ca10f5ea555269fafaba7'}, 'omega_agent/hypotheses.py': {'bytes': 1084, 'sha256': 'fd7b9c7d4512171116ec15e6c15d1250d98cd618b09c6382e1021ed039cea227'}, 'omega_agent/inference.py': {'bytes': 971, 'sha256': '0ec09985366587128de4eb1458f17dbd2d86589b40b759510805c52aa8c56716'}, 'omega_agent/integration.py': {'bytes': 2981, 'sha256': '236911bdfa5bddff7e6334d8db0b4fe204912ea39945bad2fac3226e80c9ca0e'}, 'omega_agent/inverse_distillation.py': {'bytes': 3524, 'sha256': 'f907db860acbc032f8ea55d6a868660ba01376427850fdb4b848bfcbd4877977'}, 'omega_agent/learned_heuristics.py': {'bytes': 1229, 'sha256': '7fce5f2190f4ff3c26e8f754cad610f1543493c67cd737df8c29a569e6cf3566'}, 'omega_agent/metacognition.py': {'bytes': 482, 'sha256': '4dcfc52d13414f981283cd61f8c0662e5a65475e2b46709800c2ebd380168763'}, 'omega_agent/neurosymbolic.py': {'bytes': 933, 'sha256': 'd5460f7e549541bdc78f4d775366698a21e597a7aa481c68d945a0c5cc1678cc'}, 'omega_agent/problem.py': {'bytes': 2244, 'sha256': 'f91ac9291cd410403ed69dda31fbedf0b58882a77a094714b966125e2e78be3f'}, 'omega_agent/reasoning_budget.py': {'bytes': 1214, 'sha256': '53de84a910b68a4d25e0b3329e3680037c243e9361aee73abdf0f2acdc793570'}, 'omega_agent/reasoning_state.py': {'bytes': 1245, 'sha256': '35c29dc99ecad0f5475556f196cf50769df022738300e0bfc089cc934f38dff1'}, 'omega_agent/runtime.py': {'bytes': 9823, 'sha256': '514d81672d9dc6801de30e8cdf44472ee7872ccfb384dcb2724d0a1238bc8e08'}, 'omega_agent/search.py': {'bytes': 2014, 'sha256': '9421cce1b708666e122fc0bb5f31aa1eed4a047640a8bd357db1eb4a28042daa'}, 'omega_agent_sandbox/__init__.py': {'bytes': 160, 'sha256': 'c1739241e39253c94fbdbfc4039f2ee8b2b2f9723c26652a8e8eec53ee3c2cab'}, 'omega_agent_sandbox/actions.py': {'bytes': 3996, 'sha256': '528e0563d46caf52c1e1e5135d57cebcffcb8e1f3ad97189f9e6a760e33ba1ee'}, 'omega_agent_sandbox/adapters.py': {'bytes': 2503, 'sha256': '0d0384297661377f7421a4ba9c0a1ab26fca5791f02cb4bfcb88964af93e6300'}, 'omega_agent_sandbox/cli.py': {'bytes': 1343, 'sha256': '951434bc109fe1a1d5e8c2d7f8536434430ca823062e5501f7b30197fa1d1a80'}, 'omega_agent_sandbox/ledger.py': {'bytes': 4041, 'sha256': '36ee62e48873413c8e1d2f8ff0e885b658fc55fd26f9556d3b98df139237bce1'}, 'omega_agent_sandbox/policy.py': {'bytes': 2132, 'sha256': 'cc9a905251a8956f9879263d534761efdc4b05e9e45663021e98bbceb5dd906a'}, 'omega_agent_sandbox/proofs.py': {'bytes': 1412, 'sha256': 'f51259862db2c5c32ebef3d1194aaf098483909df0aa538ec870fb723e6ac3ef'}, 'omega_agent_sandbox/runtime.py': {'bytes': 2822, 'sha256': 'e994bd90d2011dfd90bc0138861de3207f400a885fd73c2d3184be81c9fa7a23'}, 'omega_bench/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_bench/ablations.py': {'bytes': 582, 'sha256': 'ebbddec8424b7e6bcd1514c53d9d812bbb0dd0b5827dc0dde6c457febff845a8'}, 'omega_bench/certified_control.py': {'bytes': 15412, 'sha256': '06d9e36d4e504b18146eab07a418351273d2168e035be8196a5354e391c1cc0c'}, 'omega_bench/certified_control_worker.py': {'bytes': 1472, 'sha256': 'af4329a09db08be24fc6908ab2e7fbe144d3baa5e10a6f8d2607fd5a9566fbdb'}, 'omega_bench/dashboard.py': {'bytes': 856, 'sha256': '7ac3ec5bfde65e49d25dee70165afc61526985166f5d6de4095522f712571a67'}, 'omega_bench/generalization.py': {'bytes': 433, 'sha256': 'b0c2b5d2a0cab2d12a77211ea6a494b0ad3722d6b47868d3e8ef346465686f87'}, 'omega_bench/harness.py': {'bytes': 1820, 'sha256': '80f5744e705c8f315c8c2d1f04f70c0b24d7027622f61c0121d63d1ddcaf68b2'}, 'omega_bench/longitudinal.py': {'bytes': 566, 'sha256': 'ce10336ae2b9b5fd600caa8673edeced79bc3e7a4f324105d19ac98c6aeee158'}, 'omega_bench/mathematics.py': {'bytes': 709, 'sha256': '61b9a275f6eef34383ca424c202cf60eab839da3d85b4e3b21405d40b0693bf6'}, 'omega_bench/neural_symbolic.py': {'bytes': 263, 'sha256': 'd74ec0b40314dd110fbdfde2b978066c9a914ff21e449788a667594ec8084930'}, 'omega_bench/programming.py': {'bytes': 913, 'sha256': '3dae62fb499fde4bf31070252b132f156f55d87a5cfcb8b4f74f854f39ef3e5a'}, 'omega_bench/provenance.py': {'bytes': 644, 'sha256': '68c308acc41a1929083512dbe2f3f753a6cb8e43ae8e387e75b21f2e13d9b38c'}, 'omega_bench/reproduction.py': {'bytes': 1650, 'sha256': '2e2333fc855475d2ad3c9167e2a36a65b06bebb8761496d40e4a4a59ac29773d'}, 'omega_bench/statistics.py': {'bytes': 734, 'sha256': '0b35948e8d5212412ccbe3baf30fef4a9b31e7b84c9d043e58a3d27e18c31634'}, 'omega_bench/telemetry.py': {'bytes': 1214, 'sha256': '7d0b617f3530e7d8da780a1420706c1797610f8b2267b308c6714ed24b4a0ec9'}, 'omega_coder/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_coder/ast_editor.py': {'bytes': 1569, 'sha256': '01b266ee3c30b40abf7f4b206e2392b8055acb54cc6f2465ecdae55983b84fd2'}, 'omega_coder/change_plan.py': {'bytes': 1035, 'sha256': 'b27c6225a36f6d877e30bf9508a882e57bbeb302e8a3f53063c468e3729a502d'}, 'omega_coder/contract_synthesis.py': {'bytes': 4565, 'sha256': '2216d82fdb035da5488db72fd40a64149f25e2c864ee89c61743dd1193cc4cb4'}, 'omega_coder/counterexamples.py': {'bytes': 708, 'sha256': '0d2906f0c3f25d7b2e18dde0af4f5b3e860d34f36b23ff71b1bbf3d02c400a31'}, 'omega_coder/generation.py': {'bytes': 967, 'sha256': '937d3f9b6cf47152cb09c9e176863bc956487f6b0bebb5993cc3f70acb67d2bc'}, 'omega_coder/native_synthesis.py': {'bytes': 15155, 'sha256': '34c45c5cb54d165aa3766cc10322f9f6ef9e5438ea14abf6f5e15873af7cbfd1'}, 'omega_coder/patch_review.py': {'bytes': 1077, 'sha256': 'c4549bb11f3fb023d17060a6fb0395464e5d01a96cc0a6d7d7fa31ce18fa02e4'}, 'omega_coder/program_search.py': {'bytes': 932, 'sha256': '9f8436daddb84bf9cd7fa39622864a154eb8f772893dc505f9a80dd3494a8757'}, 'omega_coder/pull_requests.py': {'bytes': 1233, 'sha256': 'cfcaa0215492afbe045cfdcc83e521fed757b51fca98d84cdff5e2e2f63c1e1a'}, 'omega_coder/repair.py': {'bytes': 1068, 'sha256': 'e077e9480b55a8815ce0f707b36510894f311badeb193bc23708c4a314d77db7'}, 'omega_coder/repository_index.py': {'bytes': 1807, 'sha256': 'a635db1066a4a46a982df82725f4226c78682152c7934f3e313d432a033e4108'}, 'omega_coder/specifications.py': {'bytes': 780, 'sha256': 'caa0c7a5ed891dd64d5c9b12afb585a78975e286829536166c6f41111385c0de'}, 'omega_coder/synthesis_worker.py': {'bytes': 1219, 'sha256': '0bb29bfe8cb10dca73499f640f0198d68dd58da6d9e8d671207d2cf3441d3b15'}, 'omega_coder/test_generation.py': {'bytes': 1216, 'sha256': '359da50f6a47954b6cf24e0d0ee6ab4c631eda3f6deb6afa79a79bceb2cbd326'}, 'omega_coder/verified_optimization.py': {'bytes': 511, 'sha256': 'dd43822f12084c5d5fc3969dd5d5286d2e7c0c6b056c648b1924bf2934ac1eac'}, 'omega_coder/worktrees.py': {'bytes': 1422, 'sha256': '4dfc2d7b1c7665fbfacdc0561753af9eb787d82ac6706f94f0e53af4f87e5a85'}, 'omega_cognition/__init__.py': {'bytes': 240, 'sha256': 'c1978229d7cdf50c2536c18029f9278285ca74b22bdd464251ae6410d8a9835f'}, 'omega_cognition/cli.py': {'bytes': 1488, 'sha256': '6de2e676d47fa50c7980329bfa316861ae5da6766b4db46fb6920a00cdaa7fa4'}, 'omega_cognition/glass.py': {'bytes': 6852, 'sha256': '0ddfd798ef40ba5d58fee89f6b683b7fab311eb1c2a3878cff2eebf128165372'}, 'omega_cognition/linear.py': {'bytes': 3197, 'sha256': '8367cfd93678d9367581070fb7e28f8184a8bd40754f460848e71017bb648dc3'}, 'omega_cognition/memory.py': {'bytes': 2362, 'sha256': '2c96fa5fac08813637334e8d26d615c0c2e8246ec68e3c9e6261496d23cf5b7e'}, 'omega_cognition/pipeline.py': {'bytes': 728, 'sha256': '3ea7261624a7e53c859b15e7ed1b0e0e00ef2a9c77a7ddb574b790eb2850ceda'}, 'omega_cognition/qpu.py': {'bytes': 1970, 'sha256': '7cfc2f0a8fad561814414442be2f5e03c322d0b642c3eed2fdbf7a12a6c7a3e6'}, 'omega_cognition/scheduler.py': {'bytes': 2718, 'sha256': '4c16eff458665bc0b8e7ce75b84dad4af6efa1c9a4000064f8dc9b4ffbdbf7db'}, 'omega_cognition/standalone.py': {'bytes': 2470, 'sha256': '7cc15767d519296834a27678fb7b5f030762fa674437bab34150ea9cbe0ed8b2'}, 'omega_evolution/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_evolution/architecture_search.py': {'bytes': 848, 'sha256': 'b6f868130813c97b28dce127da3b8378ff8b324a9f84cf82120a3b6d9137b81d'}, 'omega_evolution/compiler_tuning.py': {'bytes': 782, 'sha256': '6ed7c60aa505bb2ade35945035b56f86977f89fc91bb61e39066609e9d66838a'}, 'omega_evolution/component_registry.py': {'bytes': 3356, 'sha256': '9535d7094a8017f452237d05c49084586e7a9673c6e207423fce1177915132ab'}, 'omega_evolution/hyperparameters.py': {'bytes': 921, 'sha256': 'f5de038842dfba55ea8168eecf25bb2bcc565329676b90fa8a157c04ff0bed50'}, 'omega_evolution/isolated_patches.py': {'bytes': 1169, 'sha256': '5de997d1b98e1dee6f46a0ae50bff6b9ef7d1c9542fdac62ddc687f3490e0085'}, 'omega_evolution/lineage.py': {'bytes': 819, 'sha256': '98f99a59402c1094d1d8e52b522c7dcf713a12ddbe58be3d2f950b31b1c6cac4'}, 'omega_evolution/planner_tuning.py': {'bytes': 613, 'sha256': 'c78688711f97a7807863be13c66a8b1f5af0b659e80e6af5dca98cf3b0e19360'}, 'omega_evolution/promotion.py': {'bytes': 6233, 'sha256': '69163ecef3f1c091e359c2480942fdadcae99fe739a0d2192b2125b1b7b9bc4e'}, 'omega_evolution/proposals.py': {'bytes': 1158, 'sha256': 'dfb88f3368581b9b1f2c6d296d8d74362c196771f9a61ee17278640c2edb09a2'}, 'omega_evolution/regressions.py': {'bytes': 669, 'sha256': '09088ec56a971cb2ca07ce41b08af228ae664c3bdad5cb419d0359ab8b7cf93e'}, 'omega_evolution/resource_limits.py': {'bytes': 528, 'sha256': 'a584d3733ace2fa34de5aa1ea61e36910aa9bb230f28a0a97cefa470b55aeea2'}, 'omega_evolution/rollback.py': {'bytes': 9904, 'sha256': '07fedafedf74578ff319824eadc363603475cf7c3aae0626beb46508683247de'}, 'omega_evolution/statistics.py': {'bytes': 1197, 'sha256': '94ad1191553eff41716a26f9d2e78ec974b976e15094de6d72307e097693dee8'}, 'omega_evolution/stopping.py': {'bytes': 802, 'sha256': 'ce6d96332f00811c7b176716c8237672e00b18d1d96f83b89cfba12b73777390'}, 'omega_evolution/superoptimization.py': {'bytes': 7800, 'sha256': 'ae828bd4573e1094c656d93ec40e1825a89e176ee2a348ac4b0d453b9751fccf'}, 'omega_evolution/synthesis_heuristics.py': {'bytes': 685, 'sha256': '49ebd6f6e8fb1589f3d32a56749d83efa965006fbc03639e795df044541f4c73'}, 'omega_learning/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_learning/active_learning.py': {'bytes': 605, 'sha256': '566256eb2a4d2d19396a693634f61c086b43fe490531a5fda930a02206561a66'}, 'omega_learning/curriculum.py': {'bytes': 901, 'sha256': '78c85541ae5e18bb82fd23a3ad13736bb00d1c337a077baf3593e7ae69a871cc'}, 'omega_learning/data_splits.py': {'bytes': 762, 'sha256': 'b282a74ff11f65917613f6cd2c7d606d1d83183120f29f90539d8e63f32a91c2'}, 'omega_learning/distillation.py': {'bytes': 926, 'sha256': 'ade304d798b8d2c05838ab43c59f388338782b814bddddaa7e3542d32638ac37'}, 'omega_learning/forgetting.py': {'bytes': 609, 'sha256': '309816cfaf2428e74d225103562e76190aabb3f257b7c72f48cbaa0d0e2a1166'}, 'omega_learning/incremental.py': {'bytes': 756, 'sha256': '5c3a92ebc068a422d66bf401b53106e04a31d0b90be03bb0c9ac96c6be992efd'}, 'omega_learning/transfer.py': {'bytes': 552, 'sha256': '116535cef9a5b53ceb7d4d01ea4bbb857d6e6716ff4c0e47837517522f2de666'}, 'omega_learning/verifier_feedback.py': {'bytes': 529, 'sha256': '32c6eb0c232e237d2d0626c25baccdf1dfaa7a79a572ab85c53e8ba7d9cdb1a2'}, 'omega_learning/versioning.py': {'bytes': 1558, 'sha256': '0b40fc2ddfc6040d13dfd655c9b4b63205774d62c9d5045d840719e2e1d004b1'}, 'omega_memory/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_memory/certified_replay.py': {'bytes': 1174, 'sha256': '65dafa94174e108782d89c2c9525858a6cabe1be81e79a0abc250223fa640fc5'}, 'omega_memory/episodes.py': {'bytes': 2012, 'sha256': '5c049b7960f15b1b9fdf360f1fa589f800d8b61029058da3bed8ad990e2bfa06'}, 'omega_memory/knowledge.py': {'bytes': 1151, 'sha256': '8fb5682e9bde27bcd427bae927345693dc8f241c66b570b43ad0b28baa1da8bf'}, 'omega_memory/lifecycle.py': {'bytes': 1020, 'sha256': 'f5b855f3fdb31469bb333068cdc91a7860eeb908f806b52d04e8cf9986893e86'}, 'omega_memory/privacy.py': {'bytes': 1298, 'sha256': '9cd49cab2eacfc7ec2bd4a477fd62601a2bf33829fc5a12675025dae074e8d20'}, 'omega_memory/retrieval.py': {'bytes': 1791, 'sha256': 'c92f8e8df591f7f5654eb0765ee3750bf3321b2c3ac72a4787d3c9c5523284ca'}, 'omega_nextorch/Kernel.lean': {'bytes': 3350, 'sha256': '80ec4d3720e5293aa4a12d48f0893b9c81c102d1f404455c0c19c1e41d1d139c'}, 'omega_nextorch/__init__.py': {'bytes': 142, 'sha256': '516da4354ac0863ad4f5186f2d28b554ca352c22d70e801911118742f47fc80d'}, 'omega_nextorch/capacity.py': {'bytes': 879, 'sha256': 'beadc424220f1e8b3c0ab9f6d0d3a7e2a54d97490d85ec3bb79e3358f7f92544'}, 'omega_nextorch/causal_analysis.py': {'bytes': 1301, 'sha256': '056cbf993d09506d115b3831b669c0c58bd8a23c13a6a2958af8aeec453037bc'}, 'omega_nextorch/cli.py': {'bytes': 3024, 'sha256': '8b0ff93f4d41491366437fbb698d92dcb8679170f30dc8e08062b5a11aa41a47'}, 'omega_nextorch/constrained_generation.py': {'bytes': 1230, 'sha256': 'ff0c2aa178625eedc5507952346e9c4e3f3d4edb3e78652b50a85c96776810dd'}, 'omega_nextorch/devices.py': {'bytes': 1074, 'sha256': '1b22c791598beaf4dbe70075afc49a327b33c486ac7ad5415ab4db9af23129f3'}, 'omega_nextorch/distributed_training.py': {'bytes': 959, 'sha256': 'b9e0720684b15d7c38f47500e6fd2a606cd55c7a30056e1cf012218622d4cd91'}, 'omega_nextorch/gate.py': {'bytes': 2732, 'sha256': '441ea3c00ba59eb91751c2b4d70102f492f0b661574a52da2f540cc243ff7d43'}, 'omega_nextorch/inference_metrics.py': {'bytes': 1104, 'sha256': '21c258ce170c895fb52d0821b74f31ce163059fbd317a6d1a437b189f0f5f2ea'}, 'omega_nextorch/lean.py': {'bytes': 3694, 'sha256': '7402c906504762507e932c79156b9453f987866bf8f84a5f8df4a7a8bf337a3c'}, 'omega_nextorch/model_api.py': {'bytes': 5081, 'sha256': '8ddbb515dda207d1513885cc1eb45c9bf5d4a27b992b730bcf64141c075015fb'}, 'omega_nextorch/native.py': {'bytes': 3737, 'sha256': '0e3dbcebb937eae6ae5f2514a1f44d36f36465795adf9ba9f9c638e69b8ada82'}, 'omega_nextorch/orange/OWOmegaCertifier.py': {'bytes': 3268, 'sha256': '56dfb692dc522fbee8b4e03e37d0262b5e2530ca946ba26484e62685652fd21f'}, 'omega_nextorch/orange/__init__.py': {'bytes': 223, 'sha256': '0c97e3ba8871daf16bd8e117c618fb5b585c8f5ad1f62a95ccaf3bbed0430ec1'}, 'omega_nextorch/orange/omega.svg': {'bytes': 253, 'sha256': '6e626ca4c781d1384541349595535c3741dcfe4606c3cc8e7aa4b67799045a64'}, 'omega_nextorch/orange_bridge.py': {'bytes': 1557, 'sha256': 'a3cc619a8134b60bfaa4d96e22de0cdfb9e2f464517d668070ee6c52f063537d'}, 'omega_nextorch/pipeline.py': {'bytes': 5721, 'sha256': '803f6886789e0a6ae86b19b3dc3ce80627d7e96ae2f4378c896641760e481ecf'}, 'omega_nextorch/proposer.py': {'bytes': 3020, 'sha256': '0b7bdacdee8c484ab9dea9605d5f0da6e47639eed78cd9f030504f4c2072a7ba'}, 'omega_nextorch/reward_integrity.py': {'bytes': 847, 'sha256': 'a303022e5cf5f02826eb73252a836b5000c19af92fb40831487b2db4daf28cb5'}, 'omega_nextorch/routing.py': {'bytes': 737, 'sha256': '382141c4e49e264b973fb6f07293bff24e57f95406b7b935c47fad166e724b16'}, 'omega_nextorch/supervised_training.py': {'bytes': 1230, 'sha256': 'e61e7ea158a830dd149361abb9e10f21b135b391c2b6a876d6d9a0e187f6d6b6'}, 'omega_nextorch/tokenizer.py': {'bytes': 959, 'sha256': '1308a587c2e3785397445eea33ebc2760af4cf8356665dd41b0da22813e4df21'}, 'omega_nextorch/uncertainty.py': {'bytes': 786, 'sha256': '3231330aab24fe32e50c8867d0cc46f259dcc783d6c4b20f2f53f903fce833cf'}, 'omega_nextorch/verified_search.py': {'bytes': 913, 'sha256': '3e67323f16a415e4f968349b7e1bbf352b317807fed00d24cfc530ecafc202e3'}, 'omega_open/__init__.py': {'bytes': 96, 'sha256': 'ef9d07e7eb92178c55ebf19e08e218d41bb80bdcc3edc757d3674b1d9300022d'}, 'omega_open/__main__.py': {'bytes': 1788, 'sha256': 'b4e070d61821d9d3c34456eaa0cb7c06ea33ec5a9bd90abdb6754cb2a4761758'}, 'omega_open/checker.py': {'bytes': 4502, 'sha256': 'd5d8aa80c5ffd9c1eed5200f744434d664e0f394785e76f537779ede6401aca5'}, 'omega_open/engine.py': {'bytes': 10400, 'sha256': 'f6b74f439c70330ec2faccb65c38671f8fcd484c7a264650ea30d9fcea1267d1'}, 'omega_open/logic.py': {'bytes': 4120, 'sha256': '6de87dfc76f0c0f4ef2854f34c2210224ba6efd6de37ed7dc062ba84b938b0a3'}, 'omega_platform/__init__.py': {'bytes': 82, 'sha256': '4f083b6eca3c6e606305eca8899f7e788313fd25ce8d24fd33d049fc9b1bee6e'}, 'omega_platform/_supervisor.py': {'bytes': 1803, 'sha256': '121684bb7456f61cc2c43fda6bbfec6e10ebe41282a53a39d4cb6e30004d976d'}, 'omega_platform/artifact_verifier.py': {'bytes': 2274, 'sha256': 'b1dd9e65776ef2893628cbd4b2573600ce3fd88d69f620bd87f1ad1d2e2d2416'}, 'omega_platform/budget.py': {'bytes': 1775, 'sha256': 'bdd1ed4e7d3377ae3f09fc760dfbf9ed645cdbbfe266d8f0d19d40577612fc66'}, 'omega_platform/content_cache.py': {'bytes': 1893, 'sha256': '3953633dd65853e549afbd9b0b716ae1116e8a4dd1d5d82d0b6d50503a5bb88b'}, 'omega_platform/corpus.py': {'bytes': 7135, 'sha256': 'fdd405bb8209c2452799c799e3d4f42c1f4c0328812ef1f1e0f38f8dc73a3b4a'}, 'omega_platform/manifest.py': {'bytes': 6432, 'sha256': '1d0edd1d8f471032bd220429deaed52cd78942366cc7c51854e4490bb32333f9'}, 'omega_platform/proof_cache.py': {'bytes': 1160, 'sha256': '7a8ae009b1c4aa659248fd8ddd37568b4f73543602bf1b5c98000a42b2ddb22e'}, 'omega_platform/quotas.py': {'bytes': 1095, 'sha256': '0131cd8272358c30f14b4b8679a5bd993238c2c368ef689ee350b91a660d27e5'}, 'omega_platform/results.py': {'bytes': 5475, 'sha256': '3560b608d21c45de8ab318989ead990762aee097327018ae97655e84c90c2d51'}, 'omega_platform/sandbox.py': {'bytes': 13342, 'sha256': '0cc4b37acfc199416b6bdd6f66d5da258e1bc02878c15da0c306b6af1dae3924'}, 'omega_platform/scheduler.py': {'bytes': 4585, 'sha256': '63d633f53ebfd1ade11d1f15e45613ab3f14f058d9fc5f131ce1379511413fe5'}, 'omega_platform/security.py': {'bytes': 8921, 'sha256': 'f8a2a02108461efbba53fb33402073da2039984da1bc70f88b794430191306f5'}, 'omega_platform/wasm.py': {'bytes': 1263, 'sha256': '9abb11a20a52a5f5c89730cd87e01f3ae681b5e2e1b331b7c70ca6c88390958a'}, 'omega_platform/wasm_worker.py': {'bytes': 1112, 'sha256': '559c6a759cbb712689eadd2ef7c7886c33e3ed776c0da0cb535d198f01d3a746'}, 'omega_platform/workers.py': {'bytes': 14642, 'sha256': '694f94981b94838f731fcd6922e4ef7ac809e635a703274780e34125165006dd'}, 'omega_refine_check/__init__.py': {'bytes': 217, 'sha256': 'f1358d35c61f70ff641486f8fbca21312e6b71fdeb61e63b96aa5de99e1f7d68'}, 'omega_refine_check/cli.py': {'bytes': 702, 'sha256': 'b5f58ef82cadc681075bc494d3411e27f8e0eb5e902b1ee0d0fe116ff37145c5'}, 'omega_refine_check/compiler.py': {'bytes': 3012, 'sha256': 'fd6fb6b298cbe1814e846625afb83fbbf3d6696547c0ca5947893ffe6d4570b0'}, 'omega_refine_check/contracts.py': {'bytes': 6372, 'sha256': '87755648ea8b13ce714c0842dbe2b9f0fda432eb79098198166ad9fd7211891d'}, 'omega_refine_check/lean.py': {'bytes': 5221, 'sha256': 'f0fbb1a7caf4b2e8c7f9c10371d91a9e51b6c386e6a95bea45a0db54ed2781c7'}, 'omega_refine_check/syntax.py': {'bytes': 9478, 'sha256': 'd82fea75176d45208a9d9e34738d0bc78291f3f4fbebd4263085318377b97d88'}, 'omega_security/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_security/adversarial.py': {'bytes': 976, 'sha256': 'fa6b3e778c723b0f2dc8440f843ff64699c6cf6c4c4d6fedb81eaf2c14ab6f55'}, 'omega_security/anomalies.py': {'bytes': 668, 'sha256': '0a383f0331ac50d05612915da3b94b14e3a642662a705f29bf546cb48ea4a74d'}, 'omega_security/audit.py': {'bytes': 1993, 'sha256': '67b9f6df1c77cd5a2b3c1b1d58fd5ae0c86a318c5a27c33bb423271abb55b629'}, 'omega_security/capabilities.py': {'bytes': 3219, 'sha256': '8ac59d7af73abb62c655c56610a1a7f0b126877ba95d60a534f167adaadab836'}, 'omega_security/encoding.py': {'bytes': 4166, 'sha256': '1991d7eb46dcaa322be1b1ec5f5bee4df923f219609a6837413f35597ef37d41'}, 'omega_security/filesystem.py': {'bytes': 2633, 'sha256': '7ba2bddf299b8b7d5365229d7dd143ccab4cce6aab6b282eca710092a5246755'}, 'omega_security/objectives.py': {'bytes': 701, 'sha256': '90566c45def325505fcd725c098f83d91faff07bfd8ad2c890918e8df9e5444a'}, 'omega_security/revocation.py': {'bytes': 1152, 'sha256': '066674eb5d6479fa9523285654c4e4c5547100bf1a14957b4d90fe1b010e27bf'}, 'omega_security/roles.py': {'bytes': 2352, 'sha256': '4578a2f3083b3ad6285afbd45afd0a1aa2f777d5897b4f677b0565d2279e5eb5'}, 'omega_security/secrets.py': {'bytes': 811, 'sha256': '502a48ea33825f231decfaee6546ec498782ce61e5eae833d93d3a1ccbaae76e'}, 'omega_security/signatures.py': {'bytes': 1163, 'sha256': '7a8031d47d17967afd37ce7c4d64a82583f1578eaa34f6a0a0d20f834aa10f91'}, 'omega_security/untrusted_data.py': {'bytes': 1049, 'sha256': '8a03a948c42af583c67a5e4d0db75ab01636a5253ce39b89149b7afa040bd1e2'}, 'omega_self_mutate/__init__.py': {'bytes': 303, 'sha256': '19412a941b94ef7dc5b5a62f3ebaada806ee009aac6774d287054edff6abc768'}, 'omega_self_mutate/activation.py': {'bytes': 5338, 'sha256': 'e6cfad887e642f6cd3bfd6bffa0adc2038a394ccbb038a03cc364c20e61ecb12'}, 'omega_self_mutate/bootstrap.py': {'bytes': 4436, 'sha256': '8e6dc07ad9a275f60a49033faec6b0296dd78d0379bc9737c06f63abae2dcb40'}, 'omega_self_mutate/cli.py': {'bytes': 999, 'sha256': 'bc30570acbc03f3f8a5f3e921c49794d05506a3fd4dc50e342d53dfe1dfe1d0e'}, 'omega_self_mutate/profiler.py': {'bytes': 1858, 'sha256': '2197d7092a9a29221951c3def9814dea460224147b9d3618e0400e4c771a5bc1'}, 'omega_self_mutate/rules.py': {'bytes': 4640, 'sha256': 'f3035125a15f1ddc0bdff2f1023d45ac83e8a62dc53c9977cef8fbd2bb1b22b7'}, 'omega_selfhost/OperationalSemantics.lean': {'bytes': 3957, 'sha256': '9b93981ad67ebf775cdf57f0291df87e9a72e995b449674034ef9f6f9e19f79e'}, 'omega_selfhost/ProofPrelude.lean': {'bytes': 216, 'sha256': '0fa2298282df4e7544c8b128ff81b8ce1e55ab01f41e5f61b7b81a22792c6e8e'}, 'omega_selfhost/TensorKernel.lean': {'bytes': 8992, 'sha256': '3b40458d549ae01c8cb5eb42981f9644d49a00e11e6c0647fa3df40060a4662f'}, 'omega_selfhost/__init__.py': {'bytes': 281, 'sha256': '294962ff80255cebbd3fe6fd985e578a32273bff22a68cc9edce1af422ccd871'}, 'omega_selfhost/axiom_policy.py': {'bytes': 1102, 'sha256': '77d1bbc9d517291bb6be85efd1d53bb122edfef2e83eb03deddbff70a8fc98c8'}, 'omega_selfhost/bootstrap.py': {'bytes': 7243, 'sha256': '34dcd742f956f934ba47844f5067b7743ffc785e9011b6921eb2225294e9ef79'}, 'omega_selfhost/bounded_rational.h': {'bytes': 2197, 'sha256': '91fa3475eb872de131ce4f55d43f976da697f0063b3dffe107f6ff9b6e564d50'}, 'omega_selfhost/certified_transcendental.h': {'bytes': 4291, 'sha256': '948739235589d4abd21bdffbe85834f5e85f2662d3f5a2ed791afafba35ea543'}, 'omega_selfhost/cli.py': {'bytes': 6151, 'sha256': '60150b5c7f08bcac04a4431b0dfc7b2ab65b2c531e3ad317c5003953cdb722be'}, 'omega_selfhost/compiler.omega': {'bytes': 26789, 'sha256': 'db452f08ede385286ff8e98cd062d941c3d0e9d3fd286506acfc3eb5951ceed3'}, 'omega_selfhost/driver.py': {'bytes': 23275, 'sha256': '038db7128a633ac73080463c474b59971cb8d2315aa2ce3e16fa72c5e22da3e9'}, 'omega_selfhost/memory.h': {'bytes': 1429, 'sha256': '38b8c8a858094c4644192a4378ff7700022653b8afb7ce0da017352993ef3752'}, 'omega_selfhost/native_backend.py': {'bytes': 981, 'sha256': '6bc4da03aaa3eff6ae51870b70a082e60419538ecf1a84a9015628499784c7b9'}, 'omega_selfhost/polynomial.h': {'bytes': 6976, 'sha256': '23f0dee22f70ce796214a03df853af4d39e36f5a8c8bc509774c5c3e537fd527'}, 'omega_selfhost/proof.py': {'bytes': 7697, 'sha256': '54ebe598b545a054d9f4c454ce7c96358678c78990458f18109069f74f02d1b3'}, 'omega_selfhost/proof_microkernel.h': {'bytes': 3023, 'sha256': '065f2df0964664d2271f9c94752217b3cdbcc88cc150397745459799d671bbef'}, 'omega_selfhost/proof_protocol.py': {'bytes': 1387, 'sha256': '6b379d8967c8bfd286482f10fe3193a29b4e24659a638add3a6d39ccc0c1665e'}, 'omega_selfhost/rational_pruning.h': {'bytes': 1665, 'sha256': 'a642c15b813f9628cb7b3be36eae2feca740b957ece9f402089190b93e4c2095'}, 'omega_selfhost/runtime.h': {'bytes': 19546, 'sha256': '876f86e597bd3c975bb84666097b3aa2dd099597f05f3b5ab25fab7056debc68'}, 'omega_selfhost/runtime_wasm.c': {'bytes': 613, 'sha256': '80a21786c33e0322d2df40edc67b54b1fdb1d48ba0655207bb44c7e972f62403'}, 'omega_selfhost/statement_binding.py': {'bytes': 870, 'sha256': 'bd834c43186b67ff19abf6f04393736ad682aa2c7a68fac6149cb83cd22e814f'}, 'omega_selfhost/stdlib.omega': {'bytes': 2590, 'sha256': '3457c66530e4abf2073019a6248bd54f9c0f65f16c1573c48963e9ce593a4fdc'}, 'omega_selfhost/tensor_runtime.h': {'bytes': 15865, 'sha256': 'cc9a4e3433896091523b61bc23ef39810b02eeb1342f8f6991131f8842b9b355'}, 'omega_selfhost/wasm_backend.py': {'bytes': 3507, 'sha256': '3467e19b06839bfd3a1b1ecb91d64a396e82e7062ca03c0c1f01aecda967f327'}, 'omega_synth_mcts/__init__.py': {'bytes': 186, 'sha256': 'f7f650a4233f1579fa9f8c1976a566299d31549a8c4bb40f5b5746e57b38173b'}, 'omega_synth_mcts/cli.py': {'bytes': 759, 'sha256': 'c732d6c8ad9d59d13e2ecb41b19859221f2c5c84e9285dafc0f98548f6f874be'}, 'omega_synth_mcts/grammar.py': {'bytes': 2643, 'sha256': 'd932ac4e43253e8a2bc8a70a574a3351acadca3a54fccb10fbe2843fb8ca7d9c'}, 'omega_synth_mcts/policy.py': {'bytes': 3189, 'sha256': '0dcec310df231dd4508a8748ef924d963f84262a5e6c1ca189caf2c4deace221'}, 'omega_synth_mcts/pruning.py': {'bytes': 1577, 'sha256': '9d60ff001923b4103abb573709c6b96e631b6b7870df793abaf9fdcdbe4ef4f4'}, 'omega_synth_mcts/search.py': {'bytes': 9111, 'sha256': 'ff8ece602d5b14f4613ce8ad32cfb6bd7681ba90f871c4500a618bae6fbe7ce2'}, 'omega_synth_mcts/worker.py': {'bytes': 569, 'sha256': 'c4cae30a4543be64a0070ec7917efbcc6b99ac5952c9cd8c51802a94e173820c'}, 'omega_tools/__init__.py': {'bytes': 74, 'sha256': '9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59'}, 'omega_tools/approvals.py': {'bytes': 1701, 'sha256': '15ee5471ebffc24d27911ebe79c23f1529ce71fef02d5e9d40244b0145a565e5'}, 'omega_tools/audio.py': {'bytes': 1317, 'sha256': 'a9954485c2676e626b89ff2e62ae4090185c3fbcbdf055f850dcc7e7198927f9'}, 'omega_tools/capability_adapter.py': {'bytes': 3035, 'sha256': '512e893aa1555cdd1b729c962d32a68ba171b0176edd5908239b0323f33bf476'}, 'omega_tools/contracts.py': {'bytes': 2619, 'sha256': 'a7af9941218d3cee6ed48bd4e9d9651740c795b98159da236cddb472184cd724'}, 'omega_tools/database.py': {'bytes': 1133, 'sha256': 'fee6e4da74535cf8ce13189c9cb967e832eeb1580defb8d65859adf54b1c9960'}, 'omega_tools/database_worker.py': {'bytes': 1832, 'sha256': 'ecd1c3e2f6d9f8eacd1f3ca46823a539f4f49b376bd5fa3feb0b9f224eda5f92'}, 'omega_tools/document_worker.py': {'bytes': 1217, 'sha256': 'eadd37197e630ff7fe65faec04f34dab02844b98345dd7a9ec070a83970066da'}, 'omega_tools/documents.py': {'bytes': 608, 'sha256': '8c0505c217ef033302b47b726d43fb67e09e2ba25cf110d89e3efdf2c2840714'}, 'omega_tools/git_ci.py': {'bytes': 1206, 'sha256': '8d61e04dfddf21b9ad32323daf2dd1a8fed3d9fe6e068130d1de56a380147424'}, 'omega_tools/local_files.py': {'bytes': 3113, 'sha256': '3a2ffd92ce283823d51c8212dda46729c4e2181636cfb405398e1f42d934df5b'}, 'omega_tools/memory.py': {'bytes': 1046, 'sha256': 'c71ecb5a7ee09a152d16b32a8288ed2e3c5a59e06b60dd9e170309f085c451a1'}, 'omega_tools/notebooks.py': {'bytes': 1615, 'sha256': '52bc760b9656d735713ead49cb017de03e36cbb02fc95c6e5c6d0e82483b2d6a'}, 'omega_tools/simulation.py': {'bytes': 1426, 'sha256': 'cc20c4c5fc45c3427169988ac368d7cda6aa7a57c734213079eb367f4c1430a6'}, 'omega_tools/vision.py': {'bytes': 1193, 'sha256': 'fe7db2c2661832464418f5ce9fc39c84d53fd9e580c8ebb9b654c85f1a22c59e'}, 'omega_tools/web.py': {'bytes': 1731, 'sha256': '24e255b72a3a6d450dda7a82b8a6ec451a47ed65b145306e9bd6e80789d869e0'}, 'omega_tools/worker.py': {'bytes': 957, 'sha256': '1f6fb550b1493200a5d558c470dc5f283d775a0459c3d18d2cc087f2d317e6a6'}, 'pyproject.toml': {'bytes': 1608, 'sha256': '9f83dbccaac8c38b29b2513af0cef13a8c6601afd8c67fb1c0e4e6075a5bc5b2'}, 'requirements/cpu-py312.lock': {'bytes': 2227, 'sha256': 'c6b6998d9ee32b98e189b45105e800bfb1cb298bfade940822138a1214ad4b86'}, 'roadmap/FILES_TO_150.md': {'bytes': 38110, 'sha256': '60e40b8f0230b881bad4f405e0a486db4b2fcb06ae97005d064bdbe75b9a667b'}, 'roadmap/evidence/om011.json': {'bytes': 1007, 'sha256': '58aff5c669e8595a3662d25e8de5e09bad166ab291421cd6f9769ac376dc7059'}, 'roadmap/evidence/om012.json': {'bytes': 1496, 'sha256': '2850392eeee259a04970848fb0a6670003e3ab2610469a55bbb22672caaefb91'}, 'roadmap/evidence/om013.json': {'bytes': 778, 'sha256': '03ffd6db88874599eeb459a2d607fc913af0247fa0bc7c97230a530688a2abe3'}, 'roadmap/evidence/om014.json': {'bytes': 684, 'sha256': 'f23fe4262eaa3104f4dd122a8b5aa37ed880af3e5e59e79e31379b04ab805ded'}, 'roadmap/evidence/om015.json': {'bytes': 683, 'sha256': '117591eb0e66e469eab4fdf41e76056cc795bc3f50fe77cca79885d833f32e9c'}, 'roadmap/evidence/om016.json': {'bytes': 1023, 'sha256': 'fb74fb7582fb896edcefb4f2e916d2b8cd817de3393e86d3b075d01c60ae8a13'}, 'roadmap/evidence/om017.json': {'bytes': 784, 'sha256': 'bfb62d63dd0e4fee7dc05cb13d2c0cc95544af98f3509530366febd4822e600e'}, 'roadmap/evidence/om018.json': {'bytes': 1017, 'sha256': '35bf7da2e532028a4b8bf0973eacf46e88c309b25e04ec555fabe547d0651040'}, 'roadmap/evidence/om019.json': {'bytes': 368, 'sha256': '5f75ebd774cefeec0d3abcc0cc744bbf04f53384c4cf0ab8568cfa4040024839'}, 'roadmap/evidence/om020.json': {'bytes': 368, 'sha256': '2d71e222f206799e6477a7f318a56878d7787b253c185b20ad6c7b6e78f3ec8a'}, 'roadmap/evidence/om021.json': {'bytes': 368, 'sha256': 'f0f42dff2e56ca005ec9b57e5f0ba7f8d6994027deda7862145411f37baff338'}, 'roadmap/evidence/om022.json': {'bytes': 368, 'sha256': '476bc751077b41576625968215d133d73a281c6b833eebe1148a730b5e5180c2'}, 'roadmap/evidence/om023.json': {'bytes': 368, 'sha256': '95a33ee6eef07e974e8ac4ed553a500480a86e4ee9094b585f49448711d8482d'}, 'roadmap/evidence/om024.json': {'bytes': 368, 'sha256': 'a949e7cbe72516b3a95fec151bd17dbcda85f81b5c020080bbf0916a852e9e4d'}, 'roadmap/evidence/om025.json': {'bytes': 368, 'sha256': 'a8f652d53986345e253466c3ea153f6585ee41474245fe6d610638577e68f859'}, 'roadmap/evidence/om026.json': {'bytes': 368, 'sha256': '4f3184402df7d24f660b9c687a8467fa48375cd1b265b298c8574daf28c291bd'}, 'roadmap/evidence/om027.json': {'bytes': 368, 'sha256': 'b0ebbe9e542e85a867bef7b1b2fbbbc06a958eb1f9db8788f31582ddd9daf9aa'}, 'roadmap/evidence/om028.json': {'bytes': 368, 'sha256': 'f4e2e667d56217fc766d63b8d2fdb92669306e01efea20958ab34ba9b9354b34'}, 'roadmap/evidence/om029.json': {'bytes': 368, 'sha256': 'f9d09e8df926a0447117549248c8c99e5d17638d994e110348940c9a1f186891'}, 'roadmap/evidence/om030.json': {'bytes': 368, 'sha256': '2579d1b57241f9acc11ee3d581e6f5c02ba9a18f3017602412e33b2882bd687c'}, 'roadmap/evidence/om031.json': {'bytes': 368, 'sha256': '2343e7a74359fb7701eef72681504b3d22716be868cc987ebd933fefe5123734'}, 'roadmap/evidence/om032.json': {'bytes': 368, 'sha256': 'db68fa29c9f8a9ad9468af04f18c76ed5e64c87b796fa734afe7752b98fabb33'}, 'roadmap/evidence/om033.json': {'bytes': 368, 'sha256': 'c67b397703598422b2e2dd8a65299ab4ca92c19ff4379c07854fbff2b1bab842'}, 'roadmap/evidence/om034.json': {'bytes': 368, 'sha256': 'f45ee34b1e7dd68186c5f007313bb31d7d4ed2deff4763ef80a102d14574b1a6'}, 'roadmap/evidence/om035.json': {'bytes': 368, 'sha256': 'eaf689976b798d2e96b05291f4c66a6a09a871825e6765cfbea0746a4643fdc0'}, 'roadmap/evidence/om036.json': {'bytes': 368, 'sha256': 'ad5ab34456306778cfdd95609b7aaaedbe74081ec6b52c12a8628b9654f020a1'}, 'roadmap/evidence/om037.json': {'bytes': 368, 'sha256': '1e05c36a619991503f59f887da3a69cb7f5b72211c4edfaf51fc8f56f6c7ed2d'}, 'roadmap/evidence/om038.json': {'bytes': 368, 'sha256': '96c8d0cff3fa568e06713d70f49e355e28e9210451a8df8f1b322492a551ec14'}, 'roadmap/evidence/om039.json': {'bytes': 368, 'sha256': '051daf4772cbbe9d203b18bd197843b79f7aded2ad802a44f4451a5a937ffadb'}, 'roadmap/evidence/om040.json': {'bytes': 368, 'sha256': '48ec74c6324c9f0cc71cb8966fe612ddb8f219f3ab774aa8a46db8eab07fd221'}, 'roadmap/evidence/om041.json': {'bytes': 368, 'sha256': '57cff96593e14f86b1e1d02b4f31c33a43d903fd3a5b495b5367d2aed60dde55'}, 'roadmap/evidence/om042.json': {'bytes': 368, 'sha256': 'faed9ac8051624722c1baf44b3ae5379f83797b3d3e1607a3ecc4a0dbb497ae3'}, 'roadmap/evidence/om043.json': {'bytes': 368, 'sha256': '0ce9621518980cf1a9cf1f8c5c2728efd4d0f13a010f2356e89f7a8d1f54d370'}, 'roadmap/evidence/om044.json': {'bytes': 368, 'sha256': '014bd2f7f163359eefc1f2164adac3bdbfbcd3fb56bbaea15ed3c151265ebdd4'}, 'roadmap/evidence/om045.json': {'bytes': 368, 'sha256': 'b3244f60796134b73d57a1a3d1801eb9d7014f5f2346244e99b58ee145ad4322'}, 'roadmap/evidence/om046.json': {'bytes': 368, 'sha256': 'b3844fd0861adf36d6b2fbeee1b66f8e68eb6f769d647dd679d59febb8e6dff1'}, 'roadmap/evidence/om047.json': {'bytes': 368, 'sha256': '9733e6b907c82dea10d2fc01fa262affaa48fb58871b22d1ebee93585e396b31'}, 'roadmap/evidence/om048.json': {'bytes': 368, 'sha256': '87e4e99da418dc0584bfeabb6a54ede1b2bae8b3dc644312b2887c0822e7ae8b'}, 'roadmap/evidence/om049.json': {'bytes': 368, 'sha256': '5589ff87e91534079d892bf13bb8edc850e35cdba8634afa1c423d57032bdd08'}, 'roadmap/evidence/om050.json': {'bytes': 368, 'sha256': '31c1d8323561a9f7c901b068e82974dfdd1b6e08b3f0d993e79a544a49a20d84'}, 'roadmap/evidence/om051.json': {'bytes': 368, 'sha256': '515d518e47128f43da9cc52661e2119f9c95e11cb260485fc8fce51d99958762'}, 'roadmap/evidence/om052.json': {'bytes': 368, 'sha256': '27320dfe9ae2b262bffeb2c95baaf231e173e357db591b973c3859e3650b076d'}, 'roadmap/evidence/om053.json': {'bytes': 368, 'sha256': 'd6198b9749a15e749ddce6897fbc4e0d4627367fb6c0cde1b6d4dd735e4d0b05'}, 'roadmap/evidence/om054.json': {'bytes': 368, 'sha256': '92ef13ed661a9581893ea99b7030fb7f799e620883ab637bb84399f0f3358c41'}, 'roadmap/evidence/om055.json': {'bytes': 368, 'sha256': '391ea67acc0d74c5687a0b23c4fe7e89297b613e7fd73400b84c14b91bcccf10'}, 'roadmap/evidence/om056.json': {'bytes': 368, 'sha256': 'ea3ff3b5f6043613c1b6a72e41e05a2998d35e8e0042ced1f292f062bfdd7df0'}, 'roadmap/evidence/om057.json': {'bytes': 368, 'sha256': '0103ea9ee58d2bae35b1d4462f1a636746d6d04f2b0f5aa45268e9cd5aba5bfb'}, 'roadmap/evidence/om058.json': {'bytes': 368, 'sha256': 'b121fdd3e18e2bf0c0a5663bc66acd3563c1f5bb6133b49cf7290ced2f8a6784'}, 'roadmap/evidence/om059.json': {'bytes': 368, 'sha256': '39c5c4066436a090b6dc3f458e3bd07231a14a5871e64b9b0009146c52be94f8'}, 'roadmap/evidence/om060.json': {'bytes': 368, 'sha256': '5762a915474fd6d0c25d4302173cceee933c1c6f78385d4277f6c3f8d29cc050'}, 'roadmap/evidence/om061.json': {'bytes': 368, 'sha256': 'b1a54b55927ce4118a2923c2eada611a36a32d75d3e0313d2dc8bf8117d5b664'}, 'roadmap/evidence/om062.json': {'bytes': 368, 'sha256': '5373b3f1d8329aa75d6b98a668a924ddd3886c22cd8231d0c82952c8f82414f9'}, 'roadmap/evidence/om063.json': {'bytes': 368, 'sha256': '2982ae5284c00e8d94ded4dbf8c414b2a4b3d70a9041078b83c3dd53cbd546b1'}, 'roadmap/evidence/om064.json': {'bytes': 368, 'sha256': '4ca6aaf3d169b4269e4e5b34730eb8e4f6253d648c51ccfa8700baa11d0ee937'}, 'roadmap/evidence/om065.json': {'bytes': 368, 'sha256': 'efcb3376c6c29a8768e1310bf50c6cbce37f59c656299a650738246d6f5da898'}, 'roadmap/evidence/om066.json': {'bytes': 368, 'sha256': '165c9c0f31d97c217d819bf22c217296da3fd4c078057c2f74dff1b67ee45dbb'}, 'roadmap/evidence/om067.json': {'bytes': 368, 'sha256': '9759ac87ca5faf76dee5f54364e8b5a729b521363a8cef6d770af27e606bcc69'}, 'roadmap/evidence/om068.json': {'bytes': 368, 'sha256': '464fc191da043619bf7ffb44ac85502ba9044877c869a1021213b09c09d686c6'}, 'roadmap/evidence/om069.json': {'bytes': 368, 'sha256': 'e689ccdf65052f67ff169ceb7bd95e11a169033ce0f9fce70ec5ade38e07d19a'}, 'roadmap/evidence/om070.json': {'bytes': 368, 'sha256': 'be21158281a0d7e3f5a97f81a2f1764fe3583245444dfbcb9749618e5753312e'}, 'roadmap/evidence/om071.json': {'bytes': 368, 'sha256': '129201e8605c109223eec5d6a4c4b2357298e75d02f4b115af0707942c915bf0'}, 'roadmap/evidence/om072.json': {'bytes': 368, 'sha256': 'b0774e48b71fc0e2d10f2d5b7e8b2601152dd0a83b38cd3e4c280b3414d5d4e4'}, 'roadmap/evidence/om073.json': {'bytes': 368, 'sha256': 'a597fcbb796d15f87260ef34973c245364c982b9180a24085168cf45edebe6b4'}, 'roadmap/evidence/om074.json': {'bytes': 368, 'sha256': 'b08fb12456deb5dd5399a6cfdf5380e7dd0f365a6ce3a0942ee44c60874caf99'}, 'roadmap/evidence/om075.json': {'bytes': 368, 'sha256': 'd2c17b6609055c79d8bec6f2e1ff3e270cd4c7967ea40b378e930353598e251c'}, 'roadmap/evidence/om076.json': {'bytes': 368, 'sha256': 'c8247b4d18b69f6f76cdc8924a8ee122e9a72054eadb139670dd77c5640d3f9e'}, 'roadmap/evidence/om077.json': {'bytes': 368, 'sha256': 'e4ca32da41eec0efdd73d26b624816c32772f86292321ece5abb3bc61b1c423e'}, 'roadmap/evidence/om078.json': {'bytes': 368, 'sha256': '850833e4a7a00bbbbbb8a1ba5b99e1dbf0f0f51d00f00d0e9b64fd9333149751'}, 'roadmap/evidence/om079.json': {'bytes': 368, 'sha256': '2047676aa80e3a584f35c6e4082792a2111665a0d8c0f077ddad29f90ff80651'}, 'roadmap/evidence/om080.json': {'bytes': 368, 'sha256': '07ce05a794bd2168e2058ac179888be7988a85ea425174bb17d3e17819ab9ccd'}, 'roadmap/evidence/om081.json': {'bytes': 368, 'sha256': '69ba975980af67fb30161e383272fe377a4fac55bca7adf67f235d20f5eadd37'}, 'roadmap/evidence/om082.json': {'bytes': 368, 'sha256': 'c839dfbfa9f3b9609906e3509d2004a809fad5c3775dc1d0c6bd351acc6d09c0'}, 'roadmap/evidence/om083.json': {'bytes': 368, 'sha256': 'deb78da9e8e3e90c0c28ece2394367fe0913036d20152aa8c00a4a4cf306dbf0'}, 'roadmap/evidence/om084.json': {'bytes': 368, 'sha256': '03d0d1c2ddf4cde929d9306c2f26f3df2f60ce08b13de6ee0742761e67f16699'}, 'roadmap/evidence/om085.json': {'bytes': 368, 'sha256': '018b9491c480c5584a2fd77f222df898aa04b84632691512d850960bcdb1fe9c'}, 'roadmap/evidence/om086.json': {'bytes': 368, 'sha256': '6c6827a003f42a73bf55189b2b7b8730bd5dff728a5b32e4f455ef007503107d'}, 'roadmap/evidence/om087.json': {'bytes': 368, 'sha256': 'ef33f6587bd18e939d776bc00f10ffc4f43219f1c36618fb8edf2501e2326131'}, 'roadmap/evidence/om088.json': {'bytes': 368, 'sha256': '756ff0391cf5322ec64cbea708b19e0da9da501fffd0b9d9c564947b44d00acf'}, 'roadmap/evidence/om089.json': {'bytes': 368, 'sha256': '0fe9bc9baeeb06bef622a9a049eaab6a5a8a06404fb821111bb7804ebdf9a94c'}, 'roadmap/evidence/om090.json': {'bytes': 368, 'sha256': 'f8827fc09a9c0da35efe61948d723f445bc022e75a5bb16d7a2d93f7cfc878f2'}, 'roadmap/evidence/om091.json': {'bytes': 368, 'sha256': 'ef1a2bf174ede3737bc051162bef4b5cf6d1cff9d95f6280466463dfbca37806'}, 'roadmap/evidence/om092.json': {'bytes': 368, 'sha256': '12d47ba9347ce36dcfee5e1836749526dff6f2fa2e00704bba6bc858e9b793c8'}, 'roadmap/evidence/om093.json': {'bytes': 368, 'sha256': '675ffe477c1d1577de6a0452b62565cce02b3bca68e0e1c2620ca89a49255c1b'}, 'roadmap/evidence/om094.json': {'bytes': 368, 'sha256': '7bfdca16d056fee1443ec40a8a7421dca127b2ae8903574e90c001abe761cabd'}, 'roadmap/evidence/om095.json': {'bytes': 368, 'sha256': 'cfb83279923839835802017166e59fd6d07f24f5fdd29b57de81c4b58e386f61'}, 'roadmap/evidence/om096.json': {'bytes': 368, 'sha256': '59c5f2ba32a5e70052c6c52d0180ff30108dc02d23f43f0336371d993fa4ce8c'}, 'roadmap/evidence/om097.json': {'bytes': 368, 'sha256': 'a4994fbe66b4d2549019f3cf23801480af39612940ac471d80544ecece1ea88d'}, 'roadmap/evidence/om098.json': {'bytes': 368, 'sha256': '79a7480d8c95c2232d26c4537c11864f925d8c2be26f360a9761a72c338fcc39'}, 'roadmap/evidence/om099.json': {'bytes': 368, 'sha256': 'e42a3d7a040e45161271a605f5f1464382330fa64327f617d7ec43d8dc4eab25'}, 'roadmap/evidence/om100.json': {'bytes': 368, 'sha256': '5de4647f68d2348436bddb7800fca7f33a9115b8098de69fd403286f67e9c281'}, 'roadmap/evidence/om101.json': {'bytes': 368, 'sha256': '1232128818ec770b61ed99de452883d8a907aab6da25cb9a676c384bb1b168f1'}, 'roadmap/evidence/om102.json': {'bytes': 368, 'sha256': 'd6edb9040e461cc6f8364fa76670a95507df623592c557ea459ea854a87f96c0'}, 'roadmap/evidence/om103.json': {'bytes': 368, 'sha256': 'c334d4bad195090121d1c8302496acff1380ec7025ab472b68a771ba8e81e4a1'}, 'roadmap/evidence/om104.json': {'bytes': 368, 'sha256': 'b9072dd9d56379d9822de1784d18b8ecba15535a4adc8a46bc4c3023b39c3517'}, 'roadmap/evidence/om105.json': {'bytes': 368, 'sha256': '00a3c9052b75c5e023b5e3e40b6b03bff77f384a7ffb6f20c0528e10ea550d12'}, 'roadmap/evidence/om106.json': {'bytes': 368, 'sha256': '5049b577d2234c35a86916732a660464be136b20fe12ab3fb0c8b05c58b4d68e'}, 'roadmap/evidence/om107.json': {'bytes': 368, 'sha256': '2c306f183a625a3de06d435d69ef1f7c4b6ca28893b19d83d6f9264f4710bfd9'}, 'roadmap/evidence/om108.json': {'bytes': 368, 'sha256': '52129488283bea9c94d0e953c7a9a5195845c88d33f60affbfafbd93b2673cb0'}, 'roadmap/evidence/om109.json': {'bytes': 368, 'sha256': '586b5f5553f1369f0d6a11ea76e7baaaf7d27c633309bc796ba5303135f007e7'}, 'roadmap/evidence/om110.json': {'bytes': 368, 'sha256': '0d4ba7b5247fcd30dc4494b2c21548c28d1843083e117d6d82b86ac6195fa6a5'}, 'roadmap/evidence/om111.json': {'bytes': 368, 'sha256': 'e8b8da6b619e49042bbd9bbf2fbf101c0488e4e84632c02e79f80615d69dbf95'}, 'roadmap/evidence/om112.json': {'bytes': 368, 'sha256': 'c0fd38414794e3b660c6974c3d9d9786dcc0ea12249c4de8e47f15c8269fa24b'}, 'roadmap/evidence/om113.json': {'bytes': 368, 'sha256': '5465da0939bac8642f7b156cb4fb1f345f8e8e4d06fd26f1bf3a32e342e64466'}, 'roadmap/evidence/om114.json': {'bytes': 368, 'sha256': '5e56c9211add303b591fa9cf7206a1e20ee5c64d283b118d5efc31cb5afab5c9'}, 'roadmap/evidence/om115.json': {'bytes': 368, 'sha256': '209d564b5d46808affd17a8e7af25edc442b5d1b097300a6666dbe45ff12d681'}, 'roadmap/evidence/om116.json': {'bytes': 368, 'sha256': 'ef374eb0991c4073d0919b8504eed74206d843fb363fc45cd118e212a871cd89'}, 'roadmap/evidence/om117.json': {'bytes': 368, 'sha256': '74791158db51ab3a5ed05f3000018b647e1722917d5ebf1e3601bc7aaf7c81de'}, 'roadmap/evidence/om118.json': {'bytes': 368, 'sha256': '1e381fe8b3e7d5340ecb3e7dd60c7ff273fa5c1126b3557cd91531d1a24de018'}, 'roadmap/evidence/om119.json': {'bytes': 368, 'sha256': '34ba925b649e1ab92e82cd0d5a2f60cdbc81846332327f0c17aed84c13faa686'}, 'roadmap/evidence/om120.json': {'bytes': 368, 'sha256': 'dff1a7b037d50147ee00a3d00ca7d0f3c790dfed2f8c6c0a80bf34db036d7138'}, 'roadmap/evidence/om121.json': {'bytes': 368, 'sha256': 'afba378435b272cda768ef7997ac72fbf39fecf06322a390c7ea5ab3aff54017'}, 'roadmap/evidence/om122.json': {'bytes': 368, 'sha256': '3c08a3d8d752e5d3560afc45041af9031f2e2dddd95265db95ab85b9458ebfa9'}, 'roadmap/evidence/om123.json': {'bytes': 368, 'sha256': '63cf0e3619eeff9b6f433ad6e9bd1871844cb50b5537198502b74992786a6207'}, 'roadmap/evidence/om124.json': {'bytes': 368, 'sha256': 'd6a657fdd2f4b83b8c3e3a531b29a13f5dde32ef17040c64f32fef8620ea7fd1'}, 'roadmap/evidence/om125.json': {'bytes': 368, 'sha256': '7b68e164fddbbe2732735a6c28abb860d7e9f7c3b39b512202f056e9acbfd517'}, 'roadmap/evidence/om126.json': {'bytes': 368, 'sha256': '4275d9da147c7f65e0f516f78c7e086fb507d6c2ade408cbed53b70916039d8b'}, 'roadmap/evidence/om127.json': {'bytes': 368, 'sha256': '0b8bff78f4e09fb1d7408af1dae177ecb583a5f07a0ab926befcbfe5daa445d8'}, 'roadmap/evidence/om128.json': {'bytes': 368, 'sha256': '20bffbf10fb09ffca79e1e4ffce5cabe84f902be5c85a7e2c740c415b52f1e18'}, 'roadmap/evidence/om129.json': {'bytes': 368, 'sha256': '0641af020db2da62115594d77ec864fa963e0e586007edb37e8bc7e9d2e0cd41'}, 'roadmap/evidence/om130.json': {'bytes': 368, 'sha256': 'a7a7053b10c4c3e19f7a9e8e49e8c4b33fee8b60136df9c0e3f351f7985e8f28'}, 'roadmap/evidence/om131.json': {'bytes': 368, 'sha256': '3695615b1064bc80347de9937eb1f132c92e1eb84d77d0779c235966a265084f'}, 'roadmap/evidence/om132.json': {'bytes': 368, 'sha256': '831b05e6e7f6560726007b305dd3b591a26caff998a09b616f9fa5c75637ebe5'}, 'roadmap/evidence/om133.json': {'bytes': 368, 'sha256': 'acda8e466265e7789b08c7c1a748c75b1cfe1ddd78f8aabf80a8da50db493338'}, 'roadmap/evidence/om134.json': {'bytes': 368, 'sha256': '12fad5192198b17f0ba2e27d986e81077e8f28b59d9fa2f7b7275c6b054133b2'}, 'roadmap/evidence/om135.json': {'bytes': 368, 'sha256': 'b5d512889e35419f390f4123718b1c469713a6409e3708cb48ea6daeee30fd0b'}, 'roadmap/evidence/om136.json': {'bytes': 368, 'sha256': '0ad617f4ce1a8be59aba6ece0bf6546f155e1dca0ddfb7475337e8d31b781cea'}, 'roadmap/evidence/om137.json': {'bytes': 368, 'sha256': 'e0625c595058dbbca4fa7b844cf685333565f62fef9b173eed37095283938bfa'}, 'roadmap/evidence/om138.json': {'bytes': 368, 'sha256': 'b408683e19de4b55a29c742cde5e5a767302f4a0a69ac9a46cfd89ea4cf9bd29'}, 'roadmap/evidence/om139.json': {'bytes': 368, 'sha256': '7c985308b9c05b266d32a142badda2d2da093182883f3d2fb14758f61727c33b'}, 'roadmap/evidence/om140.json': {'bytes': 368, 'sha256': '262808b8f6d6b50d0c2ffc3596e70f4df5d5dbd638108e1bdd3990a2c6d354aa'}, 'roadmap/evidence/om141.json': {'bytes': 368, 'sha256': '4092e1c7a356677d3243f9bba09300fc11678b15655e93bfae8181399b8594b6'}, 'roadmap/evidence/om142.json': {'bytes': 368, 'sha256': 'cb171680bc5fde33921b92949c2b8f902545fdbebe6ea60f2bfd215f5a97de39'}, 'roadmap/evidence/om143.json': {'bytes': 368, 'sha256': 'aafa5f12492960ac08bbf7caa70d55392d02a5ab45f030d7aca7953a6894311b'}, 'roadmap/evidence/om144.json': {'bytes': 368, 'sha256': '9464dfa8ef72e7310d44ede5f91903e73753472fca3b2a93d4fb3aacb1226461'}, 'roadmap/evidence/om145.json': {'bytes': 368, 'sha256': '7b18ea228cdc219fbe7b8d5ede3286eb1520a9429ddf0142088d73ea9d8189c5'}, 'roadmap/evidence/om146.json': {'bytes': 368, 'sha256': 'd1ff3badf726cc34478a8506ad44a92e894f39930d5961795eec381954c71dde'}, 'roadmap/evidence/om147.json': {'bytes': 368, 'sha256': '46bf9b5fe69b41f739d0c6e0fe1b7d6546a8aa8df3ac773c4515d3eb4957fd0d'}, 'roadmap/evidence/om148.json': {'bytes': 368, 'sha256': '04412f9d35c5b78684db1f8a91e9400cb8f73997c6dc72d38256d36b7f2c6730'}, 'roadmap/evidence/om149.json': {'bytes': 368, 'sha256': 'b99e213672f70b57d360080e8730ddccac016c6abb8f8c8556a65f9e990c3d7d'}, 'roadmap/evidence/om150.json': {'bytes': 368, 'sha256': 'f2a57cb9cdd91f8e2f5b84891b8554eecbb6d63352a53f0d92ab00dc90b0904a'}, 'roadmap/evidence/phase0-corpus.json': {'bytes': 5288, 'sha256': '39b3bfd3182686dea1db568bf9c2abdb54c8124e619ce8d767638a632f2dfe8a'}, 'roadmap/evidence/phase0-security.json': {'bytes': 80207, 'sha256': '7db286de5ac8a7b9f91092f570048c8b64a52ddf31c8732485af2440bda54151'}, 'roadmap/evidence/phase0-tests.json': {'bytes': 499, 'sha256': '3fbd4db1b24d6438255a92fa56d2b0f8c75f598daae731ed65a9ec20e7036d61'}, 'roadmap/files-to-150.json': {'bytes': 140894, 'sha256': '9cc38423b0d346574f7b7b1e8860214ac94bc494db3a4864ef0d4664c27fedfb'}, 'roadmap/progress.json': {'bytes': 53748, 'sha256': 'fc26b7bc8b0090fb48111e8bf206e410596a5df335bbf6e45bc757d5b9f31f91'}, 'roadmap/tasks.tsv': {'bytes': 14974, 'sha256': '4bcf408de16b01f439a8478ca1f2279c60b07a0011e24cbb5a80d17d66119593'}, 'scripts/build-manifest.py': {'bytes': 1448, 'sha256': '163eec6df0d8ee111c3c91788a29f7df9c8efe2786ec13c56453f792bf4ab42b'}, 'scripts/build-monolith.py': {'bytes': 9813, 'sha256': '61cd53d6c615390db732b674ab3009e1b1124909ebdeeffa02c6bb48e8a3547e'}, 'scripts/monolith-components.py.txt': {'bytes': 7792, 'sha256': '2b7ea4480b06d849ce970a112eb4ce28cf947ff73cafd1095c611f7b8aee1a52'}, 'scripts/package.py': {'bytes': 2045, 'sha256': '179210e90648f1de3ccb230a8e37ba08f5de2c9a106b2c96f94082ff1473ceae'}, 'scripts/regression.py': {'bytes': 716, 'sha256': 'b63b151bcc5cad3370a3dc3fe4a45f6b61e746eed986f613cf97a02a6b80b95e'}, 'scripts/security.py': {'bytes': 1321, 'sha256': '892560b53800a18f4e4e8aa7716a05453209cd6658b157befdb060856afdfbfe'}, 'scripts/setup-native.sh': {'bytes': 2056, 'sha256': 'ee2e7a60e268846728eaf2fbc8a4c1e5fb93741f0f8e57fd7b9e28f5c30c1a8c'}, 'scripts/setup-qpu.sh': {'bytes': 1604, 'sha256': 'b0aed33948aa6238eaebbbdee1c5d880d532247e4fdef8b558c2e381119fc9bc'}, 'scripts/setup-sandbox.sh': {'bytes': 1685, 'sha256': '5261a2d58d3ab95939b3308951101469a44e526993ffe7ebe3b578b5ca9345dd'}, 'scripts/setup.sh': {'bytes': 1862, 'sha256': '193d76dacde2fa90d74081e0d67e1d0e0778f2072a23237e18e06502ee49964f'}, 'scripts/test.sh': {'bytes': 705, 'sha256': '6b12948d1c4ccabcd25860fb38051386cd11824717f3871c6bc462d0ccfafbf3'}, 'scripts/validate-roadmap.py': {'bytes': 11457, 'sha256': '5f7920db563bb268b98a14c7b9439857ad05cee7c6ec641a754037ddb7005677'}, 'testes/acceptance/conftest.py': {'bytes': 5767, 'sha256': '833eb099e16c15a0d13867753ad2c907b0681c9d6659112763973f58677eba98'}, 'testes/acceptance/memory_harness.c': {'bytes': 717, 'sha256': '2919a3430979055494fc1cef2d0b73aef1aeccd52ff11dc67d0917a89e3bba6a'}, 'testes/acceptance/test_native_synthesis.py': {'bytes': 12298, 'sha256': 'bb724813f3ba9071c65637690627d08d7a90ec9403a4de05ba63578df3b676ac'}, 'testes/acceptance/test_om018.py': {'bytes': 4271, 'sha256': '47d67cb9b9f53d77e4237cf3b1988deb46290082885c3d8f6684a430e075aa9e'}, 'testes/acceptance/test_om019.py': {'bytes': 853, 'sha256': '0fa449554fc5db99e46e656d3f1c91b45dbdbcf63b7328732b4c6e286f3aee9f'}, 'testes/acceptance/test_om020.py': {'bytes': 1052, 'sha256': 'a52ba209f72cf212216227ebf1dd21bef3aafa968bed45d23962137b7855a323'}, 'testes/acceptance/test_om021.py': {'bytes': 937, 'sha256': 'c00590cb97454870d6f4f7731f9afe3eb5afce70850fa335ef25dae6ab759973'}, 'testes/acceptance/test_om022.py': {'bytes': 685, 'sha256': '115e1f9fb627923e11695236a6280b10588a0a4eb5080a8d32fe46236a1da962'}, 'testes/acceptance/test_om023.py': {'bytes': 742, 'sha256': '45fa5c1172c704f28c0734a6c995ab8cc5cb1678388fae9d0deee5ef02ce0e46'}, 'testes/acceptance/test_om024.py': {'bytes': 752, 'sha256': 'd1e4105f30ea027eaa677d9dc6169d566123e1898c2617ea19a6a02d3d19f44a'}, 'testes/acceptance/test_om025.py': {'bytes': 911, 'sha256': '9c28ed735ebd8d3755ba5dc896df32f07fd9cbf0b60498ad8f786bd4b265063b'}, 'testes/acceptance/test_om026.py': {'bytes': 199, 'sha256': 'c1e75d2b587dc89dfbab182b8c86ea1f960767f73b7f05999275ea2362513b4a'}, 'testes/acceptance/test_om027.py': {'bytes': 199, 'sha256': '593d1b1c85692748cc60d678aa6894209605eb669d892d02b0a07fba9b9e1dee'}, 'testes/acceptance/test_om028.py': {'bytes': 199, 'sha256': 'e6d943de8c74f811222d02e245d78791b3e843a85d43774d59af7e76608f9c83'}, 'testes/acceptance/test_om029.py': {'bytes': 199, 'sha256': '85094456b30bf821acdc656eaac6f492af5bc13360b8290401eac2937d653102'}, 'testes/acceptance/test_om030.py': {'bytes': 762, 'sha256': 'd90687c164ad6150e57acbcb13496b8df66c6441b947e6486de48267ee9da7ed'}, 'testes/acceptance/test_om031.py': {'bytes': 199, 'sha256': 'b71a2b332bd0c86371a5326eb16ef9cc2e518d9dc645d423fd2dea70b599eb25'}, 'testes/acceptance/test_om032.py': {'bytes': 199, 'sha256': '497ebc694b820564778a0585af11e41ecc12ed8442dfb72fed329777d96782bd'}, 'testes/acceptance/test_om033.py': {'bytes': 199, 'sha256': '4520014ba4cad0397f2fa5d8c4e0168bbfed1fdc2be0c133a8e03e141f554d6f'}, 'testes/acceptance/test_om034.py': {'bytes': 199, 'sha256': '4ff8cbe88e2a8befc57cb6d08ea7cbcdadd42d7586f02ee8d47674aaa75a7566'}, 'testes/acceptance/test_om035.py': {'bytes': 199, 'sha256': '1ec2492dcc6f77b13acf98c83fb37ff03720c50bde6a6dbb38fcd5f08ca096a1'}, 'testes/acceptance/test_om036.py': {'bytes': 570, 'sha256': '0fa9a4ef09396c2da81d7bdb1813835291c0ac68dd3e36e6f393db6f2a8bbbcf'}, 'testes/acceptance/test_om037.py': {'bytes': 645, 'sha256': 'ba99a36edd231d88be67749e711a7c1ee6e4c84ee58c37c5b3ddf761a69c2524'}, 'testes/acceptance/test_om038.py': {'bytes': 697, 'sha256': '0dd107718d80729c38ca8a101b4b8daa2ecca3466dcf86d507a7951a6e0fedc7'}, 'testes/acceptance/test_om039.py': {'bytes': 794, 'sha256': 'a44bccbff431ee9e9f9f0642a1d5b9847c0cbdb75709344204820fcb16778b70'}, 'testes/acceptance/test_om040.py': {'bytes': 598, 'sha256': '5847acfbfd6f0ffa3c55d686ca1832eac52531ba6f4724c7b938501007abb47f'}, 'testes/acceptance/test_om041.py': {'bytes': 833, 'sha256': '3fe04d8c22e64f93613a8f4b08437e68071a8611344fd502b41934f120e82be5'}, 'testes/acceptance/test_om042.py': {'bytes': 531, 'sha256': '0869eb04aa0e9651e462bd88089fff33070989c6307996a23efc52c142004a57'}, 'testes/acceptance/test_om043.py': {'bytes': 475, 'sha256': 'f38a888dcdab695d9e935546fd61d6a2c411eb902ea546771fffbc4ae0c2a1d5'}, 'testes/acceptance/test_om044.py': {'bytes': 701, 'sha256': '7b1a84c4bd45f8007eebb093071741563d0fff22c31cc44777f75f0e14e3bc9e'}, 'testes/acceptance/test_om045.py': {'bytes': 495, 'sha256': '1394a0ed505c87da952e50035db89c7f4709951a05ba6a0e9cb4f3fc4d3f05a6'}, 'testes/acceptance/test_om046.py': {'bytes': 443, 'sha256': 'b812c31012d6fb6583d083e6eb4be9dcedcda15822494050b8f1e6536f6e31cf'}, 'testes/acceptance/test_om047.py': {'bytes': 1004, 'sha256': '8e24d3325d50e4d4bee835f07a1fc0f31e29de258fce9e191f9daf1219fc1dda'}, 'testes/acceptance/test_om048.py': {'bytes': 479, 'sha256': '5152971cd024b9ad426560ab12b3c0b9573df81d783635a64e4cfb956de5b082'}, 'testes/acceptance/test_om049.py': {'bytes': 494, 'sha256': '847f77b6271a008c8ed874cd69e560462052e095169baa86111722cc5ddc6e56'}, 'testes/acceptance/test_om050.py': {'bytes': 532, 'sha256': 'c38f35e001aec2c95539f1d2506cbecaec1fcbaf2a3b6405e0be912673dcf106'}, 'testes/acceptance/test_om051.py': {'bytes': 522, 'sha256': 'b82231249105e61e80979e86b2fc24a96595c88b9cf97156791603fe8eceee97'}, 'testes/acceptance/test_om052.py': {'bytes': 602, 'sha256': '1364a3170c63f706928f3a5ed13cdc0ecf1942a9dc246ff4c5a98596d9c7e8b0'}, 'testes/acceptance/test_om053.py': {'bytes': 521, 'sha256': 'e78cc4c7c50ec17803731e6c7a6e132dc8d2ed73096e9995cc563f292ab14e98'}, 'testes/acceptance/test_om054.py': {'bytes': 470, 'sha256': '8fe2c3b9339302daa5365095fd9454b89355d9f5767c32ee4f314ad1bd19b160'}, 'testes/acceptance/test_om055.py': {'bytes': 402, 'sha256': '69e4621bb519975fd98ea56fc8b89d9fe677ad88d0b44631fbead0f8865cc75f'}, 'testes/acceptance/test_om056.py': {'bytes': 630, 'sha256': '8c567541e429a4ad27653cdb1f0110f0c099f55fc4f7340355ea264de2ff96ed'}, 'testes/acceptance/test_om057.py': {'bytes': 525, 'sha256': '628b7c4c9e103a215df3b3c56fb7599e7f62b7e90d5589eb58631b21b57e90a7'}, 'testes/acceptance/test_om058.py': {'bytes': 513, 'sha256': '0cdcce7f861d621789d34ba5639c84f643d4a373f9a3d548e4264b971c6f7786'}, 'testes/acceptance/test_om059.py': {'bytes': 615, 'sha256': '467b273d1714c7c81fd5658490d27567a5a84a24367d039c12e4232108f6b3b9'}, 'testes/acceptance/test_om060.py': {'bytes': 553, 'sha256': '1d70d755e4e2dd5c3df26172fe791a160ed24d74b5ca962ecd5e0e2568d394ee'}, 'testes/acceptance/test_om061.py': {'bytes': 556, 'sha256': '4332b989af5ab8f5bc64cbcbd9344655df8cfdfd5d01cc0599cb3162cfd2d680'}, 'testes/acceptance/test_om062.py': {'bytes': 599, 'sha256': '377ba947998d50141fa3d8d1f99b5140e4c02c66a7756b42a208bbb2c6155b18'}, 'testes/acceptance/test_om063.py': {'bytes': 516, 'sha256': '03ca49a70e712c77ed0a1c6a00f633a0d46e717ae8fc6d2345ae8663367af1e4'}, 'testes/acceptance/test_om064.py': {'bytes': 479, 'sha256': 'f188d870aacd51d011e2e500c1b783d5267a0ae97973408ed8a76190d448c336'}, 'testes/acceptance/test_om065.py': {'bytes': 485, 'sha256': 'ebfbb907f5433b3cc21c7e413aa4bd62a38f414cdeab9fd27a2ed5f876d4aeb6'}, 'testes/acceptance/test_om066.py': {'bytes': 420, 'sha256': 'c85d93dc01228ef9eeadc75b31d7d4b40ec30bc3b9a43f78888112ad70696891'}, 'testes/acceptance/test_om067.py': {'bytes': 954, 'sha256': '7dff7bc1d09957dcc044b8cdc32565a40b7deaff36e369f6c8d0abe4606202c3'}, 'testes/acceptance/test_om068.py': {'bytes': 496, 'sha256': 'f1a588621a6e90f924b0eec075d1380d7b40abf622770132465126c5bca96ef2'}, 'testes/acceptance/test_om069.py': {'bytes': 637, 'sha256': '5f89d1b22c5bdfdfc7d72e88a68194078649af1082f8b4ca6cac9c7c89231ace'}, 'testes/acceptance/test_om070.py': {'bytes': 1345, 'sha256': '2ea6b109b82cc9217b402865d9873d492279e018e6977c84d5ae2e2a2eea4fe4'}, 'testes/acceptance/test_om071.py': {'bytes': 658, 'sha256': '8e2029a7f43043f557bcee7e929f7d4868a781191d9282fd9e78abadf5ee4a52'}, 'testes/acceptance/test_om072.py': {'bytes': 532, 'sha256': '60b67a48b4c41600d44e7806dfe532763e52310a2887e891cd2d987ab030be8f'}, 'testes/acceptance/test_om073.py': {'bytes': 562, 'sha256': '26f5543de9781eefec50991485ffae58d0360cb8a53db39b1ddd598c27428f10'}, 'testes/acceptance/test_om074.py': {'bytes': 569, 'sha256': 'ea07af1441f5ac180de715b623d3408ab37f0c5154c6254005ba3eb99e80314a'}, 'testes/acceptance/test_om075.py': {'bytes': 590, 'sha256': '135a6e47852eb8d93d57ed948c9b9eb71e8d35a461b2e233c4458af9f23f627f'}, 'testes/acceptance/test_om076.py': {'bytes': 542, 'sha256': '51e320cc9ee889316443a298b72faf38e6981efae53012a8a8d46d70bba80d6a'}, 'testes/acceptance/test_om077.py': {'bytes': 441, 'sha256': '2355b5ff4d71268c0a7b79a9a3aac1a0073f4a2f5af842c86afd3acaccc39ca4'}, 'testes/acceptance/test_om078.py': {'bytes': 477, 'sha256': 'e30323b689549db101cc0b23bf3ef3186bc2b96ac8d4d3825232aaf42ec047a8'}, 'testes/acceptance/test_om079.py': {'bytes': 420, 'sha256': 'f2902fab2fcb49fd851e7c0b1fc442bed6180615149e16208c040e38c29b9ea6'}, 'testes/acceptance/test_om080.py': {'bytes': 807, 'sha256': '8f842461bbf78845c5dc32eed11d9387685a58776718ee7632a888f8a9ac4f2a'}, 'testes/acceptance/test_om081.py': {'bytes': 440, 'sha256': '6539c2e34ebadc6f0a127cceaa0ceef88c14429506e19ea5849de618e09a34e7'}, 'testes/acceptance/test_om082.py': {'bytes': 482, 'sha256': 'b4c9827fa3f03c13527301ea0ba1b236a80cd867b92202ed911a5ef8e92d3341'}, 'testes/acceptance/test_om083.py': {'bytes': 568, 'sha256': '785b59f7d700ad2abc2ebf49ca3ca847c4c6d4caf9413a6b2f0db8c96d836327'}, 'testes/acceptance/test_om084.py': {'bytes': 659, 'sha256': 'e35b9222e92dfa19a3a6e088006c85ce740e083c329018eac49df92ad9eef13b'}, 'testes/acceptance/test_om085.py': {'bytes': 616, 'sha256': '70d78dd9cc360db8eff0904ca80ad51b9aa85c2a6c6e9ab10eeae20d27adee76'}, 'testes/acceptance/test_om086.py': {'bytes': 621, 'sha256': '78a9eb6e35c1847fa9664a80b3b44d144287ace84233ad5126751d0c19328e58'}, 'testes/acceptance/test_om087.py': {'bytes': 452, 'sha256': 'ce831b5ef59c0850df9d844fc9ccadfb541797a997f169f91ddfdd629aeda0ed'}, 'testes/acceptance/test_om088.py': {'bytes': 668, 'sha256': '499c65e537e234f0a1c69b491e6d9b2b5816a629ea9298ad39c7bc7dd12504c6'}, 'testes/acceptance/test_om089.py': {'bytes': 656, 'sha256': 'b20225369ac89f8285549ab6197ac82b78c4dbc30fa10c80e492fb5a2db95b27'}, 'testes/acceptance/test_om090.py': {'bytes': 545, 'sha256': '6fc6fed679beee34c8edcb0febf57597e4a30653fb2a4bf48adb259c49ad0780'}, 'testes/acceptance/test_om091.py': {'bytes': 902, 'sha256': '0d28e38cde3fba2e51c23aaffd2ecca06cb2c5f87c2bd20511c9394cbcfe5a40'}, 'testes/acceptance/test_om092.py': {'bytes': 562, 'sha256': 'e2a41b40d36ed6c38e95d2eb6dae6a900f32872b5e9fcc52e96c6f55612f5cb6'}, 'testes/acceptance/test_om093.py': {'bytes': 599, 'sha256': '2d7d714d10313d45f2279e4c977d79ba785a8144df8cdb003495e2442619589e'}, 'testes/acceptance/test_om094.py': {'bytes': 436, 'sha256': 'c460aa9c7db30d6fa254a1940ed586940a32742c457d2aad8fe348632549b40f'}, 'testes/acceptance/test_om095.py': {'bytes': 470, 'sha256': '4c10863aa3c0f9c9b92ed04c47dca3393d745c2f0c34493d91ac4ccda59cc799'}, 'testes/acceptance/test_om096.py': {'bytes': 806, 'sha256': 'e85d90d15d7295f72ff41df07a35e1a555d516072e7813d8e43a9997f01e4c38'}, 'testes/acceptance/test_om097.py': {'bytes': 499, 'sha256': 'f71df0482e043fdc37b881a3314e18d469dab23b52a59b5bc077f5aabb2875c6'}, 'testes/acceptance/test_om098.py': {'bytes': 405, 'sha256': 'b6233b60f25458b602d91411ddf0c111b246abecac52181b00a9dd99c0740a4a'}, 'testes/acceptance/test_om099.py': {'bytes': 428, 'sha256': 'c68c6324b1e017e8ac00e2e6fb8d45afeb46a55405faab30d57a95421c2ab47e'}, 'testes/acceptance/test_om100.py': {'bytes': 629, 'sha256': '94e74cd3135c5bc33d1f673009a81db1a86e930c8157e8af01445a971ea18374'}, 'testes/acceptance/test_om101.py': {'bytes': 653, 'sha256': 'c96ed8df6ddea6cf82d121d84df8e46be7f9429a7071cfc4b806b1055c9604fe'}, 'testes/acceptance/test_om102.py': {'bytes': 548, 'sha256': '2a86d2600113424afa666c0ce2d77b454c023ab5e294654139781e090ac343b8'}, 'testes/acceptance/test_om103.py': {'bytes': 930, 'sha256': '0b971bcd3cda8a268dbe98daa2f353c030cba1fd957c70ff25bf3039bb396061'}, 'testes/acceptance/test_om104.py': {'bytes': 559, 'sha256': 'c14766bd3fb571d40ccb5fa9d082379e001b61c624d0467a79f94d28e0cd2d25'}, 'testes/acceptance/test_om105.py': {'bytes': 566, 'sha256': '2ec17883aac1247ac67ab9090aac61370e1259a17bd96d9e57a02804c5923371'}, 'testes/acceptance/test_om106.py': {'bytes': 594, 'sha256': '2b071fcb629b7a1d27a5c4847fe2ad4659757f123c5c2ff9483dcdf03361450e'}, 'testes/acceptance/test_om107.py': {'bytes': 543, 'sha256': 'b23bddd836971b777ebf071b8e7b3d15a9ae6694edaaec9e50140d551eabf6f0'}, 'testes/acceptance/test_om108.py': {'bytes': 634, 'sha256': '1c0093188ae911005709d074f91e58ba391d4c8ccbf8cd5cec00df03aebb1e03'}, 'testes/acceptance/test_om109.py': {'bytes': 524, 'sha256': '67c6ef526f6155ccb44a7ed281cda4af64988c66c2fad35d8ac3d063a869c38f'}, 'testes/acceptance/test_om110.py': {'bytes': 985, 'sha256': '49aca2df8aa63acf3a80d8489ac176429b0eeacb39b946d5377dfb5329e92f87'}, 'testes/acceptance/test_om111.py': {'bytes': 1683, 'sha256': 'e637b8dc4da642c6d5a8eb27a2abdc24bcb310903ddff1c2cf8179b3229c48f8'}, 'testes/acceptance/test_om112.py': {'bytes': 485, 'sha256': '02f2b670eeadd584c4bd53bfadd78768c651465274756845a700f4de6247f076'}, 'testes/acceptance/test_om113.py': {'bytes': 460, 'sha256': 'a0b63d3cdafc84d0da24e95e3b0babddf7ff3d8461b87ac37810e3906ed280b7'}, 'testes/acceptance/test_om114.py': {'bytes': 688, 'sha256': 'd1a16d11d550db7d46e09a53aa16e1bee05b62da1bc30de1e72aa32ff3f85b0b'}, 'testes/acceptance/test_om115.py': {'bytes': 422, 'sha256': '4e75343bc4b6a8c3ee7083070fb5b19945fb4151b96729e6e534093829f53c0c'}, 'testes/acceptance/test_om116.py': {'bytes': 1483, 'sha256': '778560e3b18a85d79a3f73a00e206dc8b76f45392dcab0f5d0302243dadb1808'}, 'testes/acceptance/test_om117.py': {'bytes': 1002, 'sha256': 'f199a9c481fb00d78c72793df7ba8d08b388dcd4a423813a5e4db6534f6efe07'}, 'testes/acceptance/test_om118.py': {'bytes': 697, 'sha256': 'd5431666e6da36297def51b2759cc36d14fe778d75c8170611185275b5c4c468'}, 'testes/acceptance/test_om119.py': {'bytes': 726, 'sha256': 'd8b7fba70e2c008b4b74361cef4a5cd7f598ec8d9bb32aed4ae3e20906cc29c4'}, 'testes/acceptance/test_om120.py': {'bytes': 750, 'sha256': 'a7a6d51c31c2b47899e4a4de3b986ae83cf5066e7c4a42253dc3f13cd5887dc2'}, 'testes/acceptance/test_om121.py': {'bytes': 786, 'sha256': 'ca4ee8d3b316b856ccbf73c53846e98c1f64da4aba00f7ee211fb700ba12cd54'}, 'testes/acceptance/test_om122.py': {'bytes': 966, 'sha256': '83b5870ba43242621b7e0958b480b800a0340dac87fd88c44f2b0f0a5de9c4df'}, 'testes/acceptance/test_om123.py': {'bytes': 644, 'sha256': 'c20c30af12b42fbe88fd0a2a7a1a09528e70fd9d560988eb042e6f4b66d58d81'}, 'testes/acceptance/test_om124.py': {'bytes': 552, 'sha256': '8d2cf9270451dbbe28fada779b4087d581c2926aa8c13f4f8ae80cfb41e8f621'}, 'testes/acceptance/test_om125.py': {'bytes': 702, 'sha256': 'b602cf0fc555bded09a3c2a80702a3c22bea7a906e957f242404162f4e63f24f'}, 'testes/acceptance/test_om126.py': {'bytes': 849, 'sha256': '430478221ccefb95e6c397506901f545a8afb051f19081de9d3e7d180e23bf01'}, 'testes/acceptance/test_om127.py': {'bytes': 1057, 'sha256': '37cd613c21f876a25706ccd4ca844a6d5bd1605b6ef915ab2bc0719b8e679ad0'}, 'testes/acceptance/test_om128.py': {'bytes': 456, 'sha256': 'bbc6dbf2f0381f349d8b9c93188f08914fb35e41513762de220f2a46ed049c9f'}, 'testes/acceptance/test_om129.py': {'bytes': 674, 'sha256': 'aee583422203650af5d8f7e4cc7cd1029644c43422b9e3c1d485ae9a95fbd984'}, 'testes/acceptance/test_om130.py': {'bytes': 606, 'sha256': '4d78fa46443f8e7f24145ca7fa10f8c67b5460cbb8a75873c2dde5eb2627dca3'}, 'testes/acceptance/test_om131.py': {'bytes': 633, 'sha256': '7ec318a197444e2f60c87391a10bba3ad984bf8440194dc73b04f76ed6f796a4'}, 'testes/acceptance/test_om132.py': {'bytes': 1029, 'sha256': '78aab5507c325e34eb537250df8ef116c4774ecefa9f2c3728e3605b6ab5af24'}, 'testes/acceptance/test_om133.py': {'bytes': 591, 'sha256': '8b179e72f9c8e4adccb2633f54e677bfaab1d8a16e2d77a19256f3be15c760d0'}, 'testes/acceptance/test_om134.py': {'bytes': 487, 'sha256': 'aa287f8f3fdf940cb606834a3a36791f8838c5326f2cce68b5be8060747713a9'}, 'testes/acceptance/test_om135.py': {'bytes': 709, 'sha256': '58b0657b70cad5d40a65291ba0b108ad2929fd5701aae7d794d1f394c757448a'}, 'testes/acceptance/test_om136.py': {'bytes': 673, 'sha256': '6149ee7609f1895bf77d45744643732d959710d8a1540b81e81c849343890ce0'}, 'testes/acceptance/test_om137.py': {'bytes': 679, 'sha256': 'be9c52c69e4be2209faeaf0c3b6641660c55dc3581358b3adab2cff21f66d33f'}, 'testes/acceptance/test_om138.py': {'bytes': 714, 'sha256': 'afa8d8234c1c6a3bcf7ed5211c41d805f4f7ccf84acbb4e79fe9696ba0937a5d'}, 'testes/acceptance/test_om139.py': {'bytes': 568, 'sha256': 'c67c62be2232ccc2ff964ed80014cf34b249c91991f0edccb542b01366dddf78'}, 'testes/acceptance/test_om140.py': {'bytes': 625, 'sha256': 'f46f4c4dcb13916ff35ac7cc9a608da29a84aab14d0d54b5ac13688c53c38a37'}, 'testes/acceptance/test_om141.py': {'bytes': 754, 'sha256': '564589e9107cc81c8ceb54d95908626b9bb586374fb773838eaedac069bccc8c'}, 'testes/acceptance/test_om142.py': {'bytes': 564, 'sha256': '79ef2b7b59c53d05a99cd7685bfc8fbcb01a3ba4ce354ef833ffd00d72389c60'}, 'testes/acceptance/test_om143.py': {'bytes': 671, 'sha256': '3bfe954e3b8351e7536d771875d56ab1566dff5b49f45698da08ac9387c2c63a'}, 'testes/acceptance/test_om144.py': {'bytes': 603, 'sha256': '8ad1488ef9409e92f75369da490e60cf7837bc33ad0edc7204c5b0bd68331a9e'}, 'testes/acceptance/test_om145.py': {'bytes': 527, 'sha256': '25ad9cd1ace341def3a085f42bc261e31cdc94350693edd1f446ba0aada0f292'}, 'testes/acceptance/test_om146.py': {'bytes': 1676, 'sha256': '75af6f0a4efc0fe6ebd88bf5c1dbccc10f5ae3cdcb768c59acdac4214f08e1ed'}, 'testes/acceptance/test_om147.py': {'bytes': 513, 'sha256': '0de2ffdad4b516cd3277f5944d58a132c054b67fbb25e7dd6f8af3b656cbc345'}, 'testes/acceptance/test_om148.py': {'bytes': 584, 'sha256': '76cf2660b7510eceb704cc849e48724d8f284cf7ae16d3abdf7667374c3e0881'}, 'testes/acceptance/test_om149.py': {'bytes': 2062, 'sha256': '8015baa0b36234d909dd8f59d49f7e4613f4d7499708949a2e866b24039ebf32'}, 'testes/acceptance/test_om150.py': {'bytes': 1185, 'sha256': '708e07d755ce1abd9f166f5e56836d2a9a3e2a62d2dd52f32553d2f8a1fb1475'}, 'testes/acceptance/test_supervised_flow.py': {'bytes': 2695, 'sha256': '34f90253c25856905d47235a27d98c06245db2415eb9fe169854c6b834501c2e'}, 'testes/acceptance/test_validation_fixes.py': {'bytes': 3252, 'sha256': '882bef2ab8299476ac4d357bbe1e1311543bb2318998ddb613547a317eec70a6'}, 'testes/acceptance/test_validation_runner.py': {'bytes': 1952, 'sha256': 'ac99a11e229f6f6e86f7ddfaa945347fbf436f3abe76234d9ab63a1e9db7c9d8'}, 'testes/corpus.json': {'bytes': 4650, 'sha256': 'a9ecc05df4232aaed66f7878bd5ad800ff5442f415effee0410de0862defb0ac'}, 'testes/foundation/runtime_harness.c': {'bytes': 730, 'sha256': 'e7c5d03dd68a3ed459b56e262ab244a021a86ef189399a3f60645deee8c4527f'}, 'testes/foundation/test_corpus.py': {'bytes': 1787, 'sha256': 'd3e54774a45aa200cbdcfa6f493a8b67ce5c0b4c1e87aaced612838df554a60b'}, 'testes/foundation/test_dimensions.py': {'bytes': 4727, 'sha256': '4b85f26dbeff1b9ad81cb204461db242aea8fc561130380e79c80d3918f655c1'}, 'testes/foundation/test_generics.py': {'bytes': 5673, 'sha256': '874cd1bce88ddd834df0da99e8ca6abbb7942fbe5ce528dd702ff5da162b1a65'}, 'testes/foundation/test_manifest.py': {'bytes': 746, 'sha256': '0ddb8df2f6425b17d851fd30c5c7b5d760273a5adf8a3f107cd13b06eb926516'}, 'testes/foundation/test_modules.py': {'bytes': 7977, 'sha256': 'ef98a320325e09991f74b09a1c4828b21fe4f7a87c5754f6a5cc5feca52af1d9'}, 'testes/foundation/test_operational_semantics.py': {'bytes': 508, 'sha256': '59013e42755a8aedc152830bdd22cab4e554c54bde8e1a0e2b5bb33ffdaf014c'}, 'testes/foundation/test_procedural_types.py': {'bytes': 5775, 'sha256': '453c9e8239c652ea2a32ef94a39416f296944dce4e16e0e5fc5bbd441f344f76'}, 'testes/foundation/test_proof_build.py': {'bytes': 1648, 'sha256': '7e8ad364c3a837cb12f7bb153ed9e21bbc9b7c4a763574bb2290efccf2239597'}, 'testes/foundation/test_results.py': {'bytes': 6096, 'sha256': '07f9944a6599a4346d56d509d86c728fb7b4875a302f3757ffaac037b86bf500'}, 'testes/foundation/test_sandbox.py': {'bytes': 4725, 'sha256': '0316e5b07248784d8007a6ab6c2e191854ab9cbf33938874c6b0662d02e90538'}, 'testes/foundation/test_single_file.py': {'bytes': 3630, 'sha256': '0263f18d69c24a0dd96a81891cccd1137a21c14efb826930481624892d6f8f7c'}, 'testes/foundation/test_ssa.py': {'bytes': 7129, 'sha256': '54e35fdcb6e5656b4476d5e0ff113683ff3b6a82278eb105fe2828ab01fb5538'}, 'testes/foundation/test_type_inference.py': {'bytes': 2918, 'sha256': '4be2acb96ba652dbf59018c2ecc60eee555fec537a00a592c691d86c6b268ba4'}, 'testes/foundation/test_typed_ir.py': {'bytes': 6315, 'sha256': '253612deb91a413638515be369be7e44972a1fa130542efb6aba58ded650e6d8'}, 'testes/foundation/type_ops_harness.c': {'bytes': 853, 'sha256': '0af5af10096944492cb98ac07fdc9761affc3e6939ab411d57eb8e277e204c03'}, 'testes/lean/OM026.lean': {'bytes': 402, 'sha256': '811843adfac2f0431de4ddf03747e8bd1ad96912076bd26ebe121ebc0a82c46a'}, 'testes/lean/OM027.lean': {'bytes': 311, 'sha256': '0aa7cec810b933f65dd44a62bf8815392e7a0a66c0c845613fbdb0a684d0ec2a'}, 'testes/lean/OM028.lean': {'bytes': 254, 'sha256': 'cb2e37026e5969c314985df26aa3dc8af739df07e658f877abe81150c34a2a86'}, 'testes/lean/OM029.lean': {'bytes': 259, 'sha256': '1118da722f3e481033066ceedf601c0104436a3725d377cdfb5a42efcbe3b223'}, 'testes/lean/OM030.lean': {'bytes': 251, 'sha256': '8f556f1a11a6af2ed3a2a60eb61db3b39a43516301e403f982846904c000a79d'}, 'testes/lean/OM031.lean': {'bytes': 357, 'sha256': '1addffb8ba5a210cff3baa0be07fcb576bd5cb47b4b73518584cd5e577975c7c'}, 'testes/lean/OM032.lean': {'bytes': 422, 'sha256': '5d4842bc155ca8563f1174cc50020112bbf5bb1693584e131aa13048753f8cd6'}, 'testes/lean/OM033.lean': {'bytes': 374, 'sha256': 'e93a916bbea9b3844328b84e2d95f3b32414e26e830ab790a9f58341221ace8a'}, 'testes/lean/OM034.lean': {'bytes': 276, 'sha256': 'f89cc5a311ccf5fa1c2b47cad2a059235c9f2fb524a83eb60d72ea57e0bdc7b5'}, 'testes/lean/OM035.lean': {'bytes': 473, 'sha256': 'a82b16b742ab2e1bbadb156e36a8bc673a78b4ca1b9884fc8e66ccb348f0aea2'}, 'testes/lean/OperationalExamples.lean': {'bytes': 834, 'sha256': '17a3f693511d9b70f64db6b7bf6c4afcf46efa4ed2ddd9d30038dd2117f5dec2'}, 'testes/nextorch/conftest.py': {'bytes': 510, 'sha256': '02980bb3031851883a041e5cc7d29d1fcc22d88055e80bb824d6de84dccb0136'}, 'testes/nextorch/test_cli.py': {'bytes': 1116, 'sha256': 'd9dac93a01b40d4b34448e7128590de0340b3dfd51f13962f53cdb3729eeaddf'}, 'testes/nextorch/test_core.py': {'bytes': 1802, 'sha256': 'a51f5654c8450223d1dadd65bf8d157d5660de86b84510ff75a8c76b5ea51de8'}, 'testes/nextorch/test_engine.py': {'bytes': 4777, 'sha256': '09bfe201c8c7b9d9a2ab74f15aeff7eafd423bf974e255190d6445a0a6ebb803'}, 'testes/nextorch/test_evolution.py': {'bytes': 5163, 'sha256': '4af85444ee1612ca28db438b441d9307ac703b6c3aef06b7b64c1f98adcef619'}, 'testes/nextorch/test_formal.py': {'bytes': 6353, 'sha256': 'a76d746096e9dfcb905eefb867591137fa6ad7ae259d5e49efd1fdf21cfe7f02'}, 'testes/nextorch/test_orange_bridge.py': {'bytes': 3893, 'sha256': '838b378571a95b5c9daee18303f59e05aeccde3153e396de2e194a19ea705d40'}, 'testes/nextorch/test_synthesis.py': {'bytes': 4570, 'sha256': '08192bc225050457b28ce4352d02ad96c44733334550186329e16bceefab70e1'}, 'testes/nextorch/test_verifier.py': {'bytes': 3555, 'sha256': '98553cc010b02a439777418f49a53f64d06e4f41e5af34a6349214b87ce7a585'}, 'testes/nextorch/test_widgets.py': {'bytes': 7325, 'sha256': '5c062d8246a9be671fef4fdfa94037285fdbdcd46a049d890b10ce968ff68b51'}, 'testes/test_certified_workflows.py': {'bytes': 11581, 'sha256': 'f14a6823720f722f82c0371c588e985a4f8861d826adb42efb588b63676b926f'}, 'testes/test_cognition.py': {'bytes': 6514, 'sha256': 'c93ec36217a645e5fd445225c2dfbea86eb540b0123ea0f130a7c0951fb64df6'}, 'testes/test_evolucao_v11.py': {'bytes': 7451, 'sha256': 'b8ab50a0f4ef1ffd6da3bd23354fa6d7501c2bffce306f7cdc0b59ee2cf52a03'}, 'testes/test_mcts_synthesis.py': {'bytes': 2251, 'sha256': '937ae55112151a38a5ec3e28364412b38a47a83f7b5fc74de37d789a23c2b856'}, 'testes/test_meta_v12.py': {'bytes': 5201, 'sha256': '0bd517b3b2db498987da1e37b32f4ff03080c03b50826af8906a164ab3a17114'}, 'testes/test_nextorch_integration.py': {'bytes': 8712, 'sha256': '128dd0893cb36dc6704c1e123cb5548e96c6c0043c66b191520bd9920119b2fd'}, 'testes/test_omega.py': {'bytes': 8597, 'sha256': 'd02dc93d5a3931cba5515dbaddfd37d874ed45569ddfe21ba848cc569adca76c'}, 'testes/test_omega_orange.py': {'bytes': 3898, 'sha256': 'cd36801853fae2a06b5188572c64266856ef3e2ab4c7d4637c3115feb92aa5a5'}, 'testes/test_open_v13.py': {'bytes': 3504, 'sha256': 'c3f5f95d25dc0952705b139265952d125b7f7e74c2717616d17c486c8a1b8b90'}, 'testes/test_path_c_integration.py': {'bytes': 2087, 'sha256': '7794bac24322e4597ab8c3a4fbb86b74837c04bf9c257113ab2a6fbabf9209d7'}, 'testes/test_proof_actions.py': {'bytes': 4173, 'sha256': 'c6f0798f73ac5b4a3e6a2e0d49b40a0417eca4856b18f63aa681b37cbca1a8e4'}, 'testes/test_qpu_rtl.py': {'bytes': 4223, 'sha256': 'fc3f598894816ddf16a101c5d3aa355563e6121d6d3e2f4ebfe7dcfde81c1fc0'}, 'testes/test_refinement.py': {'bytes': 2769, 'sha256': 'b5858c574354e2d19c1c618dc7d36a3efefc51b982474b9bd0e3b6a5d6d1f823'}, 'testes/test_self_mutate.py': {'bytes': 2675, 'sha256': 'cf5245bdbe2a7fab09d76ad6c185467d35ef0428b6569916ab2fa130fd0cd683'}, 'testes/test_selfhost.py': {'bytes': 9693, 'sha256': '26b5a024b4e2efabe77bc75a5beab419666beda85d5a90668e648895428d3c8d'}, 'testes/test_transformer_certification.py': {'bytes': 15743, 'sha256': '9097171904a5d59cb0199346ede52691141dd40a035f0d83a6cafd5d3b8f0eb1'}, 'testes/test_v02.py': {'bytes': 6541, 'sha256': '02291ac2f9a29dcd354de00db9656cd95748ab1fd4ef96e7f2fd33813b5e0279'}, 'testes/test_v03.py': {'bytes': 12111, 'sha256': '3ab189f206bc9342b06a2b40e92314b89fce9b02eb12acd4fef62d41970af90a'}, 'testes/test_v04.py': {'bytes': 8825, 'sha256': 'adf8ce7c87f3ce4df2dcb300ef00963668ca02ff4da1e52ff7671bd63f1eab05'}, 'testes/test_v1.py': {'bytes': 11496, 'sha256': 'f090892e0494b8fc0688873423f6d1603f0dfdf41810b2b5e5fccb554f1fec1f'}, 'validation/README.md': {'bytes': 5977, 'sha256': '7c122484e7f8d516ea37b3f5adaf892c9f5ecd59449e9a3652acdf085f8034a2'}, 'validation/catalog.json': {'bytes': 16540, 'sha256': '403fce93f629b281513a60ab77365a3e1273e9a7586941464c4f42f84318afce'}, 'validation/certified-transformer-benchmark.json': {'bytes': 20404, 'sha256': '7fff7e821b80205c810a4e786b6225b74cab62e64d36f21524d492ae39e87802'}, 'validation/certified-transformer-benchmark.svg': {'bytes': 58968, 'sha256': 'ab35f643a73def08a56f86b6891f9d78d965822836cc2f33d82e2d1557ca65e6'}, 'validation/path-c.json': {'bytes': 2372, 'sha256': '0f1f0b2643d32ff7b508ec78b3ebe7cfb00df156152de85d2df199003ef1b5bd'}, 'validation/path-c.md': {'bytes': 3674, 'sha256': 'd2dd2cb01da48f36eaa3df97dad0fd60c297d4fbcb9dade0f0e1aed0bf1d5696'}, 'validation/pending.schema.json': {'bytes': 773, 'sha256': '7e46a270bb5d8a8ce6f9e57f700e312a8357fcd984368a1db745d51e3bd9425b'}, 'validation/plan.schema.json': {'bytes': 2150, 'sha256': '441bbe4abb508d4961f4df84e911bf81897edef895058b5ea4597c4df8ab9511'}, 'validation/plans/om001.json': {'bytes': 998, 'sha256': 'a4f5f2835e9da143ae373ce96fd2bd4bca943d0a27d596250a8d2e0794c69ce2'}, 'validation/plans/om002.json': {'bytes': 938, 'sha256': '0ab13df4b785982fabd3db133fabb63644b07a3aa8cd243b50e50716454aa005'}, 'validation/plans/om003.json': {'bytes': 947, 'sha256': 'a91ec492c9d47bdbdeb911ad709ef7546ca7190a2d91551b29b8087ef2db10a4'}, 'validation/plans/om004.json': {'bytes': 907, 'sha256': 'c7cd30a3d9d2488a89dfd2f42de6499813ac1c1981bec07f22a4777b2b088fba'}, 'validation/plans/om005.json': {'bytes': 957, 'sha256': 'b2ef3b88ac26ceaca8717001dd6ccd0ad5fdc59178213768969f00b76772a797'}, 'validation/plans/om006.json': {'bytes': 914, 'sha256': 'f513909902f6a6b51899dae63a34d4251fb712c8ded7c0259c6be8620af079aa'}, 'validation/plans/om007.json': {'bytes': 941, 'sha256': 'cae188b779d3b9bde63018fb590f52d5b48d38bce9ff38929f13df52a66570f8'}, 'validation/plans/om008.json': {'bytes': 944, 'sha256': '7e805fbd6f88956086c1408f7d8ac041b2b52587ea938bb3cdabca805d1b90e8'}, 'validation/plans/om009.json': {'bytes': 939, 'sha256': '38220e14b9529e814e24be24dbfcdff9cf1ad61fba61f79efc8ab17119fb8532'}, 'validation/plans/om010.json': {'bytes': 865, 'sha256': 'e12b047ae54a18e5488a8a2eee26e1fa09ca93d9782bae19c71c76b0ebe17739'}, 'validation/plans/om011.json': {'bytes': 969, 'sha256': '3e3a316788a7be55c2251afeeef809e55133c79584b10ec35ba1ebc69a51cc28'}, 'validation/plans/om012.json': {'bytes': 954, 'sha256': '0bd7db8396a07356acfdfbf7c705ac75aa6968b9d0f364fd939e12944ef81fcb'}, 'validation/plans/om013.json': {'bytes': 909, 'sha256': 'fbc92df86bec0d8920d894e65f8e5df766981b6d2dee9ab72d73c98c36724cd9'}, 'validation/plans/om014.json': {'bytes': 902, 'sha256': '5d73f0820fb872a821ff7eeb4d954157fb23e40a112d2a0f83989d08f6067815'}, 'validation/plans/om015.json': {'bytes': 851, 'sha256': '99a5d18df285b74574017aa64c5c7b86cd738ac0933a0b4c825589f1ee125bae'}, 'validation/plans/om016.json': {'bytes': 947, 'sha256': 'd9e4098a32b3432b2ba2da9df70b86e15692174ed5b5154ae0303b9d3c323d61'}, 'validation/plans/om017.json': {'bytes': 906, 'sha256': 'b8d97d01a127b45bd5a08f4d6a1b9fe9f3ef38f6b9d9a3eb6d40b691bc488ce8'}, 'validation/plans/om018.json': {'bytes': 1153, 'sha256': 'aa472e72ca8b69d7cbddcd98ee5b43801eac71cac67d4ccd02c1a1c618151a65'}, 'validation/plans/om019.json': {'bytes': 892, 'sha256': 'b30e81d339a6b31528eabfd662c7ebff315d477297c91a47b40b6172c9eaa177'}, 'validation/plans/om020.json': {'bytes': 1152, 'sha256': '25c565d9994c77097e0776fee4f95f5575c731538bcbcad18f96d1993b9fb733'}, 'validation/plans/om021.json': {'bytes': 914, 'sha256': 'ffd6792f52c71f4223dd984d547be0dfdb91df2262dcc06b19eab324779b79d8'}, 'validation/plans/om022.json': {'bytes': 946, 'sha256': '5a7ba41bcebaa83129368bda7b7a4dc11838f2faa6307626cd7dcfcae3e94ae3'}, 'validation/plans/om023.json': {'bytes': 921, 'sha256': 'ae2188a8a002e4525f5694a3290c935eb94678b2f278c625293aa56689f60fd4'}, 'validation/plans/om024.json': {'bytes': 920, 'sha256': '3603ba3fb491bc148d356d218387f6ea8056fc49988a4ccbf12b7d10c2502eab'}, 'validation/plans/om025.json': {'bytes': 919, 'sha256': 'b0130de6dc8f4dedce9e0aa42ea3e8275bab29ff134e47bb584be17e6f08125d'}, 'validation/plans/om026.json': {'bytes': 1005, 'sha256': 'be5d2470a9a8d2b08f9c08f1a7ce2194661c1b9575487732f69d942dda5b4b7f'}, 'validation/plans/om027.json': {'bytes': 998, 'sha256': '5fcc438b9cfdc87c66245980c71fb45e102f1443aa9edc566deaa40e89f609b6'}, 'validation/plans/om028.json': {'bytes': 943, 'sha256': '37727edd4e57a7f4282efbaf5bb8ac3184ba529792e8b4bf20435ade31400664'}, 'validation/plans/om029.json': {'bytes': 984, 'sha256': '3cda801d32cf6da5203c2e03dd5e68695952cff7353ac7048481663af31b06cd'}, 'validation/plans/om030.json': {'bytes': 964, 'sha256': '3cd3aee8028abd20ff8738ca732b622872cfd6dd49ac04524b21aba0fba48bb5'}, 'validation/plans/om031.json': {'bytes': 1093, 'sha256': 'da14ad94ea555f4ef95c3a13fc6fa7681fc93a247fb66d70a86b858542f6c06d'}, 'validation/plans/om032.json': {'bytes': 988, 'sha256': 'f4b02e58bbb9db5b04ab0c92eafe25f6cd5dafc5f4a3d323668da42743851730'}, 'validation/plans/om033.json': {'bytes': 994, 'sha256': 'c40aedf4f960bf3bcf981819bae2821449eed68d564b6dcdd9204e36fb46784e'}, 'validation/plans/om034.json': {'bytes': 989, 'sha256': 'cbda3e3b410987237252b01fc7485ba147af701549828f7ec8b4c70802a8a23d'}, 'validation/plans/om035.json': {'bytes': 930, 'sha256': 'aedb56d316aa53d1d851288166af2559c50ff1632f24e79e559914bdbf1e914c'}, 'validation/plans/om036.json': {'bytes': 909, 'sha256': '52d85a6af4c20435591ff931b7bd94510df0cfe70c2648c986adae6317a4eb0a'}, 'validation/plans/om037.json': {'bytes': 932, 'sha256': '055b62bf7b83707e4aa1431544c7310813ba54f5af412b657d9274b9d75f8926'}, 'validation/plans/om038.json': {'bytes': 933, 'sha256': 'c7599657a83f473e392b6b4abc2a35483d02905f1138f741df9c695907f647f0'}, 'validation/plans/om039.json': {'bytes': 937, 'sha256': 'bb924f7f90fef14fe5463e58dee1760210a977192c5ec11fca5d254d243ca0e2'}, 'validation/plans/om040.json': {'bytes': 935, 'sha256': '72cd7896d89263f3e51e1769815d576ddfda70ab64f3197893b0f9860fd5877a'}, 'validation/plans/om041.json': {'bytes': 887, 'sha256': 'b5c08fbca01e92a3b751cc112100ecb6a4a6485bea45a9555b7f17a0b6b85f80'}, 'validation/plans/om042.json': {'bytes': 865, 'sha256': '1d7484d20c94f88d8682e0de110b2a5326de98858d8963077b8a1cf83f1f0697'}, 'validation/plans/om043.json': {'bytes': 860, 'sha256': '63c732852f081d635edcd42a90a649abd0c6c614d11a4ee13415e8ce0ed3f279'}, 'validation/plans/om044.json': {'bytes': 1017, 'sha256': '999435d397cdcc8ad391ea6b0175f0441fb09f149a8db5c071bf1fd83146971e'}, 'validation/plans/om045.json': {'bytes': 847, 'sha256': 'e5a9d8b07a7f362925e65cc1fe31328fff8ab77fa85ab485139aea0263432d63'}, 'validation/plans/om046.json': {'bytes': 1017, 'sha256': 'c0cd269864a9d557d04f3bf6ed19d124473c1dd3a3ed9607a76ef02b1fd0ef97'}, 'validation/plans/om047.json': {'bytes': 929, 'sha256': '4498359972d6f08b1dfd4e03ce0854ed1a85583c58b85cc8c1fefc4659135498'}, 'validation/plans/om048.json': {'bytes': 857, 'sha256': '4fed0eb95e12886fa485f58af5e8cfec86faf6b1eef21307635a2c21d217214a'}, 'validation/plans/om049.json': {'bytes': 852, 'sha256': 'ea92816a2ede642c6a3479505ac00a032a0b1c247d51d71104b089c716404863'}, 'validation/plans/om050.json': {'bytes': 872, 'sha256': 'a9f8f39f02f9e02030a94342bf0e02e20e8b4f916ad6bc9aefc98b6f81236949'}, 'validation/plans/om051.json': {'bytes': 853, 'sha256': 'b40f25f6e8a5a5836f2fdb91965def65f7f5d17818910e276cbc505cb36cb19d'}, 'validation/plans/om052.json': {'bytes': 855, 'sha256': 'a0eba0500f793c71a9acddb2e98e2484dfb3365d2fee9ca6ee21f8daeffba021'}, 'validation/plans/om053.json': {'bytes': 1027, 'sha256': '945ee40aa90d406760dc30d5b4e8c21fea3cb0321919c938dcf7a3fb2f6cc2ac'}, 'validation/plans/om054.json': {'bytes': 1030, 'sha256': '9c4580d9f40f64ea767c345edb8967d0b316c0881e0f6e4c3e2f8a7a0c51c92c'}, 'validation/plans/om055.json': {'bytes': 1035, 'sha256': '3ff34e3f3f2604d86fd234531923bf66d7a9ce981708945ff04707cd75546514'}, 'validation/plans/om056.json': {'bytes': 892, 'sha256': '807c57f32d26fc69553ac3902ddf0984465212cc00b98ab8cde5e4c1fd32041c'}, 'validation/plans/om057.json': {'bytes': 888, 'sha256': '31a9bc7121eb21c7cb8fc7dcfd82863e6a3d8282df405e5c9e7c362b50da7920'}, 'validation/plans/om058.json': {'bytes': 894, 'sha256': '588e2f1c94ceefa434cef568a84605ef3cee0102af5c2ef2531c1ea0d9901543'}, 'validation/plans/om059.json': {'bytes': 1407, 'sha256': 'f38121ff4345f8d014f644afb5430f74d559f6807d48cb6de06428f82e3eb6b6'}, 'validation/plans/om060.json': {'bytes': 891, 'sha256': 'db3bb25704176c6d97f09babe8239382253c6118b96cacc6849173a2702daa02'}, 'validation/plans/om061.json': {'bytes': 1062, 'sha256': '62ea7cc65db79fa72a8dbb5ee2ac5cf9db356a72228c17ce3766975aa1075ed3'}, 'validation/plans/om062.json': {'bytes': 878, 'sha256': 'db8209ebd5869db959cafd88379d6acf5508da58aa4579380a916d0fbc9895c7'}, 'validation/plans/om063.json': {'bytes': 895, 'sha256': '333bac3965bff8f1109c46b887a9b020e946eefc09c717202529b228212d064c'}, 'validation/plans/om064.json': {'bytes': 1362, 'sha256': 'beb0f9cade9b408eb906bf5c069b7fcbc69ce6f885db06dad05c066fed8dcfd1'}, 'validation/plans/om065.json': {'bytes': 1057, 'sha256': '0d72e42392235d71dd6137c07788f519bb865efbe6f4e806b9af40c4b6cec2a5'}, 'validation/plans/om066.json': {'bytes': 931, 'sha256': '9141fa5a40e0107d9827ae1e48a87a9bae5edc9f17d903a4d0b2fbe424b0f796'}, 'validation/plans/om067.json': {'bytes': 894, 'sha256': '530a96e83115620b798ac5d89adaf8c6479b316dea879a41101cf94d78e4e806'}, 'validation/plans/om068.json': {'bytes': 895, 'sha256': 'b628e4ebb7dd616eda9e686c3c60a801d24fba075e296f9d852ac503833fc5f2'}, 'validation/plans/om069.json': {'bytes': 890, 'sha256': 'bc8ad4eab86465b1efd94d44ec9908bab97d5930ea41123f243d4a80b0768eb5'}, 'validation/plans/om070.json': {'bytes': 957, 'sha256': '660d875d92578fa80f21143c39b74c3db8f8fe37780bfde4995ecae0b1cfbc44'}, 'validation/plans/om071.json': {'bytes': 918, 'sha256': '926b52d228872c70be97bbc7ac27ea913e4991e5271dceb16016c68f5cdeb6c7'}, 'validation/plans/om072.json': {'bytes': 870, 'sha256': 'a043e5de61c024271cd17d694822c8775a7f3016e0952f212b5d4a3908a4c457'}, 'validation/plans/om073.json': {'bytes': 861, 'sha256': 'efcf9e5267ca4753ddb3566a9042f1de6e4f9cf95e2c59832e90a1114e0a410f'}, 'validation/plans/om074.json': {'bytes': 873, 'sha256': '17e633899c5bdbd56fc9fb9f1a50f60b5d1f66b4b95e309e512a8f9e35104475'}, 'validation/plans/om075.json': {'bytes': 914, 'sha256': '75612007e3fc8acc076d99e89f9a58e1c5f7a825671750a89d06f35163effaca'}, 'validation/plans/om076.json': {'bytes': 1044, 'sha256': '6d01c342e5c601dba9eaaba1b72b02d32d61804db5d475227bc9eb55382eb284'}, 'validation/plans/om077.json': {'bytes': 1028, 'sha256': '615f9f416e04f9b3c2c25722c5b9c2834477f83f97d9d4203362bd15cb6116f7'}, 'validation/plans/om078.json': {'bytes': 1039, 'sha256': '65b99478d91d9d1738497b2960dd30f920c730ba0d80d3b135bd71de0a771e29'}, 'validation/plans/om079.json': {'bytes': 1040, 'sha256': '1e1e89e09916be10dedf52b662a4f7049770bf8282599450ed22f38a4f6a9374'}, 'validation/plans/om080.json': {'bytes': 1042, 'sha256': 'fe59a44678a98e085d153dff0a3c0bd88b0d7a7ec43531bb4390b1c6a2ca03f9'}, 'validation/plans/om081.json': {'bytes': 1041, 'sha256': '584deaccf449152c2d2e65c266c0a1525c781da12068811d1f73fac2d3022818'}, 'validation/plans/om082.json': {'bytes': 1049, 'sha256': 'a3ff455abd26f7299628176e53bba94f723fa319c679b754e38d926bb15b9db9'}, 'validation/plans/om083.json': {'bytes': 872, 'sha256': '97e5a18a55f530a681ebd8943c09055b1817279252c69a7386ee9752caaad331'}, 'validation/plans/om084.json': {'bytes': 853, 'sha256': '4e23eb647c17d87b6f0379771607e50552d64041fc32db5ea8db552def6a4211'}, 'validation/plans/om085.json': {'bytes': 902, 'sha256': '9ed9a7b6ea5f48cf436b1374a84a8ff00e2e3db2774027e4b603bf3943b2c45c'}, 'validation/plans/om086.json': {'bytes': 937, 'sha256': '805b496823b54c957bd68ef78d107ee6a3ce350514d4235032599cbe8e52604b'}, 'validation/plans/om087.json': {'bytes': 862, 'sha256': 'f1309e881242d3f97c822fe0ef9afad2f4b4095081487f99a3b1d6dc9023398c'}, 'validation/plans/om088.json': {'bytes': 1060, 'sha256': '79117f029f8d7edb5d67edbf7f98230f854d750705320a69a7136a1d2bccd9f9'}, 'validation/plans/om089.json': {'bytes': 1043, 'sha256': 'acfbf6571eed16a022b8e0a62743958406289f111577b803ec9bfc3b4828d096'}, 'validation/plans/om090.json': {'bytes': 1072, 'sha256': '5ee96b39f3218402e5ead4f7d6991a9a36eef31aa7328e8e379f293706a49ded'}, 'validation/plans/om091.json': {'bytes': 885, 'sha256': '911ae92cbb79c79070a3430cfd3a086013c2bafcf20c1faf584332d4b447ff47'}, 'validation/plans/om092.json': {'bytes': 1066, 'sha256': 'c4b4df7408e1abd243c772f4b5e23842ccdb768fb24121f71d3b622a7ace7f40'}, 'validation/plans/om093.json': {'bytes': 1095, 'sha256': 'fc02352f366e2c5d329bb4ffa9bf179660c8268459ee102132dbfba22dad91e8'}, 'validation/plans/om094.json': {'bytes': 1016, 'sha256': '9487ca5c74d18a8efb9d78f3cd2cd1bd0453e18293cb5b89ca3d4cb96cf1c9d9'}, 'validation/plans/om095.json': {'bytes': 1000, 'sha256': 'c2be796f9920ee60594b098e19a99cb85c9be0691fb07d7afa38a94f5d881489'}, 'validation/plans/om096.json': {'bytes': 1038, 'sha256': '9d853dc62464cad4c4ecf5047a43a0434fcb36f04f8bc6daf2c722eda4eda185'}, 'validation/plans/om097.json': {'bytes': 1044, 'sha256': '3889ca4211c3f997fb512026c1b636161b8f26aa7ce6e0075cfc0ab08ba5fddb'}, 'validation/plans/om098.json': {'bytes': 1021, 'sha256': 'a1b27dc3cb922fb2be8010aafc72533b7a603a5abd0ff03ce762e4fbc3f6d566'}, 'validation/plans/om099.json': {'bytes': 1051, 'sha256': '4cb76d529825ed0e5058944cfbdaf389c9ddbde4ecb909337f1e5b2f12f439f8'}, 'validation/plans/om100.json': {'bytes': 1049, 'sha256': 'dd27aac8a5fc653d91450f77817969b8c17894d63ccfa84345f7d2060247a9a0'}, 'validation/plans/om101.json': {'bytes': 876, 'sha256': '15dcdddde5d13caa7d3b4d28d1eac86cab27dfd159f250cb66869821a5a046b5'}, 'validation/plans/om102.json': {'bytes': 872, 'sha256': '223650f56d0a1f34d70461a079590612316822844aded8c436d25b164c0de9c6'}, 'validation/plans/om103.json': {'bytes': 917, 'sha256': '85bcaa5778120361dcb306adaa7193fc2a0b4bc81f88ec31792ca9e068e7bcef'}, 'validation/plans/om104.json': {'bytes': 1038, 'sha256': '646f81eb3e98c481358ccad8b5d8ceb34518499cde9d2d9a526a246159442917'}, 'validation/plans/om105.json': {'bytes': 870, 'sha256': 'a8a3aa7b8bacf1d6c7ff28e75f9b8bf4b1e1230f393d11707a978bb87e1f0b39'}, 'validation/plans/om106.json': {'bytes': 1037, 'sha256': '7349f5f072557ad835ac6830b2b21b47038120cf596f059904c120cc63d80e76'}, 'validation/plans/om107.json': {'bytes': 1038, 'sha256': '65a4347ddb90313360094756d7660d08d2916b7ba6553d7266050188f454ec09'}, 'validation/plans/om108.json': {'bytes': 1050, 'sha256': '8ce2af5d9b8a16c4b48aa4c621afa78cebc33d816da37898f326ad8b545cd9d7'}, 'validation/plans/om109.json': {'bytes': 1056, 'sha256': '3a1114e77470ea6464afcb7816508839c0a9eb17fdf107719d332d8be86736f9'}, 'validation/plans/om110.json': {'bytes': 880, 'sha256': 'e7fa83f0d19babb5602191b01fbf5b1ff467dddd386ec1c023ce22d0cbe4949c'}, 'validation/plans/om111.json': {'bytes': 869, 'sha256': 'ee140e49986702a6b4e74edce82b6eb1367365051732be81b580781969c99b2c'}, 'validation/plans/om112.json': {'bytes': 871, 'sha256': '29e31fc54c8bb48e16786d15640e918b0411f298d8616a9656b2b832140446b3'}, 'validation/plans/om113.json': {'bytes': 861, 'sha256': '8b4101f1eb9461a95e604da9aa95877b0557d7ecb271cdd7c5299f2273f2fef7'}, 'validation/plans/om114.json': {'bytes': 876, 'sha256': 'b8935b7fb98d4468e202f6ac1d0c169a7ebc0d4ec306941ddaeddd61f90300ce'}, 'validation/plans/om115.json': {'bytes': 881, 'sha256': 'b6b4602e5574dae7afdf2323d85cec58b39c50411dc29bdd2d82cf60f8d0a4e6'}, 'validation/plans/om116.json': {'bytes': 927, 'sha256': 'b57c48fbf4752b588f4bc435903cf3a4d17373bf6ab6746e4732723b7d718360'}, 'validation/plans/om117.json': {'bytes': 853, 'sha256': '61eeff36b472a7ec584ef53b4a9d5d139948ab94838293befdc3e315c3c05a2e'}, 'validation/plans/om118.json': {'bytes': 869, 'sha256': '4441da329c01bd3e0e129cc9d16e7075d9c13d5148bf19d9200aec3a493a1f6f'}, 'validation/plans/om119.json': {'bytes': 994, 'sha256': '8617a0d84cfb9bdefc3c033cccbfb08918259f285fcc0306223635e6849426d0'}, 'validation/plans/om120.json': {'bytes': 997, 'sha256': '0862aad5bd924a1966c4eacf5085cac44fdb5676d08587833ecbfc536e71d9a3'}, 'validation/plans/om121.json': {'bytes': 867, 'sha256': '372e32848c999292ab3f8eeb226165224f17a969fa9ae5d182c7255f08a5bed5'}, 'validation/plans/om122.json': {'bytes': 874, 'sha256': 'ad6086b6ef2ac2a27367fe40afbe6c5d6056f8dd7154c4c175560ec8246440e7'}, 'validation/plans/om123.json': {'bytes': 868, 'sha256': '8b8625178d38a8d8315529b4281c5d963f04a2c1e79423e965701e72f6ff3890'}, 'validation/plans/om124.json': {'bytes': 877, 'sha256': 'a5d34c50a2a7dbb3e003a090e4621a2eee022013a283153538729c052b2466c5'}, 'validation/plans/om125.json': {'bytes': 875, 'sha256': '9fa7c5f3e4034822cd6094559f3309298c61c07df3c9f15966c4d0c657058918'}, 'validation/plans/om126.json': {'bytes': 884, 'sha256': '519bb45e56dc950b5db89cd8833323a0c7976c5cc61e60293b1cd6fc67567414'}, 'validation/plans/om127.json': {'bytes': 919, 'sha256': '6d1af417708234a384f294e8be35cd68618606c9c878b95138ea81856418666b'}, 'validation/plans/om128.json': {'bytes': 920, 'sha256': '62ffabc2f535872ad11810ea358bc6cf43517fe31a7f92d0d71f02a2e66dce8b'}, 'validation/plans/om129.json': {'bytes': 888, 'sha256': 'f0dedef37ed04d7a18f1cce1dfdc99c7309f210275150279c43df5c8a05f16ee'}, 'validation/plans/om130.json': {'bytes': 881, 'sha256': '06934927a783a34c06a425ecedf4325cbb05356be51489baeaeb49d0a2d59db6'}, 'validation/plans/om131.json': {'bytes': 864, 'sha256': '40cd0c0a40b479f6072f2fce48135dc1a21b2bfd2763c509a2ff983ad0d8e264'}, 'validation/plans/om132.json': {'bytes': 873, 'sha256': '2ef1780eac91fe9ea04ccce6fb0ad2578a384eb4e1c0e8823ec6a000de62da4f'}, 'validation/plans/om133.json': {'bytes': 885, 'sha256': 'b5008dae6175492dfcce4e6347de4f265fa2033452b268ad06734193e66b35e7'}, 'validation/plans/om134.json': {'bytes': 887, 'sha256': 'c854e57815c2108fd5f521181d0eaef81aa87c9cdcfd6471e915b2a1b1a8649e'}, 'validation/plans/om135.json': {'bytes': 1065, 'sha256': 'de27a8bd84f3dddfa0062a479482955c88e907413eff14d6f4fc13be784a05b8'}, 'validation/plans/om136.json': {'bytes': 1020, 'sha256': '3781bf706ef8c27a17088ca6882c5e2e33657b096e0f5d0e3ab0b8bf6728f9b3'}, 'validation/plans/om137.json': {'bytes': 1011, 'sha256': '65fd384084b0a3e164c828c7bbb13acfd57149305cb306ef2dbfd37425bb703f'}, 'validation/plans/om138.json': {'bytes': 1022, 'sha256': '9a65591a33ea39279f90871e5e667ba3093ebe845b4787dc6694f9c35b9ddce9'}, 'validation/plans/om139.json': {'bytes': 1004, 'sha256': 'e68706fe80409d56af57777903e12f65b103864a08f87302c71d17015bc08de1'}, 'validation/plans/om140.json': {'bytes': 1022, 'sha256': '9dea20de7b7e8664dba5042319619d9143dc7723ab987bfe9719f98c3399a44f'}, 'validation/plans/om141.json': {'bytes': 1011, 'sha256': 'f440ab4799937cbb5b39ed62116f1180e8b8a8f6c06a9124007909afe1fdd32a'}, 'validation/plans/om142.json': {'bytes': 1137, 'sha256': '84df52dac390aade500efce0fad0c7f17e376aac35fd70e75589e93eed91b034'}, 'validation/plans/om143.json': {'bytes': 829, 'sha256': '85612a8790cceb6ddbd060d71d9e9a4d6a832abba32a05e706c5f6daab3ab8ab'}, 'validation/plans/om144.json': {'bytes': 1003, 'sha256': 'fed12d41e0becbdec04dc8d2f113d146e754bfe7c67415a9adb4b0e2199d6d12'}, 'validation/plans/om145.json': {'bytes': 842, 'sha256': '0e6fae6a79ee8165e73bce43303b20d8fae6ecbcdbb0ad9148d3200f8a00f3e3'}, 'validation/plans/om146.json': {'bytes': 1008, 'sha256': '15aeb8ccbe1722b5be51c54d8cf0bab6ec7ba8609e4ba3d5cae631eb5675cb32'}, 'validation/plans/om147.json': {'bytes': 891, 'sha256': '73526a72680e91af5f774221850445c703230e01ef89fa5492d2bf81ff90c64f'}, 'validation/plans/om148.json': {'bytes': 824, 'sha256': '9b427e90ea1705aadfe6295f06bb49b66b3a23180974d1d05726931c34063af8'}, 'validation/plans/om149.json': {'bytes': 919, 'sha256': 'e218b62b961afa75c3ed32c2c361e35d8207abc33bd0c75eda4cba1295968e79'}, 'validation/plans/om150.json': {'bytes': 1051, 'sha256': 'a50b31e96a560862a96a36c3250ca6b3cb13b0ce6db25ab25073135ba72f4564'}, 'validation/report.schema.json': {'bytes': 1388, 'sha256': '240242032bf2b4b012e2cc71da883ff915fa5403aa1ec5324465eeaaa056fdb7'}}, 'tree_sha256': '23b783f5cd43ebd72334a87cd7ebc21fc0f9ea2c6de742500c93539ed4bedf94', 'embedded_code_lines': 31352}
 
 SOURCES = (
     ('.github/workflows/tests.yml',
@@ -244,6 +244,7 @@ SOURCES = (
         '\n'
         'recursive-include roadmap *.tsv *.json *.md\n'
         'recursive-include validation *.json *.md\n'
+        'recursive-include hardware *.sv *.md\n'
     ),
     ('README.md',
         '# Ômega 2.0 — compilador auto-hospedado, execução nativa e núcleo Lean\n'
@@ -303,6 +304,13 @@ SOURCES = (
         'racionais com limites reais conferidos pelo Lean, binários C/GMP reutilizáveis,\n'
         'certificados assinados por entrada e famílias de comprimentos limitados.\n'
         'Veja [Micro-Transformer e benchmark comparativo](docs/TRANSFORMER_CERTIFICADO.md).\n'
+        '\n'
+        'O [Caminho C](docs/CAMINHO_C.md) acrescenta tipos refinados, síntese MCTS com\n'
+        'admissão universal em Lean, automutação restrita com quatro estágios de\n'
+        'bootstrap e ações portadoras de prova. Inclui C freestanding com buffers\n'
+        'reutilizados, rastros de inferência, memória linear, escalonamento finito e\n'
+        'uma Q-PU de referência em RTL. O documento lista os arquivos e os limites de\n'
+        'cada garantia.\n'
         '\n'
         'Os três passos e sua base de confiança estão descritos em\n'
         '[estado dos três passos](docs/ESTADO_DOS_TRES_PASSOS.md).\n'
@@ -791,6 +799,167 @@ SOURCES = (
         'as formas utilizadas pelo frontend histórico. A IR mantém literais racionais\n'
         'normalizados. Os testes comparam a IR produzida com a implementação de referência\n'
         'para as fontes compatíveis e executam o corpus completo de exemplos.\n'
+    ),
+    ('docs/CAMINHO_C.md',
+        '# Caminho C: implementação e fronteiras\n'
+        '\n'
+        'Este incremento conecta especificações racionais, síntese por MCTS, obrigações\n'
+        'Lean, mutações restritas do compilador e ações externas autorizadas. Os\n'
+        'componentes de inferência racional, poda, PCI, Softmax, RMSNorm e self-attention\n'
+        'dos incrementos anteriores continuam integrados. Não há substituição universal\n'
+        'do PyTorch, solução da equivalência de programas arbitrários ou garantia sobre\n'
+        'propriedades que não foram escritas no contrato.\n'
+        '\n'
+        '## Manifesto dos arquivos\n'
+        '\n'
+        '| Arquivos | Responsabilidade |\n'
+        '| --- | --- |\n'
+        '| `omega_refine_check/syntax.py` | Gramática limitada, AST sem `eval`, aliases e anotações |\n'
+        '| `omega_refine_check/contracts.py`, `lean.py` | Obrigações universais, denominadores e predicados vetoriais |\n'
+        '| `omega_refine_check/compiler.py`, `cli.py` | Parser nativo independente, prova antes de compilar, auditoria |\n'
+        '| `omega_selfhost/compiler.omega`, `bootstrap.py`, `driver.py` | Extração nativa de refinamentos e integração com bootstrap |\n'
+        '| `omega_synth_mcts/grammar.py`, `policy.py` | ASTs parciais, PUCT, guia heurístico ou pequena rede opcional |\n'
+        '| `omega_synth_mcts/search.py`, `pruning.py`, `worker.py`, `cli.py` | Busca limitada, poda justificada, processo isolado e admissão universal |\n'
+        '| `omega_self_mutate/rules.py`, `profiler.py` | Descoberta de identidades, perfil do IR e tempos observados do binário |\n'
+        '| `omega_self_mutate/bootstrap.py`, `activation.py`, `cli.py` | Quatro estágios nativos, ponto fixo, reconstrução independente e seleção atômica |\n'
+        '| `omega_agent_sandbox/actions.py`, `policy.py`, `proofs.py` | Transições simultâneas, contrato de Hoare e vínculo criptográfico |\n'
+        '| `omega_agent_sandbox/ledger.py`, `runtime.py`, `adapters.py`, `cli.py` | Reserva durável, CAS, capabilities e efeitos registrados pelo host |\n'
+        '| `omega_cognition/linear.py`, `memory.py` | Posse exclusiva, empréstimos e reutilização por última utilização |\n'
+        '| `omega_cognition/scheduler.py` | Prioridade aprendida dentro de uma política de progresso finito |\n'
+        '| `omega_cognition/glass.py`, `omega/real_native.py` | Eixos ortonormais, conceitos com contratos e rastros nativos verificáveis |\n'
+        '| `omega_cognition/standalone.py`, `pipeline.py`, `qpu.py`, `cli.py` | Exportação C, destilação de especificações e referência racional de hardware |\n'
+        '| `omega_selfhost/bounded_rational.h`, `proof_microkernel.h` | Aritmética limitada sem heap e arena com handles geracionais |\n'
+        '| `hardware/qpu/{gcd_stein,stern_brocot,rational_alu}.sv` | Circuitos de referência simuláveis |\n'
+        '| `formal/tensor/Omega/{Refinement,MCTSPruning,VerifiedRewrite,LinearMemory,Lyapunov,Glass}.lean` | Lemas dos novos domínios |\n'
+        '| `formal/tensor/Main.lean` | Reificação de equivalência de valor, gradiente e domínio de definição |\n'
+        '| `testes/test_{refinement,mcts_synthesis,self_mutate,proof_actions,cognition,qpu_rtl,path_c_integration}.py` | Fluxos nativos, provas e rejeições adversariais |\n'
+        '| `omega/cli.py`, `pyproject.toml`, `MANIFEST.in`, `scripts/build-monolith.py` | Comandos, distribuição e artefato monolítico reproduzível |\n'
+        '\n'
+        'Todos os novos pacotes têm `__init__.py`. Exemplos executáveis ficam em\n'
+        '`exemplos/path_c/`. O relatório de validação fica em `validation/path-c.md`.\n'
+        '\n'
+        '## Tipos refinados e síntese\n'
+        '\n'
+        '```sh\n'
+        '.venv/bin/python -m omega refine check exemplos/path_c/probability.omega\n'
+        '.venv/bin/python -m omega refine build exemplos/path_c/probability.omega --output artifacts/probability\n'
+        '.venv/bin/python -m omega synth exemplos/path_c/increment.json --output artifacts/increment --iterations 256\n'
+        '```\n'
+        '\n'
+        '`Rational` e `Tensor[Rational,N]` aceitam predicados `where { ... }`, aliases,\n'
+        'índices constantes, `self.denom`, norma euclidiana limitada, soma e produto\n'
+        'interno. O domínio atual de programas refinados é de declarações puras com\n'
+        'formas estáticas. Matrizes gerais, funções recursivas, laços e efeitos não são\n'
+        'aceitos por este frontend. Cada inicializador é verificado antes de assumir o\n'
+        'contrato do novo parâmetro: um tipo impossível não permite aprovar seu próprio\n'
+        'inicializador por vacuidade. Divisões precisam de prova de divisor não nulo.\n'
+        '\n'
+        'O MCTS expande ASTs com buracos e usa exemplos apenas como fitness. A admissão\n'
+        'é uma proposição universal sobre entradas racionais sob premissas explícitas.\n'
+        'Ela não prova que as premissas descrevem o mundo nem que são satisfatíveis.\n'
+        'Falha de prova ou esgotamento do orçamento retorna rejeição. A poda Lean atual\n'
+        'detecta divisores literalmente nulos em subárvores; não é um resolvedor geral\n'
+        'de invariantes parciais. `isolated_search` executa o proponente sem rede, com\n'
+        'limites do sistema, e verifica a proposta novamente no host. `search` permite\n'
+        'guias locais confiáveis, incluindo `NeuralPolicy`, sem lhes dar autoridade de\n'
+        'aprovação. A busca não prova minimalidade nem encontra todo programa existente.\n'
+        '\n'
+        '## Automutação verificável\n'
+        '\n'
+        '```sh\n'
+        ".venv/bin/python -m omega mutate discover --lhs '(x*2)-x'\n"
+        '.venv/bin/python -m omega mutate profile --source exemplos/path_c/probability.omega\n'
+        ".venv/bin/python -m omega mutate evolve --lhs '(x*2)-x' --output artifacts/generation\n"
+        '.venv/bin/python -m omega mutate activate --output artifacts/generation\n'
+        '.venv/bin/python -m omega mutate deactivate\n'
+        '```\n'
+        '\n'
+        'O MCTS propõe uma identidade polinomial escalar que elimina a expressão para\n'
+        'uma variável capturada. Um matcher controlado é incorporado a uma cópia de\n'
+        '`compiler.omega`. Não se aceita patch arbitrário, alteração do verificador ou\n'
+        'remoção da autorização. O pipeline recompila quatro gerações e exige igualdade\n'
+        'dos C gerados e estabilização dos binários. Um programa derivado da regra deve\n'
+        'exercitá-la e reduzir o número de nós de IR.\n'
+        '\n'
+        'Cada mapa concreto de otimização gera provas de igualdade para todos os\n'
+        'ambientes: valor, gradiente e domínio de definição. O certificado JSON v2 só\n'
+        'solicita a geração das provas; o verificador de dados não o considera válido\n'
+        'sozinho. O resultado só é admitido depois da verificação Lean. Os teoremas\n'
+        'abstratos de composição são condicionais à preservação de cada geração; não\n'
+        'constituem uma prova completa do compilador C ou de sua cadeia de ferramentas.\n'
+        '\n'
+        'Antes da ativação, a auditoria reconstrói a fonte pelo template confiável e\n'
+        'recompila independentemente, comparando todos os estágios. Um manifesto com\n'
+        'hashes forjados de um binário alterado é recusado. A seleção padrão usa\n'
+        '`build/selfhost/active.json`; mudanças na base confiável invalidam a seleção.\n'
+        'Desativar restaura o compilador canônico sem apagar a geração. A métrica atual\n'
+        'é tamanho de IR no probe, não aceleração universal nem garantia de ausência de\n'
+        'bugs em toda entrada de qualquer compilador futuro.\n'
+        '\n'
+        '## Ações portadoras de prova\n'
+        '\n'
+        '```sh\n'
+        '.venv/bin/python -m omega action exemplos/path_c/cooling-policy.json \\\n'
+        '  exemplos/path_c/cooling-state.json exemplos/path_c/cooling-action.json \\\n'
+        '  --output artifacts/cooling\n'
+        '```\n'
+        '\n'
+        'A CLI prepara artefatos com uma chave efêmera explícita; não despacha efeitos.\n'
+        'O host configura `Runtime` com política imutável, chave pública, verificador\n'
+        'de capabilities assinadas, ledger SQLite e adaptadores permitidos. O bundle\n'
+        'vincula política, versão de estado, parâmetros, código, prova e nonce. O host\n'
+        'reconstrói a ação a partir da política e não executa Lean ou código livre\n'
+        'fornecido pelo agente. Após prova e execução nativa da transição pura, revalida\n'
+        'a autorização e reserva o estado por CAS antes de chamar o adaptador.\n'
+        '\n'
+        'Assinatura válida não concede permissão: a capability precisa autorizar o hash\n'
+        'da ação exata. Replay e estado obsoleto são rejeitados. Um efeito externo e uma\n'
+        'transação SQLite não são atomicamente acopláveis em geral: se houver falha ou\n'
+        'perda de confirmação, o domínio permanece bloqueado para reconciliação pelo\n'
+        'host. Não há retry automático de efeito incerto. A prova diz respeito ao modelo\n'
+        'de transição; sensores, motor, API, host e correspondência com o mundo físico\n'
+        'continuam sendo hipóteses. Os testes usam apenas adaptadores locais gravadores.\n'
+        '\n'
+        '## C independente, memória e progresso\n'
+        '\n'
+        '```sh\n'
+        '.venv/bin/python -m omega compile weights.pt --standalone \\\n'
+        '  --contracts architecture-and-bounds.json --target omega_model.c\n'
+        '```\n'
+        '\n'
+        'O manifesto contém `architecture` (camadas `linear` com `in`, `out`, `bias`, e\n'
+        '`relu`), `input_bounds`, `output_bounds` e `input_scale`. O checkpoint deve ser\n'
+        'um `state_dict` carregável com `weights_only=True`; módulos pickle arbitrários\n'
+        'não são executados. O resultado usa buffers fixos reutilizados após a última\n'
+        'leitura, escalas racionais exatas e verificações de overflow estáticas. O\n'
+        'backend freestanding é afim/ReLU em uma grade int64 declarada. GMP tem alocação\n'
+        'dinâmica e não recebe a alegação de zero heap. Transformers continuam no backend\n'
+        'GMP com intervalos certificados das funções reais, conforme o incremento anterior.\n'
+        '\n'
+        'O núcleo C oferece handles de arena com gerações, posse e empréstimos. É uma\n'
+        'biblioteca freestanding, não um sistema operacional com isolamento de processos\n'
+        'ou drivers. O escalonador admite prioridade aprendida com sobreposição de\n'
+        'justiça e potencial natural estritamente decrescente para uma carga finita,\n'
+        'sem novas chegadas na época analisada. Ele não prova estabilidade de um SO\n'
+        'arbitrário com entradas e falhas externas.\n'
+        '\n'
+        '## Representações e hardware\n'
+        '\n'
+        'Bases racionais precisam ser exatamente ortonormais. Um conceito recebe prova\n'
+        'apenas por um predicado lógico explícito sobre sua projeção; o nome de um eixo\n'
+        'não prova monossemanticidade de linguagem natural. Rastros registram operações,\n'
+        'valores, pais, ramos ReLU e intervalos. O runtime nativo pode exportar todos os\n'
+        'intermediários, comparados com execução racional independente e acompanhados\n'
+        'por provas de limites dos nós selecionados. Replay verifica o vínculo com o\n'
+        'grafo, entradas e decisões. Isso não equivale a interpretar automaticamente um\n'
+        'LLM ou converter atenção em uma explicação causal médica.\n'
+        '\n'
+        'A Q-PU tem referência Python, lemas racionais por operação e RTL simulável.\n'
+        'Consulte `hardware/qpu/README.md` para interface, interrupções e limites. Não\n'
+        'há chip físico, prova formal RTL, temporização garantida ou velocidade em\n'
+        'nanossegundos. Hipóteses em linguagem natural entram em `distill` com uma\n'
+        'especificação formal fornecida; o sistema não converte intenção ambígua em\n'
+        'axiomas verdadeiros automaticamente.\n'
     ),
     ('docs/DIMENSOES_3_0.md',
         '# OM-013 — dimensões verificáveis\n'
@@ -11778,6 +11947,45 @@ SOURCES = (
         '# Gradiente em x = 4; taxa 2 propõe x = -5 e piora o erro de 4 para 36.\n'
         'passo erro em x taxa 2;\n'
     ),
+    ('exemplos/path_c/cooling-action.json',
+        '{"action": "cool", "parameters": {"amount": "1/2"}, "nonce": "cool-001", "expected_version": 0}\n'
+    ),
+    ('exemplos/path_c/cooling-policy.json',
+        '{\n'
+        '  "id": "cooling",\n'
+        '  "version": 1,\n'
+        '  "state": {"temperature": "self>=0 and self<=4"},\n'
+        '  "actions": {\n'
+        '    "cool": {\n'
+        '      "parameters": {"amount": "self>=0 and self<=1"},\n'
+        '      "requires": ["amount<=temperature"],\n'
+        '      "updates": {"temperature": "temperature-amount"},\n'
+        '      "effect": "motor"\n'
+        '    }\n'
+        '  }\n'
+        '}\n'
+    ),
+    ('exemplos/path_c/cooling-state.json',
+        '{"version": 0, "values": {"temperature": "3"}}\n'
+    ),
+    ('exemplos/path_c/increment.json',
+        '{\n'
+        '  "variables": {"x": "true"},\n'
+        '  "ensures": "result == x+1",\n'
+        '  "examples": [\n'
+        '    {"inputs": {"x": "-2"}, "output": "-1"},\n'
+        '    {"inputs": {"x": "0"}, "output": "1"},\n'
+        '    {"inputs": {"x": "2"}, "output": "3"}\n'
+        '  ]\n'
+        '}\n'
+    ),
+    ('exemplos/path_c/probability.omega',
+        '// Refined inputs are universal variables under their declared contracts.\n'
+        'type Probability = Rational where { self >= 0/1 and self <= 1/1 }\n'
+        'parametro x: Probability = 1/2;\n'
+        'tensor variance: Probability = x*(1-x);\n'
+        'mostrar variance;\n'
+    ),
     ('exemplos/primeiro_programa.omega',
         '# Ômega 0.1: dois parâmetros e uma perda quadrática.\n'
         'parametro x = 3;\n'
@@ -12757,8 +12965,9 @@ SOURCES = (
         '      return some ((if op = "neg" then "double_neg" else "double_transpose"),target)\n'
         '  return none\n'
         '\n'
-        'def verifyOptimization (cert : Json) : Except String Unit := do\n'
-        '  if (← (← cert.getObjVal? "formato").getStr?) != "omega-opt-cert-1" then throw "Invalid optimization format"\n'
+        'def verifyOptimization (cert : Json) (allowSynth : Bool := false) : Except String Unit := do\n'
+        '  let format ← (← cert.getObjVal? "formato").getStr?\n'
+        '  if format != "omega-opt-cert-1" && !(allowSynth && format = "omega-opt-cert-2") then throw "Invalid optimization format"\n'
         '  let old ← cert.getObjVal? "original"\n'
         '  let new ← cert.getObjVal? "otimizado"\n'
         '  let oldParams ← parameters old\n'
@@ -12786,10 +12995,13 @@ SOURCES = (
         '      (p.getObjVal? "indice" >>= Json.getNat?).toOption = some i)\n'
         '    match entry with\n'
         '    | some proof =>\n'
-        '      let some (rule,target) ← localRule clone (newNodes.extract 0 pos) | throw "Unrecognized rewrite"\n'
-        '      if (← (← proof.getObjVal? "regra").getStr?) != rule ||\n'
-        '         (← (← proof.getObjVal? "resultado").getNat?) != target || mapping[i]! != target then\n'
-        '        throw "Rewrite witness mismatch"\n'
+        '      let target ← (← proof.getObjVal? "resultado").getNat?\n'
+        '      if allowSynth && format = "omega-opt-cert-2" then\n'
+        '        if mapping[i]! != target then throw "Synthesized map witness mismatch"\n'
+        '      else\n'
+        '        let some (rule,expected) ← localRule clone (newNodes.extract 0 pos) | throw "Unrecognized rewrite"\n'
+        '        if (← (← proof.getObjVal? "regra").getStr?) != rule || expected != target || mapping[i]! != target then\n'
+        '          throw "Rewrite witness mismatch"\n'
         '      if target ≥ pos || (← node.getObjVal? "forma").compress !=\n'
         '         (← newNodes[target]!.getObjVal? "forma").compress then throw "Rewrite changes shape"\n'
         '    | none =>\n'
@@ -12922,8 +13134,8 @@ SOURCES = (
         '  | .relu a => s!"(.relu {exprSource a})"\n'
         '  | .gate a b => s!"(.gate {exprSource a} {exprSource b})"\n'
         '\n'
-        'def optimizationProof (cert : Json) : Except String String := do\n'
-        '  verifyOptimization cert\n'
+        'def optimizationProof (cert : Json) (allowSynth : Bool := false) : Except String String := do\n'
+        '  verifyOptimization cert allowSynth\n'
         '  let old ← cert.getObjVal? "original"\n'
         '  let new ← cert.getObjVal? "otimizado"\n'
         '  let oldCodes ← scalarize old (← parameters old)\n'
@@ -12938,10 +13150,20 @@ SOURCES = (
         '      let b := exprSource newCodes[target]!.cells[j]!\n'
         '      result := result ++ s!"theorem value_{i}_{j} (s : Env) : eval s {a} = eval s {b} := by\\n  simp only [eval] <;> (try split_ifs) <;> simp_all <;> ring\\n#print axioms value_{i}_{j}\\n"\n'
         '      result := result ++ s!"theorem gradient_{i}_{j} (s : Env) (x : Nat) : eval s (derive {a} x) = eval s (derive {b} x) := by\\n  simp only [derive, eval] <;> (try split_ifs) <;> simp_all <;> ring\\n#print axioms gradient_{i}_{j}\\n"\n'
+        '      if allowSynth then\n'
+        '        result := result ++ s!"theorem domain_{i}_{j} (s : Env) : defined s {a} = defined s {b} := by\\n  simp [defined, eval]\\n#print axioms domain_{i}_{j}\\n"\n'
         '  return result ++ "end OmegaOptimizationProof\\n"\n'
         '\n'
         'def main (args : List String) : IO UInt32 := do\n'
         '  match args with\n'
+        '  | ["--prove-map", file, output] =>\n'
+        '    try\n'
+        '      let input ← IO.FS.readFile file\n'
+        '      let parsed := Json.parse input\n'
+        '      match parsed >>= (fun cert => optimizationProof cert true) with\n'
+        '      | .ok proof => IO.FS.writeFile output proof; return (0 : UInt32)\n'
+        '      | .error error => IO.eprintln error; return (1 : UInt32)\n'
+        '    catch error => IO.eprintln error.toString; return (1 : UInt32)\n'
         '  | ["--prove-opt", file, output] =>\n'
         '    try\n'
         '      let input ← IO.FS.readFile file\n'
@@ -12975,6 +13197,12 @@ SOURCES = (
         'import Omega.MatrixProofs\n'
         'import Omega.SafeEvolution\n'
         'import Omega.Transcendental\n'
+        'import Omega.Refinement\n'
+        'import Omega.MCTSPruning\n'
+        'import Omega.VerifiedRewrite\n'
+        'import Omega.LinearMemory\n'
+        'import Omega.Lyapunov\n'
+        'import Omega.Glass\n'
         '/- Source-only formal library. Compilation and axiom-policy evidence are pending.\n'
         '   Intrinsically typed finite-core and conditional native-contract statements\n'
         '   are not a completed proof for the C/GMP/LLVM toolchain. -/\n'
@@ -13026,6 +13254,17 @@ SOURCES = (
         '  simp [checkedDivision,h]\n'
         'end OmegaFormal\n'
     ),
+    ('formal/tensor/Omega/Glass.lean',
+        'import Omega.Refinement\n'
+        'namespace OmegaGlass\n'
+        'theorem threshold_sound (score lower upper threshold : ℚ)\n'
+        '    (bounds : lower ≤ score ∧ score ≤ upper) (margin : threshold < lower) : threshold < score :=\n'
+        '  margin.trans_le bounds.1\n'
+        'theorem orthogonal_axes (x y : ℚ) : x*0 + 0*y = 0 := by ring\n'
+        'theorem concept_requires_grounding (axis : α) (meaning : α → Prop) (proof : meaning axis) : meaning axis := proof\n'
+        '#print axioms threshold_sound\n'
+        'end OmegaGlass\n'
+    ),
     ('formal/tensor/Omega/IRTransformations.lean',
         'import TensorKernel\n'
         'namespace OmegaFormal\n'
@@ -13038,6 +13277,47 @@ SOURCES = (
         'theorem add_zero_rule (e : Expr) : equivalence (.add e (.lit 0)) e := add_zero e\n'
         'theorem relu_idempotent_rule (e : Expr) : equivalence (.relu (.relu e)) (.relu e) := relu_idem e\n'
         'end OmegaFormal\n'
+    ),
+    ('formal/tensor/Omega/LinearMemory.lean',
+        'import Omega.Refinement\n'
+        'namespace OmegaLinearMemory\n'
+        'theorem expired_generation (old current : Nat) (changed : old ≠ current) : ¬ old = current := changed\n'
+        'theorem reuse_is_disjoint (startA endA startB endB : Nat)\n'
+        '    (ordered : endA < startB ∨ endB < startA) :\n'
+        '    ¬ ∃ t, startA ≤ t ∧ t ≤ endA ∧ startB ≤ t ∧ t ≤ endB := by\n'
+        '  rcases ordered with h | h <;> rintro ⟨t,a,b,c,d⟩ <;> omega\n'
+        '#print axioms reuse_is_disjoint\n'
+        'end OmegaLinearMemory\n'
+    ),
+    ('formal/tensor/Omega/Lyapunov.lean',
+        'import Omega.Refinement\n'
+        'namespace OmegaScheduler\n'
+        'theorem service_decreases (remaining served : Nat) (positive : 0 < served) (bounded : served ≤ remaining) :\n'
+        '    remaining - served < remaining := Nat.sub_lt (positive.trans_le bounded) positive\n'
+        'theorem finite_progress (v : Nat → Nat) (n : Nat)\n'
+        '    (step : ∀ i < n, v (i+1)+1 ≤ v i) : v n + n ≤ v 0 := by\n'
+        '  induction n with\n'
+        '  | zero => simp\n'
+        '  | succ n ih =>\n'
+        '    have previous := ih (fun i hi => step i (Nat.lt_trans hi (Nat.lt_succ_self n)))\n'
+        '    have last := step n (Nat.lt_succ_self n)\n'
+        '    omega\n'
+        '#print axioms service_decreases\n'
+        '#print axioms finite_progress\n'
+        'end OmegaScheduler\n'
+    ),
+    ('formal/tensor/Omega/MCTSPruning.lean',
+        'import Omega.Refinement\n'
+        'namespace OmegaMCTS\n'
+        'theorem zero_divisor_invalid (d : ℚ) (zero : d = 0) : ¬ d ≠ 0 := by simp [zero]\n'
+        'theorem interval_excludes_target (x target lower upper : ℚ)\n'
+        '    (range : lower ≤ x ∧ x ≤ upper) (outside : target < lower ∨ upper < target) : x ≠ target := by\n'
+        '  rcases outside with h | h <;> intro equal <;> subst target <;> linarith\n'
+        'theorem proposal_has_no_authority (candidate : α) (safe : α → Prop)\n'
+        '    (checker : safe candidate) : safe candidate := checker\n'
+        '#print axioms zero_divisor_invalid\n'
+        '#print axioms interval_excludes_target\n'
+        'end OmegaMCTS\n'
     ),
     ('formal/tensor/Omega/MatrixProofs.lean',
         'import TensorKernel\n'
@@ -13075,6 +13355,31 @@ SOURCES = (
         'theorem progress {t : Ty} (e : Term t) : ∃ v : Value t, Evaluates e v :=\n'
         '  ⟨denote e, evaluation_complete e⟩\n'
         'end OmegaFormal\n'
+    ),
+    ('formal/tensor/Omega/Refinement.lean',
+        'import ProofPrelude\n'
+        'import Mathlib.Tactic.Linarith\n'
+        'import Mathlib.Data.Real.Sqrt\n'
+        'import Mathlib.Tactic.FieldSimp\n'
+        '\n'
+        'syntax "omega_refine" : tactic\n'
+        'macro_rules\n'
+        '  | `(tactic| omega_refine) => `(tactic|\n'
+        '      first\n'
+        '      | (solve | norm_num at * <;> first | assumption | nlinarith | positivity)\n'
+        '      | (solve | simp_all)\n'
+        '      | (solve | norm_num at *; field_simp; ring))\n'
+        '\n'
+        'namespace OmegaRefinementKernel\n'
+        'theorem guard_sound (p q : Prop) (proof : p → q) (pre : p) : q := proof pre\n'
+        'theorem vector_norm_bound (xs : List ℚ) (limit : ℝ) (positive : 0 ≤ limit) :\n'
+        '    Real.sqrt ((xs.map (fun x => (x : ℝ)^2)).sum) ≤ limit ↔\n'
+        '    (xs.map (fun x => (x : ℝ)^2)).sum ≤ limit^2 := Real.sqrt_le_left positive\n'
+        'theorem rational_denominator_nonzero (x : ℚ) : x.den ≠ 0 := Rat.den_nz x\n'
+        '#print axioms guard_sound\n'
+        '#print axioms vector_norm_bound\n'
+        '#print axioms rational_denominator_nonzero\n'
+        'end OmegaRefinementKernel\n'
     ),
     ('formal/tensor/Omega/RuntimeContracts.lean',
         'import Omega.GMPContracts\n'
@@ -13268,6 +13573,28 @@ SOURCES = (
         '  | relu (a : Term .scalar) : Term .scalar\n'
         'end OmegaFormal\n'
     ),
+    ('formal/tensor/Omega/VerifiedRewrite.lean',
+        'import TensorKernel\n'
+        'namespace OmegaVerifiedRewrite\n'
+        'open OmegaTensor\n'
+        'def Preserves (f : Expr → Expr) : Prop := ∀ e s,\n'
+        '    eval s (f e) = eval s e ∧ defined s (f e) = defined s e ∧\n'
+        '    ∀ x, eval s (derive (f e) x) = eval s (derive e x)\n'
+        'theorem identity_preserves : Preserves id := by intro e s; exact ⟨rfl,rfl,fun _ => rfl⟩\n'
+        'theorem compose_preserves (f g : Expr → Expr) (hf : Preserves f) (hg : Preserves g) :\n'
+        '    Preserves (fun e => g (f e)) := by\n'
+        '  intro e s\n'
+        '  exact ⟨(hg (f e) s).1.trans (hf e s).1,\n'
+        '    (hg (f e) s).2.1.trans (hf e s).2.1,\n'
+        '    fun x => ((hg (f e) s).2.2 x).trans ((hf e s).2.2 x)⟩\n'
+        'theorem generations_preserve (versions : Nat → Expr → Expr)\n'
+        '    (initial : Preserves (versions 0))\n'
+        '    (step : ∀ n, Preserves (versions n) → Preserves (versions (n+1))) :\n'
+        '    ∀ n, Preserves (versions n) := by intro n; induction n with | zero => exact initial | succ n ih => exact step n ih\n'
+        '#print axioms compose_preserves\n'
+        '#print axioms generations_preserve\n'
+        'end OmegaVerifiedRewrite\n'
+    ),
     ('formal/tensor/lake-manifest.json',
         '{"version": "1.1.0",\n'
         ' "packagesDir": ".lake/packages",\n'
@@ -13383,6 +13710,148 @@ SOURCES = (
     ),
     ('formal/tensor/lean-toolchain',
         'leanprover/lean4:v4.19.0\n'
+    ),
+    ('hardware/qpu/README.md',
+        '# Bounded rational reference RTL\n'
+        '\n'
+        '`gcd_stein.sv` implements iterative binary GCD with ready/valid signals.\n'
+        '`stern_brocot.sv` computes continued-fraction convergents and the boundary\n'
+        'semiconvergent for the closest rational with a bounded denominator, with the\n'
+        "same tie rule as Python's `Fraction.limit_denominator`.\n"
+        '`rational_alu.sv` supports addition, subtraction, multiplication and division.\n'
+        'Numerators use the symmetric signed range; positive denominators and their\n'
+        'configured maximum use the positive signed range. Unrepresentable numerators,\n'
+        'invalid operands and division by zero raise `error`. Approximation raises `irq`\n'
+        'and exports the exact error witness `delta_numerator/delta_denominator`.\n'
+        'Consumers must ignore the numeric output when `error` is asserted.\n'
+        '\n'
+        'These are reference circuits with combinational integer dividers, not a timed\n'
+        'pipeline or a manufactured processor. GCD is a separate ready/valid unit; the\n'
+        "ALU's continued-fraction path already reduces its result. There is no claim of\n"
+        'one-cycle physical timing, area, power or formal RTL equivalence. Rational\n'
+        'error proofs in Lean cover the executable mathematical specification; RTL is\n'
+        'checked by co-simulation against that specification.\n'
+        '\n'
+        "Install Icarus Verilog using the operating system's authenticated package\n"
+        'manager, then run:\n'
+        '\n'
+        '```sh\n'
+        '.venv/bin/python -m pytest -q testes/test_qpu_rtl.py\n'
+        '```\n'
+        '\n'
+        'Tests include zero division, register overflow, negative division, zero operands,\n'
+        'nearest-fraction error witnesses, and iterative GCD completion. Widths 8, 16 and\n'
+        '32 are co-simulated with fixed and seeded random cases. The default RTL width is 16.\n'
+    ),
+    ('hardware/qpu/gcd_stein.sv',
+        '// Iterative Stein GCD: one subtraction/shift per cycle, ready/valid handshake.\n'
+        'module gcd_stein #(parameter W=16)(\n'
+        ' input wire clk,reset,start,input wire [W-1:0] a,b,\n'
+        ' output wire ready,output reg valid,output reg [W-1:0] result);\n'
+        ' reg busy;reg [W-1:0] u,v;integer shifts;\n'
+        ' assign ready=!busy;\n'
+        ' always @(posedge clk) begin\n'
+        '  if(reset)begin busy<=0;valid<=0;result<=0;u<=0;v<=0;shifts<=0;end\n'
+        '  else begin\n'
+        '   valid<=0;\n'
+        '   if(start&&!busy)begin u<=a;v<=b;shifts<=0;busy<=1;end\n'
+        '   else if(busy)begin\n'
+        '    if(u==0||v==0)begin result<=(u|v)<<shifts;busy<=0;valid<=1;end\n'
+        '    else if(!u[0]&&!v[0])begin u<=u>>1;v<=v>>1;shifts<=shifts+1;end\n'
+        '    else if(!u[0])u<=u>>1;\n'
+        '    else if(!v[0])v<=v>>1;\n'
+        '    else if(u>v)u<=u-v;\n'
+        '    else v<=v-u;\n'
+        '   end\n'
+        '  end\n'
+        ' end\n'
+        'endmodule\n'
+    ),
+    ('hardware/qpu/rational_alu.sv',
+        '// Bounded rational reference ALU: 00 add, 01 subtract, 10 multiply, 11 divide.\n'
+        '// Operands exclude the most-negative signed numerator and use positive signed\n'
+        '// denominator range. Overflow/zero division trap; approximation raises IRQ.\n'
+        'module rational_alu #(parameter W=16)(\n'
+        ' input wire clk,reset,start,input wire [1:0] opcode,\n'
+        ' input wire signed [W-1:0] an,bn,input wire [W-1:0] ad,bd,max_denominator,\n'
+        ' output wire ready,output reg valid,error,irq,\n'
+        ' output reg signed [W-1:0] pn,output reg [W-1:0] pd,\n'
+        ' output reg [3*W+2:0] delta_numerator,delta_denominator);\n'
+        ' localparam IW=2*W+2;\n'
+        ' reg signed [IW-1:0] raw_n,signed_b;reg [IW-1:0] raw_d,mag,b_magnitude;\n'
+        ' reg negative,bad;wire [W-1:0] qp,qq;wire qe,qa;\n'
+        ' wire [IW+W:0] en,ed;\n'
+        " assign ready=1'b1;\n"
+        ' stern_brocot #(.IW(IW),.OW(W)) quantizer(mag,raw_d,max_denominator,qp,qq,qe,qa,en,ed);\n'
+        ' always @* begin\n'
+        '  raw_n=0;raw_d=1;\n'
+        '  signed_b=bn;b_magnitude=signed_b<0?-signed_b:signed_b;\n'
+        "  bad=(ad==0||bd==0||ad[W-1]||bd[W-1]||an=={1'b1,{(W-1){1'b0}}}||bn=={1'b1,{(W-1){1'b0}}}||max_denominator==0||max_denominator[W-1]);\n"
+        '  case(opcode)\n'
+        "   0:begin raw_n=$signed(an)*$signed({1'b0,bd})+$signed(bn)*$signed({1'b0,ad});raw_d=ad*bd;end\n"
+        "   1:begin raw_n=$signed(an)*$signed({1'b0,bd})-$signed(bn)*$signed({1'b0,ad});raw_d=ad*bd;end\n"
+        '   2:begin raw_n=$signed(an)*$signed(bn);raw_d=ad*bd;end\n'
+        '   3:begin\n'
+        '    if(bn==0)bad=1;\n'
+        "    raw_n=$signed(an)*$signed({1'b0,bd});\n"
+        '    if(bn<0)raw_n=-raw_n;\n'
+        '    raw_d=ad*b_magnitude;\n'
+        '   end\n'
+        '  endcase\n'
+        '  negative=raw_n<0;mag=negative?-raw_n:raw_n;\n'
+        ' end\n'
+        ' always @(posedge clk)begin\n'
+        '  if(reset)begin valid<=0;error<=0;irq<=0;pn<=0;pd<=1;delta_numerator<=0;delta_denominator<=1;end\n'
+        '  else begin\n'
+        '   valid<=start;\n'
+        '   if(start)begin error<=bad||qe;irq<=!bad&&!qe&&qa;pn<=negative?-$signed(qp):$signed(qp);pd<=qq;delta_numerator<=en;delta_denominator<=ed;end\n'
+        '  end\n'
+        ' end\n'
+        'endmodule\n'
+    ),
+    ('hardware/qpu/stern_brocot.sv',
+        '// Continued-fraction convergents / Stern-Brocot semiconvergent boundary.\n'
+        '// Unsigned magnitude interface. Signedness is handled by the ALU. Dividers\n'
+        '// are combinational: this reference RTL makes no frequency/area guarantee.\n'
+        'module stern_brocot #(parameter IW=34,OW=16)(\n'
+        ' input wire [IW-1:0] numerator,denominator,\n'
+        ' input wire [OW-1:0] max_denominator,\n'
+        ' output reg [OW-1:0] p,q,output reg error,approximate,\n'
+        ' output reg [IW+OW:0] delta_numerator,delta_denominator);\n'
+        ' localparam T=2*IW+2*OW+4;\n'
+        ' reg [T-1:0] n,d,p0,p1,q0,q1,a,q2,p2,k,bp,bq,lp,lq,e1,e2,original_n,original_d;\n'
+        ' reg finished;integer i;\n'
+        ' always @* begin\n'
+        '  p=0;q=1;error=0;approximate=0;delta_numerator=0;delta_denominator=1;\n'
+        '  n=numerator;d=denominator;original_n=n;original_d=d;\n'
+        '  p0=0;p1=1;q0=1;q1=0;a=0;q2=0;p2=0;k=0;bp=0;bq=1;lp=0;lq=1;e1=0;e2=0;finished=0;\n'
+        '  if(d==0||max_denominator==0)begin error=1;finished=1;end\n'
+        '  for(i=0;i<2*IW+2;i=i+1)begin\n'
+        '   if(!finished)begin\n'
+        '    if(d==0)begin bp=p1;bq=q1;finished=1;end\n'
+        '    else begin\n'
+        '     a=n/d;q2=q0+a*q1;p2=p0+a*p1;\n'
+        '     if(q2>max_denominator)begin\n'
+        '      k=(max_denominator-q0)/q1;lp=p0+k*p1;lq=q0+k*q1;\n'
+        '      e1=(original_n*lq>=lp*original_d)?original_n*lq-lp*original_d:lp*original_d-original_n*lq;\n'
+        '      e2=(original_n*q1>=p1*original_d)?original_n*q1-p1*original_d:p1*original_d-original_n*q1;\n'
+        '      // Tie goes to the convergent, as Fraction.limit_denominator does.\n'
+        '      if(e2*lq<=e1*q1)begin bp=p1;bq=q1;end else begin bp=lp;bq=lq;end\n'
+        '      finished=1;\n'
+        '     end else begin\n'
+        '      p0=p1;p1=p2;q0=q1;q1=q2;k=n-a*d;n=d;d=k;\n'
+        '     end\n'
+        '    end\n'
+        '   end\n'
+        '  end\n'
+        '  if(!finished||bp>((1<<(OW-1))-1)||bq==0||bq>max_denominator)error=1;\n'
+        '  if(!error)begin\n'
+        '   p=bp;q=bq;\n'
+        '   delta_numerator=(original_n*bq>=bp*original_d)?original_n*bq-bp*original_d:bp*original_d-original_n*bq;\n'
+        '   delta_denominator=original_d*bq;approximate=(delta_numerator!=0);\n'
+        '  end\n'
+        ' end\n'
+        'endmodule\n'
     ),
     ('nextorch/__init__.py',
         '"""Nextorch: neural synthesis and proof-gated latent reasoning."""\n'
@@ -16840,6 +17309,11 @@ SOURCES = (
         "    sub=p.add_subparsers(dest='acao',required=True)\n"
         "    agent_parser=sub.add_parser('agent',help='finite reasoning, planning and rational expression synthesis')\n"
         "    agent_parser.add_argument('arguments',nargs=argparse.REMAINDER)\n"
+        "    extensions={'refine':'omega_refine_check.cli','synth':'omega_synth_mcts.cli',\n"
+        "                'mutate':'omega_self_mutate.cli','action':'omega_agent_sandbox.cli','cognition':'omega_cognition.cli'}\n"
+        '    for name,module in extensions.items():\n'
+        '        sp=sub.add_parser(name,help=module)\n'
+        "        sp.add_argument('arguments',nargs=argparse.REMAINDER)\n"
         '    from omega_nextorch.cli import register, execute, COMMANDS\n'
         '    register(sub)\n'
         '    from omega_selfhost import cli as native_cli\n'
@@ -16861,10 +17335,28 @@ SOURCES = (
         "        if acao=='evolve':sp.add_argument('--raio',type=int,default=2)\n"
         "        if acao in ('compile','optimize','export-lean'):\n"
         "            sp.add_argument('-o','--saida',type=Path)\n"
+        "        if acao=='compile':\n"
+        "            sp.add_argument('--standalone',action='store_true')\n"
+        "            sp.add_argument('--target',type=Path)\n"
+        "            sp.add_argument('--contracts',type=Path,help='JSON architecture, input/output bounds and input_scale for a weights-only checkpoint')\n"
         "        if acao=='optimize':sp.add_argument('--prova',type=Path)\n"
         "        if acao in ('run','check','types','compile'):sp.add_argument('--motor',choices=['auto','classico','v1'],default='auto')\n"
         '    args=p.parse_args(argumentos)\n'
         '    try:\n'
+        '        if args.acao in extensions:\n'
+        '            from importlib import import_module\n'
+        '            return import_module(extensions[args.acao]).main(args.arguments)\n'
+        "        if args.acao=='compile' and args.standalone:\n"
+        "            if args.contracts is None or args.target is None:p.error('--standalone requires --contracts and --target')\n"
+        "            if args.target.suffix!='.c' or args.target.exists():raise ValueError('A fresh .c target is required')\n"
+        '            from omega_cognition.standalone import export\n'
+        '            manifest=ler_json(args.contracts)\n'
+        "            bundle=args.target.parent/(args.target.stem+'.certified')\n"
+        "            result=export(args.arquivo,manifest['architecture'],bundle,input_bounds=manifest['input_bounds'],\n"
+        "                          output_bounds=manifest['output_bounds'],input_scale=manifest.get('input_scale',1))\n"
+        '            args.target.parent.mkdir(parents=True,exist_ok=True)\n'
+        "            args.target.write_bytes(Path(result['source']).read_bytes())\n"
+        '            print(json.dumps(result,sort_keys=True,indent=2));return 0\n'
         "        if args.acao=='agent':\n"
         '            from omega_agent.cli import main as agent_main\n'
         '            return agent_main(args.arguments)\n'
@@ -18481,7 +18973,7 @@ SOURCES = (
         'from .typesystem import TypeCheckError\n'
         '\n'
         '\n'
-        "_TOKEN=re.compile(TOKEN.pattern+r'|::',re.UNICODE)\n"
+        "_TOKEN=re.compile(r'::|'+TOKEN.pattern,re.UNICODE)\n"
         '\n'
         '\n'
         'def _tokens(source):\n'
@@ -18490,7 +18982,7 @@ SOURCES = (
         '    for match in _TOKEN.finditer(source):\n'
         "        if match.start()!=position:raise TypeCheckError('Invalid module source token')\n"
         '        position=match.end();token=match.group()\n'
-        "        if not token.isspace() and not token.startswith('#'):result.append(token)\n"
+        "        if not token.isspace() and not token.startswith(('#','//')):result.append(token)\n"
         "        if len(result)>120000:raise TypeCheckError('Module token budget exceeded')\n"
         "    if position!=len(source):raise TypeCheckError('Trailing module source data')\n"
         "    return result+['<fim>']\n"
@@ -21692,7 +22184,7 @@ SOURCES = (
         'from omega_selfhost.proof_protocol import encode\n'
         '\n'
         '\n'
-        'def program(graph, input_bounds):\n'
+        'def program(graph, input_bounds, *, trace_values=False):\n'
         '    validate(graph)\n'
         "    bounds=bounds_contract(input_bounds,graph['inputs'])\n"
         '    def q(value):\n'
@@ -21713,13 +22205,17 @@ SOURCES = (
         '            expr=f\'x{node["left"]}{"*" if op=="mul" else "/"}x{node["right"]}\'\n'
         '        else:expr=f\'omega_{op}(x{node["input"]})\'\n'
         "        lines.append(f'var x{i}={expr};')\n"
-        "    lines += ['retornar ['+','.join(f'text(x{i})' for i in graph['outputs'])+'];','}',\n"
+        "    result='['+','.join(f'text(x{i})' for i in graph['outputs'])+']'\n"
+        '    if trace_values:\n'
+        '        lines += [\'var trace=obj();put(trace,"outputs",\'+result+\');put(trace,"values",[\'+\',\'.join(f\'text(x{i})\' for i in range(graph[\'inputs\']+len(graph[\'nodes\'])))+\']);retornar trace;\']\n'
+        "    else:lines.append('retornar '+result+';')\n"
+        "    lines += ['}',\n"
         '              \'funcao principal(){se(argc()!=2){fail("expected input JSON path");}var inputs=parsejson(read(arg(1)));\',\n'
         "              'print(json(infer(inputs)));retornar 0;}']\n"
         "    return '\\n'.join(lines)+'\\n'\n"
         '\n'
         '\n'
-        'def build_runtime(graph, directory, input_bounds, *, static=True):\n'
+        'def build_runtime(graph, directory, input_bounds, *, static=True, trace_values=False):\n'
         '    from omega_selfhost.driver import compiler,cc,PACKAGE\n'
         '    from omega_platform.sandbox import run\n'
         '    from omega_platform.budget import COMPILER_BUDGET\n'
@@ -21727,7 +22223,7 @@ SOURCES = (
         '    root=Path(directory).absolute()\n'
         "    source=root/'model.omega';c=root/'model.c';binary=root/'model'\n"
         "    if any(p.exists() for p in (source,c,binary)):raise ValueError('Native destinations already exist')\n"
-        '    root.mkdir(parents=True,exist_ok=True);source.write_text(program(graph,input_bounds))\n'
+        '    root.mkdir(parents=True,exist_ok=True);source.write_text(program(graph,input_bounds,trace_values=trace_values))\n'
         '    run([compiler(),source,c],readonly=[source],writable=[root],budget=COMPILER_BUDGET,check=True)\n'
         "    text=c.read_text();bits=graph.get('precision_bits',32)\n"
         "    start=text.index('static V fn_omega_exp(V v_x){')\n"
@@ -21752,7 +22248,7 @@ SOURCES = (
         "                'runtime_sha256':hashlib.sha256((PACKAGE/'runtime.h').read_bytes()).hexdigest(),\n"
         "                'artifacts':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (source,c,binary)},\n"
         "                'input_bounds':[[str(a),str(b)] for a,b in bounds_contract(input_bounds,graph['inputs'])],\n"
-        "                'static':static}\n"
+        "                'static':static,'trace_values':trace_values}\n"
         "    (root/'model.build.json').write_bytes(encode(provenance))\n"
         '    return provenance\n'
         '\n'
@@ -21767,8 +22263,13 @@ SOURCES = (
         '        outcome=run([binary,path],readonly=[path],check=True)\n'
         '    observed=json.loads(outcome.stdout)\n'
         "    values=execute(graph,inputs);expected=[str(values[i]) for i in graph['outputs']]\n"
+        '    native_trace=None\n'
+        '    if type(observed) is dict:\n'
+        "        if set(observed)!={'outputs','values'} or observed['values']!=list(map(str,values)):raise ValueError('Changed native intermediate trace')\n"
+        "        native_trace=observed['values'];observed=observed['outputs']\n"
         "    if observed!=expected:raise ValueError('Native transcendental execution differs from rational oracle')\n"
         "    return observed,{'valid':True,'checker':'independent exact rational oracle replay',\n"
+        "                     **({'native_trace':native_trace} if native_trace is not None else {}),\n"
         "                     'outputs_sha256':hashlib.sha256(encode(observed)).hexdigest(),\n"
         "                     'scope':'observed native output equality; real semantics are checked separately by Lean'}\n"
         '\n'
@@ -21960,7 +22461,7 @@ SOURCES = (
         '    coluna: int\n'
         '\n'
         '\n'
-        '_RE_TOKEN = re.compile(r"(?P<ESPACO>\\s+)|(?P<COMENTARIO>\\#[^\\n]*)|"\n'
+        '_RE_TOKEN = re.compile(r"(?P<ESPACO>\\s+)|(?P<COMENTARIO>\\#[^\\n]*|//[^\\n]*)|"\n'
         '                       r"(?P<NUMERO>\\d+(?:\\.\\d+)?)|"\n'
         '                       r"(?P<NOME>[^\\W\\d]\\w*)|"\n'
         '                       r"(?P<SIMBOLO>==|[+*/^=();,\\[\\]@-])|"\n'
@@ -24674,6 +25175,306 @@ SOURCES = (
         'def breadth_first(initial,goal,successors,key,**budget):\n'
         '    return search(initial,goal,lambda s:((a,t,1) for a,t in successors(s)),key,**budget)\n'
     ),
+    ('omega_agent_sandbox/__init__.py',
+        'from .actions import prepare\n'
+        'from .policy import Policy\n'
+        'from .ledger import Ledger\n'
+        'from .runtime import Runtime\n'
+        "__all__=['prepare','Policy','Ledger','Runtime']\n"
+    ),
+    ('omega_agent_sandbox/actions.py',
+        '"""Turn an action intent into code, a Hoare obligation and a pinned snapshot."""\n'
+        'import hashlib\n'
+        'import json\n'
+        'from omega_refine_check.syntax import parse,rational,evaluate,substitute,render,identifier\n'
+        'from omega_refine_check.contracts import verify_contract\n'
+        'from omega_selfhost.proof_protocol import encode\n'
+        'from .policy import Policy\n'
+        '\n'
+        '\n'
+        'def _and(predicates):\n'
+        "    result=('true',)\n"
+        "    for p in predicates:result=('and',result,p)\n"
+        '    return result\n'
+        '\n'
+        '\n'
+        'def plan(policy,state,proposal):\n'
+        "    if type(policy) is not Policy:raise TypeError('Immutable host policy required')\n"
+        '    data=policy.data\n'
+        "    if type(state) is not dict or set(state)!={'version','values'} or type(state['version']) is not int or state['version']<0 or set(state['values'])!=set(data['state']):raise ValueError('Invalid state snapshot')\n"
+        "    if type(proposal) is not dict or set(proposal)!={'action','parameters','nonce','expected_version'}:raise ValueError('Unknown action proposal')\n"
+        "    if type(proposal['expected_version']) is not int or proposal['expected_version']!=state['version']:raise ValueError('Stale action proposal')\n"
+        "    identifier(proposal['action'])\n"
+        "    if type(proposal['nonce']) is not str or not 1<=len(proposal['nonce'])<=128 or any(ord(c)<32 for c in proposal['nonce']):raise ValueError('Bounded action nonce required')\n"
+        "    if proposal['action'] not in data['actions']:raise PermissionError('Action is not admitted by the policy')\n"
+        "    action=data['actions'][proposal['action']]\n"
+        "    if type(proposal['parameters']) is not dict or set(proposal['parameters'])!=set(action['parameters']):raise ValueError('Action parameter mismatch')\n"
+        "    values={k:rational(state['values'][k]) for k in data['state']}\n"
+        "    params={k:rational(proposal['parameters'][k]) for k in action['parameters']}\n"
+        '    env={**values,**params}\n'
+        "    for name,predicate in {**data['state'],**action['parameters']}.items():\n"
+        "        if evaluate(parse(predicate),{**env,'self':env[name]}) is not True:raise ValueError('State or parameter invariant violated')\n"
+        "    if any(evaluate(parse(p),env) is not True for p in action['requires']):raise ValueError('Action precondition is false')\n"
+        "    updates={name:parse(expr) for name,expr in action['updates'].items()}\n"
+        '    after={name:evaluate(expr,env) for name,expr in updates.items()}\n'
+        "    if any(evaluate(parse(predicate),{**after,'self':after[name]}) is not True for name,predicate in data['state'].items()):raise ValueError('Action would violate a state invariant')\n"
+        "    post=[substitute(parse(predicate),{'self':updates[name],**updates}) for name,predicate in data['state'].items()]\n"
+        "    variables={**data['state'],**action['parameters']}\n"
+        "    expression=('vector',tuple(updates.values()))\n"
+        "    statement={'policy_sha256':policy.sha256,'state':{'version':state['version'],'values':{k:str(v) for k,v in values.items()}},\n"
+        "               'proposal':{**proposal,'parameters':{k:str(v) for k,v in params.items()}},\n"
+        "               'post_state':{'version':state['version']+1,'values':{k:str(v) for k,v in after.items()}},'effect':action['effect']}\n"
+        '    source=\'\\n\'.join(f\'parametro {name}={render(("const",str(value)))};\' for name,value in env.items())+\'\\n\'\n'
+        "    for i,(name,expr) in enumerate(updates.items()):source+=f'tensor after_{i}={render(expr)};\\nmostrar after_{i};\\n'\n"
+        "    return statement,source,variables,expression,_and(post),action['requires']\n"
+        '\n'
+        '\n'
+        'def prepare(policy,state,proposal,*,signing_key):\n'
+        '    statement,program,variables,expression,post,requires=plan(policy,state,proposal)\n'
+        '    proof=verify_contract(variables,expression,post,requires=requires)\n'
+        "    payload={'format':'omega-action-pcc-1','statement':statement,\n"
+        "             'program_sha256':hashlib.sha256(program.encode()).hexdigest(),\n"
+        "             'proof_sha256':hashlib.sha256(proof['source'].encode()).hexdigest()}\n"
+        '    subject=hashlib.sha256(encode(payload)).hexdigest()\n'
+        "    return {'payload':payload,'subject':subject,'program':program,'proof':proof['source'],\n"
+        "            'admission':proof['admission'],'signature':signing_key.sign(encode(payload)).hex()}\n"
+    ),
+    ('omega_agent_sandbox/adapters.py',
+        '"""Host-supplied effects. Tests and demos use Recorder, never actual actuators."""\n'
+        'from dataclasses import dataclass\n'
+        'from threading import RLock\n'
+        'from urllib.parse import urlsplit\n'
+        'import json\n'
+        '\n'
+        '\n'
+        'class Recorder:\n'
+        '    def __init__(self):self.receipts={};self.lock=RLock()\n'
+        '    def dispatch(self,statement,*,idempotency_key):\n'
+        '        with self.lock:\n'
+        '            if idempotency_key in self.receipts:return self.receipts[idempotency_key]\n'
+        "            receipt={'acknowledged':True,'idempotency_key':idempotency_key,'effect':statement['effect'],\n"
+        "                     'parameters':statement['proposal']['parameters']}\n"
+        '            self.receipts[idempotency_key]=receipt\n'
+        '            return receipt\n'
+        '\n'
+        '\n'
+        'class CallbackAdapter:\n'
+        '    def __init__(self,callback):\n'
+        "        if not callable(callback):raise TypeError('Host driver callback required')\n"
+        '        self.callback=callback\n'
+        '    def dispatch(self,statement,*,idempotency_key):\n'
+        "        return self.callback(statement['proposal']['parameters'],idempotency_key=idempotency_key)\n"
+        '\n'
+        '\n'
+        'class HTTPSAdapter:\n'
+        '    def __init__(self,url,*,allowed_hosts,headers=None,timeout=5):\n'
+        '        parsed=urlsplit(url)\n'
+        "        if parsed.scheme!='https' or parsed.hostname not in allowed_hosts or parsed.username or parsed.password or parsed.fragment:\n"
+        "            raise ValueError('Explicit HTTPS host allowlist and credential-free URL required')\n"
+        "        if type(timeout) not in (int,float) or not 0<timeout<=30:raise ValueError('Bounded HTTPS timeout required')\n"
+        '        self.url=url;self.headers=dict(headers or {});self.timeout=timeout\n'
+        '    def dispatch(self,statement,*,idempotency_key):\n'
+        '        import urllib.request\n'
+        '        class NoRedirect(urllib.request.HTTPRedirectHandler):\n'
+        "            def redirect_request(self,*args,**kwargs):raise PermissionError('Action redirects are refused')\n"
+        "        body=json.dumps(statement['proposal']['parameters'],sort_keys=True).encode()\n"
+        "        headers={**self.headers,'Content-Type':'application/json','Idempotency-Key':idempotency_key}\n"
+        "        request=urllib.request.Request(self.url,data=body,headers=headers,method='POST')\n"
+        '        with urllib.request.build_opener(NoRedirect()).open(request,timeout=self.timeout) as response:\n'
+        '            data=response.read(65537)\n'
+        "            if len(data)>65536:raise ValueError('Action response byte budget exceeded')\n"
+        "            return {'acknowledged':200<=response.status<300,'status':response.status,'idempotency_key':idempotency_key,\n"
+        "                    'response_sha256':__import__('hashlib').sha256(data).hexdigest()}\n"
+    ),
+    ('omega_agent_sandbox/cli.py',
+        '"""The CLI prepares artifacts only; external dispatch requires a host instance."""\n'
+        'import argparse,json\n'
+        'from pathlib import Path\n'
+        'from .policy import Policy\n'
+        'from .actions import prepare\n'
+        '\n'
+        'def main(argv=None):\n'
+        "    parser=argparse.ArgumentParser(prog='omega action')\n"
+        "    parser.add_argument('policy',type=Path);parser.add_argument('state',type=Path);parser.add_argument('proposal',type=Path)\n"
+        "    parser.add_argument('--output',type=Path,required=True)\n"
+        '    args=parser.parse_args(argv)\n'
+        '    # This demonstrator explicitly produces an ephemeral public identity. It\n'
+        '    # cannot mint a host capability or dispatch an external effect.\n'
+        '    from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey\n'
+        '    key=Ed25519PrivateKey.generate()\n'
+        '    bundle=prepare(Policy(json.loads(args.policy.read_text())),json.loads(args.state.read_text()),json.loads(args.proposal.read_text()),signing_key=key)\n'
+        '    args.output.mkdir(parents=True,exist_ok=False)\n'
+        "    (args.output/'action.omega').write_text(bundle['program']);(args.output/'action.lean').write_text(bundle['proof'])\n"
+        "    (args.output/'action.json').write_text(json.dumps(bundle,sort_keys=True,indent=2)+'\\n')\n"
+        "    (args.output/'public-key.hex').write_text(key.public_key().public_bytes_raw().hex()+'\\n')\n"
+        "    print(json.dumps({'subject':bundle['subject'],'external_effects':False}));return 0\n"
+    ),
+    ('omega_agent_sandbox/ledger.py',
+        '"""Durable state/version CAS and exactly-once dispatch reservations.\n'
+        '\n'
+        'An external effect and SQLite cannot form one general atomic transaction.\n'
+        'Uncertain outcomes remain locked for explicit host reconciliation, never retry.\n'
+        '"""\n'
+        'import json\n'
+        'from pathlib import Path\n'
+        'import sqlite3\n'
+        'import hashlib\n'
+        'from omega_selfhost.proof_protocol import encode\n'
+        '\n'
+        '\n'
+        'class Ledger:\n'
+        '    def __init__(self,path):\n'
+        '        self.path=Path(path)\n'
+        "        if self.path.is_symlink():raise ValueError('Symlinked ledgers are refused')\n"
+        '        self.path.parent.mkdir(parents=True,exist_ok=True)\n'
+        '        with self.connect() as db:\n'
+        "            db.executescript('CREATE TABLE IF NOT EXISTS states (domain TEXT PRIMARY KEY, version INTEGER NOT NULL, body TEXT NOT NULL, busy TEXT);'\n"
+        "                             'CREATE TABLE IF NOT EXISTS operations (subject TEXT PRIMARY KEY, domain TEXT NOT NULL, nonce TEXT NOT NULL, status TEXT NOT NULL, body TEXT NOT NULL, receipt TEXT, UNIQUE(domain,nonce));')\n"
+        '    def connect(self):\n'
+        "        db=sqlite3.connect(self.path,timeout=10,isolation_level=None);db.execute('PRAGMA journal_mode=WAL');db.execute('PRAGMA synchronous=FULL');return db\n"
+        '    def initialize(self,domain,values):\n'
+        '        from omega_refine_check.syntax import identifier,rational\n'
+        '        identifier(domain);normalized={k:str(rational(v)) for k,v in values.items()}\n'
+        '        with self.connect() as db:\n'
+        "            db.execute('INSERT INTO states VALUES (?,?,?,NULL)',(domain,0,encode(normalized).decode()))\n"
+        '    def snapshot(self,domain):\n'
+        "        with self.connect() as db:row=db.execute('SELECT version,body,busy FROM states WHERE domain=?',(domain,)).fetchone()\n"
+        "        if row is None:raise ValueError('Unknown state domain')\n"
+        "        if row[2] is not None:raise RuntimeError('Domain has an unresolved external action')\n"
+        "        return {'version':row[0],'values':json.loads(row[1])}\n"
+        '    def claim(self,domain,subject,statement):\n'
+        '        with self.connect() as db:\n'
+        '            try:\n'
+        "                db.execute('BEGIN IMMEDIATE')\n"
+        "                row=db.execute('SELECT version,body,busy FROM states WHERE domain=?',(domain,)).fetchone()\n"
+        "                if row is None or row[2] is not None or row[0]!=statement['state']['version'] or json.loads(row[1])!=statement['state']['values']:raise ValueError('Action snapshot is stale or already reserved')\n"
+        "                db.execute('INSERT INTO operations VALUES (?,?,?,?,?,NULL)',(subject,domain,statement['proposal']['nonce'],'reserved',encode(statement).decode()))\n"
+        "                db.execute('UPDATE states SET busy=? WHERE domain=?',(subject,domain));db.execute('COMMIT')\n"
+        '            except BaseException:\n'
+        "                if db.in_transaction:db.execute('ROLLBACK')\n"
+        '                raise\n'
+        '    def finish(self,domain,subject,statement,receipt):\n'
+        '        raw=encode(receipt)\n'
+        "        if len(raw)>65536:raise ValueError('External receipt exceeds budget')\n"
+        '        with self.connect() as db:\n'
+        '            try:\n'
+        "                db.execute('BEGIN IMMEDIATE')\n"
+        "                row=db.execute('SELECT busy FROM states WHERE domain=?',(domain,)).fetchone()\n"
+        "                if row!=(subject,):raise ValueError('Dispatch reservation changed')\n"
+        "                post=statement['post_state']\n"
+        "                db.execute('UPDATE states SET version=?,body=?,busy=NULL WHERE domain=?',(post['version'],encode(post['values']).decode(),domain))\n"
+        "                db.execute('UPDATE operations SET status=?,receipt=? WHERE subject=?',('completed',raw.decode(),subject));db.execute('COMMIT')\n"
+        '            except BaseException:\n'
+        "                if db.in_transaction:db.execute('ROLLBACK')\n"
+        '                raise\n'
+        '    def uncertain(self,subject,error):\n'
+        "        with self.connect() as db:db.execute('UPDATE operations SET status=?,receipt=? WHERE subject=?',('uncertain',str(error)[:2000],subject))\n"
+        '    def operation(self,subject):\n'
+        "        with self.connect() as db:row=db.execute('SELECT status,receipt FROM operations WHERE subject=?',(subject,)).fetchone()\n"
+        "        if row is None:raise ValueError('Unknown operation')\n"
+        "        return {'status':row[0],'receipt':row[1]}\n"
+    ),
+    ('omega_agent_sandbox/policy.py',
+        '"""Host-owned immutable transition policies, not prompts for the proposer."""\n'
+        'from dataclasses import dataclass\n'
+        'import json\n'
+        'from omega_refine_check.syntax import parse,identifier\n'
+        'from omega_selfhost.proof_protocol import encode\n'
+        'import hashlib\n'
+        '\n'
+        '\n'
+        '@dataclass(frozen=True)\n'
+        'class Policy:\n'
+        '    encoded:bytes\n'
+        '    def __init__(self,data):\n'
+        "        fields={'id','version','state','actions'}\n"
+        "        if type(data) is not dict or set(data)!=fields or type(data['version']) is not int or data['version']<1:raise ValueError('Explicit versioned action policy required')\n"
+        "        identifier(data['id'])\n"
+        "        if type(data['state']) is not dict or not 1<=len(data['state'])<=32 or type(data['actions']) is not dict or not 1<=len(data['actions'])<=32:raise ValueError('Policy cardinality budget exceeded')\n"
+        "        for name,predicate in data['state'].items():identifier(name);parse(predicate)\n"
+        "        for name,action in data['actions'].items():\n"
+        '            identifier(name)\n'
+        "            if type(action) is not dict or set(action)!={'parameters','requires','updates','effect'}:raise ValueError('Unknown action policy fields')\n"
+        "            identifier(action['effect'])\n"
+        "            if type(action['parameters']) is not dict or len(action['parameters'])>16 or set(action['parameters'])&set(data['state']):raise ValueError('Invalid or shadowing action parameters')\n"
+        "            for var,predicate in action['parameters'].items():identifier(var);parse(predicate)\n"
+        "            if type(action['requires']) is not list or len(action['requires'])>32:raise ValueError('Bounded preconditions required')\n"
+        "            for predicate in action['requires']:parse(predicate)\n"
+        "            if set(action['updates'])!=set(data['state']):raise ValueError('Every state coordinate must have an explicit simultaneous update')\n"
+        "            for expr in action['updates'].values():parse(expr)\n"
+        '        raw=encode(data)\n'
+        "        if len(raw)>65536:raise ValueError('Policy byte budget exceeded')\n"
+        "        object.__setattr__(self,'encoded',raw)\n"
+        '    @property\n'
+        '    def data(self):return json.loads(self.encoded)\n'
+        '    @property\n'
+        '    def sha256(self):return hashlib.sha256(self.encoded).hexdigest()\n'
+    ),
+    ('omega_agent_sandbox/proofs.py',
+        'import hashlib\n'
+        'from .actions import prepare\n'
+        'from omega_selfhost.proof_protocol import encode\n'
+        '\n'
+        '\n'
+        'def verify(policy,state,bundle,*,public_key):\n'
+        "    fields={'payload','subject','program','proof','admission','signature'}\n"
+        "    if type(bundle) is not dict or set(bundle)!=fields:raise ValueError('Unknown proof-carrying action envelope')\n"
+        "    if len(encode(bundle))>8*1024**2:raise ValueError('Action proof byte budget exceeded')\n"
+        '    from cryptography.exceptions import InvalidSignature\n'
+        "    try:public_key.verify(bytes.fromhex(bundle['signature']),encode(bundle['payload']))\n"
+        "    except (InvalidSignature,TypeError,ValueError) as error:raise PermissionError('Invalid action signature') from error\n"
+        "    if hashlib.sha256(encode(bundle['payload'])).hexdigest()!=bundle['subject']:raise ValueError('Action subject mismatch')\n"
+        "    if bundle['payload']['statement']['policy_sha256']!=policy.sha256:raise ValueError('Unrelated policy proof')\n"
+        '    class Capture:\n'
+        '        def sign(self,raw):\n'
+        "            if raw!=encode(bundle['payload']):raise ValueError('Action code, state or postcondition changed')\n"
+        "            return bytes.fromhex(bundle['signature'])\n"
+        "    expected=prepare(policy,state,bundle['payload']['statement']['proposal'],signing_key=Capture())\n"
+        "    if any(expected[k]!=bundle[k] for k in ('program','proof','subject','payload')):raise ValueError('Changed action code or proof')\n"
+        "    return expected['payload']['statement']\n"
+    ),
+    ('omega_agent_sandbox/runtime.py',
+        '"""Admission and compilation finish before the registered external effect runs."""\n'
+        'from pathlib import Path\n'
+        'import tempfile\n'
+        'from types import MappingProxyType\n'
+        'from .proofs import verify\n'
+        'from .policy import Policy\n'
+        '\n'
+        '\n'
+        'class Runtime:\n'
+        '    def __init__(self,policy,ledger,*,public_key,capability_verifier,principal,adapters):\n'
+        "        if type(policy) is not Policy:raise TypeError('Host-owned immutable policy required')\n"
+        "        if not hasattr(capability_verifier,'require'):raise TypeError('Independent signed capability verifier required')\n"
+        '        self.policy=policy;self.ledger=ledger;self.public_key=public_key\n'
+        '        self.verifier=capability_verifier;self.principal=principal;self.adapters=MappingProxyType(dict(adapters))\n'
+        '    def dispatch(self,bundle,capability):\n'
+        "        domain=self.policy.data['id'];snapshot=self.ledger.snapshot(domain)\n"
+        '        statement=verify(self.policy,snapshot,bundle,public_key=self.public_key)\n'
+        "        subject=bundle['subject'];effect=statement['effect']\n"
+        "        if effect not in self.adapters:raise PermissionError('No host adapter is registered for this effect')\n"
+        "        self.verifier.require(capability,self.principal,'agent.dispatch.'+effect,subject=subject)\n"
+        '        # Never execute proposer-supplied code: the proof renderer already\n'
+        '        # reconstructed this exact pure arithmetic program from policy data.\n'
+        '        from omega_selfhost.driver import build,run\n'
+        "        with tempfile.TemporaryDirectory(prefix='omega-proof-action-') as temporary:\n"
+        "            root=Path(temporary);source=root/'action.omega';source.write_text(bundle['program'])\n"
+        "            build(source,root/'action');result,admission=run(root/'action')\n"
+        "            for i,(name,value) in enumerate(statement['post_state']['values'].items()):\n"
+        '                from fractions import Fraction\n'
+        "                if Fraction(result['values'][f'after_{i}'])!=Fraction(value):raise ValueError('Native action disagrees with its proved poststate')\n"
+        '        # Recheck authorization after proof/build latency and reserve the state\n'
+        '        # transactionally. No adapter has run before these gates.\n'
+        "        self.verifier.require(capability,self.principal,'agent.dispatch.'+effect,subject=subject)\n"
+        '        self.ledger.claim(domain,subject,statement)\n'
+        '        try:\n'
+        '            receipt=self.adapters[effect].dispatch(statement,idempotency_key=subject)\n'
+        "            if type(receipt) is not dict or receipt.get('acknowledged') is not True or receipt.get('idempotency_key')!=subject:raise ValueError('External adapter did not acknowledge this exact action')\n"
+        '            self.ledger.finish(domain,subject,statement,receipt)\n'
+        '        except BaseException as error:\n'
+        '            self.ledger.uncertain(subject,error);raise\n'
+        "        return {'valid':True,'subject':subject,'post_state':statement['post_state'],'native_admission':admission,'receipt':receipt}\n"
+    ),
     ('omega_bench/__init__.py',
         '"""Omega 3.0 source components; acceptance requires separate evidence."""\n'
     ),
@@ -25855,6 +26656,396 @@ SOURCES = (
         "        if self.created:self._git('worktree','remove','--force',str(self.path));self.created=False\n"
         '    def __enter__(self):return self.create()\n'
         '    def __exit__(self,*exc):self.close()\n'
+    ),
+    ('omega_cognition/__init__.py',
+        '"""Executable contracts for resources, scheduling and interpretable traces."""\n'
+        'from .linear import LinearContext\n'
+        'from .memory import plan_buffers\n'
+        'from .scheduler import FairScheduler\n'
+        "__all__=['LinearContext','plan_buffers','FairScheduler']\n"
+    ),
+    ('omega_cognition/cli.py',
+        'import argparse\n'
+        'import json\n'
+        'from pathlib import Path\n'
+        '\n'
+        '\n'
+        'def main(argv=None):\n'
+        "    parser=argparse.ArgumentParser(prog='omega cognition')\n"
+        "    parser.add_argument('mode',choices=['distill','schedule','qpu','trace','replay','memory','standalone'])\n"
+        "    parser.add_argument('spec',type=Path);parser.add_argument('--output',type=Path)\n"
+        '    args=parser.parse_args(argv);spec=json.loads(args.spec.read_text())\n'
+        "    if args.mode=='distill':\n"
+        '        from .pipeline import distill\n'
+        "        result=distill(spec['intent'],spec['specification'],args.output,**spec.get('limits',{}))\n"
+        "    elif args.mode=='schedule':\n"
+        '        from .scheduler import FairScheduler\n'
+        "        result=FairScheduler(spec['tasks'],max_wait=spec.get('max_wait',8)).run()\n"
+        "    elif args.mode=='qpu':\n"
+        '        from .qpu import execute\n'
+        "        result=execute(spec['op'],spec['a'],spec['b'],bits=spec.get('bits',16),max_denominator=spec.get('max_denominator'))\n"
+        "    elif args.mode=='memory':\n"
+        '        from .memory import plan_buffers\n'
+        '        result=plan_buffers(spec)\n'
+        "    elif args.mode=='standalone':\n"
+        '        from .standalone import export\n'
+        "        result=export(spec['checkpoint'],spec['architecture'],args.output,input_bounds=spec['input_bounds'],output_bounds=spec['output_bounds'],input_scale=spec.get('input_scale',1))\n"
+        '    else:\n'
+        '        from .glass import certify_trace,replay\n'
+        "        result=replay(spec) if args.mode=='replay' else certify_trace(spec['graph'],spec['inputs'])\n"
+        '    print(json.dumps(result,sort_keys=True,indent=2));return 0\n'
+    ),
+    ('omega_cognition/glass.py',
+        '"""Grounded logical coordinates and replayable arithmetic traces.\n'
+        '\n'
+        'Orthogonality is a geometric property. Concept meaning requires an explicit\n'
+        'logical contract; an axis label alone never grants a semantic certificate.\n'
+        '"""\n'
+        'from fractions import Fraction as Q\n'
+        'import hashlib\n'
+        'from omega.certified_graph import validate,evaluate\n'
+        'from omega.certified_proof import check,rational_literal as lit\n'
+        'from omega_refine_check.contracts import verify_contract\n'
+        'from omega_selfhost.proof_protocol import encode\n'
+        '\n'
+        '\n'
+        'def orthogonal_basis(rows):\n'
+        "    if type(rows) not in (list,tuple) or not 1<=len(rows)<=64:raise ValueError('Bounded rational basis required')\n"
+        '    basis=[list(map(Q,row)) for row in rows];width=len(basis[0])\n'
+        "    if not 1<=width<=64 or len(basis)>width or any(len(row)!=width for row in basis):raise ValueError('Basis shape mismatch')\n"
+        "    lines=['import Omega.Glass','namespace OmegaBasis'];names=[]\n"
+        '    for i,row in enumerate(basis):\n'
+        '        for j,other in enumerate(basis):\n'
+        '            value=sum((a*b for a,b in zip(row,other)),Q(0));expected=Q(int(i==j))\n'
+        "            if value!=expected:raise ValueError('Concept axes must be exactly orthonormal')\n"
+        "            lines += [f'theorem dot_{i}_{j} : {lit(value)} = {lit(expected)} := by norm_num',f'#print axioms dot_{i}_{j}']\n"
+        "            names.append(f'OmegaBasis.dot_{i}_{j}')\n"
+        "    lines.append('end OmegaBasis');source='\\n'.join(lines)+'\\n'\n"
+        "    return {'basis':[[str(x) for x in row] for row in basis],'proof':source,'admission':check(source,names)}\n"
+        '\n'
+        '\n'
+        'def graph_ast(graph,ref):\n'
+        "    if ref<graph['inputs']:return ('var',f'input_{ref}')\n"
+        "    node=graph['nodes'][ref-graph['inputs']];op=node['op']\n"
+        "    if op=='affine':\n"
+        "        result=('const',node['bias'])\n"
+        "        for parent,weight in node['terms']:result=('+',result,('*',('const',weight),graph_ast(graph,parent)))\n"
+        '        return result\n'
+        "    if op=='relu':return ('relu',graph_ast(graph,node['input']))\n"
+        "    if op=='square':return ('*',graph_ast(graph,node['input']),graph_ast(graph,node['input']))\n"
+        "    if op in ('mul','div'):return ('*' if op=='mul' else '/',graph_ast(graph,node['left']),graph_ast(graph,node['right']))\n"
+        "    raise ValueError('Universal concept grounding currently requires rational arithmetic; real activations retain observational traces')\n"
+        '\n'
+        '\n'
+        'def certify_concepts(graph,basis,concepts,input_contracts):\n'
+        '    validate(graph);geometry=orthogonal_basis(basis)\n'
+        "    if len(basis[0])!=len(graph['outputs']) or len(concepts)!=len(basis):raise ValueError('Concept/basis/output shape mismatch')\n"
+        '    grounded=[]\n'
+        '    for row,concept in zip(basis,concepts):\n'
+        "        if type(concept) is not dict or set(concept)!={'name','ensures'}:raise ValueError('Every concept needs an explicit semantic contract')\n"
+        "        projection=('const','0')\n"
+        "        for weight,ref in zip(row,graph['outputs']):projection=('+',projection,('*',('const',str(Q(weight))),graph_ast(graph,ref)))\n"
+        "        proof=verify_contract(input_contracts,projection,concept['ensures'])\n"
+        "        grounded.append({'name':concept['name'],'proof':proof})\n"
+        "    return {'geometry':geometry,'concepts':grounded,'graph_sha256':hashlib.sha256(encode(graph)).hexdigest(),\n"
+        "            'scope':'declared logical predicates, not automatic natural-language neuron meaning'}\n"
+        '\n'
+        '\n'
+        'def trace(graph,inputs,*,annotations=None,thresholds=None):\n'
+        '    validate(graph)\n'
+        '    from omega.real_graph import execute,analyze\n'
+        '    values=execute(graph,inputs)\n'
+        '    from omega.certified_graph import real_operations\n'
+        '    boxes=analyze(graph,[(Q(x),Q(x)) for x in inputs])[0] if real_operations(graph) else [(x,x) for x in values]\n'
+        '    events=[];annotations=dict(annotations or {});thresholds=dict(thresholds or {})\n'
+        "    for i,node in enumerate(graph['nodes'],graph['inputs']):\n"
+        '        from .memory import dependencies\n'
+        "        event={'node':i,'operation':node['op'],'parents':dependencies(node),'value':str(values[i]),\n"
+        "               'real_interval':list(map(str,boxes[i])),'annotation':annotations.get(i)}\n"
+        "        if node['op']=='relu':event['branch']='positive' if values[node['input']]>0 else 'zero'\n"
+        '        if i in thresholds:\n'
+        '            limit=Q(thresholds[i]);a,b=boxes[i]\n'
+        "            event['threshold']={'value':str(limit),'decision':'above' if a>limit else 'below_or_equal' if b<=limit else 'uncertified'}\n"
+        '        events.append(event)\n'
+        "    body={'format':'omega-glass-trace-1','graph':graph,'inputs':list(map(lambda x:str(Q(x)),inputs)),\n"
+        "          'events':events,'outputs':[str(values[i]) for i in graph['outputs']]}\n"
+        "    return {**body,'sha256':hashlib.sha256(encode(body)).hexdigest()}\n"
+        '\n'
+        '\n'
+        'def replay(record):\n'
+        "    if 'certificate' in record:\n"
+        "        expected=certify_trace(record['graph'],record['inputs'],annotations={e['node']:e['annotation'] for e in record['events'] if e['annotation'] is not None},\n"
+        "                               thresholds={e['node']:e['threshold']['value'] for e in record['events'] if 'threshold' in e})\n"
+        "        if encode(expected)!=encode(record):raise ValueError('Changed certified glass trace')\n"
+        "        return {'valid':True,'outputs':expected['outputs']}\n"
+        "    expected=trace(record['graph'],record['inputs'],annotations={e['node']:e['annotation'] for e in record['events'] if e['annotation'] is not None},\n"
+        "                   thresholds={e['node']:e['threshold']['value'] for e in record['events'] if 'threshold' in e})\n"
+        "    if encode(expected)!=encode(record):raise ValueError('Changed or unrelated glass trace')\n"
+        "    return {'valid':True,'outputs':expected['outputs']}\n"
+        '\n'
+        '\n'
+        'def certify_trace(graph,inputs,*,annotations=None,thresholds=None):\n'
+        '    record=trace(graph,inputs,annotations=annotations,thresholds=thresholds)\n'
+        '    from omega.certified_graph import certify_bounds\n'
+        "    selected=sorted(thresholds or graph['outputs'])\n"
+        "    proof_graph={**graph,'outputs':selected}\n"
+        "    proof_graph.pop('output_shape',None)\n"
+        "    events={e['node']:e for e in record['events']}\n"
+        "    output_bounds=[events[i]['real_interval'] if i>=graph['inputs'] else [str(Q(inputs[i]))]*2 for i in selected]\n"
+        '    source,admission=certify_bounds(proof_graph,[(Q(x),Q(x)) for x in inputs],output_bounds)\n'
+        "    body={k:v for k,v in record.items() if k!='sha256'}\n"
+        "    body['certificate']={'proof':source,'admission':admission,'selected':selected}\n"
+        "    return {**body,'sha256':hashlib.sha256(encode(body)).hexdigest()}\n"
+        '\n'
+        '\n'
+        'def native_trace(graph,inputs,directory,input_bounds,**options):\n'
+        '    from omega.real_native import build_runtime,run_runtime\n'
+        '    build_runtime(graph,directory,input_bounds,trace_values=True)\n'
+        "    outputs,admission=run_runtime(graph,__import__('pathlib').Path(directory)/'model',inputs)\n"
+        '    record=certify_trace(graph,inputs,**options)\n'
+        "    if outputs!=record['outputs'] or admission.get('native_trace')!=[str(v) for v in __import__('omega.real_graph',fromlist=['execute']).execute(graph,inputs)]:\n"
+        "        raise ValueError('Native intermediate trace differs from certified replay')\n"
+        "    return {'trace':record,'native_admission':admission}\n"
+    ),
+    ('omega_cognition/linear.py',
+        '"""Generation-tagged linear ownership; borrowing never duplicates ownership."""\n'
+        'from dataclasses import dataclass\n'
+        '\n'
+        '\n'
+        '@dataclass(frozen=True)\n'
+        'class Borrow:\n'
+        '    resource:int\n'
+        '    generation:int\n'
+        '    serial:int\n'
+        '    mutable:bool\n'
+        '\n'
+        '\n'
+        'class LinearContext:\n'
+        '    def __init__(self,capacity):\n'
+        "        if type(capacity) is not int or not 1<=capacity<=2**30:raise ValueError('Bounded linear arena capacity required')\n"
+        '        self.capacity=capacity;self.resources={};self.names={};self.borrows={};self.serial=0;self.used=0;self.events=[]\n'
+        '    def allocate(self,name,size):\n'
+        "        if type(name) is not str or not name or name in self.names or type(size) is not int or not 1<=size<=self.capacity-self.used:raise ValueError('Invalid linear allocation')\n"
+        "        identity=len(self.resources);self.resources[identity]={'owner':name,'bytes':size,'generation':0,'alive':True}\n"
+        "        self.names[name]=identity;self.used+=size;self.events.append(('allocate',name,size));return identity\n"
+        '    def _resource(self,name):\n'
+        "        if name not in self.names:raise ValueError('Unknown or consumed owner')\n"
+        '        identity=self.names[name];resource=self.resources[identity]\n'
+        "        if not resource['alive'] or resource['owner']!=name:raise ValueError('Use after move or release')\n"
+        '        return identity,resource\n'
+        '    def move(self,source,target):\n'
+        '        identity,resource=self._resource(source)\n'
+        "        if target in self.names or any(b.resource==identity for b in self.borrows.values()):raise ValueError('Move requires exclusive ownership and a fresh destination')\n"
+        "        del self.names[source];self.names[target]=identity;resource['owner']=target;resource['generation']+=1\n"
+        "        self.events.append(('move',source,target));return identity\n"
+        '    def borrow(self,name,*,mutable=False):\n'
+        '        identity,resource=self._resource(name)\n'
+        "        if type(mutable) is not bool:raise ValueError('Explicit borrow mutability required')\n"
+        '        active=[b for b in self.borrows.values() if b.resource==identity]\n'
+        "        if active and (mutable or any(b.mutable for b in active)):raise ValueError('Aliasing mutable borrow')\n"
+        "        self.serial+=1;token=Borrow(identity,resource['generation'],self.serial,mutable);self.borrows[token.serial]=token\n"
+        '        return token\n'
+        '    def release_borrow(self,token):\n'
+        "        if type(token) is not Borrow or self.borrows.get(token.serial)!=token:raise ValueError('Expired or forged borrow')\n"
+        '        resource=self.resources[token.resource]\n'
+        "        if not resource['alive'] or resource['generation']!=token.generation:raise ValueError('Borrow generation expired')\n"
+        '        del self.borrows[token.serial]\n'
+        '    def consume(self,name):\n'
+        '        identity,resource=self._resource(name)\n'
+        "        if any(b.resource==identity for b in self.borrows.values()):raise ValueError('Resource still borrowed')\n"
+        "        resource['alive']=False;resource['generation']+=1;self.used-=resource['bytes'];del self.names[name]\n"
+        "        self.events.append(('consume',name));return resource['bytes']\n"
+        '    def finish(self):\n'
+        "        if self.names or self.borrows:raise ValueError('Unconsumed linear resources or outstanding borrows')\n"
+        "        return {'valid':True,'peak_capacity':self.capacity,'events':tuple(self.events),'remaining_bytes':self.used}\n"
+    ),
+    ('omega_cognition/memory.py',
+        '"""Last-use interval allocation for flat static tensor graphs."""\n'
+        'from omega.certified_graph import validate\n'
+        'from omega.certified_proof import check\n'
+        '\n'
+        '\n'
+        'def dependencies(node):\n'
+        "    if node['op']=='affine':return [ref for ref,_ in node['terms']]\n"
+        "    if node['op'] in ('mul','div'):return [node['left'],node['right']]\n"
+        "    return [node['input']]\n"
+        '\n'
+        '\n'
+        'def plan_buffers(graph,*,bytes_per_value=16,prove=True):\n'
+        '    validate(graph)\n'
+        "    if type(bytes_per_value) is not int or not 1<=bytes_per_value<=4096:raise ValueError('Fixed value width required')\n"
+        "    count=graph['inputs']+len(graph['nodes']);last=list(range(count));starts=[0]*graph['inputs']+list(range(graph['inputs'],count))\n"
+        "    for i,node in enumerate(graph['nodes'],graph['inputs']):\n"
+        '        for ref in dependencies(node):last[ref]=max(last[ref],i)\n'
+        "    for ref in graph['outputs']:last[ref]=count\n"
+        '    slots=[];ends=[]\n'
+        '    for i,start in enumerate(starts):\n'
+        '        free=next((slot for slot,end in enumerate(ends) if end<start),None)\n'
+        '        if free is None:free=len(ends);ends.append(last[i])\n'
+        '        else:ends[free]=last[i]\n'
+        '        slots.append(free)\n'
+        '    obligations=[];previous={}\n'
+        '    for i,slot in enumerate(slots):\n'
+        '        if slot in previous:\n'
+        '            j=previous[slot]\n'
+        "            if not last[j]<starts[i]:raise ValueError('Buffer liveness overlap')\n"
+        '            obligations.append((j,i))\n'
+        '        previous[slot]=i\n'
+        "    result={'slots':slots,'starts':starts,'last_uses':last,'slot_count':len(ends),'bytes':len(ends)*bytes_per_value,\n"
+        "            'unreused_bytes':count*bytes_per_value,'allocation':'fixed buffers; no hidden dynamic tensor allocation'}\n"
+        '    if prove:\n'
+        "        lines=['import Omega.LinearMemory','namespace OmegaBufferPlan','set_option maxRecDepth 10000'];names=[]\n"
+        '        # One proof per reused slot covers every pair sharing that slot.\n'
+        '        for slot in range(len(ends)):\n'
+        '            pairs=[(i,j) for i,j in obligations if slots[i]==slot]\n'
+        "            claims=[f'({last[i]} < {starts[j]} ∨ {last[j]} < {starts[i]})' for i,j in pairs]\n"
+        "            lines += [f'theorem slot_{slot} : '+(' ∧ '.join(claims) if claims else 'True')+' := by norm_num',f'#print axioms slot_{slot}']\n"
+        "            names.append(f'OmegaBufferPlan.slot_{slot}')\n"
+        "        lines.append('end OmegaBufferPlan');source='\\n'.join(lines)+'\\n'\n"
+        "        result['proof']=source;result['admission']=check(source,names)\n"
+        '    return result\n'
+    ),
+    ('omega_cognition/pipeline.py',
+        '"""Intent must supply a logical specification; prose never grants authority."""\n'
+        'import json\n'
+        'from pathlib import Path\n'
+        'from omega_synth_mcts.search import synthesize\n'
+        '\n'
+        '\n'
+        'def distill(intent,specification,directory,**limits):\n'
+        "    if type(intent) is not str or not 1<=len(intent)<=16384:raise ValueError('Bounded hypothesis text required')\n"
+        '    result=synthesize(specification,directory,**limits)\n'
+        "    record={'format':'omega-inverse-distillation-1','intent':intent,'formal_specification':specification,\n"
+        "            'result':result,'scope':'the supplied formal contract; natural-language interpretation is unproved'}\n"
+        "    (Path(directory)/'distillation.json').write_text(json.dumps(record,sort_keys=True,indent=2)+'\\n')\n"
+        '    return record\n'
+    ),
+    ('omega_cognition/qpu.py',
+        '"""Executable specification for bounded rational RTL (not fabricated silicon)."""\n'
+        'from fractions import Fraction as Q\n'
+        'from omega_refine_check.syntax import rational\n'
+        'from omega_refine_check.contracts import verify_contract\n'
+        '\n'
+        '\n'
+        'def stein(a,b):\n'
+        '    if any(type(x) is not int or not 0<=x<2**128 for x in (a,b)):\n'
+        "        raise ValueError('Unsigned 128-bit operands required')\n"
+        '    shifts=0;cycles=0\n'
+        '    if not a:return b,cycles\n'
+        '    if not b:return a,cycles\n'
+        '    while not (a|b)&1:a>>=1;b>>=1;shifts+=1;cycles+=1\n'
+        '    while not a&1:a>>=1;cycles+=1\n'
+        '    while b:\n'
+        '        while not b&1:b>>=1;cycles+=1\n'
+        '        if a>b:a,b=b,a\n'
+        '        b-=a;cycles+=1\n'
+        '    return a<<shifts,cycles\n'
+        '\n'
+        '\n'
+        'def execute(op,a,b,*,bits=16,max_denominator=None,prove=True):\n'
+        "    if type(bits) is not int or not 2<=bits<=32:raise ValueError('RTL width must be in [2,32]')\n"
+        '    limit=2**(bits-1)-1\n'
+        '    max_denominator=limit if max_denominator is None else max_denominator\n'
+        "    if type(max_denominator) is not int or not 1<=max_denominator<=limit:raise ValueError('Invalid denominator register bound')\n"
+        '    a,b=rational(a),rational(b)\n'
+        "    if any(abs(q.numerator)>limit or q.denominator>limit for q in (a,b)):raise OverflowError('Operand register overflow')\n"
+        "    if op not in ('+','-','*','/'):raise ValueError('Unknown Q-PU opcode')\n"
+        "    if op=='/' and not b:raise ZeroDivisionError('Q-PU zero divisor trap')\n"
+        "    exact={'+':lambda:a+b,'-':lambda:a-b,'*':lambda:a*b,'/':lambda:a/b}[op]()\n"
+        '    value=exact.limit_denominator(max_denominator)\n'
+        "    if abs(value.numerator)>limit:raise OverflowError('Q-PU numerator overflow trap')\n"
+        '    error=abs(exact-value)\n'
+        "    result={'value':str(value),'exact':str(exact),'error':str(error),'interrupt':bool(error),\n"
+        "            'scope':'nearest denominator-bounded rational; no downstream decision guarantee without a margin proof'}\n"
+        '    if prove:\n'
+        "        result['certificate']=verify_contract({},str(exact),f'result - ({value}) <= ({error}) and ({value}) - result <= ({error})')\n"
+        '    return result\n'
+    ),
+    ('omega_cognition/scheduler.py',
+        '"""Learned ordering inside a finite, work-conserving fairness envelope."""\n'
+        'from dataclasses import dataclass\n'
+        'import math\n'
+        'from omega.certified_proof import check\n'
+        '\n'
+        '\n'
+        '@dataclass\n'
+        'class Task:\n'
+        '    identity:str\n'
+        '    remaining:int\n'
+        '    age:int=0\n'
+        '\n'
+        '\n'
+        'class FairScheduler:\n'
+        '    def __init__(self,tasks,*,max_wait=8):\n'
+        "        if type(max_wait) is not int or not 1<=max_wait<=1024 or not 1<=len(tasks)<=256:raise ValueError('Scheduler budget exceeded')\n"
+        "        if len({identity for identity,_ in tasks})!=len(tasks) or any(type(work) is not int or not 1<=work<=10**6 for _,work in tasks):raise ValueError('Unique jobs with positive finite work required')\n"
+        '        self.tasks=[Task(str(identity),work) for identity,work in tasks];self.max_wait=max_wait;self.initial_work=sum(t.remaining for t in self.tasks);self.trace=[]\n'
+        '    def step(self,propose=None):\n'
+        '        active=[t for t in self.tasks if t.remaining]\n'
+        '        if not active:return None\n'
+        '        overdue=[t for t in active if t.age>=self.max_wait]\n'
+        "        if overdue:selected=max(overdue,key=lambda t:(t.age,t.identity));reason='fairness override'\n"
+        "        elif propose is None:selected=max(active,key=lambda t:(t.age,t.identity));reason='oldest first'\n"
+        '        else:\n'
+        '            identity=propose(tuple((t.identity,t.remaining,t.age) for t in active))\n'
+        '            selected=next((t for t in active if t.identity==identity),None)\n'
+        "            if selected is None:raise ValueError('Neural scheduler proposed an unavailable job')\n"
+        "            reason='admitted learned priority'\n"
+        '        before=sum(t.remaining for t in self.tasks);selected.remaining-=1\n'
+        '        for task in active:task.age=0 if task is selected else task.age+1\n'
+        '        after=sum(t.remaining for t in self.tasks)\n'
+        "        if after!=before-1:raise ValueError('Lyapunov work potential did not decrease')\n"
+        "        record={'job':selected.identity,'before':before,'after':after,'reason':reason};self.trace.append(record);return record\n"
+        '    def run(self,propose=None,*,prove=True):\n'
+        '        while any(t.remaining for t in self.tasks):\n'
+        "            if len(self.trace)>=self.initial_work:raise ValueError('Finite progress bound violated')\n"
+        '            self.step(propose)\n'
+        "        result={'completed':True,'steps':len(self.trace),'initial_work':self.initial_work,'trace':self.trace,\n"
+        "                'assumptions':'finite admitted workload, unit service succeeds, no new arrivals in this epoch'}\n"
+        '        if prove:\n'
+        "            source='import Omega.Lyapunov\\nnamespace OmegaSchedule\\n'\n"
+        "            source+=f'theorem progress : {len(self.trace)} = {self.initial_work} := by norm_num\\n#print axioms progress\\nend OmegaSchedule\\n'\n"
+        "            result['proof']=source;result['admission']=check(source,['OmegaSchedule.progress'])\n"
+        '        return result\n'
+    ),
+    ('omega_cognition/standalone.py',
+        '"""Explicit architecture + weights-only checkpoints to freestanding exact C."""\n'
+        'from pathlib import Path\n'
+        'import json\n'
+        '\n'
+        '\n'
+        'def export(checkpoint,architecture,directory,*,input_bounds,output_bounds,input_scale=1):\n'
+        '    import torch\n'
+        '    from omega.certify import trace\n'
+        '    from omega.edge import emit\n'
+        "    if type(architecture) is not list or not 1<=len(architecture)<=32:raise ValueError('A bounded explicit architecture is required')\n"
+        '    layers=[]\n'
+        '    for layer in architecture:\n'
+        "        if layer=={'type':'relu'}:layers.append(torch.nn.ReLU())\n"
+        "        elif type(layer) is dict and set(layer)=={'type','in','out','bias'} and layer['type']=='linear':\n"
+        "            if any(type(layer[k]) is not int or not 1<=layer[k]<=256 for k in ('in','out')) or type(layer['bias']) is not bool:raise ValueError('Static linear dimensions required')\n"
+        "            layers.append(torch.nn.Linear(layer['in'],layer['out'],bias=layer['bias']))\n"
+        "        else:raise ValueError('Standalone lowering accepts explicit affine/ReLU layers')\n"
+        "    if not isinstance(layers[0],torch.nn.Linear):raise ValueError('Architecture starts with a known input width')\n"
+        '    path=Path(checkpoint)\n'
+        "    if path.is_symlink() or path.stat().st_size>64*1024**2:raise ValueError('Bounded regular weights-only checkpoint required')\n"
+        "    model=torch.nn.Sequential(*layers);weights=torch.load(path,map_location='cpu',weights_only=True)\n"
+        '    model.load_state_dict(weights,strict=True);model.eval()\n'
+        '    graph=trace(model,torch.zeros(layers[0].in_features))\n'
+        '    result=emit(graph,input_bounds,output_bounds,directory,input_scale=input_scale)\n'
+        '    from .memory import plan_buffers\n'
+        "    result['memory_plan']=plan_buffers(graph,bytes_per_value=8)\n"
+        '    # Materialize the proven allocation instead of merely reporting it.\n'
+        '    import re\n'
+        "    source=Path(result['source']);text=source.read_text();slots=result['memory_plan']['slots']\n"
+        "    text=re.sub(r'\\b(?:const\\s+)?int64_t\\s+x(\\d+)\\s*=',lambda m:f'buffer[{slots[int(m.group(1))]}] =',text)\n"
+        "    text=re.sub(r'\\bx(\\d+)\\b',lambda m:f'buffer[{slots[int(m.group(1))]}]',text)\n"
+        "    marker='int omega_edge(const int64_t *input, int64_t *output) {'\n"
+        "    if text.count(marker)!=1:raise ValueError('Unknown freestanding emitter layout')\n"
+        '    text=text.replace(marker,marker+f\'\\n  int64_t buffer[{result["memory_plan"]["slot_count"]}];\',1)\n'
+        '    source.write_text(text)\n'
+        "    root=Path(directory);(root/'memory-plan.json').write_text(json.dumps(result['memory_plan'],sort_keys=True,indent=2)+'\\n')\n"
+        '    return result\n'
     ),
     ('omega_evolution/__init__.py',
         '"""Omega 3.0 source components; acceptance requires separate evidence."""\n'
@@ -28590,7 +29781,7 @@ SOURCES = (
         '    for c in cases:\n'
         '        p=(Path(root)/c.path).resolve()\n'
         "        if not p.is_relative_to(Path(root).resolve()):raise CorpusError('Example escapes repository')\n"
-        "        if c.language not in ('tensor','procedural') or c.expected not in ('accept','compile_reject','run_reject'):\n"
+        "        if c.language not in ('tensor','procedural','refined') or c.expected not in ('accept','compile_reject','run_reject'):\n"
         "            raise CorpusError('Invalid case classification')\n"
         "        if c.reference not in ('v1','classic','bootstrap','rejection'):raise CorpusError('Reference required')\n"
         "        if c.expected!='accept' and not c.stderr_pattern:raise CorpusError('Negative cases need a precise rejection pattern')\n"
@@ -28604,7 +29795,12 @@ SOURCES = (
         '\n'
         'def compare_reference(path,result,reference):\n'
         '    from omega.sintaxe import analisar\n'
-        '    commands=analisar(path.read_text())\n'
+        '    text=path.read_text()\n'
+        '    from omega_refine_check.compiler import is_refined\n'
+        '    if is_refined(text):\n'
+        '        from omega_refine_check.contracts import check_program\n'
+        "        text=check_program(text)['metadata']['source']\n"
+        '    commands=analisar(text)\n'
         "    if reference=='v1':\n"
         '        from omega.motor_v1 import CompiladorV1,MaquinaV1,num\n'
         '        from omega_selfhost.driver import compile_ir\n'
@@ -29789,6 +30985,505 @@ SOURCES = (
         '    except (ValueError, KeyError, TypeError, UnicodeError, RecursionError):\n'
         '        return False\n'
     ),
+    ('omega_refine_check/__init__.py',
+        '"""Refinement contracts and fail-closed Lean admission for Omega programs."""\n'
+        'from .contracts import verify_contract, check_program\n'
+        'from .compiler import build\n'
+        '\n'
+        "__all__ = ['verify_contract', 'check_program', 'build']\n"
+    ),
+    ('omega_refine_check/cli.py',
+        'import argparse\n'
+        'import json\n'
+        'from pathlib import Path\n'
+        'from .contracts import check_program\n'
+        'from .compiler import build,audit\n'
+        '\n'
+        '\n'
+        'def main(argv=None):\n'
+        "    parser=argparse.ArgumentParser(prog='omega refine')\n"
+        "    parser.add_argument('mode',choices=['check','build','audit']);parser.add_argument('source',type=Path)\n"
+        "    parser.add_argument('--output',type=Path)\n"
+        '    args=parser.parse_args(argv)\n'
+        "    if args.mode=='check':result=check_program(args.source.read_text())\n"
+        "    elif args.output is None:parser.error('--output is required')\n"
+        "    elif args.mode=='build':result=build(args.source,args.output)\n"
+        '    else:result=audit(args.source,args.output)\n'
+        '    print(json.dumps(result,sort_keys=True,indent=2));return 0\n'
+    ),
+    ('omega_refine_check/compiler.py',
+        '"""Native metadata extraction, independent parsing, proof admission, then build."""\n'
+        'import hashlib\n'
+        'import json\n'
+        'from pathlib import Path\n'
+        'import tempfile\n'
+        'from .syntax import tokens,lower\n'
+        'from .contracts import check_program\n'
+        '\n'
+        '\n'
+        'def is_refined(source):\n'
+        '    # Avoid changing ordinary source parsing, including Unicode identifiers.\n'
+        '    import re\n'
+        "    return bool(re.search(r'(?m)^\\s*type\\s+[A-Za-z_]',source))\n"
+        '\n'
+        '\n'
+        'def native_metadata(path):\n'
+        '    from omega_selfhost.driver import compiler\n'
+        '    from omega_platform.sandbox import run\n'
+        '    from omega_platform.budget import COMPILER_BUDGET\n'
+        '    path=Path(path).absolute()\n'
+        "    with tempfile.TemporaryDirectory(prefix='omega-refinement-parser-') as temporary:\n"
+        "        target=Path(temporary)/'metadata.json'\n"
+        "        run([compiler(),path,target,'--refinement-ir'],readonly=[path],writable=[temporary],budget=COMPILER_BUDGET,check=True)\n"
+        '        metadata=json.loads(target.read_text())\n'
+        '    expected=lower(path.read_text())\n'
+        "    if metadata!=expected:raise ValueError('Native and independent refinement parsers disagree')\n"
+        '    return metadata\n'
+        '\n'
+        '\n'
+        "def build(source,destination,*,optimize=False,optimization='-O2',static=False):\n"
+        '    from omega_selfhost.driver import build as native_build\n'
+        '    source=Path(source).absolute();destination=Path(destination).absolute()\n'
+        '    metadata=native_metadata(source)\n'
+        '    proof=check_program(source.read_text())\n'
+        "    extra=[destination.with_suffix('.refine.json'),destination.with_suffix('.refine.lean'),destination.with_suffix('.lowered.omega')]\n"
+        "    if any(p.exists() for p in extra):raise ValueError('Refinement artifacts already exist')\n"
+        '    destination.parent.mkdir(parents=True,exist_ok=True)\n'
+        "    with tempfile.TemporaryDirectory(prefix='.omega-refined-',dir=destination.parent) as temporary:\n"
+        "        lowered=Path(temporary)/'lowered.omega';lowered.write_text(metadata['source'])\n"
+        '        result=native_build(lowered,destination,optimize=optimize,optimization=optimization,static=static)\n'
+        "    extra[2].write_text(metadata['source']);extra[1].write_text(proof['source'])\n"
+        "    record={k:v for k,v in proof.items() if k!='source'}\n"
+        "    record['binary_sha256']=hashlib.sha256(destination.read_bytes()).hexdigest()\n"
+        "    extra[0].write_text(json.dumps(record,sort_keys=True,indent=2)+'\\n')\n"
+        "    return {**result,'refinement':str(extra[0]),'refinement_obligations':proof['obligations']}\n"
+        '\n'
+        '\n'
+        'def audit(source,binary):\n'
+        '    source=Path(source);binary=Path(binary)\n'
+        "    record=json.loads(binary.with_suffix('.refine.json').read_text())\n"
+        '    proof=check_program(source.read_text())\n'
+        "    if record['source_sha256']!=proof['source_sha256'] or record['binary_sha256']!=hashlib.sha256(binary.read_bytes()).hexdigest():\n"
+        "        raise ValueError('Changed refined source or binary')\n"
+        "    if binary.with_suffix('.refine.lean').read_text()!=proof['source']:raise ValueError('Changed refinement proof')\n"
+        "    if record['metadata']!=proof['metadata']:raise ValueError('Changed refinement metadata')\n"
+        "    return {'valid':True,'obligations':proof['obligations'],'admission':proof['admission']}\n"
+    ),
+    ('omega_refine_check/contracts.py',
+        '"""Universal rational contracts, typed declarations and division obligations."""\n'
+        'from dataclasses import dataclass\n'
+        'from fractions import Fraction as Q\n'
+        'import hashlib\n'
+        'from .syntax import Reader,tokens,parse,tree,identifier,substitute,lower\n'
+        'from .lean import prove,divisions\n'
+        'from omega_selfhost.proof_protocol import encode\n'
+        '\n'
+        '\n'
+        '@dataclass(frozen=True)\n'
+        'class Refinement:\n'
+        '    name:str\n'
+        '    width:int\n'
+        '    predicates:tuple\n'
+        '\n'
+        '    def apply(self,value):\n'
+        '        if self.width>1:\n'
+        "            if value[0]!='vector' or len(value[1])!=self.width:raise ValueError('Refined tensor shape mismatch')\n"
+        "        elif value[0]=='vector':raise ValueError('Scalar refinement applied to a tensor')\n"
+        "        return [substitute(p,{'self':value}) for p in self.predicates]\n"
+        '\n'
+        '\n'
+        'def refinement_types(metadata):\n'
+        "    types={'Rational':Refinement('Rational',1,(('true',),))}\n"
+        "    for record in metadata['types']:\n"
+        "        name=identifier(record['name'])\n"
+        "        if name in types:raise ValueError('Duplicate refinement type')\n"
+        "        base=record['base'];parents=()\n"
+        "        if base==['Rational']:width=1\n"
+        "        elif len(base)==6 and base[:4]==['Tensor','[','Rational',','] and base[-1]==']' and base[4].isascii() and base[4].isdigit():\n"
+        '            width=int(base[4])\n'
+        "            if not 2<=width<=256:raise ValueError('Tensor refinement width must be in [2,256]')\n"
+        '        elif len(base)==1 and base[0] in types:\n'
+        '            parent=types[base[0]];width=parent.width;parents=parent.predicates\n'
+        "        else:raise ValueError('Unknown refinement base or unsupported tensor shape')\n"
+        "        predicate=parse(' '.join(record['predicate']))\n"
+        '        # Predicates are logical propositions, not partial arithmetic programs.\n'
+        "        if list(divisions(predicate)):raise ValueError('Refinement predicates require total arithmetic; move division into checked expressions')\n"
+        '        types[name]=Refinement(name,width,parents+(predicate,))\n'
+        '    return types\n'
+        '\n'
+        '\n'
+        'def verify_contract(variables,expression,ensures,*,requires=()):\n'
+        '    """Prove a candidate for every rational input satisfying explicit premises."""\n'
+        "    if type(variables) is not dict or not 0<=len(variables)<=32:raise ValueError('Bounded variable contracts required')\n"
+        '    names=[];environment={};assumptions=[]\n'
+        '    for name,predicate in variables.items():\n'
+        '        identifier(name)\n'
+        "        if name in ('self','result'):raise ValueError('Reserved contract identifier')\n"
+        "        names.append(name);value=('var',name);environment[name]=value\n"
+        '        pred=parse(predicate) if type(predicate) is str else tree(predicate)\n'
+        "        assumptions.append(substitute(pred,{'self':value,**environment}))\n"
+        '    for premise in requires:\n'
+        '        assumptions.append(substitute(parse(premise) if type(premise) is str else tree(premise),environment))\n'
+        '    candidate=tree(expression) if type(expression) is not str else parse(expression)\n'
+        '    candidate=substitute(candidate,environment)\n'
+        '    post=parse(ensures) if type(ensures) is str else tree(ensures)\n'
+        "    goal=substitute(post,{**environment,'result':candidate})\n"
+        "    obligations=[('!=',d,('const','0')) for d in divisions(candidate)]\n"
+        '    obligations.append(goal)\n'
+        '    proof=prove(names,assumptions,obligations)\n'
+        "    statement={'variables':variables,'expression':candidate,'ensures':post,'requires':list(requires)}\n"
+        "    return {**proof,'statement':statement,'statement_sha256':hashlib.sha256(encode(statement)).hexdigest(),\n"
+        "            'scope':'universal rational inputs under the declared premises; not arbitrary program equivalence'}\n"
+        '\n'
+        '\n'
+        'def program_obligations(source):\n'
+        '    metadata=lower(source);types=refinement_types(metadata)\n'
+        "    annotations={record['name']:record['type'] for record in metadata['bindings']}\n"
+        "    if len(annotations)!=len(metadata['bindings']):raise ValueError('Duplicate refined binding')\n"
+        "    reader=Reader(tokens(metadata['source']));environment={};names=[];assumptions=[];obligations=[];declared={}\n"
+        "    while reader.peek()!='<end>':\n"
+        '        kind=reader.take()\n'
+        "        if kind=='mostrar':\n"
+        "            name=identifier(reader.take());reader.need(';')\n"
+        "            if name not in environment:raise ValueError('Unknown output binding')\n"
+        '            continue\n'
+        "        if kind not in ('parametro','tensor','vetor','matriz','perda'):raise ValueError('Refined programs currently require pure declarations and mostrar')\n"
+        "        name=identifier(reader.take());reader.need('=');value=substitute(reader.expr(),environment);reader.need(';')\n"
+        "        if name in environment:raise ValueError('Duplicate declaration')\n"
+        "        local_goals=[('!=',d,('const','0')) for d in divisions(value)]\n"
+        '        alias=annotations.get(name)\n'
+        '        if alias is not None:\n'
+        "            if alias not in types:raise ValueError('Unknown refinement annotation')\n"
+        '            local_goals.extend(types[alias].apply(value))\n'
+        "        obligations.extend({'variables':list(names),'assumptions':list(assumptions),'goal':goal} for goal in local_goals)\n"
+        "        if kind=='parametro':\n"
+        "            if value[0]=='vector':\n"
+        '                coords=[]\n'
+        '                for i,_ in enumerate(value[1]):\n'
+        "                    coordinate=f'{name}__{i}'\n"
+        "                    if coordinate in names:raise ValueError('Parameter coordinate collision')\n"
+        "                    names.append(coordinate);coords.append(('var',coordinate))\n"
+        "                symbolic=('vector',tuple(coords))\n"
+        '            else:\n'
+        "                if name in names:raise ValueError('Parameter name collision')\n"
+        "                names.append(name);symbolic=('var',name)\n"
+        "            if len(names)>256:raise ValueError('Refined parameter coordinate budget exceeded')\n"
+        '            environment[name]=symbolic\n'
+        '            if alias is not None:assumptions.extend(types[alias].apply(symbolic))\n'
+        '        else:environment[name]=value\n'
+        "        declared[name]={'kind':kind,'type':alias,'expression':value}\n"
+        "    if set(annotations)-set(declared):raise ValueError('Dangling refinement annotation')\n"
+        "    if not obligations:obligations=[('true',)]\n"
+        '    return metadata,names,assumptions,obligations,declared\n'
+        '\n'
+        '\n'
+        'def check_program(source):\n'
+        '    metadata,names,premises,obligations,declared=program_obligations(source)\n'
+        '    proof=prove(names,premises,obligations)\n'
+        "    return {**proof,'source_sha256':hashlib.sha256(source.encode()).hexdigest(),\n"
+        "            'lowered_sha256':hashlib.sha256(metadata['source'].encode()).hexdigest(),\n"
+        "            'metadata':metadata,'declarations':declared,'scope':'pure rational/static-vector declarations under refined input contracts'}\n"
+    ),
+    ('omega_refine_check/lean.py',
+        '"""Trusted VC rendering from the small rational refinement AST."""\n'
+        'from fractions import Fraction as Q\n'
+        'from omega.certified_proof import check\n'
+        'from .syntax import rational,tree,substitute\n'
+        '\n'
+        '\n'
+        'def literal(value):\n'
+        "    q=rational(value);return f'(({q.numerator} : ℚ) / {q.denominator})'\n"
+        '\n'
+        '\n'
+        'def expression(node,names):\n'
+        '    op=node[0]\n'
+        "    if op=='const':return literal(node[1])\n"
+        "    if op=='var':\n"
+        "        if node[1] not in names:raise ValueError('Unbound proof variable')\n"
+        '        return names[node[1]]\n'
+        "    if op=='vector':return [expression(x,names) for x in node[1]]\n"
+        "    if op=='denom':return f'(({expression(node[1],names)}).den : ℚ)'\n"
+        "    if op=='neg':return f'(-{expression(node[1],names)})'\n"
+        "    if op=='relu':return f'(max 0 {expression(node[1],names)})'\n"
+        "    if op=='soma':\n"
+        '        values=expression(node[1],names)\n'
+        "        if not isinstance(values,list):raise ValueError('Sum requires a tensor')\n"
+        "        return '('+' + '.join(values)+')'\n"
+        "    if op=='dot':\n"
+        '        a,b=expression(node[1],names),expression(node[2],names)\n'
+        "        if not isinstance(a,list) or not isinstance(b,list) or len(a)!=len(b):raise ValueError('Dot shape mismatch')\n"
+        "        return '('+' + '.join(f'({x}*{y})' for x,y in zip(a,b))+')'\n"
+        "    if op=='pow':\n"
+        "        if node[2][0]!='const' or Q(node[2][1]).denominator!=1 or not 0<=Q(node[2][1])<=20:raise ValueError('Static exponent in [0,20] required')\n"
+        "        return f'({expression(node[1],names)} ^ {int(Q(node[2][1]))})'\n"
+        "    if op in ('+','-','*','/'):\n"
+        '        a,b=expression(node[1],names),expression(node[2],names)\n'
+        "        if isinstance(a,list) or isinstance(b,list):raise ValueError('Use explicit static tensor coordinates')\n"
+        "        return f'({a} {op} {b})'\n"
+        "    raise ValueError('Unknown arithmetic proof node')\n"
+        '\n'
+        '\n'
+        'def predicate(node,names):\n'
+        '    op=node[0]\n'
+        "    if op in ('true','false'):return op.capitalize()\n"
+        "    if op=='not':return '(¬ '+predicate(node[1],names)+')'\n"
+        "    if op in ('and','or'):return '('+predicate(node[1],names)+(' ∧ ' if op=='and' else ' ∨ ')+predicate(node[2],names)+')'\n"
+        "    if op not in ('==','!=','<=','>=','<','>'):raise ValueError('Boolean predicate required')\n"
+        "    if node[1][0]=='norm':\n"
+        "        if op not in ('<=','<') or node[2][0]!='const' or Q(node[2][1])<0:raise ValueError('Norm requires a nonnegative constant upper bound')\n"
+        '        values=expression(node[1][1],names)\n'
+        '        if not isinstance(values,list):values=[values]\n'
+        "        left='('+' + '.join(f'({x})^2' for x in values)+')'\n"
+        "        right=f'({literal(node[2][1])})^2'\n"
+        '    else:left,right=expression(node[1],names),expression(node[2],names)\n'
+        "    if isinstance(left,list) or isinstance(right,list):raise ValueError('Tensor predicates need norm or explicit coordinates')\n"
+        "    return '('+left+' '+{'==':'=','!=':'≠','<=':'≤','>=':'≥','<':'<','>':'>'}[op]+' '+right+')'\n"
+        '\n'
+        '\n'
+        'def divisions(node):\n'
+        "    if node[0]=='/':yield node[2]\n"
+        "    children=node[1] if node[0]=='vector' else node[1:]\n"
+        '    for child in children:\n'
+        '        if isinstance(child,(list,tuple)):yield from divisions(child)\n'
+        '\n'
+        '\n'
+        "def source(variables,assumptions,obligations,*,namespace='OmegaRefinement'):\n"
+        '    def split(goal):\n'
+        "        if goal[0]=='and':return split(goal[1])+split(goal[2])\n"
+        '        return [goal]\n'
+        '    expanded=[]\n'
+        '    for obligation in obligations:\n'
+        "        if type(obligation) is dict:expanded.extend({**obligation,'goal':g} for g in split(obligation['goal']))\n"
+        '        else:expanded.extend(split(obligation))\n'
+        '    obligations=expanded\n'
+        "    names={name:f'v{i}' for i,name in enumerate(variables)}\n"
+        "    args=' '.join(f'({lean} : ℚ)' for lean in names.values())\n"
+        "    hypotheses=' '.join(f'(h{i} : {predicate(p,names)})' for i,p in enumerate(assumptions))\n"
+        "    lines=['import Omega.Refinement',f'namespace {namespace}','set_option maxRecDepth 10000','set_option maxHeartbeats 4000000','set_option linter.unusedVariables false']\n"
+        '    declarations=[]\n'
+        '    for i,obligation in enumerate(obligations):\n'
+        '        if type(obligation) is dict:\n'
+        "            local={name:f'v{j}' for j,name in enumerate(obligation['variables'])}\n"
+        "            local_args=' '.join(f'({value} : ℚ)' for value in local.values())\n"
+        "            local_h=' '.join(f'(h{j} : {predicate(p,local)})' for j,p in enumerate(obligation['assumptions']))\n"
+        "            goal=predicate(obligation['goal'],local)\n"
+        '        else:local_args,local_h,goal=args,hypotheses,predicate(obligation,names)\n'
+        "        raw=obligation['goal'] if type(obligation) is dict else obligation\n"
+        "        proof='  omega_refine'\n"
+        "        if raw[0]=='!=' and raw[1][0]=='denom' and raw[2]==('const','0'):\n"
+        '            local_names=local if type(obligation) is dict else names\n'
+        "            proof=f'  simp only [div_one]\\n  exact_mod_cast (Rat.den_nz {expression(raw[1][1],local_names)})'\n"
+        "        lines += [f'theorem obligation_{i} {local_args} {local_h} : {goal} := by',proof,f'#print axioms obligation_{i}']\n"
+        "        declarations.append(f'{namespace}.obligation_{i}')\n"
+        "    if not declarations:raise ValueError('At least one proof obligation required')\n"
+        "    lines.append(f'end {namespace}')\n"
+        "    return '\\n'.join(lines)+'\\n',declarations\n"
+        '\n'
+        '\n'
+        'def prove(variables,assumptions,obligations):\n'
+        '    generated,names=source(variables,assumptions,obligations)\n'
+        "    return {'source':generated,'admission':check(generated,names),'obligations':len(names)}\n"
+    ),
+    ('omega_refine_check/syntax.py',
+        '"""Bounded data-only rational syntax. No Python eval, imports or source proofs."""\n'
+        'from fractions import Fraction as Q\n'
+        'import re\n'
+        '\n'
+        'TOKEN = re.compile(r\'\\s+|\\#[^\\n]*|//[^\\n]*|"(?:[^"\\\\]|\\\\.)*"|\\d+(?:\\.\\d+)?|[A-Za-z_][A-Za-z_0-9]*|>=|<=|!=|==|&&|\\|\\||[{}\\[\\](),;:.+*/^<>=!%-]\')\n'
+        "IDENT = re.compile(r'[A-Za-z_][A-Za-z_0-9]{0,63}\\Z')\n"
+        "OPS = {'or':1,'||':1,'and':2,'&&':2,'==':3,'!=':3,'<':3,'<=':3,'>':3,'>=':3,\n"
+        "       '+':4,'-':4,'*':5,'/':5,'^':6}\n"
+        '\n'
+        '\n'
+        'def tokens(source):\n'
+        '    if type(source) is not str or len(source.encode())>1024*1024:\n'
+        "        raise ValueError('Source byte budget exceeded')\n"
+        '    out=[];position=0\n'
+        '    for match in TOKEN.finditer(source):\n'
+        "        if match.start()!=position:raise ValueError(f'Unexpected source at {position}')\n"
+        '        position=match.end();value=match.group()\n'
+        "        if not value.isspace() and not value.startswith(('#','//')):out.append(value)\n"
+        "        if len(out)>100000:raise ValueError('Token budget exceeded')\n"
+        "    if position!=len(source):raise ValueError('Trailing source data')\n"
+        '    return out\n'
+        '\n'
+        '\n'
+        'def rational(value):\n'
+        "    if type(value) not in (str,int,Q) or type(value) is str and (len(value)>2500 or not re.fullmatch(r'-?\\d+(?:/\\d+|\\.\\d+)?',value)):\n"
+        "        raise ValueError('Exact bounded rational required')\n"
+        '    try:q=Q(value)\n'
+        "    except (ValueError,ZeroDivisionError):raise ValueError('Invalid rational') from None\n"
+        "    if max(abs(q.numerator).bit_length(),q.denominator.bit_length())>4096:raise ValueError('Rational bit budget exceeded')\n"
+        '    return q\n'
+        '\n'
+        '\n'
+        'def identifier(name):\n'
+        "    if type(name) is not str or not IDENT.fullmatch(name):raise ValueError('Bounded ASCII identifier required')\n"
+        '    return name\n'
+        '\n'
+        '\n'
+        'class Reader:\n'
+        "    def __init__(self,sequence):self.t=list(sequence)+['<end>'];self.i=0;self.count=0\n"
+        '    def peek(self):return self.t[self.i]\n'
+        '    def take(self):\n'
+        '        value=self.peek()\n'
+        "        if value=='<end>':raise ValueError('Unexpected end of input')\n"
+        '        self.i+=1;return value\n'
+        '    def accept(self,value):\n'
+        '        if self.peek()==value:self.i+=1;return True\n'
+        '        return False\n'
+        '    def need(self,value):\n'
+        "        if not self.accept(value):raise ValueError(f'Expected {value}, got {self.peek()}')\n"
+        '    def expr(self,minimum=0,depth=0):\n'
+        '        self.count+=1\n'
+        "        if self.count>4096 or depth>128:raise ValueError('Expression budget exceeded')\n"
+        '        current=self.take()\n'
+        "        if current in ('-','!','not'):\n"
+        "            left=('neg' if current=='-' else 'not',self.expr(7,depth+1))\n"
+        "        elif current=='(':\n"
+        "            left=self.expr(0,depth+1);self.need(')')\n"
+        "        elif current=='[':\n"
+        '            values=[]\n'
+        "            if not self.accept(']'):\n"
+        '                values.append(self.expr(0,depth+1))\n'
+        "                while self.accept(','):values.append(self.expr(0,depth+1))\n"
+        "                self.need(']')\n"
+        "            if not 1<=len(values)<=256:raise ValueError('Bounded nonempty tensor required')\n"
+        "            left=('vector',tuple(values))\n"
+        "        elif re.fullmatch(r'\\d+(?:\\.\\d+)?',current):left=('const',str(rational(current)))\n"
+        "        elif current in ('true','false'):left=(current,)\n"
+        '        elif IDENT.fullmatch(current):\n'
+        '            identifier(current)\n'
+        "            if self.accept('('):\n"
+        "                if current not in ('norm','soma','relu','dot'):raise ValueError('Unknown contract function')\n"
+        '                args=[]\n'
+        "                if not self.accept(')'):\n"
+        '                    args.append(self.expr(0,depth+1))\n'
+        "                    while self.accept(','):args.append(self.expr(0,depth+1))\n"
+        "                    self.need(')')\n"
+        "                if len(args)!=(2 if current=='dot' else 1):raise ValueError('Function arity mismatch')\n"
+        '                left=(current,*args)\n'
+        "            else:left=('var',current)\n"
+        "        else:raise ValueError('Invalid expression token: '+current)\n"
+        "        if self.accept('.'):\n"
+        "            self.need('denom');left=('denom',left)\n"
+        "        if self.accept('['):\n"
+        '            raw=self.take()\n'
+        "            if not raw.isascii() or not raw.isdigit() or len(raw)>3:raise ValueError('Static coordinate required')\n"
+        "            self.need(']');left=('index',left,int(raw))\n"
+        '        while self.peek() in OPS and OPS[self.peek()]>=minimum:\n'
+        '            op=self.take();precedence=OPS[op]\n'
+        "            right=self.expr(precedence+(0 if op=='^' else 1),depth+1)\n"
+        "            left=({'&&':'and','||':'or','^':'pow'}.get(op,op),left,right)\n"
+        "            if left[0] in ('+','-','*','/') and left[1][0]==left[2][0]=='const':\n"
+        '                a,b=Q(left[1][1]),Q(left[2][1])\n'
+        "                if left[0]!='/' or b!=0:\n"
+        "                    left=('const',str({'+':lambda:a+b,'-':lambda:a-b,'*':lambda:a*b,'/':lambda:a/b}[left[0]]()))\n"
+        '        return left\n'
+        '\n'
+        '\n'
+        'def parse(source):\n'
+        '    reader=Reader(tokens(source));tree=reader.expr()\n'
+        "    if reader.peek()!='<end>':raise ValueError('Trailing expression tokens')\n"
+        '    return tree\n'
+        '\n'
+        '\n'
+        'def tree(value, *, partial=False):\n'
+        '    """Validate and freeze external AST data, including explicit grammar holes."""\n'
+        '    remaining=4096\n'
+        '    def visit(node,depth=0):\n'
+        '        nonlocal remaining\n'
+        '        remaining-=1\n'
+        '        if remaining<0 or depth>128 or type(node) not in (tuple,list) or not node or type(node[0]) is not str:\n'
+        "            raise ValueError('Invalid AST or AST budget exceeded')\n"
+        '        op=node[0]\n'
+        "        if op=='hole' and partial and len(node)==1:return ('hole',)\n"
+        "        if op=='const' and len(node)==2:return ('const',str(rational(node[1])))\n"
+        "        if op=='var' and len(node)==2:return ('var',identifier(node[1]))\n"
+        "        if op in ('true','false') and len(node)==1:return (op,)\n"
+        "        if op=='vector' and len(node)==2 and type(node[1]) in (tuple,list) and 1<=len(node[1])<=256:\n"
+        '            return (op,tuple(visit(x,depth+1) for x in node[1]))\n'
+        "        if op=='index' and len(node)==3 and type(node[2]) is int and 0<=node[2]<256:return (op,visit(node[1],depth+1),node[2])\n"
+        "        arity=1 if op in ('neg','not','denom','norm','soma','relu') else 2 if op in ('+','-','*','/','pow','dot','==','!=','<=','>=','<','>','and','or') else -1\n"
+        "        if len(node)!=arity+1:raise ValueError('Unknown AST operation or arity')\n"
+        '        return (op,*(visit(x,depth+1) for x in node[1:]))\n'
+        '    return visit(value)\n'
+        '\n'
+        '\n'
+        'def substitute(node,environment):\n'
+        "    if node[0]=='var':\n"
+        "        if node[1] not in environment:raise ValueError('Unknown variable: '+node[1])\n"
+        '        return environment[node[1]]\n'
+        "    if node[0]=='vector':return ('vector',tuple(substitute(x,environment) for x in node[1]))\n"
+        "    if node[0] in ('const','true','false','hole'):return node\n"
+        "    if node[0]=='index':\n"
+        '        value=substitute(node[1],environment)\n'
+        "        if value[0]!='vector' or node[2]>=len(value[1]):raise ValueError('Tensor index outside static shape')\n"
+        '        return value[1][node[2]]\n'
+        '    return (node[0],*(substitute(x,environment) for x in node[1:]))\n'
+        '\n'
+        '\n'
+        'def evaluate(node,environment):\n'
+        '    op=node[0]\n'
+        "    if op=='const':return rational(node[1])\n"
+        "    if op=='var':return environment[node[1]]\n"
+        "    if op=='vector':return tuple(evaluate(x,environment) for x in node[1])\n"
+        "    if op=='true':return True\n"
+        "    if op=='false':return False\n"
+        "    if op=='index':return evaluate(node[1],environment)[node[2]]\n"
+        '    a=evaluate(node[1],environment)\n'
+        "    if op=='neg':return -a\n"
+        "    if op=='not':return not a\n"
+        "    if op=='denom':return Q(a.denominator)\n"
+        "    if op=='soma':return sum(a,Q(0))\n"
+        "    if op=='relu':return max(Q(0),a)\n"
+        "    if op=='norm':raise ValueError('Use a norm comparison, not an irrational rational value')\n"
+        '    b=evaluate(node[2],environment)\n'
+        "    if op=='+':return a+b\n"
+        "    if op=='-':return a-b\n"
+        "    if op=='*':return a*b\n"
+        "    if op=='/':\n"
+        "        if b==0:raise ValueError('Division by zero')\n"
+        '        return a/b\n'
+        "    if op=='pow':\n"
+        "        if b.denominator!=1 or not 0<=b<=20:raise ValueError('Bounded integral exponent required')\n"
+        '        return a**int(b)\n'
+        "    if op=='dot':return sum((x*y for x,y in zip(a,b,strict=True)),Q(0))\n"
+        "    if op=='and':return bool(a and b)\n"
+        "    if op=='or':return bool(a or b)\n"
+        "    return {'==':lambda:a==b,'!=':lambda:a!=b,'<=':lambda:a<=b,'>=':lambda:a>=b,'<':lambda:a<b,'>':lambda:a>b}[op]()\n"
+        '\n'
+        '\n'
+        'def render(node):\n'
+        '    op=node[0]\n'
+        "    if op=='const':\n"
+        "        q=rational(node[1]);return f'({q.numerator}/{q.denominator})'\n"
+        "    if op=='var':return node[1]\n"
+        "    if op=='neg':return '(-'+render(node[1])+')'\n"
+        "    if op=='vector':return '['+','.join(render(x) for x in node[1])+']'\n"
+        "    if op in ('+','-','*','/','pow'):return '('+render(node[1])+('^' if op=='pow' else op)+render(node[2])+')'\n"
+        "    if op in ('relu','soma','dot'):return op+'('+','.join(render(x) for x in node[1:])+')'\n"
+        "    raise ValueError('Expression is not executable Omega arithmetic')\n"
+        '\n'
+        '\n'
+        'def lower(source):\n'
+        '    """Independent parser for the native refinement metadata protocol."""\n'
+        '    reader=Reader(tokens(source));types=[]\n'
+        "    while reader.accept('type'):\n"
+        "        name=identifier(reader.take());reader.need('=');base=[]\n"
+        "        while reader.peek()!='where':base.append(reader.take())\n"
+        "        reader.need('where');reader.need('{');predicate=[]\n"
+        "        while reader.peek()!='}':predicate.append(reader.take())\n"
+        "        reader.need('}');reader.accept(';')\n"
+        "        types.append({'name':name,'base':base,'predicate':predicate})\n"
+        '    out=[];bindings=[]\n'
+        "    while reader.peek()!='<end>':\n"
+        '        item=reader.take();out.append(item)\n'
+        "        if item in ('parametro','tensor','vetor','matriz','perda'):\n"
+        '            name=identifier(reader.take());out.append(name)\n'
+        "            if reader.accept(':'):bindings.append({'kind':item,'name':name,'type':identifier(reader.take())})\n"
+        "    return {'format':'omega-refinement-source-1','types':types,'bindings':bindings,'source':' '.join(out)}\n"
+    ),
     ('omega_security/__init__.py',
         '"""Omega 3.0 source components; acceptance requires separate evidence."""\n'
     ),
@@ -30232,6 +31927,324 @@ SOURCES = (
         "    if type(value) is not dict or not set(value)<=set(allowed_fields):raise ValueError('Unexpected document fields')\n"
         '    return value\n'
     ),
+    ('omega_self_mutate/__init__.py',
+        '"""Proof-gated compiler evolution; raw source patches have no admission path."""\n'
+        'from .rules import discover_rule,validate_rule\n'
+        'from .bootstrap import evolve\n'
+        'from .activation import activate,deactivate,load_active\n'
+        "__all__=['discover_rule','validate_rule','evolve','activate','deactivate','load_active']\n"
+    ),
+    ('omega_self_mutate/activation.py',
+        '"""Atomic content-checked compiler selection in the existing checkout."""\n'
+        'import fcntl\n'
+        'import hashlib\n'
+        'import json\n'
+        'import os\n'
+        'import stat\n'
+        'from pathlib import Path\n'
+        'from .bootstrap import protected_hashes\n'
+        'from omega_selfhost.proof_protocol import encode\n'
+        '\n'
+        '\n'
+        "def state_root():return Path(__file__).resolve().parents[1]/'build/selfhost'\n"
+        '\n'
+        '\n'
+        'def regular(path,limit):\n'
+        '    metadata=path.lstat()\n'
+        "    if not stat.S_ISREG(metadata.st_mode) or metadata.st_size>limit:raise ValueError('Bounded regular generation artifact required')\n"
+        '    return path\n'
+        '\n'
+        '\n'
+        'def audit_generation(root):\n'
+        '    from .rules import validate_rule,install_template\n'
+        '    from omega_selfhost.driver import verify_optimization,bootstrap,BUILD,PACKAGE,cc\n'
+        "    root=Path(root).resolve();manifest=root/'generation.json'\n"
+        '    regular(manifest,8*1024**2)\n'
+        '    record=json.loads(manifest.read_text())\n'
+        "    if record.get('format')!='omega-self-mutation-1' or record['protected']!=protected_hashes():raise ValueError('Verifier boundary changed since generation')\n"
+        "    if type(record['files']) is not dict or not 1<=len(record['files'])<=64:raise ValueError('Generation artifact count budget exceeded')\n"
+        "    for relative,expected in record['files'].items():\n"
+        '        raw=root/relative;path=raw.resolve()\n'
+        "        if not path.is_relative_to(root):raise ValueError('Changed generation artifact')\n"
+        '        regular(raw,64*1024**2)\n'
+        "        if hashlib.sha256(path.read_bytes()).hexdigest()!=expected:raise ValueError('Changed generation artifact')\n"
+        "    admitted=validate_rule(record['rule']['lhs'],record['rule']['rhs'])\n"
+        "    expected=install_template((PACKAGE/'compiler.omega').read_text(),admitted)\n"
+        "    if (root/'bootstrap/compiler.omega').read_text()!=expected or record['compiler_relative']!='bootstrap/stage3':raise ValueError('Generation is not the admitted trusted compiler template')\n"
+        '    # Content hashes alone cannot authenticate a proposer-controlled manifest.\n'
+        '    # Independently lower the approved source with the canonical seed and\n'
+        '    # rebuild its executable before allowing it to become the compiler.\n'
+        '    import tempfile\n'
+        '    from omega_platform.sandbox import run\n'
+        '    from omega_platform.budget import COMPILER_BUDGET\n'
+        '    bootstrap(force=False)\n'
+        "    with tempfile.TemporaryDirectory(prefix='omega-mutation-audit-') as temporary:\n"
+        "        target=Path(temporary);source=target/'compiler.omega';source.write_text(expected)\n"
+        "        c=target/'compiler.c';binary=target/'compiler'\n"
+        "        run([BUILD/'omegac-stage2',source,c],readonly=[source],writable=[target],budget=COMPILER_BUDGET,check=True)\n"
+        '        cc(c,binary)\n'
+        '        for stage in range(4):\n'
+        "            if (root/f'bootstrap/stage{stage}.c').read_bytes()!=c.read_bytes() or (root/f'bootstrap/stage{stage}').read_bytes()!=binary.read_bytes():raise ValueError('Untrusted compiler binary or bootstrap stage')\n"
+        "        if (root/'bootstrap/stage4.c').read_bytes()!=c.read_bytes():raise ValueError('Untrusted bootstrap fixed point')\n"
+        "    witness=json.loads((root/'probe.c.opt.json').read_text());verify_optimization(witness)\n"
+        '    return record\n'
+        '\n'
+        '\n'
+        'def activate(root,*,selection_root=None):\n'
+        '    record=audit_generation(root);root=Path(root).resolve()\n'
+        '    target=Path(selection_root or state_root());target.mkdir(parents=True,exist_ok=True)\n'
+        "    binary=root/record['compiler_relative']\n"
+        "    if not binary.resolve().is_relative_to(root):raise ValueError('Compiler outside admitted generation')\n"
+        "    value={'format':'omega-active-compiler-1','generation':str(root),'manifest_sha256':hashlib.sha256((root/'generation.json').read_bytes()).hexdigest(),\n"
+        "           'binary':str(binary),'binary_sha256':hashlib.sha256(binary.read_bytes()).hexdigest(),'protected':record['protected']}\n"
+        "    with (target/'.activation.lock').open('a') as lock:\n"
+        '        fcntl.flock(lock,fcntl.LOCK_EX)\n'
+        "        temporary=target/'.active.tmp';temporary.write_bytes(encode(value));os.replace(temporary,target/'active.json')\n"
+        '    return value\n'
+        '\n'
+        '\n'
+        'def load_active(*,selection_root=None):\n'
+        "    path=Path(selection_root or state_root())/'active.json'\n"
+        '    if not path.exists():return None\n'
+        '    regular(path,65536)\n'
+        '    value=json.loads(path.read_text())\n'
+        "    if value.get('format')!='omega-active-compiler-1' or value['protected']!=protected_hashes():raise ValueError('Active compiler verifier boundary changed')\n"
+        "    root=Path(value['generation']);binary=Path(value['binary'])\n"
+        '    regular(binary,64*1024**2)\n'
+        "    if binary.is_symlink() or not binary.resolve().is_relative_to(root.resolve()) or hashlib.sha256(binary.read_bytes()).hexdigest()!=value['binary_sha256']:\n"
+        "        raise ValueError('Active compiler bytes changed')\n"
+        "    manifest=root/'generation.json'\n"
+        '    regular(manifest,8*1024**2)\n'
+        "    if hashlib.sha256(manifest.read_bytes()).hexdigest()!=value['manifest_sha256']:raise ValueError('Active compiler admission changed')\n"
+        '    record=json.loads(manifest.read_text())\n'
+        "    for relative,expected in record['files'].items():\n"
+        '        artifact=root/relative\n'
+        '        regular(artifact,64*1024**2)\n'
+        "        if artifact.is_symlink() or not artifact.resolve().is_relative_to(root.resolve()) or hashlib.sha256(artifact.read_bytes()).hexdigest()!=expected:raise ValueError('Active generation artifact changed')\n"
+        '    return binary\n'
+        '\n'
+        '\n'
+        'def deactivate(*,selection_root=None):\n'
+        "    target=Path(selection_root or state_root());pointer=target/'active.json'\n"
+        "    if pointer.exists():os.replace(pointer,target/'previous-active.json')\n"
+    ),
+    ('omega_self_mutate/bootstrap.py',
+        '"""Four native generations, full map proof, differential probe, then a bundle."""\n'
+        'import hashlib\n'
+        'import json\n'
+        'from pathlib import Path\n'
+        'import time\n'
+        'from .rules import validate_rule,install_template\n'
+        'from omega_selfhost.proof_protocol import encode\n'
+        '\n'
+        '\n'
+        "PROTECTED=('omega_selfhost/driver.py','omega_selfhost/proof.py','omega/certified_proof.py',\n"
+        "           'omega_self_mutate/activation.py','omega_self_mutate/rules.py','omega_self_mutate/bootstrap.py',\n"
+        "           'omega_agent_sandbox/runtime.py','formal/tensor/Main.lean')\n"
+        '\n'
+        '\n'
+        'def protected_hashes():\n'
+        '    root=Path(__file__).resolve().parents[1]\n'
+        '    return {p:hashlib.sha256((root/p).read_bytes()).hexdigest() for p in PROTECTED if (root/p).is_file()}\n'
+        '\n'
+        '\n'
+        'def rebootstrap(source,directory,seed=None):\n'
+        '    from omega_selfhost.driver import compiler,cc\n'
+        '    from omega_platform.sandbox import run\n'
+        '    from omega_platform.budget import COMPILER_BUDGET\n'
+        '    root=Path(directory).absolute();root.mkdir(parents=True,exist_ok=False)\n'
+        "    path=root/'compiler.omega';path.write_text(source)\n"
+        '    current=Path(seed or compiler());records=[]\n'
+        '    for stage in range(4):\n'
+        "        c=root/f'stage{stage}.c';binary=root/f'stage{stage}'\n"
+        '        start=time.perf_counter_ns()\n'
+        '        run([current,path,c],readonly=[path],writable=[root],budget=COMPILER_BUDGET,check=True)\n'
+        '        cc(c,binary)\n'
+        "        records.append({'stage':stage,'c_sha256':hashlib.sha256(c.read_bytes()).hexdigest(),\n"
+        "                        'binary_sha256':hashlib.sha256(binary.read_bytes()).hexdigest(),\n"
+        "                        'build_ns':time.perf_counter_ns()-start})\n"
+        '        current=binary\n'
+        "    final=root/'stage4.c'\n"
+        '    run([current,path,final],readonly=[path],writable=[root],budget=COMPILER_BUDGET,check=True)\n'
+        "    if len({r['c_sha256'] for r in records}|{hashlib.sha256(final.read_bytes()).hexdigest()})!=1 or records[2]['binary_sha256']!=records[3]['binary_sha256']:\n"
+        "        raise ValueError('Four-stage bootstrap did not stabilize')\n"
+        "    return {'stages':records,'binary':str(current),'source':str(path),'fixed_point':True}\n"
+        '\n'
+        '\n'
+        'def evolve(rule,directory,*,activate_default=False):\n'
+        '    from omega_selfhost.driver import PACKAGE,verify_optimization,cc,run as run_native\n'
+        '    from omega_platform.sandbox import run\n'
+        '    from omega_platform.budget import COMPILER_BUDGET\n'
+        "    rule=validate_rule(rule['lhs'],rule['rhs'])\n"
+        "    baseline=(PACKAGE/'compiler.omega').read_text();source=install_template(baseline,rule)\n"
+        '    root=Path(directory).absolute();root.mkdir(parents=True,exist_ok=False)\n'
+        '    protected=protected_hashes()\n'
+        "    boot=rebootstrap(source,root/'bootstrap')\n"
+        '    # Probe is derived from the rule statement, not from a handwritten result.\n'
+        '    from omega_refine_check.syntax import render\n'
+        "    declarations='\\n'.join(f'parametro {name}={i+2};' for i,name in enumerate(rule['variables']))\n"
+        "    probe=root/'probe.omega';probe.write_text(declarations+'\\ntensor y='+render(rule['lhs'])+';\\nmostrar y;\\n')\n"
+        "    candidate=root/'probe.c'\n"
+        "    run([boot['binary'],probe,candidate,'--optimize'],readonly=[probe],writable=[root],budget=COMPILER_BUDGET,check=True)\n"
+        "    witness=json.loads(Path(str(candidate)+'.opt.json').read_text())\n"
+        "    if not any(entry['regra']=='synth_'+rule['id'] for entry in witness['regras']):raise ValueError('New compiler did not exercise the proposed mutation')\n"
+        "    proof=verify_optimization(witness,proof_path=root/'optimization.lean')\n"
+        "    cc(candidate,root/'probe')\n"
+        "    result,admission=run_native(root/'probe')\n"
+        "    original_nodes=len(witness['original']['nos']);optimized_nodes=len(witness['otimizado']['nos'])\n"
+        "    if optimized_nodes>=original_nodes:raise ValueError('Mutation did not improve the declared IR-node objective')\n"
+        "    if protected_hashes()!=protected:raise ValueError('Mutation modified its verifier or action boundary')\n"
+        "    record={'format':'omega-self-mutation-1','rule':rule,'bootstrap':boot,'proof':proof,'native_admission':admission,\n"
+        "            'protected':protected,'objective':{'metric':'IR nodes on the generated probe','before':original_nodes,'after':optimized_nodes},\n"
+        "            'files':{p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(root.rglob('*')) if p.is_file()},\n"
+        "            'compiler_relative':'bootstrap/stage3','default_activated':False}\n"
+        "    (root/'generation.json').write_text(json.dumps(record,sort_keys=True,indent=2)+'\\n')\n"
+        '    if activate_default:\n'
+        '        from .activation import activate\n'
+        "        record['activation']=activate(root)\n"
+        '    return record\n'
+    ),
+    ('omega_self_mutate/cli.py',
+        'import argparse,json\n'
+        'from pathlib import Path\n'
+        'from .rules import discover_rule\n'
+        'from .bootstrap import evolve\n'
+        'from .activation import activate,deactivate\n'
+        'from .profiler import profile_native\n'
+        '\n'
+        'def main(argv=None):\n'
+        "    parser=argparse.ArgumentParser(prog='omega mutate')\n"
+        "    parser.add_argument('mode',choices=['discover','evolve','activate','deactivate','profile'])\n"
+        "    parser.add_argument('--lhs',default='(x*2)-x');parser.add_argument('--output',type=Path)\n"
+        "    parser.add_argument('--source',type=Path);parser.add_argument('--activate',action='store_true')\n"
+        '    args=parser.parse_args(argv)\n'
+        "    if args.mode=='deactivate':deactivate();result={'active':False}\n"
+        "    elif args.mode=='activate':result=activate(args.output)\n"
+        "    elif args.mode=='profile':result=profile_native(args.source)\n"
+        '    else:\n'
+        '        rule=discover_rule(args.lhs)\n'
+        "        result=rule if args.mode=='discover' else evolve(rule,args.output,activate_default=args.activate)\n"
+        '    print(json.dumps(result,sort_keys=True,indent=2));return 0\n'
+    ),
+    ('omega_self_mutate/profiler.py',
+        'from collections import Counter\n'
+        'from pathlib import Path\n'
+        'import time\n'
+        '\n'
+        '\n'
+        'def profile_ir(source):\n'
+        '    from omega_selfhost.driver import compile_ir\n'
+        '    start=time.perf_counter_ns();ir=compile_ir(Path(source));elapsed=time.perf_counter_ns()-start\n'
+        "    counts=Counter(n['op'] for n in ir['nos'])\n"
+        "    return {'format':'omega-ir-profile-1','nodes':len(ir['nos']),'operations':dict(sorted(counts.items())),\n"
+        "            'hotspots':counts.most_common(),'compile_ns':elapsed,'metric':'observed IR frequency and compilation duration; not a hardware latency proof'}\n"
+        '\n'
+        '\n'
+        'def profile_native(source,*,iterations=5):\n'
+        '    """Measure the generated binary separately from proof verification time."""\n'
+        '    import json,statistics,tempfile\n'
+        '    from omega_selfhost.driver import build,verify_result\n'
+        '    from omega_platform.sandbox import run\n'
+        '    from omega_platform.budget import Budget\n'
+        "    if type(iterations) is not int or not 1<=iterations<=100:raise ValueError('Bounded profiler repetitions required')\n"
+        '    profile=profile_ir(source)\n'
+        "    with tempfile.TemporaryDirectory(prefix='omega-ir-profile-') as temporary:\n"
+        "        binary=Path(temporary)/'program';build(source,binary)\n"
+        '        outcomes=[];durations=[]\n'
+        '        for _ in range(iterations):\n'
+        '            outcome=run([binary],budget=Budget(),check=True)\n'
+        '            outcomes.append(json.loads(outcome.stdout));durations.append(outcome.wall_seconds)\n'
+        "        if any(result!=outcomes[0] for result in outcomes):raise ValueError('Non-deterministic profiled execution')\n"
+        '        admission=verify_result(outcomes[0])\n'
+        "    return {**profile,'native_seconds':durations,'native_median_seconds':statistics.median(durations),\n"
+        "            'native_min_seconds':min(durations),'native_admission':admission,\n"
+        "            'timing_scope':'observed process plus namespace supervision; excludes Lean admission, not per-op attribution or a speed theorem'}\n"
+    ),
+    ('omega_self_mutate/rules.py',
+        'from fractions import Fraction as Q\n'
+        'import hashlib\n'
+        'import json\n'
+        'from omega_refine_check.syntax import tree,parse,render,evaluate\n'
+        'from omega_refine_check.contracts import verify_contract\n'
+        'from omega_synth_mcts.search import search\n'
+        'from omega_selfhost.proof_protocol import encode\n'
+        '\n'
+        '\n'
+        'def variables(node):\n'
+        "    if node[0]=='var':return {node[1]}\n"
+        '    return set().union(*(variables(x) for x in node[1:] if isinstance(x,(tuple,list))))\n'
+        '\n'
+        '\n'
+        'def validate_rule(lhs,rhs):\n'
+        '    lhs=tree(lhs) if type(lhs) is not str else parse(lhs)\n'
+        '    rhs=tree(rhs) if type(rhs) is not str else parse(rhs)\n'
+        '    names=sorted(variables(lhs))\n'
+        '    def polynomial(node):\n'
+        "        if node[0] not in ('const','var','+','-','*','neg'):raise ValueError('Mutations are total rational polynomial rewrites')\n"
+        '        for child in node[1:]:\n'
+        '            if isinstance(child,(tuple,list)):polynomial(child)\n'
+        '    polynomial(lhs);polynomial(rhs)\n'
+        "    if lhs[0] not in ('+','-','*','neg') or rhs[0]!='var' or rhs[1] not in names or not 1<=len(names)<=4:\n"
+        "        raise ValueError('Optimizer mutations must eliminate a scalar expression to an existing matched variable')\n"
+        "    certificate=verify_contract({v:'true' for v in names},rhs,('==',('var','result'),lhs))\n"
+        "    statement={'lhs':lhs,'rhs':rhs,'variables':names}\n"
+        "    return {**statement,'id':hashlib.sha256(encode(statement)).hexdigest(),'proof':certificate}\n"
+        '\n'
+        '\n'
+        'def discover_rule(lhs,*,iterations=256,seed=0):\n'
+        '    lhs=parse(lhs) if type(lhs) is str else tree(lhs)\n'
+        '    names=sorted(variables(lhs))\n'
+        "    if not names:raise ValueError('A parametric rewrite is required')\n"
+        '    examples=[]\n'
+        '    for i in (-2,-1,0,1,2):\n'
+        '        env={v:Q(i+j) for j,v in enumerate(names)}\n'
+        "        examples.append({'inputs':{v:str(x) for v,x in env.items()},'output':str(evaluate(lhs,env))})\n"
+        "    spec={'variables':{v:'true' for v in names},'constants':[0,1,2,-1],\n"
+        "          'ensures':'result == '+render(lhs),'examples':examples,'operators':['+','-','*','neg']}\n"
+        '    result=search(spec,iterations=iterations,max_nodes=7,seed=seed,seconds=60)\n'
+        "    if not result['verified']:raise ValueError('MCTS did not find a universally admitted rewrite')\n"
+        "    return {**validate_rule(lhs,result['candidate']),'search':result}\n"
+        '\n'
+        '\n'
+        'def omega_pattern(node):\n'
+        "    if node[0]=='const':return ['const',node[1]]\n"
+        "    if node[0]=='var':return ['var',node[1]]\n"
+        '    return [node[0],*[omega_pattern(x) for x in node[1:]]]\n'
+        '\n'
+        '\n'
+        'def install_template(source,rule):\n'
+        '    # Revalidate data. A caller-supplied "proof passed" boolean is never used.\n'
+        "    admitted=validate_rule(rule['lhs'],rule['rhs'])\n"
+        "    if admitted['id']!=rule['id']:raise ValueError('Rule statement digest mismatch')\n"
+        "    if 'funcao synth_match(' in source:raise ValueError('Start a new generation from a recorded baseline, not an arbitrary prepatched compiler')\n"
+        "    matcher='''funcao synth_total(nodes,i) {\n"
+        '  var n=nodes[i];var op=n["op"];se(op=="/"){se(nodes[n["args"][1]]["op"]!="num" || number(nodes[n["args"][1]]["v"])==0){retornar 0;}}\n'
+        '  var j=0;enquanto(j<len(n["args"])){se(!synth_total(nodes,n["args"][j])){retornar 0;}j=j+1;}retornar 1;\n'
+        '}\n'
+        'funcao synth_match(pattern,index,nodes,env) {\n'
+        '  var op=pattern[0];var node=nodes[index];\n'
+        '  se(op=="var"){se(!synth_total(nodes,index)){retornar 0;}se(has(env,pattern[1])){retornar env[pattern[1]]==index;}put(env,pattern[1],index);retornar 1;}\n'
+        '  se(op=="const"){retornar node["op"]=="num" && number(node["v"])==number(pattern[1]);}\n'
+        '  se(op=="neg"){se(node["op"]!="neg"){retornar 0;}retornar synth_match(pattern[1],node["args"][0],nodes,env);}\n'
+        '  se(node["op"]!=op || len(node["args"])!=2){retornar 0;}\n'
+        '  retornar synth_match(pattern[1],node["args"][0],nodes,env) && synth_match(pattern[2],node["args"][1],nodes,env);\n'
+        '}\n'
+        "'''\n"
+        "    anchor='funcao literal(nodes,i,q)'\n"
+        "    if source.count(anchor)!=1:raise ValueError('Unknown compiler source layout')\n"
+        '    source=source.replace(anchor,matcher+anchor,1)\n'
+        "    pattern=omega_pattern(rule['lhs']);outer=pattern[0]\n"
+        '    arity=len(pattern)-1\n'
+        '    matches=\' && \'.join(f\'synth_match(pattern[{i+1}],n["args"][{i}],nodes,captures)\' for i in range(arity))\n'
+        '    snippet=(f\'  se(n["forma"]==[] && n["op"]=={json.dumps(outer)} && len(n["args"])=={arity}){{var captures=obj();\'\n'
+        '             f\'var pattern=parsejson({json.dumps(json.dumps(pattern,separators=(",",":")))});\'\n'
+        '             f\'se({matches}){{retornar ["synth_{rule["id"]}",captures[{json.dumps(rule["rhs"][1])}]];}}}}\\n\')\n'
+        "    end='  retornar [];\\n}\\nfuncao optimize(ir)'\n"
+        "    if source.count(end)!=1:raise ValueError('Unknown optimizer boundary')\n"
+        '    source=source.replace(end,snippet+end,1)\n'
+        '    source=source.replace(\'put(cert,"formato","omega-opt-cert-1")\',\'put(cert,"formato","omega-opt-cert-2")\')\n'
+        '    return source\n'
+    ),
     ('omega_selfhost/OperationalSemantics.lean',
         'import TensorKernel\n'
         '\n'
@@ -30605,7 +32618,7 @@ SOURCES = (
         " 'print': 'print', 'fail': 'fail', 'json': 'json', 'parsejson': 'parsejson'}\n"
         "OPS = {'+':'add','-':'sub','*':'mul','/':'div','%':'mod','==':'eq','!=':'ne',\n"
         "       '<':'lt','<=':'le','>':'gt','>=':'ge'}\n"
-        'TOKEN = re.compile(r\'\\s+|\\#[^\\n]*|"(?:[^"\\\\]|\\\\.)*"|\\d+(?:\\.\\d+)?|[^\\W\\d]\\w*|==|!=|<=|>=|&&|\\|\\||[{}();,\\[\\]+*/%<>=!-]\', re.UNICODE)\n'
+        'TOKEN = re.compile(r\'\\s+|\\#[^\\n]*|//[^\\n]*|"(?:[^"\\\\]|\\\\.)*"|\\d+(?:\\.\\d+)?|[^\\W\\d]\\w*|==|!=|<=|>=|&&|\\|\\||[{}();,\\[\\]+*/%<>=!:.\\-]\', re.UNICODE)\n'
         '\n'
         '\n'
         'def tokenize(source):\n'
@@ -30613,7 +32626,7 @@ SOURCES = (
         '    for m in TOKEN.finditer(source):\n'
         "        if m.start()!=pos: raise ValueError(f'Invalid source at byte {pos}')\n"
         '        pos=m.end();s=m.group()\n'
-        "        if not s.isspace() and not s.startswith('#'): out.append(s)\n"
+        "        if not s.isspace() and not s.startswith(('#','//')): out.append(s)\n"
         "    if pos!=len(source): raise ValueError('Trailing source data')\n"
         "    return out+['<fim>']\n"
         '\n'
@@ -30756,6 +32769,42 @@ SOURCES = (
         "    p=argparse.ArgumentParser();p.add_argument('source',type=Path);p.add_argument('output',type=Path);a=p.parse_args()\n"
         "    a.output.write_text(compile_source(a.source.read_text()),encoding='utf-8')\n"
         "if __name__=='__main__':main()\n"
+    ),
+    ('omega_selfhost/bounded_rational.h',
+        '/* Fixed-storage exact rational arithmetic. Overflow is an error, never silent\n'
+        '   truncation. GCC/Clang __int128 is the explicitly required host primitive. */\n'
+        '#ifndef OMEGA_BOUNDED_RATIONAL_H\n'
+        '#define OMEGA_BOUNDED_RATIONAL_H\n'
+        '#include <stdint.h>\n'
+        '#include <limits.h>\n'
+        'typedef struct { int64_t numerator;uint64_t denominator; } omega_q64;\n'
+        'enum { OMEGA_Q_OK=0,OMEGA_Q_ZERO_DENOM=1,OMEGA_Q_OVERFLOW=2 };\n'
+        'static unsigned __int128 omega_abs128(__int128 value){return value<0?(unsigned __int128)(-(value+1))+1:(unsigned __int128)value;}\n'
+        'static unsigned __int128 omega_gcd128(unsigned __int128 a,unsigned __int128 b){while(b){unsigned __int128 r=a%b;a=b;b=r;}return a;}\n'
+        'static int omega_q64_make(omega_q64 *out,__int128 numerator,unsigned __int128 denominator){\n'
+        ' if(!out||!denominator)return OMEGA_Q_ZERO_DENOM;\n'
+        ' unsigned __int128 divisor=omega_gcd128(omega_abs128(numerator),denominator);\n'
+        ' if(!divisor){divisor=1;}\n'
+        ' unsigned __int128 magnitude=omega_abs128(numerator)/divisor;denominator/=divisor;\n'
+        ' if(magnitude>INT64_MAX||denominator>INT64_MAX)return OMEGA_Q_OVERFLOW;\n'
+        ' out->numerator=numerator<0?-(int64_t)magnitude:(int64_t)magnitude;\n'
+        ' out->denominator=(uint64_t)denominator;return OMEGA_Q_OK;\n'
+        '}\n'
+        'static int omega_q64_valid(omega_q64 q){return q.denominator>0&&q.denominator<=INT64_MAX&&q.numerator!=INT64_MIN;}\n'
+        'static int omega_q64_add(omega_q64 *out,omega_q64 a,omega_q64 b){\n'
+        ' if(!omega_q64_valid(a)||!omega_q64_valid(b))return OMEGA_Q_ZERO_DENOM;\n'
+        ' return omega_q64_make(out,(__int128)a.numerator*b.denominator+(__int128)b.numerator*a.denominator,(unsigned __int128)a.denominator*b.denominator);\n'
+        '}\n'
+        'static int omega_q64_mul(omega_q64 *out,omega_q64 a,omega_q64 b){\n'
+        ' if(!omega_q64_valid(a)||!omega_q64_valid(b))return OMEGA_Q_ZERO_DENOM;\n'
+        ' return omega_q64_make(out,(__int128)a.numerator*b.numerator,(unsigned __int128)a.denominator*b.denominator);\n'
+        '}\n'
+        'static int omega_q64_div(omega_q64 *out,omega_q64 a,omega_q64 b){\n'
+        ' if(!omega_q64_valid(a)||!omega_q64_valid(b)||!b.numerator)return OMEGA_Q_ZERO_DENOM;\n'
+        ' __int128 numerator=(__int128)a.numerator*b.denominator;if(b.numerator<0)numerator=-numerator;\n'
+        ' return omega_q64_make(out,numerator,(unsigned __int128)a.denominator*omega_abs128(b.numerator));\n'
+        '}\n'
+        '#endif\n'
     ),
     ('omega_selfhost/certified_transcendental.h',
         '/* Exact rational Taylor/interval primitives used by the static real-graph\n'
@@ -30960,7 +33009,7 @@ SOURCES = (
         '    var c=source[i];\n'
         '    se (contains(" \\t\\r\\n",c)) { i=i+1; }\n'
         '    senao {\n'
-        '      se (c=="#") { enquanto (i<len(source) && source[i]!="\\n") { i=i+1; } }\n'
+        '      se (c=="#" || (c=="/" && i+1<len(source) && source[i+1]=="/")) { enquanto (i<len(source) && source[i]!="\\n") { i=i+1; } }\n'
         '      senao {\n'
         '        se (c=="\\"") {\n'
         '          var start=i; i=i+1;\n'
@@ -30992,7 +33041,7 @@ SOURCES = (
         '              se (i+1<len(source)) { two=slice(source,i,i+2); }\n'
         '              se (contains(["==","!=","<=",">=","&&","||"],two)) { push(tokens,two); i=i+2; }\n'
         '              senao {\n'
-        '                se (!contains("{}();,[]+*/%<>=!-@^",c)) { fail("Caractere inesperado: "+c); }\n'
+        '                se (!contains("{}();,[]+*/%<>=!-@^:.",c)) { fail("Caractere inesperado: "+c); }\n'
         '                push(tokens,c); i=i+1;\n'
         '              }\n'
         '            }\n'
@@ -31424,9 +33473,29 @@ SOURCES = (
         '  i=0;enquanto (i<len(result["comandos"])) { var c=result["comandos"][i];se (has(c,"taxa")) { put(c,"taxa",mapping[c["taxa"]]); }i=i+1; }\n'
         '  var cert=obj();put(cert,"tipo","reescrita_ir");put(cert,"formato","omega-opt-cert-1");put(cert,"original",ir);put(cert,"otimizado",result);put(cert,"mapeamento",mapping);put(cert,"regras",proofs);retornar cert;\n'
         '}\n'
+        'funcao refinement_source(source) {\n'
+        '  var p=parser(source);var types=[];var bindings=[];var output=[];\n'
+        '  enquanto (accept(p,"type")) {\n'
+        '    var label=name(p);need(p,"=");var base=[];\n'
+        '    enquanto (peek(p)!="where") { push(base,take(p)); }\n'
+        '    need(p,"where");need(p,"{");var predicate=[];\n'
+        '    enquanto (peek(p)!="}") { push(predicate,take(p)); }\n'
+        '    need(p,"}");accept(p,";");var record=obj();put(record,"name",label);put(record,"base",base);put(record,"predicate",predicate);push(types,record);\n'
+        '  }\n'
+        '  enquanto (peek(p)!="<fim>") {\n'
+        '    var item=take(p);push(output,item);\n'
+        '    se (contains(["parametro","tensor","vetor","matriz","perda"],item)) {\n'
+        '      var label=name(p);push(output,label);\n'
+        '      se (accept(p,":")) { var record=obj();put(record,"kind",item);put(record,"name",label);put(record,"type",name(p));push(bindings,record); }\n'
+        '    }\n'
+        '  }\n'
+        '  var result=obj();put(result,"format","omega-refinement-source-1");put(result,"types",types);put(result,"bindings",bindings);put(result,"source",join(output," "));retornar result;\n'
+        '}\n'
         'funcao principal() {\n'
         '  se (argc()<3 || argc()>4) { fail("Uso: omegac fonte.omega destino [--ir|--optimize|--optimized-ir]"); }\n'
         '  var source=read(arg(1));var p=parser(source);\n'
+        '  se (argc()==4 && arg(3)=="--refinement-ir") { write(arg(2),json(refinement_source(source)));retornar 0; }\n'
+        '  se (peek(p)=="type") { fail("Refinement types require the proof-checking build frontend"); }\n'
         '  se (peek(p)=="funcao") { se (argc()!=3) { fail("Modo procedural nao aceita flags de IR tensorial"); }write(arg(2),compile_procedural(source)); }\n'
         '  senao {\n'
         '    var ir=tensor_ir(source);var mode="";se (argc()==4) { mode=arg(3); }\n'
@@ -31522,6 +33591,9 @@ SOURCES = (
         '\n'
         '\n'
         'def compiler():\n'
+        '    from omega_self_mutate.activation import load_active\n'
+        '    selected=load_active()\n'
+        '    if selected is not None:return selected\n'
         '    bootstrap(force=False)\n'
         "    return BUILD/'omegac-stage2'\n"
         '\n'
@@ -31533,10 +33605,14 @@ SOURCES = (
         '    source=Path(source)\n'
         "    if not source.is_file():raise ValueError('Type inference requires a regular source file')\n"
         "    with source.open(encoding='utf-8') as stream:text=stream.read(256*1024+1)\n"
+        '    from omega_refine_check.compiler import is_refined\n'
+        '    if is_refined(text):\n'
+        '        from omega_refine_check.syntax import lower\n'
+        "        return infer_program(lower(text)['source'])\n"
         '    position=0\n'
         '    while position<len(text):\n'
         "        if text[position] in ' \\t\\r\\n':position+=1\n"
-        "        elif text[position]=='#':\n"
+        "        elif text[position]=='#' or text.startswith('//',position):\n"
         "            end=text.find('\\n',position)\n"
         '            if end<0:break\n'
         '            position=end+1\n'
@@ -31548,6 +33624,13 @@ SOURCES = (
         '\n'
         '\n'
         'def compile_ir(source, optimize=False):\n'
+        '    from omega_refine_check.compiler import is_refined\n'
+        '    if is_refined(Path(source).read_text()):\n'
+        '        from omega_refine_check.contracts import check_program\n'
+        '        proof=check_program(Path(source).read_text())\n'
+        "        with tempfile.TemporaryDirectory(prefix='omega-refined-ir-') as temporary:\n"
+        "            lowered=Path(temporary)/'lowered.omega';lowered.write_text(proof['metadata']['source'])\n"
+        '            return compile_ir(lowered,optimize)\n'
         "    with tempfile.TemporaryDirectory(prefix='omega-ir-') as tmp:\n"
         "        out=Path(tmp)/'ir.json'\n"
         '        isolated_run([compiler(),Path(source).resolve(),out,\n'
@@ -31576,6 +33659,10 @@ SOURCES = (
         '\n'
         '\n'
         "def build(source, destination, optimize=False, *, optimization='-O2', static=False):\n"
+        '    from omega_refine_check.compiler import is_refined\n'
+        '    if is_refined(Path(source).read_text()):\n'
+        '        from omega_refine_check.compiler import build as refined_build\n'
+        '        return refined_build(source,destination,optimize=optimize,optimization=optimization,static=static)\n'
         '    destination=Path(destination).resolve()\n'
         "    outputs=[destination,destination.with_suffix('.c'),destination.with_suffix('.build.json')]\n"
         "    if optimize:outputs.extend([destination.with_suffix('.opt.json'),destination.with_suffix('.opt.lean')])\n"
@@ -31604,7 +33691,7 @@ SOURCES = (
         "                'native_c_flags':['-std=gnu11',optimization,*(['-static'] if static else []),'-s','-lgmp'],\n"
         "                'inferred_types':inferred.to_dict() if inferred else None,\n"
         "                'compiler_inputs':compiler_inputs(ROOT),\n"
-        "                'compiler_sha256':digest(BUILD/'omegac-stage2'),\n"
+        "                'compiler_sha256':digest(compiler()),\n"
         "                'artifacts':artifact_record([p for p in outputs if p!=destination.with_suffix('.build.json')],destination.parent)}\n"
         "    destination.with_suffix('.build.json').write_text(json.dumps(provenance,indent=2)+'\\n')\n"
         "    return {'types':inferred.to_dict() if inferred else None,\n"
@@ -31623,15 +33710,21 @@ SOURCES = (
         "                str(ROOT/'formal/tensor/.lake/build/bin/omega_tensor_kernel')))\n"
         '    if not kernel.is_file():\n'
         "        raise IsolationUnavailable('Build the Lean tensor kernel with scripts/setup-native.sh')\n"
+        '    synthesized=None\n'
+        '    checked_result=result\n'
+        "    if result.get('optimization',{}).get('formato')=='omega-opt-cert-2':\n"
+        "        if result['optimization']['otimizado']!=result['ir']:raise ValueError('Synthesized optimization proves another graph')\n"
+        "        synthesized=verify_optimization(result['optimization'])\n"
+        "        checked_result={k:v for k,v in result.items() if k!='optimization'}\n"
         "    with tempfile.TemporaryDirectory(prefix='omega-native-admission-') as tmp:\n"
         "        data=Path(tmp)/'result.json'\n"
-        '        data.write_text(json.dumps(result,ensure_ascii=False))\n'
+        '        data.write_text(json.dumps(checked_result,ensure_ascii=False))\n'
         '        response=json.loads(isolated_run([kernel,data],readonly=[data],threads=True,\n'
         '                                        budget=PROOF_BUDGET,check=True).stdout)\n'
         "        if not response.get('valid') or response['certificates']!=len(others) or \\\n"
         "           response.get('universal_identities')!=len(identity):\n"
         "            raise ValueError('Lean kernel did not confirm all tensor certificates')\n"
-        "    optimization=verify_optimization(result['optimization']) if 'optimization' in result else None\n"
+        "    optimization=synthesized or (verify_optimization(result['optimization']) if 'optimization' in result else None)\n"
         '    proof=check_identities(identity,proof_path=proof_path) if identity else None\n'
         "    return {'valid':True,'tensor_certificates':len(others),\n"
         "            'universal_identities':len(identity),'lean':response,'proof':proof,\n"
@@ -31646,7 +33739,8 @@ SOURCES = (
         "    with tempfile.TemporaryDirectory(prefix='omega-optimization-') as tmp:\n"
         "        data=Path(tmp)/'cert.json';data.write_text(json.dumps(certificate))\n"
         "        proof=Path(tmp)/'Optimization.lean'\n"
-        "        isolated_run([kernel,'--prove-opt',data,proof],readonly=[data],writable=[tmp],\n"
+        "        mode='--prove-map' if certificate.get('formato')=='omega-opt-cert-2' else '--prove-opt'\n"
+        '        isolated_run([kernel,mode,data,proof],readonly=[data],writable=[tmp],\n'
         '                     threads=True,budget=PROOF_BUDGET,check=True)\n'
         '        generated=proof.read_text()\n'
         '        result=check_generated(generated)\n'
@@ -32309,6 +34403,53 @@ SOURCES = (
         "            raise ValueError('Optimization proof output is incomplete')\n"
         "    return {'theorems':count,'source_sha256':hashlib.sha256(generated.encode()).hexdigest(),\n"
         "            'output':output}\n"
+    ),
+    ('omega_selfhost/proof_microkernel.h',
+        '/* Freestanding resource core, not an OS privilege boundary or a device driver.\n'
+        '   A host must authenticate principals and proof tickets before invoking it. */\n'
+        '#ifndef OMEGA_PROOF_MICROKERNEL_H\n'
+        '#define OMEGA_PROOF_MICROKERNEL_H\n'
+        '#include <stdint.h>\n'
+        '#include <stddef.h>\n'
+        '#define OMEGA_KERNEL_REGIONS 64\n'
+        'typedef struct {uint32_t slot,generation,owner;} omega_handle;\n'
+        'typedef struct {size_t offset,size;uint32_t generation,owner;uint16_t readers;uint8_t writer,alive,retired;} omega_region;\n'
+        'typedef struct {unsigned char *memory;size_t capacity;omega_region regions[OMEGA_KERNEL_REGIONS];} omega_microkernel;\n'
+        'static void omega_kernel_init(omega_microkernel *k,unsigned char *memory,size_t capacity){\n'
+        ' k->memory=memory;k->capacity=capacity;for(unsigned i=0;i<OMEGA_KERNEL_REGIONS;i++)k->regions[i]=(omega_region){0};\n'
+        '}\n'
+        'static omega_region *omega_kernel_region(omega_microkernel*k,omega_handle h){\n'
+        ' if(!k||h.slot>=OMEGA_KERNEL_REGIONS){return NULL;}\n'
+        ' omega_region*r=&k->regions[h.slot];\n'
+        ' return r->alive&&r->generation==h.generation&&r->owner==h.owner?r:NULL;\n'
+        '}\n'
+        'static int omega_kernel_allocate(omega_microkernel*k,uint32_t owner,size_t size,omega_handle*out){\n'
+        ' if(!k||!out||!k->memory||!size||size>k->capacity)return -1;\n'
+        ' unsigned slot=OMEGA_KERNEL_REGIONS;for(unsigned i=0;i<OMEGA_KERNEL_REGIONS;i++)if(!k->regions[i].alive&&!k->regions[i].retired){slot=i;break;}\n'
+        ' if(slot==OMEGA_KERNEL_REGIONS)return -2;\n'
+        ' size_t offset=0;int moved;\n'
+        ' do{if(offset>k->capacity-size){return -3;}moved=0;for(unsigned i=0;i<OMEGA_KERNEL_REGIONS;i++){omega_region*r=&k->regions[i];if(r->alive&&offset<r->offset+r->size&&r->offset<offset+size){offset=r->offset+r->size;moved=1;break;}}}while(moved);\n'
+        ' omega_region*r=&k->regions[slot];if(r->generation==UINT32_MAX){r->retired=1;return -4;}\n'
+        ' r->generation++;r->offset=offset;r->size=size;r->owner=owner;r->readers=0;r->writer=0;r->alive=1;\n'
+        ' *out=(omega_handle){slot,r->generation,owner};return 0;\n'
+        '}\n'
+        'static int omega_kernel_borrow(omega_microkernel*k,omega_handle h,int mutable,void**pointer){\n'
+        ' omega_region*r=omega_kernel_region(k,h);if(!r||!pointer||r->writer||(mutable&&r->readers)||r->readers==UINT16_MAX)return -1;\n'
+        ' if(mutable)r->writer=1;else r->readers++;*pointer=k->memory+r->offset;return 0;\n'
+        '}\n'
+        'static int omega_kernel_unborrow(omega_microkernel*k,omega_handle h,int mutable){\n'
+        ' omega_region*r=omega_kernel_region(k,h);if(!r)return -1;\n'
+        ' if(mutable){if(!r->writer)return -2;r->writer=0;}else{if(!r->readers)return -2;r->readers--;}return 0;\n'
+        '}\n'
+        'static int omega_kernel_move(omega_microkernel*k,omega_handle old,uint32_t owner,omega_handle*out){\n'
+        ' omega_region*r=omega_kernel_region(k,old);if(!r||r->writer||r->readers||!out||r->generation==UINT32_MAX)return -1;\n'
+        ' r->owner=owner;r->generation++;*out=(omega_handle){old.slot,r->generation,owner};return 0;\n'
+        '}\n'
+        'static int omega_kernel_consume(omega_microkernel*k,omega_handle h){\n'
+        ' omega_region*r=omega_kernel_region(k,h);if(!r||r->writer||r->readers)return -1;\n'
+        ' r->alive=0;if(r->generation==UINT32_MAX)r->retired=1;else r->generation++;return 0;\n'
+        '}\n'
+        '#endif\n'
     ),
     ('omega_selfhost/proof_protocol.py',
         '"""Canonical data-only proof envelopes; no supplied Lean source is evaluated."""\n'
@@ -33712,6 +35853,340 @@ SOURCES = (
         "    if set(state)!=set(names):raise ValueError('WASM state mismatch')\n"
         '    return execute(wat,tuple(state[name] for name in names),**limits)\n'
     ),
+    ('omega_synth_mcts/__init__.py',
+        'from .search import search,synthesize,isolated_search\n'
+        'from .policy import HeuristicPolicy,NeuralPolicy\n'
+        "__all__=['search','synthesize','isolated_search','HeuristicPolicy','NeuralPolicy']\n"
+    ),
+    ('omega_synth_mcts/cli.py',
+        'import argparse,json\n'
+        'from pathlib import Path\n'
+        'from .search import synthesize\n'
+        '\n'
+        'def main(argv=None):\n'
+        "    parser=argparse.ArgumentParser(prog='omega synth')\n"
+        "    parser.add_argument('spec',type=Path);parser.add_argument('--output',type=Path,required=True)\n"
+        "    parser.add_argument('--iterations',type=int,default=1024);parser.add_argument('--max-nodes',type=int,default=15)\n"
+        "    parser.add_argument('--seconds',type=float,default=30);parser.add_argument('--seed',type=int,default=0)\n"
+        '    args=parser.parse_args(argv)\n'
+        '    result=synthesize(json.loads(args.spec.read_text()),args.output,iterations=args.iterations,max_nodes=args.max_nodes,seconds=args.seconds,seed=args.seed)\n'
+        "    print(json.dumps(result,sort_keys=True,indent=2));return 0 if result['verified'] else 1\n"
+    ),
+    ('omega_synth_mcts/grammar.py',
+        '"""Finite-budget traversals of an unbounded rational expression grammar."""\n'
+        'from omega_refine_check.syntax import tree,identifier,rational,render\n'
+        '\n'
+        '\n'
+        'def size(node):\n'
+        '    return 1+sum(size(x) for x in node[1:] if isinstance(x,(tuple,list)))\n'
+        '\n'
+        '\n'
+        'def holes(node):\n'
+        "    if node[0]=='hole':return 1\n"
+        '    return sum(holes(x) for x in node[1:] if isinstance(x,(tuple,list)))\n'
+        '\n'
+        '\n'
+        'def first_hole(node,path=()):\n'
+        "    if node[0]=='hole':return path\n"
+        '    for i,child in enumerate(node[1:],1):\n'
+        '        if isinstance(child,(tuple,list)):\n'
+        '            found=first_hole(child,path+(i,))\n'
+        '            if found is not None:return found\n'
+        '    return None\n'
+        '\n'
+        '\n'
+        'def replace(node,path,replacement):\n'
+        '    if not path:return replacement\n'
+        '    result=list(node);result[path[0]]=replace(node[path[0]],path[1:],replacement)\n'
+        '    return tuple(result)\n'
+        '\n'
+        '\n'
+        'class Grammar:\n'
+        "    def __init__(self,variables,constants=(0,1,-1),*,operators=('+','-','*','/','neg','relu'),max_nodes=15,max_depth=8):\n"
+        '        self.variables=tuple(identifier(v) for v in variables)\n'
+        '        self.constants=tuple(dict.fromkeys(str(rational(c)) for c in constants))\n'
+        "        if not self.variables and not self.constants:raise ValueError('A grammar atom is required')\n"
+        "        if len(self.variables)>32 or len(self.constants)>64:raise ValueError('Grammar atom budget exceeded')\n"
+        "        if any(op not in ('+','-','*','/','neg','relu') for op in operators) or len(set(operators))!=len(operators):raise ValueError('Unsupported grammar production')\n"
+        "        if type(max_nodes) is not int or not 1<=max_nodes<=63 or type(max_depth) is not int or not 1<=max_depth<=16:raise ValueError('Grammar resource budget exceeded')\n"
+        '        self.operators=tuple(operators);self.max_nodes=max_nodes;self.max_depth=max_depth\n'
+        '    def productions(self,partial):\n'
+        '        path=first_hole(partial)\n'
+        '        if path is None:return []\n'
+        "        options=[('var:'+v,('var',v)) for v in self.variables]+[('const:'+c,('const',c)) for c in self.constants]\n"
+        '        for op in self.operators:\n'
+        "            arity=1 if op in ('neg','relu') else 2\n"
+        '            if len(path)+1<self.max_depth and size(partial)+arity<=self.max_nodes:\n'
+        "                options.append((op,(op,*[('hole',)]*arity)))\n"
+        '        return [(label,replace(partial,path,value)) for label,value in options]\n'
+        '    def complete(self,partial,rng):\n'
+        '        while holes(partial):\n'
+        '            choices=self.productions(partial)\n'
+        '            atoms=[choice for choice in choices if holes(choice[1])<holes(partial)]\n'
+        "            if not choices:raise ValueError('Grammar cannot complete partial AST')\n"
+        '            pool=atoms if rng.random()<0.72 else choices\n'
+        '            partial=rng.choice(pool)[1]\n'
+        '        return partial\n'
+    ),
+    ('omega_synth_mcts/policy.py',
+        '"""Proposal guides have no admission authority; malformed priors are rejected."""\n'
+        'import math\n'
+        '\n'
+        '\n'
+        'def features(partial,variables):\n'
+        '    from .grammar import size,holes\n'
+        "    operations={'+':0,'-':0,'*':0,'/':0}\n"
+        '    def visit(node):\n'
+        '        if node[0] in operations:operations[node[0]]+=1\n'
+        '        for child in node[1:]:\n'
+        '            if isinstance(child,(tuple,list)):visit(child)\n'
+        '    visit(partial)\n'
+        '    return [size(partial)/63,holes(partial)/32,len(variables)/32,*[operations[op]/32 for op in operations],1.0]\n'
+        '\n'
+        '\n'
+        'class HeuristicPolicy:\n'
+        '    def __init__(self):self.statistics={}\n'
+        '    def priors(self,partial,productions,variables):\n'
+        '        weights=[]\n'
+        '        for label,_ in productions:\n'
+        '            visits,reward=self.statistics.get(label,(0,0.0))\n'
+        "            base=2.0 if label.startswith('var:') else 1.2 if label.startswith('const:') else 1.0\n"
+        '            weights.append(base*(1+reward/max(1,visits)))\n'
+        '        total=sum(weights)\n'
+        '        return [w/total for w in weights]\n'
+        '    def update(self,labels,reward):\n'
+        '        for label in labels:\n'
+        '            visits,total=self.statistics.get(label,(0,0.0));self.statistics[label]=(visits+1,total+reward)\n'
+        '\n'
+        '\n'
+        'class NeuralPolicy:\n'
+        '    """Tiny optional PyTorch guide, trained on grammar decisions and rewards."""\n'
+        '    def __init__(self,labels,*,seed=0):\n'
+        '        import torch\n'
+        "        if not labels or len(set(labels))!=len(labels) or len(labels)>128:raise ValueError('Bounded unique production labels required')\n"
+        '        self.labels=tuple(labels);self.index={v:i for i,v in enumerate(labels)}\n'
+        '        with torch.random.fork_rng():\n'
+        '            torch.manual_seed(seed);self.network=torch.nn.Sequential(torch.nn.Linear(8,32),torch.nn.Tanh(),torch.nn.Linear(32,len(labels)))\n'
+        '        self.optimizer=torch.optim.Adam(self.network.parameters(),lr=0.01)\n'
+        '        self.history=[]\n'
+        '    def priors(self,partial,productions,variables):\n'
+        '        import torch\n'
+        '        with torch.no_grad():logits=self.network(torch.tensor(features(partial,variables),dtype=torch.float32))\n'
+        '        selected=[float(logits[self.index[label]]) if label in self.index else 0.0 for label,_ in productions]\n'
+        '        maximum=max(selected);weights=[math.exp(v-maximum) for v in selected];total=sum(weights)\n'
+        '        return [v/total for v in weights]\n'
+        '    def train(self,observations,*,epochs=8):\n'
+        '        import torch\n'
+        "        if type(epochs) is not int or not 1<=epochs<=128 or not 1<=len(observations)<=4096:raise ValueError('Training budget exceeded')\n"
+        '        vectors=[];targets=[]\n'
+        '        for vector,label in observations:\n'
+        "            if len(vector)!=8 or any(not math.isfinite(float(x)) for x in vector) or label not in self.index:raise ValueError('Invalid policy observation')\n"
+        '            vectors.append(vector);targets.append(self.index[label])\n'
+        '        x=torch.tensor(vectors,dtype=torch.float32);y=torch.tensor(targets)\n'
+        '        for _ in range(epochs):\n'
+        '            self.optimizer.zero_grad();loss=torch.nn.functional.cross_entropy(self.network(x),y)\n'
+        "            if not torch.isfinite(loss):raise ValueError('Nonfinite guide loss')\n"
+        '            loss.backward();self.optimizer.step();self.history.append(float(loss.detach()))\n'
+        '        return tuple(self.history[-epochs:])\n'
+        '    def update(self,labels,reward):pass\n'
+    ),
+    ('omega_synth_mcts/pruning.py',
+        '"""Only a discharged contradiction may justify pruning a partial subtree."""\n'
+        'from omega_refine_check.syntax import parse,substitute\n'
+        'from omega_refine_check.lean import prove\n'
+        '\n'
+        '\n'
+        'def contains_hole(node):\n'
+        "    if node[0]=='hole':return True\n"
+        '    return any(contains_hole(child) for child in node[1:] if isinstance(child,(tuple,list)))\n'
+        '\n'
+        '\n'
+        'class LeanPruner:\n'
+        '    def __init__(self,variables,*,enabled=True):\n'
+        '        self.variables=variables;self.enabled=enabled;self.cache={};self.certificates=[]\n'
+        '    def prune(self,partial):\n'
+        '        if not self.enabled:return False\n'
+        '        denominator=None\n'
+        '        def visit(node):\n'
+        '            nonlocal denominator\n'
+        "            if node[0]=='/' and not contains_hole(node[2]):denominator=node[2]\n"
+        '            for child in node[1:]:\n'
+        '                if isinstance(child,(tuple,list)):visit(child)\n'
+        '        visit(partial)\n'
+        '        if denominator is None:return False\n'
+        '        key=repr(denominator)\n'
+        '        if key in self.cache:return self.cache[key]\n'
+        '        # Test exact constant contradictions cheaply before invoking Lean.\n'
+        "        if denominator[0]!='const' or denominator[1]!='0':self.cache[key]=False;return False\n"
+        '        names=list(self.variables);premises=[]\n'
+        "        for name,predicate in self.variables.items():premises.append(substitute(parse(predicate),{'self':('var',name),**{v:('var',v) for v in names}}))\n"
+        "        proof=prove(names,premises,[('==',denominator,('const','0'))])\n"
+        "        self.certificates.append({'reason':'identically zero divisor in every completion','denominator':denominator,'proof':proof})\n"
+        '        self.cache[key]=True;return True\n'
+    ),
+    ('omega_synth_mcts/search.py',
+        '"""PUCT over partial Omega ASTs with independent universal admission."""\n'
+        'from dataclasses import dataclass,field\n'
+        'from fractions import Fraction as Q\n'
+        'import math\n'
+        'import random\n'
+        'import time\n'
+        'from omega_refine_check.syntax import parse,evaluate,rational,render,substitute\n'
+        'from omega_refine_check.contracts import verify_contract\n'
+        'from .grammar import Grammar,holes,size\n'
+        'from .policy import HeuristicPolicy\n'
+        'from .pruning import LeanPruner\n'
+        '\n'
+        '\n'
+        '@dataclass\n'
+        'class Node:\n'
+        '    ast:tuple\n'
+        '    prior:float=1.0\n'
+        "    label:str='root'\n"
+        '    visits:int=0\n'
+        '    value:float=0.0\n'
+        '    children:list=field(default_factory=list)\n'
+        '    expanded:bool=False\n'
+        '\n'
+        '\n'
+        'def specification(spec):\n'
+        "    fields={'variables','ensures','examples','constants','requires','operators'}\n"
+        "    if type(spec) is not dict or not {'variables','ensures','examples'}<=set(spec)<=fields:raise ValueError('Explicit synthesis contract and examples required')\n"
+        "    variables=spec['variables']\n"
+        "    if type(variables) is not dict or len(variables)>32 or type(spec['examples']) is not list or not 1<=len(spec['examples'])<=64:raise ValueError('Problem budget exceeded')\n"
+        '    normalized=[]\n'
+        "    for observation in spec['examples']:\n"
+        "        if type(observation) is not dict or set(observation)!={'inputs','output'} or set(observation['inputs'])!=set(variables):raise ValueError('Example schema mismatch')\n"
+        "        env={v:rational(q) for v,q in observation['inputs'].items()}\n"
+        '        for v,p in variables.items():\n'
+        "            if evaluate(parse(p),{**env,'self':env[v]}) is not True:raise ValueError('Example violates variable contract')\n"
+        "        if any(evaluate(parse(p),env) is not True for p in spec.get('requires',[])):raise ValueError('Example violates precondition')\n"
+        "        target=rational(observation['output'])\n"
+        "        if evaluate(parse(spec['ensures']),{**env,'result':target}) is not True:raise ValueError('Example target violates requested postcondition')\n"
+        '        normalized.append((env,target))\n'
+        '    return normalized\n'
+        '\n'
+        '\n'
+        'def search(spec,*,iterations=1024,max_nodes=15,max_depth=8,seconds=30,seed=0,policy=None,verify=True,max_proof_checks=16):\n'
+        '    if type(iterations) is not int or not 1<=iterations<=100000 or type(seconds) not in (int,float) or not math.isfinite(seconds) or not 0<seconds<=3600 or type(seed) is not int:\n'
+        "        raise ValueError('MCTS execution budget exceeded')\n"
+        "    if type(max_proof_checks) is not int or not 1<=max_proof_checks<=128:raise ValueError('Proof budget exceeded')\n"
+        '    examples=specification(spec)\n'
+        "    grammar=Grammar(spec['variables'],spec.get('constants',[0,1,-1]),operators=spec.get('operators',['+','-','*','/','neg','relu']),max_nodes=max_nodes,max_depth=max_depth)\n"
+        "    guide=policy or HeuristicPolicy();pruner=LeanPruner(spec['variables'],enabled=verify)\n"
+        "    root=Node(('hole',));rng=random.Random(seed);started=time.monotonic()\n"
+        '    considered=set();rejected=[];proof_checks=0;pruned=0;evaluations=0;expansions=0;best=None;best_loss=None\n'
+        '    for iteration in range(iterations):\n'
+        '        if time.monotonic()-started>=seconds:break\n'
+        '        node=root;path=[node]\n'
+        '        while node.expanded and node.children:\n'
+        '            node=max(node.children,key=lambda n:(n.value/max(1,n.visits)+1.4*n.prior*math.sqrt(max(1,path[-1].visits))/(1+n.visits),rng.random()))\n'
+        '            path.append(node)\n'
+        '        if holes(node.ast) and not node.expanded:\n'
+        '            options=grammar.productions(node.ast);priors=guide.priors(node.ast,options,grammar.variables)\n'
+        "            if len(priors)!=len(options) or any(type(p) not in (int,float) or not math.isfinite(p) or p<0 for p in priors) or sum(priors)<=0:raise ValueError('Invalid neural/heuristic proposal distribution')\n"
+        '            total=sum(priors)\n'
+        '            for (label,ast),prior in zip(options,priors):\n'
+        '                if pruner.prune(ast):pruned+=1;continue\n'
+        '                node.children.append(Node(ast,float(prior/total),label))\n'
+        '            node.expanded=True;expansions+=len(options)\n'
+        '            if node.children:\n'
+        '                node=rng.choices(node.children,weights=[max(n.prior,1e-12) for n in node.children])[0];path.append(node)\n'
+        '        candidate=grammar.complete(node.ast,rng) if holes(node.ast) else node.ast\n'
+        '        try:\n'
+        '            loss=sum((abs(evaluate(candidate,env)-target) for env,target in examples),Q(0))\n'
+        "            if max(abs(loss.numerator).bit_length(),loss.denominator.bit_length())>16384:raise ValueError('Fitness arithmetic budget exceeded')\n"
+        '            reward=1/(1+float(loss))\n'
+        '        except (ValueError,ZeroDivisionError,OverflowError,TypeError):loss=None;reward=0.0\n'
+        '        evaluations+=1\n'
+        '        if loss is not None and (best_loss is None or loss<best_loss):best_loss=loss;best=candidate\n'
+        '        for visited in path:visited.visits+=1;visited.value+=reward\n'
+        '        guide.update([n.label for n in path[1:]],reward)\n'
+        '        key=repr(candidate)\n'
+        '        if loss==0 and key not in considered:\n'
+        '            considered.add(key)\n'
+        '            if not verify:\n'
+        "                return {'candidate':candidate,'admission':None,'verified':False,'evaluations':evaluations,'expansions':expansions,'pruned':pruned,'seed':seed}\n"
+        '            proof_checks+=1\n'
+        '            try:\n'
+        "                admission=verify_contract(spec['variables'],candidate,spec['ensures'],requires=spec.get('requires',()))\n"
+        "                return {'candidate':candidate,'source':render(candidate),'verified':True,'admission':admission,\n"
+        "                        'evaluations':evaluations,'expansions':expansions,'pruned':pruned,'pruning_certificates':pruner.certificates,\n"
+        "                        'proof_checks':proof_checks,'rejected':rejected,'seed':seed,'optimality_proved':False}\n"
+        "            except ValueError as error:rejected.append({'candidate':candidate,'reason':str(error)[-2000:]})\n"
+        '            if proof_checks>=max_proof_checks:break\n'
+        "    return {'candidate':None,'verified':False,'evaluations':evaluations,'expansions':expansions,'pruned':pruned,\n"
+        "            'pruning_certificates':pruner.certificates,'proof_checks':proof_checks,'rejected':rejected,\n"
+        "            'best_observed':best,'best_loss':str(best_loss),'seed':seed,'reason':'search or proof budget exhausted','optimality_proved':False}\n"
+        '\n'
+        '\n'
+        'def synthesize(spec,directory,**limits):\n'
+        '    import json\n'
+        '    from pathlib import Path\n'
+        '    result=search(spec,**limits)\n'
+        '    root=Path(directory);root.mkdir(parents=True,exist_ok=False)\n'
+        "    (root/'search.json').write_text(json.dumps(result,sort_keys=True,indent=2)+'\\n')\n"
+        "    if result['verified']:\n"
+        "        (root/'contract.lean').write_text(result['admission']['source'])\n"
+        '        lines=[]\n'
+        "        first=spec['examples'][0]['inputs']\n"
+        '        for name,value in first.items():lines.append(f\'parametro {name}={render(("const",str(rational(value))))};\')\n'
+        "        lines += ['tensor result='+result['source']+';','mostrar result;']\n"
+        "        source=root/'candidate.omega';source.write_text('\\n'.join(lines)+'\\n')\n"
+        '        from omega_selfhost.driver import build,run\n'
+        "        build(source,root/'candidate');observed,native=run(root/'candidate')\n"
+        "        if Q(observed['values']['result'])!=rational(spec['examples'][0]['output']):raise ValueError('Native synthesized result mismatch')\n"
+        "        result['native_admission']=native\n"
+        '    return result\n'
+        '\n'
+        '\n'
+        'def isolated_search(spec,*,budget=None,**limits):\n'
+        '    """No-network AST proposal process, followed by independent host admission."""\n'
+        '    import json,sys,tempfile\n'
+        '    from pathlib import Path\n'
+        '    from omega_platform.sandbox import run\n'
+        '    from omega_platform.budget import Budget\n'
+        '    from omega_refine_check.syntax import tree\n'
+        '    from dataclasses import asdict\n'
+        '    specification(spec)\n'
+        "    if set(limits)-{'iterations','max_nodes','max_depth','seconds','seed'}:raise ValueError('Unknown isolated search limit')\n"
+        '    budget=budget or Budget(wall_seconds=60,cpu_seconds=45)\n'
+        '    package=Path(__file__).resolve().parent;root=package.parent\n'
+        "    with tempfile.TemporaryDirectory(prefix='omega-mcts-proposal-') as temporary:\n"
+        "        path=Path(temporary)/'problem.json';path.write_text(json.dumps({'spec':spec,'limits':limits}))\n"
+        "        mounts=[root/name for name in ('omega_synth_mcts','omega_refine_check','omega','omega_selfhost','omega_platform')]\n"
+        "        outcome=run([sys.executable,'-E','-S','-B',package/'worker.py',path],\n"
+        "                    readonly=[*mounts,path,Path(sys.base_prefix)/'lib'],budget=budget,check=True)\n"
+        '    proposal=json.loads(outcome.stdout)\n'
+        "    if type(proposal) is not dict or proposal.get('verified') is not False:raise ValueError('Invalid proposal envelope')\n"
+        "    if proposal.get('candidate') is None:return {**proposal,'sandboxed':outcome.sandboxed,'budget':asdict(budget)}\n"
+        "    candidate=tree(proposal['candidate'])\n"
+        "    if size(candidate)>limits.get('max_nodes',15):raise ValueError('Proposal exceeds host AST budget')\n"
+        '    examples=specification(spec)\n'
+        "    if any(evaluate(candidate,env)!=target for env,target in examples):raise ValueError('Proposal fails host replay')\n"
+        "    admission=verify_contract(spec['variables'],candidate,spec['ensures'],requires=spec.get('requires',()))\n"
+        "    return {**proposal,'candidate':candidate,'source':render(candidate),'verified':True,'admission':admission,\n"
+        "            'sandboxed':outcome.sandboxed,'budget':asdict(budget),'optimality_proved':False}\n"
+    ),
+    ('omega_synth_mcts/worker.py',
+        '"""Fixed resource-bounded proposal worker; host verification is mandatory."""\n'
+        'import json\n'
+        'from pathlib import Path\n'
+        'import sys\n'
+        "if __package__ in (None,''):sys.path.insert(0,str(Path(__file__).resolve().parents[1]))\n"
+        'from omega_synth_mcts.search import search\n'
+        '\n'
+        '\n'
+        'def main():\n'
+        '    path=Path(sys.argv[1])\n'
+        "    if path.stat().st_size>1024*1024:raise ValueError('Worker input budget exceeded')\n"
+        '    data=json.loads(path.read_text())\n'
+        "    result=search(data['spec'],verify=False,**data.get('limits',{}))\n"
+        '    print(json.dumps(result,sort_keys=True))\n'
+        '\n'
+        '\n'
+        "if __name__=='__main__':main()\n"
+    ),
     ('omega_tools/__init__.py',
         '"""Omega 3.0 source components; acceptance requires separate evidence."""\n'
     ),
@@ -34167,7 +36642,7 @@ SOURCES = (
         '"Omega Certified Synthesis" = "omega_nextorch.orange"\n'
         '\n'
         '[tool.setuptools.packages.find]\n'
-        'include = ["omega", "omega_open", "omega_nextorch*", "omega_selfhost*", "omega_platform*", "omega_agent*", "omega_bench*", "omega_coder*", "omega_evolution*", "omega_learning*", "omega_memory*", "omega_security*", "omega_tools*", "nextorch*"]\n'
+        'include = ["omega", "omega_open", "omega_nextorch*", "omega_selfhost*", "omega_platform*", "omega_agent*", "omega_bench*", "omega_coder*", "omega_evolution*", "omega_learning*", "omega_memory*", "omega_security*", "omega_tools*", "omega_refine_check*", "omega_synth_mcts*", "omega_self_mutate*", "omega_cognition*", "nextorch*"]\n'
         '\n'
         '[tool.setuptools.package-data]\n'
         '"nextorch.orange" = ["icons/*.svg"]\n'
@@ -45748,8 +48223,9 @@ SOURCES = (
         'ROOT=Path(__file__).resolve().parents[1]\n'
         "OUTPUT=ROOT/'omega/omega_3_monolith.py'\n"
         "FOLDERS={'validation','omega_agent','omega_coder','omega_memory','omega_learning','omega_evolution','omega_tools','omega_security','omega_bench','omega','omega_open','omega_selfhost','omega_platform','omega_nextorch','nextorch',\n"
+        "         'omega_refine_check','omega_synth_mcts','omega_self_mutate','omega_agent_sandbox','omega_cognition','hardware',\n"
         "         'formal','scripts','requirements','roadmap','docs','testes','exemplos','.github'}\n"
-        "EXTENSIONS={'.py','.h','.omega','.lean','.json','.lock','.tsv','.md','.sh','.yml','.c','.svg'}\n"
+        "EXTENSIONS={'.py','.h','.omega','.lean','.json','.lock','.tsv','.md','.sh','.yml','.c','.svg','.sv'}\n"
         '\n'
         'LAUNCHER=\'\'\'"""Readable single-file Omega source distribution.\n'
         '\n'
@@ -46275,6 +48751,32 @@ SOURCES = (
         'from omega_selfhost.driver import compiler\n'
         "print('Self-hosted compiler:', compiler())\n"
         'PY\n'
+    ),
+    ('scripts/setup-qpu.sh',
+        '#!/usr/bin/env bash\n'
+        '# Optional Debian 13 amd64 RTL simulator, installed without root privileges.\n'
+        '# apt authenticates signed repository metadata and package SHA256 checksums.\n'
+        'set -euo pipefail\n'
+        'OMEGA_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"\n'
+        'OMEGA_TOOLS="${OMEGA_TOOLS_DIR:-$(dirname "$OMEGA_ROOT")/.tools}"\n'
+        'if command -v iverilog >/dev/null; then iverilog -V; exit 0; fi\n'
+        'if [[ -x "$OMEGA_TOOLS/iverilog/usr/bin/iverilog" ]]; then\n'
+        '  "$OMEGA_TOOLS/iverilog/usr/bin/iverilog" -B "$OMEGA_TOOLS/iverilog/usr/lib/x86_64-linux-gnu/ivl" -g2012 -s rational_alu -o /tmp/omega-qpu-setup "$OMEGA_ROOT"/hardware/qpu/*.sv\n'
+        '  exit 0\n'
+        'fi\n'
+        '[[ "$(dpkg --print-architecture)" == amd64 ]] || { echo \'Local simulator package requires Debian amd64.\' >&2; exit 1; }\n'
+        'OMEGA_APT="$OMEGA_TOOLS/apt-qpu"\n'
+        'mkdir -p "$OMEGA_APT/lists/partial" "$OMEGA_APT/cache/archives/partial" "$OMEGA_APT/packages"\n'
+        'printf \'%s\\n\' \'deb [signed-by=/usr/share/keyrings/debian-archive-keyring.gpg] https://deb.debian.org/debian trixie main\' > "$OMEGA_APT/sources.list"\n'
+        'OMEGA_APT_ARGS=(-o "Dir::State::lists=$OMEGA_APT/lists" -o "Dir::Cache=$OMEGA_APT/cache" -o "Dir::Etc::sourcelist=$OMEGA_APT/sources.list" -o Dir::Etc::sourceparts=-)\n'
+        'apt-get "${OMEGA_APT_ARGS[@]}" update\n'
+        '(cd "$OMEGA_APT/packages" && apt-get "${OMEGA_APT_ARGS[@]}" download \'iverilog=12.0-2+b1\')\n'
+        'OMEGA_EXTRACT="$(mktemp -d "$OMEGA_TOOLS/.iverilog.XXXXXX")"\n'
+        'trap \'rm -rf "$OMEGA_EXTRACT"\' EXIT\n'
+        'dpkg-deb -x "$OMEGA_APT/packages/iverilog_12.0-2+b1_amd64.deb" "$OMEGA_EXTRACT"\n'
+        'mv "$OMEGA_EXTRACT" "$OMEGA_TOOLS/iverilog"\n'
+        'trap - EXIT\n'
+        'bash "$OMEGA_ROOT/scripts/setup-qpu.sh"\n'
     ),
     ('scripts/setup-sandbox.sh',
         '#!/usr/bin/env bash\n'
@@ -48946,6 +51448,12 @@ SOURCES = (
         '{\n'
         '  "format": "omega-corpus-1",\n'
         '  "cases": [\n'
+        '    {\n'
+        '      "path": "exemplos/path_c/probability.omega",\n'
+        '      "language": "refined",\n'
+        '      "expected": "accept",\n'
+        '      "reference": "v1"\n'
+        '    },\n'
         '    {\n'
         '      "path": "exemplos/dimensoes_invalidas.omega",\n'
         '      "language": "tensor",\n'
@@ -51749,6 +54257,134 @@ SOURCES = (
         "    with pytest.raises(ValueError, match='Changed build artifact'):\n"
         '        verify_export(binary.parent, **expected)\n'
     ),
+    ('testes/test_cognition.py',
+        'import copy\n'
+        'import ctypes\n'
+        'from fractions import Fraction as Q\n'
+        'from pathlib import Path\n'
+        'import subprocess\n'
+        'import pytest\n'
+        'from omega_cognition.linear import LinearContext\n'
+        'from omega_cognition.memory import plan_buffers\n'
+        'from omega_cognition.scheduler import FairScheduler\n'
+        'from omega_cognition.glass import orthogonal_basis,certify_concepts,trace,replay,native_trace\n'
+        '\n'
+        "GRAPH={'inputs':1,'nodes':[\n"
+        "    {'op':'affine','terms':[[0,'2']],'bias':'1'},\n"
+        "    {'op':'relu','input':1},\n"
+        "    {'op':'affine','terms':[[2,'1/2']],'bias':'-1'}],'outputs':[3]}\n"
+        '\n'
+        '\n'
+        'def test_linear_moves_borrows_and_consumption():\n'
+        "    ctx=LinearContext(64);ctx.allocate('x',32);borrow=ctx.borrow('x')\n"
+        "    with pytest.raises(ValueError):ctx.move('x','y')\n"
+        "    with pytest.raises(ValueError):ctx.consume('x')\n"
+        "    with pytest.raises(ValueError):ctx.borrow('x',mutable=True)\n"
+        "    ctx.release_borrow(borrow);ctx.move('x','y')\n"
+        "    with pytest.raises(ValueError):ctx.consume('x')\n"
+        "    mutable=ctx.borrow('y',mutable=True)\n"
+        "    with pytest.raises(ValueError):ctx.borrow('y')\n"
+        '    ctx.release_borrow(mutable)\n'
+        '    with pytest.raises(ValueError):ctx.release_borrow(mutable)\n'
+        "    ctx.consume('y');assert ctx.finish()['remaining_bytes']==0\n"
+        '\n'
+        '\n'
+        'def test_buffer_plan_disjoint_for_every_shared_slot():\n'
+        '    plan=plan_buffers(GRAPH,bytes_per_value=8)\n'
+        "    assert plan['bytes']<plan['unreused_bytes'] and plan['admission']\n"
+        "    for i,slot in enumerate(plan['slots']):\n"
+        '        for j in range(i):\n'
+        "            if plan['slots'][j]==slot:assert plan['last_uses'][j]<plan['starts'][i]\n"
+        '\n'
+        '\n'
+        'def test_host_fairness_overrides_starving_neural_priorities():\n'
+        "    schedule=FairScheduler([('a',12),('b',3),('c',2)],max_wait=2)\n"
+        '    result=schedule.run(lambda tasks:tasks[0][0])\n'
+        "    assert result['steps']==17 and result['admission']\n"
+        "    assert any(e['reason']=='fairness override' for e in result['trace'])\n"
+        "    assert all(e['before']-e['after']==1 for e in result['trace'])\n"
+        '\n'
+        '\n'
+        'def test_concept_labels_need_grounded_logic():\n'
+        "    assert orthogonal_basis([[1,0],[0,1]])['admission']\n"
+        '    with pytest.raises(ValueError):orthogonal_basis([[1,1],[0,1]])\n'
+        "    graph={'inputs':1,'nodes':[{'op':'affine','terms':[[0,'1']],'bias':'0'}],'outputs':[1]}\n"
+        "    proof=certify_concepts(graph,[[1]],[{'name':'nonnegative sensor','ensures':'result>=0'}],{'input_0':'self>=0'})\n"
+        "    assert proof['concepts'][0]['proof']['admission']\n"
+        "    with pytest.raises(ValueError):certify_concepts(graph,[[1]],[{'name':'positive','ensures':'result>0'}],{'input_0':'true'})\n"
+        '\n'
+        '\n'
+        'def test_glass_replay_and_tampering():\n'
+        "    record=trace(GRAPH,['-1'],annotations={2:'clipped sensor'},thresholds={3:'-1/2'})\n"
+        "    assert replay(record)['outputs']==['-1']\n"
+        "    assert record['events'][1]['branch']=='zero'\n"
+        "    changed=copy.deepcopy(record);changed['events'][0]['value']='99'\n"
+        '    with pytest.raises(ValueError):replay(changed)\n'
+        '\n'
+        '\n'
+        'def test_native_exports_intermediate_values_and_checked_thresholds(tmp_path):\n'
+        "    result=native_trace(GRAPH,['1/4'],tmp_path/'trace',[[-1,1]],thresholds={3:'0'})\n"
+        "    assert result['trace']['outputs']==['-1/4']\n"
+        "    assert result['native_admission']['native_trace']==['1/4','3/2','3/2','-1/4']\n"
+        "    assert replay(result['trace'])['valid']\n"
+        '\n'
+        '\n'
+        'def test_standalone_checkpoint_compiles_runs_without_heap_or_python(tmp_path):\n'
+        '    import torch\n'
+        '    from omega_cognition.standalone import export\n'
+        '    model=torch.nn.Sequential(torch.nn.Linear(1,1),torch.nn.ReLU(),torch.nn.Linear(1,1))\n'
+        '    with torch.no_grad():\n'
+        '        model[0].weight.fill_(2);model[0].bias.fill_(1)\n'
+        '        model[2].weight.fill_(0.5);model[2].bias.fill_(-1)\n'
+        "    checkpoint=tmp_path/'weights.pt';torch.save(model.state_dict(),checkpoint)\n"
+        "    architecture=[{'type':'linear','in':1,'out':1,'bias':True},{'type':'relu'},{'type':'linear','in':1,'out':1,'bias':True}]\n"
+        "    result=export(checkpoint,architecture,tmp_path/'standalone',input_bounds=[[-1,1]],output_bounds=[[-1,1]],input_scale=4)\n"
+        "    source=Path(result['source']);assert 'malloc' not in source.read_text()\n"
+        "    assert 'buffer[' in source.read_text() and result['memory_plan']['admission']\n"
+        "    library=tmp_path/'model.so'\n"
+        "    subprocess.run(['cc','-std=c11','-Wall','-Wextra','-Werror','-ffreestanding','-shared','-fPIC',str(source),'-o',str(library)],check=True,capture_output=True)\n"
+        '    native=ctypes.CDLL(str(library)).omega_edge\n'
+        '    native.argtypes=[ctypes.POINTER(ctypes.c_int64),ctypes.POINTER(ctypes.c_int64)]\n'
+        '    for x in range(-4,5):\n'
+        '        inputs=(ctypes.c_int64*1)(x);outputs=(ctypes.c_int64*1)()\n'
+        '        assert native(inputs,outputs)==0\n'
+        '        expected=max(Q(0),Q(2*x,4)+1)/2-1\n'
+        "        assert Q(outputs[0],result['output_scales'][0])==expected\n"
+        '    assert native((ctypes.c_int64*1)(5),(ctypes.c_int64*1)())==-2\n'
+        "    symbols=subprocess.check_output(['nm','-u',str(library)],text=True)\n"
+        "    assert not any(name in symbols for name in ('malloc','free','GMP','Py_'))\n"
+        '\n'
+        '\n'
+        'def test_freestanding_headers_overflow_and_expired_handles(tmp_path):\n'
+        "    root=Path(__file__).resolve().parents[1];source=tmp_path/'kernel.c'\n"
+        "    source.write_text('''#include <assert.h>\n"
+        '#include "bounded_rational.h"\n'
+        '#include "proof_microkernel.h"\n'
+        'int main(void){\n'
+        ' omega_q64 q,a={INT64_MAX,1},b={1,1};\n'
+        ' assert(omega_q64_add(&q,a,b)==OMEGA_Q_OVERFLOW);\n'
+        ' a=(omega_q64){1,3};b=(omega_q64){2,3};\n'
+        ' assert(omega_q64_add(&q,a,b)==0 && q.numerator==1 && q.denominator==1);\n'
+        ' assert(omega_q64_mul(&q,a,b)==0 && q.numerator==2 && q.denominator==9);\n'
+        ' assert(omega_q64_div(&q,a,b)==0 && q.numerator==1 && q.denominator==2);\n'
+        ' assert(omega_q64_div(&q,a,(omega_q64){0,1})==OMEGA_Q_ZERO_DENOM);\n'
+        ' unsigned __int128 high=(unsigned __int128)1<<127;\n'
+        ' __int128 lowest=-(__int128)(high-1)-1;\n'
+        ' assert(omega_q64_make(&q,lowest,high)==0 && q.numerator==-1 && q.denominator==1);\n'
+        ' unsigned char pool[32];omega_microkernel k;omega_kernel_init(&k,pool,sizeof pool);\n'
+        ' omega_handle h,m,next;void *pointer;\n'
+        ' assert(!omega_kernel_allocate(&k,1,16,&h));\n'
+        ' assert(!omega_kernel_borrow(&k,h,0,&pointer));\n'
+        ' assert(omega_kernel_move(&k,h,2,&m));assert(omega_kernel_consume(&k,h));\n'
+        ' assert(!omega_kernel_unborrow(&k,h,0));assert(!omega_kernel_move(&k,h,2,&m));\n'
+        ' assert(omega_kernel_borrow(&k,h,0,&pointer));assert(!omega_kernel_consume(&k,m));\n'
+        ' assert(!omega_kernel_allocate(&k,1,32,&next));assert(omega_kernel_consume(&k,m));\n'
+        ' assert(!omega_kernel_consume(&k,next));return 0;\n'
+        "}''')\n"
+        "    binary=tmp_path/'kernel'\n"
+        "    subprocess.run(['cc','-std=c11','-Wall','-Wextra','-Werror','-fsanitize=undefined','-fno-sanitize-recover=all','-I',str(root/'omega_selfhost'),str(source),'-o',str(binary)],check=True,capture_output=True)\n"
+        '    subprocess.run([binary],check=True,capture_output=True)\n'
+    ),
     ('testes/test_evolucao_v11.py',
         '"""Testes de autoevolução FORMALMENTE LIMITADA da Ômega 1.1.\n'
         'Não são provas de AGI: os testes auditam a implementação; a prova finita\n'
@@ -51934,6 +54570,59 @@ SOURCES = (
         '\n'
         '\n'
         "if __name__=='__main__':unittest.main()\n"
+    ),
+    ('testes/test_mcts_synthesis.py',
+        'import pytest\n'
+        'from omega_synth_mcts.search import search\n'
+        'from omega_synth_mcts.pruning import LeanPruner\n'
+        'from omega_synth_mcts.grammar import Grammar,holes,size\n'
+        'from omega_refine_check.syntax import evaluate\n'
+        '\n'
+        "SPEC={'variables':{'x':'true'},'ensures':'result == x+1',\n"
+        "      'examples':[{'inputs':{'x':str(x)},'output':str(x+1)} for x in (-2,0,2)]}\n"
+        '\n'
+        '\n'
+        'def test_mcts_finds_universal_program_and_native_execution(tmp_path):\n'
+        '    from omega_synth_mcts.search import synthesize\n'
+        "    result=synthesize(SPEC,tmp_path/'synthesis',iterations=256,seed=0)\n"
+        "    assert result['verified'] and not result['optimality_proved']\n"
+        "    assert result['expansions']>1 and result['native_admission']\n"
+        "    assert evaluate(result['candidate'],{'x':37})==38\n"
+        '\n'
+        '\n'
+        'def test_examples_alone_never_certify_a_false_universal_contract():\n'
+        "    spec={'variables':{'x':'true'},'ensures':'result*x == 1',\n"
+        "          'constants':[1],'operators':[],\n"
+        "          'examples':[{'inputs':{'x':'1'},'output':'1'}]}\n"
+        '    result=search(spec,iterations=24,max_nodes=1,max_proof_checks=2)\n'
+        "    assert not result['verified'] and result['rejected']\n"
+        '\n'
+        '\n'
+        'def test_pruner_needs_a_checked_contradiction():\n'
+        "    pruner=LeanPruner({'x':'true'})\n"
+        "    assert pruner.prune(('/',('hole',),('const','0')))\n"
+        "    assert pruner.certificates[0]['proof']['admission']\n"
+        "    assert not pruner.prune(('/',('hole',),('var','x')))\n"
+        "    assert not pruner.prune(('/',('hole',),('hole',)))\n"
+        '\n'
+        '\n'
+        'def test_neural_guide_has_no_admission_authority():\n'
+        '    class BadPolicy:\n'
+        "        def priors(self,*args):return [float('nan')]*len(args[1])\n"
+        "    with pytest.raises(ValueError,match='distribution'):search(SPEC,policy=BadPolicy())\n"
+        '    proposal=search(SPEC,iterations=256,verify=False)\n'
+        "    assert proposal['candidate'] and proposal['verified'] is False and proposal['admission'] is None\n"
+        '\n'
+        '\n'
+        'def test_mcts_budget_and_example_precondition():\n'
+        '    with pytest.raises(ValueError):search(SPEC,iterations=0)\n'
+        "    with pytest.raises(ValueError):search({**SPEC,'variables':{'x':'self>0'}})\n"
+        '\n'
+        '\n'
+        'def test_isolated_proposal_requires_independent_host_proof():\n'
+        '    from omega_synth_mcts.search import isolated_search\n'
+        '    result=isolated_search(SPEC,iterations=256,seconds=10)\n'
+        "    assert result['sandboxed'] and result['verified'] and result['admission']['admission']['theorems']\n"
     ),
     ('testes/test_meta_v12.py',
         '"""Comprovação finita e ataques ao novo código de política automodificável."""\n'
@@ -52616,6 +55305,330 @@ SOURCES = (
         '        self.assertEqual(a,b)\n'
         '\n'
         "if __name__=='__main__':unittest.main()\n"
+    ),
+    ('testes/test_path_c_integration.py',
+        'import json\n'
+        'import subprocess\n'
+        'import sys\n'
+        'from pathlib import Path\n'
+        'from omega_cognition.pipeline import distill\n'
+        '\n'
+        '\n'
+        'def test_intent_to_proved_native_program_and_cli(tmp_path):\n'
+        "    spec={'variables':{'x':'true'},'ensures':'result == x+1',\n"
+        "          'examples':[{'inputs':{'x':'0'},'output':'1'},{'inputs':{'x':'3'},'output':'4'}]}\n"
+        "    result=distill('Increment a rational sensor',spec,tmp_path/'distilled',iterations=256)\n"
+        "    assert result['result']['verified'] and result['result']['native_admission']\n"
+        "    path=tmp_path/'qpu.json';path.write_text(json.dumps({'op':'+','a':'1/3','b':'2/3'}))\n"
+        "    process=subprocess.run([sys.executable,'-m','omega','cognition','qpu',str(path)],capture_output=True,text=True,check=True)\n"
+        "    assert json.loads(process.stdout)['value']=='1'\n"
+        '\n'
+        '\n'
+        'def test_new_commands_expose_help():\n'
+        "    for command in ('refine','synth','mutate','action','cognition'):\n"
+        "        process=subprocess.run([sys.executable,'-m','omega',command,'--help'],capture_output=True,text=True,check=True)\n"
+        "        assert 'usage:' in process.stdout\n"
+        '\n'
+        '\n'
+        'def test_profiler_measures_native_execution_separately_from_proof(tmp_path):\n'
+        '    from omega_self_mutate.profiler import profile_native\n'
+        "    source=tmp_path/'profile.omega';source.write_text('parametro x=2; tensor y=(x*2)-x; mostrar y;')\n"
+        '    result=profile_native(source,iterations=2)\n'
+        "    assert result['nodes']>1 and len(result['native_seconds'])==2\n"
+        "    assert result['native_admission'] and result['native_min_seconds']>0\n"
+        '\n'
+        '\n'
+        'def test_module_qualified_names_and_cpp_comments_remain_compatible(tmp_path):\n'
+        '    from omega.modules import link\n'
+        '    from omega_selfhost.driver import build_module,run\n'
+        "    library=tmp_path/'math.omega';library.write_text('// rational library\\nexportar inc;funcao inc(x){retornar x+1;}')\n"
+        '    entry=tmp_path/\'main.omega\';entry.write_text(\'importar "math.omega" como m; // qualified symbol\\nfuncao principal(){print(m::inc(2));retornar 0;}\')\n'
+        "    binary=tmp_path/'program';build_module(entry,binary,root=tmp_path)\n"
+        '    from omega_platform.sandbox import run as execute\n'
+        "    assert execute([binary],check=True).stdout.strip()=='3'\n"
+    ),
+    ('testes/test_proof_actions.py',
+        'import copy\n'
+        'import time\n'
+        'import pytest\n'
+        'from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey\n'
+        'from omega_agent_sandbox.policy import Policy\n'
+        'from omega_agent_sandbox.actions import prepare\n'
+        'from omega_agent_sandbox.proofs import verify\n'
+        'from omega_agent_sandbox.ledger import Ledger\n'
+        'from omega_agent_sandbox.runtime import Runtime\n'
+        'from omega_agent_sandbox.adapters import Recorder,CallbackAdapter\n'
+        'from omega_security.capabilities import Capability,CapabilityVerifier\n'
+        'from omega_security.revocation import Revocations\n'
+        'from omega_security.encoding import canonical\n'
+        '\n'
+        "DATA={'id':'cooling','version':1,'state':{'temperature':'self>=0 and self<=4'},'actions':{\n"
+        "    'cool':{'parameters':{'amount':'self>=0 and self<=1'},'requires':['amount<=temperature'],\n"
+        "            'updates':{'temperature':'temperature-amount'},'effect':'motor'}}}\n"
+        '\n'
+        '\n'
+        "@pytest.fixture(scope='module')\n"
+        'def action():\n'
+        '    policy=Policy(DATA);key=Ed25519PrivateKey.generate()\n'
+        "    state={'version':0,'values':{'temperature':'3'}}\n"
+        "    proposal={'action':'cool','parameters':{'amount':'1/2'},'nonce':'cool-001','expected_version':0}\n"
+        '    bundle=prepare(policy,state,proposal,signing_key=key)\n'
+        '    return policy,key,state,proposal,bundle\n'
+        '\n'
+        '\n'
+        'def host(tmp_path,action,adapter=None,subject=None):\n'
+        '    policy,key,state,proposal,bundle=action\n'
+        "    ledger=Ledger(tmp_path/'ledger.sqlite');ledger.initialize('cooling',state['values'])\n"
+        '    authority=Ed25519PrivateKey.generate();revocations=Revocations()\n'
+        '    def signature(issuer,payload,signature):\n'
+        "        if issuer!='host':return False\n"
+        '        try:authority.public_key().verify(signature,payload);return True\n'
+        '        except Exception:return False\n'
+        '    verifier=CapabilityVerifier(signature,revocations)\n'
+        "    claims={'id':'capability-1','principal':'agent','actions':['agent.dispatch.motor'],\n"
+        "            'root':str(tmp_path),'expires':time.time()+300,'subject':subject or bundle['subject']}\n"
+        "    raw=canonical(claims);token=Capability(raw,authority.sign(raw),'host')\n"
+        '    recorder=adapter or Recorder()\n'
+        "    runtime=Runtime(policy,ledger,public_key=key.public_key(),capability_verifier=verifier,principal='agent',adapters={'motor':recorder})\n"
+        '    return runtime,ledger,token,recorder\n'
+        '\n'
+        '\n'
+        'def test_valid_hoare_action_dispatches_once_and_updates_state(action,tmp_path):\n'
+        '    runtime,ledger,token,adapter=host(tmp_path,action)\n'
+        '    result=runtime.dispatch(action[-1],token)\n'
+        "    assert result['post_state']['values']['temperature']=='5/2'\n"
+        "    assert ledger.snapshot('cooling')['version']==1\n"
+        '    assert len(adapter.receipts)==1\n'
+        '    with pytest.raises(ValueError):runtime.dispatch(action[-1],token)\n'
+        '    assert len(adapter.receipts)==1\n'
+        '\n'
+        '\n'
+        "@pytest.mark.parametrize('field,value',[('program','tensor x=99;'),('proof','by sorry'),('signature','00'*64),('subject','0'*64)])\n"
+        'def test_tampered_action_never_dispatches(action,tmp_path,field,value):\n'
+        '    runtime,ledger,token,adapter=host(tmp_path,action)\n'
+        '    bundle=copy.deepcopy(action[-1]);bundle[field]=value\n'
+        '    with pytest.raises((ValueError,PermissionError)):runtime.dispatch(bundle,token)\n'
+        "    assert not adapter.receipts and ledger.snapshot('cooling')['version']==0\n"
+        '\n'
+        '\n'
+        'def test_capability_must_pin_exact_action(action,tmp_path):\n'
+        "    runtime,ledger,token,adapter=host(tmp_path,action,subject='0'*64)\n"
+        '    with pytest.raises(PermissionError):runtime.dispatch(action[-1],token)\n'
+        '    assert not adapter.receipts\n'
+        '\n'
+        '\n'
+        'def test_uncertain_external_effect_blocks_retries(action,tmp_path):\n'
+        '    calls=[]\n'
+        "    def fail(parameters,**kwargs):calls.append(parameters);raise OSError('Lost acknowledgment')\n"
+        '    runtime,ledger,token,_=host(tmp_path,action,CallbackAdapter(fail))\n'
+        '    with pytest.raises(OSError):runtime.dispatch(action[-1],token)\n'
+        "    assert ledger.operation(action[-1]['subject'])['status']=='uncertain'\n"
+        '    with pytest.raises(RuntimeError):runtime.dispatch(action[-1],token)\n'
+        '    assert len(calls)==1\n'
+        '\n'
+        '\n'
+        'def test_unsafe_or_stale_action_rejected_before_execution(action):\n'
+        '    policy,key,state,proposal,bundle=action\n'
+        "    with pytest.raises(ValueError):prepare(policy,state,{**proposal,'parameters':{'amount':'5'}},signing_key=key)\n"
+        "    with pytest.raises(ValueError):prepare(policy,state,{**proposal,'expected_version':1},signing_key=key)\n"
+    ),
+    ('testes/test_qpu_rtl.py',
+        'from fractions import Fraction as Q\n'
+        'from pathlib import Path\n'
+        'import math\n'
+        'import os\n'
+        'import random\n'
+        'import shutil\n'
+        'import subprocess\n'
+        'import pytest\n'
+        'from omega_cognition.qpu import execute,stein\n'
+        '\n'
+        '\n'
+        'def simulator():\n'
+        "    compiler=shutil.which('iverilog')\n"
+        "    if compiler:return [compiler],shutil.which('vvp')\n"
+        "    root=Path(__file__).resolve().parents[2]/'.tools/iverilog/usr'\n"
+        "    if (root/'bin/iverilog').exists():return [str(root/'bin/iverilog'),'-B',str(root/'lib/x86_64-linux-gnu/ivl')],str(root/'bin/vvp')\n"
+        "    pytest.skip('Icarus Verilog is required for RTL co-simulation')\n"
+        '\n'
+        '\n'
+        'def test_qpu_error_witness_and_traps():\n'
+        "    result=execute('/',Q(7,11),Q(5,13),bits=8,max_denominator=10)\n"
+        "    assert result['certificate']['admission'] and Q(result['error'])==abs(Q(result['exact'])-Q(result['value']))\n"
+        "    assert result['interrupt']\n"
+        "    with pytest.raises(ZeroDivisionError):execute('/',1,0)\n"
+        "    with pytest.raises(OverflowError):execute('*',127,127,bits=8)\n"
+        '    for a in range(40):\n'
+        '        for b in range(40):assert stein(a,b)[0]==math.gcd(a,b)\n'
+        '\n'
+        '\n'
+        "@pytest.mark.parametrize('bits',[8,16,32])\n"
+        'def test_rtl_alu_matches_fraction_and_error_witness(tmp_path,bits):\n'
+        '    command,vvp=simulator();root=Path(__file__).resolve().parents[1]\n'
+        '    limit=2**(bits-1)-1;rng=random.Random(72)\n'
+        '    cases=[(0,1,3,2,3,limit),(3,7,11,5,13,10),(3,1,1,0,1,limit),(2,limit,1,limit,1,limit)]\n'
+        '    cases += [(rng.randrange(4),rng.randint(-limit,limit),rng.randint(1,limit),rng.randint(-limit,limit),rng.randint(1,limit),rng.randint(1,limit)) for _ in range(240)]\n'
+        "    lines=[f'module tb;reg clk=0;always #5 clk=~clk;reg reset=1,start=0;reg[1:0]op;reg signed[{bits-1}:0]an,bn;reg[{bits-1}:0]ad,bd,m;wire ready,valid,error,irq;wire signed[{bits-1}:0]pn;wire[{bits-1}:0]pd;wire[{3*bits+2}:0]en,ed;',\n"
+        "           f'rational_alu #(.W({bits})) dut(clk,reset,start,op,an,bn,ad,bd,m,ready,valid,error,irq,pn,pd,en,ed);',\n"
+        "           'initial begin #11;reset=0;']\n"
+        '    for i,(op,an,ad,bn,bd,m) in enumerate(cases):\n'
+        '        lines.append(f\'@(negedge clk);op={op};an={an};ad={ad};bn={bn};bd={bd};m={m};start=1;@(posedge clk);#1;$display("R {i} %0d %0d %0d %0d %0d %0d",error,irq,pn,pd,en,ed);\')\n'
+        "    lines += ['$finish;end endmodule'];tb=tmp_path/'tb.sv';tb.write_text('\\n'.join(lines))\n"
+        "    binary=tmp_path/'sim'\n"
+        "    subprocess.run([*command,'-g2012','-s','tb','-o',str(binary),str(tb),*[str(p) for p in sorted((root/'hardware/qpu').glob('*.sv'))]],check=True,capture_output=True)\n"
+        '    output=subprocess.check_output([vvp,str(binary)],text=True,timeout=30)\n'
+        "    rows=[line.split() for line in output.splitlines() if line.startswith('R ')]\n"
+        '    assert len(rows)==len(cases)\n'
+        '    for row,case in zip(rows,cases):\n'
+        '        _,index,error,irq,pn,pd,en,ed=row;op,an,ad,bn,bd,m=case\n'
+        "        try:expected=execute(['+','-','*','/'][op],Q(an,ad),Q(bn,bd),bits=bits,max_denominator=m,prove=False)\n"
+        '        except (OverflowError,ZeroDivisionError):assert int(error)==1;continue\n'
+        '        assert int(error)==0,(case,row,expected)\n'
+        "        assert Q(int(pn),int(pd))==Q(expected['value']),(case,row,expected)\n"
+        "        assert Q(int(en),int(ed))==Q(expected['error'])\n"
+        "        assert bool(int(irq))==expected['interrupt']\n"
+        '\n'
+        '\n'
+        'def test_rtl_stein_gcd_handshake(tmp_path):\n'
+        '    command,vvp=simulator();root=Path(__file__).resolve().parents[1]\n'
+        '    pairs=[(0,0),(0,65535),(48,18),(65535,255),(32768,8192),(65521,65519)]\n'
+        "    lines=['module tb;reg clk=0;always #1 clk=~clk;reg reset=1,start=0;reg[15:0]a,b;wire ready,valid;wire[15:0]result;integer cycles;',\n"
+        "           'gcd_stein dut(clk,reset,start,a,b,ready,valid,result);initial begin #3;reset=0;']\n"
+        '    for a,b in pairs:\n'
+        '        lines.append(f\'@(negedge clk);a={a};b={b};start=1;@(negedge clk);start=0;cycles=0;while(!valid&&cycles<200)begin @(negedge clk);cycles=cycles+1;end if(!valid)$fatal; $display("G %0d",result);\')\n'
+        "    lines+=['$finish;end endmodule'];tb=tmp_path/'gcd.sv';tb.write_text('\\n'.join(lines));binary=tmp_path/'sim'\n"
+        "    subprocess.run([*command,'-g2012','-s','tb','-o',str(binary),str(tb),str(root/'hardware/qpu/gcd_stein.sv')],check=True,capture_output=True)\n"
+        '    output=subprocess.check_output([vvp,str(binary)],text=True,timeout=10)\n'
+        "    assert [int(s.split()[1]) for s in output.splitlines() if s.startswith('G ')]==[math.gcd(*p) for p in pairs]\n"
+    ),
+    ('testes/test_refinement.py',
+        'from pathlib import Path\n'
+        'import pytest\n'
+        'from omega_refine_check.contracts import check_program,verify_contract\n'
+        'from omega_refine_check.syntax import lower,parse\n'
+        '\n'
+        "PROGRAM='''// Input and result contracts\n"
+        'type Probability = Rational where { self >= 0/1 and self <= 1/1 }\n'
+        'parametro x: Probability = 1/2;\n'
+        'tensor y: Probability = x*(1-x);\n'
+        'mostrar y;\n'
+        "'''\n"
+        '\n'
+        '\n'
+        'def test_refinement_metadata_and_universal_contract():\n'
+        '    result=check_program(PROGRAM)\n'
+        "    assert result['obligations']==4\n"
+        "    assert result['metadata']==lower(PROGRAM)\n"
+        "    assert '(v0 : ℚ)' in result['source']\n"
+        '\n'
+        '\n'
+        "@pytest.mark.parametrize('source',[\n"
+        "    'type P = Rational where {self>=0} parametro x:P=-1; mostrar x;',\n"
+        "    'type Empty = Rational where {self>0 and self<0} parametro x:Empty=0; mostrar x;',\n"
+        "    'parametro x=0; tensor y=1/x; mostrar y;',\n"
+        "    'type P = Rational where {self>=0} parametro x:P=1; tensor y:P=x-2; mostrar y;',\n"
+        '])\n'
+        'def test_unproved_refinement_or_division_rejected(source):\n'
+        '    with pytest.raises(ValueError):check_program(source)\n'
+        '\n'
+        '\n'
+        'def test_nonzero_divisor_requires_explicit_premise():\n'
+        "    result=verify_contract({'x':'self != 0'},'1/x','result*x == 1')\n"
+        "    assert result['obligations']==2\n"
+        "    with pytest.raises(ValueError):verify_contract({'x':'true'},'1/x','result*x == 1')\n"
+        '\n'
+        '\n'
+        'def test_static_vector_norm_and_denominator():\n'
+        "    result=check_program('type V = Tensor[Rational,3] where {norm(self)<=50} parametro v:V=[3,4,0]; mostrar v;')\n"
+        "    assert result['obligations']==1\n"
+        "    assert verify_contract({'x':'self.denom != 0'},'x','result.denom != 0')['obligations']==1\n"
+        '\n'
+        '\n'
+        'def test_native_refinement_parser_build_and_tamper(tmp_path):\n'
+        '    from omega_refine_check.compiler import native_metadata,build,audit\n'
+        '    from omega_selfhost.driver import run\n'
+        "    path=tmp_path/'source.omega';path.write_text(PROGRAM)\n"
+        '    assert native_metadata(path)==lower(PROGRAM)\n'
+        "    result=build(path,tmp_path/'model');assert result['refinement_obligations']==4\n"
+        "    assert run(tmp_path/'model')[0]['values']['y']=='1/4'\n"
+        "    assert audit(path,tmp_path/'model')['valid']\n"
+        "    path.write_text(PROGRAM.replace('1/2','1/3'))\n"
+        "    with pytest.raises(ValueError,match='Changed'):audit(path,tmp_path/'model')\n"
+        '\n'
+        '\n'
+        'def test_no_lean_injection_or_dynamic_refinement_language():\n'
+        "    with pytest.raises(ValueError):parse('by exact False.elim sorry')\n"
+        "    with pytest.raises(ValueError):check_program('type P = Rational where {self>=0} enquanto(1){mostrar x;}')\n"
+        '\n'
+        '\n'
+        'def test_refined_corpus_case_runs_against_lowered_independent_reference():\n'
+        '    from omega_platform.corpus import load,evaluate\n'
+        '    root=Path(__file__).resolve().parents[1]\n'
+        "    cases=load(root/'testes/corpus.json',root)\n"
+        "    refined=[case for case in cases if case.language=='refined']\n"
+        "    assert refined and all(evaluate(case,root).status=='passed' for case in refined)\n"
+    ),
+    ('testes/test_self_mutate.py',
+        'import copy\n'
+        'import json\n'
+        'from pathlib import Path\n'
+        'import pytest\n'
+        'from omega_self_mutate.rules import discover_rule,validate_rule\n'
+        'from omega_self_mutate.bootstrap import evolve\n'
+        'from omega_self_mutate.activation import activate,load_active,audit_generation,deactivate\n'
+        '\n'
+        '\n'
+        "@pytest.fixture(scope='module')\n"
+        'def generation(tmp_path_factory):\n'
+        "    root=tmp_path_factory.mktemp('mutation')/'generation'\n"
+        "    rule=discover_rule('(x*2)-x',iterations=128)\n"
+        '    result=evolve(rule,root)\n'
+        '    return root,result\n'
+        '\n'
+        '\n'
+        'def test_four_native_stages_full_equivalence_and_activation(generation,tmp_path):\n'
+        '    root,result=generation\n'
+        "    assert result['bootstrap']['fixed_point'] and len(result['bootstrap']['stages'])==4\n"
+        "    assert result['objective']['after']<result['objective']['before']\n"
+        "    assert 'domain_' in (root/'optimization.lean').read_text()\n"
+        '    selected=activate(root,selection_root=tmp_path)\n'
+        "    assert load_active(selection_root=tmp_path)==Path(selected['binary'])\n"
+        '    deactivate(selection_root=tmp_path)\n'
+        '    assert load_active(selection_root=tmp_path) is None\n'
+        '\n'
+        '\n'
+        "@pytest.mark.parametrize('lhs,rhs',[('x+1','x'),('x/x','x'),('x*0','x')])\n"
+        'def test_nonidentical_or_partial_rules_rejected(lhs,rhs):\n'
+        '    with pytest.raises(ValueError):validate_rule(lhs,rhs)\n'
+        '\n'
+        '\n'
+        'def test_forged_generation_cannot_authenticate_its_own_executable(generation,tmp_path):\n'
+        '    import shutil,hashlib\n'
+        "    source,_=generation;root=tmp_path/'forged';shutil.copytree(source,root)\n"
+        "    binary=root/'bootstrap/stage3';binary.write_bytes(b'forged executable')\n"
+        "    path=root/'generation.json';record=json.loads(path.read_text())\n"
+        "    record['files']['bootstrap/stage3']=hashlib.sha256(binary.read_bytes()).hexdigest()\n"
+        '    path.write_text(json.dumps(record))\n'
+        "    with pytest.raises(ValueError,match='Untrusted'):audit_generation(root)\n"
+        "    assert not (tmp_path/'active.json').exists()\n"
+        '\n'
+        '\n'
+        'def test_certificate_v2_is_not_a_data_only_validity_receipt(generation,tmp_path):\n'
+        '    from omega_platform.sandbox import trusted\n'
+        '    from omega_selfhost.driver import ROOT\n'
+        '    root,_=generation\n'
+        "    witness=root/'probe.c.opt.json'\n"
+        '    from omega_platform.budget import PROOF_BUDGET\n'
+        "    result=trusted([ROOT/'formal/tensor/.lake/build/bin/omega_tensor_kernel',witness],budget=PROOF_BUDGET,check=False)\n"
+        '    assert result.returncode!=0\n'
+        '\n'
+        '\n'
+        'def test_activation_does_not_read_fifos_or_symlinked_manifests(tmp_path):\n'
+        '    import os\n'
+        "    root=tmp_path/'fifo';root.mkdir();os.mkfifo(root/'generation.json')\n"
+        "    with pytest.raises(ValueError,match='regular'):audit_generation(root)\n"
+        "    other=tmp_path/'symlink';other.mkdir();(other/'generation.json').symlink_to(root/'generation.json')\n"
+        "    with pytest.raises(ValueError,match='regular'):audit_generation(other)\n"
     ),
     ('testes/test_selfhost.py',
         '"""End-to-end native bootstrap, exact tensors, formal admission and attacks."""\n'
@@ -57298,6 +60311,159 @@ SOURCES = (
         '  </clipPath>\n'
         ' </defs>\n'
         '</svg>\n'
+    ),
+    ('validation/path-c.json',
+        '{\n'
+        '  "date": "2026-10-28",\n'
+        '  "format": "omega-path-c-validation-1",\n'
+        '  "junit": {\n'
+        '    "errors": 0,\n'
+        '    "failures": 0,\n'
+        '    "skipped": 2,\n'
+        '    "tests": 905\n'
+        '  },\n'
+        '  "limitations": "Scoped rational/static contracts and controlled compiler templates; reference RTL is co-simulated, not formally verified silicon; no universal correctness, alignment, timing or minimality claim.",\n'
+        '  "mutation": {\n'
+        '    "compiler_sha256": "e93be1d8a6d7bfa1d84edd38df52b642a2c7218d77e03c007b6672655292d138",\n'
+        '    "default_activated": true,\n'
+        '    "fixed_point": true,\n'
+        '    "native_valid": true,\n'
+        '    "objective": {\n'
+        '      "after": 5,\n'
+        '      "before": 7,\n'
+        '      "metric": "IR nodes on the generated probe"\n'
+        '    },\n'
+        '    "proof_sha256": "42f2065247632308b062596cc102ba521e81f5dbeea8959674149145de3f98d8",\n'
+        '    "rule": {\n'
+        '      "id": "34c23237b666684dd8060e859c3780a5eea938590cc89f60816068806429bad8",\n'
+        '      "lhs": [\n'
+        '        "-",\n'
+        '        [\n'
+        '          "*",\n'
+        '          [\n'
+        '            "var",\n'
+        '            "x"\n'
+        '          ],\n'
+        '          [\n'
+        '            "const",\n'
+        '            "2"\n'
+        '          ]\n'
+        '        ],\n'
+        '        [\n'
+        '          "var",\n'
+        '          "x"\n'
+        '        ]\n'
+        '      ],\n'
+        '      "rhs": [\n'
+        '        "var",\n'
+        '        "x"\n'
+        '      ]\n'
+        '    },\n'
+        '    "stages": [\n'
+        '      {\n'
+        '        "binary_sha256": "e93be1d8a6d7bfa1d84edd38df52b642a2c7218d77e03c007b6672655292d138",\n'
+        '        "build_ns": 2224524165,\n'
+        '        "c_sha256": "6977ba594d6d1fc14b4666c17bc15570662a042976dddeeba6927b113ecdcce7",\n'
+        '        "stage": 0\n'
+        '      },\n'
+        '      {\n'
+        '        "binary_sha256": "e93be1d8a6d7bfa1d84edd38df52b642a2c7218d77e03c007b6672655292d138",\n'
+        '        "build_ns": 2609567307,\n'
+        '        "c_sha256": "6977ba594d6d1fc14b4666c17bc15570662a042976dddeeba6927b113ecdcce7",\n'
+        '        "stage": 1\n'
+        '      },\n'
+        '      {\n'
+        '        "binary_sha256": "e93be1d8a6d7bfa1d84edd38df52b642a2c7218d77e03c007b6672655292d138",\n'
+        '        "build_ns": 2436110930,\n'
+        '        "c_sha256": "6977ba594d6d1fc14b4666c17bc15570662a042976dddeeba6927b113ecdcce7",\n'
+        '        "stage": 2\n'
+        '      },\n'
+        '      {\n'
+        '        "binary_sha256": "e93be1d8a6d7bfa1d84edd38df52b642a2c7218d77e03c007b6672655292d138",\n'
+        '        "build_ns": 2335496956,\n'
+        '        "c_sha256": "6977ba594d6d1fc14b4666c17bc15570662a042976dddeeba6927b113ecdcce7",\n'
+        '        "stage": 3\n'
+        '      }\n'
+        '    ],\n'
+        '    "theorems": 21\n'
+        '  },\n'
+        '  "new_test_cases": 48,\n'
+        '  "rtl": {\n'
+        '    "alu_cases": 732,\n'
+        '    "gcd_cases": 6,\n'
+        '    "simulator": "Icarus Verilog 12.0",\n'
+        '    "widths": [\n'
+        '      8,\n'
+        '      16,\n'
+        '      32\n'
+        '    ]\n'
+        '  }\n'
+        '}\n'
+    ),
+    ('validation/path-c.md',
+        '# Validação do Caminho C\n'
+        '\n'
+        'Execução em 2026-10-28, Linux x86_64, Python 3.12.14, Lean 4.19.0,\n'
+        'CC Debian 14.2 e Icarus Verilog 12.0.\n'
+        '\n'
+        '```sh\n'
+        'LEAN_NUM_THREADS=4 bash scripts/test.sh -q --junitxml=artifacts/path-c-final-tests.xml\n'
+        '.venv/bin/python scripts/build-monolith.py --check\n'
+        '.venv/bin/python scripts/package.py\n'
+        '```\n'
+        '\n'
+        'A suíte completa terminou sem falhas ou erros. O JUnit registra\n'
+        '905 casos incluindo subtestes, 2 ignorados por ausência de CUDA,\n'
+        '0 falhas e 0 erros. O incremento adiciona 48 casos de teste.\n'
+        'Os builds dos projetos Lean e do kernel nativo também passaram. Os testes\n'
+        'anteriores de self-attention, Softmax, RMSNorm, inferência assinada e benchmark\n'
+        'de controle foram mantidos e executados.\n'
+        '\n'
+        '## Evidência dos novos fluxos\n'
+        '\n'
+        '- Refinamentos: parser nativo e independente concordam; `x*(1-x)` permanece\n'
+        '  em `[0,1]` sob `x∈[0,1]`; divisores sem prova e inicializadores incompatíveis\n'
+        '  são rejeitados. O corpus contém 29 programas: 25 positivos e quatro\n'
+        '  rejeições esperadas, sem falhas de infraestrutura.\n'
+        '- Síntese: MCTS encontra incremento racional e Lean verifica o contrato para\n'
+        '  todas as entradas racionais. Propostas isoladas são verificadas de novo no\n'
+        '  host. Exemplos finitos que não satisfazem a proposição universal são recusados.\n'
+        '- Automutação: a regra `(x*2)-x → x` reduziu o probe de sete para cinco nós de\n'
+        '  IR, estabilizou quatro estágios nativos e produziu 21 teoremas de valor,\n'
+        '  gradiente e domínio. A geração foi auditada por reconstrução independente,\n'
+        '  ativada como compilador padrão e usada em uma compilação/execução posterior.\n'
+        '  O SHA-256 e os registros dos estágios estão em `path-c.json`.\n'
+        '- Ações: transição de resfriamento com prova de Hoare, assinatura Ed25519,\n'
+        '  capability vinculada à ação e CAS durável. Adulterações, replay, autorização\n'
+        '  de outro sujeito e estados obsoletos foram recusados. Perda de confirmação\n'
+        '  bloqueia retries. Somente adaptadores locais de teste foram despachados.\n'
+        '- C freestanding: checkpoint `weights_only` afim/ReLU exportado, compilado e\n'
+        '  executado em toda uma grade de entrada; resultado igual à referência\n'
+        '  racional. Buffers reutilizados, ausência de chamadas a heap/GMP/Python e\n'
+        '  limites de entrada foram conferidos. Headers C passaram com `-Werror` e\n'
+        '  UBSan, incluindo overflow e handles expirados.\n'
+        '- Rastros: intermediários do binário nativo foram comparados à execução exata;\n'
+        '  limites selecionados receberam provas Lean. Replay detectou alterações.\n'
+        '  Bases não ortonormais e conceitos sem o predicado exigido foram rejeitados.\n'
+        '- RTL: 732 casos da ALU em larguras 8, 16 e 32 comparados com `Fraction`,\n'
+        '  incluindo erro exato de aproximação, sinais, overflow e divisão por zero.\n'
+        '  Seis transações exercitaram o GCD iterativo e seu handshake.\n'
+        '- Distribuição: wheel e sdist construídos; os cinco pacotes, os dois headers C\n'
+        '  e o RTL no arquivo de fontes foram conferidos. O monólito foi regenerado e\n'
+        '  verificado contra as fontes rastreadas.\n'
+        '\n'
+        '## Limites das conclusões\n'
+        '\n'
+        'As provas cobrem os contratos e domínios declarados. A redução de IR não é\n'
+        'um teorema de aceleração universal. A equivalência dos mapas concretos e o\n'
+        'ponto fixo de bootstrap não provam um compilador arbitrário ou a cadeia C\n'
+        'inteira. O RTL é referência simulada, sem prova formal RTL, temporização ou\n'
+        'chip fabricado. Progresso do escalonador assume carga finita e serviço bem\n'
+        'sucedido; segurança de ações depende do modelo de estado e do host.\n'
+        '\n'
+        'Consulte [o manifesto e as fronteiras](../docs/CAMINHO_C.md). O JUnit e os\n'
+        'binários ficam em `artifacts/`, ignorado pelo Git; os comandos reproduzem a\n'
+        'validação sem versionar executáveis.\n'
     ),
     ('validation/pending.schema.json',
         '{\n'

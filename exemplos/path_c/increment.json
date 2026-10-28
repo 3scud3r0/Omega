@@ -1,0 +1,9 @@
+{
+  "variables": {"x": "true"},
+  "ensures": "result == x+1",
+  "examples": [
+    {"inputs": {"x": "-2"}, "output": "-1"},
+    {"inputs": {"x": "0"}, "output": "1"},
+    {"inputs": {"x": "2"}, "output": "3"}
+  ]
+}

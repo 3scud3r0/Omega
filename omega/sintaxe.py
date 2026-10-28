@@ -70,7 +70,7 @@ class Token:
     coluna: int
 
 
-_RE_TOKEN = re.compile(r"(?P<ESPACO>\s+)|(?P<COMENTARIO>\#[^\n]*)|"
+_RE_TOKEN = re.compile(r"(?P<ESPACO>\s+)|(?P<COMENTARIO>\#[^\n]*|//[^\n]*)|"
                        r"(?P<NUMERO>\d+(?:\.\d+)?)|"
                        r"(?P<NOME>[^\W\d]\w*)|"
                        r"(?P<SIMBOLO>==|[+*/^=();,\[\]@-])|"

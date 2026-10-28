@@ -1,0 +1,5 @@
+// Refined inputs are universal variables under their declared contracts.
+type Probability = Rational where { self >= 0/1 and self <= 1/1 }
+parametro x: Probability = 1/2;
+tensor variance: Probability = x*(1-x);
+mostrar variance;
