@@ -125,8 +125,8 @@ def test_fx_static_trace_matches_exact_weights_and_rejects_ops():
     graph = trace(model, x)
     assert evaluate(graph, [1, 2]) == [1, 1]
     assert model.training  # Export does not mutate training/evaluation mode.
-    with pytest.raises(ValueError, match='1D'):
-        trace(model, x.reshape(1, 2))
+    with pytest.raises(ValueError, match='rank'):
+        trace(model, x.reshape(1, 1, 1, 2))
     class Bad(torch.nn.Module):
         def forward(self, x):
             return torch.sigmoid(x)

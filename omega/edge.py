@@ -5,7 +5,7 @@ potential overflowing product/partial sum rejects export. No OS/GMP is needed.
 """
 from fractions import Fraction
 from pathlib import Path
-from .certified_graph import intervals, certify_bounds, validate
+from .certified_graph import intervals, certify_bounds, validate, real_operations
 
 LIMIT = 2**63 - 1
 
@@ -14,6 +14,8 @@ def emit(graph, input_bounds, output_bounds, directory, *, input_scale=1):
     import math
     import json
     validate(graph)
+    if real_operations(graph):
+        raise ValueError('Freestanding static-scale backend accepts affine/ReLU graphs; use the GMP real runtime for transcendental graphs')
     values = intervals(graph, input_bounds)
     if type(input_scale) is not int or not 1 <= input_scale <= LIMIT:
         raise ValueError('A positive int64 input scale is required')

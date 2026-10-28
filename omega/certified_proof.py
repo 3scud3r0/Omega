@@ -33,7 +33,8 @@ def check(source, declarations):
                          cwd=root, budget=PROOF_BUDGET)
     output = result.stdout + result.stderr
     if not result.ok or 'warning:' in output:
-        raise ValueError('Lean rejected certificate: ' + output[-6000:])
+        diagnostics = output if len(output) <= 10000 else output[:4000] + '\n...\n' + output[-6000:]
+        raise ValueError('Lean rejected certificate: ' + diagnostics)
     reports = {}
     for name, body in re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output):
         reports[name] = {s.strip() for s in body.split(',') if s.strip()}

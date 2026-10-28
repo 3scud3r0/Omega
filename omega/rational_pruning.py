@@ -64,8 +64,10 @@ def certify_bounded_graph(graph, inputs, *, max_denominator=2**32, max_bits=128)
     interval certificates enclose the unpruned network. Correlated intervals may
     be inconclusive, in which case no decision is returned.
     """
-    from .certified_graph import validate, bound_source, _q
+    from .certified_graph import validate, bound_source, _q, real_operations
     validate(graph)
+    if real_operations(graph):
+        raise ValueError('Use real-graph certification with an explicit error contract for transcendental graphs')
     if len(inputs) != graph['inputs'] or len(graph['outputs']) < 2:
         raise ValueError('Static inputs and at least two outputs required')
     # Validate the public budgets even for graphs containing no affine nodes.

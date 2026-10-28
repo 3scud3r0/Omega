@@ -6,17 +6,21 @@ MAX_NODES = 4096
 
 
 def validate(graph):
-    if type(graph) is not dict or set(graph) != {'inputs', 'nodes', 'outputs'}:
+    fields = {'inputs', 'nodes', 'outputs'}
+    if type(graph) is not dict or not fields <= set(graph) <= fields | {'input_shape', 'output_shape', 'precision_bits'}:
         raise ValueError('Unknown graph schema')
     n = graph['inputs']
     if type(n) is not int or not 1 <= n <= 256 or type(graph['nodes']) is not list or len(graph['nodes']) > MAX_NODES:
         raise ValueError('Static graph budget exceeded')
     for i, node in enumerate(graph['nodes'], n):
-        if type(node) is not dict or node.get('op') not in ('affine', 'relu'):
+        if type(node) is not dict or node.get('op') not in ('affine', 'relu', 'mul', 'square', 'div', 'exp', 'rsqrt'):
             raise ValueError('Unsupported graph operation')
-        if node['op'] == 'relu':
+        if node['op'] in ('relu', 'square', 'exp', 'rsqrt'):
             if set(node) != {'op', 'input'} or type(node['input']) is not int or not 0 <= node['input'] < i:
-                raise ValueError('Invalid ReLU reference')
+                raise ValueError('Invalid unary reference')
+        elif node['op'] in ('mul', 'div'):
+            if set(node) != {'op', 'left', 'right'} or any(type(node[k]) is not int or not 0 <= node[k] < i for k in ('left', 'right')):
+                raise ValueError('Invalid binary references')
         else:
             if set(node) != {'op', 'terms', 'bias'} or type(node['terms']) is not list or len(node['terms']) > 256:
                 raise ValueError('Invalid affine node')
@@ -31,6 +35,13 @@ def validate(graph):
     if type(graph['outputs']) is not list or not 1 <= len(graph['outputs']) <= 256 or any(
             type(i) is not int or not 0 <= i < n + len(graph['nodes']) for i in graph['outputs']):
         raise ValueError('Invalid output references')
+    if 'precision_bits' in graph:
+        from .transcendental import precision
+        precision(graph['precision_bits'])
+    from math import prod
+    for key, count in [('input_shape', n), ('output_shape', len(graph['outputs']))]:
+        if key in graph and (type(graph[key]) is not list or not graph[key] or len(graph[key]) > 3 or any(type(d) is not int or d < 1 for d in graph[key]) or prod(graph[key]) != count):
+            raise ValueError('Static tensor shape mismatch')
     return graph
 
 
@@ -59,6 +70,10 @@ def bounds_contract(bounds, count):
 
 def evaluate(graph, inputs):
     validate(graph)
+    if real_operations(graph):
+        from .real_graph import execute
+        values = execute(graph, inputs)
+        return [values[i] for i in graph['outputs']]
     if len(inputs) != graph['inputs']:
         raise ValueError('Static input shape mismatch')
     values = [_q(x) for x in inputs]
@@ -72,6 +87,11 @@ def evaluate(graph, inputs):
 
 def intervals(graph, input_bounds, *, node_bounds=None):
     validate(graph)
+    if real_operations(graph):
+        if node_bounds is not None:
+            raise ValueError('Real graph intervals must be reconstructed')
+        from .real_graph import analyze
+        return analyze(graph, input_bounds)[0]
     values = bounds_contract(input_bounds, graph['inputs'])
     supplied = bounds_contract(node_bounds, len(graph['nodes'])) if node_bounds is not None else None
     for index, node in enumerate(graph['nodes']):
@@ -106,6 +126,8 @@ def expression(node, names):
 
 def bound_source(graph, input_bounds, output_bounds, *, node_bounds=None):
     """A universal box-domain theorem, composed from local interval proofs."""
+    if real_operations(graph):
+        raise ValueError('Use certify_bounds for real-semantics graphs')
     values = intervals(graph, input_bounds, node_bounds=node_bounds)
     outputs = bounds_contract(output_bounds, len(graph['outputs']))
     for ref, (lo, hi) in zip(graph['outputs'], outputs):
@@ -163,12 +185,19 @@ def bound_source(graph, input_bounds, output_bounds, *, node_bounds=None):
 
 
 def certify_bounds(graph, input_bounds, output_bounds):
+    if real_operations(graph):
+        from .real_graph import bounds_proof
+        source, names = bounds_proof(graph, input_bounds, output_bounds)
+        return source, check(source, names)
     source = bound_source(graph, input_bounds, output_bounds)
     return source, check(source, ['OmegaBounds.bounds'])
 
 
 def omega_source(graph, inputs):
     validate(graph)
+    if real_operations(graph):
+        from .real_graph import omega_program
+        return omega_program(graph, inputs)
     if len(inputs) != graph['inputs']:
         raise ValueError('Static input shape mismatch')
     def literal(q):
@@ -183,3 +212,7 @@ def omega_source(graph, inputs):
         lines.append(f'tensor x{i}={expr};')
     lines += [f'mostrar x{i};' for i in graph['outputs']]
     return '\n'.join(lines) + '\n'
+
+
+def real_operations(graph):
+    return any(n['op'] not in ('affine', 'relu') for n in graph['nodes'])

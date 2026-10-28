@@ -1,0 +1,661 @@
+{
+  "artifacts": {
+    "benchmark.lean": "11ab4a1e400938d68d856aeb9236da24826f340e98ea19420b5f454d0e3987b4",
+    "controller.omega": "b0dc41ad93444feef56e9fa3c84caf5f55af6320aa2d4855ee827dbe10ef033d",
+    "dataset.json": "71be0ec0651a6492c75da334c18215311052128b12b4f9b4731fbc525266dd8b",
+    "exact": "4df712fbb8e8f110c55bf4b3763ec0424c8d94810e8000f192140903bf734f5e",
+    "exact.c": "a660c3a13eb103c4cc3ff4ea5c40af64655d1fc767f3410a80c19a183e5d16d3",
+    "pruned": "70e1a7257671a2c95662a750b7637cadd74cd5ac3072d987a8e843ae48eb5197",
+    "pruned.c": "6aee52b12b5269ef83a5dce1b40e5975eef67d0a62baa9546d0679113a4432af"
+  },
+  "c_compiler": "cc (Debian 14.2.0-19) 14.2.0",
+  "c_flags": [
+    "-std=gnu11",
+    "-O2",
+    "-s",
+    "-lgmp"
+  ],
+  "changed_decisions": {
+    "fp32": 0,
+    "pruned": 0
+  },
+  "claim": "exact native observations match rational semantics; pruned and FP32 errors are measured and bounded for these cases; no nonlinear plant stability claim",
+  "common_input_max_error": {
+    "exact": "0",
+    "fp32": "13/1073741824",
+    "pruned": "9/939524096"
+  },
+  "controller_calls_per_measured_process": 160,
+  "format": "omega-control-benchmark-1",
+  "max_denominator": 65536,
+  "measurements": {
+    "exact": {
+      "maximum_run_mean_ns": 55188.8,
+      "median_controller_ns": 44479.15,
+      "process_peak_rss_kib": 84864,
+      "repetitions": 3,
+      "retained_bits": 3408,
+      "temporary_bits": 3408
+    },
+    "fp32": {
+      "maximum_run_mean_ns": 34410.4,
+      "median_controller_ns": 32968.86875,
+      "process_peak_rss_kib": 245060,
+      "repetitions": 3,
+      "retained_bits": null,
+      "temporary_bits": null
+    },
+    "pruned": {
+      "maximum_run_mean_ns": 93157.04375,
+      "median_controller_ns": 79645.79375,
+      "process_peak_rss_kib": 34688,
+      "repetitions": 3,
+      "retained_bits": 24,
+      "temporary_bits": 1689
+    }
+  },
+  "memory_scope": "peak RSS of each complete process, including Python/PyTorch runtime for FP32",
+  "plant": "linearized inverted pendulum; exact Euler dt=1/50, g/l=10",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.41",
+  "proof": {
+    "axioms": {
+      "OmegaControlBenchmark.decision_1": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_10": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_11": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_12": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_13": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_14": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_15": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_16": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_17": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_18": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_19": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_2": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_20": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_21": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_22": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_23": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_24": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_25": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_26": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_27": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_28": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_29": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_3": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_30": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_31": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_4": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_5": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_6": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_7": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_8": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.decision_9": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_0": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_1": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_10": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_11": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_12": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_13": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_14": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_15": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_16": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_17": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_18": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_19": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_2": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_20": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_21": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_22": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_23": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_24": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_25": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_26": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_27": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_28": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_29": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_3": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_30": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_31": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_4": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_5": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_6": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_7": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_8": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.errors_9": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_0": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_1": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_10": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_11": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_12": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_13": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_14": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_15": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_16": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_17": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_18": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_19": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_2": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_20": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_21": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_22": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_23": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_24": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_25": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_26": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_27": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_28": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_29": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_3": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_30": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_31": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_4": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_5": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_6": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_7": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_8": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.exact_9": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "OmegaControlBenchmark.relu_controller": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "checker": "Lean 4.19.0",
+    "source_sha256": "11ab4a1e400938d68d856aeb9236da24826f340e98ea19420b5f454d0e3987b4",
+    "theorems": [
+      "OmegaControlBenchmark.relu_controller",
+      "OmegaControlBenchmark.exact_0",
+      "OmegaControlBenchmark.errors_0",
+      "OmegaControlBenchmark.exact_1",
+      "OmegaControlBenchmark.errors_1",
+      "OmegaControlBenchmark.decision_1",
+      "OmegaControlBenchmark.exact_2",
+      "OmegaControlBenchmark.errors_2",
+      "OmegaControlBenchmark.decision_2",
+      "OmegaControlBenchmark.exact_3",
+      "OmegaControlBenchmark.errors_3",
+      "OmegaControlBenchmark.decision_3",
+      "OmegaControlBenchmark.exact_4",
+      "OmegaControlBenchmark.errors_4",
+      "OmegaControlBenchmark.decision_4",
+      "OmegaControlBenchmark.exact_5",
+      "OmegaControlBenchmark.errors_5",
+      "OmegaControlBenchmark.decision_5",
+      "OmegaControlBenchmark.exact_6",
+      "OmegaControlBenchmark.errors_6",
+      "OmegaControlBenchmark.decision_6",
+      "OmegaControlBenchmark.exact_7",
+      "OmegaControlBenchmark.errors_7",
+      "OmegaControlBenchmark.decision_7",
+      "OmegaControlBenchmark.exact_8",
+      "OmegaControlBenchmark.errors_8",
+      "OmegaControlBenchmark.decision_8",
+      "OmegaControlBenchmark.exact_9",
+      "OmegaControlBenchmark.errors_9",
+      "OmegaControlBenchmark.decision_9",
+      "OmegaControlBenchmark.exact_10",
+      "OmegaControlBenchmark.errors_10",
+      "OmegaControlBenchmark.decision_10",
+      "OmegaControlBenchmark.exact_11",
+      "OmegaControlBenchmark.errors_11",
+      "OmegaControlBenchmark.decision_11",
+      "OmegaControlBenchmark.exact_12",
+      "OmegaControlBenchmark.errors_12",
+      "OmegaControlBenchmark.decision_12",
+      "OmegaControlBenchmark.exact_13",
+      "OmegaControlBenchmark.errors_13",
+      "OmegaControlBenchmark.decision_13",
+      "OmegaControlBenchmark.exact_14",
+      "OmegaControlBenchmark.errors_14",
+      "OmegaControlBenchmark.decision_14",
+      "OmegaControlBenchmark.exact_15",
+      "OmegaControlBenchmark.errors_15",
+      "OmegaControlBenchmark.decision_15",
+      "OmegaControlBenchmark.exact_16",
+      "OmegaControlBenchmark.errors_16",
+      "OmegaControlBenchmark.decision_16",
+      "OmegaControlBenchmark.exact_17",
+      "OmegaControlBenchmark.errors_17",
+      "OmegaControlBenchmark.decision_17",
+      "OmegaControlBenchmark.exact_18",
+      "OmegaControlBenchmark.errors_18",
+      "OmegaControlBenchmark.decision_18",
+      "OmegaControlBenchmark.exact_19",
+      "OmegaControlBenchmark.errors_19",
+      "OmegaControlBenchmark.decision_19",
+      "OmegaControlBenchmark.exact_20",
+      "OmegaControlBenchmark.errors_20",
+      "OmegaControlBenchmark.decision_20",
+      "OmegaControlBenchmark.exact_21",
+      "OmegaControlBenchmark.errors_21",
+      "OmegaControlBenchmark.decision_21",
+      "OmegaControlBenchmark.exact_22",
+      "OmegaControlBenchmark.errors_22",
+      "OmegaControlBenchmark.decision_22",
+      "OmegaControlBenchmark.exact_23",
+      "OmegaControlBenchmark.errors_23",
+      "OmegaControlBenchmark.decision_23",
+      "OmegaControlBenchmark.exact_24",
+      "OmegaControlBenchmark.errors_24",
+      "OmegaControlBenchmark.decision_24",
+      "OmegaControlBenchmark.exact_25",
+      "OmegaControlBenchmark.errors_25",
+      "OmegaControlBenchmark.decision_25",
+      "OmegaControlBenchmark.exact_26",
+      "OmegaControlBenchmark.errors_26",
+      "OmegaControlBenchmark.decision_26",
+      "OmegaControlBenchmark.exact_27",
+      "OmegaControlBenchmark.errors_27",
+      "OmegaControlBenchmark.decision_27",
+      "OmegaControlBenchmark.exact_28",
+      "OmegaControlBenchmark.errors_28",
+      "OmegaControlBenchmark.decision_28",
+      "OmegaControlBenchmark.exact_29",
+      "OmegaControlBenchmark.errors_29",
+      "OmegaControlBenchmark.decision_29",
+      "OmegaControlBenchmark.exact_30",
+      "OmegaControlBenchmark.errors_30",
+      "OmegaControlBenchmark.decision_30",
+      "OmegaControlBenchmark.exact_31",
+      "OmegaControlBenchmark.errors_31",
+      "OmegaControlBenchmark.decision_31"
+    ]
+  },
+  "pruned_certified_decisions": 31,
+  "pruned_refused_decisions": 1,
+  "pruning_header_sha256": "a642c15b813f9628cb7b3be36eae2feca740b957ece9f402089190b93e4c2095",
+  "python": "3.12.14",
+  "rollout": {
+    "fp32": {
+      "max_angle_divergence": "137346755886183730863812975623312872040703389559928256331351386430889405912443926103041191849638867111333379829347826755892605649241538537127777496579473493965729869715431767405522960479670601710236287154704664865278993640231590471479339554363996670805326527067584081214988402628820165006168561253029179198559233658696980413242493331177564043697343671475287356064710916244382911934082347/255467559620444135892015707268715336456633761335738565312326047031963122159227400420474619583057369739435833196056639391228472062514379988574613990180458421800960726137738966594244828344878462359379629663301622271146343738255471409777773474361349652160911476080096773330221887389484033270769254400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "pruned": {
+      "max_angle_divergence": "592487027293722108022826038375557032779619483939572346090381875059985104365040631384038363250522921882239215926785404349265759259227792519943542667842922187029835827241163327816658987075224806870043557460292365063098130206590881980088797306958192711482060721300365100916614401703312366474198942346143222176301059786379415512298510788609742862803842295029332483137430654591998271529603343557366922134423568742048056814726085252354484322281748017602941077044838057793479171445441182920386441438092434861548305324613134883677592737972765337533418061586071494723701486935880823832175935713465654474689565179856647/232594866131296784229802565245155663801622779742858607084485199565462626990664457024166343592641398032512905675265276103038090658211508346767507604607995270844340861607707042856240733359496670502481381747772397210857064149579678583359401938063181502375733048350755296484093859550626514204320408372077617608831721078084079880650817964269377175694294565438123937219994286250920518578585127594306392068144522304867548755954574603911577224142032503657117418364645813449312525428088702709112746225667854145945600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "samples": 32,
+  "steps": 128,
+  "timing_scope": "input conversion and all common-bank plus rollout controller calls; dataset parsing, build and Lean checking excluded; pruning admission is audited offline, not included in execution timings",
+  "torch_version": "2.5.1+cpu",
+  "warmup_processes_per_backend": 1
+}
