@@ -276,6 +276,17 @@ def localRule (node : Json) (nodes : Array Json) : Except String (Option (String
     if ← literal args[1]! 0 then return some ("add_zero",args[0]!)
   if op = "-" then
     if ← literal args[1]! 0 then return some ("sub_zero",args[0]!)
+    let inner := nodes[args[0]!]!
+    if (← (← inner.getObjVal? "op").getStr?) = "+" then
+      let nested ← (← inner.getObjVal? "args").getArr?
+      if nested.size = 2 && (← nested[1]!.getNat?) = args[1]! then
+        return some ("add_cancel_right", ← nested[0]!.getNat?)
+  if op = "+" then
+    let inner := nodes[args[0]!]!
+    if (← (← inner.getObjVal? "op").getStr?) = "-" then
+      let nested ← (← inner.getObjVal? "args").getArr?
+      if nested.size = 2 && (← nested[1]!.getNat?) = args[1]! then
+        return some ("sub_cancel_right", ← nested[0]!.getNat?)
   if op = "*" then
     if ← literal args[0]! 1 then return some ("mul_one",args[1]!)
     if ← literal args[1]! 1 then return some ("mul_one",args[0]!)
@@ -471,8 +482,8 @@ def optimizationProof (cert : Json) : Except String String := do
     for j in [:oldCodes[i]!.cells.size] do
       let a := exprSource oldCodes[i]!.cells[j]!
       let b := exprSource newCodes[target]!.cells[j]!
-      result := result ++ s!"theorem value_{i}_{j} (s : Env) : eval s {a} = eval s {b} := by\n  simp only [eval] <;> split_ifs <;> simp_all <;> ring\n#print axioms value_{i}_{j}\n"
-      result := result ++ s!"theorem gradient_{i}_{j} (s : Env) (x : Nat) : eval s (derive {a} x) = eval s (derive {b} x) := by\n  simp only [derive, eval] <;> split_ifs <;> simp_all <;> ring\n#print axioms gradient_{i}_{j}\n"
+      result := result ++ s!"theorem value_{i}_{j} (s : Env) : eval s {a} = eval s {b} := by\n  simp only [eval] <;> (try split_ifs) <;> simp_all <;> ring\n#print axioms value_{i}_{j}\n"
+      result := result ++ s!"theorem gradient_{i}_{j} (s : Env) (x : Nat) : eval s (derive {a} x) = eval s (derive {b} x) := by\n  simp only [derive, eval] <;> (try split_ifs) <;> simp_all <;> ring\n#print axioms gradient_{i}_{j}\n"
   return result ++ "end OmegaOptimizationProof\n"
 
 def main (args : List String) : IO UInt32 := do

@@ -26,12 +26,13 @@ def command(argv, *, cwd=None, timeout=180):
     return trusted(argv,cwd=cwd,budget=replace(BUILD_BUDGET,wall_seconds=timeout),check=True).stdout
 
 
-def cc(source, output, optimization='-O2'):
+def cc(source, output, optimization='-O2', *, static=False):
     if optimization not in ('-O0','-O1','-O2','-O3','-Os'):raise ValueError('Unsupported optimization level')
     compiler = shutil.which(os.environ.get('CC','cc'))
     if not compiler:
         raise IsolationUnavailable('A C compiler and GMP development headers are required')
-    c_tool([compiler,'-std=gnu11',optimization,'-s','-Wall','-Wextra',
+    if type(static) is not bool:raise ValueError('Static linking must be boolean')
+    c_tool([compiler,'-std=gnu11',optimization,*(['-static'] if static else []),'-s','-Wall','-Wextra',
              '-Wno-unused-function','-Wno-unused-variable','-Wno-misleading-indentation',
              '-I',PACKAGE,Path(source).resolve(),'-lgmp','-o',Path(output).resolve()],
             inputs=[source,PACKAGE],output_directory=Path(output).resolve().parent,
@@ -133,7 +134,7 @@ def compile_text(source):
             raise ErroOmega(str(exc)) from exc
 
 
-def build(source, destination, optimize=False, *, optimization='-O2'):
+def build(source, destination, optimize=False, *, optimization='-O2', static=False):
     destination=Path(destination).resolve()
     outputs=[destination,destination.with_suffix('.c'),destination.with_suffix('.build.json')]
     if optimize:outputs.extend([destination.with_suffix('.opt.json'),destination.with_suffix('.opt.lean')])
@@ -147,7 +148,7 @@ def build(source, destination, optimize=False, *, optimization='-O2'):
         if optimize:argv.append('--optimize')
         isolated_run(argv,readonly=[source],writable=[tmp],budget=COMPILER_BUDGET,check=True)
         inferred=source_types(source)
-        cc(src,exe,optimization=optimization)
+        cc(src,exe,optimization=optimization,static=static)
         optimization_certificate=None
         if optimize:
             optimization_certificate=json.loads(Path(str(src)+'.opt.json').read_text())
@@ -159,7 +160,7 @@ def build(source, destination, optimize=False, *, optimization='-O2'):
             destination.with_suffix('.opt.json').write_text(json.dumps(optimization_certificate,indent=2)+'\n')
             os.replace(Path(tmp)/'optimization.lean',destination.with_suffix('.opt.lean'))
     provenance={'format':'omega-build-manifest-1','source_sha256':digest(source),
-                'native_c_flags':['-std=gnu11',optimization,'-s','-lgmp'],
+                'native_c_flags':['-std=gnu11',optimization,*(['-static'] if static else []),'-s','-lgmp'],
                 'inferred_types':inferred.to_dict() if inferred else None,
                 'compiler_inputs':compiler_inputs(ROOT),
                 'compiler_sha256':digest(BUILD/'omegac-stage2'),
