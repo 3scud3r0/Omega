@@ -42,6 +42,15 @@ Use destinos novos: os comandos preservam resultados existentes. O executável
 O bootstrap Python é uma semente auditável do dialeto procedural, não uma
 primitiva oculta chamada pelo compilador auto-hospedado.
 
+## Fluxos certificados adicionais
+
+`@omega.certify` exporta grafos PyTorch FX estáticos de operações afins/ReLU
+para Ômega/C/GMP com provas Lean de limites e certificados de inferência
+assinados. Também estão disponíveis poda racional com margem certificada,
+backend racional com escalas fixas freestanding, ações de recursos verificadas, destilação
+finita e experimentos de superotimização com recompilação auto-hospedada.
+Consulte [APIs, exemplos e domínios das garantias](docs/FLUXOS_CERTIFICADOS.md).
+
 Os três passos e sua base de confiança estão descritos em
 [estado dos três passos](docs/ESTADO_DOS_TRES_PASSOS.md).
 Veja [linguagem procedural e bootstrap](docs/AUTO_HOSPEDAGEM.md),
