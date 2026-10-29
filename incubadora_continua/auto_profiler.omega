@@ -1,0 +1,4 @@
+modulo auto_profiler;
+
+exportar execute;
+funcao execute(r){var groups=obj();var i=0;enquanto(i<len(r["samples"])){var row=r["samples"][i];var name=row["pass"];se(row["nanoseconds"]<0||qden(row["nanoseconds"])!=1){fail("Profiler requires monotonic integer samples");}se(!has(groups,name)){put(groups,name,[0,0]);}var g=groups[name];put(g,0,g[0]+row["nanoseconds"]);put(g,1,g[1]+1);i=i+1;}var names=keys(groups);var out=[];i=0;enquanto(i<len(names)){var g=groups[names[i]];push(out,[names[i],g[0],g[0]/g[1],g[1]]);i=i+1;}var j=1;enquanto(j<len(out)){var k=j;enquanto(k>0&&out[k][1]>out[k-1][1]){var t=out[k];put(out,k,out[k-1]);put(out,k-1,t);k=k-1;}j=j+1;}retornar out;}

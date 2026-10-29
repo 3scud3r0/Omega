@@ -1,0 +1,7 @@
+modulo barramento_sintonico;
+
+exportar create, send, receive, execute;
+funcao create(capacity){se(capacity<1||capacity>4096||qden(capacity)!=1){fail("Ring capacity");}var b=obj();put(b,"capacity",capacity);put(b,"slots",[]);put(b,"read",0);put(b,"write",0);retornar b;}
+funcao send(b,handle){se(b["write"]-b["read"]>=b["capacity"]){fail("Ring full");}var index=b["write"]%b["capacity"];se(index==len(b["slots"])){push(b["slots"],[b["write"],handle]);}senao{put(b["slots"],index,[b["write"],handle]);}put(b,"write",b["write"]+1);retornar 0;}
+funcao receive(b){se(b["read"]==b["write"]){fail("Ring empty");}var row=b["slots"][b["read"]%b["capacity"]];se(row[0]!=b["read"]){fail("Ring generation mismatch");}put(b,"read",b["read"]+1);retornar row[1];}
+funcao execute(r){var b=create(r["capacity"]);var out=[];var i=0;enquanto(i<len(r["handles"])){send(b,r["handles"][i]);push(out,receive(b));i=i+1;}retornar out;}

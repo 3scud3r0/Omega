@@ -1,0 +1,4 @@
+modulo engenheiro_sintese;
+importar "../synthesis.omega" como syn;
+exportar execute;
+funcao execute(r){var state=syn::search(r["spec"],r["iterations"],r["max_nodes"],r["capacity"],r["seed"]);var out=obj();put(out,"ast",state["best"]);put(out,"loss",state["best_loss"]);put(out,"source",syn::best_source(state));put(out,"formal_admission",0);retornar out;}

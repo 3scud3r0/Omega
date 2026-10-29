@@ -1,0 +1,25 @@
+modulo linalg_exact;
+importar "../string.omega" como s;
+importar "../math.omega" como m;
+exportar matrix, identity, transpose, multiply, norm, inverse, lu, svd, execute;
+funcao matrix(raw){se(!islist(raw)||len(raw)<1||len(raw)>16||!islist(raw[0])||len(raw[0])<1||len(raw[0])>16){fail("Static matrix dimensions 1..16");}var out=[];var i=0;enquanto(i<len(raw)){se(len(raw[i])!=len(raw[0])){fail("Ragged matrix");}var row=[];var j=0;enquanto(j<len(raw[i])){push(row,s::rational(text(raw[i][j])));j=j+1;}push(out,row);i=i+1;}retornar out;}
+funcao identity(n){var a=[];var i=0;enquanto(i<n){var row=[];var j=0;enquanto(j<n){push(row,i==j);j=j+1;}push(a,row);i=i+1;}retornar a;}
+funcao transpose(a){var out=[];var j=0;enquanto(j<len(a[0])){var row=[];var i=0;enquanto(i<len(a)){push(row,a[i][j]);i=i+1;}push(out,row);j=j+1;}retornar out;}
+funcao multiply(a,b){se(len(a[0])!=len(b)){fail("Matrix product shape mismatch");}var out=[];var i=0;enquanto(i<len(a)){var row=[];var j=0;enquanto(j<len(b[0])){var v=0;var k=0;enquanto(k<len(b)){v=v+a[i][k]*b[k][j];k=k+1;}se(qbits(v)>16384){fail("Matrix arithmetic budget");}push(row,v);j=j+1;}push(out,row);i=i+1;}retornar out;}
+funcao norm(a){var maximum=0;var i=0;enquanto(i<len(a)){var sum=0;var j=0;enquanto(j<len(a[i])){sum=sum+m::abs(a[i][j]);j=j+1;}maximum=m::max(maximum,sum);i=i+1;}retornar maximum;}
+funcao clone(a){var out=[];var i=0;enquanto(i<len(a)){push(out,slice(a[i],0,len(a[i])));i=i+1;}retornar out;}
+funcao lu(a){var n=len(a);se(n!=len(a[0])){fail("Square LU matrix required");}var u=clone(a);var l=identity(n);var p=identity(n);var k=0;var swaps=0;
+ enquanto(k<n){var pivot=k;var i=k+1;enquanto(i<n){se(m::abs(u[i][k])>m::abs(u[pivot][k])){pivot=i;}i=i+1;}se(u[pivot][k]==0){fail("Singular matrix");}se(pivot!=k){var t=u[k];put(u,k,u[pivot]);put(u,pivot,t);t=p[k];put(p,k,p[pivot]);put(p,pivot,t);var j=0;enquanto(j<k){t=l[k][j];put(l[k],j,l[pivot][j]);put(l[pivot],j,t);j=j+1;}swaps=swaps+1;}
+ i=k+1;enquanto(i<n){var f=u[i][k]/u[k][k];put(l[i],k,f);var j=k;enquanto(j<n){put(u[i],j,u[i][j]-f*u[k][j]);j=j+1;}i=i+1;}k=k+1;}
+ var out=obj();put(out,"L",l);put(out,"U",u);put(out,"P",p);put(out,"swaps",swaps);retornar out;}
+funcao inverse(a){var n=len(a);se(n!=len(a[0])){fail("Square inverse matrix required");}var b=clone(a);var inv=identity(n);var k=0;enquanto(k<n){var pivot=k;enquanto(pivot<n&&b[pivot][k]==0){pivot=pivot+1;}se(pivot==n){fail("Singular matrix");}var t=b[k];put(b,k,b[pivot]);put(b,pivot,t);t=inv[k];put(inv,k,inv[pivot]);put(inv,pivot,t);var d=b[k][k];var j=0;enquanto(j<n){put(b[k],j,b[k][j]/d);put(inv[k],j,inv[k][j]/d);j=j+1;}var i=0;enquanto(i<n){se(i!=k){var f=b[i][k];j=0;enquanto(j<n){put(b[i],j,b[i][j]-f*b[k][j]);put(inv[i],j,inv[i][j]-f*inv[k][j]);j=j+1;}}i=i+1;}k=k+1;}retornar inv;}
+funcao svd(a,bits){
+ // A generic exact rational SVD does not exist. This bounded 2-column routine
+ // returns rational singular-value enclosures, not invented rational roots.
+ var gram=multiply(transpose(a),a);se(len(gram)!=2){fail("Certified SVD adapter currently requires two columns");}
+ var tr=gram[0][0]+gram[1][1];var delta=(gram[0][0]-gram[1][1])*(gram[0][0]-gram[1][1])+4*gram[0][1]*gram[0][1];var root=m::sqrt_interval(delta,bits);
+ var low=[m::max(0,(tr-root[1])/2),m::max(0,(tr-root[0])/2)];var high=[(tr+root[0])/2,(tr+root[1])/2];
+ var lo1=m::sqrt_interval(low[0],bits);var lo2=m::sqrt_interval(low[1],bits);var hi1=m::sqrt_interval(high[0],bits);var hi2=m::sqrt_interval(high[1],bits);
+ var out=obj();put(out,"gram",gram);put(out,"singular_values",[[hi1[0],hi2[1]],[lo1[0],lo2[1]]]);put(out,"kind","two-column-singular-value-enclosures");retornar out;
+}
+funcao execute(r){var a=matrix(r["matrix"]);se(r["operation"]=="inverse"){retornar inverse(a);}se(r["operation"]=="lu"){retornar lu(a);}se(r["operation"]=="svd"){retornar svd(a,r["bits"]);}se(r["operation"]=="multiply"){retornar multiply(a,matrix(r["right"]));}fail("Unknown linear algebra operation");retornar [];}

@@ -1,0 +1,4 @@
+modulo symbolic_debugger;
+importar "../../std/ast.omega" como a;
+exportar execute;
+funcao execute(r){var checked=a::evaluate(r["ast"],r["inputs"]);var out=obj();put(out,"values",checked["values"]);put(out,"result",checked["value"]);put(out,"error",checked["error"]);put(out,"proof_source_sha256",r["proof_source_sha256"]);put(out,"scope","exact rational node trace; source digest must be pinned by the proof supervisor");retornar out;}

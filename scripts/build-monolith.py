@@ -12,7 +12,7 @@ import subprocess
 
 ROOT=Path(__file__).resolve().parents[1]
 OUTPUT=ROOT/'omega/omega_3_monolith.py'
-FOLDERS={'std','runtime','tools','omega_native','validation','omega_agent','omega_coder','omega_memory','omega_learning','omega_evolution','omega_tools','omega_security','omega_bench','omega','omega_open','omega_selfhost','omega_platform','omega_nextorch','nextorch',
+FOLDERS={'omega_live','omega_ingest','civilizacao_agentes','incubadora_continua','sociedade_hierarquica','metamorfose_cognitiva','fabrica_descobertas','imunologia_sistemica','infraestrutura_soberana','std','runtime','tools','omega_native','validation','omega_agent','omega_coder','omega_memory','omega_learning','omega_evolution','omega_tools','omega_security','omega_bench','omega','omega_open','omega_selfhost','omega_platform','omega_nextorch','nextorch',
          'omega_refine_check','omega_synth_mcts','omega_self_mutate','omega_agent_sandbox','omega_cognition','hardware',
          'omega_gpu_mcts','omega_abstract_domain','omega_autotelic','omega_self_evolve_v2','omega_runtime_verified',
          'formal','scripts','requirements','roadmap','docs','testes','exemplos','.github'}

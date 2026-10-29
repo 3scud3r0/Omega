@@ -1,0 +1,8 @@
+modulo mercado_computacional;
+importar "../std/string.omega" como s;
+
+exportar execute;
+funcao execute(r){var bids=r["bids"];var reserve=s::rational(r["reserve"]);se(reserve<0||len(bids)>256){fail("Auction budget");}var winner="";var price=reserve;var seen=obj();var i=0;
+ enquanto(i<len(bids)){var b=bids[i];se(has(seen,b["agent"])){fail("Duplicate bidder");}put(seen,b["agent"],1);var offer=s::rational(b["offer"]);var escrow=s::rational(b["escrow"]);se(offer<0||escrow<offer){fail("Unfunded exact bid");}
+ se(offer>=reserve&&(winner==""||offer>price||(offer==price&&b["agent"]<winner))){winner=b["agent"];price=offer;}i=i+1;}
+ var out=obj();put(out,"winner",winner);put(out,"price",price);put(out,"resource",r["resource"]);put(out,"settled",0);retornar out;}

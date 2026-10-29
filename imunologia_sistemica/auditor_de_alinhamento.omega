@@ -1,0 +1,5 @@
+modulo auditor_de_alinhamento;
+importar "../std/string.omega" como s;
+
+exportar execute;
+funcao execute(r){var policy=r["policy"];var plan=r["plan"];se(plan["goal_hash"]!=policy["goal_hash"]||plan["constitution"]!=policy["constitution"]){fail("Plan departed from the pinned objective");}var cost=s::rational(plan["cost"]);se(cost<0||cost>s::rational(policy["budget"])){fail("Plan resource budget violated");}var i=0;enquanto(i<len(plan["actions"])){se(!contains(policy["allowed_actions"],plan["actions"][i])){fail("Plan contains an unmodelled action");}i=i+1;}retornar 1;}

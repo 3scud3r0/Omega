@@ -1,0 +1,11 @@
+modulo contract_synthesizer;
+importar "../std/string.omega" como s;
+importar "../std/ast.omega" como a;
+importar "../std/math.omega" como m;
+exportar analyze, execute;
+funcao analyze(nodes,raw){se(!a::validate(nodes,len(raw))){fail("Invalid contract AST");}var inputs=[];var i=0;enquanto(i<len(raw)){var lo=s::rational(raw[i][0]);var hi=s::rational(raw[i][1]);se(lo>hi){fail("Inverted input bounds");}push(inputs,[lo,hi]);i=i+1;}var boxes=[];var nonzero=[];i=0;
+ enquanto(i<len(nodes)){var n=nodes[i];var op=n[0];var box=[];se(op==0){var q=s::rational(n[3]);box=[q,q];}senao{se(op==1){box=inputs[n[3]];}senao{var x=boxes[n[1]];se(op==6){box=[-x[1],-x[0]];}senao{se(op==7){box=[m::max(0,x[0]),m::max(0,x[1])];}senao{var y=boxes[n[2]];se(op==2){box=[x[0]+y[0],x[1]+y[1]];}senao{se(op==3){box=[x[0]-y[1],x[1]-y[0]];}senao{se(op==5){se(y[0]<=0&&y[1]>=0){fail("Cannot establish nonzero denominator over the input box");}push(nonzero,n[2]);y=[1/y[1],1/y[0]];}var ps=[x[0]*y[0],x[0]*y[1],x[1]*y[0],x[1]*y[1]];var lo=ps[0];var hi=lo;var j=1;enquanto(j<4){lo=m::min(lo,ps[j]);hi=m::max(hi,ps[j]);j=j+1;}box=[lo,hi];}}}}}}
+ push(boxes,box);i=i+1;}
+ var last=boxes[len(boxes)-1];var out=obj();put(out,"node_bounds",boxes);put(out,"output",last);put(out,"nonzero_denominators",nonzero);put(out,"refinement","Rational where { self >= ("+s::format_q(last[0])+") and self <= ("+s::format_q(last[1])+") }");put(out,"formal_admission",0);retornar out;
+}
+funcao execute(r){retornar analyze(r["ast"],r["input_bounds"]);}

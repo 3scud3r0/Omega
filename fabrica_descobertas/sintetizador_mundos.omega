@@ -1,0 +1,5 @@
+modulo sintetizador_mundos;
+importar "../std/string.omega" como s;
+
+exportar execute;
+funcao execute(r){var kind=r["model"];var x=s::rational(r["state"][0]);var v=s::rational(r["state"][1]);var h=s::rational(r["step"]);var count=r["steps"];se(h<=0||count<1||count>4096||qden(count)!=1){fail("World simulation budget");}var trajectory=[];var i=0;enquanto(i<count){var a=0;se(kind=="harmonic"){a=-x;}senao{se(kind=="freefall"){a=-981/100;}senao{se(kind!="inertial"){fail("Unknown exact world model");}}}v=v+h*a;x=x+h*v;push(trajectory,[x,v]);i=i+1;}retornar trajectory;}

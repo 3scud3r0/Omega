@@ -1,0 +1,12 @@
+modulo protocolo_consenso;
+importar "../std/string.omega" como s;
+
+exportar tally, execute;
+funcao tally(validators,votes,height,view,phase,value){
+ var n=len(validators);se(n<1||n>128){fail("Validator budget");}var f=qfloor((n-1)/3);var seen=obj();var count=0;var i=0;
+ enquanto(i<len(votes)){var vote=votes[i];var sender=vote["sender"];se(!has(validators,sender)||has(seen,sender)){fail("Unknown or duplicate validator");}put(seen,sender,1);
+ var body=vote["body"];se(body["height"]!=height||body["view"]!=view||body["phase"]!=phase||body["value"]!=value){fail("Vote scope mismatch");}
+ se(!ed25519_verify(validators[sender],s::canonical(body),vote["signature"])){fail("Invalid consensus signature");}count=count+1;i=i+1;}
+ var out=obj();put(out,"fault_bound",f);put(out,"quorum",n-f);put(out,"votes",count);put(out,"accepted",count>=n-f);put(out,"value",value);retornar out;
+}
+funcao execute(r){retornar tally(r["validators"],r["votes"],r["height"],r["view"],r["phase"],r["value"]);}

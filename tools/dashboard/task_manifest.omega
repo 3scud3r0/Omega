@@ -1,0 +1,10 @@
+modulo task_manifest;
+exportar validate, ready, execute;
+funcao validate(tasks){
+ se(!islist(tasks)||len(tasks)>256){fail("DAG task budget");}var names=obj();var colors=[];var order=[];var i=0;
+ enquanto(i<len(tasks)){var t=tasks[i];se(!ident(t["id"])||has(names,t["id"])||!islist(t["dependencies"])||!isstr(t["requires"])||!isstr(t["ensures"])){fail("Task schema or duplicate identity");}put(names,t["id"],i);push(colors,0);i=i+1;}
+ var changed=1;enquanto(changed){changed=0;i=0;enquanto(i<len(tasks)){se(colors[i]==0){var ok=1;var deps=tasks[i]["dependencies"];var j=0;enquanto(j<len(deps)){se(!has(names,deps[j])){fail("Missing dependency");}se(!colors[names[deps[j]]]){ok=0;}j=j+1;}se(ok){put(colors,i,1);push(order,tasks[i]["id"]);changed=1;}}i=i+1;}}
+ se(len(order)!=len(tasks)){fail("Task graph contains a cycle");}retornar order;
+}
+funcao ready(tasks,completed){validate(tasks);var out=[];var i=0;enquanto(i<len(tasks)){var t=tasks[i];se(!contains(completed,t["id"])){var deps=t["dependencies"];var ok=1;var j=0;enquanto(j<len(deps)){se(!contains(completed,deps[j])){ok=0;}j=j+1;}se(ok){push(out,t["id"]);}}i=i+1;}retornar out;}
+funcao execute(r){retornar ready(r["tasks"],r["completed"]);}

@@ -1,0 +1,14 @@
+modulo c_ast_lifter;
+importar "../std/ast.omega" como a;
+importar "../std/string.omega" como s;
+exportar execute;
+funcao execute(r){var names=r["parameters"];var ast=r["ast"];var mode=r["semantics"];se(!a::validate(ast,len(names))||len(names)>16||!ident(r["name"])){fail("C lift signature/AST budget");}var helper="";
+ se(mode=="c-int32"){helper="funcao omega_cast(x){se(x<(-2147483648)||x>2147483647||qden(x)!=1){fail(\"C signed overflow or noninteger input\");}retornar x;}\n";}
+ senao{se(mode=="c-uint32"){helper="funcao omega_cast(x){se(qden(x)!=1){fail(\"C integer required\");}retornar x-4294967296*qfloor(x/4294967296);}\n";}
+ senao{se(mode=="rational-real"){helper="funcao omega_cast(x){retornar x;}\n";}senao{fail("C lift requires explicit int32/uint32 or rational-real semantics");}}}
+ var source=helper+"funcao "+r["name"]+"("+join(names,",")+"){\n";var values=[];var i=0;enquanto(i<len(names)){se(!ident(names[i])){fail("Invalid C parameter");}source=source+names[i]+"=omega_cast("+names[i]+");\n";i=i+1;}i=0;
+ enquanto(i<len(ast)){var n=ast[i];var op=n[0];var expression="";se(op==0){expression="("+s::format_q(s::rational(n[3]))+")";}senao{se(op==1){expression=names[n[3]];}senao{se(op>=2&&op<=5){var ops=["+","-","*","/"];expression=values[n[1]]+ops[op-2]+values[n[2]];se(op==5&&mode!="rational-real"){source=source+"se("+values[n[2]]+"==0){fail(\"C division by zero\");}\n";se(mode=="c-int32"){source=source+"se("+values[n[1]]+"==(-2147483648)&&"+values[n[2]]+"==(-1)){fail(\"C division overflow\");}\n";}expression="omega_trunc("+expression+")";}}senao{se(op==6){expression="-"+values[n[1]];}senao{fail("C ReLU must be lowered explicitly");}}}}
+ var name="v"+text(i);source=source+"var "+name+"=omega_cast("+expression+");\n";push(values,name);i=i+1;}
+ source="funcao omega_trunc(x){se(x<0){retornar -qfloor(-x);}retornar qfloor(x);}\n"+source+"retornar "+values[len(values)-1]+";\n}\n";
+ var out=obj();put(out,"source",source);put(out,"semantics",mode);put(out,"ast",ast);put(out,"parameters",names);put(out,"numerical_model_changed",mode=="rational-real");retornar out;
+}

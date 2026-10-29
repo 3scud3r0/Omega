@@ -1,0 +1,5 @@
+modulo detector_parasitas;
+importar "../std/string.omega" como s;
+
+exportar execute;
+funcao execute(r){var hashes=obj();var accepted=[];var rejected=[];var i=0;enquanto(i<len(r["agents"])){var a=r["agents"][i];var digest=sha256(s::canonical(a["candidate"]));var useful=a["heldout_gain"]>0&&a["completed_tasks"]>0&&a["verifier_violations"]==0&&!has(hashes,digest);se(useful){push(accepted,a["id"]);put(hashes,digest,1);}senao{push(rejected,a["id"]);}i=i+1;}var out=obj();put(out,"eligible",accepted);put(out,"quarantined",rejected);put(out,"scope","Declared utility metrics; mathematical tautologies are not automatically malicious");retornar out;}

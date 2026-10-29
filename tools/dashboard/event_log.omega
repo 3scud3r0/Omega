@@ -1,0 +1,10 @@
+modulo event_log;
+importar "../../banco_de_dados.omega" como db;
+importar "../../std/string.omega" como s;
+exportar append, execute;
+funcao append(root,path,head,event){
+ se(!isstr(event["kind"])||len(event["kind"])==0||!isstr(event["actor"])){fail("Auditable event identity required");}
+ var payload=obj();put(payload,"time_unix",unix_time());put(payload,"monotonic_ns",monotonic_ns());put(payload,"event",event);
+ retornar db::append_event(root,path,head,sha256(s::canonical(payload)),s::canonical(payload),"audit-event");
+}
+funcao execute(r){se(r["operation"]=="audit"){retornar db::audit(r["root"],r["path"],r["head"]);}retornar append(r["root"],r["path"],r["head"],r["event"]);}

@@ -79,6 +79,8 @@ def publish_generation(generation,*,repo=None,commit=False,replace_source=False,
 def evolve_from_receipt(lhs,receipt,proof_directory,output,*,public_key,install=False,commit=False,replace_source=False,restart_runtime=None,expected_source_sha256=None):
     if commit and not install:raise ValueError('A source commit requires installation')
     if replace_source and not install:raise ValueError('Source replacement requires installation')
+    from omega_live.context import checkpoint,emit
+    checkpoint('mutation.proof-admission')
     admitted=verify_receipt(receipt,proof_directory,public_key=public_key)
     rule=validate_rule(lhs,admitted['statement']['ast'])
     from omega_selfhost.driver import ROOT,PACKAGE
@@ -101,9 +103,12 @@ def evolve_from_receipt(lhs,receipt,proof_directory,output,*,public_key,install=
                 source.write_bytes(base)
         adopted=False
         try:
+            checkpoint('mutation.four-stage-bootstrap',{'rule_id':rule['id']})
             generation=evolve(rule,output)
+            emit('mutation.bootstrap-stable',{'rule_id':rule['id'],'fixed_point':generation['bootstrap']['fixed_point']})
             root=Path(output);(root/'tier2-receipt.json').write_bytes(encode(receipt))
             if install:
+                checkpoint('mutation.install',{'rule_id':rule['id'],'commit':commit,'replace_source':replace_source})
                 generation['runtime_epoch']=publish_generation(root,commit=commit,replace_source=replace_source,restart_runtime=restart_runtime,
                                                                _canonical_change=base if previous!=base else None)
                 adopted=replace_source

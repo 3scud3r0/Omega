@@ -7,8 +7,10 @@ from omega_platform.budget import COMPILER_BUDGET
 
 
 def build(entry='tools/native_suite.omega',destination=None):
-    if entry not in ('tools/native_suite.omega','tools/repl.omega'):raise ValueError('Known native application entry required')
+    if entry not in ('tools/native_suite.omega','tools/repl.omega','tools/society_suite.omega'):raise ValueError('Known native application entry required')
     source_root=ROOT if (ROOT/'std/math.omega').is_file() else Path(__file__).parent/'_sources'
+    from omega_live.context import checkpoint,emit
+    checkpoint('native.link',{'entry':entry})
     program=link(entry,source_root,dynamic=True)
     fingerprint=hashlib.sha256(program.source.encode()+b''.join((ROOT/name).read_bytes() for name in ('omega_selfhost/native_std.h','omega_selfhost/runtime.h','omega_selfhost/compiler.omega','omega_selfhost/driver.py','omega_platform/manifest.py'))).hexdigest()[:24]
     directory=ROOT/'build/native-stdlib';directory.mkdir(parents=True,exist_ok=True)
@@ -25,6 +27,7 @@ def build(entry='tools/native_suite.omega',destination=None):
                 c.replace(target.with_suffix('.c'))
                 target.with_suffix('.modules.json').write_bytes(json.dumps(program.manifest(),ensure_ascii=False,sort_keys=True,separators=(',',':')).encode())
                 binary.replace(target)
+    emit('native.binary.ready',{'entry':entry,'source_sha256':hashlib.sha256(program.source.encode()).hexdigest(),'binary_sha256':hashlib.sha256(target.read_bytes()).hexdigest()})
     return target
 
 

@@ -1,0 +1,5 @@
+modulo gerador_firmware_baremetal;
+importar "../std/string.omega" como s;
+
+exportar execute;
+funcao execute(r){var weights=r["weights"];se(len(weights)<1||len(weights)>32||r["max_input"]<0||qden(r["max_input"])!=1){fail("Static firmware dimension/input range");}var source="#include <stdint.h>\n#include <stddef.h>\nint omega_controller(const int32_t *x, int64_t *out) {\n int64_t y=0;\n";var bound=0;var i=0;enquanto(i<len(weights)){var w=s::rational(weights[i]);se(qden(w)!=1||w>2147483647||w<-2147483648){fail("Firmware currently uses exact integer weights");}var a=w;se(a<0){a=-a;}bound=bound+a*r["max_input"];source=source+" if(x["+text(i)+"]>"+text(r["max_input"])+" || x["+text(i)+"]<(-"+text(r["max_input"])+")) return 1;\n y += (int64_t)x["+text(i)+"] * ("+text(w)+");\n";i=i+1;}se(bound>9223372036854775807){fail("Firmware accumulator may overflow");}source=source+" *out=y; return 0;\n}\n";var out=obj();put(out,"source",source);put(out,"max_abs_output",bound);put(out,"malloc_calls",0);put(out,"scope","freestanding bounded integer controller; not an OS image containing GMP/Lean");retornar out;}

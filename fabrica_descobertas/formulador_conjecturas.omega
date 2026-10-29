@@ -1,0 +1,4 @@
+modulo formulador_conjecturas;
+
+exportar execute;
+funcao execute(r){var seed=r["seed"];var count=r["count"];se(count<1||count>256||qden(count)!=1){fail("Conjecture budget");}var out=[];var i=0;enquanto(i<count){seed=(seed*48271+1)%2147483647;var a=seed%31+2;var item=obj();put(item,"lhs","(x*"+text(a)+")-(x*"+text(a-1)+")");put(item,"rhs","x");put(item,"proved",0);put(item,"family","parametric-ring-identity");push(out,item);i=i+1;}retornar out;}

@@ -1,0 +1,14 @@
+modulo matrix_exponential;
+importar "linalg_exact.omega" como l;
+importar "../math.omega" como m;
+importar "../string.omega" como s;
+exportar enclose, execute;
+funcao scale(a,c){var out=[];var i=0;enquanto(i<len(a)){var row=[];var j=0;enquanto(j<len(a[i])){push(row,a[i][j]*c);j=j+1;}push(out,row);i=i+1;}retornar out;}
+funcao add(a,b){var out=[];var i=0;enquanto(i<len(a)){var row=[];var j=0;enquanto(j<len(a[i])){push(row,a[i][j]+b[i][j]);j=j+1;}push(out,row);i=i+1;}retornar out;}
+funcao enclose(a,tolerance){se(len(a)!=len(a[0])||tolerance<=0){fail("Square matrix and positive error budget required");}var norm=l::norm(a);se(norm>16){fail("Matrix exponential norm domain <=16");}var k=0;var work=a;enquanto(norm>1){work=scale(work,1/2);norm=norm/2;k=k+1;}
+ var p=l::identity(len(a));var term=p;var term_norm=1;var n=0;var tail=1;var goal=tolerance/m::pow_int(4,2*k+8);
+ enquanto(n<128){n=n+1;term=scale(l::multiply(term,work),1/n);p=add(p,term);term_norm=term_norm*norm/n;tail=term_norm*norm/(n+1)/(1-norm/(n+2));se(tail<=goal){parar;}}
+ se(tail>goal){fail("Taylor term budget exhausted");}var i=0;enquanto(i<k){tail=(2*l::norm(p)+tail)*tail;p=l::multiply(p,p);i=i+1;}
+ var out=obj();put(out,"matrix",p);put(out,"error_inf_norm",tail);put(out,"terms",n);put(out,"squarings",k);put(out,"within_tolerance",tail<=tolerance);retornar out;
+}
+funcao execute(r){retornar enclose(l::matrix(r["matrix"]),s::rational(r["tolerance"]));}

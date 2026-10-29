@@ -1,0 +1,5 @@
+modulo constituicao_viva;
+importar "../std/string.omega" como s;
+
+exportar execute;
+funcao execute(r){var hash=sha256(s::canonical(r["constitution"]));se(hash!=r["pinned_sha256"]){fail("Pinned constitution changed");}var protected=r["constitution"]["protected_paths"];var i=0;enquanto(i<len(r["changed_paths"])){var path=r["changed_paths"][i];var j=0;enquanto(j<len(protected)){se(path==protected[j]||s::starts_with(path,protected[j]+"/")){fail("Patch attempts to alter a protected verifier/axiom boundary");}j=j+1;}i=i+1;}retornar hash;}

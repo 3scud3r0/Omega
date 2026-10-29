@@ -1,0 +1,15 @@
+modulo runtime_control;
+exportar initial, reduce, execute;
+funcao initial(){var s=obj();put(s,"revision",0);put(s,"status","running");put(s,"step_budget",0);put(s,"iteration_budget",128);put(s,"objectives",["4/5","1/5","0","0"]);retornar s;}
+funcao reduce(state,command){
+ se(state["revision"]!=command["expected_revision"]){fail("Stale control revision");}var kind=command["kind"];var next=parsejson(json(state));
+ se(kind=="pause"){se(state["status"]=="cancelled"){fail("Cancelled run is terminal");}put(next,"status","paused");}
+ senao{se(kind=="resume"){se(state["status"]=="cancelled"){fail("Cancelled run is terminal");}put(next,"status","running");put(next,"step_budget",0);}
+ senao{se(kind=="cancel"){put(next,"status","cancelled");put(next,"step_budget",0);}
+ senao{se(kind=="step"){se(state["status"]!="paused"){fail("Step requires a paused run");}var count=command["value"];se(count<1||count>64||qden(count)!=1){fail("Step budget 1..64");}put(next,"step_budget",count);}
+ senao{se(kind=="iterations"){var n=command["value"];se(n<1||n>4096||qden(n)!=1){fail("Iteration budget 1..4096");}put(next,"iteration_budget",n);}
+ senao{se(kind=="weights"){var ws=command["value"];se(!islist(ws)||len(ws)!=4){fail("Four fitness objectives required");}var total=0;var i=0;enquanto(i<4){var w=number(ws[i]);se(w<0){fail("Negative objective weight");}total=total+w;i=i+1;}se(total==0){fail("Zero objective vector");}put(next,"objectives",ws);}
+ senao{fail("Control cannot change verifier, keys or constitution");}}}}}}
+ put(next,"revision",state["revision"]+1);retornar next;
+}
+funcao execute(r){se(r["operation"]=="initial"){retornar initial();}retornar reduce(r["state"],r["command"]);}

@@ -1,0 +1,4 @@
+modulo evolution_logger;
+importar "../tools/dashboard/event_log.omega" como log;
+exportar execute;
+funcao execute(r){retornar log::execute(r);}

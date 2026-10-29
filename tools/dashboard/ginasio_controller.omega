@@ -1,0 +1,4 @@
+modulo ginasio_controller;
+importar "runtime_control.omega" como c;
+exportar execute;
+funcao execute(r){retornar c::reduce(r["state"],r["command"]);}

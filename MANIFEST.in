@@ -27,3 +27,16 @@ include banco_de_dados.omega synthesis.omega fitness.omega civilizacao_agentes.o
 recursive-include std *.omega
 recursive-include runtime *.omega *.h
 recursive-include tools *.omega
+
+recursive-include omega_ingest *.omega *.h *.c *.cu *.cuh *.lean
+recursive-include std/math *.omega *.h *.c *.cu *.cuh *.lean
+recursive-include hardware/cuda_native *.omega *.h *.c *.cu *.cuh *.lean
+recursive-include civilizacao_agentes *.omega *.h *.c *.cu *.cuh *.lean
+recursive-include incubadora_continua *.omega *.h *.c *.cu *.cuh *.lean
+recursive-include tools/dashboard *.omega *.h *.c *.cu *.cuh *.lean
+recursive-include formal/Universal *.omega *.h *.c *.cu *.cuh *.lean
+recursive-include sociedade_hierarquica *.omega *.h *.c *.cu *.cuh *.lean
+recursive-include metamorfose_cognitiva *.omega *.h *.c *.cu *.cuh *.lean
+recursive-include fabrica_descobertas *.omega *.h *.c *.cu *.cuh *.lean
+recursive-include imunologia_sistemica *.omega *.h *.c *.cu *.cuh *.lean
+recursive-include infraestrutura_soberana *.omega *.h *.c *.cu *.cuh *.lean

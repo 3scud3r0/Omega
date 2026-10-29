@@ -1,0 +1,7 @@
+modulo sqrt_newton;
+importar "../math.omega" como m;
+importar "../string.omega" como s;
+exportar bracket, integer_root, execute;
+funcao integer_root(n){se(n<0||qden(n)!=1||qbits(n)>4096){fail("Bounded nonnegative integer required");}se(n<2){retornar n;}var x=n;var y=qfloor((x+1)/2);enquanto(y<x){x=y;y=qfloor((x+qfloor(n/x))/2);}retornar x;}
+funcao bracket(x,bits){retornar m::sqrt_interval(x,bits);}
+funcao execute(r){var x=s::rational(r["x"]);se(x<0){fail("Negative square root");}var a=integer_root(qnum(x));var b=integer_root(qden(x));var out=obj();se(a*a==qnum(x)&&b*b==qden(x)){put(out,"exact",1);put(out,"interval",[a/b,a/b]);}senao{put(out,"exact",0);put(out,"interval",bracket(x,r["bits"]));}retornar out;}

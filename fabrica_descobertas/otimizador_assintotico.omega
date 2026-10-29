@@ -1,0 +1,4 @@
+modulo otimizador_assintotico;
+
+exportar execute;
+funcao execute(r){var sizes=r["sizes"];var old=r["old_operations"];var improved=r["new_operations"];se(len(sizes)!=len(old)||len(old)!=len(improved)||len(sizes)<2){fail("Cost evidence shape");}var i=0;var prev=0;var better=1;var ratios=[];enquanto(i<len(sizes)){se(sizes[i]<=prev||old[i]<1||improved[i]<1){fail("Positive increasing cost samples");}se(improved[i]>=old[i]){better=0;}push(ratios,old[i]/improved[i]);prev=sizes[i];i=i+1;}var out=obj();put(out,"sample_dominance",better);put(out,"ratios",ratios);put(out,"asymptotic_theorem",0);put(out,"model",r["model"]);retornar out;}

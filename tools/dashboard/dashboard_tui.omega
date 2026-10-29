@@ -1,0 +1,4 @@
+modulo dashboard_tui;
+
+exportar execute;
+funcao execute(r){var state=r["state"];var width=40;var maximum=state["config"]["iterations"];var filled=qfloor(width*state["iteration"]/maximum);se(filled>width){filled=width;}var bar="";var i=0;enquanto(i<width){se(i<filled){bar=bar+"#";}senao{bar=bar+".";}i=i+1;}retornar "OMEGA | "+state["id"]+" | "+state["status"]+"\n["+bar+"] "+text(state["iteration"])+"/"+text(maximum)+"\nrevision requested="+text(state["revision"])+" applied="+text(state["applied_revision"]);}

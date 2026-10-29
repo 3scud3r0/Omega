@@ -1,0 +1,6 @@
+modulo contrato_social;
+importar "../std/string.omega" como s;
+
+exportar check, execute;
+funcao check(state,policy){se(state["constitution"]!=policy["constitution"]){fail("Constitution identity changed");}var budget=s::rational(state["budget"]);se(budget<0){fail("Negative resource budget");}var actions=state["actions"];var i=0;enquanto(i<len(actions)){se(!contains(policy["allowed_actions"],actions[i]["kind"])||actions[i]["proof_authority"]!=policy["proof_authority"]){fail("Action is outside trusted contract policy");}i=i+1;}retornar 1;}
+funcao execute(r){retornar check(r["state"],r["policy"]);}

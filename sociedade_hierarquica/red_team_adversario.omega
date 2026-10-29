@@ -1,0 +1,5 @@
+modulo red_team_adversario;
+importar "../std/string.omega" como s;
+importar "../std/ast.omega" como a;
+exportar execute;
+funcao execute(r){var tests=r["examples"];var ast=r["ast"];se(len(tests)>10000){fail("Red-team budget");}var i=0;var failures=[];enquanto(i<len(tests)){var got=a::evaluate(ast,tests[i]["inputs"]);se(got["error"]||got["value"]!=s::rational(tests[i]["output"])){push(failures,[i,got]);}i=i+1;}var out=obj();put(out,"counterexamples",failures);put(out,"checked",i);put(out,"passes_examples",len(failures)==0);put(out,"universal_proof",0);retornar out;}

@@ -1,0 +1,36 @@
+modulo wasm_lifter;
+importar "../std/string.omega" como s;
+exportar decode, execute;
+funcao reader(bytes){var r=obj();put(r,"bytes",bytes);put(r,"at",0);put(r,"end",len(bytes));retornar r;}
+funcao byte(r){se(r["at"]>=r["end"]){fail("Truncated WASM");}var b=r["bytes"][r["at"]];se(b<0||b>255||qden(b)!=1){fail("Byte required");}put(r,"at",r["at"]+1);retornar b;}
+funcao leb(r,signed,width){var value=0;var factor=1;var i=0;var last=0;enquanto(i<10){last=byte(r);value=value+(last%128)*factor;i=i+1;factor=factor*128;se(last<128){se(signed&&last%128>=64){value=value-factor;}var bound=1;var j=0;enquanto(j<width){bound=bound*2;j=j+1;}se((!signed&&(value<0||value>=bound))||(signed&&(value<(-bound/2)||value>=bound/2))){fail("WASM LEB integer width exceeded");}retornar value;}}fail("Overlong WASM LEB");retornar 0;}
+funcao string(r){var size=leb(r,0,32);se(size>128){fail("WASM name budget");}var text="";var i=0;enquanto(i<size){var b=byte(r);se(b<32||b>126){fail("WASM export names currently require printable ASCII");}text=text+" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"[b-32];i=i+1;}retornar text;}
+funcao decode(bytes){se(len(bytes)<8||len(bytes)>1048576){fail("WASM module size");}var r=reader(bytes);var magic=[0,97,115,109,1,0,0,0];var i=0;enquanto(i<8){se(byte(r)!=magic[i]){fail("WASM header/version");}i=i+1;}var types=[];var funcs=[];var exports=obj();var bodies=[];var seen=obj();
+ enquanto(r["at"]<r["end"]){var id=byte(r);var size=leb(r,0,32);var end=r["at"]+size;se(end>r["end"]){fail("Truncated WASM section");}var part=reader(slice(bytes,r["at"],end));put(r,"at",end);
+ se(id!=0){se(has(seen,text(id))){fail("Duplicate WASM section");}put(seen,text(id),1);}
+ se(id==1){var n=leb(part,0,32);se(n>64){fail("WASM type budget");}i=0;enquanto(i<n){se(byte(part)!=96){fail("WASM function type");}var params=[];var count=leb(part,0,32);se(count>16){fail("WASM parameter budget");}var j=0;enquanto(j<count){var t=byte(part);se(t!=127&&t!=126){fail("WASM floats/vectors/references are not silently rationalized");}push(params,t);j=j+1;}se(leb(part,0,32)!=1){fail("One WASM scalar result required");}var result=byte(part);se(result!=127&&result!=126){fail("Integer WASM result required");}push(types,[params,result]);i=i+1;}}
+ senao{se(id==3){var n=leb(part,0,32);se(n>64){fail("WASM function budget");}i=0;enquanto(i<n){push(funcs,leb(part,0,32));i=i+1;}}
+ senao{se(id==7){var n=leb(part,0,32);se(n>64){fail("WASM export budget");}i=0;enquanto(i<n){var name=string(part);se(byte(part)!=0||has(exports,name)){fail("Only distinct function exports supported");}put(exports,name,leb(part,0,32));i=i+1;}}
+ senao{se(id==10){var n=leb(part,0,32);se(n>64){fail("WASM body budget");}i=0;enquanto(i<n){var count=leb(part,0,32);se(part["at"]+count>part["end"]){fail("WASM body truncated");}push(bodies,slice(part["bytes"],part["at"],part["at"]+count));put(part,"at",part["at"]+count);i=i+1;}}
+ senao{se(id==0){put(part,"at",part["end"]);}senao{fail("WASM imports, memory, tables, start functions and other extensions require a separate verified model");}}}}}
+ se(part["at"]!=part["end"]){fail("Trailing WASM section bytes");}}
+ se(len(funcs)!=len(bodies)||len(types)==0){fail("WASM function/code mismatch");}var out=obj();put(out,"types",types);put(out,"functions",funcs);put(out,"exports",exports);put(out,"bodies",bodies);retornar out;
+}
+funcao execute(request){se(!ident(request["name"])){fail("Invalid lifted function name");}var mod=decode(request["bytes"]);var exports=keys(mod["exports"]);var index=mod["exports"][request["export"]];se(index>=len(mod["functions"])){fail("WASM export index");}var ty=mod["functions"][index];se(ty>=len(mod["types"])){fail("WASM type index");}var signature=mod["types"][ty];var params=signature[0];var result_type=signature[1];var body=reader(mod["bodies"][index]);var locals=[];var local_types=[];var names=[];var i=0;
+ var source="funcao wasm_wrap(x,width){var base=4294967296;se(width==64){base=18446744073709551616;}retornar x-base*qfloor(x/base);}\nfuncao wasm_signed(x,width){var base=4294967296;se(width==64){base=18446744073709551616;}var v=wasm_wrap(x,width);se(v>=base/2){v=v-base;}retornar v;}\n";
+ enquanto(i<len(params)){var name="p"+text(i);push(names,name);push(locals,name);push(local_types,params[i]);i=i+1;}source=source+"funcao "+request["name"]+"("+join(names,",")+"){\n";i=0;enquanto(i<len(params)){var width=32;se(params[i]==126){width=64;}source=source+names[i]+"=wasm_wrap("+names[i]+","+text(width)+");\n";i=i+1;}
+ var declarations=leb(body,0,32);i=0;enquanto(i<declarations){var count=leb(body,0,32);var t=byte(body);se(count+len(locals)>64||(t!=127&&t!=126)){fail("WASM local budget/type");}var j=0;enquanto(j<count){push(locals,"0");push(local_types,t);j=j+1;}i=i+1;}
+ var stack=[];var stack_types=[];var depth=0;var values=[];var ended=0;
+ enquanto(body["at"]<body["end"]){var op=byte(body);var expr="";var t=127;var produces=1;
+ se(op==11){ended=1;parar;}
+ senao{se(op==65||op==66){var width=32;se(op==66){width=64;t=126;}expr=text(leb(body,1,width));}
+ senao{se(op==32){var local=leb(body,0,32);se(local>=len(locals)){fail("WASM local.get index");}expr=locals[local];t=local_types[local];}
+ senao{se(op==33||op==34){var local=leb(body,0,32);se(local>=len(locals)||depth<1||local_types[local]!=stack_types[depth-1]){fail("WASM local assignment type");}put(locals,local,stack[depth-1]);produces=0;se(op==33){depth=depth-1;}}
+ senao{se(op==26){se(depth<1){fail("WASM drop underflow");}depth=depth-1;produces=0;}
+ senao{se(op==106||op==107||op==108||op==124||op==125||op==126){var width=32;var opcode=op-106;se(op>=124){width=64;t=126;opcode=op-124;}se(depth<2||stack_types[depth-1]!=t||stack_types[depth-2]!=t){fail("WASM operand type/stack");}var b=stack[depth-1];var a=stack[depth-2];depth=depth-2;var ops=["+","-","*"];expr="wasm_wrap("+a+ops[opcode]+b+","+text(width)+")";}
+ senao{fail("WASM opcode outside straight-line integer lifting model");}}}}}}
+ se(produces){var name="v"+text(len(values));source=source+"var "+name+"="+expr+";\n";push(values,[op,expr,name]);se(depth==len(stack)){push(stack,name);push(stack_types,t);}senao{put(stack,depth,name);put(stack_types,depth,t);}depth=depth+1;}
+ }
+ se(!ended||body["at"]!=body["end"]||depth!=1||stack_types[0]!=result_type){fail("WASM result stack/end mismatch");}var width=32;se(result_type==126){width=64;}source=source+"retornar wasm_signed("+stack[0]+","+text(width)+");\n}\n";
+ var out=obj();put(out,"source",source);put(out,"parameters",names);put(out,"ssa_values",values);put(out,"blocks",["entry"]);put(out,"semantics","WASM i32/i64 modular integer arithmetic, straight-line, no imports or memory");retornar out;
+}
