@@ -63,6 +63,12 @@ reutilizados, rastros de inferência, memória linear, escalonamento finito e
 uma Q-PU de referência em RTL. O documento lista os arquivos e os limites de
 cada garantia.
 
+O [Hyper-Core](docs/HYPER_CORE.md) acrescenta kernels CUDA de aritmética racional,
+ASTs planas, MCTS e intervalos, uma ponte assíncrona para objetos Lean assinados,
+consolidação nativa de abstrações e evolução com adoção/commit controlados.
+Compilação CUDA e execução em GPU são verificações distintas; metas de latência
+dependem de medição no dispositivo.
+
 Os três passos e sua base de confiança estão descritos em
 [estado dos três passos](docs/ESTADO_DOS_TRES_PASSOS.md).
 Veja [linguagem procedural e bootstrap](docs/AUTO_HOSPEDAGEM.md),

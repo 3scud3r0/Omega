@@ -25,13 +25,17 @@ gpu = ["triton>=3; platform_system == 'Linux'"]
 "Omega Certified Synthesis" = "omega_nextorch.orange"
 
 [tool.setuptools.packages.find]
-include = ["omega", "omega_open", "omega_nextorch*", "omega_selfhost*", "omega_platform*", "omega_agent*", "omega_bench*", "omega_coder*", "omega_evolution*", "omega_learning*", "omega_memory*", "omega_security*", "omega_tools*", "omega_refine_check*", "omega_synth_mcts*", "omega_self_mutate*", "omega_cognition*", "nextorch*"]
+include = ["omega", "omega_open", "omega_nextorch*", "omega_selfhost*", "omega_platform*", "omega_agent*", "omega_bench*", "omega_coder*", "omega_evolution*", "omega_learning*", "omega_memory*", "omega_security*", "omega_tools*", "omega_refine_check*", "omega_synth_mcts*", "omega_self_mutate*", "omega_cognition*", "omega_gpu_mcts*", "omega_autotelic*", "omega_self_evolve_v2*", "omega_runtime_verified*", "nextorch*"]
 
 [tool.setuptools.package-data]
 "nextorch.orange" = ["icons/*.svg"]
 "omega_nextorch" = ["*.lean"]
 "omega_nextorch.orange" = ["*.svg"]
 "omega_selfhost" = ["*.omega", "*.h", "*.lean", "*.c"]
+"omega_gpu_mcts" = ["*.h", "*.cuh", "*.cu"]
+"omega_autotelic" = ["*.omega"]
+"omega_self_evolve_v2" = ["*.omega", "*.sh"]
+"omega_runtime_verified" = ["*.c", "*.h"]
 
 [tool.pytest.ini_options]
 testpaths = ["testes"]

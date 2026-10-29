@@ -1,0 +1,46 @@
+// Iterative common-subexpression discovery over topologically ordered nodes.
+funcao as_list(x){se(!islist(x)){fail("list required");}retornar x;}
+funcao as_object(x){se(isnum(x)||isstr(x)||islist(x)){fail("object required");}retornar x;}
+funcao as_string(x){se(!isstr(x)){fail("string required");}retornar x;}
+funcao as_number(x){se(!isnum(x)){fail("number required");}retornar x;}
+funcao merge_names(a,b){var result=[];var i=0;enquanto(i<len(a)){push(result,as_string(a[i]));i=i+1;}i=0;enquanto(i<len(b)){var name=as_string(b[i]);se(!contains(result,name)){push(result,name);}i=i+1;}retornar result;}
+funcao principal(){
+ se(argc()!=3){fail("usage: sleep_consolidation corpus.json proposals.json");}
+ var corpus=as_list(parsejson(read(arg(1))));se(len(corpus)>256){fail("corpus budget");}
+ var counts=obj();var seen=obj();var expressions=obj();var signatures=obj();var weights=obj();var p=0;
+ enquanto(p<len(corpus)){
+  var record=as_object(corpus[p]);var program=as_string(record["id"]);var nodes=as_list(record["nodes"]);
+  var expression_cache=[];var sizes=[];var names_cache=[];var i=0;
+  enquanto(i<len(nodes)){
+   var node=as_object(nodes[i]);var op=as_string(node["op"]);var value=as_string(node["value"]);
+   var key="";var expr="";var size=1;var names=[];
+   se(op=="var"||op=="const"){
+    expr="("+value+")";se(op=="var"){push(names,value);}
+   }senao{
+    var l=as_number(node["left"]);se(l<0||l>=i){fail("invalid topological child");}
+    var le=as_string(expression_cache[l]);
+    size=size+as_number(sizes[l]);names=merge_names([],as_list(names_cache[l]));
+    se(op=="neg"||op=="relu"){
+     se(op=="neg"){expr="(-"+le+")";}senao{expr="relu("+le+")";}
+    }senao{
+     se(!contains(["+","-","*","/"],op)){fail("invalid grammar operation");}
+     var r=as_number(node["right"]);se(r<0||r>=i){fail("invalid topological child");}
+     expr="("+le+op+as_string(expression_cache[r])+")";
+     size=size+as_number(sizes[r]);names=merge_names(names,as_list(names_cache[r]));
+    }
+   }
+   key=expr;push(expression_cache,expr);push(sizes,size);push(names_cache,names);
+   se(size>=3){
+    se(!has(counts,key)){put(counts,key,0);put(seen,key,[]);put(expressions,key,expr);put(signatures,key,names);put(weights,key,size);}
+    var ids=as_list(seen[key]);se(!contains(ids,program)){push(ids,program);}put(counts,key,as_number(counts[key])+1);
+   }i=i+1;
+  }p=p+1;
+ }
+ var all=keys(counts);var result=[];var j=0;
+ enquanto(j<len(all)){
+  var key=as_string(all[j]);var names=as_list(signatures[key]);var gain=(as_number(counts[key])-1)*(as_number(weights[key])-1)-len(names)-1;
+  se(len(as_list(seen[key]))>=2&&gain>0){var item=obj();put(item,"expression",as_string(expressions[key]));put(item,"parameters",names);put(item,"occurrences",counts[key]);put(item,"programs",seen[key]);put(item,"structural_gain",gain);push(result,item);}
+  j=j+1;
+ }
+ write(arg(2),json(result));retornar 0;
+}

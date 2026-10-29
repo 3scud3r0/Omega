@@ -1,0 +1,12 @@
+// Proposes a search specification; no proposed rule is authorized here.
+funcao as_object(x){se(isnum(x)||isstr(x)||islist(x)){fail("object required");}retornar x;}
+funcao principal(){
+  se(argc()!=3){fail("usage: auto_mutator profile.json proposal.json");}
+  var profile=as_object(parsejson(read(arg(1))));var operations=as_object(profile["operations"]);var candidates=[];
+  se(has(operations,"*")){push(candidates,"(x*2)-x");push(candidates,"x*1");}
+  se(has(operations,"+")){push(candidates,"x+(x-x)");}
+  se(has(operations,"neg")){push(candidates,"-(-x)");}
+  se(len(candidates)==0){push(candidates,"(x*2)-x");}
+  var result=obj();put(result,"lhs",candidates[0]);put(result,"alternatives",candidates);put(result,"formal_admission",0);
+  write(arg(2),json(result));retornar 0;
+}
