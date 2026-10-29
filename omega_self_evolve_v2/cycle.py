@@ -76,7 +76,7 @@ def publish_generation(generation,*,repo=None,commit=False,replace_source=False,
             raise
 
 
-def evolve_from_receipt(lhs,receipt,proof_directory,output,*,public_key,install=False,commit=False,replace_source=False,restart_runtime=None):
+def evolve_from_receipt(lhs,receipt,proof_directory,output,*,public_key,install=False,commit=False,replace_source=False,restart_runtime=None,expected_source_sha256=None):
     if commit and not install:raise ValueError('A source commit requires installation')
     if replace_source and not install:raise ValueError('Source replacement requires installation')
     admitted=verify_receipt(receipt,proof_directory,public_key=public_key)
@@ -88,6 +88,7 @@ def evolve_from_receipt(lhs,receipt,proof_directory,output,*,public_key,install=
     with (state/'.hyper-evolution.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
         previous=source.read_bytes();base=previous
+        if expected_source_sha256 is not None and hashlib.sha256(previous).hexdigest()!=expected_source_sha256:raise ValueError("Compiler changed before the locked bootstrap cycle")
         baseline=state/'hyper-canonical.json'
         if baseline.exists():
             if baseline.is_symlink() or not baseline.is_file() or baseline.stat().st_size>2*1024**2:raise ValueError('Invalid host canonical baseline')

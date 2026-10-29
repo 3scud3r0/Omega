@@ -1,0 +1,32 @@
+modulo banco_de_dados;
+importar "std/string.omega" como s;
+importar "std/io.omega" como io;
+importar "std/proof.omega" como proof;
+exportar audit, insert, lookup, append_event;
+funcao genesis(){retornar "0000000000000000000000000000000000000000000000000000000000000000";}
+funcao audit(root,path,expected_head){
+ var raw="";se(io::exists(root,path)){raw=io::read_text(root,path);}var rows=s::split(raw,"\n");var head=genesis();var records=[];var state=obj();var i=0;
+ enquanto(i<len(rows)){
+  var line=s::as_string(rows[i]);se(len(line)==0&&i<len(rows)-1){fail("Unexpected blank historical row");}se(len(line)>0){se(i==len(rows)-1){fail("Truncated append log");}var row=s::as_object(parsejson(line));var payload=s::as_string(row["payload"]);
+   se(row["previous"]!=head||row["hash"]!=sha256(head+"\n"+payload)){fail("History hash mismatch");}
+   var canonical=obj();put(canonical,"previous",row["previous"]);put(canonical,"payload",payload);put(canonical,"hash",row["hash"]);se(json(canonical)!=line){fail("Noncanonical historical row");}
+   var event=s::as_object(parsejson(payload));se(event["index"]!=len(records)||!isstr(event["key"])||len(event["key"])==0){fail("Invalid historical record");}
+   put(state,event["key"],event["document"]);push(records,event);head=row["hash"];
+  }i=i+1;
+ }
+ se(head!=expected_head){fail("Trusted head does not match history");}
+ var result=obj();put(result,"head",head);put(result,"records",records);put(result,"state",state);put(result,"file_digest",sha256(raw));retornar result;
+}
+funcao append_event(root,path,expected_head,key,document,kind){
+ se(!isstr(key)||len(key)==0||len(key)>1024){fail("Nonempty bounded key required");}
+ var prior=audit(root,path,expected_head);var event=obj();put(event,"index",len(prior["records"]));put(event,"key",key);put(event,"document",document);put(event,"kind",kind);
+ var payload=json(event);var digest=sha256(expected_head+"\n"+payload);var row=obj();put(row,"previous",expected_head);put(row,"payload",payload);put(row,"hash",digest);
+ se(!io::append_checked(root,path,prior["file_digest"],json(row)+"\n")){fail("Concurrent append: head changed");}
+ var result=obj();put(result,"head",digest);put(result,"count",len(prior["records"])+1);retornar result;
+}
+funcao insert(root,path,expected_head,key,document,policy,authority,permit){
+ var request=obj();put(request,"key",key);put(request,"document",document);put(request,"expected_head",expected_head);put(request,"policy",policy);
+ se(!proof::verify(authority,"db.insert",sha256(s::canonical(request)),policy,permit)){fail("Insert requires an authentic, subject-bound Lean permit");}
+ retornar append_event(root,path,expected_head,key,document,"insert");
+}
+funcao lookup(root,path,expected_head,key){var snapshot=audit(root,path,expected_head);se(!has(snapshot["state"],key)){fail("Missing key");}retornar snapshot["state"][key];}

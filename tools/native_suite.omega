@@ -1,0 +1,56 @@
+modulo native_suite;
+importar "../std/math.omega" como math;
+importar "../std/string.omega" como s;
+importar "../std/collections.omega" como collections;
+importar "../runtime/memory_arena.omega" como arena;
+importar "../banco_de_dados.omega" como db;
+importar "../fitness.omega" como fitness;
+importar "../synthesis.omega" como synthesis;
+importar "../civilizacao_agentes.omega" como society;
+importar "../incubadora_continua.omega" como incubator;
+importar "../ginasio.omega" como gym;
+importar "package_manager.omega" como packages;
+funcao interval(value){retornar [s::format_q(value[0]),s::format_q(value[1])];}
+funcao principal(){
+ se(argc()<3){fail("Usage: native-suite mode request.json [output-root]");}var mode=arg(1);var request=s::as_object(parsejson(read(arg(2))));var result=obj();
+ se(mode=="math"){
+  var x=s::rational(text(request["x"]));var bits=s::as_number(request["bits"]);var op=request["operation"];
+  se(op=="sqrt"){put(result,"interval",interval(math::sqrt_interval(x,bits)));}
+  senao{se(op=="exp"){put(result,"interval",interval(math::exp_interval(x,bits)));}
+  senao{se(op=="log"){put(result,"interval",interval(math::log_interval(x,bits)));}
+  senao{se(op=="sin"||op=="cos"||op=="trig"){var pair=math::trig_interval(x,bits);put(result,"sin",interval(pair["sin"]));put(result,"cos",interval(pair["cos"]));put(result,"small_angle",s::format_q(pair["small_angle"]));put(result,"doublings",pair["doublings"]);}
+  senao{fail("Unknown analytic operation");}}}}
+ }
+ senao{se(mode=="fitness"){
+  se(has(request,"benchmark_iterations")){var n=request["benchmark_iterations"];se(n%1!=0||n<1||n>100000){fail("Fitness benchmark budget");}var i=0;var begin=monotonic_ns();enquanto(i<n){result=fitness::evaluate(request["metrics"]);i=i+1;}var elapsed=monotonic_ns()-begin;put(result,"evaluations",n);put(result,"elapsed_ns",elapsed);put(result,"backend","native-omega-c-gmp");}senao{result=fitness::evaluate(request);}
+ }
+ senao{se(mode=="search"){
+  var state=synthesis::search(request["spec"],request["iterations"],request["max_nodes"],request["tree_capacity"],request["seed"]);
+  put(result,"ast",state["best"]);put(result,"loss",s::format_q(state["best_loss"]));put(result,"iterations",state["iteration"]);put(result,"pruned",state["pruned"]);put(result,"tree_nodes",len(state["nodes"]));put(result,"formal_admission",0);
+  root_write(arg(3),"candidate.omega",synthesis::best_source(state));
+ }
+ senao{se(mode=="db-audit"){result=db::audit(request["root"],request["path"],request["head"]);}
+ senao{se(mode=="db-insert"){var document=s::as_string(request["document"]);result=db::insert(request["root"],request["path"],request["head"],request["key"],document,request["policy"],request["authority"],request["permit"]);}
+ senao{se(mode=="db-get"){put(result,"document",db::lookup(request["root"],request["path"],request["head"],request["key"]));}
+ senao{se(mode=="message-seal"){result=society::seal(request["message"],request["certificate"],request["key_root"],request["key_path"]);}
+ senao{se(mode=="message-receive"){result=society::receive(request["root"],request["path"],request["head"],request["recipient"],request["channel"],request["policy"],request["senders"],request["authority"],request["packet"]);}
+ senao{se(mode=="approve"){result=incubator::approve(request["proposal"],request["authority"],request["certificate"],request["policy"],request["actor"],request["key_root"],request["key_path"],request["nonce"],request["mode"]);}
+ senao{se(mode=="proposal"){result=incubator::draft(request["target"],request["base_sha256"],request["candidate_sha256"],request["proof_sha256"],request["old_ns"],request["new_ns"],request["old_cost"],request["new_cost"]);}
+ senao{se(mode=="gym"){result=gym::explore(request["spec"],request["root"],request["config"],request["iterations"],request["max_nodes"],request["seed"]);}
+ senao{se(mode=="simulate"){put(result,"trace",gym::simulate(request["model"],request["controller"],[s::rational(request["state"][0]),s::rational(request["state"][1])],request["steps"]));}
+ senao{se(mode=="package-verify"){result=packages::verify(request["root"],request["lock"],request["authority"],request["policy"],request["certificate"]);}
+ senao{se(mode=="collections"){
+  se(has(request,"operation")&&request["operation"]=="hash"){
+  var table=collections::hash_new(request["capacity"]);var ops=request["commands"];var answers=[];var i=0;
+  enquanto(i<len(ops)){var command=ops[i];se(command[0]=="put"){collections::hash_put(table,command[1],command[2]);}senao{se(command[0]=="remove"){push(answers,collections::hash_remove(table,command[1]));}senao{se(command[0]=="get"){push(answers,collections::hash_get(table,command[1]));}senao{se(command[0]=="has"){push(answers,collections::hash_has(table,command[1]));}senao{fail("Unknown hash command");}}}}i=i+1;}put(result,"answers",answers);put(result,"size",table["size"]);
+ }senao{se(has(request,"operation")&&request["operation"]=="graph"){
+  var graph=collections::graph_new(request["vertices"]);var edges=request["edges"];var i=0;enquanto(i<len(edges)){var e=edges[i];collections::graph_edge(graph,e[0],e[1],s::rational(e[2]));i=i+1;}var found=[];var queries=request["queries"];i=0;enquanto(i<len(queries)){var edge=collections::graph_get(graph,queries[i][0],queries[i][1]);push(found,[edge[0],s::format_q(edge[1])]);i=i+1;}put(result,"edges",found);
+ }senao{var queue=collections::priority_new(16);var items=s::as_list(request["items"]);var i=0;enquanto(i<len(items)){collections::priority_push(queue,s::rational(items[i][0]),items[i][1]);i=i+1;}var out=[];enquanto(queue["size"]>0){var item=collections::priority_pop(queue);push(out,[s::format_q(item[0]),item[2]]);}put(result,"items",out);}}
+ }
+ senao{se(mode=="arena"){
+  var a=arena::create(request["capacity"]);var h=arena::allocate(a,request["bytes"],1);h=arena::move(a,h,2);var borrowed=arena::borrow(a,h);arena::unborrow(a,borrowed);arena::release(a,h);put(result,"peak",arena::finish(a));
+ }
+ senao{se(mode=="codec"){put(result,"canonical",s::canonical(request["value"]));}
+ senao{fail("Unknown native mode");}}}}}}}}}}}}}}}}
+ print(json(result));retornar 0;
+}

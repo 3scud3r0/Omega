@@ -19,7 +19,7 @@ PyTorch/Python. Os compiladores/VMs históricos em Python são preservados como
 referência e compatibilidade, não são chamados pelos estágios nativos do compilador.
 
 ```sh
-# Linux x86_64, Python 3.12, compilador C, libgmp-dev e zstd.
+# Linux x86_64, Python 3.12, compilador C, libgmp-dev, libssl-dev e zstd.
 bash scripts/setup.sh
 bash scripts/test.sh -q
 
@@ -41,6 +41,14 @@ Use destinos novos: os comandos preservam resultados existentes. O executável
 `fonte.omega destino.json --ir`. A entrada `omegac` instalada chama esse compilador.
 O bootstrap Python é uma semente auditável do dialeto procedural, não uma
 primitiva oculta chamada pelo compilador auto-hospedado.
+
+## Ecossistema nativo e aprovação automática
+
+A biblioteca `std/`, os seis módulos de memória/síntese/agentes e os comandos
+`omega native` estão descritos no [mapa de arquivos e contratos](docs/ECOSSISTEMA_NATIVO.md).
+A incubadora tem aprovação automática (`--auto-approve`, padrão), sem prompt,
+com prova Lean, integridade, benchmark repetido e bootstrap de quatro estágios.
+O modo manual continua configurável. `omega native repl` abre o terminal racional.
 
 ## Fluxos certificados adicionais
 

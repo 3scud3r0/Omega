@@ -35,14 +35,17 @@ def toolchain():
     from .sandbox import _tool
     supervision={name:{'path':str(Path(_tool(name)).resolve()),'sha256':sha256(_tool(name))}
                  for name in ('bwrap','prlimit')}
+    crypto=trusted([compiler,'-print-file-name=libcrypto.so'],budget=BUILD_BUDGET,check=True).stdout.strip()
+    if not Path(crypto).is_file() or not Path('/usr/include/openssl/evp.h').is_file():raise IsolationUnavailable('OpenSSL development headers and libcrypto are required')
     return {'supervision':supervision,'cc':{'path':str(compiler),'sha256':sha256(compiler),'version':version.strip()},
             'gmp':{'library_sha256':sha256(gmp),'headers':headers},
-            'flags':['-std=gnu11','-O2','-s','-lgmp']}
+            'crypto':{'library_sha256':sha256(crypto),'evp_header_sha256':sha256('/usr/include/openssl/evp.h')},
+            'flags':['-std=gnu11','-O2','-s','-DOMEGA_CRYPTO=1','-lgmp','-lcrypto']}
 
 
 def compiler_inputs(root):
     root=Path(root)
-    names=['omega_selfhost/compiler.omega','omega_selfhost/bootstrap.py',
+    names=['omega_selfhost/compiler.omega','omega_selfhost/bootstrap.py','omega_selfhost/native_std.h',
            'omega_selfhost/driver.py','omega_selfhost/runtime.h','omega_selfhost/memory.h',
            'omega_selfhost/tensor_runtime.h','omega_selfhost/polynomial.h',
            'omega_platform/manifest.py','omega_platform/budget.py','omega_platform/sandbox.py',

@@ -36,7 +36,7 @@ def test_actual_source_build_isolated_execution_and_lean_admission(native_bundle
     admission = json.loads((directory / 'native-result.verification.json').read_text())
     assert admission['valid'] is True and admission['execution']['sandboxed'] is True
     build = json.loads((directory / 'program.build.json').read_text())
-    assert build['native_c_flags'] == ['-std=gnu11', '-O2', '-s', '-lgmp']
+    assert build['native_c_flags'] == ['-std=gnu11', '-O2', '-s', '-DOMEGA_CRYPTO=1', '-lgmp', '-lcrypto']
     assert (directory / 'program.c').is_file() and (directory / 'program').is_file()
 
 

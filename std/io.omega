@@ -1,0 +1,11 @@
+modulo io;
+exportar read_text, write_text, exists, read_json, write_json, append_checked, input_line, log, hash_file;
+funcao read_text(root,path){retornar root_read(root,path);}
+funcao write_text(root,path,data){retornar root_write(root,path,data);}
+funcao exists(root,path){retornar root_exists(root,path);}
+funcao read_json(root,path){retornar parsejson(root_read(root,path));}
+funcao write_json(root,path,value){retornar root_write(root,path,json(value));}
+funcao append_checked(root,path,expected_digest,data){retornar append_cas(root,path,expected_digest,data);}
+funcao input_line(){retornar readline();}
+funcao log(message){print(message);retornar flush();}
+funcao hash_file(root,path){retornar file_sha256(root,path);}

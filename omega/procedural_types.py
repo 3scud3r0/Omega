@@ -267,10 +267,18 @@ class Checker:
         arities={'list':0,'obj':0,'len':1,'get':2,'put':3,'push':2,'has':2,'keys':1,
                  'text':1,'number':1,'ident':1,'decimal':2,'isnum':1,'isstr':1,'islist':1,
                  'slice':3,'join':2,'contains':2,'arg':1,'argc':0,'read':1,'write':2,
-                 'print':1,'fail':1,'json':1,'parsejson':1}
+                 'print':1,'fail':1,'json':1,'parsejson':1,'qnum':1,'qden':1,'qfloor':1,'qbits':1,'monotonic_ns':0,'unix_time':0,'readline':0,'flush':0,
+                 'root_read':2,'root_write':3,'root_exists':2,'sha256':1,'file_sha256':2,'append_cas':4,'ed25519_verify':3,'ed25519_sign':3}
         if len(args)!=arities[name]:raise TypeCheckError('Wrong builtin arity: '+name)
         if any(resolved(t).kind=='bottom' for t in args):return Type('bottom')
         number=lambda:Type('number');string=lambda:Type('string')
+        if name in ('qnum','qden','qfloor','qbits'):
+            self.require(args[0],{'number'});return number()
+        if name in ('monotonic_ns','unix_time','flush'):return number()
+        if name=='readline':return Type('object',fields={'eof':number(),'line':string()})
+        if name in ('root_read','root_write','root_exists','sha256','file_sha256','append_cas','ed25519_verify','ed25519_sign'):
+            for value in args:self.require(value,{'string'})
+            return number() if name in ('root_write','root_exists','append_cas','ed25519_verify') else string()
         if name=='list':return Type('list',element=Type('variable'),slots=[])
         if name=='obj':return Type('object')
         if name in ('isnum','isstr','islist','argc'):return number()

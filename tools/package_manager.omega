@@ -1,0 +1,23 @@
+modulo package_manager;
+importar "../std/string.omega" como s;
+importar "../std/proof.omega" como proof;
+exportar verify;
+funcao version(value){var parts=s::split(value,".");se(len(parts)!=3){fail("Semantic version required");}var i=0;enquanto(i<3){var n=s::rational(parts[i]);se(n<0||qden(n)!=1||text(n)!=parts[i]){fail("Canonical version component required");}i=i+1;}retornar value;}
+funcao locate(packages,name){var i=0;enquanto(i<len(packages)){se(packages[i]["name"]==name){retornar i;}i=i+1;}fail("Locked dependency absent");retornar -1;}
+funcao verify(root,raw,authority,policy,certificate){
+ var lock=s::as_object(raw);se(lock["format"]!="omega-native-lock-1"){fail("Unknown lock format");}var packages=s::as_list(lock["packages"]);se(len(packages)>64){fail("Package count budget");}
+ se(!proof::verify(authority,"package.lock",sha256(s::canonical(lock)),policy,certificate)){fail("Package lock lacks a trusted proof manifest");}
+ var colors=[];var names=obj();var i=0;var total=0;enquanto(i<len(packages)){var p=s::as_object(packages[i]);var name=s::as_string(p["name"]);se(!ident(name)||has(names,name)){fail("Duplicate or invalid package name");}put(names,name,1);version(p["version"]);push(colors,0);i=i+1;}
+ var order=[];var seed=0;
+ enquanto(seed<len(packages)){
+  se(colors[seed]==0){var stack=[[seed,0]];var depth=1;put(colors,seed,1);
+   enquanto(depth>0){var frame=stack[depth-1];var index=frame[0];var deps=s::as_list(packages[index]["dependencies"]);
+    se(frame[1]<len(deps)){var child=locate(packages,deps[frame[1]]);put(frame,1,frame[1]+1);se(colors[child]==1){fail("Package dependency cycle");}se(colors[child]==0){put(colors,child,1);se(depth==len(stack)){push(stack,[child,0]);}senao{put(stack,depth,[child,0]);}depth=depth+1;}}
+    senao{put(colors,index,2);push(order,packages[index]["name"]);depth=depth-1;}
+   }
+  }seed=seed+1;
+ }
+ i=0;enquanto(i<len(packages)){var p=packages[i];var files=s::as_list(p["files"]);se(len(files)>2048){fail("Package file budget");}var j=0;var seen=obj();
+  enquanto(j<len(files)){var f=s::as_object(files[j]);var path=s::as_string(f["path"]);se(has(seen,path)){fail("Duplicate package file");}put(seen,path,1);se(file_sha256(root,p["name"]+"/"+path)!=f["sha256"]){fail("Package integrity mismatch");}total=total+1;se(total>8192){fail("Aggregate package file budget");}j=j+1;}i=i+1;}
+ var result=obj();put(result,"order",order);put(result,"files_verified",total);put(result,"lock_sha256",sha256(s::canonical(lock)));retornar result;
+}

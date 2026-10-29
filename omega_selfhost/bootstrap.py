@@ -13,7 +13,10 @@ BUILTINS = {'list': 'list', 'obj': 'obj', 'len': 'len', 'get': 'get', 'put': 'pu
  'push': 'push', 'has': 'has', 'keys': 'keys', 'text': 'text', 'number': 'number',
  'ident':'ident', 'decimal':'decimal', 'isnum': 'isnum', 'isstr': 'isstr', 'islist': 'islist', 'slice': 'slice', 'join': 'join',
  'contains': 'contains', 'arg': 'arg', 'argc': 'argc', 'read': 'read', 'write': 'write',
- 'print': 'print', 'fail': 'fail', 'json': 'json', 'parsejson': 'parsejson'}
+ 'print': 'print', 'fail': 'fail', 'json': 'json', 'parsejson': 'parsejson',
+ 'qnum':'qnum','qden':'qden','qfloor':'qfloor','qbits':'qbits','monotonic_ns':'monotonic_ns','readline':'readline','flush':'flush',
+ 'root_read':'root_read','root_write':'root_write','root_exists':'root_exists','sha256':'sha256','file_sha256':'file_sha256',
+ 'append_cas':'append_cas','ed25519_verify':'ed25519_verify','ed25519_sign':'ed25519_sign','unix_time':'unix_time'}
 OPS = {'+':'add','-':'sub','*':'mul','/':'div','%':'mod','==':'eq','!=':'ne',
        '<':'lt','<=':'le','>':'gt','>=':'ge'}
 TOKEN = re.compile(r'\s+|\#[^\n]*|//[^\n]*|"(?:[^"\\]|\\.)*"|\d+(?:\.\d+)?|[^\W\d]\w*|==|!=|<=|>=|&&|\|\||[{}();,\[\]+*/%<>=!:.\-]', re.UNICODE)

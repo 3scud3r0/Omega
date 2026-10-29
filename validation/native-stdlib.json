@@ -1,0 +1,116 @@
+{
+  "automatic_approval": {
+    "authority_and_artifact_checks_required": true,
+    "four_stage_fixed_point": true,
+    "human_token_required": false,
+    "installation_exercised_in_temporary_repositories": true,
+    "main_checkout_compiler": "canonical; no default selector changed by acceptance run",
+    "stdin_required": false
+  },
+  "date_utc": "2026-10-29",
+  "example_profile": {
+    "checksums": [
+      "-825",
+      "-825",
+      "-825",
+      "-825",
+      "-825"
+    ],
+    "format": "omega-native-profile-1",
+    "iterations": 4096,
+    "new_ns": 10010215,
+    "old_ns": 12156377,
+    "repeats": 5,
+    "samples_ns": [
+      [
+        14308436,
+        11257222,
+        10854289,
+        12156377,
+        13019088
+      ],
+      [
+        11176050,
+        10010215,
+        6965301,
+        11027588,
+        7525018
+      ]
+    ],
+    "scope": "Measured on this host, alternating trials; no theorem about hardware throughput"
+  },
+  "fitness_measurement": {
+    "elapsed_ns": 143936200,
+    "evaluations": 1000,
+    "scope": "One host observation; excludes process launch and compilation, no universal throughput theorem"
+  },
+  "formal": {
+    "analytic_cases": [
+      "sqrt(2)",
+      "exp(-2)",
+      "log(1/8)",
+      "log(3/2)",
+      "log(4)",
+      "sin/cos(1/3)",
+      "sin/cos(0)"
+    ],
+    "axiom_policy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "result": "built successfully",
+    "targets": [
+      "omega_tensor_kernel",
+      "Omega",
+      "Native"
+    ]
+  },
+  "format": "omega-native-stdlib-validation-1",
+  "limits": [
+    "Exact rationals and certified intervals over declared domains",
+    "Native runtime tag checks rather than static linear ownership for all programs",
+    "Static payload arena does not remove GMP/OpenSSL allocations",
+    "Native proof clients trust pinned authority attestations",
+    "Hash-chain history requires an independently trusted head",
+    "Package verification is offline; no registry fetch or installation scripts",
+    "No physical GPU timing claim"
+  ],
+  "native_binaries": {
+    "tools/native_suite.omega": {
+      "bytes": 154448,
+      "linking": "dynamic GMP/OpenSSL where used"
+    },
+    "tools/repl.omega": {
+      "bytes": 43536,
+      "linking": "dynamic GMP/OpenSSL where used"
+    }
+  },
+  "packaging": {
+    "isolated_wheel_native_math": "passed",
+    "native_source_files_in_wheel": 17,
+    "sdist": "built",
+    "source_bytes_match_checkout": true,
+    "wheel": "built"
+  },
+  "scope": "Bounded native standard library and trusted supervised approval; no universal AI or OS safety claim",
+  "setup": {
+    "publication": "not performed; configuration draft saved",
+    "result": "passed, including OpenSSL EVP linkage",
+    "reusable_fields_saved": [
+      "install_script",
+      "start_skill"
+    ],
+    "updated_script": "scripts/setup-native.sh"
+  },
+  "source_base": "d5c5178d93b587b7aa4a8ab61743cc50586e8d83",
+  "tests": {
+    "command": "LEAN_NUM_THREADS=4 bash scripts/test.sh -q --junitxml=artifacts/native-stdlib-final.xml",
+    "junit_sha256": "e41b667adac0a802cb971c27dcbe37137a07e24a71740e4d3e11764251cc9b6b",
+    "passed": 940,
+    "skip_reason": "CUDA device execution unavailable; host reference and CUDA compilation remain separate",
+    "skipped": 4,
+    "subtests_passed": 37,
+    "warnings": 3
+  }
+}

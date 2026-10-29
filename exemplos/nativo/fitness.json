@@ -1,0 +1,1 @@
+{"scores":["1/2","1"],"weights":["1","1"],"before":["1"],"after":["3/4"],"bwt_weight":"1","nodes":3,"max_nodes":10,"previous_energy":"2","energy":"1","strict_stability":1,"latency_ns":100,"memory_bytes":192,"baseline_ns":200,"memory_budget":1000,"objectives":["4/5","1/5","0","0"]}

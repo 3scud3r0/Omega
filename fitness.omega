@@ -1,0 +1,27 @@
+modulo fitness;
+importar "std/string.omega" como s;
+exportar harmonic_barrier, backward_transfer, evaluate, search_score;
+funcao harmonic_barrier(scores,weights){
+ se(len(scores)==0||len(scores)!=len(weights)){fail("Fitness shape mismatch");}var total=0;var denominator=0;var i=0;
+ enquanto(i<len(scores)){var score=s::rational(text(scores[i]));var weight=s::rational(text(weights[i]));se(weight<0||score<0||score>1){fail("Fitness scores in [0,1], weights nonnegative");}
+ se(weight>0){se(score==0){retornar 0;}total=total+weight;denominator=denominator+weight/score;}i=i+1;}
+ se(total==0){fail("Positive total fitness weight required");}retornar total/denominator;
+}
+funcao backward_transfer(before,after){se(len(before)!=len(after)){fail("BWT shape mismatch");}var penalty=0;var i=0;enquanto(i<len(before)){var a=s::rational(text(before[i]));var b=s::rational(text(after[i]));se(a<0||a>1||b<0||b>1){fail("BWT scores in [0,1]");}se(a>b){penalty=penalty+a-b;}i=i+1;}se(len(before)>0){penalty=penalty/len(before);}retornar penalty;}
+funcao evaluate(raw){
+ var m=s::as_object(raw);var harmonic=harmonic_barrier(s::as_list(m["scores"]),s::as_list(m["weights"]));
+ var bwt=backward_transfer(s::as_list(m["before"]),s::as_list(m["after"]));var bw=s::rational(text(m["bwt_weight"]));
+ var nodes=s::as_number(m["nodes"]);var maxnodes=s::as_number(m["max_nodes"]);var prior=s::rational(text(m["previous_energy"]));var energy=s::rational(text(m["energy"]));
+ var latency=s::as_number(m["latency_ns"]);var memory=s::as_number(m["memory_bytes"]);var baseline=s::as_number(m["baseline_ns"]);var budget=s::as_number(m["memory_budget"]);
+ se(nodes%1!=0||nodes<1||maxnodes<nodes||prior<0||energy<0||latency<0||memory<0||budget<=0||baseline<=0||bw<0){fail("Invalid fitness metrics");}
+ var robust=harmonic-bw*bwt;se(robust<0){robust=0;}var speed=baseline/(baseline+latency);var space=0;se(memory<=budget){space=1-memory/budget;}var complexity=1-nodes/maxnodes;
+ var objectives=s::as_list(m["objectives"]);se(len(objectives)!=4){fail("Four objective weights required");}
+ var measures=[robust,speed,space,complexity];var score=0;var total=0;var i=0;
+ enquanto(i<4){var w=s::rational(text(objectives[i]));se(w<0){fail("Objective weights nonnegative");}score=score+w*measures[i];total=total+w;i=i+1;}se(total==0){fail("Positive objective weight required");}score=score/total;
+ var stable=(energy<prior)||(energy==0&&prior==0);var accepted=harmonic>0&&memory<=budget;
+ se(s::as_number(m["strict_stability"])&&!stable){accepted=0;}se(!accepted){score=0;}
+ var out=obj();put(out,"score",s::format_q(score));put(out,"harmonic",s::format_q(harmonic));put(out,"bwt_penalty",s::format_q(bwt));put(out,"complexity",s::format_q(complexity));put(out,"energy_delta",s::format_q(energy-prior));put(out,"accepted",accepted);retornar out;
+}
+funcao search_score(reward,nodes,maximum,latency,config){
+ var metrics=obj();put(metrics,"scores",[s::format_q(reward)]);put(metrics,"weights",["1"]);put(metrics,"before",[]);put(metrics,"after",[]);put(metrics,"bwt_weight","1");put(metrics,"nodes",nodes);put(metrics,"max_nodes",maximum);put(metrics,"previous_energy","0");put(metrics,"energy","0");put(metrics,"strict_stability",0);put(metrics,"latency_ns",latency);put(metrics,"memory_bytes",nodes*64);put(metrics,"baseline_ns",config["baseline_ns"]);put(metrics,"memory_budget",config["memory_budget"]);put(metrics,"objectives",config["objectives"]);retornar evaluate(metrics);
+}

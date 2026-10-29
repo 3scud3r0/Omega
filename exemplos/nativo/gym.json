@@ -1,0 +1,1 @@
+{"root":"exemplos/nativo","config":"weights.json","iterations":256,"max_nodes":7,"seed":1,"spec":{"variables":["x"],"constants":["0","1","2"],"operators":["+","-","*"],"examples":[{"inputs":["-1"],"output":"-1"},{"inputs":["2"],"output":"2"}]}}

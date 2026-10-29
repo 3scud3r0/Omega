@@ -1,0 +1,12 @@
+modulo proof;
+importar "string.omega" como s;
+exportar verify;
+funcao verify(authority,purpose,subject,policy,raw){
+ var token=s::as_object(raw);se(!has(token,"claims")||!has(token,"signature")){retornar 0;}
+ var claims_text=s::as_string(token["claims"]);var signature=s::as_string(token["signature"]);
+ se(!ed25519_verify(authority,claims_text,signature)){retornar 0;}var claims=s::as_object(parsejson(claims_text));
+ se(claims["format"]!="omega-native-permit-1"||claims["purpose"]!=purpose||claims["subject"]!=subject||claims["policy"]!=policy){retornar 0;}
+ se(s::as_number(claims["expires"])<=unix_time()){retornar 0;}
+ se(len(s::as_string(claims["lean_source_sha256"]))!=64||len(s::as_string(claims["olean_sha256"]))!=64){retornar 0;}
+ retornar 1;
+}

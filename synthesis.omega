@@ -1,0 +1,65 @@
+modulo synthesis;
+importar "std/string.omega" como s;
+importar "std/ast.omega" como ast;
+importar "fitness.omega" como fitness;
+exportar new_state, step, search, best_source, grammar, policy_search, reweight;
+funcao arity(token){se(token>=48&&token<=51){retornar 2;}se(token>=52&&token<=53){retornar 1;}retornar 0;}
+funcao grammar(){var result=obj();put(result,"format","omega-native-grammar-1");put(result,"variables",[0,31]);put(result,"constants",[32,47]);put(result,"operators",["+","-","*","/","neg","relu"]);put(result,"representation","prefix holes -> topological scalar AST");retornar result;}
+funcao next_random(state,n){var seed=(state["seed"]*48271+1)%2147483647;put(state,"seed",seed);retornar seed%n;}
+funcao actions(spec,pending,length,maximum){
+ var result=[];se(pending==0||length>=maximum){retornar result;}var variables=s::as_list(spec["variables"]);var constants=s::as_list(spec["constants"]);var operators=s::as_list(spec["operators"]);var i=0;
+ enquanto(i<len(variables)){push(result,i);i=i+1;}i=0;enquanto(i<len(constants)){push(result,32+i);i=i+1;}
+ var names=["+","-","*","/","neg","relu"];i=0;enquanto(i<6){var token=48+i;se(contains(operators,names[i])&&pending-1+arity(token)<=maximum-length-1){push(result,token);}i=i+1;}retornar result;
+}
+funcao node(prefix,pending,parent){var n=obj();put(n,"prefix",prefix);put(n,"pending",pending);put(n,"parent",parent);put(n,"children",[]);put(n,"visits",0);put(n,"total",0);retornar n;}
+funcao new_state(raw,maximum,capacity,seed){
+ var spec=s::as_object(raw);var variables=s::as_list(spec["variables"]);var constants=s::as_list(spec["constants"]);var examples=s::as_list(spec["examples"]);
+ se(maximum%1!=0||maximum<1||maximum>63||capacity%1!=0||capacity<64||capacity>65536||seed%1!=0||seed<0||seed>=2147483647){fail("Synthesis budget exceeded");}
+ se(len(variables)>16||len(constants)>16||len(variables)+len(constants)==0||len(examples)<1||len(examples)>64){fail("Synthesis specification shape");}
+ var i=0;enquanto(i<len(variables)){se(!ident(variables[i])){fail("Invalid input identifier");}i=i+1;}i=0;enquanto(i<len(constants)){s::rational(constants[i]);i=i+1;}
+ var state=obj();put(state,"spec",spec);put(state,"maximum",maximum);put(state,"capacity",capacity);put(state,"seed",seed);put(state,"nodes",[node([],1,-1)]);
+ put(state,"iteration",0);put(state,"pruned",0);put(state,"best_loss",-1);put(state,"best",[]);put(state,"archive",[]);retornar state;
+}
+funcao sqrt_floor(n){var lo=0;var hi=n+1;enquanto(hi-lo>1){var m=qfloor((lo+hi)/2);se(m*m<=n){lo=m;}senao{hi=m;}}retornar lo;}
+funcao lower(prefix,spec){
+ var stack=[];var count=0;var out=[];var i=len(prefix)-1;var constants=spec["constants"];
+ enquanto(i>=0){var token=prefix[i];var record=[];
+ se(token<32){record=[1,-1,-1,token];}senao{se(token<48){record=[0,-1,-1,constants[token-32]];}senao{
+ var a=arity(token);se(count<a){fail("Grammar stack underflow");}count=count-1;var left=stack[count];var right=-1;se(a==2){count=count-1;right=stack[count];}record=[token-46,left,right,""];
+ }}push(out,record);se(count==len(stack)){push(stack,len(out)-1);}senao{put(stack,count,len(out)-1);}count=count+1;i=i-1;}
+ se(count!=1){fail("Incomplete grammar derivation");}retornar out;
+}
+funcao step(state){
+ var spec=state["spec"];var nodes=state["nodes"];var current=0;var depth=0;
+ enquanto(len(nodes[current]["children"])>0&&depth<state["maximum"]){
+  var children=nodes[current]["children"];var selected=children[0];var best=-1;var i=0;var root=sqrt_floor(nodes[current]["visits"]+1);
+  enquanto(i<len(children)){var candidate=children[i];var n=nodes[candidate];var visits=n["visits"];var score=n["total"]/(visits+1)+root/(1+visits);
+   se(score>best){best=score;selected=candidate;}i=i+1;}current=selected;depth=depth+1;
+ }
+ var selected=nodes[current];
+ se(selected["pending"]>0&&len(selected["children"])==0){var options=actions(spec,selected["pending"],len(selected["prefix"]),state["maximum"]);
+  se(len(nodes)+len(options)<=state["capacity"]){var i=0;enquanto(i<len(options)){var token=options[i];var prefix=slice(selected["prefix"],0,len(selected["prefix"]));push(prefix,token);push(selected["children"],len(nodes));push(nodes,node(prefix,selected["pending"]-1+arity(token),current));i=i+1;}}
+  se(len(selected["children"])>0){current=selected["children"][next_random(state,len(selected["children"]))];selected=nodes[current];}
+ }
+ var prefix=slice(selected["prefix"],0,len(selected["prefix"]));var pending=selected["pending"];
+ enquanto(pending>0){var options=actions(spec,pending,len(prefix),state["maximum"]);se(len(options)==0){fail("Incomplete derivation under budget");}
+  var atoms=[];var j=0;enquanto(j<len(options)){se(options[j]<48){push(atoms,options[j]);}j=j+1;}se(len(atoms)>0&&next_random(state,4)!=0){options=atoms;}
+  var token=options[next_random(state,len(options))];push(prefix,token);pending=pending-1+arity(token);
+ }
+ var candidate=lower(prefix,spec);var examples=spec["examples"];var loss=0;var valid=1;var i=0;var begin=monotonic_ns();
+ enquanto(i<len(examples)){var example=s::as_object(examples[i]);var observed=ast::evaluate(candidate,s::as_list(example["inputs"]));se(observed["error"]){valid=0;parar;}var delta=observed["value"]-s::rational(text(example["output"]));se(delta<0){delta=-delta;}loss=loss+delta;i=i+1;}
+ var elapsed=monotonic_ns()-begin;var reward=0;se(valid){reward=1/(1+loss);se(has(state,"fitness_config")){var f=fitness::search_score(reward,len(candidate),state["maximum"],elapsed,state["fitness_config"]);reward=s::rational(f["score"]);}reward=qfloor(1048576*reward)/1048576;}senao{put(state,"pruned",state["pruned"]+1);}
+ var index=current;enquanto(index>=0){var n=nodes[index];put(n,"visits",n["visits"]+1);put(n,"total",n["total"]+reward);index=n["parent"];}
+ se(valid&&(state["best_loss"]<0||loss<state["best_loss"]||(loss==state["best_loss"]&&len(candidate)<len(state["best"])))){put(state,"best_loss",loss);put(state,"best",candidate);}
+ var event=obj();put(event,"iteration",state["iteration"]+1);put(event,"tree_nodes",len(nodes));put(event,"pruned",state["pruned"]);put(event,"ast",candidate);put(event,"valid",valid);put(event,"loss",s::format_q(loss));put(event,"reward",s::format_q(reward));put(event,"latency_ns",elapsed);put(event,"formal_admission",0);
+ var archive=state["archive"];se(len(archive)<128){push(archive,event);}senao{put(archive,state["iteration"]%128,event);}put(state,"iteration",state["iteration"]+1);retornar event;
+}
+funcao search(spec,iterations,maximum,capacity,seed){se(iterations%1!=0||iterations<1||iterations>4096){fail("Iteration budget");}var state=new_state(spec,maximum,capacity,seed);var i=0;enquanto(i<iterations){step(state);i=i+1;}retornar state;}
+funcao best_source(state){
+ se(len(state["best"])==0){fail("No evaluable candidate");}var spec=state["spec"];var variables=spec["variables"];var first=spec["examples"][0];var source="";var i=0;
+ enquanto(i<len(variables)){source=source+"parametro "+variables[i]+"=("+s::format_q(s::rational(text(first["inputs"][i])))+");\n";i=i+1;}
+ retornar source+"tensor result="+ast::render(state["best"],variables)+";\nmostrar result;\n";
+}
+// Self-synthesis is of the search scoring policy, not arbitrary Turing programs.
+funcao policy_search(spec,iterations,seed){retornar search(spec,iterations,15,1024,seed);}
+funcao reweight(state,config){put(state,"fitness_config",config);var nodes=state["nodes"];var i=0;enquanto(i<len(nodes)){put(nodes[i],"visits",0);put(nodes[i],"total",0);i=i+1;}retornar 0;}

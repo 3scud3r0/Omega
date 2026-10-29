@@ -1,0 +1,30 @@
+modulo repl;
+importar "../std/string.omega" como s;
+funcao error(p,message){se(p["error"]==""){put(p,"error",message);}retornar 0;}
+funcao skip(p){var line=p["source"];var i=p["position"];enquanto(i<len(line)&&contains(" \t\r",line[i])){i=i+1;}put(p,"position",i);retornar 0;}
+funcao peek(p){skip(p);se(p["position"]>=len(p["source"])){retornar "";}retornar p["source"][p["position"]];}
+funcao accept(p,token){skip(p);var start=p["position"];se(start+len(token)<=len(p["source"])&&slice(p["source"],start,start+len(token))==token){put(p,"position",start+len(token));retornar 1;}retornar 0;}
+funcao name(p){skip(p);var source=p["source"];var start=p["position"];var i=start;enquanto(i<len(source)&&contains("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_0123456789",source[i])){i=i+1;}var value=slice(source,start,i);put(p,"position",i);se(!ident(value)){error(p,"Identificador invalido");}retornar value;}
+funcao atom(p,env,depth){
+ se(depth>64){retornar error(p,"Profundidade excedida");}var ch=peek(p);se(ch==""){retornar error(p,"Expressao incompleta");}
+ se(accept(p,"-")){retornar -atom(p,env,depth+1);}se(accept(p,"+")){retornar atom(p,env,depth+1);}
+ se(accept(p,"(")){var value=expression(p,env,depth+1);se(!accept(p,")")){error(p,"Esperado )");}retornar value;}
+ se(contains("0123456789",ch)){
+  var source=p["source"];var start=p["position"];var i=start;enquanto(i<len(source)&&contains("0123456789",source[i])){i=i+1;}
+  se(i<len(source)&&source[i]=="."){i=i+1;var fractional=i;enquanto(i<len(source)&&contains("0123456789",source[i])){i=i+1;}se(i==fractional){retornar error(p,"Decimal incompleto");}}
+  se(i-start>256){retornar error(p,"Numero excede limite");}put(p,"position",i);retornar number(slice(source,start,i));
+ }
+ var symbol=name(p);se(!has(env,symbol)){retornar error(p,"Variavel desconhecida: "+symbol);}retornar env[symbol];
+}
+funcao term(p,env,depth){var value=atom(p,env,depth);enquanto(p["error"]==""){var op=peek(p);se(op!="*"&&op!="/"){parar;}accept(p,op);var other=atom(p,env,depth+1);se(op=="*"){value=value*other;}senao{se(other==0){retornar error(p,"Divisao por zero");}value=value/other;}se(qbits(value)>4096){retornar error(p,"Orcamento racional excedido");}}retornar value;}
+funcao expression(p,env,depth){var value=term(p,env,depth);enquanto(p["error"]==""){var op=peek(p);se(op!="+"&&op!="-"){parar;}accept(p,op);var other=term(p,env,depth+1);se(op=="+"){value=value+other;}senao{value=value-other;}}retornar value;}
+funcao evaluate(line,env){
+ var p=obj();put(p,"source",line);put(p,"position",0);put(p,"error","");var assigned="";
+ se(s::starts_with(line,"let ")){accept(p,"let");assigned=name(p);se(!accept(p,"=")){error(p,"Esperado =");}}
+ senao{se(s::starts_with(line,"mostrar ")){accept(p,"mostrar");}senao{se(s::starts_with(line,"let")){error(p,"Esperado let nome = expressao");}}}
+ var value=expression(p,env,0);accept(p,";");se(peek(p)!=""){error(p,"Texto inesperado");}
+ se(p["error"]!=""){print("[Erro] "+p["error"]);retornar 0;}
+ se(assigned!=""){put(env,assigned,value);}var integral="";se(qden(value)==1){integral=" (Inteiro: "+text(qnum(value))+")";}
+ print("=> "+s::format_q(value)+integral+" [Tipo: Rational, Invariante: OK]");retornar 1;
+}
+funcao principal(){var env=obj();print("OMEGA REPL racional. let, mostrar, sair.");enquanto(1){print("omega>");var input=readline();se(input["eof"]){parar;}var line=s::trim(input["line"]);se(line=="sair"||line=="quit"){parar;}se(len(line)>0){evaluate(line,env);}}retornar 0;}

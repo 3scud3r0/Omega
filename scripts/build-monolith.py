@@ -12,7 +12,7 @@ import subprocess
 
 ROOT=Path(__file__).resolve().parents[1]
 OUTPUT=ROOT/'omega/omega_3_monolith.py'
-FOLDERS={'validation','omega_agent','omega_coder','omega_memory','omega_learning','omega_evolution','omega_tools','omega_security','omega_bench','omega','omega_open','omega_selfhost','omega_platform','omega_nextorch','nextorch',
+FOLDERS={'std','runtime','tools','omega_native','validation','omega_agent','omega_coder','omega_memory','omega_learning','omega_evolution','omega_tools','omega_security','omega_bench','omega','omega_open','omega_selfhost','omega_platform','omega_nextorch','nextorch',
          'omega_refine_check','omega_synth_mcts','omega_self_mutate','omega_agent_sandbox','omega_cognition','hardware',
          'omega_gpu_mcts','omega_abstract_domain','omega_autotelic','omega_self_evolve_v2','omega_runtime_verified',
          'formal','scripts','requirements','roadmap','docs','testes','exemplos','.github'}
@@ -185,7 +185,7 @@ def build():
         if not name or ROOT/path==OUTPUT or '.lake' in path.parts or '__pycache__' in path.parts:
             continue
         if name=='scripts/monolith-components.py.txt' or (path.parts[0] in FOLDERS and
-            (path.suffix in EXTENSIONS or path.name=='lean-toolchain')) or name in {'pyproject.toml','MANIFEST.in','README.md','LICENSE'}:
+            (path.suffix in EXTENSIONS or path.name=='lean-toolchain')) or name in {'setup.py','pyproject.toml','MANIFEST.in','README.md','LICENSE','banco_de_dados.omega','synthesis.omega','fitness.omega','civilizacao_agentes.omega','incubadora_continua.omega','ginasio.omega'}:
             selected.append(name)
     sources={name:(ROOT/name).read_bytes().decode('utf-8') for name in selected}
     # The virtual module lives only inside the requested single-file artifact.

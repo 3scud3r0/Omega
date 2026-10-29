@@ -1,0 +1,26 @@
+modulo incubadora_continua;
+importar "std/string.omega" como s;
+importar "std/io.omega" como io;
+importar "std/proof.omega" como proof;
+exportar draft, request_approval, approve;
+funcao draft(target,base_sha,candidate_sha,proof_sha,old_ns,new_ns,old_cost,new_cost){
+ se(old_ns<=0||new_ns<=0||old_cost<1||new_cost<1){fail("Positive measured timings and cost required");}
+ var proposal=obj();put(proposal,"format","omega-incubator-proposal-1");put(proposal,"target",target);put(proposal,"base_sha256",base_sha);put(proposal,"candidate_sha256",candidate_sha);put(proposal,"proof_sha256",proof_sha);
+ put(proposal,"old_ns",old_ns);put(proposal,"new_ns",new_ns);put(proposal,"old_cost",old_cost);put(proposal,"new_cost",new_cost);
+ put(proposal,"throughput_gain_measured",s::format_q(old_ns/new_ns-1));put(proposal,"cost_gain",s::format_q((old_cost-new_cost)/old_cost));retornar proposal;
+}
+funcao request_approval(proposal,authority,certificate,policy,human,key_root,key_path,nonce){
+ retornar approve(proposal,authority,certificate,policy,human,key_root,key_path,nonce,"manual");
+}
+funcao approve(proposal,authority,certificate,policy,actor,key_root,key_path,nonce,mode){
+ var subject=sha256(s::canonical(proposal));se(!proof::verify(authority,"incubator.proposal",subject,policy,certificate)){fail("Proposal proof authority denied");}
+ se(proposal["new_ns"]>=proposal["old_ns"]||proposal["new_cost"]>=proposal["old_cost"]){fail("Proposal did not improve the measured timing and declared cost model");}
+ print("[INCUBADORA OMEGA] Proposta: "+proposal["target"]);print("Ganho de throughput MEDIDO: "+proposal["throughput_gain_measured"]);print("Prova formal do contrato: APROVADA; desempenho depende do ensaio.");
+ se(mode!="manual"&&mode!="auto"){fail("Unknown approval mode");}
+ se(mode=="manual"){
+  print("Incorporar esta proposta e disparar o bootstrap? (S/N)");var answer=readline();
+  se(answer["eof"]||s::trim(answer["line"])!="S"){var denied=obj();put(denied,"approved",0);retornar denied;}
+ }senao{print("[INCUBADORA OMEGA] Aprovacao automatica pela politica configurada.");}
+ var approval=obj();put(approval,"format","omega-native-approval-1");put(approval,"subject",subject);put(approval,"actor",actor);put(approval,"mode",mode);put(approval,"nonce",nonce);put(approval,"expires",unix_time()+300);
+ var payload=json(approval);var result=obj();put(result,"approved",1);put(result,"approval",payload);put(result,"signature",ed25519_sign(key_root,key_path,payload));retornar result;
+}
