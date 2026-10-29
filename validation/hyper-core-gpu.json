@@ -1,0 +1,10 @@
+{
+  "format": "omega-hyper-benchmark-1",
+  "status": "pending",
+  "reason": "CUDA kernels compiled, but no NVIDIA device is available",
+  "cuda_compile": "passed",
+  "cuda_execution": "unrun",
+  "ten_million_operations": "unrun",
+  "fifty_thousand_nodes_under_one_second": "unrun",
+  "ten_nanosecond_filter": "unmeasured"
+}

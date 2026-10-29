@@ -14,8 +14,9 @@ ROOT=Path(__file__).resolve().parents[1]
 OUTPUT=ROOT/'omega/omega_3_monolith.py'
 FOLDERS={'validation','omega_agent','omega_coder','omega_memory','omega_learning','omega_evolution','omega_tools','omega_security','omega_bench','omega','omega_open','omega_selfhost','omega_platform','omega_nextorch','nextorch',
          'omega_refine_check','omega_synth_mcts','omega_self_mutate','omega_agent_sandbox','omega_cognition','hardware',
+         'omega_gpu_mcts','omega_abstract_domain','omega_autotelic','omega_self_evolve_v2','omega_runtime_verified',
          'formal','scripts','requirements','roadmap','docs','testes','exemplos','.github'}
-EXTENSIONS={'.py','.h','.omega','.lean','.json','.lock','.tsv','.md','.sh','.yml','.c','.svg','.sv'}
+EXTENSIONS={'.py','.h','.omega','.lean','.json','.lock','.tsv','.md','.sh','.yml','.c','.svg','.sv','.cu','.cuh','.cpp'}
 
 LAUNCHER='''"""Readable single-file Omega source distribution.
 

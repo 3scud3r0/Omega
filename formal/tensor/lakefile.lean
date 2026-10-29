@@ -9,6 +9,8 @@ lean_lib ProofPrelude where
 lean_lib OperationalSemantics where
   srcDir := "../../omega_selfhost"
 lean_lib Omega
+lean_lib Tier2 where
+  srcDir := ".."
 @[default_target]
 lean_exe omega_tensor_kernel where
   root := `Main

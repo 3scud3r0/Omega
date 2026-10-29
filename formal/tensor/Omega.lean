@@ -19,6 +19,7 @@ import Omega.VerifiedRewrite
 import Omega.LinearMemory
 import Omega.Lyapunov
 import Omega.Glass
+import Tier2.CompilerSelfPreservation
 /- Source-only formal library. Compilation and axiom-policy evidence are pending.
    Intrinsically typed finite-core and conditional native-contract statements
    are not a completed proof for the C/GMP/LLVM toolchain. -/

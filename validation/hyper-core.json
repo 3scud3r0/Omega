@@ -1,0 +1,68 @@
+{
+  "adoption": {
+    "active_binary": "/workspace/Omega/artifacts/hyper-core-review/generation/bootstrap/stage3",
+    "epoch": {
+      "compiler_sha256": "e93be1d8a6d7bfa1d84edd38df52b642a2c7218d77e03c007b6672655292d138",
+      "format": "omega-runtime-epoch-1",
+      "generation": "/workspace/Omega/artifacts/hyper-core-review/generation",
+      "git_commit": null,
+      "source_replaced": false
+    },
+    "output": "17/3",
+    "source_replaced": false,
+    "valid": true
+  },
+  "date": "2026-10-29",
+  "final_targeted_junit": {
+    "errors": 0,
+    "failures": 0,
+    "skipped": 2,
+    "tests": 21
+  },
+  "final_targeted_pytest": {
+    "passed": 19,
+    "skipped": 2
+  },
+  "format": "omega-hyper-core-validation-1",
+  "full_suite_junit": {
+    "errors": 0,
+    "failures": 0,
+    "skipped": 4,
+    "tests": 924
+  },
+  "full_suite_pytest": {
+    "passed": 883,
+    "skipped": 4,
+    "subtests_passed": 37
+  },
+  "gpu": {
+    "cuda_compile": "passed",
+    "cuda_execution": "unrun",
+    "fifty_thousand_nodes_under_one_second": "unrun",
+    "format": "omega-hyper-benchmark-1",
+    "reason": "CUDA kernels compiled, but no NVIDIA device is available",
+    "status": "pending",
+    "ten_million_operations": "unrun",
+    "ten_nanosecond_filter": "unmeasured"
+  },
+  "review": {
+    "compiler_sha256": "e93be1d8a6d7bfa1d84edd38df52b642a2c7218d77e03c007b6672655292d138",
+    "fixed_point": true,
+    "objective": {
+      "after": 5,
+      "before": 7,
+      "metric": "IR nodes on the generated probe"
+    },
+    "proof_theorems": 21,
+    "tier2_olean_sha256": "cdcb82e921c75ba8d5df1f462ef1a62cdcade53f01876c2c009e082c60d0a006",
+    "tier2_source_sha256": "7abbf6e4d66491448126846a3ed575418c2243cbd1408fbf2a366e9fc4f55559"
+  },
+  "scope": "CUDA targets compiled; host semantics, Lean objects, native consolidation, scoped Git adoption and C traces exercised. No GPU execution, latency claim, formal CUDA/SASS proof or unrestricted self-modification claim.",
+  "toolchain": {
+    "cuda_architecture_compiled": "sm_80",
+    "cuda_compiler": "13.4.92",
+    "cuda_devices": 0,
+    "lean": "4.19.0",
+    "python": "3.12.14"
+  }
+}

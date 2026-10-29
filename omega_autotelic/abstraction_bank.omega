@@ -1,0 +1,14 @@
+// Host authenticates every item before invoking this deterministic merge.
+funcao as_object(x){se(isnum(x)||isstr(x)||islist(x)){fail("object required");}retornar x;}
+funcao as_string(x){se(!isstr(x)){fail("string required");}retornar x;}
+funcao principal(){
+  se(argc()!=4){fail("usage: abstraction_bank current.json approved.json next.json");}
+  var current=parsejson(read(arg(1)));var item=as_object(parsejson(read(arg(2))));
+  se(!islist(current)||len(current)>=1024){fail("abstraction capacity");}
+  se(!has(item,"id")||!has(item,"definition")||!has(item,"contract")||!has(item,"tier2_receipt")){fail("incomplete bank entry");}
+  var i=0;enquanto(i<len(current)){var entry=as_object(current[i]);se(as_string(entry["id"])==as_string(item["id"])){
+    se(json(entry)!=json(item)){fail("conflicting abstraction identity");}
+    write(arg(3),json(current));retornar 0;
+  }i=i+1;}
+  push(current,item);write(arg(3),json(current));retornar 0;
+}

@@ -15,3 +15,10 @@ prune formal/tensor/.lake
 recursive-include roadmap *.tsv *.json *.md
 recursive-include validation *.json *.md
 recursive-include hardware *.sv *.md
+recursive-include hardware *.cu *.cuh *.cpp
+recursive-include omega_gpu_mcts *.cu *.cuh *.h
+recursive-include omega_abstract_domain *.cu *.cuh
+recursive-include omega_runtime_verified *.c *.h
+recursive-include omega_autotelic *.omega
+recursive-include omega_self_evolve_v2 *.omega *.sh
+recursive-include testes *.cu
