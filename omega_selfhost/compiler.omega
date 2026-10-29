@@ -134,7 +134,7 @@ funcao parse(source) {
   retornar functions;
 }
 funcao builtin(n) {
-  retornar contains(["list","obj","len","get","put","push","has","keys","text","number","ident","decimal","isnum","isstr","islist","slice","join","contains","arg","argc","read","write","print","fail","json","parsejson"],n);
+  retornar contains(["list","obj","len","get","put","push","has","keys","text","number","ident","decimal","isnum","isstr","islist","slice","join","contains","arg","argc","read","write","print","fail","json","parsejson","qnum","qden","qfloor","qbits","monotonic_ns","readline","flush","root_read","root_write","root_exists","sha256","file_sha256","append_cas","ed25519_verify","ed25519_sign","unix_time"],n);
 }
 funcao apply_c(n,args) {
   var out=["({"]; var names=[]; var i=0;

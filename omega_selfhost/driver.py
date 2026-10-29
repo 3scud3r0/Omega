@@ -34,7 +34,7 @@ def cc(source, output, optimization='-O2', *, static=False):
     if type(static) is not bool:raise ValueError('Static linking must be boolean')
     c_tool([compiler,'-std=gnu11',optimization,*(['-static'] if static else []),'-s','-Wall','-Wextra',
              '-Wno-unused-function','-Wno-unused-variable','-Wno-misleading-indentation',
-             '-I',PACKAGE,Path(source).resolve(),'-lgmp','-o',Path(output).resolve()],
+             '-DOMEGA_CRYPTO=1','-I',PACKAGE,Path(source).resolve(),'-lgmp','-lcrypto','-o',Path(output).resolve()],
             inputs=[source,PACKAGE],output_directory=Path(output).resolve().parent,
             budget=BUILD_BUDGET,check=True)
 
@@ -178,7 +178,7 @@ def build(source, destination, optimize=False, *, optimization='-O2', static=Fal
             destination.with_suffix('.opt.json').write_text(json.dumps(optimization_certificate,indent=2)+'\n')
             os.replace(Path(tmp)/'optimization.lean',destination.with_suffix('.opt.lean'))
     provenance={'format':'omega-build-manifest-1','source_sha256':digest(source),
-                'native_c_flags':['-std=gnu11',optimization,*(['-static'] if static else []),'-s','-lgmp'],
+                'native_c_flags':['-std=gnu11',optimization,*(['-static'] if static else []),'-s','-DOMEGA_CRYPTO=1','-lgmp','-lcrypto'],
                 'inferred_types':inferred.to_dict() if inferred else None,
                 'compiler_inputs':compiler_inputs(ROOT),
                 'compiler_sha256':digest(compiler()),

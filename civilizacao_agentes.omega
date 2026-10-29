@@ -1,0 +1,22 @@
+modulo civilizacao_agentes;
+importar "std/string.omega" como s;
+importar "std/proof.omega" como proof;
+importar "banco_de_dados.omega" como db;
+exportar core, seal, receive;
+funcao core(sender,recipient,channel,nonce,payload){
+ se(len(sender)==0||len(recipient)==0||len(channel)==0||len(nonce)==0||len(nonce)>128){fail("Bounded message identities required");}
+ var m=obj();put(m,"sender",sender);put(m,"recipient",recipient);put(m,"channel",channel);put(m,"nonce",nonce);put(m,"payload",payload);retornar m;
+}
+funcao seal(message,certificate,key_root,key_path){
+ var signed=obj();put(signed,"message",message);put(signed,"certificate",certificate);
+ var packet=obj();put(packet,"signed",signed);put(packet,"signature",ed25519_sign(key_root,key_path,s::canonical(signed)));retornar packet;
+}
+funcao receive(root,path,head,recipient,channel,policy,senders,authority,raw){
+ var packet=s::as_object(raw);var signed=s::as_object(packet["signed"]);var message=s::as_object(signed["message"]);
+ var sender=s::as_string(message["sender"]);se(!has(senders,sender)||message["recipient"]!=recipient||message["channel"]!=channel){fail("Message scope denied");}
+ se(!ed25519_verify(senders[sender],s::canonical(signed),packet["signature"])){fail("Sender signature invalid");}
+ var subject=sha256(s::canonical(message));se(!proof::verify(authority,"message",subject,policy,signed["certificate"])){fail("Message has no valid Lean permit");}
+ var nonce=s::as_string(message["nonce"]);se(len(nonce)==0||len(nonce)>128){fail("Invalid message nonce");}
+ var key=sha256(s::canonical([sender,nonce]));var state=db::audit(root,path,head);se(has(state["state"],key)){fail("Replayed proof-carrying message");}
+ retornar db::append_event(root,path,head,key,s::canonical(message),"received-message");
+}

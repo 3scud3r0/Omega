@@ -1,0 +1,1 @@
+{"variables":{"x":"true"},"constants":["0","1","2"],"operators":["+","-","*"],"ensures":"result == (x*2)-x","examples":[{"inputs":{"x":"-1"},"output":"-1"},{"inputs":{"x":"0"},"output":"0"},{"inputs":{"x":"2"},"output":"2"}]}

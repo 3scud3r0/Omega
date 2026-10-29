@@ -1,0 +1,31 @@
+modulo ginasio;
+importar "std/string.omega" como s;
+importar "std/ast.omega" como ast;
+importar "synthesis.omega" como synthesis;
+importar "fitness.omega" como fitness;
+exportar energy, transition, simulate, explore;
+funcao energy(state){var x=state[0];var v=state[1];retornar 2*x*x+(x+v)*(x+v);}
+funcao transition(kind,state,u){
+ se(u>30||u<-30){fail("Control action exceeds declared bound");}var x=state[0];var v=state[1];
+ se(kind=="pendulum"){retornar [x+v/20,v+(x+u)/20];}
+ se(kind=="arm"){retornar [x+v/20,v+(u-v/4)/20];}
+ se(kind=="market"){retornar [x+(u-v)/100,u];}
+ se(kind=="equation"){retornar [x-u,v];}
+ fail("Unknown rational simulation model");retornar state;
+}
+funcao simulate(kind,controller,state,steps){
+ se(steps%1!=0||steps<1||steps>4096||len(state)!=2){fail("Simulation budget");}var trace=[];var i=0;
+ enquanto(i<steps){var value=ast::evaluate(controller,state);se(value["error"]){fail("Controller evaluation failed");}var next=transition(kind,state,value["value"]);var row=obj();put(row,"step",i);put(row,"state",[s::format_q(state[0]),s::format_q(state[1])]);put(row,"control",s::format_q(value["value"]));put(row,"energy_before",s::format_q(energy(state)));put(row,"energy_after",s::format_q(energy(next)));push(trace,row);state=next;i=i+1;}
+ retornar trace;
+}
+funcao explore(spec,root,config_path,iterations,maximum,seed){
+ se(iterations%1!=0||iterations<1||iterations>4096){fail("Iteration budget");}var state=synthesis::new_state(spec,maximum,4096,seed);var i=0;var version="";var config=obj();var best=-1;var winner=[];
+ enquanto(i<iterations){
+  var data=root_read(root,config_path);var digest=sha256(data);se(digest!=version){config=s::as_object(parsejson(data));version=digest;best=-1;winner=[];synthesis::reweight(state,config);print("[GINASIO] Pesos atualizados: "+version);}
+  var event=synthesis::step(state);se(event["valid"]){var score=s::rational(event["reward"]);se(score>best){best=score;winner=event["ast"];}
+   put(event,"fitness",event["reward"]);put(event,"candidate_expression",ast::render(event["ast"],spec["variables"]));
+  }
+  se(i%16==0||i+1==iterations){put(event,"weights_sha256",version);put(event,"best_score",s::format_q(best));put(event,"backend","native-cpu-mcts");print(json(event));}i=i+1;
+ }
+ var result=obj();put(result,"winner",winner);put(result,"expression","");se(len(winner)>0){put(result,"expression",ast::render(winner,spec["variables"]));}put(result,"score",s::format_q(best));put(result,"weights_sha256",version);put(result,"formal_admission",0);retornar result;
+}

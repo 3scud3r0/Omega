@@ -11,6 +11,8 @@ lean_lib OperationalSemantics where
 lean_lib Omega
 lean_lib Tier2 where
   srcDir := ".."
+lean_lib Native where
+  srcDir := ".."
 @[default_target]
 lean_exe omega_tensor_kernel where
   root := `Main

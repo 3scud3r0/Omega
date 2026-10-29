@@ -22,3 +22,8 @@ recursive-include omega_runtime_verified *.c *.h
 recursive-include omega_autotelic *.omega
 recursive-include omega_self_evolve_v2 *.omega *.sh
 recursive-include testes *.cu
+
+include banco_de_dados.omega synthesis.omega fitness.omega civilizacao_agentes.omega incubadora_continua.omega ginasio.omega
+recursive-include std *.omega
+recursive-include runtime *.omega *.h
+recursive-include tools *.omega

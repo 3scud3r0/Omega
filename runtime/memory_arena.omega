@@ -1,0 +1,21 @@
+modulo memory_arena;
+exportar create, allocate, move, borrow, unborrow, release, finish;
+funcao natural(x){se(x%1!=0||x<0){fail("Natural number required");}retornar x;}
+funcao create(capacity){natural(capacity);se(capacity<1||capacity>10485760){fail("Arena capacity 1..10 MiB");}var a=obj();put(a,"capacity",capacity);put(a,"used",0);put(a,"peak",0);put(a,"entries",[]);put(a,"active",[]);put(a,"depth",0);put(a,"borrow_stack",[]);put(a,"borrow_depth",0);put(a,"next_borrow",0);retornar a;}
+funcao checked(a,h){
+ var slot=natural(h[0]);se(slot>=len(a["entries"])){fail("Unknown arena handle");}var e=a["entries"][slot];
+ se(!e["alive"]||e["generation"]!=h[1]||e["owner"]!=h[2]){fail("Expired linear handle");}retornar e;
+}
+funcao allocate(a,size,owner){
+ natural(size);natural(owner);se(size==0||size>a["capacity"]-a["used"]){fail("Arena exhausted");}
+ var slot=0;enquanto(slot<len(a["entries"])&&a["entries"][slot]["alive"]){slot=slot+1;}se(slot>=1024){fail("Arena descriptor capacity");}
+ var generation=1;se(slot<len(a["entries"])){generation=a["entries"][slot]["generation"]+1;}
+ var e=obj();put(e,"alive",1);put(e,"generation",generation);put(e,"owner",owner);put(e,"offset",a["used"]);put(e,"size",size);put(e,"borrows",0);
+ se(slot==len(a["entries"])){push(a["entries"],e);}senao{put(a["entries"],slot,e);}
+ var depth=a["depth"];se(depth==len(a["active"])){push(a["active"],slot);}senao{put(a["active"],depth,slot);}put(a,"depth",depth+1);put(a,"used",a["used"]+size);se(a["used"]>a["peak"]){put(a,"peak",a["used"]);}retornar [slot,generation,owner];
+}
+funcao move(a,h,owner){natural(owner);var e=checked(a,h);se(e["borrows"]){fail("Borrowed resource cannot move");}put(e,"owner",owner);put(e,"generation",e["generation"]+1);retornar [h[0],e["generation"],owner];}
+funcao borrow(a,h){var e=checked(a,h);put(e,"borrows",e["borrows"]+1);var serial=a["next_borrow"]+1;put(a,"next_borrow",serial);var stack=a["borrow_stack"];var depth=a["borrow_depth"];se(depth>=1024){fail("Borrow capacity");}se(depth==len(stack)){push(stack,serial);}senao{put(stack,depth,serial);}put(a,"borrow_depth",depth+1);retornar [h[0],h[1],h[2],serial];}
+funcao unborrow(a,h){var e=checked(a,h);se(len(h)!=4||e["borrows"]==0||a["borrow_depth"]==0||h[3]!=a["borrow_stack"][a["borrow_depth"]-1]){fail("Borrow release must be linear/LIFO");}put(a,"borrow_depth",a["borrow_depth"]-1);put(e,"borrows",e["borrows"]-1);retornar 0;}
+funcao release(a,h){var e=checked(a,h);var depth=a["depth"];se(e["borrows"]||depth==0||a["active"][depth-1]!=h[0]){fail("Arena release must be exclusive and LIFO");}put(a,"used",e["offset"]);put(a,"depth",depth-1);put(e,"alive",0);put(e,"generation",e["generation"]+1);retornar 0;}
+funcao finish(a){se(a["depth"]!=0||a["used"]!=0){fail("Unconsumed arena resources");}retornar a["peak"];}

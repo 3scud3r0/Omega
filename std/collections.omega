@@ -1,0 +1,32 @@
+modulo collections;
+exportar priority_new, priority_push, priority_pop, hash_new, hash_put, hash_get, hash_has, hash_remove, graph_new, graph_edge, graph_get;
+funcao capacity(n){se(n%1!=0||n<1||n>4096){fail("Capacity must be 1..4096");}retornar n;}
+funcao priority_new(n){var h=obj();put(h,"capacity",capacity(n));put(h,"items",[]);put(h,"size",0);put(h,"serial",0);retornar h;}
+funcao earlier(a,b){retornar a[0]<b[0]||(a[0]==b[0]&&a[1]<b[1]);}
+funcao priority_push(h,priority,value){
+ var p=priority+0;var size=h["size"];se(size>=h["capacity"]){fail("Priority queue full");}
+ var entry=[p,h["serial"],value];put(h,"serial",h["serial"]+1);
+ se(size==len(h["items"])){push(h["items"],entry);}senao{put(h["items"],size,entry);}put(h,"size",size+1);var i=size;
+ enquanto(i>0){var parent=qfloor((i-1)/2);se(!earlier(h["items"][i],h["items"][parent])){parar;}var tmp=h["items"][parent];put(h["items"],parent,h["items"][i]);put(h["items"],i,tmp);i=parent;}retornar 0;
+}
+funcao priority_pop(h){
+ var size=h["size"];se(size==0){fail("Priority queue empty");}var result=h["items"][0];size=size-1;put(h,"size",size);
+ se(size>0){put(h["items"],0,h["items"][size]);var i=0;enquanto(2*i+1<size){var next=2*i+1;se(next+1<size&&earlier(h["items"][next+1],h["items"][next])){next=next+1;}se(!earlier(h["items"][next],h["items"][i])){parar;}var tmp=h["items"][i];put(h["items"],i,h["items"][next]);put(h["items"],next,tmp);i=next;}}
+ put(h["items"],size,[]);retornar result;
+}
+funcao hash_new(n){capacity(n);var h=obj();var slots=[];var i=0;enquanto(i<n){push(slots,[0,"",0]);i=i+1;}put(h,"slots",slots);put(h,"capacity",n);put(h,"size",0);retornar h;}
+funcao hash_code(key,n){se(!isstr(key)||len(key)>4096){fail("Bounded string key required");}var hex=sha256(key);var value=0;var alphabet="0123456789abcdef";var i=0;enquanto(i<16){var digit=0;enquanto(alphabet[digit]!=hex[i]){digit=digit+1;}value=(value*16+digit)%n;i=i+1;}retornar value;}
+funcao hash_find(h,key,insert){
+ var n=h["capacity"];var start=hash_code(key,n);var tomb=-1;var i=0;
+ enquanto(i<n){var index=(start+i)%n;var slot=h["slots"][index];se(slot[0]==0){se(insert&&tomb>=0){retornar tomb;}se(insert){retornar index;}retornar -1;}
+ se(slot[0]==1&&slot[1]==key){retornar index;}se(slot[0]==2&&tomb<0){tomb=index;}i=i+1;}
+ se(insert){retornar tomb;}retornar -1;
+}
+funcao hash_put(h,key,value){var index=hash_find(h,key,1);se(index<0){fail("Hash table full");}se(h["slots"][index][0]!=1){put(h,"size",h["size"]+1);}put(h["slots"],index,[1,key,value]);retornar 0;}
+funcao hash_get(h,key){var index=hash_find(h,key,0);se(index<0){fail("Hash key missing");}retornar h["slots"][index][2];}
+funcao hash_has(h,key){retornar hash_find(h,key,0)>=0;}
+funcao hash_remove(h,key){var index=hash_find(h,key,0);se(index<0){retornar 0;}put(h["slots"],index,[2,"",0]);put(h,"size",h["size"]-1);retornar 1;}
+funcao graph_new(n){se(n%1!=0||n<1||n>256){fail("Graph dimension is 1..256");}var edges=[];var i=0;enquanto(i<n*n){push(edges,[0,0]);i=i+1;}var g=obj();put(g,"vertices",n);put(g,"edges",edges);retornar g;}
+funcao graph_index(g,a,b){var n=g["vertices"];se(a%1!=0||b%1!=0||a<0||b<0||a>=n||b>=n){fail("Vertex out of range");}retornar a*n+b;}
+funcao graph_edge(g,a,b,weight){var index=graph_index(g,a,b);put(g["edges"],index,[1,weight+0]);retornar 0;}
+funcao graph_get(g,a,b){retornar g["edges"][graph_index(g,a,b)];}

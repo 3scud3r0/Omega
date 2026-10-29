@@ -122,7 +122,8 @@ class LinkedProgram:
     def manifest(self):return json.loads(self._manifest)
 
 
-def link(entry,root):
+def link(entry,root,*,dynamic=False):
+    if type(dynamic) is not bool:raise TypeCheckError('Explicit inference mode required')
     root=Path(root).resolve(strict=True)
     if not root.is_dir():raise TypeCheckError('Module root must be a directory')
     modules={};resolved_imports={};active=[];order=[];total=0
@@ -201,19 +202,20 @@ def link(entry,root):
     source='\n'.join(pieces)+'\n'
     if len(source)>256*1024:raise TypeCheckError('Linked source budget exceeded')
     from .procedural_types import infer_procedural
-    inferred=infer_procedural(source)
+    inferred=None if dynamic else infer_procedural(source)
     manifest={'format':'omega-modules-1','entry':entry_name,'order':order,
               'modules':{name:{'sha256':modules[name].digest,'imports':resolved_imports[name],
                                'exports':sorted(modules[name].exports)} for name in sorted(modules)},
               'origins':origins,'linked_sha256':hashlib.sha256(source.encode()).hexdigest(),
-              'types':inferred.to_dict()}
+              'types':inferred.to_dict() if inferred else {'format':'omega-native-dynamic-1','scope':'runtime tag checks; no static type proof'}}
+    if dynamic:manifest['inference_mode']='dynamic'
     return LinkedProgram(source,json.dumps(manifest,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode())
 
 
 def verify_manifest(manifest,root):
     if type(manifest) is not dict or manifest.get('format')!='omega-modules-1' or type(manifest.get('entry')) is not str:
         raise TypeCheckError('Malformed module manifest')
-    expected=link(manifest['entry'],root).manifest()
+    expected=link(manifest['entry'],root,dynamic=manifest.get('inference_mode')=='dynamic').manifest()
     try:
         encode=lambda value:json.dumps(value,sort_keys=True,separators=(',',':'),ensure_ascii=False,allow_nan=False)
         same=encode(manifest)==encode(expected)

@@ -13,6 +13,9 @@ trap 'rm -rf "$OMEGA_CHECK_DIR"' EXIT
 printf '#include <gmp.h>\nint main(void){mpq_t x;mpq_init(x);mpq_clear(x);return 0;}\n' \
   | cc -x c - -lgmp -o "$OMEGA_CHECK_DIR/gmp-check"
 "$OMEGA_CHECK_DIR/gmp-check"
+printf '#include <openssl/evp.h>\nint main(void){return EVP_sha256()==0;}\n' \
+  | cc -x c - -lcrypto -o "$OMEGA_CHECK_DIR/crypto-check"
+"$OMEGA_CHECK_DIR/crypto-check"
 lean --version
 [[ "$(lean --version)" == *"version 4.19.0,"* ]] || { echo 'Lean 4.19.0 is required' >&2; exit 1; }
 OMEGA_MATHLIB="$OMEGA_TOOLS/mathlib4"

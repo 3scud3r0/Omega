@@ -51,12 +51,16 @@ def novo_motor(comandos):
 
 
 def principal(argumentos: list[str] | None = None) -> int:
+    native_arguments=sys.argv[1:] if argumentos is None else argumentos
+    if native_arguments and native_arguments[0]=='native':
+        from omega_native.cli import main
+        return main(native_arguments[1:])
     p=argparse.ArgumentParser(prog='omega',description='Ômega 2.0 — auto-hospedagem, execução nativa e certificação')
     p.add_argument('--versao', action='version',version='Ômega '+VERSAO)
     sub=p.add_subparsers(dest='acao',required=True)
     agent_parser=sub.add_parser('agent',help='finite reasoning, planning and rational expression synthesis')
     agent_parser.add_argument('arguments',nargs=argparse.REMAINDER)
-    extensions={'refine':'omega_refine_check.cli','synth':'omega_synth_mcts.cli',
+    extensions={'native':'omega_native.cli','refine':'omega_refine_check.cli','synth':'omega_synth_mcts.cli',
                 'mutate':'omega_self_mutate.cli','action':'omega_agent_sandbox.cli','cognition':'omega_cognition.cli',
                 'hyper':'omega_gpu_mcts.cli','curiosity':'omega_autotelic.curiosity_driver','bootstrap-cycle':'omega_self_evolve_v2.cli'}
     for name,module in extensions.items():

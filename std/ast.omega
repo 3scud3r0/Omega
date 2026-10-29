@@ -1,0 +1,32 @@
+modulo ast;
+importar "string.omega" como s;
+exportar evaluate, render, validate, size;
+funcao size(nodes){retornar len(nodes);}
+funcao validate(raw,inputs){
+ var nodes=s::as_list(raw);se(len(nodes)<1||len(nodes)>63){retornar 0;}var i=0;
+ enquanto(i<len(nodes)){var n=s::as_list(nodes[i]);se(len(n)!=4){retornar 0;}var op=s::as_number(n[0]);
+ se(op%1!=0||op<0||op>7){retornar 0;}
+ se(op==0){s::rational(s::as_string(n[3]));}senao{se(op==1){var ref=s::as_number(n[3]);se(ref%1!=0||ref<0||ref>=inputs){retornar 0;}}
+ senao{var left=s::as_number(n[1]);se(left%1!=0||left<0||left>=i){retornar 0;}se(op<=5){var right=s::as_number(n[2]);se(right%1!=0||right<0||right>=i){retornar 0;}}}}
+ i=i+1;}retornar 1;
+}
+funcao evaluate(nodes,env){
+ var result=obj();put(result,"error",0);put(result,"value",0);put(result,"values",[]);
+ se(!validate(nodes,len(env))){put(result,"error",1);retornar result;}
+ var values=[];var i=0;
+ enquanto(i<len(nodes)){var n=nodes[i];var op=n[0];var value=0;
+ se(op==0){value=s::rational(n[3]);}senao{se(op==1){value=s::rational(text(env[n[3]]));}senao{
+ var a=values[n[1]];var b=0;se(op<=5){b=values[n[2]];}
+ se(op==2){value=a+b;}se(op==3){value=a-b;}se(op==4){value=a*b;}se(op==5){se(b==0){put(result,"error",2);retornar result;}value=a/b;}se(op==6){value=-a;}se(op==7){se(a>0){value=a;}}
+ }}
+ se(qbits(value)>4096){put(result,"error",3);retornar result;}
+ push(values,value);i=i+1;
+ }put(result,"value",values[len(values)-1]);put(result,"values",values);retornar result;
+}
+funcao render(nodes,names){
+ se(!validate(nodes,len(names))){fail("Malformed flat AST");}var values=[];var i=0;
+ enquanto(i<len(nodes)){var n=nodes[i];var op=n[0];var expression="";
+ se(op==0){expression="("+s::format_q(s::rational(n[3]))+")";}senao{se(op==1){expression=s::as_string(names[n[3]]);}senao{
+ var a=values[n[1]];se(op<=5){var operators=["+","-","*","/"];expression="("+a+operators[op-2]+values[n[2]]+")";}senao{se(op==6){expression="(-"+a+")";}senao{expression="relu("+a+")";}}
+ }}push(values,expression);i=i+1;}retornar values[len(values)-1];
+}

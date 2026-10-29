@@ -1,4 +1,7 @@
 /* Omega native value runtime. GMP rationals; no Python or external interpreter. */
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+#endif
 #ifndef OMEGA_RUNTIME_H
 #define OMEGA_RUNTIME_H
 #include <ctype.h>
@@ -680,6 +683,7 @@ static V o_parsejson(V s) {
     o_die("Trailing JSON data");
   return r;
 }
+#include "native_std.h"
 static void o_init(int argc, char **argv) {
   omega_argc = argc;
   omega_argv = argv;
