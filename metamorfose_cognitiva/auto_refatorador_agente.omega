@@ -1,0 +1,5 @@
+modulo auto_refatorador_agente;
+importar "../std/string.omega" como s;
+importar "../std/proof.omega" como p;
+exportar execute;
+funcao execute(r){se(r["base_sha256"]!=r["current_sha256"]||r["new_cost"]>=r["old_cost"]){fail("Stale or non-improving agent patch");}var subject=sha256(s::canonical(r["patch"]));se(!p::verify(r["authority"],"agent.refactor",subject,r["policy"],r["permit"])){fail("Agent replacement requires an independent equivalence permit");}var out=obj();put(out,"accepted",1);put(out,"patch_subject",subject);put(out,"installed",0);retornar out;}

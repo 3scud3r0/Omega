@@ -1,0 +1,5 @@
+modulo protocolo_enxame_rede;
+importar "../std/string.omega" como s;
+
+exportar execute;
+funcao execute(r){var frame=r["frame"];se(frame["version"]!=1||frame["recipient"]!=r["recipient"]||frame["sequence"]!=r["expected_sequence"]||len(frame["payload"])>65536){fail("Peer frame scope/order/budget");}se(!has(r["peers"],frame["sender"])){fail("Unknown peer");}var signed=obj();put(signed,"version",frame["version"]);put(signed,"sender",frame["sender"]);put(signed,"recipient",frame["recipient"]);put(signed,"sequence",frame["sequence"]);put(signed,"payload",frame["payload"]);se(!ed25519_verify(r["peers"][frame["sender"]],s::canonical(signed),frame["signature"])){fail("Peer frame signature invalid");}retornar frame["payload"];}

@@ -1,0 +1,5 @@
+modulo dialeto_sintetico;
+importar "../std/string.omega" como s;
+
+exportar execute;
+funcao execute(r){var dictionary=r["dictionary"];se(len(dictionary)>4096){fail("Dialect dictionary budget");}var index=obj();var i=0;enquanto(i<len(dictionary)){se(!isstr(dictionary[i])||has(index,dictionary[i])){fail("Duplicate dialect token");}put(index,dictionary[i],i);i=i+1;}var out=[];i=0;se(r["operation"]=="encode"){enquanto(i<len(r["tokens"])){se(!has(index,r["tokens"][i])){fail("Unknown dialect token");}push(out,index[r["tokens"][i]]);i=i+1;}}senao{enquanto(i<len(r["tokens"])){var token=r["tokens"][i];se(token<0||token>=len(dictionary)||qden(token)!=1){fail("Invalid dialect index");}push(out,dictionary[token]);i=i+1;}}var result=obj();put(result,"dictionary_sha256",sha256(s::canonical(dictionary)));put(result,"tokens",out);retornar result;}

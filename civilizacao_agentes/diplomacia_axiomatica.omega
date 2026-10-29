@@ -1,0 +1,7 @@
+modulo diplomacia_axiomatica;
+importar "../std/string.omega" como s;
+
+exportar execute;
+funcao execute(r){var goals=r["goals"];se(len(goals)<1||len(goals)>128){fail("Goal budget");}var lo=s::rational(goals[0]["lower"]);var hi=s::rational(goals[0]["upper"]);var i=0;
+ enquanto(i<len(goals)){var a=s::rational(goals[i]["lower"]);var b=s::rational(goals[i]["upper"]);se(a>b){fail("Malformed goal interval");}se(a>lo){lo=a;}se(b<hi){hi=b;}i=i+1;}
+ var out=obj();put(out,"feasible",lo<=hi);put(out,"intersection",[lo,hi]);se(lo<=hi){put(out,"agreement",(lo+hi)/2);}senao{put(out,"contradiction","maximum lower bound exceeds minimum upper bound");}retornar out;}

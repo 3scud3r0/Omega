@@ -1,0 +1,5 @@
+modulo quarentena_formal;
+importar "../std/proof.omega" como p;
+exportar execute;
+funcao execute(r){var stage=r["stage"];var subject=r["subject"];var next="";var purpose="";se(stage=="candidate"){next="red-team-passed";purpose="red-team";}senao{se(stage=="red-team-passed"){next="proof-checked";purpose="semantic-equivalence";}senao{se(stage=="proof-checked"){next="admitted";purpose="society.admit";}senao{fail("Unknown or terminal quarantine stage");}}}
+ se(!p::verify(r["authority"],purpose,subject,r["policy"],r["permit"])){fail("Stage-specific proof authority denied transition");}var out=obj();put(out,"stage",next);put(out,"subject",subject);retornar out;}

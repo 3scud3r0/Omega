@@ -1,0 +1,5 @@
+modulo juiz_consenso;
+importar "../civilizacao_agentes/protocolo_consenso.omega" como c;
+importar "../std/proof.omega" como proof;
+exportar execute;
+funcao execute(r){var vote=c::tally(r["validators"],r["votes"],r["height"],r["view"],"commit",r["subject"]);se(!vote["accepted"]){fail("Commit quorum absent");}se(!proof::verify(r["authority"],"society.admit",r["subject"],r["policy"],r["certificate"])){fail("Independent proof authority denied admission");}retornar vote;}

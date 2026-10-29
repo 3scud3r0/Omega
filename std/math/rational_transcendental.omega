@@ -1,0 +1,6 @@
+modulo rational_transcendental;
+importar "../math.omega" como m;
+importar "../string.omega" como s;
+exportar enclose, execute;
+funcao enclose(op,x,bits){se(op=="exp"){retornar m::exp_interval(x,bits);}se(op=="ln"){retornar m::log_interval(x,bits);}se(op=="sin"){retornar m::sin_interval(x,bits);}se(op=="cos"){retornar m::cos_interval(x,bits);}fail("Unknown transcendental");retornar [];}
+funcao execute(r){var pair=enclose(r["operation"],s::rational(r["x"]),r["bits"]);var out=obj();put(out,"lower",pair[0]);put(out,"upper",pair[1]);put(out,"width",pair[1]-pair[0]);put(out,"exact_real_value",0);retornar out;}

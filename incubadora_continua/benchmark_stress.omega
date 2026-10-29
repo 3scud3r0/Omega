@@ -1,0 +1,5 @@
+modulo benchmark_stress;
+importar "../std/string.omega" como s;
+importar "../std/ast.omega" como a;
+exportar execute;
+funcao execute(r){var count=r["count"];se(count<1||count>10000||qden(count)!=1){fail("Stress budget 1..10000");}var ast=r["ast"];var seed=r["seed"];var i=0;var errors=0;var digest="";enquanto(i<count){seed=(seed*48271+1)%2147483647;var x=(seed%20001-10000)/(seed%97+1);var got=a::evaluate(ast,[x]);se(got["error"]){errors=errors+1;}digest=sha256(digest+":"+text(got["error"])+":"+s::format_q(got["value"]));i=i+1;}var out=obj();put(out,"cases",count);put(out,"domain_errors",errors);put(out,"trace_hash",digest);put(out,"universal_proof",0);retornar out;}

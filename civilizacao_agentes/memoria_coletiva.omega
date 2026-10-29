@@ -1,0 +1,5 @@
+modulo memoria_coletiva;
+importar "../std/string.omega" como s;
+
+exportar execute;
+funcao execute(r){var entries=r["entries"];var known=obj();var out=[];var i=0;se(len(entries)>4096){fail("DAG budget");}enquanto(i<len(entries)){var item=entries[i];var parents=item["parents"];var j=0;var seen=obj();enquanto(j<len(parents)){se(!has(known,parents[j])||has(seen,parents[j])){fail("Orphan or duplicate Merkle parent");}put(seen,parents[j],1);j=j+1;}var id=sha256("omega-dag-v1:"+s::canonical(item));se(has(known,id)){fail("Duplicate DAG node");}put(known,id,1);push(out,id);i=i+1;}retornar out;}

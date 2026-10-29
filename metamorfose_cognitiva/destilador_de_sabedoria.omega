@@ -1,0 +1,5 @@
+modulo destilador_de_sabedoria;
+importar "../std/string.omega" como s;
+importar "../std/proof.omega" como p;
+exportar execute;
+funcao execute(r){var known=obj();var out=[];var i=0;enquanto(i<len(r["lemmas"])){var item=r["lemmas"][i];var subject=sha256(s::canonical(item["statement"]));se(!p::verify(r["authority"],"lemma",subject,r["policy"],item["permit"])){fail("No unproved axioms may enter the lemma bank");}se(!has(known,subject)){put(known,subject,1);push(out,item);}i=i+1;}retornar out;}

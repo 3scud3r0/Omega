@@ -1,0 +1,10 @@
+modulo memoria_coletiva_merkle;
+importar "../std/string.omega" como s;
+
+exportar root, inclusion, verify, execute;
+funcao leaf(payload){retornar sha256("omega-leaf-v1:"+payload);}
+funcao branch(a,b){retornar sha256("omega-node-v1:"+a+":"+b);}
+funcao root(leaves){se(len(leaves)==0){retornar sha256("omega-empty-v1");}var layer=[];var i=0;enquanto(i<len(leaves)){push(layer,leaf(leaves[i]));i=i+1;}enquanto(len(layer)>1){var next=[];i=0;enquanto(i<len(layer)){var b=layer[i];se(i+1<len(layer)){b=layer[i+1];}push(next,branch(layer[i],b));i=i+2;}layer=next;}retornar layer[0];}
+funcao inclusion(leaves,index){se(index<0||index>=len(leaves)||qden(index)!=1||len(leaves)>4096){fail("Merkle index/budget");}var layer=[];var i=0;enquanto(i<len(leaves)){push(layer,leaf(leaves[i]));i=i+1;}var path=[];var at=index;enquanto(len(layer)>1){var sibling=at+1;var side=0;se(at%2==1){sibling=at-1;side=1;}se(sibling>=len(layer)){sibling=at;}push(path,[side,layer[sibling]]);var next=[];i=0;enquanto(i<len(layer)){var b=layer[i];se(i+1<len(layer)){b=layer[i+1];}push(next,branch(layer[i],b));i=i+2;}layer=next;at=qfloor(at/2);}var out=obj();put(out,"root",layer[0]);put(out,"path",path);put(out,"index",index);put(out,"count",len(leaves));retornar out;}
+funcao verify(payload,index,count,path,expected){se(count<1||index<0||index>=count||qden(index)!=1||qden(count)!=1){retornar 0;}var value=leaf(payload);var at=index;var width=count;var i=0;enquanto(width>1){se(i>=len(path)){retornar 0;}var p=path[i];se(p[0]!=at%2||len(p[1])!=64){retornar 0;}se(at%2==0){se(at+1>=width&&p[1]!=value){retornar 0;}value=branch(value,p[1]);}senao{value=branch(p[1],value);}at=qfloor(at/2);width=qfloor((width+1)/2);i=i+1;}retornar i==len(path)&&value==expected;}
+funcao execute(r){se(r["operation"]=="verify"){retornar verify(r["payload"],r["index"],r["count"],r["path"],r["root"]);}retornar inclusion(r["leaves"],r["index"]);}

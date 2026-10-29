@@ -1,0 +1,4 @@
+modulo patch_synthesizer;
+importar "../sociedade_hierarquica/engenheiro_sintese.omega" como e;
+exportar execute;
+funcao execute(r){var result=e::execute(r);put(result,"stage","quarantine");put(result,"installation_authorized",0);retornar result;}

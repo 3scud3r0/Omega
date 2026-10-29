@@ -1,0 +1,107 @@
+modulo society_suite;
+importar "../std/string.omega" como s;
+importar "../synthesis.omega" como synth;
+importar "../civilizacao_agentes/contrato_social.omega" como m0;
+importar "../civilizacao_agentes/diplomacia_axiomatica.omega" como m1;
+importar "../civilizacao_agentes/memoria_coletiva.omega" como m2;
+importar "../civilizacao_agentes/mercado_computacional.omega" como m3;
+importar "../civilizacao_agentes/protocolo_consenso.omega" como m4;
+importar "../fabrica_descobertas/formulador_conjecturas.omega" como m5;
+importar "../fabrica_descobertas/minerador_de_invariantes.omega" como m6;
+importar "../fabrica_descobertas/otimizador_assintotico.omega" como m7;
+importar "../fabrica_descobertas/sintetizador_mundos.omega" como m8;
+importar "../imunologia_sistemica/auditor_de_alinhamento.omega" como m9;
+importar "../imunologia_sistemica/constituicao_viva.omega" como m10;
+importar "../imunologia_sistemica/detector_parasitas.omega" como m11;
+importar "../imunologia_sistemica/quarentena_formal.omega" como m12;
+importar "../incubadora_continua/auto_profiler.omega" como m13;
+importar "../incubadora_continua/benchmark_stress.omega" como m14;
+importar "../incubadora_continua/conjectura_gen.omega" como m15;
+importar "../incubadora_continua/evolution_logger.omega" como m16;
+importar "../incubadora_continua/patch_synthesizer.omega" como m17;
+importar "../infraestrutura_soberana/gerador_firmware_baremetal.omega" como m18;
+importar "../infraestrutura_soberana/memoria_coletiva_merkle.omega" como m19;
+importar "../infraestrutura_soberana/protocolo_enxame_rede.omega" como m20;
+importar "../infraestrutura_soberana/scheduler_preemptivo.omega" como m21;
+importar "../metamorfose_cognitiva/auto_refatorador_agente.omega" como m22;
+importar "../metamorfose_cognitiva/destilador_de_sabedoria.omega" como m23;
+importar "../metamorfose_cognitiva/dialeto_sintetico.omega" como m24;
+importar "../metamorfose_cognitiva/genealogia_evolutiva.omega" como m25;
+importar "../omega_ingest/c_ast_lifter.omega" como m26;
+importar "../omega_ingest/contract_synthesizer.omega" como m27;
+importar "../omega_ingest/onnx_lifter.omega" como m28;
+importar "../omega_ingest/py_ast_lifter.omega" como m29;
+importar "../omega_ingest/wasm_lifter.omega" como m30;
+importar "../sociedade_hierarquica/arquiteto_supremo.omega" como m31;
+importar "../sociedade_hierarquica/barramento_sintonico.omega" como m32;
+importar "../sociedade_hierarquica/engenheiro_sintese.omega" como m33;
+importar "../sociedade_hierarquica/juiz_consenso.omega" como m34;
+importar "../sociedade_hierarquica/red_team_adversario.omega" como m35;
+importar "../std/math/linalg_exact.omega" como m36;
+importar "../std/math/matrix_exponential.omega" como m37;
+importar "../std/math/ode_solver.omega" como m38;
+importar "../std/math/rational_transcendental.omega" como m39;
+importar "../std/math/sqrt_newton.omega" como m40;
+importar "../tools/dashboard/dashboard_tui.omega" como m41;
+importar "../tools/dashboard/event_log.omega" como m42;
+importar "../tools/dashboard/ginasio_controller.omega" como m43;
+importar "../tools/dashboard/runtime_control.omega" como m44;
+importar "../tools/dashboard/symbolic_debugger.omega" como m45;
+importar "../tools/dashboard/task_manifest.omega" como m46;
+importar "../tools/dashboard/web_monitor.omega" como m47;
+funcao wire(x){se(isnum(x)){se(qden(x)==1){retornar x;}retornar s::format_q(x);}se(isstr(x)){retornar x;}se(islist(x)){var out=[];var i=0;enquanto(i<len(x)){push(out,wire(x[i]));i=i+1;}retornar out;}var out=obj();var names=keys(x);var i=0;enquanto(i<len(names)){put(out,names[i],wire(x[names[i]]));i=i+1;}retornar out;}
+funcao live_step(r){var state=obj();se(has(r,"state")){state=r["state"];put(state,"best_loss",s::rational(text(state["best_loss"])));var i=0;enquanto(i<len(state["nodes"])){var n=state["nodes"][i];put(n,"total",s::rational(text(n["total"])));i=i+1;}}senao{state=synth::new_state(r["spec"],r["max_nodes"],r["capacity"],r["seed"]);}
+ se(has(r,"fitness_config")){synth::reweight(state,r["fitness_config"]);}var event=synth::step(state);var out=obj();put(out,"state",state);put(out,"event",event);se(len(state["best"])>0){put(out,"source",synth::best_source(state));}retornar out;}
+funcao dispatch(mode,request){
+ se(mode=="live-step"){retornar live_step(request);}
+se(mode=="civilizacao_agentes/contrato_social.omega"){retornar m0::execute(request);}
+se(mode=="civilizacao_agentes/diplomacia_axiomatica.omega"){retornar m1::execute(request);}
+se(mode=="civilizacao_agentes/memoria_coletiva.omega"){retornar m2::execute(request);}
+se(mode=="civilizacao_agentes/mercado_computacional.omega"){retornar m3::execute(request);}
+se(mode=="civilizacao_agentes/protocolo_consenso.omega"){retornar m4::execute(request);}
+se(mode=="fabrica_descobertas/formulador_conjecturas.omega"){retornar m5::execute(request);}
+se(mode=="fabrica_descobertas/minerador_de_invariantes.omega"){retornar m6::execute(request);}
+se(mode=="fabrica_descobertas/otimizador_assintotico.omega"){retornar m7::execute(request);}
+se(mode=="fabrica_descobertas/sintetizador_mundos.omega"){retornar m8::execute(request);}
+se(mode=="imunologia_sistemica/auditor_de_alinhamento.omega"){retornar m9::execute(request);}
+se(mode=="imunologia_sistemica/constituicao_viva.omega"){retornar m10::execute(request);}
+se(mode=="imunologia_sistemica/detector_parasitas.omega"){retornar m11::execute(request);}
+se(mode=="imunologia_sistemica/quarentena_formal.omega"){retornar m12::execute(request);}
+se(mode=="incubadora_continua/auto_profiler.omega"){retornar m13::execute(request);}
+se(mode=="incubadora_continua/benchmark_stress.omega"){retornar m14::execute(request);}
+se(mode=="incubadora_continua/conjectura_gen.omega"){retornar m15::execute(request);}
+se(mode=="incubadora_continua/evolution_logger.omega"){retornar m16::execute(request);}
+se(mode=="incubadora_continua/patch_synthesizer.omega"){retornar m17::execute(request);}
+se(mode=="infraestrutura_soberana/gerador_firmware_baremetal.omega"){retornar m18::execute(request);}
+se(mode=="infraestrutura_soberana/memoria_coletiva_merkle.omega"){retornar m19::execute(request);}
+se(mode=="infraestrutura_soberana/protocolo_enxame_rede.omega"){retornar m20::execute(request);}
+se(mode=="infraestrutura_soberana/scheduler_preemptivo.omega"){retornar m21::execute(request);}
+se(mode=="metamorfose_cognitiva/auto_refatorador_agente.omega"){retornar m22::execute(request);}
+se(mode=="metamorfose_cognitiva/destilador_de_sabedoria.omega"){retornar m23::execute(request);}
+se(mode=="metamorfose_cognitiva/dialeto_sintetico.omega"){retornar m24::execute(request);}
+se(mode=="metamorfose_cognitiva/genealogia_evolutiva.omega"){retornar m25::execute(request);}
+se(mode=="omega_ingest/c_ast_lifter.omega"){retornar m26::execute(request);}
+se(mode=="omega_ingest/contract_synthesizer.omega"){retornar m27::execute(request);}
+se(mode=="omega_ingest/onnx_lifter.omega"){retornar m28::execute(request);}
+se(mode=="omega_ingest/py_ast_lifter.omega"){retornar m29::execute(request);}
+se(mode=="omega_ingest/wasm_lifter.omega"){retornar m30::execute(request);}
+se(mode=="sociedade_hierarquica/arquiteto_supremo.omega"){retornar m31::execute(request);}
+se(mode=="sociedade_hierarquica/barramento_sintonico.omega"){retornar m32::execute(request);}
+se(mode=="sociedade_hierarquica/engenheiro_sintese.omega"){retornar m33::execute(request);}
+se(mode=="sociedade_hierarquica/juiz_consenso.omega"){retornar m34::execute(request);}
+se(mode=="sociedade_hierarquica/red_team_adversario.omega"){retornar m35::execute(request);}
+se(mode=="std/math/linalg_exact.omega"){retornar m36::execute(request);}
+se(mode=="std/math/matrix_exponential.omega"){retornar m37::execute(request);}
+se(mode=="std/math/ode_solver.omega"){retornar m38::execute(request);}
+se(mode=="std/math/rational_transcendental.omega"){retornar m39::execute(request);}
+se(mode=="std/math/sqrt_newton.omega"){retornar m40::execute(request);}
+se(mode=="tools/dashboard/dashboard_tui.omega"){retornar m41::execute(request);}
+se(mode=="tools/dashboard/event_log.omega"){retornar m42::execute(request);}
+se(mode=="tools/dashboard/ginasio_controller.omega"){retornar m43::execute(request);}
+se(mode=="tools/dashboard/runtime_control.omega"){retornar m44::execute(request);}
+se(mode=="tools/dashboard/symbolic_debugger.omega"){retornar m45::execute(request);}
+se(mode=="tools/dashboard/task_manifest.omega"){retornar m46::execute(request);}
+se(mode=="tools/dashboard/web_monitor.omega"){retornar m47::execute(request);}
+ fail("Unknown registered native subsystem");retornar 0;
+}
+funcao principal(){se(argc()!=3){fail("Usage: society-suite module request.json");}var request=parsejson(read(arg(2)));print(json(wire(dispatch(arg(1),request))));retornar 0;}

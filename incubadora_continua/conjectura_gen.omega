@@ -1,0 +1,4 @@
+modulo conjectura_gen;
+importar "../fabrica_descobertas/formulador_conjecturas.omega" como c;
+exportar execute;
+funcao execute(r){retornar c::execute(r);}

@@ -176,3 +176,7 @@ O núcleo independente `omega/nucleo_meta.py` verifica completude da família fi
 - A configuração pequena (625 hipóteses, 243 políticas e 16 problemas) permite prova finita; o resultado **não escala automaticamente** para arquiteturas neurais genéricas.
 
 Consulte `PROVA_META_FINITA.md` para enunciados, derivação algébrica, métricas e limite de validade. Os códigos completos das versões anteriores foram mantidos no TXT de distribuição.
+
+## Ingestão e acompanhamento ao vivo
+
+Os 56 módulos da nova malha, os levantadores estrangeiros e o rastreador com histórico persistente e controles ao vivo estão descritos em [Ingestão e sociedade ao vivo](docs/INGESTAO_E_SOCIEDADE_AO_VIVO.md). Use `omega live --help` e `omega ingest --help`. Os domínios aceitos e as fronteiras das provas são explícitos; operações não suportadas são rejeitadas.

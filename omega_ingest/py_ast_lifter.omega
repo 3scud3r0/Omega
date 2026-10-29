@@ -1,0 +1,11 @@
+modulo py_ast_lifter;
+importar "../std/ast.omega" como a;
+importar "../std/string.omega" como s;
+exportar emit, execute;
+funcao emit(r){var names=r["parameters"];var seen=obj();var i=0;se(len(names)>16||!ident(r["name"])){fail("Bounded lift function signature required");}enquanto(i<len(names)){se(!ident(names[i])||has(seen,names[i])){fail("Duplicate/invalid lifted parameter");}put(seen,names[i],1);i=i+1;}var mode=r["semantics"];se(mode!="python-integer"&&mode!="rational-real"){fail("Explicit foreign numerical semantics required");}var ast=r["ast"];se(!a::validate(ast,len(names))){fail("Malformed lifted AST");}i=0;enquanto(i<len(ast)){se(mode=="python-integer"&&(ast[i][0]==5||(ast[i][0]==0&&qden(s::rational(ast[i][3]))!=1))){fail("Float/division cannot silently become rational arithmetic");}i=i+1;}
+ var source="funcao omega_relu(x){se(x>0){retornar x;}retornar 0;}\nfuncao "+r["name"]+"("+join(names,",")+"){\n";
+ se(mode=="python-integer"){i=0;enquanto(i<len(names)){source=source+"se(qden("+names[i]+")!=1){fail(\"Integer argument required\");}\n";i=i+1;}}
+ source=source+"retornar "+s::replace(a::render(ast,names),"relu(","omega_relu(")+";\n}\n";
+ var out=obj();put(out,"source",source);put(out,"semantics",mode);put(out,"ast",ast);put(out,"parameters",names);put(out,"numerical_model_changed",mode=="rational-real");retornar out;
+}
+funcao execute(r){retornar emit(r);}

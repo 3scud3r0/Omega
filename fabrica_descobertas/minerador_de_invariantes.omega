@@ -1,0 +1,4 @@
+modulo minerador_de_invariantes;
+importar "../std/math/linalg_exact.omega" como l;
+exportar execute;
+funcao execute(r){var samples=l::matrix(r["transitions"]);var coefficients=l::matrix(r["coefficients"]);se(len(coefficients[0])!=1){fail("One candidate conservation vector required");}var residual=l::multiply(samples,coefficients);var out=obj();put(out,"residual",residual);put(out,"holds_on_samples",l::norm(residual)==0);put(out,"universal_proof",0);put(out,"next_step","Prove dot(coefficients, transition(s)-s)=0 for every state in the declared domain");retornar out;}

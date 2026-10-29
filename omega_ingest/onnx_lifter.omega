@@ -1,0 +1,10 @@
+modulo onnx_lifter;
+importar "../std/string.omega" como s;
+exportar execute;
+funcao execute(r){var g=r["graph"];var inputs=g["inputs"];se(inputs<1||inputs>256||len(g["nodes"])>4096){fail("Static ONNX graph budget");}var source="";var i=0;enquanto(i<inputs){source=source+"parametro x"+text(i)+"=0;\n";i=i+1;}
+ i=0;enquanto(i<len(g["nodes"])){var n=g["nodes"][i];var index=inputs+i;var expr="";se(n["op"]=="affine"){expr="("+s::format_q(s::rational(n["bias"]))+")";var j=0;enquanto(j<len(n["terms"])){var t=n["terms"][j];se(t[0]<0||t[0]>=index||qden(t[0])!=1){fail("ONNX forward reference");}expr=expr+"+("+s::format_q(s::rational(t[1]))+")*x"+text(t[0]);j=j+1;}}
+ senao{se(n["op"]=="relu"||n["op"]=="exp"||n["op"]=="rsqrt"){se(n["input"]<0||n["input"]>=index){fail("ONNX unary reference");}se(n["op"]=="relu"){expr="relu(x"+text(n["input"])+")";}senao{fail("Transcendental graph requires the certified approximation backend, not an exact tensor declaration");}}
+ senao{se(n["op"]=="mul"||n["op"]=="div"){se(n["left"]<0||n["left"]>=index||n["right"]<0||n["right"]>=index){fail("ONNX binary reference");}var op="*";se(n["op"]=="div"){op="/";}expr="x"+text(n["left"])+op+"x"+text(n["right"]);}senao{fail("Unsupported ONNX rational graph node");}}}
+ source=source+"tensor x"+text(index)+"="+expr+";\n";i=i+1;}
+ i=0;enquanto(i<len(g["outputs"])){se(g["outputs"][i]<0||g["outputs"][i]>=inputs+len(g["nodes"])){fail("ONNX output reference");}source=source+"mostrar x"+text(g["outputs"][i])+";\n";i=i+1;}var out=obj();put(out,"source",source);put(out,"graph",g);put(out,"semantics","exact real interpretation of finite stored weights; not IEEE operation replay");retornar out;
+}

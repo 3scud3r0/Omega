@@ -1,0 +1,5 @@
+modulo genealogia_evolutiva;
+importar "../std/string.omega" como s;
+
+exportar execute;
+funcao execute(r){var rows=r["generations"];var known=obj();var children=obj();var i=0;enquanto(i<len(rows)){var row=rows[i];se(has(known,row["id"])||row["id"]!=sha256(s::canonical(row["genome"]))){fail("Changed or duplicate genome");}var j=0;enquanto(j<len(row["parents"])){var parent=row["parents"][j];se(!has(known,parent)){fail("Unknown evolutionary parent");}put(children,parent,1);j=j+1;}put(known,row["id"],1);i=i+1;}var tips=[];i=0;enquanto(i<len(rows)){se(!has(children,rows[i]["id"])){push(tips,rows[i]["id"]);}i=i+1;}retornar tips;}

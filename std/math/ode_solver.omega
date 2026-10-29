@@ -1,0 +1,13 @@
+modulo ode_solver;
+importar "linalg_exact.omega" como l;
+importar "matrix_exponential.omega" como ex;
+importar "../string.omega" como s;
+importar "../math.omega" como m;
+exportar execute;
+funcao execute(r){var a=l::matrix(r["matrix"]);var y=l::matrix(r["initial"]);var h=s::rational(r["step"]);var steps=r["steps"];se(h<=0||steps<1||steps>1024||qden(steps)!=1||len(y[0])!=1||len(a)!=len(a[0])||len(y)!=len(a)){fail("Bounded linear ODE shape/domain");}
+ var time=steps*h;var at=[];var i=0;enquanto(i<len(a)){var row=[];var j=0;enquanto(j<len(a)){push(row,time*a[i][j]);j=j+1;}push(at,row);i=i+1;}
+ var exact=ex::enclose(at,s::rational(r["tolerance"]));var reference=l::multiply(exact["matrix"],y);var error=exact["error_inf_norm"]*l::norm(y);var trajectory=[];i=0;
+ enquanto(i<steps){var dy=l::multiply(a,y);var next=[];var j=0;enquanto(j<len(y)){push(next,[y[j][0]+h*dy[j][0]]);j=j+1;}y=next;push(trajectory,y);i=i+1;}
+ var difference=0;i=0;enquanto(i<len(y)){difference=m::max(difference,m::abs(reference[i][0]-y[i][0]));i=i+1;}
+ var out=obj();put(out,"trajectory",trajectory);put(out,"final",y);put(out,"error_inf_norm",difference+error);put(out,"model","y'=A*y; explicit Euler versus matrix-series enclosure");retornar out;
+}

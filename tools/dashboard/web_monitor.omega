@@ -1,0 +1,4 @@
+modulo web_monitor;
+
+exportar execute;
+funcao execute(r){var method=r["method"];var path=r["path"];var out=obj();put(out,"revision",r["revision"]);put(out,"transport","authenticated HTTP/SSE/WebSocket host adapter");se(method=="GET"&&(path=="/api/runs"||path=="/api/events"||path=="/api/stream"||path=="/api/ws")){put(out,"allowed",1);}senao{se(method=="POST"&&path=="controls"){put(out,"allowed",contains(["pause","resume","step","cancel","weights","iterations"],r["kind"]));}senao{put(out,"allowed",0);}}retornar out;}

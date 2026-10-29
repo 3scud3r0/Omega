@@ -1,0 +1,4 @@
+modulo arquiteto_supremo;
+importar "../tools/dashboard/task_manifest.omega" como tasks;
+exportar execute;
+funcao execute(r){var order=tasks::validate(r["tasks"]);var out=obj();put(out,"goal",r["goal"]);put(out,"order",order);put(out,"ready",tasks::ready(r["tasks"],r["completed"]));put(out,"decomposition","explicit formal task DAG; natural-language goals are not assumed proved");retornar out;}

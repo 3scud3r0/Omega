@@ -52,15 +52,22 @@ def novo_motor(comandos):
 
 def principal(argumentos: list[str] | None = None) -> int:
     native_arguments=sys.argv[1:] if argumentos is None else argumentos
+    if native_arguments and native_arguments[0] in ('live','ingest'):
+        from importlib import import_module
+        module=import_module('omega_live.cli' if native_arguments[0]=='live' else 'omega_ingest.cli')
+        if native_arguments[0]=='live':return module.main(native_arguments[1:])
+        from omega_live.context import tracked
+        return tracked('ingest',lambda:module.main(native_arguments[1:]))
     if native_arguments and native_arguments[0]=='native':
         from omega_native.cli import main
-        return main(native_arguments[1:])
+        from omega_live.context import tracked
+        return tracked('native',lambda:main(native_arguments[1:]))
     p=argparse.ArgumentParser(prog='omega',description='Ômega 2.0 — auto-hospedagem, execução nativa e certificação')
     p.add_argument('--versao', action='version',version='Ômega '+VERSAO)
     sub=p.add_subparsers(dest='acao',required=True)
     agent_parser=sub.add_parser('agent',help='finite reasoning, planning and rational expression synthesis')
     agent_parser.add_argument('arguments',nargs=argparse.REMAINDER)
-    extensions={'native':'omega_native.cli','refine':'omega_refine_check.cli','synth':'omega_synth_mcts.cli',
+    extensions={'live':'omega_live.cli','ingest':'omega_ingest.cli','native':'omega_native.cli','refine':'omega_refine_check.cli','synth':'omega_synth_mcts.cli',
                 'mutate':'omega_self_mutate.cli','action':'omega_agent_sandbox.cli','cognition':'omega_cognition.cli',
                 'hyper':'omega_gpu_mcts.cli','curiosity':'omega_autotelic.curiosity_driver','bootstrap-cycle':'omega_self_evolve_v2.cli'}
     for name,module in extensions.items():
@@ -97,7 +104,9 @@ def principal(argumentos: list[str] | None = None) -> int:
     try:
         if args.acao in extensions:
             from importlib import import_module
-            return import_module(extensions[args.acao]).main(args.arguments)
+            module=import_module(extensions[args.acao])
+            from omega_live.context import tracked
+            return tracked(args.acao,lambda:module.main(args.arguments))
         if args.acao=='compile' and args.standalone:
             if args.contracts is None or args.target is None:p.error('--standalone requires --contracts and --target')
             if args.target.suffix!='.c' or args.target.exists():raise ValueError('A fresh .c target is required')
