@@ -1,0 +1,77 @@
+modulo bounded_constructor;
+importar "../ciencia/core/exato.omega" como u;
+importar "algebra.omega" como a;
+exportar execute;
+
+# Finite catalytic Petri nets and content-addressed repair proposals.
+# No code executes, reproduces, writes itself, or obtains new permissions here.
+funcao counts(raw,n) {
+  var values=u::vector(raw);
+  se(len(values)!=n) { fail("Chemical multiset shape"); }
+  var i=0;
+  enquanto(i<n) { u::integer(values[i],0,1000000000); i=i+1; }
+  retornar values;
+}
+funcao reactions(r) {
+  var names=r["species"];
+  se(!islist(names)||len(names)<1||len(names)>16) { fail("Abstract chemistry species 1..16"); }
+  var n=len(names); var i=0;
+  enquanto(i<n) {
+    se(!isstr(names[i])||len(names[i])<1||len(names[i])>64) { fail("Species label required"); }
+    var j=0;
+    enquanto(j<i) { se(names[i]==names[j]) { fail("Duplicate species label"); } j=j+1; }
+    i=i+1;
+  }
+  var state=counts(r["state"],n); var capacity=counts(r["capacities"],n);
+  var conservation=u::mat(r["conservation"]);
+  se(len(conservation)>8||len(conservation[0])!=n) { fail("Conservation matrix shape"); }
+  i=0;
+  enquanto(i<n) { u::positive(conservation[0][i]); se(state[i]>capacity[i]) { fail("Initial population exceeds capacity"); } i=i+1; }
+  var raw=r["rules"];
+  se(!islist(raw)||len(raw)<1||len(raw)>32) { fail("Catalytic rule budget 1..32"); }
+  var rules=[]; i=0;
+  enquanto(i<len(raw)) {
+    var consume=counts(raw[i]["consume"],n); var produce=counts(raw[i]["produce"],n); var catalyst=counts(raw[i]["catalyst"],n);
+    var change=u::add(produce,u::scale(consume,-1));
+    se(a::norm2(change)==0) { fail("No-op reaction is not a productive constructor"); }
+    se(a::norm2(a::apply(conservation,change))!=0) { fail("Reaction violates a declared conserved quantity"); }
+    push(rules,[consume,produce,catalyst,change]); i=i+1;
+  }
+  var initial=a::apply(conservation,state); var trace=[]; var limit=u::count(r,"max_events",1,512);
+  var step=0; var quiescent=0;
+  enquanto(step<limit&&!quiescent) {
+    var selected=-1; i=0;
+    enquanto(i<len(rules)&&selected<0) {
+      var enabled=1; var j=0;
+      enquanto(j<n) {
+        se(state[j]<rules[i][0][j]+rules[i][2][j]||state[j]+rules[i][3][j]>capacity[j]) { enabled=0; }
+        j=j+1;
+      }
+      se(enabled) { selected=i; }
+      i=i+1;
+    }
+    se(selected<0) { quiescent=1; }
+    senao {
+      state=u::add(state,rules[selected][3]);
+      se(!a::same(a::apply(conservation,state),initial)) { fail("Conservation ledger corrupted"); }
+      push(trace,[selected,slice(state,0,n)]); step=step+1;
+    }
+  }
+  var out=u::result("bounded-conservative-catalytic-Petri-net",state);
+  put(out,"trace",trace); put(out,"conserved_totals",initial); put(out,"quiescent",quiescent);
+  put(out,"event_budget_exhausted",!quiescent&&step==limit); put(out,"physical_life_claimed",0); retornar out;
+}
+funcao repair(r) {
+  var blueprint=u::text_field(r,"blueprint",65536); var candidate=u::text_field(r,"candidate",65536);
+  var expected=u::text_field(r,"expected_sha256",64);
+  se(len(expected)!=64||sha256(blueprint)!=expected) { fail("Blueprint does not match the externally supplied trust anchor"); }
+  var good=sha256(candidate)==expected; var out=u::result("content-addressed-repair-proposal",blueprint);
+  put(out,"repair_needed",!good); put(out,"candidate_sha256",sha256(candidate)); put(out,"blueprint_sha256",expected);
+  put(out,"applied",0); put(out,"trust_anchor_authenticated",0); retornar out;
+}
+funcao execute(r) {
+  var mode=u::text_field(r,"mode",24);
+  se(mode=="reactions") { retornar reactions(r); }
+  se(mode=="repair") { retornar repair(r); }
+  fail("Constructor mode reactions or repair required"); retornar 0;
+}

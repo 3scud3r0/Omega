@@ -1,0 +1,145 @@
+modulo tensor_train;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/math.omega" como m;
+importar "algebra.omega" como a;
+exportar execute;
+
+# Rational rank-revealing TT, using pivot columns and orthogonal projections.
+# No claim of SVD-optimal truncation: the full reconstruction residual is exact.
+# Already-factorized trains can be contracted without materializing dense tensors.
+funcao train_read(raw) {
+  se(!islist(raw)||len(raw)<1||len(raw)>64) { fail("Tensor train length 1..64"); }
+  var cores=[]; var previous=1; var total=0; var k=0;
+  enquanto(k<len(raw)) {
+    var core=raw[k];
+    se(!islist(core)||len(core)!=previous||len(core)<1||len(core)>8||!islist(core[0])) { fail("TT left bond mismatch"); }
+    var physical=len(core[0]);
+    se(physical<1||physical>8||!islist(core[0][0])) { fail("TT physical dimension 1..8"); }
+    var right=len(core[0][0]);
+    se(right<1||right>8) { fail("TT bond dimension 1..8"); }
+    var parsed=[]; var i=0;
+    enquanto(i<len(core)) {
+      se(!islist(core[i])||len(core[i])!=physical) { fail("TT ragged physical axis"); }
+      var row=[]; var s=0;
+      enquanto(s<physical) {
+        var vector=u::vector(core[i][s]);
+        se(len(vector)!=right) { fail("TT ragged right bond"); }
+        total=total+right; se(total>10000) { fail("TT scalar storage budget"); }
+        push(row,vector); s=s+1;
+      }
+      push(parsed,row); i=i+1;
+    }
+    push(cores,parsed); previous=right; k=k+1;
+  }
+  se(previous!=1) { fail("Final TT bond must equal one"); }
+  retornar cores;
+}
+funcao amplitude(cores,indices) {
+  se(len(indices)!=len(cores)) { fail("TT index dimension"); }
+  var state=[1]; var k=0;
+  enquanto(k<len(cores)) {
+    var index=u::integer(indices[k],0,len(cores[k][0])-1); var next=u::zeros(len(cores[k][0][0])); var i=0;
+    enquanto(i<len(state)) {
+      var j=0;
+      enquanto(j<len(next)) { put(next,j,u::check(next[j]+state[i]*cores[k][i][index][j])); j=j+1; }
+      i=i+1;
+    }
+    state=next; k=k+1;
+  }
+  retornar state[0];
+}
+funcao squared_norm(cores) {
+  var transfer=[[1]]; var k=0;
+  enquanto(k<len(cores)) {
+    var core=cores[k]; var right=len(core[0][0]); var next=[]; var i=0;
+    enquanto(i<right) {
+      var row=[]; var j=0;
+      enquanto(j<right) {
+        var value=0; var x=0;
+        enquanto(x<len(core)) {
+          var y=0;
+          enquanto(y<len(core)) {
+            var s=0;
+            enquanto(s<len(core[0])) { value=u::check(value+transfer[x][y]*core[x][s][i]*core[y][s][j]); s=s+1; }
+            y=y+1;
+          }
+          x=x+1;
+        }
+        push(row,value); j=j+1;
+      }
+      push(next,row); i=i+1;
+    }
+    transfer=next; k=k+1;
+  }
+  retornar u::nonnegative(transfer[0][0]);
+}
+funcao factor(matrix,cap) {
+  var reduced=u::rref(matrix); var pivots=reduced["pivots"]; var rank=m::min(len(pivots),cap);
+  se(rank==0) {
+    var basis=[]; var i=0;
+    enquanto(i<len(matrix)) { push(basis,[0]); i=i+1; }
+    retornar [basis,[u::zeros(len(matrix[0]))],0];
+  }
+  var basis=[]; var i=0;
+  enquanto(i<len(matrix)) {
+    var row=[]; var j=0;
+    enquanto(j<rank) { push(row,matrix[i][pivots[j]]); j=j+1; }
+    push(basis,row); i=i+1;
+  }
+  var transpose=u::transpose(basis); var gram=u::mul(transpose,basis);
+  var remainder=u::mul(a::inverse(gram),u::mul(transpose,matrix));
+  retornar [basis,remainder,len(pivots)];
+}
+funcao compress(r) {
+  var dimensions=u::vector(r["dimensions"]); var values=u::vector(r["values"]);
+  se(len(dimensions)<1||len(dimensions)>8) { fail("Dense TT order 1..8"); }
+  var size=1; var k=0;
+  enquanto(k<len(dimensions)) { u::integer(dimensions[k],1,8); size=size*dimensions[k]; se(size>1024) { fail("Dense TT materialization budget 1024"); } k=k+1; }
+  se(size!=len(values)) { fail("Dense tensor element count mismatch"); }
+  var cap=u::integer(u::num(r,"max_rank",8),1,8);
+  var cores=[]; var remaining=size; var previous=1; var remainder=[values]; var exact_ranks=[]; k=0;
+  enquanto(k<len(dimensions)-1) {
+    remaining=remaining/dimensions[k]; var unfolding=[]; var left=0;
+    enquanto(left<previous) {
+      var s=0;
+      enquanto(s<dimensions[k]) { push(unfolding,slice(remainder[left],s*remaining,(s+1)*remaining)); s=s+1; }
+      left=left+1;
+    }
+    var split=factor(unfolding,cap); var basis=split[0]; remainder=split[1]; push(exact_ranks,split[2]);
+    var next=len(remainder); var core=[]; left=0;
+    enquanto(left<previous) {
+      var physical=[]; var s=0;
+      enquanto(s<dimensions[k]) { push(physical,basis[left*dimensions[k]+s]); s=s+1; }
+      push(core,physical); left=left+1;
+    }
+    push(cores,core); previous=next; k=k+1;
+  }
+  var last=[]; var left=0;
+  enquanto(left<previous) {
+    var physical=[]; var s=0;
+    enquanto(s<dimensions[k]) { push(physical,[remainder[left][s]]); s=s+1; }
+    push(last,physical); left=left+1;
+  }
+  push(cores,last); train_read(cores);
+  var residual=0; var reconstructed=[]; var index=0;
+  enquanto(index<size) {
+    var indices=u::zeros(len(dimensions)); var remaining_index=index; k=len(dimensions);
+    enquanto(k>0) { k=k-1; put(indices,k,remaining_index%dimensions[k]); remaining_index=qfloor(remaining_index/dimensions[k]); }
+    var value=amplitude(cores,indices); push(reconstructed,value);
+    residual=u::check(residual+(value-values[index])*(value-values[index])); index=index+1;
+  }
+  var out=u::result("pivoted-rational-TT-with-exact-reconstruction-residual",cores);
+  put(out,"unfolding_ranks",exact_ranks); put(out,"squared_Frobenius_error",residual);
+  put(out,"exact",residual==0); put(out,"dense_reconstruction",reconstructed);
+  put(out,"squared_norm",squared_norm(cores)); put(out,"SVD_optimality_claimed",0); retornar out;
+}
+funcao execute(r) {
+  var mode=u::text_field(r,"mode",24);
+  se(mode=="compress") { retornar compress(r); }
+  se(mode=="contract") {
+    var cores=train_read(r["cores"]); var out=u::result("finite-bond-tensor-train-contraction",squared_norm(cores));
+    se(has(r,"indices")) { put(out,"amplitude",amplitude(cores,u::vector(r["indices"]))); }
+    retornar out;
+  }
+  fail("TT mode compress or contract required"); retornar 0;
+}

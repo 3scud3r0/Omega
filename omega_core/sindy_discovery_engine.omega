@@ -1,0 +1,80 @@
+modulo sindy_engine;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/math.omega" como m;
+importar "algebra.omega" como a;
+exportar execute;
+
+funcao library(points,exponents) {
+  var out=[]; var i=0;
+  enquanto(i<len(points)) {
+    var row=[]; var j=0;
+    enquanto(j<len(exponents)) { push(row,a::poly_eval([[1,exponents[j]]],points[i])); j=j+1; }
+    push(out,row); i=i+1;
+  }
+  retornar out;
+}
+funcao least_squares(design,target,active,ridge) {
+  var k=len(active);
+  se(k==0) { retornar []; }
+  var gram=[]; var rhs=[]; var i=0;
+  enquanto(i<k) {
+    var row=[]; var j=0;
+    enquanto(j<k) {
+      var value=0; var sample=0;
+      enquanto(sample<len(design)) { value=u::check(value+design[sample][active[i]]*design[sample][active[j]]); sample=sample+1; }
+      se(i==j) { value=value+ridge; }
+      push(row,value); j=j+1;
+    }
+    var value=0; var sample=0;
+    enquanto(sample<len(design)) { value=u::check(value+design[sample][active[i]]*target[sample]); sample=sample+1; }
+    push(gram,row); push(rhs,value); i=i+1;
+  }
+  retornar u::solve(gram,rhs);
+}
+funcao squared_error(design,y,coefficients) {
+  var total=0; var i=0;
+  enquanto(i<len(y)) { var e=u::dot(design[i],coefficients)-y[i]; total=u::check(total+e*e); i=i+1; }
+  retornar total;
+}
+funcao execute(r) {
+  var points=u::mat(r["samples"]); var y=u::vector(r["derivatives"]);
+  var dimension=len(points[0]); var exponents=r["exponents"];
+  se(dimension>4||len(points)!=len(y)||!islist(exponents)||len(exponents)<1||len(exponents)>20) { fail("SINDy shapes/budget: 32 samples, 4 variables, 20 features"); }
+  var basis=[]; var i=0;
+  enquanto(i<len(exponents)) {
+    var parsed=a::poly_read([[1,exponents[i]]],dimension); var j=0;
+    enquanto(j<i) { se(a::same(basis[j],parsed[0][1])) { fail("Duplicate polynomial library feature"); } j=j+1; }
+    push(basis,parsed[0][1]); i=i+1;
+  }
+  var design=library(points,basis); var threshold=u::nonnegative(u::q(r,"threshold"));
+  var ridge=u::nonnegative(u::num(r,"ridge",0)); var iterations=u::integer(u::num(r,"iterations",10),1,32);
+  var active=[]; i=0;
+  enquanto(i<len(basis)) { push(active,i); i=i+1; }
+  var history=[]; var stable=0; var step=0; var coefficients=u::zeros(len(basis));
+  enquanto(step<iterations&&!stable) {
+    var fit=least_squares(design,y,active,ridge); var retained=[]; coefficients=u::zeros(len(basis)); i=0;
+    enquanto(i<len(active)) {
+      put(coefficients,active[i],fit[i]);
+      se(m::abs(fit[i])>=threshold&&fit[i]!=0) { push(retained,active[i]); }
+      i=i+1;
+    }
+    push(history,[slice(active,0,len(active)),fit,squared_error(design,y,coefficients)]);
+    stable=a::same(active,retained); active=retained; step=step+1;
+  }
+  # Always refit the final support, even when the iteration budget stopped pruning.
+  var fit=least_squares(design,y,active,ridge); coefficients=u::zeros(len(basis)); i=0;
+  enquanto(i<len(active)) { put(coefficients,active[i],fit[i]); i=i+1; }
+  var polynomial=[]; i=0;
+  enquanto(i<len(basis)) { se(coefficients[i]!=0) { push(polynomial,[coefficients[i],basis[i]]); } i=i+1; }
+  var out=u::result("sequential-thresholded-exact-least-squares",coefficients);
+  put(out,"polynomial",polynomial); put(out,"support",active); put(out,"history",history);
+  put(out,"training_squared_error",squared_error(design,y,coefficients)); put(out,"support_stabilized",stable);
+  put(out,"source","funcao predict(x) { retornar "+a::poly_text(polynomial)+"; }\n");
+  put(out,"empirical_law_proven",0); put(out,"derivatives_are_supplied_measurements",1);
+  se(has(r,"holdout_samples")) {
+    var holdout=u::mat(r["holdout_samples"]); var targets=u::vector(r["holdout_derivatives"]);
+    se(len(holdout[0])!=dimension||len(holdout)!=len(targets)) { fail("SINDy held-out shape"); }
+    put(out,"holdout_squared_error",squared_error(library(holdout,basis),targets,coefficients));
+  }
+  retornar out;
+}

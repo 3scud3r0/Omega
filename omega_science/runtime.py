@@ -18,7 +18,8 @@ from omega_selfhost.axiom_policy import DEFAULT, forbid_admissions
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = ROOT if (ROOT/'ciencia/catalogo.json').is_file() else ROOT/'omega_native/_sources'
-GROUPS = frozenset({'fisica', 'quimica', 'biologia', 'matematica', 'engenharia', 'agentes', 'infraestrutura'})
+GROUPS = frozenset({'fisica', 'quimica', 'biologia', 'matematica', 'engenharia', 'agentes', 'infraestrutura',
+                    'engines_core', 'engines_ml'})
 RUNTIME_INPUTS = ('omega_selfhost/runtime.h', 'omega_selfhost/native_std.h',
                   'omega_selfhost/memory.h', 'omega_selfhost/driver.py',
                   'omega_platform/sandbox.py', 'omega_platform/budget.py',

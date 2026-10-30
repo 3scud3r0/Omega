@@ -1,0 +1,52 @@
+{
+  "mode": "reactions",
+  "species": [
+    "A",
+    "B",
+    "C",
+    "E"
+  ],
+  "state": [
+    2,
+    2,
+    0,
+    1
+  ],
+  "capacities": [
+    2,
+    2,
+    4,
+    1
+  ],
+  "conservation": [
+    [
+      1,
+      1,
+      2,
+      1
+    ]
+  ],
+  "rules": [
+    {
+      "consume": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "produce": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "catalyst": [
+        0,
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "max_events": 4
+}

@@ -37,6 +37,12 @@ bash scripts/test.sh -q
 .venv/bin/python -m omega native-run artifacts/nativo/otimizado
 ```
 
+Os [16 motores fundamentais](omega_core/README.md) acrescentam pesquisa variacional,
+simplex racional, e-graphs, TT, SINDy, aprendizado e microatores com contratos
+limitados. Use `.venv/bin/python -m omega_engines list`; exemplos estão em
+`exemplos/engines`. A CLI também expõe `omega engines run`, `prove`, `synthesize`
+e `arena-native`, com execução isolada e evidências explícitas.
+
 Use destinos novos: os comandos preservam resultados existentes. O executável
 `build/selfhost/omegac-stage2` aceita `fonte.omega destino.c` ou
 `fonte.omega destino.json --ir`. A entrada `omegac` instalada chama esse compilador.

@@ -67,6 +67,8 @@ def principal(argumentos: list[str] | None = None) -> int:
     sub=p.add_subparsers(dest='acao',required=True)
     science_parser=sub.add_parser('science',help='bounded native scientific models and Lean observations')
     science_parser.add_argument('arguments',nargs=argparse.REMAINDER)
+    engines_parser=sub.add_parser('engines',help='sixteen bounded native research engines')
+    engines_parser.add_argument('arguments',nargs=argparse.REMAINDER)
     agent_parser=sub.add_parser('agent',help='finite reasoning, planning and rational expression synthesis')
     agent_parser.add_argument('arguments',nargs=argparse.REMAINDER)
     extensions={'live':'omega_live.cli','ingest':'omega_ingest.cli','native':'omega_native.cli','refine':'omega_refine_check.cli','synth':'omega_synth_mcts.cli',
@@ -123,6 +125,9 @@ def principal(argumentos: list[str] | None = None) -> int:
         if args.acao=='science':
             from omega_science.cli import main as science_main
             return science_main(args.arguments)
+        if args.acao=='engines':
+            from omega_engines.cli import main as engines_main
+            return engines_main(args.arguments)
         if args.acao=='agent':
             from omega_agent.cli import main as agent_main
             return agent_main(args.arguments)

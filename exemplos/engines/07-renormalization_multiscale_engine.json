@@ -1,0 +1,21 @@
+{
+  "mode": "gaussian",
+  "hessian": [
+    [
+      4,
+      1
+    ],
+    [
+      1,
+      2
+    ]
+  ],
+  "linear": [
+    0,
+    2
+  ],
+  "slow": 1,
+  "slow_state": [
+    3
+  ]
+}

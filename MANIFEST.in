@@ -43,3 +43,5 @@ recursive-include infraestrutura_soberana *.omega *.h *.c *.cu *.cuh *.lean
 
 recursive-include ciencia *.omega *.json *.md
 recursive-include agentes_cientificos *.omega
+recursive-include omega_core *.omega *.lean *.json *.md
+recursive-include omega_ml *.omega *.md

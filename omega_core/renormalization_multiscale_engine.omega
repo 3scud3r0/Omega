@@ -1,0 +1,71 @@
+modulo multiscale_engine;
+importar "../ciencia/core/exato.omega" como u;
+importar "algebra.omega" como a;
+exportar execute;
+
+# Exact elimination for positive-definite quadratic energies. Gaussian integration
+# has the same slow-variable quadratic coefficients, up to a normalization term.
+# This does not infer arbitrary hydrodynamics or biology from particle physics.
+funcao block(h,r0,r1,c0,c1) {
+  var out=[]; var i=r0;
+  enquanto(i<r1) { push(out,slice(h[i],c0,c1)); i=i+1; }
+  retornar out;
+}
+funcao gaussian(r) {
+  var h=u::mat(r["hessian"]); var b=u::vector(r["linear"]); var n=len(h);
+  se(n<2||n>12||len(b)!=n) { fail("Gaussian multiscale dimension 2..12"); }
+  a::symmetric_positive(h); var slow=u::count(r,"slow",1,n-1);
+  var ss=block(h,0,slow,0,slow); var sf=block(h,0,slow,slow,n);
+  var fs=block(h,slow,n,0,slow); var ff=block(h,slow,n,slow,n);
+  var inv=a::inverse(ff); var transfer=u::mul(inv,fs);
+  var bf=slice(b,slow,n); var offset=a::apply(inv,bf);
+  var correction=u::mul(sf,transfer); var effective=[]; var i=0;
+  enquanto(i<slow) { push(effective,u::add(ss[i],u::scale(correction[i],-1))); i=i+1; }
+  a::symmetric_positive(effective);
+  var linear=u::add(slice(b,0,slow),u::scale(a::apply(sf,offset),-1));
+  var constant=u::num(r,"constant",0)-u::dot(bf,offset)/2;
+  var out=u::result("exact-quadratic-Schur-coarse-graining",effective);
+  put(out,"linear",linear); put(out,"constant",constant);
+  put(out,"fast_reconstruction_matrix",transfer); put(out,"fast_reconstruction_offset",offset);
+  put(out,"reconstruction_sign",-1); put(out,"marginal_normalization_included",0);
+  se(has(r,"slow_state")) {
+    var x=u::vector(r["slow_state"]); se(len(x)!=slow) { fail("Slow probe dimension"); }
+    var fast=u::scale(u::add(a::apply(transfer,x),offset),-1);
+    var full=slice(x,0,len(x)); i=0;
+    enquanto(i<len(fast)) { push(full,fast[i]); i=i+1; }
+    var original=u::dot(full,a::apply(h,full))/2+u::dot(b,full)+u::num(r,"constant",0);
+    var reduced=u::dot(x,a::apply(effective,x))/2+u::dot(linear,x)+constant;
+    se(original!=reduced) { fail("Schur energy correspondence failed"); }
+    var residual=u::add(a::apply(ff,fast),u::add(a::apply(fs,x),bf));
+    se(a::norm2(residual)!=0) { fail("Fast conditional equilibrium failed"); }
+    put(out,"fast_state",fast); put(out,"original_energy",original); put(out,"effective_energy",reduced);
+    put(out,"fast_stationarity_residual",residual);
+  }
+  retornar out;
+}
+funcao coarse(r) {
+  var values=u::vector(r["values"]); var weights=u::vector(r["weights"]); var groups=u::vector(r["groups"]);
+  var bins=u::count(r,"bins",1,64); var n=len(values);
+  se(n<1||n>1024||len(weights)!=n||len(groups)!=n) { fail("Coarse field shape"); }
+  var mass=u::zeros(bins); var weighted=u::zeros(bins); var i=0;
+  enquanto(i<n) {
+    var g=u::integer(groups[i],0,bins-1); u::positive(weights[i]);
+    put(mass,g,u::check(mass[g]+weights[i])); put(weighted,g,u::check(weighted[g]+weights[i]*values[i])); i=i+1;
+  }
+  var means=[]; i=0;
+  enquanto(i<bins) { u::positive(mass[i]); push(means,weighted[i]/mass[i]); i=i+1; }
+  var unresolved=0; var total=0; var macro=0; i=0;
+  enquanto(i<n) { unresolved=u::check(unresolved+weights[i]*u::power(values[i]-means[groups[i]],2)); total=total+weights[i]*values[i]*values[i]; i=i+1; }
+  i=0;
+  enquanto(i<bins) { macro=macro+mass[i]*means[i]*means[i]; i=i+1; }
+  se(total!=macro+unresolved) { fail("Weighted variance decomposition failed"); }
+  var out=u::result("weighted-conservative-block-homogenization",means);
+  put(out,"block_mass",mass); put(out,"weighted_sums",weighted); put(out,"unresolved_variance",unresolved);
+  put(out,"fine_quadratic_moment",total); put(out,"coarse_quadratic_moment",macro); retornar out;
+}
+funcao execute(r) {
+  var mode=u::text_field(r,"mode",24);
+  se(mode=="gaussian") { retornar gaussian(r); }
+  se(mode=="coarse") { retornar coarse(r); }
+  fail("Multiscale mode gaussian or coarse required"); retornar 0;
+}

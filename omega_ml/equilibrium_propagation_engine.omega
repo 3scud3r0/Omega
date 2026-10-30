@@ -1,0 +1,85 @@
+modulo equilibrium_propagation;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/math.omega" como m;
+importar "../omega_core/algebra.omega" como a;
+exportar execute;
+
+# Symmetric quadratic energy model. Two contractive relaxations, finite-beta
+# local contrastive derivatives and explicit equilibrium residual/error bounds.
+# Storage is O(n^2) for weights plus O(n) states, independent of iteration count.
+funcao diagonal_bounds(matrix) {
+  var lower=matrix[0][0]; var upper=0; var i=0;
+  enquanto(i<len(matrix)) {
+    var off=0; var row=0; var j=0;
+    enquanto(j<len(matrix)) {
+      se(j!=i) { off=off+m::abs(matrix[i][j]); }
+      row=row+m::abs(matrix[i][j]); j=j+1;
+    }
+    lower=m::min(lower,matrix[i][i]-off); upper=m::max(upper,row); i=i+1;
+  }
+  retornar [lower,upper];
+}
+funcao energy(matrix,drive,state) {
+  retornar u::dot(state,a::apply(matrix,state))/2-u::dot(drive,state);
+}
+funcao relax(matrix,drive,initial,eta,tolerance,limit) {
+  var bounds=diagonal_bounds(matrix); u::positive(bounds[0]);
+  se(eta<=0||eta>1/bounds[1]) { fail("Relaxation step must be in (0,1/Gershgorin-upper]"); }
+  var state=slice(initial,0,len(initial)); var e0=energy(matrix,drive,state); var previous=e0;
+  var residual=u::add(a::apply(matrix,state),u::scale(drive,-1)); var step=0;
+  enquanto(step<limit&&a::maxabs(residual)>tolerance) {
+    state=u::add(state,u::scale(residual,-eta)); var e=energy(matrix,drive,state);
+    se(e>previous) { fail("Contractive relaxation increased quadratic energy"); }
+    previous=e; residual=u::add(a::apply(matrix,state),u::scale(drive,-1)); step=step+1;
+  }
+  var out=obj(); put(out,"state",state); put(out,"residual",residual); put(out,"iterations",step);
+  put(out,"converged",a::maxabs(residual)<=tolerance); put(out,"state_error_inf_upper",a::maxabs(residual)/bounds[0]);
+  put(out,"initial_energy",e0); put(out,"final_energy",previous); retornar out;
+}
+funcao execute(r) {
+  var weights=u::mat(r["weights"]); var leak=u::vector(r["leak"]); var drive=u::vector(r["drive"]);
+  var outputs=u::vector(r["outputs"]); var target=u::vector(r["target"]); var n=len(drive);
+  se(n<1||n>16||len(leak)!=n||len(weights)!=n||len(weights[0])!=n||len(target)!=len(outputs)||len(outputs)<1||len(outputs)>n) { fail("EqProp dimensions"); }
+  var matrix=[]; var i=0;
+  enquanto(i<n) {
+    u::positive(leak[i]); var row=u::scale(weights[i],-1); put(row,i,leak[i]);
+    se(weights[i][i]!=0) { fail("Use leak for diagonal energy terms, not self weights"); }
+    var j=0;
+    enquanto(j<n) { se(weights[i][j]!=weights[j][i]) { fail("EqProp weights must be symmetric"); } j=j+1; }
+    push(matrix,row); i=i+1;
+  }
+  u::positive(diagonal_bounds(matrix)[0]); var beta=u::positive(u::q(r,"beta"));
+  var nudged=u::copy(matrix); var nudged_drive=slice(drive,0,n); i=0;
+  enquanto(i<len(outputs)) {
+    var index=u::integer(outputs[i],0,n-1); var j=0;
+    enquanto(j<i) { se(outputs[j]==index) { fail("Duplicate output neuron"); } j=j+1; }
+    put(nudged[index],index,nudged[index][index]+beta); put(nudged_drive,index,nudged_drive[index]+beta*target[i]); i=i+1;
+  }
+  var eta=u::positive(u::q(r,"step")); var tolerance=u::positive(u::q(r,"tolerance"));
+  var limit=u::integer(u::num(r,"max_iterations",128),1,512); var initial=u::zeros(n);
+  se(has(r,"initial")) { initial=u::vector(r["initial"]); se(len(initial)!=n) { fail("EqProp initial state shape"); } }
+  var free=relax(matrix,drive,initial,eta,tolerance,limit);
+  var nudge=relax(nudged,nudged_drive,free["state"],eta,tolerance,limit);
+  var gradient=[]; var error=[]; var updated=[]; var rate=u::nonnegative(u::num(r,"learning_rate",0)); i=0;
+  enquanto(i<n) {
+    var grow=[]; var erow=[]; var wrow=[]; var j=0;
+    enquanto(j<n) {
+      var value=0; var bound=0;
+      se(i!=j) {
+        value=u::check(-(nudge["state"][i]*nudge["state"][j]-free["state"][i]*free["state"][j])/beta);
+        var ef=free["state_error_inf_upper"]; var en=nudge["state_error_inf_upper"];
+        bound=((m::abs(nudge["state"][i])+m::abs(nudge["state"][j]))*en+en*en+(m::abs(free["state"][i])+m::abs(free["state"][j]))*ef+ef*ef)/beta;
+      }
+      push(grow,value); push(erow,bound); push(wrow,u::check(weights[i][j]-rate*value)); j=j+1;
+    }
+    push(gradient,grow); push(error,erow); push(updated,wrow); i=i+1;
+  }
+  var nextmatrix=[]; i=0;
+  enquanto(i<n) { var row=u::scale(updated[i],-1); put(row,i,leak[i]); push(nextmatrix,row); i=i+1; }
+  var accepted=diagonal_bounds(nextmatrix)[0]>0&&free["converged"]&&nudge["converged"];
+  var out=u::result("finite-beta-quadratic-equilibrium-propagation",gradient);
+  put(out,"free",free); put(out,"nudged",nudge); put(out,"relaxation_gradient_error_upper",error);
+  put(out,"proposed_weights",updated); put(out,"update_admissible",accepted);
+  put(out,"finite_beta_bias_included_in_error_bound",0); put(out,"iteration_history_stored",0);
+  retornar out;
+}

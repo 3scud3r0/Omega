@@ -1,0 +1,111 @@
+modulo cellular_arena;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/math.omega" como m;
+exportar execute;
+
+# Reference scheduler for bounded, stackless actors. The matching C microkernel
+# reserves actual caller-owned contiguous arenas; this Omega model accounts for
+# logical reservations and runs under the normal GMP runtime/OS process budget.
+# There are no arbitrary callbacks, threads, external effects or growing queues.
+funcao bounded_rational(x) {
+  u::check(x);
+  se(m::abs(qnum(x))>9223372036854775807||qden(x)>9223372036854775807) { fail("Microactor exact rational exceeds signed 63-bit magnitude storage"); }
+  retornar x;
+}
+funcao instruction(raw,actors,registers,length) {
+  var op=u::text_field(raw,"op",16); var reg=0; var target=0; var value=0;
+  se(op=="set"||op=="add"||op=="mul"||op=="assert") {
+    reg=u::count(raw,"register",0,registers-1); value=bounded_rational(u::q(raw,"value"));
+  }
+  senao {
+    se(op=="send") { reg=u::count(raw,"register",0,registers-1); target=u::count(raw,"target",0,actors-1); }
+    senao {
+      se(op=="recv") { reg=u::count(raw,"register",0,registers-1); }
+      senao {
+        se(op=="jump"||op=="jnz") {
+          target=u::count(raw,"target",0,length-1);
+          se(op=="jnz") { reg=u::count(raw,"register",0,registers-1); }
+        }
+        senao { se(op!="yield"&&op!="halt") { fail("Unknown microactor opcode"); } }
+      }
+    }
+  }
+  retornar [op,reg,target,value];
+}
+funcao execute(r) {
+  var count=u::count(r,"actors",1,256); var arena=u::count(r,"arena_bytes",4096,524288);
+  var memory=u::count(r,"memory_bytes",4096,2147483648); var registers=u::count(r,"registers",1,16);
+  var mailbox=u::count(r,"mailbox_capacity",1,64); var quantum=u::count(r,"quantum",1,64);
+  var turns=u::count(r,"max_turns",1,100000); var raw=r["program"];
+  se(!islist(raw)||len(raw)<1||len(raw)>128) { fail("Microactor shared program length 1..128"); }
+  se(arena%8!=0) { fail("Microactor arena stride must be aligned to eight bytes"); }
+  var reserved=count*arena+len(raw)*64+256;
+  se(reserved>memory) { fail("Microactor arena reservation exceeds memory quota"); }
+  # Conservative control/register/mailbox accounting. This is not a native stack.
+  se(256+registers*16+mailbox*32>arena) { fail("Actor layout does not fit arena"); }
+  var code=[]; var i=0;
+  enquanto(i<len(raw)) { push(code,instruction(raw[i],count,registers,len(raw))); i=i+1; }
+  var actors=[]; i=0;
+  enquanto(i<count) {
+    var actor=obj(); var state=u::zeros(registers); put(state,0,i);
+    se(has(r,"initial")) {
+      se(!islist(r["initial"])||len(r["initial"])!=count) { fail("Initial actor array shape"); }
+      state=u::vector(r["initial"][i]); se(len(state)!=registers) { fail("Initial register shape"); }
+      var j=0;
+      enquanto(j<registers) { bounded_rational(state[j]); j=j+1; }
+    }
+    var slots=u::zeros(mailbox);
+    put(actor,"registers",state); put(actor,"mailbox",slots); put(actor,"head",0); put(actor,"tail",0); put(actor,"count",0);
+    put(actor,"pc",0); put(actor,"halted",0); put(actor,"status","ready"); put(actor,"executed",0); push(actors,actor); i=i+1;
+  }
+  var turn=0; var idle=0; var completed=0; var instructions=0; var messages=0; var peak=0; var deadlock=0;
+  enquanto(turn<turns&&completed<count&&!deadlock) {
+    var id=turn%count; var actor=actors[id]; var progress=0; var used=0; var stop=actor["halted"];
+    enquanto(used<quantum&&!stop) {
+      var pc=actor["pc"];
+      se(pc<0||pc>=len(code)) { fail("Microactor PC outside shared program"); }
+      var command=code[pc]; var op=command[0]; var reg=command[1]; var next=pc+1;
+      se(op=="set") { put(actor["registers"],reg,command[3]); }
+      se(op=="add") { put(actor["registers"],reg,bounded_rational(actor["registers"][reg]+command[3])); }
+      se(op=="mul") { put(actor["registers"],reg,bounded_rational(actor["registers"][reg]*command[3])); }
+      se(op=="assert"&&actor["registers"][reg]!=command[3]) { fail("Microactor assertion failed"); }
+      se(op=="jump") { next=command[2]; }
+      se(op=="jnz"&&actor["registers"][reg]!=0) { next=command[2]; }
+      se(op=="send") {
+        var recipient=actors[command[2]];
+        se(recipient["count"]==mailbox) { put(actor,"status","blocked_send"); stop=1; }
+        senao {
+          put(recipient["mailbox"],recipient["tail"],actor["registers"][reg]);
+          put(recipient,"tail",(recipient["tail"]+1)%mailbox); put(recipient,"count",recipient["count"]+1);
+          peak=m::max(peak,recipient["count"]); messages=messages+1;
+        }
+      }
+      se(op=="recv") {
+        se(actor["count"]==0) { put(actor,"status","blocked_receive"); stop=1; }
+        senao {
+          put(actor["registers"],reg,actor["mailbox"][actor["head"]]); put(actor["mailbox"],actor["head"],0);
+          put(actor,"head",(actor["head"]+1)%mailbox); put(actor,"count",actor["count"]-1);
+        }
+      }
+      se(!stop) {
+        put(actor,"pc",next); put(actor,"status","ready"); put(actor,"executed",actor["executed"]+1);
+        progress=1; used=used+1; instructions=instructions+1;
+        se(op=="halt") { put(actor,"halted",1); put(actor,"status","halted"); completed=completed+1; stop=1; }
+        se(op=="yield") { stop=1; }
+      }
+    }
+    se(progress) { idle=0; } senao { idle=idle+1; }
+    se(idle>=count&&completed<count) { deadlock=1; }
+    turn=turn+1;
+  }
+  var states=[]; var statuses=[]; var mail_counts=[]; var pcs=[]; i=0;
+  enquanto(i<count) {
+    push(states,actors[i]["registers"]); push(statuses,actors[i]["status"]); push(mail_counts,actors[i]["count"]); push(pcs,actors[i]["pc"]); i=i+1;
+  }
+  var out=u::result("bounded-cooperative-stackless-microactor-reference",states);
+  put(out,"statuses",statuses); put(out,"program_counters",pcs); put(out,"mailbox_counts",mail_counts);
+  put(out,"turns",turn); put(out,"instructions",instructions); put(out,"messages",messages); put(out,"mailbox_peak",peak);
+  put(out,"completed",completed); put(out,"deadlock",deadlock); put(out,"turn_budget_exhausted",turn==turns&&completed<count&&!deadlock);
+  put(out,"logical_reserved_bytes",reserved); put(out,"shared_program",code);
+  put(out,"process_RSS_bound_is_per_actor_reservation",0); put(out,"M_to_N_fibers_implemented",0); retornar out;
+}

@@ -1,0 +1,147 @@
+modulo action_engine;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/math.omega" como m;
+importar "algebra.omega" como a;
+importar "variational_physics_compiler.omega" como v;
+exportar execute;
+
+funcao gradient(p,q) {
+  var g=[]; var i=0;
+  enquanto(i<len(q)) { push(g,a::poly_eval(a::poly_diff(p,i),q)); i=i+1; }
+  retornar g;
+}
+funcao hessian(p,q) {
+  var h=[]; var i=0;
+  enquanto(i<len(q)) {
+    var row=[]; var j=0;
+    enquanto(j<len(q)) { push(row,a::poly_eval(a::poly_diff(a::poly_diff(p,i),j),q)); j=j+1; }
+    push(h,row); i=i+1;
+  }
+  retornar h;
+}
+funcao energy(potential,q,p,mass) {
+  var e=a::poly_eval(potential,q); var i=0;
+  enquanto(i<len(q)) { e=u::check(e+p[i]*p[i]/(2*mass[i])); i=i+1; }
+  retornar e;
+}
+funcao symplectic_jacobian(potential,q,nextq,mass,h) {
+  var d=len(q); var kick1=u::eye(2*d); var kick2=u::eye(2*d); var drift=u::eye(2*d);
+  var h1=hessian(potential,q); var h2=hessian(potential,nextq); var i=0;
+  var form=[];
+  enquanto(i<2*d) { push(form,u::zeros(2*d)); i=i+1; }
+  i=0;
+  enquanto(i<d) {
+    put(drift[i],d+i,h/mass[i]); put(form[i],d+i,1); put(form[d+i],i,-1);
+    var j=0;
+    enquanto(j<d) { put(kick1[d+i],j,-h*h1[i][j]/2); put(kick2[d+i],j,-h*h2[i][j]/2); j=j+1; }
+    i=i+1;
+  }
+  var jacobian=u::mul(kick2,u::mul(drift,kick1));
+  var preserved=u::mul(u::transpose(jacobian),u::mul(form,jacobian)); i=0;
+  enquanto(i<2*d) { se(!a::same(preserved[i],form[i])) { fail("Verlet symplectic identity failed"); } i=i+1; }
+  retornar jacobian;
+}
+funcao simulate(r) {
+  var q=u::vector(r["position"]); var p=u::vector(r["momentum"]); var mass=u::vector(r["mass"]);
+  var d=len(q); var steps=u::count(r,"steps",1,256); var h=u::positive(u::q(r,"dt"));
+  se(d<1||d>3||len(p)!=d||len(mass)!=d) { fail("Separable mechanical system dimensions 1..3"); }
+  var potential=a::poly_read(r["potential"],d); var i=0;
+  enquanto(i<d) { u::positive(mass[i]); i=i+1; }
+  var initial=energy(potential,q,p,mass); var trace=[]; var positions=[slice(q,0,d)]; var jacobian=[];
+  var k=0; var maximum_drift=0;
+  enquanto(k<steps) {
+    var g=gradient(potential,q); var half=[]; var nextq=[]; i=0;
+    enquanto(i<d) { push(half,u::check(p[i]-h*g[i]/2)); push(nextq,u::check(q[i]+h*half[i]/mass[i])); i=i+1; }
+    var nextg=gradient(potential,nextq); var nextp=[]; i=0;
+    enquanto(i<d) { push(nextp,u::check(half[i]-h*nextg[i]/2)); i=i+1; }
+    se(k==0) { jacobian=symplectic_jacobian(potential,q,nextq,mass,h); }
+    q=nextq; p=nextp; push(positions,slice(q,0,d));
+    var e=energy(potential,q,p,mass); maximum_drift=m::max(maximum_drift,m::abs(e-initial));
+    push(trace,[q,p,e]); k=k+1;
+  }
+  var residuals=[]; k=1;
+  enquanto(k<steps) {
+    var g=gradient(potential,positions[k]); var residual=[]; i=0;
+    enquanto(i<d) {
+      var equation=u::check(mass[i]*(2*positions[k][i]-positions[k-1][i]-positions[k+1][i])/h-h*g[i]);
+      se(equation!=0) { fail("Discrete Euler-Lagrange residual failed"); }
+      push(residual,equation); i=i+1;
+    }
+    push(residuals,residual); k=k+1;
+  }
+  var out=u::result("separable-polynomial-variational-Verlet",trace);
+  put(out,"position",q); put(out,"momentum",p); put(out,"initial_energy",initial);
+  put(out,"physical_energy_drift",energy(potential,q,p,mass)-initial); put(out,"maximum_energy_drift",maximum_drift);
+  put(out,"jacobian_at_initial_state",jacobian); put(out,"symplectic_identity_checked",1);
+  put(out,"DEL_residuals",residuals); put(out,"general_energy_preservation_claimed",0); retornar out;
+}
+funcao index_of(cells,cell) {
+  var i=0;
+  enquanto(i<len(cells)) { se(a::same(cells[i],cell)) { retornar i; } i=i+1; }
+  retornar -1;
+}
+funcao exterior(r) {
+  var vertices=u::count(r,"vertices",1,8); var facets=r["simplices"];
+  se(!islist(facets)||len(facets)<1||len(facets)>16) { fail("Simplicial facet budget 1..16"); }
+  var cells=[[],[],[],[]]; var i=0; var top=0;
+  enquanto(i<vertices) { push(cells[0],[i]); i=i+1; }
+  i=0;
+  enquanto(i<len(facets)) {
+    var facet=u::vector(facets[i]); var d=len(facet);
+    se(d<1||d>4) { fail("Simplices must have 1..4 vertices"); }
+    top=m::max(top,d-1); var j=0;
+    enquanto(j<d) {
+      u::integer(facet[j],0,vertices-1);
+      se(j>0&&facet[j]<=facet[j-1]) { fail("Use canonical strictly increasing simplex orientation"); }
+      j=j+1;
+    }
+    var mask=1;
+    enquanto(mask<u::power(2,d)) {
+      var face=[]; j=0;
+      enquanto(j<d) { se(qfloor(mask/u::power(2,j))%2==1) { push(face,facet[j]); } j=j+1; }
+      se(index_of(cells[len(face)-1],face)<0) { push(cells[len(face)-1],face); }
+      mask=mask+1;
+    }
+    i=i+1;
+  }
+  var boundaries=[]; var degree=1;
+  enquanto(degree<=top) {
+    var boundary=[]; i=0;
+    enquanto(i<len(cells[degree-1])) { push(boundary,u::zeros(len(cells[degree]))); i=i+1; }
+    i=0;
+    enquanto(i<len(cells[degree])) {
+      var j=0;
+      enquanto(j<=degree) {
+        var face=[]; var k=0;
+        enquanto(k<=degree) { se(k!=j) { push(face,cells[degree][i][k]); } k=k+1; }
+        put(boundary[index_of(cells[degree-1],face)],i,u::power(-1,j)); j=j+1;
+      }
+      i=i+1;
+    }
+    push(boundaries,boundary); degree=degree+1;
+  }
+  degree=1;
+  enquanto(degree<len(boundaries)) {
+    var composed=u::mul(boundaries[degree-1],boundaries[degree]); i=0;
+    enquanto(i<len(composed)) { se(a::norm2(composed[i])!=0) { fail("Boundary squared is not zero"); } i=i+1; }
+    degree=degree+1;
+  }
+  var out=u::result("finite-oriented-simplicial-exterior-calculus",boundaries);
+  put(out,"cells",slice(cells,0,top+1)); put(out,"boundary_squared_zero_checked",1);
+  se(has(r,"form")) {
+    degree=u::count(r,"degree",0,top); var form=u::vector(r["form"]);
+    se(len(form)!=len(cells[degree])) { fail("Cochain dimension mismatch"); }
+    var derivative=[];
+    se(degree<top) { derivative=a::apply(u::transpose(boundaries[degree]),form); }
+    put(out,"exterior_derivative",derivative);
+    se(degree+1<top) { put(out,"second_exterior_derivative",a::apply(u::transpose(boundaries[degree+1]),derivative)); }
+  }
+  retornar out;
+}
+funcao execute(r) {
+  var mode=u::text_field(r,"mode",24);
+  se(mode=="simulate") { retornar simulate(r); }
+  se(mode=="derive") { retornar v::derive(r["lagrangian"],u::count(r,"coordinates",1,3)); }
+  se(mode=="dec") { retornar exterior(r); }
+  fail("Action engine mode must be simulate, derive or dec"); retornar 0;
+}

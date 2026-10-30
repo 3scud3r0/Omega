@@ -64,6 +64,7 @@ jobs:
             artifacts/build-manifest.json
             artifacts/validation
             artifacts/science-*
+            artifacts/engines
             build/selfhost/bootstrap.json
             dist/*.whl
             dist/*.tar.gz

@@ -1,0 +1,22 @@
+{
+  "mode": "simulate",
+  "position": [
+    1
+  ],
+  "momentum": [
+    0
+  ],
+  "mass": [
+    1
+  ],
+  "potential": [
+    [
+      "1/2",
+      [
+        2
+      ]
+    ]
+  ],
+  "dt": "1/10",
+  "steps": 4
+}

@@ -104,7 +104,7 @@ def build_manifest(root,paths):
     sources={}
     for folder in ('omega','omega_open','omega_selfhost','omega_platform','omega_nextorch','nextorch',
                    'omega_agent','omega_bench','omega_coder','omega_evolution','omega_learning',
-                   'omega_memory','omega_security','omega_tools','omega_science','ciencia','agentes_cientificos','std','runtime','formal','requirements'):
+                   'omega_memory','omega_security','omega_tools','omega_engines','omega_core','omega_ml','omega_science','ciencia','agentes_cientificos','std','runtime','formal','requirements'):
         for path in sorted((root/folder).rglob('*')):
             if '.lake' in path.parts or '__pycache__' in path.parts:continue
             if path.is_file() and (path.suffix in ('.py','.h','.lean','.lock','.omega','.json') or path.name=='lean-toolchain'):

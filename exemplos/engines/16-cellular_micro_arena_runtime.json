@@ -1,0 +1,41 @@
+{
+  "actors": 2,
+  "arena_bytes": 65536,
+  "memory_bytes": 1048576,
+  "registers": 2,
+  "mailbox_capacity": 4,
+  "quantum": 2,
+  "max_turns": 32,
+  "program": [
+    {
+      "op": "jnz",
+      "register": 0,
+      "target": 4
+    },
+    {
+      "op": "set",
+      "register": 1,
+      "value": "7/3"
+    },
+    {
+      "op": "send",
+      "register": 1,
+      "target": 1
+    },
+    {
+      "op": "halt"
+    },
+    {
+      "op": "recv",
+      "register": 1
+    },
+    {
+      "op": "assert",
+      "register": 1,
+      "value": "7/3"
+    },
+    {
+      "op": "halt"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "variables": 1,
+  "max_nodes": 64,
+  "rounds": 8,
+  "expression": [
+    "add",
+    [
+      "mul",
+      [
+        "var",
+        0
+      ],
+      [
+        "const",
+        1
+      ]
+    ],
+    [
+      "mul",
+      [
+        "const",
+        0
+      ],
+      [
+        "var",
+        0
+      ]
+    ]
+  ]
+}

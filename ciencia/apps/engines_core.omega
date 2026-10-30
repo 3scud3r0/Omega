@@ -1,0 +1,29 @@
+modulo engines_core_app;
+importar "../../std/string.omega" como s;
+importar "../../omega_core/taylor_models_interval.omega" como k1;
+importar "../../omega_core/egraph_saturation.omega" como k2;
+importar "../../omega_core/smt_simplex_solver.omega" como k3;
+importar "../../omega_core/sindy_discovery_engine.omega" como k4;
+importar "../../omega_core/variational_physics_compiler.omega" como k5;
+importar "../../omega_core/universal_action_engine.omega" como k6;
+importar "../../omega_core/renormalization_multiscale_engine.omega" como k7;
+importar "../../omega_core/tensor_network_compressor.omega" como k8;
+importar "../../omega_core/active_inference_grounding.omega" como k9;
+importar "../../omega_core/universal_constructor_autopoiesis.omega" como k10;
+importar "../../omega_core/cellular_micro_arena_runtime.omega" como k16;
+funcao principal() {
+  se(argc()!=3) { fail("Usage: engines_core id request.json"); }
+  var id=number(arg(1)); var request=parsejson(read(arg(2)));
+  se(id==1) { print(s::canonical(k1::execute(request))); retornar 0; }
+  se(id==2) { print(s::canonical(k2::execute(request))); retornar 0; }
+  se(id==3) { print(s::canonical(k3::execute(request))); retornar 0; }
+  se(id==4) { print(s::canonical(k4::execute(request))); retornar 0; }
+  se(id==5) { print(s::canonical(k5::execute(request))); retornar 0; }
+  se(id==6) { print(s::canonical(k6::execute(request))); retornar 0; }
+  se(id==7) { print(s::canonical(k7::execute(request))); retornar 0; }
+  se(id==8) { print(s::canonical(k8::execute(request))); retornar 0; }
+  se(id==9) { print(s::canonical(k9::execute(request))); retornar 0; }
+  se(id==10) { print(s::canonical(k10::execute(request))); retornar 0; }
+  se(id==16) { print(s::canonical(k16::execute(request))); retornar 0; }
+  fail("Unknown core engine ID"); retornar 1;
+}

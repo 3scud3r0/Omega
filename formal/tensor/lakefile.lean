@@ -18,6 +18,9 @@ lean_lib Native where
 lean_lib ScienceAxioms where
   srcDir := "../science_axioms"
   roots := #[`EnergyConservationTheorem, `SecondLawThermodynamics, `SymplecticFormPreservation, `LorentzInvariance, `QuantumUnitarity, `StoichiometricConservation, `GibbsEnergyMinimality, `MassActionLawDerivation, `NeedlemanWunschOptimality, `DeBruijnEulerianEquivalence, `HardyWeinbergStability, `TaylorErrorBoundTheorem, `NewtonRaphsonConvergence, `BareissDivisionFreeTheorem, `GrahamScanConvexity, `LyapunovAsymptoticStability, `KalmanCovariancePositiveDefinite, `NyquistStabilityCriterion]
+lean_lib EngineAxioms where
+  srcDir := "../../omega_core/formal"
+  roots := #[`HamiltonPrinciple]
 @[default_target]
 lean_exe omega_tensor_kernel where
   root := `Main

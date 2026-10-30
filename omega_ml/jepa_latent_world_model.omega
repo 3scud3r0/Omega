@@ -1,0 +1,95 @@
+modulo linear_jepa;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/math.omega" como m;
+importar "../omega_core/algebra.omega" como a;
+exportar execute;
+
+# Linear joint-embedding predictor with a stop-gradient EMA target encoder.
+# The VICReg-style variance penalty is expressed on variance (no irrational SD).
+# A zero encoder can still be stationary: collapse is detected, not ruled out.
+funcao zeros(rows,columns) {
+  var out=[]; var i=0;
+  enquanto(i<rows) { push(out,u::zeros(columns)); i=i+1; } retornar out;
+}
+funcao update(matrix,gradient,rate) {
+  var out=[]; var i=0;
+  enquanto(i<len(matrix)) { push(out,u::add(matrix[i],u::scale(gradient[i],-rate))); i=i+1; }
+  retornar out;
+}
+funcao evaluate(w,target_w,predictor,action_map,context,target,actions,floor,variance_weight,covariance_weight) {
+  var batch=len(context); var latent=len(w); var z=[]; var teacher=[]; var prediction=[]; var error=[];
+  var means=u::zeros(latent); var mse=0; var sample=0;
+  enquanto(sample<batch) {
+    var embedding=a::apply(w,context[sample]); var expected=a::apply(target_w,target[sample]);
+    var predicted=u::add(a::apply(predictor,embedding),a::apply(action_map,actions[sample]));
+    var residual=u::add(predicted,u::scale(expected,-1));
+    mse=mse+a::norm2(residual)/batch; means=u::add(means,u::scale(embedding,1/batch));
+    push(z,embedding); push(teacher,expected); push(prediction,predicted); push(error,residual); sample=sample+1;
+  }
+  var centered=[]; sample=0;
+  enquanto(sample<batch) { push(centered,u::add(z[sample],u::scale(means,-1))); sample=sample+1; }
+  var covariance=zeros(latent,latent); var i=0;
+  enquanto(i<latent) {
+    var j=0;
+    enquanto(j<latent) {
+      var total=0; sample=0;
+      enquanto(sample<batch) { total=u::check(total+centered[sample][i]*centered[sample][j]/(batch-1)); sample=sample+1; }
+      put(covariance[i],j,total); j=j+1;
+    }
+    i=i+1;
+  }
+  var variance_penalty=0; var covariance_penalty=0; var collapsed=1; i=0;
+  enquanto(i<latent) {
+    var deficit=m::max(0,floor-covariance[i][i]); variance_penalty=variance_penalty+deficit*deficit;
+    se(covariance[i][i]>0) { collapsed=0; }
+    var j=0;
+    enquanto(j<latent) { se(i!=j) { covariance_penalty=covariance_penalty+covariance[i][j]*covariance[i][j]; } j=j+1; }
+    i=i+1;
+  }
+  var gw=zeros(latent,len(w[0])); var gp=zeros(latent,latent); var ga=zeros(latent,len(action_map[0])); sample=0;
+  enquanto(sample<batch) {
+    var gz=u::scale(a::apply(u::transpose(predictor),error[sample]),2/batch); i=0;
+    enquanto(i<latent) {
+      var regularizer=-4*variance_weight*m::max(0,floor-covariance[i][i])*centered[sample][i]/(batch-1);
+      var j=0;
+      enquanto(j<latent) {
+        se(i!=j) { regularizer=regularizer+4*covariance_weight*covariance[i][j]*centered[sample][j]/(batch-1); }
+        put(gp[i],j,u::check(gp[i][j]+2*error[sample][i]*z[sample][j]/batch)); j=j+1;
+      }
+      put(gz,i,u::check(gz[i]+regularizer)); j=0;
+      enquanto(j<len(action_map[0])) { put(ga[i],j,u::check(ga[i][j]+2*error[sample][i]*actions[sample][j]/batch)); j=j+1; }
+      j=0;
+      enquanto(j<len(w[0])) { put(gw[i],j,u::check(gw[i][j]+gz[i]*context[sample][j])); j=j+1; }
+      i=i+1;
+    }
+    sample=sample+1;
+  }
+  var out=obj(); put(out,"loss",u::check(mse+variance_weight*variance_penalty+covariance_weight*covariance_penalty));
+  put(out,"prediction_loss",mse); put(out,"variance_penalty",variance_penalty); put(out,"covariance_penalty",covariance_penalty);
+  put(out,"latent",z); put(out,"target_latent",teacher); put(out,"prediction",prediction); put(out,"covariance",covariance);
+  put(out,"collapsed",collapsed); put(out,"encoder_gradient",gw); put(out,"predictor_gradient",gp); put(out,"action_gradient",ga); retornar out;
+}
+funcao execute(r) {
+  var w=u::mat(r["encoder"]); var target_w=u::mat(r["target_encoder"]);
+  var predictor=u::mat(r["predictor"]); var action_map=u::mat(r["action_map"]);
+  var context=u::mat(r["context"]); var target=u::mat(r["target"]); var actions=u::mat(r["actions"]);
+  var latent=len(w); var batch=len(context); var input=len(w[0]);
+  se(latent>8||input>16||batch<2||len(target_w)!=latent||len(target_w[0])!=input||len(context[0])!=input||len(target[0])!=input||len(target)!=batch||len(actions)!=batch||len(predictor)!=latent||len(predictor[0])!=latent||len(action_map)!=latent||len(action_map[0])!=len(actions[0])||len(actions[0])>8) { fail("Linear JEPA dimensions/budget"); }
+  var rate=u::positive(u::q(r,"learning_rate")); var ema=u::q(r,"ema");
+  se(ema<0||ema>=1) { fail("Target encoder EMA must lie in [0,1)"); }
+  var floor=u::positive(u::q(r,"variance_floor")); var vw=u::nonnegative(u::q(r,"variance_weight")); var cw=u::nonnegative(u::q(r,"covariance_weight"));
+  var epochs=u::integer(u::num(r,"epochs",1),1,32); var history=[]; var epoch=0;
+  var first=evaluate(w,target_w,predictor,action_map,context,target,actions,floor,vw,cw);
+  enquanto(epoch<epochs) {
+    var status=evaluate(w,target_w,predictor,action_map,context,target,actions,floor,vw,cw);
+    push(history,status["loss"]); w=update(w,status["encoder_gradient"],rate);
+    predictor=update(predictor,status["predictor_gradient"],rate); action_map=update(action_map,status["action_gradient"],rate);
+    var next_target=[]; var i=0;
+    enquanto(i<latent) { push(next_target,u::add(u::scale(target_w[i],ema),u::scale(w[i],1-ema))); i=i+1; }
+    target_w=next_target; epoch=epoch+1;
+  }
+  var out=u::result("linear-stop-gradient-JEPA-with-variance-covariance-regularization",w);
+  put(out,"target_encoder",target_w); put(out,"predictor",predictor); put(out,"action_map",action_map);
+  put(out,"before",first); put(out,"after",evaluate(w,target_w,predictor,action_map,context,target,actions,floor,vw,cw));
+  put(out,"loss_history",history); put(out,"noncollapse_guaranteed",0); put(out,"empirical_world_understanding_claimed",0); retornar out;
+}
