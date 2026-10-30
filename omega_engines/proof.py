@@ -164,9 +164,14 @@ def prove(identifier, request, destination):
     (directory/'request.json').write_bytes(canonical(request,max_bytes=4*1024**2,max_nodes=50000))
     (directory/'observation.json').write_text(native_document(observed))
     receipts = _receipts(witnesses,directory/'proof')
+    global_linear = None
+    if identifier == 3:
+        from .linear_certificate import verify
+        global_linear = verify(request,observed,directory/'proof/linear')
     result = {'format':'omega-engine-numeric-proof-1','engine':identifier,'verified':True,
               'obligations':len(witnesses),'proof_batches':len(receipts),'binary_sha256':binary_hash,
               'request_sha256':hashlib.sha256(canonical(request,max_bytes=4*1024**2,max_nodes=50000)).hexdigest(),
+              'global_linear_contract_verified':global_linear is not None,
               'verifier_sha256':_hash(Path(__file__)),
               'scientific_model_accepted':False,'compiler_refinement_proven':False,'promoted':False,
               'files':{str(p.relative_to(directory)):_hash(p) for p in sorted(directory.rglob('*')) if p.is_file()}}

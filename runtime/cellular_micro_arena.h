@@ -36,6 +36,7 @@ _Static_assert(sizeof(OmegaMicroRuntime) <= 256, "Update shared runtime reservat
 _Static_assert(sizeof(OmegaMicroInstruction) <= 64, "Update shared instruction reservation");
 
 static inline OmegaMicroCell *omega_micro_cell(OmegaMicroRuntime *r, uint32_t id) {
+    if (!r || !r->storage || id >= r->actors) return NULL;
     return (OmegaMicroCell *)(void *)(r->storage + (size_t)id * r->stride);
 }
 static inline unsigned __int128 omega_micro_gcd(unsigned __int128 a, unsigned __int128 b) {
@@ -93,6 +94,7 @@ static inline int omega_micro_init(OmegaMicroRuntime *r, void *storage, size_t b
 /* One bounded quantum; 0=blocked/inactive, 1=progress, negative=typed fault. */
 static inline int omega_micro_quantum(OmegaMicroRuntime *r, uint32_t id) {
     OmegaMicroCell *cell = omega_micro_cell(r, id);
+    if (!cell || !r->code) return -1;
     if (cell->halted) return 0;
     int progress = 0;
     for (uint32_t used = 0; used < r->quantum; ++used) {
@@ -131,7 +133,8 @@ static inline int omega_micro_quantum(OmegaMicroRuntime *r, uint32_t id) {
     return progress;
 }
 static inline int omega_micro_run(OmegaMicroRuntime *r, uint64_t max_turns) {
-    if (!r || !max_turns || max_turns > 100000) return -1;
+    if (!r || !r->storage || !r->code || !r->actors || r->actors > 256 ||
+        !max_turns || max_turns > 100000) return -1;
     while (r->turns < max_turns && r->completed < r->actors && !r->deadlock) {
         int progress = omega_micro_quantum(r, (uint32_t)(r->turns % r->actors));
         if (progress < 0) return progress;

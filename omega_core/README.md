@@ -7,8 +7,9 @@ Os 115 módulos científicos anteriores continuam disponíveis.
 
 O [catálogo JSON](catalogo.json) contém exatamente 16 IDs, caminhos, exemplos e
 escopos. O auxiliar `algebra.omega`, dois aplicativos, o pacote `omega_engines`,
-o microkernel C e o arquivo Lean integram os motores. Não se duplicam algoritmos
-em Python: o host prepara builds, isola processos e verifica contratos numéricos.
+o microkernel C e o arquivo Lean integram os motores. Os motores rodam em Ômega/C;
+o host prepara builds, isola processos e reconstrói contas independentes para
+verificar os contratos.
 
 ## Uso
 
@@ -69,12 +70,17 @@ como freestanding com suporte do compilador a `__int128`; helpers aritméticos
 da toolchain ainda podem ser necessários. Não foi validado em Cortex/RISC-V.
 O harness Linux usa mmap/stdio e executa sob sandbox; ele não é firmware.
 
+O wheel inclui os fontes para catálogo/build/run e para o backend de arenas.
+Os comandos com Lean (`prove` e `synthesize`) requerem o checkout e o projeto
+formal preparados; não baixam uma toolchain ou dependências por conta própria.
+
 Cada arena tem 4.096–524.288 bytes e alinhamento de oito bytes. A cota lógica é
 `atores*arena_bytes + instrucoes*64 + 256`, verificada antes de executar. O C
 também verifica alinhamento, tamanho real de seus descritores, registradores,
 opcodes, filas e limites dos saltos. Os racionais do backend usam magnitude de
 numerador e denominador até `INT64_MAX`, com intermediários de 128 bits,
-redução exata e erro explícito quando o resultado não cabe. O GMP de outros
+redução exata e erro explícito quando o resultado não cabe. A API recusa runtimes
+nulos/não inicializados e IDs de ator fora da faixa. O GMP de outros
 motores não é silenciosamente convertido para esse formato.
 
 O teste diferencial compara registradores, PCs, estados, filas, contadores e
@@ -92,11 +98,16 @@ determinante do Jacobiano kick–drift–kick, `d²=0` no triângulo e balanço 
 de trabalho/energia. O build `EngineAxioms` os verifica e audita suas dependências.
 Não se adicionam axiomas físicos, `sorry` ou `admit`.
 
-`engines prove` aceita apenas contratos numéricos revisados para IDs 3, 6 e 7:
+`engines prove` aceita apenas contratos revisados para IDs 3, 6 e 7:
 certificados LP; passos, condições iniciais, DEL e identidade simplética em uma
 trajetória finita; equivalência quadrática em probe explícito ou variância por
 blocos. Reconstrói a conta fora do proponente e envia até 256 obrigações fechadas,
-em batches de 32, ao Lean. Uma obrigação falsa ou observação adulterada bloqueia
+em batches de 32, ao Lean. Para o LP, um template adicional prova um enunciado
+quantificado: limite objetivo para toda atribuição racional viável, inexistência
+de atribuição viável ou uma família de pontos viáveis ao longo de raio com
+crescimento objetivo estritamente positivo. O enunciado contém os coeficientes
+do problema recebido; não é apenas uma igualdade de valores calculados.
+Uma obrigação falsa ou observação adulterada bloqueia
 o receipt. Outros IDs recusam esse comando; não escolhem um verificador mais fraco.
 
 `engines synthesize` compila o programa do ID 15, executa cada caso em sandbox,

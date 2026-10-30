@@ -58,6 +58,11 @@ def test_numeric_contracts_are_reconstructed_and_actually_checked_by_lean(identi
     assert result['verified'] and result['obligations']>0
     assert not result['scientific_model_accepted'] and not result['compiler_refinement_proven']
     assert list((tmp_path/'proof/proof').rglob('Observation.olean'))
+    assert result['global_linear_contract_verified'] == (identifier==3)
+    if identifier==3:
+        source=(tmp_path/'proof/proof/linear/LinearContract.lean').read_text()
+        assert 'engine_lp_global_bound' in source and '(x0 x1 : ℚ)' in source
+        assert (tmp_path/'proof/proof/linear/LinearContract.olean').is_file()
 
 
 def test_a_proposer_cannot_supply_an_incorrect_dual_or_select_a_weaker_contract(tmp_path,monkeypatch):
@@ -82,7 +87,9 @@ def test_proof_receipt_binds_the_checked_input_snapshot(tmp_path,monkeypatch):
 
 @pytest.mark.parametrize('data',[dict(A=[[1]],b=[-1],c=[1]),dict(A=[[-1]],b=[-1],c=[1])])
 def test_farkas_and_recession_certificates_are_also_kernel_checked(data,tmp_path):
-    assert prove(3,data,tmp_path/'proof')['verified']
+    result=prove(3,data,tmp_path/'proof')
+    assert result['verified'] and result['global_linear_contract_verified']
+    assert (tmp_path/'proof/proof/linear/LinearContract.olean').is_file()
 
 
 def test_variational_receipt_cannot_certify_a_different_initial_momentum(tmp_path,monkeypatch):
@@ -151,3 +158,28 @@ def test_microkernel_header_compiles_as_freestanding_without_os_or_heap_calls(tm
            inputs=[source,header.parent],output_directory=tmp_path,budget=BUILD_BUDGET,check=True)
     output=trusted(['nm','-u',target],budget=BUILD_BUDGET,check=True).stdout
     assert not any(name in output for name in ('malloc','calloc','realloc','free','mmap','printf','pthread'))
+
+
+def test_public_microkernel_api_rejects_null_uninitialized_and_invalid_actor(tmp_path):
+    header=SOURCE_ROOT/'runtime/cellular_micro_arena.h';source=tmp_path/'boundary.c'
+    source.write_text('''#include "cellular_micro_arena.h"
+#include <assert.h>
+int main(void){
+ OmegaMicroRuntime r={0};
+ assert(omega_micro_cell(0,0)==0);
+ assert(omega_micro_quantum(0,0)<0);
+ assert(omega_micro_run(0,1)<0);
+ assert(omega_micro_run(&r,1)<0);
+ _Alignas(OmegaMicroCell) unsigned char memory[4096];
+ const OmegaMicroInstruction code[]={{OMEGA_MICRO_HALT,0,0,{0,1}}};
+ assert(!omega_micro_init(&r,memory,sizeof memory,4096,1,2,1,1,code,1));
+ assert(omega_micro_cell(&r,1)==0);
+ assert(omega_micro_quantum(&r,1)<0);
+ assert(omega_micro_quantum(&r,UINT32_MAX)<0);
+ assert(!omega_micro_run(&r,1));
+ assert(r.completed==1);return 0;}
+''')
+    target=tmp_path/'boundary';cc=shutil.which('cc');assert cc
+    c_tool([cc,'-std=gnu11','-O1','-g','-fno-pie','-no-pie','-fno-omit-frame-pointer','-fsanitize=address,undefined',
+            '-I',header.parent,source,'-o',target],inputs=[source,header.parent],output_directory=tmp_path,budget=BUILD_BUDGET,check=True)
+    assert instrumented([target],budget=BUILD_BUDGET,check=True).ok
