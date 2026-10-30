@@ -10,6 +10,7 @@ requires-python = ">=3.10"
 
 [project.scripts]
 omega = "omega.cli:principal"
+omega-kernel = "omega_kernel.cli:main"
 omegac = "omega_selfhost.driver:compiler_main"
 
 [project.optional-dependencies]
@@ -25,7 +26,7 @@ gpu = ["triton>=3; platform_system == 'Linux'"]
 "Omega Certified Synthesis" = "omega_nextorch.orange"
 
 [tool.setuptools.packages.find]
-include = ["omega_engines*", "omega_science*", "omega_live*", "omega_ingest*", "omega_native*", "omega", "omega_open", "omega_nextorch*", "omega_selfhost*", "omega_platform*", "omega_agent*", "omega_bench*", "omega_coder*", "omega_evolution*", "omega_learning*", "omega_memory*", "omega_security*", "omega_tools*", "omega_refine_check*", "omega_synth_mcts*", "omega_self_mutate*", "omega_cognition*", "omega_gpu_mcts*", "omega_autotelic*", "omega_self_evolve_v2*", "omega_runtime_verified*", "nextorch*"]
+include = ["omega_kernel*", "omega_engines*", "omega_science*", "omega_live*", "omega_ingest*", "omega_native*", "omega", "omega_open", "omega_nextorch*", "omega_selfhost*", "omega_platform*", "omega_agent*", "omega_bench*", "omega_coder*", "omega_evolution*", "omega_learning*", "omega_memory*", "omega_security*", "omega_tools*", "omega_refine_check*", "omega_synth_mcts*", "omega_self_mutate*", "omega_cognition*", "omega_gpu_mcts*", "omega_autotelic*", "omega_self_evolve_v2*", "omega_runtime_verified*", "nextorch*"]
 
 [tool.setuptools.package-data]
 "nextorch.orange" = ["icons/*.svg"]

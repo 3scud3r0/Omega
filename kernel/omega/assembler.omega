@@ -1,0 +1,144 @@
+modulo machine_assembler;
+importar "../../ciencia/core/exato.omega" como u;
+exportar create, emit, octet, word, wide, mark, fresh, fixup, resolve, hex, part;
+
+funcao create() {
+  var s=obj();
+  put(s,"bytes",[]);
+  put(s,"labels",obj());
+  put(s,"fixups",[]);
+  put(s,"serial",0);
+  retornar s;
+}
+
+funcao octet(s,value) {
+  se(len(s["bytes"])>=131072) {
+    fail("Direct machine-code byte budget 128 KiB");
+  }
+  push(s["bytes"],u::rem_int(value,256));
+  retornar 0;
+}
+
+funcao emit(s,bytes) {
+  var i=0;
+  enquanto(i<len(bytes)) {
+    u::integer(bytes[i],0,255);
+    octet(s,bytes[i]);
+    i=i+1;
+  }
+  retornar 0;
+}
+
+funcao word(s,value) {
+  var i=0;
+  enquanto(i<4) {
+    octet(s,value);
+    value=qfloor(value/256);
+    i=i+1;
+  }
+  retornar 0;
+}
+
+funcao wide(s,value) {
+  value=u::rem_int(value,18446744073709551616);
+  var i=0;
+  enquanto(i<8) {
+    octet(s,value);
+    value=qfloor(value/256);
+    i=i+1;
+  }
+  retornar 0;
+}
+
+funcao mark(s,label) {
+  se(has(s["labels"],label)) {
+    fail("Duplicate assembler label");
+  }
+  put(s["labels"],label,len(s["bytes"]));
+  retornar 0;
+}
+
+funcao fresh(s,prefix) {
+  var label=prefix+text(s["serial"]);
+  put(s,"serial",s["serial"]+1);
+  retornar label;
+}
+
+funcao fixup(s,kind,label,extra) {
+  push(s["fixups"],[kind,len(s["bytes"]),label,extra]);
+  word(s,0);
+  retornar 0;
+}
+
+funcao patch(s,position,value) {
+  var i=0;
+  enquanto(i<4) {
+    put(s["bytes"],position+i,u::rem_int(value,256));
+    value=qfloor(value/256);
+    i=i+1;
+  }
+  retornar 0;
+}
+
+funcao part(value,start,width) {
+  retornar u::rem_int(qfloor(value/u::power(2,start)),u::power(2,width));
+}
+
+funcao resolve(s) {
+  var i=0;
+  enquanto(i<len(s["fixups"])) {
+    var fix=s["fixups"][i];
+    se(!has(s["labels"],fix[2])) {
+      fail("Unresolved assembler label");
+    }
+    var target=s["labels"][fix[2]];
+    var position=fix[1];
+    var delta=target-position;
+    var value=0;
+    se(fix[0]=="x86-rel32") {
+      delta=delta-4;
+      u::integer(delta,-2147483648,2147483647);
+      value=u::rem_int(delta,4294967296);
+    }
+    senao {
+      se(delta%4!=0) {
+        fail("Misaligned fixed-width instruction branch");
+      }
+      se(fix[0]=="a64-b") {
+        u::integer(delta/4,-33554432,33554431);
+        value=335544320+u::rem_int(delta/4,67108864);
+      }
+      senao {
+        se(fix[0]=="a64-cond") {
+          u::integer(delta/4,-262144,262143);
+          value=1409286144+u::rem_int(delta/4,524288)*32+fix[3];
+        }
+        senao {
+          se(fix[0]=="rv-jal") {
+            u::integer(delta,-1048576,1048574);
+            var bits=u::rem_int(delta,2097152);
+            value=111+part(bits,20,1)*2147483648+part(bits,1,10)*2097152+part(bits,11,1)*1048576+part(bits,12,8)*4096;
+          }
+          senao {
+            fail("Unknown assembler relocation kind");
+          }
+        }
+      }
+    }
+    patch(s,position,value);
+    i=i+1;
+  }
+  retornar s["bytes"];
+}
+
+funcao hex(bytes) {
+  var digits="0123456789abcdef";
+  var pieces=[];
+  var i=0;
+  enquanto(i<len(bytes)) {
+    var value=u::integer(bytes[i],0,255);
+    push(pieces,digits[qfloor(value/16)]+digits[value%16]);
+    i=i+1;
+  }
+  retornar join(pieces,"");
+}

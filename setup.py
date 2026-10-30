@@ -10,8 +10,9 @@ class NativeBuild(build_py):
         super().run()
         root=Path(__file__).parent
         output=Path(self.build_lib)/'omega_native'/'_sources'
-        files=[p for directory in ('omega_core','omega_ml','ciencia','agentes_cientificos','std','runtime','tools','omega_ingest','civilizacao_agentes','incubadora_continua','sociedade_hierarquica','metamorfose_cognitiva','fabrica_descobertas','imunologia_sistemica','infraestrutura_soberana') for p in (root/directory).rglob('*') if p.suffix in ('.omega','.h')]
+        files=[p for directory in ('kernel','omega_core','omega_ml','ciencia','agentes_cientificos','std','runtime','tools','omega_ingest','civilizacao_agentes','incubadora_continua','sociedade_hierarquica','metamorfose_cognitiva','fabrica_descobertas','imunologia_sistemica','infraestrutura_soberana') for p in (root/directory).rglob('*') if p.suffix in ('.omega','.h','.c')]
         files.append(root/'ciencia/catalogo.json')
+        files.extend((root/'omega_selfhost').glob('*.h'))
         files.append(root/'omega_core/catalogo.json')
         files.extend((root/'omega_core/formal').glob('*.lean'))
         files.extend((root/'formal/science_axioms').glob('*.lean'))

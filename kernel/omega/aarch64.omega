@@ -1,0 +1,245 @@
+modulo direct_aarch64;
+importar "assembler.omega" como a;
+exportar constant, load, store, unary, binary, jump, zero_branch, prologue, epilogue;
+
+# Linux AArch64, little endian. x19 is the BSS base; x9/x10 are expression
+# operands. Syscall arguments use x0..x3, the syscall number uses x8.
+funcao constant(s,reg,value) {
+  a::word(s,3531603968+a::part(value,0,16)*32+reg);
+  var i=1;
+  enquanto(i<4) {
+    a::word(s,4068474880+i*2097152+a::part(value,16*i,16)*32+reg);
+    i=i+1;
+  }
+  retornar 0;
+}
+funcao load(s,reg,offset) {
+  a::word(s,4181721088+(offset/8)*1024+19*32+reg);
+  retornar 0;
+}
+funcao store(s,reg,offset) {
+  a::word(s,4177526784+(offset/8)*1024+19*32+reg);
+  retornar 0;
+}
+funcao byte(s,reg,offset) {
+  a::word(s,956301312+offset*1024+19*32+reg);
+  retornar 0;
+}
+funcao move(s,dst,src) {
+  a::word(s,2852127712+src*65536+dst);
+  retornar 0;
+}
+funcao reg(s,opcode,dst,left,right) {
+  a::word(s,opcode+right*65536+left*32+dst);
+  retornar 0;
+}
+funcao cmp(s,left,right) {
+  reg(s,3942645791,0,left,right);
+  retornar 0;
+}
+funcao conditional(s,condition,label) {
+  a::fixup(s,"a64-cond",label,condition);
+  retornar 0;
+}
+funcao jump(s,label) {
+  a::fixup(s,"a64-b",label,0);
+  retornar 0;
+}
+funcao zero_branch(s,label) {
+  cmp(s,9,31);
+  conditional(s,0,label);
+  retornar 0;
+}
+funcao set(s,condition) {
+  var inverse=condition+1;
+  se(condition%2==1) { inverse=condition-1; }
+  a::word(s,2594113504+inverse*4096+9);
+  retornar 0;
+}
+funcao unary(s,op) {
+  se(op=="-") {
+    reg(s,3942645760,9,31,9);
+    conditional(s,6,"error_overflow");
+  } senao {
+    cmp(s,9,31);
+    set(s,0);
+  }
+  retornar 0;
+}
+funcao binary(s,op) {
+  se(op=="+"||op=="-") {
+    var opcode=2868903936;
+    se(op=="-") { opcode=3942645760; }
+    reg(s,opcode,9,9,10);
+    conditional(s,6,"error_overflow");
+    retornar 0;
+  }
+  se(op=="*") {
+    reg(s,2600500224,11,9,10);
+    reg(s,2604694528,12,9,10);
+    a::word(s,2470444032+63*65536+63*1024+11*32+13);
+    cmp(s,12,13);
+    conditional(s,1,"error_overflow");
+    move(s,9,11);
+    retornar 0;
+  }
+  se(op=="/"||op=="%") {
+    cmp(s,10,31);
+    conditional(s,0,"error_zero");
+    constant(s,11,-9223372036854775808);
+    cmp(s,9,11);
+    var normal=a::fresh(s,"div_normal_");
+    conditional(s,1,normal);
+    constant(s,11,-1);
+    cmp(s,10,11);
+    conditional(s,0,"error_overflow");
+    a::mark(s,normal);
+    reg(s,2596277248,11,9,10);
+    a::word(s,2600501248+10*65536+9*1024+11*32+12);
+    se(op=="/") {
+      cmp(s,12,31);
+      conditional(s,1,"error_nonintegral");
+      move(s,9,11);
+    } senao { move(s,9,12); }
+    retornar 0;
+  }
+  cmp(s,9,10);
+  var condition=0;
+  se(op=="!=") { condition=1; }
+  se(op=="<") { condition=11; }
+  se(op=="<=") { condition=13; }
+  se(op==">") { condition=12; }
+  se(op==">=") { condition=10; }
+  set(s,condition);
+  retornar 0;
+}
+funcao syscall(s,number) {
+  constant(s,8,number);
+  a::word(s,3556769793);
+  retornar 0;
+}
+funcao check_negative(s,label) {
+  cmp(s,0,31);
+  conditional(s,11,label);
+  retornar 0;
+}
+funcao retry(s,label) {
+  constant(s,11,-4);
+  cmp(s,0,11);
+  conditional(s,0,label);
+  retornar 0;
+}
+funcao address(s,reg,offset) {
+  a::word(s,2432696320+offset*1024+19*32+reg);
+  retornar 0;
+}
+funcao prologue(s,parameters) {
+  constant(s,19,6291456);
+  a::word(s,4181721088+31*32+9);
+  constant(s,10,2);
+  cmp(s,9,10);
+  conditional(s,1,"error_io");
+  constant(s,0,-100);
+  a::word(s,4181721088+2*1024+31*32+1);
+  constant(s,2,0);
+  constant(s,3,0);
+  syscall(s,56);
+  check_negative(s,"error_io");
+  store(s,0,160);
+  se(parameters>0) {
+    a::mark(s,"read_loop");
+    load(s,0,160);
+    load(s,11,168);
+    reg(s,2332033024,1,19,11);
+    constant(s,2,parameters*8);
+    reg(s,3405774848,2,2,11);
+    syscall(s,63);
+    retry(s,"read_loop");
+    cmp(s,0,31);
+    conditional(s,13,"error_io");
+    load(s,11,168);
+    reg(s,2332033024,11,11,0);
+    store(s,11,168);
+    constant(s,12,parameters*8);
+    cmp(s,11,12);
+    conditional(s,3,"read_loop");
+  }
+  a::mark(s,"read_tail");
+  load(s,0,160);
+  address(s,1,200);
+  constant(s,2,1);
+  syscall(s,63);
+  retry(s,"read_tail");
+  cmp(s,0,31);
+  conditional(s,1,"error_io");
+  load(s,0,160);
+  syscall(s,57);
+  retornar 0;
+}
+funcao epilogue(s) {
+  a::mark(s,"success");
+  store(s,9,192);
+  constant(s,9,0);
+  store(s,9,184);
+  jump(s,"print_result");
+  var errors=["error_overflow","error_zero","error_io","error_nonintegral"];
+  var i=0;
+  enquanto(i<4) {
+    a::mark(s,errors[i]);
+    constant(s,9,0);
+    store(s,9,192);
+    constant(s,9,i+1);
+    store(s,9,184);
+    jump(s,"print_result");
+    i=i+1;
+  }
+  a::mark(s,"print_result");
+  load(s,9,184);
+  a::word(s,2432696320+48*1024+9*32+9);
+  byte(s,9,128);
+  load(s,9,192);
+  constant(s,13,15);
+  i=0;
+  enquanto(i<16) {
+    a::word(s,3544186880+(15-i)*4*65536+63*1024+9*32+11);
+    reg(s,2315255808,11,11,13);
+    constant(s,12,10);
+    cmp(s,11,12);
+    var digit=a::fresh(s,"digit_");
+    var done=a::fresh(s,"digit_done_");
+    conditional(s,11,digit);
+    a::word(s,2432696320+55*1024+11*32+11);
+    jump(s,done);
+    a::mark(s,digit);
+    a::word(s,2432696320+48*1024+11*32+11);
+    a::mark(s,done);
+    byte(s,11,129+i);
+    i=i+1;
+  }
+  constant(s,9,10);
+  byte(s,9,145);
+  a::mark(s,"write_loop");
+  constant(s,0,1);
+  load(s,11,176);
+  address(s,1,128);
+  reg(s,2332033024,1,1,11);
+  constant(s,2,18);
+  reg(s,3405774848,2,2,11);
+  syscall(s,64);
+  retry(s,"write_loop");
+  cmp(s,0,31);
+  conditional(s,13,"exit_io");
+  load(s,11,176);
+  reg(s,2332033024,11,11,0);
+  store(s,11,176);
+  constant(s,12,18);
+  cmp(s,11,12);
+  conditional(s,3,"write_loop");
+  load(s,0,184);
+  syscall(s,93);
+  a::mark(s,"exit_io");
+  constant(s,0,3);
+  syscall(s,93);
+  a::word(s,3558866944);
+  retornar 0;
+}

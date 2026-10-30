@@ -1,0 +1,213 @@
+modulo direct_elf;
+importar "assembler.omega" como a;
+importar "x86_64.omega" como x;
+importar "aarch64.omega" como arm;
+importar "riscv64.omega" como rv;
+importar "source.omega" como source;
+importar "../../ciencia/core/exato.omega" como u;
+exportar compile;
+
+# All three emitters implement this small explicit register convention. They
+# emit instructions directly; neither an assembler nor a linker is invoked.
+funcao result_register(arch) {
+  se(arch=="x86_64") { retornar 0; }
+  se(arch=="aarch64") { retornar 9; }
+  retornar 5;
+}
+funcao rhs_register(arch) {
+  se(arch=="x86_64") { retornar 1; }
+  se(arch=="aarch64") { retornar 10; }
+  retornar 6;
+}
+funcao constant(s,arch,value) {
+  var reg=result_register(arch);
+  se(arch=="x86_64") { x::constant(s,reg,value); }
+  se(arch=="aarch64") { arm::constant(s,reg,value); }
+  se(arch=="riscv64") { rv::constant(s,reg,value); }
+  retornar 0;
+}
+funcao load(s,arch,reg,offset) {
+  se(arch=="x86_64") { x::load(s,reg,offset); }
+  se(arch=="aarch64") { arm::load(s,reg,offset); }
+  se(arch=="riscv64") { rv::load(s,reg,offset); }
+  retornar 0;
+}
+funcao store(s,arch,offset) {
+  var reg=result_register(arch);
+  se(arch=="x86_64") { x::store(s,reg,offset); }
+  se(arch=="aarch64") { arm::store(s,reg,offset); }
+  se(arch=="riscv64") { rv::store(s,reg,offset); }
+  retornar 0;
+}
+funcao jump(s,arch,label) {
+  se(arch=="x86_64") { x::jump(s,label); }
+  se(arch=="aarch64") { arm::jump(s,label); }
+  se(arch=="riscv64") { rv::jump(s,label); }
+  retornar 0;
+}
+funcao zero_branch(s,arch,label) {
+  se(arch=="x86_64") { x::zero_branch(s,label); }
+  se(arch=="aarch64") { arm::zero_branch(s,label); }
+  se(arch=="riscv64") { rv::zero_branch(s,label); }
+  retornar 0;
+}
+funcao unary(s,arch,op) {
+  se(arch=="x86_64") { x::unary(s,op); }
+  se(arch=="aarch64") { arm::unary(s,op); }
+  se(arch=="riscv64") { rv::unary(s,op); }
+  retornar 0;
+}
+funcao binary(s,arch,op) {
+  se(arch=="x86_64") { x::binary(s,op); }
+  se(arch=="aarch64") { arm::binary(s,op); }
+  se(arch=="riscv64") { rv::binary(s,op); }
+  retornar 0;
+}
+funcao copy_environment(env) {
+  var out=obj();
+  var names=keys(env);
+  var i=0;
+  enquanto(i<len(names)) {
+    put(out,names[i],env[names[i]]);
+    i=i+1;
+  }
+  retornar out;
+}
+funcao expression(s,arch,ast,env,slots) {
+  var slot=256+8*slots[0];
+  put(slots,0,slots[0]+1);
+  se(slots[0]>256) { fail("ELF expression slot budget"); }
+  var op=ast[0];
+  se(op=="constant") { constant(s,arch,u::val(ast[1])); }
+  se(op=="load") { load(s,arch,result_register(arch),env[ast[1]]); }
+  se(op=="unary") {
+    var operand=expression(s,arch,ast[2],env,slots);
+    load(s,arch,result_register(arch),operand);
+    unary(s,arch,ast[1]);
+  }
+  se(op=="binary") {
+    var left=expression(s,arch,ast[2],env,slots);
+    se(ast[1]=="&&"||ast[1]=="||") {
+      var short=a::fresh(s,"short_");
+      var done=a::fresh(s,"short_done_");
+      load(s,arch,result_register(arch),left);
+      se(ast[1]=="||") { unary(s,arch,"!"); }
+      zero_branch(s,arch,short);
+      var right=expression(s,arch,ast[3],env,slots);
+      load(s,arch,result_register(arch),right);
+      unary(s,arch,"!");
+      unary(s,arch,"!");
+      jump(s,arch,done);
+      a::mark(s,short);
+      var value=0;
+      se(ast[1]=="||") { value=1; }
+      constant(s,arch,value);
+      a::mark(s,done);
+    } senao {
+      var right=expression(s,arch,ast[3],env,slots);
+      load(s,arch,result_register(arch),left);
+      load(s,arch,rhs_register(arch),right);
+      binary(s,arch,ast[1]);
+    }
+  }
+  store(s,arch,slot);
+  retornar slot;
+}
+funcao block(s,arch,body,env,slots) {
+  var i=0;
+  enquanto(i<len(body)) {
+    var statement=body[i];
+    se(statement[0]=="let") {
+      var slot=expression(s,arch,statement[2],env,slots);
+      put(env,statement[1],slot);
+    }
+    se(statement[0]=="return") {
+      var slot=expression(s,arch,statement[1],env,slots);
+      load(s,arch,result_register(arch),slot);
+      jump(s,arch,"success");
+    }
+    se(statement[0]=="if") {
+      var slot=expression(s,arch,statement[1],env,slots);
+      load(s,arch,result_register(arch),slot);
+      var no=a::fresh(s,"else_");
+      zero_branch(s,arch,no);
+      block(s,arch,statement[2],copy_environment(env),slots);
+      a::mark(s,no);
+      block(s,arch,statement[3],copy_environment(env),slots);
+    }
+    i=i+1;
+  }
+  retornar 0;
+}
+funcao half(s,value) {
+  a::octet(s,value);
+  a::octet(s,qfloor(value/256));
+  retornar 0;
+}
+funcao segment(s,type,flags,offset,address,filesize,memsize,alignment) {
+  a::word(s,type);
+  a::word(s,flags);
+  a::wide(s,offset);
+  a::wide(s,address);
+  a::wide(s,address);
+  a::wide(s,filesize);
+  a::wide(s,memsize);
+  a::wide(s,alignment);
+  retornar 0;
+}
+funcao compile(program,arch) {
+  source::validate(program);
+  se(!contains(["x86_64","aarch64","riscv64"],arch)) { fail("Unknown direct ELF architecture"); }
+  var code=a::create();
+  var n=len(program["parameters"]);
+  se(arch=="x86_64") { x::prologue(code,n); }
+  se(arch=="aarch64") { arm::prologue(code,n); }
+  se(arch=="riscv64") { rv::prologue(code,n); }
+  var env=obj();
+  var i=0;
+  enquanto(i<n) {
+    put(env,program["parameters"][i],i*8);
+    i=i+1;
+  }
+  var slots=[0];
+  block(code,arch,program["body"],env,slots);
+  se(arch=="x86_64") { x::epilogue(code); }
+  se(arch=="aarch64") { arm::epilogue(code); }
+  se(arch=="riscv64") { rv::epilogue(code); }
+  var bytes=a::resolve(code);
+  var file=a::create();
+  a::emit(file,[127,69,76,70,2,1,1,0,0,0,0,0,0,0,0,0]);
+  half(file,2);
+  var machine=62;
+  se(arch=="aarch64") { machine=183; }
+  se(arch=="riscv64") { machine=243; }
+  half(file,machine);
+  a::word(file,1);
+  a::wide(file,4198400);
+  a::wide(file,64);
+  a::wide(file,0);
+  a::word(file,0);
+  half(file,64);
+  half(file,56);
+  half(file,3);
+  half(file,0);
+  half(file,0);
+  half(file,0);
+  segment(file,1,5,0,4194304,4096+len(bytes),4096+len(bytes),4096);
+  segment(file,1,6,0,6291456,0,4096,4096);
+  segment(file,1685382481,6,0,0,0,0,16);
+  enquanto(len(file["bytes"])<4096) { a::octet(file,0); }
+  a::emit(file,bytes);
+  var out=obj();
+  put(out,"format","omega-direct-elf-1");
+  put(out,"architecture",arch);
+  put(out,"parameters",program["parameters"]);
+  put(out,"ir",program);
+  put(out,"elf_hex",a::hex(file["bytes"]));
+  put(out,"machine_code_bytes",len(bytes));
+  put(out,"expression_slots",slots[0]);
+  put(out,"external_assembler",0);
+  put(out,"external_linker",0);
+  put(out,"semantics","checked-i64-exact-division-v1");
+  retornar out;
+}

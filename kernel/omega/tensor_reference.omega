@@ -1,0 +1,97 @@
+modulo tensor_reference;
+importar "../../ciencia/core/exato.omega" como u;
+exportar execute;
+
+# Independent exact reference for the matrix wire operations. This is deliberately
+# simple cubic arithmetic; it is an oracle, not the vectorized implementation.
+funcao decode(matrix) {
+  var rows=u::integer(matrix["rows"],1,64);
+  var columns=u::integer(matrix["columns"],1,64);
+  se(!islist(matrix["values"])||len(matrix["values"])!=rows*columns) {
+    fail("Reference matrix shape mismatch");
+  }
+  var values=[];
+  var i=0;
+  enquanto(i<rows*columns) {
+    push(values,u::val(matrix["values"][i]));
+    i=i+1;
+  }
+  retornar [rows,columns,values];
+}
+funcao encode(matrix) {
+  var out=obj();
+  put(out,"rows",matrix[0]);
+  put(out,"columns",matrix[1]);
+  put(out,"values",matrix[2]);
+  retornar out;
+}
+funcao execute(request) {
+  var matrix=decode(request["a"]);
+  var rows=matrix[0];
+  var columns=matrix[1];
+  var values=[];
+  var op=request["operation"];
+  var i=0;
+  se(contains(["gemm","add","sub","hadamard"],op)) {
+    var b=decode(request["b"]);
+    se(op=="gemm") {
+      se(columns!=b[0]) { fail("Reference GEMM shape mismatch"); }
+      enquanto(i<rows) {
+        var j=0;
+        enquanto(j<b[1]) {
+          var sum=0;
+          var k=0;
+          enquanto(k<columns) {
+            sum=sum+matrix[2][i*columns+k]*b[2][k*b[1]+j];
+            k=k+1;
+          }
+          push(values,sum);
+          j=j+1;
+        }
+        i=i+1;
+      }
+      retornar encode([rows,b[1],values]);
+    }
+    se(rows!=b[0]||columns!=b[1]) { fail("Reference elementwise shape mismatch"); }
+    enquanto(i<rows*columns) {
+      var value=matrix[2][i]+b[2][i];
+      se(op=="sub") { value=matrix[2][i]-b[2][i]; }
+      se(op=="hadamard") { value=matrix[2][i]*b[2][i]; }
+      push(values,value);
+      i=i+1;
+    }
+    retornar encode([rows,columns,values]);
+  }
+  se(op=="transpose") {
+    enquanto(i<columns) {
+      var j=0;
+      enquanto(j<rows) {
+        push(values,matrix[2][j*columns+i]);
+        j=j+1;
+      }
+      i=i+1;
+    }
+    retornar encode([columns,rows,values]);
+  }
+  se(op=="relu") {
+    enquanto(i<rows*columns) {
+      var value=matrix[2][i];
+      se(value<0) { value=0; }
+      push(values,value);
+      i=i+1;
+    }
+    retornar encode([rows,columns,values]);
+  }
+  se(op=="sum"||op=="sum-squares") {
+    var sum=0;
+    enquanto(i<rows*columns) {
+      var value=matrix[2][i];
+      se(op=="sum-squares") { value=value*value; }
+      sum=sum+value;
+      i=i+1;
+    }
+    retornar encode([1,1,[sum]]);
+  }
+  fail("Unknown matrix reference operation");
+  retornar obj();
+}

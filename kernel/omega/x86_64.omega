@@ -1,0 +1,241 @@
+modulo direct_x86_64;
+importar "assembler.omega" como a;
+importar "../../ciencia/core/exato.omega" como u;
+exportar constant, load, store, unary, binary, jump, zero_branch, prologue, epilogue;
+
+# Register convention: result RAX, RHS RCX, address base R12.
+funcao constant(s,reg,value) {
+  a::emit(s,[72+qfloor(reg/8),184+reg%8]);
+  a::wide(s,value);
+  retornar 0;
+}
+
+funcao load(s,reg,offset) {
+  a::emit(s,[73+4*qfloor(reg/8),139,132+8*(reg%8),36]);
+  a::word(s,offset);
+  retornar 0;
+}
+
+funcao store(s,reg,offset) {
+  a::emit(s,[73+4*qfloor(reg/8),137,132+8*(reg%8),36]);
+  a::word(s,offset);
+  retornar 0;
+}
+
+funcao store_byte(s,reg,offset) {
+  a::emit(s,[65+4*qfloor(reg/8),136,132+8*(reg%8),36]);
+  a::word(s,offset);
+  retornar 0;
+}
+
+funcao jump(s,label) {
+  a::octet(s,233);
+  a::fixup(s,"x86-rel32",label,0);
+  retornar 0;
+}
+
+funcao conditional(s,condition,label) {
+  a::emit(s,[15,128+condition]);
+  a::fixup(s,"x86-rel32",label,0);
+  retornar 0;
+}
+
+funcao zero_branch(s,label) {
+  a::emit(s,[72,133,192]);
+  conditional(s,4,label);
+  retornar 0;
+}
+
+funcao unary(s,op) {
+  se(op=="-") {
+    a::emit(s,[72,247,216]);
+    conditional(s,0,"error_overflow");
+  }
+  senao {
+    a::emit(s,[72,133,192,15,148,192,15,182,192]);
+  }
+  retornar 0;
+}
+
+funcao binary(s,op) {
+  se(op=="+") {
+    a::emit(s,[72,1,200]);
+    conditional(s,0,"error_overflow");
+    retornar 0;
+  }
+  se(op=="-") {
+    a::emit(s,[72,41,200]);
+    conditional(s,0,"error_overflow");
+    retornar 0;
+  }
+  se(op=="*") {
+    a::emit(s,[72,15,175,193]);
+    conditional(s,0,"error_overflow");
+    retornar 0;
+  }
+  se(op=="/"||op=="%") {
+    a::emit(s,[72,133,201]);
+    conditional(s,4,"error_zero");
+    constant(s,2,-9223372036854775808);
+    a::emit(s,[72,57,208]);
+    var normal=a::fresh(s,"div_normal_");
+    conditional(s,5,normal);
+    a::emit(s,[72,131,249,255]);
+    conditional(s,4,"error_overflow");
+    a::mark(s,normal);
+    a::emit(s,[72,153,72,247,249]);
+    se(op=="/") {
+      a::emit(s,[72,133,210]);
+      conditional(s,5,"error_nonintegral");
+    }
+    senao {
+      a::emit(s,[72,137,208]);
+    }
+    retornar 0;
+  }
+  a::emit(s,[72,57,200]);
+  var condition=4;
+  se(op=="!=") {
+    condition=5;
+  }
+  se(op=="<") {
+    condition=12;
+  }
+  se(op=="<=") {
+    condition=14;
+  }
+  se(op==">") {
+    condition=15;
+  }
+  se(op==">=") {
+    condition=13;
+  }
+  a::emit(s,[15,144+condition,192,15,182,192]);
+  retornar 0;
+}
+
+funcao syscall(s,number) {
+  constant(s,0,number);
+  a::emit(s,[15,5]);
+  retornar 0;
+}
+
+funcao add_count(s,offset) {
+  a::emit(s,[73,1,132,36]);
+  a::word(s,offset);
+  retornar 0;
+}
+
+funcao compare_count(s,offset,value) {
+  load(s,2,offset);
+  constant(s,1,value);
+  a::emit(s,[72,57,202]);
+  retornar 0;
+}
+
+funcao prologue(s,parameters) {
+  constant(s,12,6291456);
+  a::emit(s,[72,131,60,36,2]);
+  conditional(s,5,"error_io");
+  a::emit(s,[72,139,116,36,16]);
+  constant(s,7,-100);
+  constant(s,2,0);
+  constant(s,10,0);
+  syscall(s,257);
+  a::emit(s,[72,133,192]);
+  conditional(s,8,"error_io");
+  store(s,0,160);
+  se(parameters>0) {
+    a::mark(s,"read_loop");
+    load(s,7,160);
+    a::emit(s,[76,137,230]);
+    load(s,1,168);
+    a::emit(s,[72,1,206]);
+    constant(s,2,parameters*8);
+    a::emit(s,[72,41,202]);
+    syscall(s,0);
+    a::emit(s,[72,131,248,252]);
+    conditional(s,4,"read_loop");
+    a::emit(s,[72,133,192]);
+    conditional(s,14,"error_io");
+    add_count(s,168);
+    compare_count(s,168,parameters*8);
+    conditional(s,2,"read_loop");
+  }
+  a::mark(s,"read_extra");
+  load(s,7,160);
+  a::emit(s,[76,137,230,72,129,198]);
+  a::word(s,200);
+  constant(s,2,1);
+  syscall(s,0);
+  a::emit(s,[72,131,248,252]);
+  conditional(s,4,"read_extra");
+  a::emit(s,[72,133,192]);
+  conditional(s,5,"error_io");
+  load(s,7,160);
+  syscall(s,3);
+  retornar 0;
+}
+
+funcao epilogue(s) {
+  a::mark(s,"success");
+  store(s,0,192);
+  constant(s,2,0);
+  store(s,2,184);
+  jump(s,"print_result");
+  var labels=["error_overflow","error_zero","error_io","error_nonintegral"];
+  var i=0;
+  enquanto(i<4) {
+    a::mark(s,labels[i]);
+    constant(s,0,0);
+    store(s,0,192);
+    constant(s,2,i+1);
+    store(s,2,184);
+    jump(s,"print_result");
+    i=i+1;
+  }
+  a::mark(s,"print_result");
+  load(s,0,184);
+  a::emit(s,[131,192,48]);
+  store_byte(s,0,128);
+  load(s,0,192);
+  i=0;
+  enquanto(i<16) {
+    a::emit(s,[72,137,194,72,193,234,4*(15-i),131,226,15,131,250,10]);
+    var digit=a::fresh(s,"hex_digit_");
+    var done=a::fresh(s,"hex_done_");
+    conditional(s,12,digit);
+    a::emit(s,[131,194,55]);
+    jump(s,done);
+    a::mark(s,digit);
+    a::emit(s,[131,194,48]);
+    a::mark(s,done);
+    store_byte(s,2,129+i);
+    i=i+1;
+  }
+  constant(s,2,10);
+  store_byte(s,2,145);
+  a::mark(s,"write_loop");
+  constant(s,7,1);
+  a::emit(s,[76,137,230,72,129,198]);
+  a::word(s,128);
+  load(s,1,176);
+  a::emit(s,[72,1,206]);
+  constant(s,2,18);
+  a::emit(s,[72,41,202]);
+  syscall(s,1);
+  a::emit(s,[72,131,248,252]);
+  conditional(s,4,"write_loop");
+  a::emit(s,[72,133,192]);
+  conditional(s,14,"exit_io");
+  add_count(s,176);
+  compare_count(s,176,18);
+  conditional(s,2,"write_loop");
+  load(s,7,184);
+  syscall(s,60);
+  a::mark(s,"exit_io");
+  constant(s,7,3);
+  syscall(s,60);
+  a::emit(s,[15,11]);
+  retornar 0;
+}

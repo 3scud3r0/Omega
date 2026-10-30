@@ -1,0 +1,505 @@
+modulo direct_omega_source;
+importar "../../ciencia/core/exato.omega" como u;
+importar "../../std/string.omega" como strings;
+importar "../../std/math.omega" como math;
+exportar parse, validate, evaluate;
+
+# Pure procedural Omega -> structured, typed i64 IR. The fragment has lexical
+# lets, exact checked integer expressions and terminal if/else return trees.
+# It deliberately rejects loops, recursion, calls, tensors, floats and effects.
+funcao letter(c) {
+  retornar contains("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",c);
+}
+
+funcao digit(c) {
+  retornar contains("0123456789",c);
+}
+
+funcao identifier(name) {
+  se(!isstr(name)||len(name)<1||len(name)>32||!letter(name[0])) {
+    retornar 0;
+  }
+  var i=1;
+  enquanto(i<len(name)) {
+    se(!letter(name[i])&&!digit(name[i])) {
+      retornar 0;
+    }
+    i=i+1;
+  }
+  retornar !contains(["funcao","var","retornar","se","senao","enquanto","parar"],name);
+}
+
+funcao lex(source) {
+  se(!isstr(source)||len(source)>16384) {
+    fail("Direct backend source limit 16384 bytes");
+  }
+  var tokens=[];
+  var i=0;
+  enquanto(i<len(source)) {
+    var c=source[i];
+    se(contains(" \n\r\t",c)) {
+      i=i+1;
+    }
+    senao {
+      se(c=="#"||(c=="/"&&i+1<len(source)&&source[i+1]=="/")) {
+        enquanto(i<len(source)&&source[i]!="\n") {
+          i=i+1;
+        }
+      }
+      senao {
+        se(letter(c)) {
+          var begin=i;
+          i=i+1;
+          enquanto(i<len(source)&&(letter(source[i])||digit(source[i]))) {
+            i=i+1;
+          }
+          push(tokens,slice(source,begin,i));
+        }
+        senao {
+          se(digit(c)) {
+            var begin=i;
+            enquanto(i<len(source)&&digit(source[i])) {
+              i=i+1;
+            }
+            push(tokens,slice(source,begin,i));
+          }
+          senao {
+            var two="";
+            se(i+1<len(source)) {
+              two=slice(source,i,i+2);
+            }
+            se(contains(["&&","||","==","!=","<=",">="],two)) {
+              push(tokens,two);
+              i=i+2;
+            }
+            senao {
+              se(!contains("{}();,+-*/%<>=!",c)) {
+                fail("Character outside direct integer Omega fragment");
+              }
+              push(tokens,c);
+              i=i+1;
+            }
+          }
+        }
+      }
+    }
+    se(len(tokens)>4096) {
+      fail("Direct backend token budget");
+    }
+  }
+  push(tokens,"<end>");
+  retornar tokens;
+}
+
+funcao peek(p) {
+  retornar p["tokens"][p["position"]];
+}
+
+funcao take(p) {
+  var token=peek(p);
+  se(token=="<end>") {
+    fail("Unexpected end of direct Omega source");
+  }
+  put(p,"position",p["position"]+1);
+  retornar token;
+}
+
+funcao accept(p,token) {
+  se(peek(p)==token) {
+    take(p);
+    retornar 1;
+  }
+  retornar 0;
+}
+
+funcao need(p,token) {
+  se(!accept(p,token)) {
+    fail("Expected token "+token+" in direct Omega source");
+  }
+  retornar 0;
+}
+
+funcao name(p) {
+  var token=take(p);
+  se(!identifier(token)) {
+    fail("ASCII identifier required in direct backend");
+  }
+  retornar token;
+}
+
+funcao expression(p,precedence,depth) {
+  se(depth>32) {
+    fail("Direct expression nesting budget");
+  }
+  var operators=[["||"],["&&"],["==","!="],["<","<=",">",">="],["+","-"],["*","/","%"]];
+  se(precedence<len(operators)) {
+    var left=expression(p,precedence+1,depth);
+    enquanto(contains(operators[precedence],peek(p))) {
+      var op=take(p);
+      left=["binary",op,left,expression(p,precedence+1,depth+1)];
+    }
+    retornar left;
+  }
+  var token=take(p);
+  se(token=="(") {
+    var nested=expression(p,0,depth+1);
+    need(p,")");
+    retornar nested;
+  }
+  se(token=="-"&&digit(peek(p)[0])) {
+    var value=-number(take(p));
+    u::integer(value,-9223372036854775808,9223372036854775807);
+    retornar ["constant",value];
+  }
+  se(token=="-"||token=="!") {
+    retornar ["unary",token,expression(p,6,depth+1)];
+  }
+  se(digit(token[0])) {
+    var value=number(token);
+    u::integer(value,-9223372036854775808,9223372036854775807);
+    retornar ["constant",value];
+  }
+  se(identifier(token)) {
+    retornar ["load",token];
+  }
+  fail("Unsupported direct Omega expression");
+  retornar [];
+}
+
+funcao block(p,depth) {
+  se(depth>16) {
+    fail("Direct statement nesting budget");
+  }
+  need(p,"{");
+  var statements=[];
+  enquanto(!accept(p,"}")) {
+    se(accept(p,"var")) {
+      var variable=name(p);
+      need(p,"=");
+      var value=expression(p,0,0);
+      need(p,";");
+      push(statements,["let",variable,value]);
+    }
+    senao {
+      se(accept(p,"retornar")) {
+        var value=expression(p,0,0);
+        need(p,";");
+        push(statements,["return",value]);
+      }
+      senao {
+        se(accept(p,"se")) {
+          need(p,"(");
+          var condition=expression(p,0,0);
+          need(p,")");
+          var yes=block(p,depth+1);
+          need(p,"senao");
+          var no=block(p,depth+1);
+          push(statements,["if",condition,yes,no]);
+        }
+        senao {
+          fail("Direct backend supports var, return and terminal if/else only");
+        }
+      }
+    }
+    se(len(statements)>64) {
+      fail("Direct block statement budget");
+    }
+  }
+  retornar statements;
+}
+
+funcao expression_type(ast,environment,meter,depth) {
+  se(depth>32||!islist(ast)||len(ast)<2) {
+    fail("Malformed or excessive direct expression AST");
+  }
+  put(meter,0,meter[0]+1);
+  se(meter[0]>256) {
+    fail("Direct backend expression slot budget 256");
+  }
+  var op=ast[0];
+  se(op=="constant"&&len(ast)==2) {
+    u::integer(u::val(ast[1]),-9223372036854775808,9223372036854775807);
+    retornar "i64";
+  }
+  se(op=="load"&&len(ast)==2) {
+    se(!isstr(ast[1])||!contains(environment,ast[1])) {
+      fail("Unbound direct backend local");
+    }
+    retornar "i64";
+  }
+  se(op=="unary"&&len(ast)==3&&contains(["-","!"],ast[1])) {
+    expression_type(ast[2],environment,meter,depth+1);
+    retornar "i64";
+  }
+  se(op=="binary"&&len(ast)==4&&contains(["+","-","*","/","%","==","!=","<","<=",">",">=","&&","||"],ast[1])) {
+    expression_type(ast[2],environment,meter,depth+1);
+    expression_type(ast[3],environment,meter,depth+1);
+    retornar "i64";
+  }
+  fail("Operation outside direct typed integer IR");
+  retornar "invalid";
+}
+
+funcao block_type(statements,environment,meter,depth) {
+  se(depth>16||!islist(statements)||len(statements)<1||len(statements)>64) {
+    fail("Direct IR block shape/budget");
+  }
+  var terminal=0;
+  var i=0;
+  enquanto(i<len(statements)) {
+    se(terminal) {
+      fail("Unreachable statement after terminal return tree");
+    }
+    var statement=statements[i];
+    se(!islist(statement)||len(statement)<2) {
+      fail("Direct IR statement shape");
+    }
+    se(statement[0]=="let"&&len(statement)==3) {
+      se(!identifier(statement[1])||contains(environment,statement[1])||len(environment)>=80) {
+        fail("Direct let must have a fresh bounded name");
+      }
+      expression_type(statement[2],environment,meter,0);
+      push(environment,statement[1]);
+    }
+    senao {
+      se(statement[0]=="return"&&len(statement)==2) {
+        expression_type(statement[1],environment,meter,0);
+        terminal=1;
+      }
+      senao {
+        se(statement[0]=="if"&&len(statement)==4) {
+          expression_type(statement[1],environment,meter,0);
+          var a=block_type(statement[2],slice(environment,0,len(environment)),meter,depth+1);
+          var b=block_type(statement[3],slice(environment,0,len(environment)),meter,depth+1);
+          terminal=a&&b;
+        }
+        senao {
+          fail("Unknown direct IR statement");
+        }
+      }
+    }
+    i=i+1;
+  }
+  se(!terminal) {
+    fail("Every direct backend path must return an i64");
+  }
+  retornar 1;
+}
+
+funcao validate(program) {
+  se(isstr(program)||isnum(program)||islist(program)) {
+    fail("Structured direct IR object required");
+  }
+  var names=keys(program);
+  se(len(names)!=4||!has(program,"format")||!has(program,"function")||!has(program,"parameters")||!has(program,"body")) {
+    fail("Direct IR exact fields: format,function,parameters,body");
+  }
+  se(program["format"]!="omega-direct-i64-1"||!identifier(program["function"])) {
+    fail("Unsupported direct IR format/function name");
+  }
+  var parameters=strings::as_list(program["parameters"]);
+  se(len(parameters)>16) {
+    fail("Direct backend parameter budget 16");
+  }
+  var i=0;
+  enquanto(i<len(parameters)) {
+    se(!identifier(parameters[i])||contains(slice(parameters,0,i),parameters[i])) {
+      fail("Duplicate or malformed direct parameter");
+    }
+    i=i+1;
+  }
+  var meter=[0];
+  block_type(program["body"],slice(parameters,0,len(parameters)),meter,0);
+  retornar meter[0];
+}
+
+funcao parse(source) {
+  var p=obj();
+  put(p,"tokens",lex(source));
+  put(p,"position",0);
+  need(p,"funcao");
+  var function=name(p);
+  need(p,"(");
+  var parameters=[];
+  se(!accept(p,")")) {
+    push(parameters,name(p));
+    enquanto(accept(p,",")) {
+      push(parameters,name(p));
+    }
+    need(p,")");
+  }
+  var body=block(p,0);
+  se(peek(p)!="<end>") {
+    fail("Direct backend accepts exactly one pure function");
+  }
+  var program=obj();
+  put(program,"format","omega-direct-i64-1");
+  put(program,"function",function);
+  put(program,"parameters",parameters);
+  put(program,"body",body);
+  validate(program);
+  retornar program;
+}
+
+funcao evaluated(state,value) {
+  se(value< -9223372036854775808||value>9223372036854775807||qden(value)!=1) {
+    put(state,"error",1);
+    retornar 0;
+  }
+  retornar value;
+}
+
+funcao eval_expression(ast,environment,state) {
+  se(state["error"]!=0) {
+    retornar 0;
+  }
+  put(state,"steps",state["steps"]+1);
+  var op=ast[0];
+  se(op=="constant") {
+    retornar u::val(ast[1]);
+  }
+  se(op=="load") {
+    retornar environment[ast[1]];
+  }
+  se(op=="unary") {
+    var value=eval_expression(ast[2],environment,state);
+    se(state["error"]!=0) {
+      retornar 0;
+    }
+    se(ast[1]=="!") {
+      retornar value==0;
+    }
+    retornar evaluated(state,-value);
+  }
+  var a=eval_expression(ast[2],environment,state);
+  se(state["error"]!=0) {
+    retornar 0;
+  }
+  var symbol=ast[1];
+  se(symbol=="&&"&&a==0) {
+    retornar 0;
+  }
+  se(symbol=="||"&&a!=0) {
+    retornar 1;
+  }
+  var b=eval_expression(ast[3],environment,state);
+  se(state["error"]!=0) {
+    retornar 0;
+  }
+  se(symbol=="&&"||symbol=="||") {
+    retornar b!=0;
+  }
+  se(symbol=="+") {
+    retornar evaluated(state,a+b);
+  }
+  se(symbol=="-") {
+    retornar evaluated(state,a-b);
+  }
+  se(symbol=="*") {
+    retornar evaluated(state,a*b);
+  }
+  se(symbol=="/"||symbol=="%") {
+    se(b==0) {
+      put(state,"error",2);
+      retornar 0;
+    }
+    se(a== -9223372036854775808&&b== -1) {
+      put(state,"error",1);
+      retornar 0;
+    }
+    var quotient=a/b;
+    se(symbol=="/") {
+      se(qden(quotient)!=1) {
+        put(state,"error",4);
+        retornar 0;
+      }
+      retornar evaluated(state,quotient);
+    }
+    var truncated=qfloor(math::abs(a)/math::abs(b));
+    se((a<0)!=(b<0)) {
+      truncated=-truncated;
+    }
+    retornar a-truncated*b;
+  }
+  se(symbol=="==") {
+    retornar a==b;
+  }
+  se(symbol=="!=") {
+    retornar a!=b;
+  }
+  se(symbol=="<") {
+    retornar a<b;
+  }
+  se(symbol=="<=") {
+    retornar a<=b;
+  }
+  se(symbol==">") {
+    retornar a>b;
+  }
+  retornar a>=b;
+}
+
+funcao fork_environment(environment) {
+  var copy=obj();
+  var names=keys(environment);
+  var i=0;
+  enquanto(i<len(names)) {
+    put(copy,names[i],environment[names[i]]);
+    i=i+1;
+  }
+  retornar copy;
+}
+
+funcao eval_block(body,environment,state) {
+  var i=0;
+  enquanto(i<len(body)&&state["error"]==0&&!state["returned"]) {
+    var statement=body[i];
+    se(statement[0]=="let") {
+      put(environment,statement[1],eval_expression(statement[2],environment,state));
+    }
+    senao {
+      se(statement[0]=="return") {
+        put(state,"value",eval_expression(statement[1],environment,state));
+        put(state,"returned",1);
+      }
+      senao {
+        var condition=eval_expression(statement[1],environment,state);
+        se(state["error"]==0) {
+          se(condition!=0) {
+            eval_block(statement[2],fork_environment(environment),state);
+          }
+          senao {
+            eval_block(statement[3],fork_environment(environment),state);
+          }
+        }
+      }
+    }
+    i=i+1;
+  }
+  retornar 0;
+}
+
+funcao evaluate(program,raw) {
+  validate(program);
+  var arguments=u::vector(raw);
+  se(len(arguments)!=len(program["parameters"])) {
+    fail("Direct evaluation argument count");
+  }
+  var environment=obj();
+  var i=0;
+  enquanto(i<len(arguments)) {
+    u::integer(arguments[i],-9223372036854775808,9223372036854775807);
+    put(environment,program["parameters"][i],arguments[i]);
+    i=i+1;
+  }
+  var state=obj();
+  put(state,"error",0);
+  put(state,"value",0);
+  put(state,"returned",0);
+  put(state,"steps",0);
+  eval_block(program["body"],environment,state);
+  se(state["error"]!=0) {
+    put(state,"value",0);
+  }
+  retornar state;
+}

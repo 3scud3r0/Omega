@@ -1,0 +1,41 @@
+modulo kernel_workbench;
+importar "../../omega_core/taylor_models_interval.omega" como k1;
+importar "../../omega_core/egraph_saturation.omega" como k2;
+importar "../../omega_core/smt_simplex_solver.omega" como k3;
+importar "../../omega_core/sindy_discovery_engine.omega" como k4;
+importar "../../omega_core/variational_physics_compiler.omega" como k5;
+importar "../../omega_core/universal_action_engine.omega" como k6;
+importar "../../omega_core/renormalization_multiscale_engine.omega" como k7;
+importar "../../omega_core/tensor_network_compressor.omega" como k8;
+importar "../../omega_core/active_inference_grounding.omega" como k9;
+importar "../../omega_core/universal_constructor_autopoiesis.omega" como k10;
+importar "../../omega_ml/equilibrium_propagation_engine.omega" como k11;
+importar "../../omega_ml/continuous_hopfield_ssm.omega" como k12;
+importar "../../omega_ml/causal_do_calculus.omega" como k13;
+importar "../../omega_ml/jepa_latent_world_model.omega" como k14;
+importar "../../omega_ml/programmatic_hypernetwork_synthesis.omega" como k15;
+importar "../../omega_core/cellular_micro_arena_runtime.omega" como k16;
+exportar execute;
+
+# These are the existing bounded research engines, not newly proved primitives.
+# Their numerical evidence never becomes logical acceptance automatically.
+funcao execute(id,request) {
+  se(id==1) { retornar k1::execute(request); }
+  se(id==2) { retornar k2::execute(request); }
+  se(id==3) { retornar k3::execute(request); }
+  se(id==4) { retornar k4::execute(request); }
+  se(id==5) { retornar k5::execute(request); }
+  se(id==6) { retornar k6::execute(request); }
+  se(id==7) { retornar k7::execute(request); }
+  se(id==8) { retornar k8::execute(request); }
+  se(id==9) { retornar k9::execute(request); }
+  se(id==10) { retornar k10::execute(request); }
+  se(id==11) { retornar k11::execute(request); }
+  se(id==12) { retornar k12::execute(request); }
+  se(id==13) { retornar k13::execute(request); }
+  se(id==14) { retornar k14::execute(request); }
+  se(id==15) { retornar k15::execute(request); }
+  se(id==16) { retornar k16::execute(request); }
+  fail("Unknown bounded engine ID");
+  retornar obj();
+}

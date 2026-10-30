@@ -200,3 +200,11 @@ Consulte `PROVA_META_FINITA.md` para enunciados, derivação algébrica, métric
 ## Ingestão e acompanhamento ao vivo
 
 Os 56 módulos da nova malha, os levantadores estrangeiros e o rastreador com histórico persistente e controles ao vivo estão descritos em [Ingestão e sociedade ao vivo](docs/INGESTAO_E_SOCIEDADE_AO_VIVO.md). Use `omega live --help` e `omega ingest --help`. Os domínios aceitos e as fronteiras das provas são explícitos; operações não suportadas são rejeitadas.
+# Kernel nativo amalgamado
+
+`omega_kernel.omega` reúne o verificador dependente embutido, o motor tensorial
+racional e os emissores ELF Linux x86-64/AArch64/RISC-V, com fontes C/Python
+extraíveis e hashes. Use `omega kernel ...` ou `python -m omega_kernel ...`.
+Escopos, limites e dependências estão em [kernel/README.md](kernel/README.md),
+e os resultados reais em [kernel/VALIDACAO.md](kernel/VALIDACAO.md).
+
