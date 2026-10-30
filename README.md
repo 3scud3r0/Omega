@@ -20,6 +20,7 @@ referência e compatibilidade, não são chamados pelos estágios nativos do com
 
 ```sh
 # Linux x86_64, Python 3.12, compilador C, libgmp-dev, libssl-dev e zstd.
+# Icarus Verilog (iverilog/vvp) habilita os testes de co-simulação RTL.
 bash scripts/setup.sh
 bash scripts/test.sh -q
 

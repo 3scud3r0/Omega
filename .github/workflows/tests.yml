@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: '3.12.14'
       - name: Install trusted system prerequisites
-        run: sudo apt-get update && sudo apt-get install -y libgmp-dev libssl-dev zstd libegl1 libopengl0 bubblewrap meson ninja-build pkg-config libcap-dev ripgrep
+        run: sudo apt-get update && sudo apt-get install -y libgmp-dev libssl-dev zstd libegl1 libopengl0 bubblewrap meson ninja-build pkg-config libcap-dev ripgrep iverilog
       - name: Enable the namespace mechanism on the disposable runner
         run: |
           if test -f /proc/sys/kernel/apparmor_restrict_unprivileged_userns; then

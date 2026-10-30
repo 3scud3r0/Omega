@@ -8,6 +8,7 @@ O catálogo contém os 115 caminhos solicitados: 97 módulos `.omega` executáve
 A implementação é de modelos e domínios delimitados, descritos individualmente
 em [CATALOGO.md](CATALOGO.md) e no catálogo legível por máquina
 [catalogo.json](catalogo.json). Não é uma biblioteca exaustiva de toda a ciência.
+Os resultados de execução e as pendências estão em [VALIDACAO.md](VALIDACAO.md).
 
 ## Execução
 
