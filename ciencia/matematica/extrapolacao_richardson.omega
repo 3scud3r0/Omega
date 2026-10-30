@@ -1,0 +1,40 @@
+modulo science_64;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Central Richardson extrapolation with a safe polynomial fifth-derivative remainder bound.
+funcao derivative(c,x,h)  {
+  retornar (u::polynomial(c,x+h)-u::polynomial(c,x-h))/(2*h);
+}
+funcao execute(r)  {
+  var c=u::vector(r["coefficients"]);
+  u::budget(len(c),21);
+  var x=u::q(r,"x");
+  var h=u::positive(u::q(r,"step"));
+  var coarse=derivative(c,x,h);
+  var fine=derivative(c,x,h/2);
+  var value=(4*fine-coarse)/3;
+  var exact=0;
+  var i=1;
+  enquanto(i<len(c))  {
+    exact=exact+i*c[i]*u::power(x,i-1);
+    i=i+1;
+  }
+  var radius=m::abs(x)+h;
+  var bound=0;
+  i=5;
+  enquanto(i<len(c))  {
+    bound=bound+m::abs(c[i])*i*(i-1)*(i-2)*(i-3)*(i-4)*u::power(radius,i-5);
+    i=i+1;
+  }
+  var error=bound*u::power(h,4)/288;
+  var out=u::result("polynomial-central-Richardson",value);
+  put(out,"error_bound",error);
+  put(out,"exact_derivative",exact);
+  se(m::abs(value-exact)>error)  {
+    fail("Richardson polynomial remainder check");
+  }
+  retornar out;
+}

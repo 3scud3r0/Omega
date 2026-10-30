@@ -1,0 +1,22 @@
+modulo science_61;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Certified-formula rational enclosures for symmetric 2x2 spectra, not a generic exact QR algorithm.
+funcao execute(r)  {
+  var a=u::mat(r["matrix"]);
+  se(len(a)!=2||len(a[0])!=2||a[0][1]!=a[1][0])  {
+    fail("Spectrum enclosure currently supports symmetric 2x2 matrices");
+  }
+  var bits=u::integer(u::num(r,"bits",24),8,64);
+  var tr=a[0][0]+a[1][1];
+  var disc=(a[0][0]-a[1][1])*(a[0][0]-a[1][1])+4*a[0][1]*a[0][1];
+  var root=m::sqrt_interval(disc,bits);
+  var values=[[(tr-root[1])/2,(tr-root[0])/2],[(tr+root[0])/2,(tr+root[1])/2]];
+  var out=u::result("symmetric-2x2-characteristic-root-enclosures",values);
+  put(out,"trace",tr);
+  put(out,"determinant",a[0][0]*a[1][1]-a[0][1]*a[1][0]);
+  retornar out;
+}

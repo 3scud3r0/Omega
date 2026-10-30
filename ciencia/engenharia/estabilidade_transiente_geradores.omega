@@ -1,0 +1,32 @@
+modulo science_77;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Single-machine swing model with interval force and energy accounting; no unproved global transient-stability claim.
+funcao energy(delta,omega,inertia,mechanical,maximum)  {
+  var cosine=m::cos_interval(delta,24);
+  var kinetic=inertia*omega*omega/2-mechanical*delta;
+  retornar [kinetic-maximum*cosine[1],kinetic-maximum*cosine[0]];
+}
+funcao execute(r)  {
+  var delta=u::q(r,"angle");
+  var omega=u::q(r,"speed_deviation");
+  var inertia=u::positive(u::q(r,"inertia"));
+  var damping=u::nonnegative(u::q(r,"damping"));
+  var pm=u::q(r,"mechanical_power");
+  var maximum=u::positive(u::q(r,"maximum_electrical_power"));
+  var step=u::positive(u::q(r,"step"));
+  var sine=m::sin_interval(delta,24);
+  var acceleration=[(pm-maximum*sine[1]-damping*omega)/inertia,(pm-maximum*sine[0]-damping*omega)/inertia];
+  var next=[delta+step*omega,omega+step*(acceleration[0]+acceleration[1])/2];
+  var before=energy(delta,omega,inertia,pm,maximum);
+  var after=energy(next[0],next[1],inertia,pm,maximum);
+  var out=u::result("single-machine-infinite-bus-swing-step",next);
+  put(out,"acceleration_interval",acceleration);
+  put(out,"continuous_energy_derivative",-damping*omega*omega);
+  put(out,"discrete_energy_change",[after[0]-before[1],after[1]-before[0]]);
+  put(out,"global_stability_proved",0);
+  retornar out;
+}

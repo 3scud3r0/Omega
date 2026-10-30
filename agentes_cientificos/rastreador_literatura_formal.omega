@@ -1,0 +1,43 @@
+modulo science_101;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/math.omega" como m;
+importar "../std/string.omega" como s;
+importar "../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Controlled CLAIM extraction with exact provenance; arbitrary papers and citations stay unverified data, never new axioms.
+funcao execute(r)  {
+  var text=u::text_field(r,"text",65536);
+  var source=u::text_field(r,"source",4096);
+  var lines=s::split(text,"\n");
+  var postulates=[];
+  var i=0;
+  enquanto(i<len(lines))  {
+    var line=s::trim(lines[i]);
+    se(s::starts_with(line,"CLAIM "))  {
+      var words=s::split(slice(line,6,len(line))," ");
+      var entry=obj();
+      put(entry,"line",i+1);
+      put(entry,"source",source);
+      put(entry,"passage_sha256",sha256(line));
+      put(entry,"status","unverified-postulate-data");
+      se(len(words)==3&&words[0]=="equality")  {
+        var a=u::val(words[1]);
+        var b=u::val(words[2]);
+        put(entry,"template","closed-rational-equality");
+        put(entry,"left",[a]);
+        put(entry,"right",[b]);
+      }
+      senao  {
+        put(entry,"template","unsupported-scientific-language");
+        put(entry,"text",line);
+      }
+      push(postulates,entry);
+    }
+    i=i+1;
+  }
+  var out=u::result("provenance-preserving-controlled-claim-extraction",postulates);
+  put(out,"document_sha256",sha256(text));
+  put(out,"citation_existence_verified",0);
+  put(out,"Lean_axioms_added",0);
+  retornar out;
+}

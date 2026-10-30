@@ -1,0 +1,265 @@
+{
+  "all_150_tasks_accepted": false,
+  "build_manifest": {
+    "path": "artifacts/science-build-manifest.json",
+    "sha256": "83885e41ff64ae0fcbbaf0eb5300996c255cb92571e7a88c25877a1a4aa827fa"
+  },
+  "code_commit": "9c9123fede61905ba6ded9c979cc9587c179ee2c",
+  "corpus": {
+    "count_matches": true,
+    "example_failures": 0,
+    "expected_negative": 4,
+    "expected_positive": 25,
+    "format": "omega-corpus-report-1",
+    "infrastructure_failures": 0,
+    "manifest_sha256": "a9ecc05df4232aaed66f7878bd5ad800ff5442f415effee0410de0862defb0ac",
+    "observed_negative": 4,
+    "passed_positive": 25,
+    "valid": true
+  },
+  "format": "omega-science-execution-evidence-1",
+  "full_suite": {
+    "errors": 0,
+    "failures": 0,
+    "junit": {
+      "path": "artifacts/science-full-final.xml",
+      "sha256": "4682f33cfa9943966c70b0c0b0eedadcc39a216963bb63f9c81e2de0b2087422"
+    },
+    "log_sha256": "bd4b640001949250ec0e4fb354ea9b55f3aac19950028943ddf968645619b3ec",
+    "passed": 1122,
+    "science_groups": {
+      "testes.science.test_formal_science": 18,
+      "testes.science.test_native_science": 151,
+      "testes.science.test_science_packaging": 2,
+      "testes.science.test_science_proofs": 15
+    },
+    "science_passed": 186,
+    "skipped": 8,
+    "skips": [
+      {
+        "class": "testes.acceptance.test_om096",
+        "name": "test_cuda_parity_when_hardware_is_present",
+        "reason": "CUDA hardware required; this acceptance remains pending"
+      },
+      {
+        "class": "testes.nextorch.test_synthesis",
+        "name": "test_triton_fused_matches_torch",
+        "reason": "CUDA device unavailable"
+      },
+      {
+        "class": "testes.test_hyper_flat",
+        "name": "test_complete_cuda_pipeline_compiles_and_reports_device_absence",
+        "reason": "CUDA SDK unavailable; pipeline compile pending"
+      },
+      {
+        "class": "testes.test_hyper_rational",
+        "name": "test_cuda_numeric_target_compiles_and_ten_million_ops_if_device",
+        "reason": "CUDA SDK unavailable: CUDA compilation and device stress pending"
+      },
+      {
+        "class": "testes.test_qpu_rtl",
+        "name": "test_rtl_alu_matches_fraction_and_error_witness[8]",
+        "reason": "Icarus Verilog is required for RTL co-simulation"
+      },
+      {
+        "class": "testes.test_qpu_rtl",
+        "name": "test_rtl_alu_matches_fraction_and_error_witness[16]",
+        "reason": "Icarus Verilog is required for RTL co-simulation"
+      },
+      {
+        "class": "testes.test_qpu_rtl",
+        "name": "test_rtl_alu_matches_fraction_and_error_witness[32]",
+        "reason": "Icarus Verilog is required for RTL co-simulation"
+      },
+      {
+        "class": "testes.test_qpu_rtl",
+        "name": "test_rtl_stein_gcd_handshake",
+        "reason": "Icarus Verilog is required for RTL co-simulation"
+      }
+    ],
+    "subtests_passed": 37,
+    "warnings": 3
+  },
+  "independent_review": null,
+  "inventory": {
+    "audited_declarations": 33,
+    "formal": 18,
+    "native": 97,
+    "total": 115
+  },
+  "remaining_hardware_pending": {
+    "cuda_tests": 4
+  },
+  "rtl_followup": {
+    "deb_sha256": "febe027d2d3f5a7e570844d55758339ab5490acc09f404f214a8719d89d07056",
+    "failures": 0,
+    "iverilog_version": "12.0-2+b1",
+    "junit": {
+      "path": "artifacts/science-rtl-final.xml",
+      "sha256": "4750bfbc366126983d6929d173f3814e100e57d7473e84b24e6962a49cbc28ba"
+    },
+    "passed": 5,
+    "resolved_previous_skips": 4,
+    "skipped": 0
+  },
+  "scientific_source_sha256": {
+    "agentes_cientificos/agente_popper_falseador.omega": "697d6f12fe712404b41a5e3b80fb02f773359f3f8650023c661643b3cf307dde",
+    "agentes_cientificos/caçador_instabilidades_numericas.omega": "f63fe9c0cede3d407a945c47d1d4a59467ba3d10b35b1bab2844a47d8213704a",
+    "agentes_cientificos/despachante_provas_lean.omega": "0e17534940b15f917c8d70ffc9181f9f48cf2c5c8a34482f438c77a361bb7da3",
+    "agentes_cientificos/emissor_artigo_executavel.omega": "c086c613257789bb42dee5245ee3acded49ffa4f55252a216b10f36ddc8ff348",
+    "agentes_cientificos/gerador_graficos_vetoriais_svg.omega": "b44919079e02d135e6bcbd88d650828d7e4fe776cd615ad6f18cab3e6cdfc387",
+    "agentes_cientificos/gerador_hipoteses_fisicas.omega": "8e93df0ef3bd7f79ff94788782fb1baa853242f9598b23adb07a9a81ca1b7727",
+    "agentes_cientificos/injetor_ruido_sensores.omega": "9effec72ddbf13932a3c1e1258333b3790a5330b9daff40a650d4467e53d742c",
+    "agentes_cientificos/motor_simulacao_multidisciplinar.omega": "388138809c870e7e48c43c5c52800742f4301a1dbed011b3c9307c16ffe39a06",
+    "agentes_cientificos/planejador_experimentos_quimicos.omega": "5d5810bcbb1066b895f8faef965b11df9a2ac86a1e89162311eb38ff3b5575a5",
+    "agentes_cientificos/rastreador_literatura_formal.omega": "7505739bad589c7fe59de90137080e1ca7307e8e9064cffccceaecd197e3e92a",
+    "agentes_cientificos/registro_descoberta_blockchain.omega": "8be09c05fb91a29bf3b63505c7c19542cf68e00b2634e75e1c4ac1093f38a227",
+    "agentes_cientificos/validador_dimensional_unidades.omega": "845c7f0879e6298aa5d7823145b433e2e352cd287b27cc34a7fd00b50d29a072",
+    "ciencia/biologia/angulos_ramachandran_peptideos.omega": "0c1c49f526b64c4549093db6e44cdc0bf811c999b66a10255ad346484e325ae2",
+    "ciencia/biologia/arvore_filogenetica_upgma.omega": "0d8d55054d37bfd42084f22f1a2c4c3e990dc7aa4495f1c10c412f170d0a71f2",
+    "ciencia/biologia/cinetica_transporte_membrana.omega": "71f32ece1230f58856900089558ae2e65cd528e96a98436eb2d9993d5773e070",
+    "ciencia/biologia/crescimento_logistico_populacional.omega": "d7e7264d421db31625406294ad02bdbbdb4a1408ec8f633772e39b1a232c95fe",
+    "ciencia/biologia/equilibrio_hardy_weinberg.omega": "e9901d3e529c651701fcbf53e6552ba9c1f864178511d624f4ccd41aa893e749",
+    "ciencia/biologia/fm_index_bwt_aligner.omega": "b6faf3e04b9882781ff67c6976cd2021f0c0c31be617c39deacb0df01eb27a80",
+    "ciencia/biologia/lotka_volterra_presa_predador.omega": "5df3df7b4d953e5a7126f4347ddc8ca28b0567b49ea4019daf78c5980c877843",
+    "ciencia/biologia/maxima_parcimonia_fitch.omega": "b637a23f1c7c66b90031e2d22dd7f48694d2d980238aab586b59e2e1c4e50206",
+    "ciencia/biologia/modelo_jukes_cantor.omega": "e896e8119a4b19cd3396acfa9be92afceba7dc42d795bef8251829ad922b4b37",
+    "ciencia/biologia/montagem_debruijn_euler.omega": "0aaf394f44066545a60599a8eba9048ac5ecdf0b38a4ac5f9dbdb54cf5226026",
+    "ciencia/biologia/needleman_wunsch_exato.omega": "31d732032e4f6313475ef1aa28e85fc573dfbc57291b5773b21c33e30775def9",
+    "ciencia/biologia/neighbor_joining_tree.omega": "c6a8c01cb5aaea15fc316f75207fab9a504e49a38799b4b68376154f1fe3e39f",
+    "ciencia/biologia/potencial_lennard_jones_molecular.omega": "c105fe486b3a53764148f3708928fb99abe234ca71d74672e300ad9af87593b4",
+    "ciencia/biologia/scoring_matrices_pam_blosum.omega": "9bbc510c304f1bcbd452fbac72803ca8f31ab1b90c456665b3bfdc292dba6382",
+    "ciencia/biologia/smith_waterman_local.omega": "97aa1857e22edc05ccd844f98909ceadf311711d16b2b72068711fa9f9053102",
+    "ciencia/engenharia/analise_curto_circuito_simetrico.omega": "69f083adc0574557fed87ebf3c4c1b1774adfca3d849d2287c0972eb4acbe8ed",
+    "ciencia/engenharia/atitude_quaternions_espaciais.omega": "87a2288e75d0af91a9d7a11b0f99c9b8bbaef189ecdc432408677274a2ed9db1",
+    "ciencia/engenharia/cinematica_direta_denavit_hartenberg.omega": "7126673644e141d97c08593dc0e61330795005a4a99724cc88dd0ed55a82cecd",
+    "ciencia/engenharia/cinematica_inversa_geometrica.omega": "4cb0f06b73fa0d97c2dfb415daec9545caa41d77d60fee05ff151a8e9bd2bc64",
+    "ciencia/engenharia/equacao_foguete_tsiolkovsky.omega": "414987da344e8845a48d5f793e12c6e9be4fdfd3312bb58925ab32e3b9053af0",
+    "ciencia/engenharia/escoamento_tubulacoes_darcy_weisbach.omega": "42b7c999153571d9c160ff33f0bd6f582aea3067c04480f9a66c75691621a93f",
+    "ciencia/engenharia/estabilidade_transiente_geradores.omega": "0e38b71b4fc4ba5813708a64ccbb4ddd292d526cd16feefa70b3e0f3f4c9eaa0",
+    "ciencia/engenharia/filtro_kalman_racional_discreto.omega": "ca82263ab55ba45b179565be9897918fe498f888e1472a8064b751f6613f6599",
+    "ciencia/engenharia/fluxo_potencia_newton_raphson.omega": "6e5aa15a737959b2c27078328891c9098ada5844cdb870331409856905010517",
+    "ciencia/engenharia/planejamento_trajetoria_quintica.omega": "4d46865842cc58c26db822b4e9176bcacac05aebaa3a56a7f166efa0c86040d7",
+    "ciencia/engenharia/pressao_hidrostatica_barragens.omega": "bcefa97882b2dd61ad47e9c5ca21d6ab98f863b1962a97a78c579dd5a9a2d66b",
+    "ciencia/engenharia/reentrada_atmosferica_perfil.omega": "a8a746bcb8eb15fed5bc7cc3faa9b69fec2cee5c754104675c1f90d114b9405e",
+    "ciencia/engenharia/trelica_metodo_dos_nos.omega": "92a75727ad366e3928591f04399a6ee9a7c8a0ec3f46aeed40090cf0fa799912",
+    "ciencia/fisica/ciclo_carnot_reversivel.omega": "c94c31188bba4139bcefaa39e5793dc554e59dcefe3fba801d97e26c44169073",
+    "ciencia/fisica/colisoes_rigidas_conservativas.omega": "d93e267bff56aac035abc9f7ad1c85191701f6afd54ee874ec6c8bc75c0445e1",
+    "ciencia/fisica/desvio_luz_gravitacional.omega": "eda464605edd528a2a9981dee5fc05231d7e497abf8e075eab9198a54edbec17",
+    "ciencia/fisica/distribuicao_maxwell_boltzmann.omega": "25c1c7a569b9a4ac920ca62fbb66cb0aac6b7a5574fc8a81a69a96b94496d9be",
+    "ciencia/fisica/equacao_friedmann.omega": "cc018d0fa3b0f6bd32ba4e31e3915cb3e25445e60448e4407902b301962c8187",
+    "ciencia/fisica/gas_van_der_waals.omega": "f284389042b7077d9d5068c4dc1e017cf20fda2455561691b9fc0bdcdbb7a12d",
+    "ciencia/fisica/geodesicas_schwarzschild.omega": "6f757c5d5a6f6db85eb4967fecdb8979a20d7be2b08d31479de19918f16ed364",
+    "ciencia/fisica/integrador_simplico_verlet.omega": "4e7e55566f4a9c48aa3560e6ea2940feffa70f3517b4df642816bbf5f55a7445",
+    "ciencia/fisica/lei_snell_refracao_exata.omega": "8da831301cfc2635675d1987d71f4b39b600a9ce03f28df83849e8b4ed439e2f",
+    "ciencia/fisica/maxwell_discreto_fdtd.omega": "80f672c8df8055ba64ad7e295354911248eee5b6f7d6eafef808e8dcc92dcce5",
+    "ciencia/fisica/mecanica_hamiltoniana.omega": "c9346482676f82dcf03d1c30976db212b29ccf85ba55d730586c94ab3cb9c86d",
+    "ciencia/fisica/modelo_ising_2d.omega": "75fae6fc2f8d6066004bebda99b538ffc2cac3dfe4be1dde7a65c4693a14c8c6",
+    "ciencia/fisica/orbita_kepler_exata.omega": "c201d239eecb598721c3298e8bf5eede61a54fb3455b40028766e80bcefd0edf",
+    "ciencia/fisica/oscilador_harmonico_quantico.omega": "662b60298f09ed71c1b09e5dfce87e98c42842a1a5145737ff8558bf5b237b6b",
+    "ciencia/fisica/pendulo_duplo_caotico.omega": "77e7b10595c7323ee0f6330eacc765e0573a32edc172f6b732595881ea912595",
+    "ciencia/fisica/poco_potencial_infinito.omega": "3c9f660b9692092cfb4c8a9781b0133c16473a43d3383a28bb84abadab4593c3",
+    "ciencia/fisica/potencial_eletrostatico_poisson.omega": "9b2fd1df78127e511529623194afa99ea169f302dcff5f8cbf65a42b3f6822b4",
+    "ciencia/fisica/propagacao_guias_onda.omega": "ca267998ad277ed119d8b5a2d0534a5720ac3a169a1a2b391286b981eb1a6c05",
+    "ciencia/fisica/schrodinger_1d_discreto.omega": "fc11be413f62c846496a9fea25f47d5871c1e673f16c5a7c93ac2b1f15005c4f",
+    "ciencia/fisica/spin_pauli_algebra.omega": "e7f3130656e624c5574ce0dd3db1c522ee5412650ca2defcd55028a2f93c4696",
+    "ciencia/fisica/termodinamica_gas_ideal.omega": "68c58c042a01ea30e980846e40548f099dfe80c460530e653742ba4a95d1bf59",
+    "ciencia/fisica/tres_corpos_restrito.omega": "f91cb49859bfcd73cf964a619a7165346dacdc5a47ee8784c6b00b2052f69a2e",
+    "ciencia/matematica/autovalores_qr_sem_drift.omega": "dbb5fe139ad28b57f1e184557b7371db5cd5815a7fb680c2247439ce2784f9cd",
+    "ciencia/matematica/curvas_elipticas_corpos_finitos.omega": "87d81ffa1717fe7e3091b144298c4e3789139c4cc18e4ac0f513c09f26a01b58",
+    "ciencia/matematica/determinante_algoritmo_bareiss.omega": "63d4731c63907844012942f464d75948d06f92209a9c73fbdd8d3e4f170fa9e0",
+    "ciencia/matematica/diagrama_voronoi_fortunes.omega": "2684e479c50ca40f8ff84114370d672d4e4b1fec76b702a41e9eded8eab43e58",
+    "ciencia/matematica/eliminacao_gauss_jordan_fracionaria.omega": "80cac9e453459716655949db565c50ad79a8f5b3baf52d72d82ec3508828f8e9",
+    "ciencia/matematica/envoltoria_convexa_graham_scan.omega": "9ecd4d9a754137b1d4f80b51f58f0da9221247a643cba8d21ee0d02aca0fc0ce",
+    "ciencia/matematica/extrapolacao_richardson.omega": "65fb75236109fd24f51435fd2e501fcd33b9691531489ecd22074331c5edbf46",
+    "ciencia/matematica/fatoracao_pollard_rho.omega": "f3dd26099c17130db13bac9ed64f3f4d2c16b8e1046bc815a0fc8051b05b46f1",
+    "ciencia/matematica/integracao_simpson_com_residuo.omega": "e6be02009ab2140653edbef70a9890cdfa8b030c3ab8924da507395e4c5c2133",
+    "ciencia/matematica/inverso_modular_euclides_estendido.omega": "7888fdd457627a880c3b37e19626c7a2cfb4717bf5ea6df9d9f90257d151497e",
+    "ciencia/matematica/ortogonalizacao_gram_schmidt_exata.omega": "b64227c2415cd642d5be83a3121fd3f24adf9ebbc2d1d6150eda7059eda49b21",
+    "ciencia/matematica/primalidade_miller_rabin_exata.omega": "90061238f71da6ad3e5b2882387894e1cc39050ef7bb463f01b82f4760a453d8",
+    "ciencia/matematica/triangulacao_delaunay_incremental.omega": "5601b6dfb849ec8e50a80868a6dbb41b37da8644188bb0f84350e3875c560fb4",
+    "ciencia/matematica/zeros_funcoes_bissecao_rigorosa.omega": "6ae8837f45bcd9bded5865769e6fffdcaa649d0740d42f9450988e7550af3810",
+    "ciencia/quimica/arrhenius_energia_ativacao.omega": "f150e047994dc7447158996ee84cafaff00872a51616dce6bd99ee52aa397fe9",
+    "ciencia/quimica/balanco_reacoes_redox.omega": "443ad7fa8b6e2d1af42a5911b0a8382c650a9aeef1fddee4816fc5efae1cbbd6",
+    "ciencia/quimica/calculo_reagente_limitante.omega": "78e83c71fc55e56eeb71037bfebec44e7cea114a0cbad2a9de6548fe9e70a753",
+    "ciencia/quimica/cinetica_butler_volmer.omega": "3b1f4d07f222d5b0af1c3bcfc5dd30e7bb0b967c1677245c69ac7ae918e399c2",
+    "ciencia/quimica/constante_equilibrio_kp_kc.omega": "416f394f95ce7d566d16a37e72982e4c49a7ef5839862be1def08267c0c884e3",
+    "ciencia/quimica/difracao_raios_x_bragg.omega": "a2b983391303bf331e2be5979ce1a9f49506d2a0a0513b3d3db1545b1f3f040a",
+    "ciencia/quimica/equacao_nernst_exata.omega": "6ff69012630f2ce29222377480a4ca58d6eadf19c4f8470ff130c7b0a6964565",
+    "ciencia/quimica/equilibrio_acido_base_tamponamento.omega": "10d573bf09c572cbc1e763e0e38b72a22acc3293a9602231a07547d74e160cca",
+    "ciencia/quimica/equilibrio_gibbs_minimizacao.omega": "a889489c0c4885c542c47ffd345aef6fd2ca8027d18faea0068b6dcaf7d2e66c",
+    "ciencia/quimica/estequiometria_combustao.omega": "5e8ae4f9537977709334cf51ba97a9f70c29af1399a4cc4192b003c057883a54",
+    "ciencia/quimica/fator_empacotamento_atomico.omega": "6234601b5c6f2771bffb263f221698f0893e311948d2692a3d1798249b1fa997",
+    "ciencia/quimica/indices_miller_redes.omega": "2a51466ed0b0c41608e54c908f71741c72eadfe3b773908b142e38f16e3abe11",
+    "ciencia/quimica/lei_hess_entalpia.omega": "c91a5a118265e55db879d284ae9146e6442ba70bcce45695b08ad689bd14cb50",
+    "ciencia/quimica/leis_faraday_eletrolise.omega": "a71b0a9adf21f9039f94a004014a169e9927a5c141e477f846907d0964c39f58",
+    "ciencia/quimica/leis_velocidade_integradas.omega": "c543c2e6d2c30a75bbb4e832a717ade0b8fd174a1fb7d97003840b7b76887ac2",
+    "ciencia/quimica/mecanismo_michaelis_menten.omega": "62c97c01ae8885744f103a6d1806179e98e9a76672f21b889b97f041afe71e0e",
+    "formal/science_axioms/BareissDivisionFreeTheorem.lean": "86801eb6f7f4b608838c2a4caf2b591a01ed25e451141783cb5fb8d458a6b755",
+    "formal/science_axioms/DeBruijnEulerianEquivalence.lean": "e40585e5ffc98ff5b0e50d94cecc2a63d28b6abbb719bce7d5241ceff5941e50",
+    "formal/science_axioms/EnergyConservationTheorem.lean": "00e58e73f0c53b1321b46f67a18d11412da73685cb49290e4b471bcbe826bfe7",
+    "formal/science_axioms/GibbsEnergyMinimality.lean": "03110efa5b09b9e65f47c0eb717de6cb8a4bbad63b68b91d28673c67124e8e57",
+    "formal/science_axioms/GrahamScanConvexity.lean": "388b80c74ee4add934250a75462adbae147dd32f4c28962685b6d2f7b4053178",
+    "formal/science_axioms/HardyWeinbergStability.lean": "5c8b5bc9e36912bac9786814a83e0fa869dceb90ffe7c06d5803901e09371d2a",
+    "formal/science_axioms/KalmanCovariancePositiveDefinite.lean": "d8aa7f7d440b4835b099c67ebeab86640f1b20723db626080b17e4ed3462e7b7",
+    "formal/science_axioms/LorentzInvariance.lean": "9e545bbcc2d43827949444efddc42818a048dabd0796191a003e920823305f8d",
+    "formal/science_axioms/LyapunovAsymptoticStability.lean": "226e34bf98e655caae29d90814202373f488bfd7b011bf63b121c4cd4e12abaf",
+    "formal/science_axioms/MassActionLawDerivation.lean": "530e19045d121e8cac4360a287e91858dadd131565aee603b19bc56f32fc3344",
+    "formal/science_axioms/NeedlemanWunschOptimality.lean": "93a30c0dd93da4df18c9d34c421a8a1ebfe0afb00fb8cf337ca3a03c648f1431",
+    "formal/science_axioms/NewtonRaphsonConvergence.lean": "bc66d1e8a56f7344758dcef4349376fadf0d66f586dc9ad16537c2367a2ec100",
+    "formal/science_axioms/NyquistStabilityCriterion.lean": "0276ccd2c48f9e529db116b263afd7afb757b738539de37e48d148d403403b91",
+    "formal/science_axioms/QuantumUnitarity.lean": "ce631480f3fa48d921a2332c4a92617eaf57ed37269152a66398fca82463e10a",
+    "formal/science_axioms/SecondLawThermodynamics.lean": "443a5bae05cce3ce591e11f634eba52c501d9d902b1eb59e16fc1ca5643ab1fa",
+    "formal/science_axioms/StoichiometricConservation.lean": "ec970e94aad4648015137d56f9491ec681d8d03165afa3ff484ae3dec792edf5",
+    "formal/science_axioms/SymplecticFormPreservation.lean": "b4307497bfa1c67e8f641c86c06971ef4853b8a8d57d95c8ae51f7ba4da0c6f6",
+    "formal/science_axioms/TaylorErrorBoundTheorem.lean": "e8726c14e129a8b6f49c1a09feb4ece4136008d8eb02989e33de498c9bca848a",
+    "runtime/quantum_gate_emulator.omega": "e41eb792ed07e3ee2636a6337e610c7ab7f63ac4f165871bea75a368fc463fc6",
+    "std/collections/spatial_kdtree.omega": "d399729fba36d3ab5022e28ac866ea5257dea5578a93c9010a9d035b5a85a8ab",
+    "std/io/csv_dataset_parser.omega": "23a4f044982227f95d4b34c35cbc57a99f49036ee91d3d3e6f9ba99570aab73e",
+    "std/math/complex_rational.omega": "7b6c75312ad87030ef26cb49fe71fc88c89bf1414ff3638784ee44f473546b72",
+    "std/math/tensor_calculus.omega": "eea8f956cd8cc82dc603623e05a4b6720e154fba6e4e94a98c661babd1f3bc85"
+  },
+  "scope": "CPU Linux; mathematical statements and bounded native models declared in catalog",
+  "security": {
+    "failed": 0,
+    "passed": 250,
+    "report": {
+      "path": "artifacts/science-security-final.json",
+      "sha256": "623f2dded2b3fa68d385e1bf7328b3e6c8622d06d5ac13a25bcf54842f566326"
+    },
+    "valid": true
+  },
+  "selected_roadmap_checks": [
+    {
+      "report": "artifacts/validation/20261030T011446Z-4fa9895bd702/om020/report.json",
+      "status": "checks_passed_acceptance_pending",
+      "task": "OM-020"
+    },
+    {
+      "report": "artifacts/validation/20261030T011446Z-4fa9895bd702/om024/report.json",
+      "status": "checks_passed_acceptance_pending",
+      "task": "OM-024"
+    },
+    {
+      "report": "artifacts/validation/20261030T011446Z-4fa9895bd702/om026/report.json",
+      "status": "checks_passed_acceptance_pending",
+      "task": "OM-026"
+    },
+    {
+      "report": "artifacts/validation/20261030T011446Z-4fa9895bd702/om027/report.json",
+      "status": "checks_passed_acceptance_pending",
+      "task": "OM-027"
+    },
+    {
+      "report": "artifacts/validation/20261030T011446Z-4fa9895bd702/om028/report.json",
+      "status": "checks_passed_acceptance_pending",
+      "task": "OM-028"
+    },
+    {
+      "report": "artifacts/validation/20261030T011446Z-4fa9895bd702/om131/report.json",
+      "status": "checks_passed_acceptance_pending",
+      "task": "OM-131"
+    }
+  ],
+  "universal_scientific_correctness_claimed": false
+}

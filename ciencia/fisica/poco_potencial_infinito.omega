@@ -1,0 +1,17 @@
+modulo science_17;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Energy enclosures from 3 < pi < 4; pi and general energy levels are not silently made rational.
+funcao execute(r)  {
+  var n=u::count(r,"level",1,10000);
+  var hbar=u::positive(u::q(r,"hbar"));
+  var mass=u::positive(u::q(r,"mass"));
+  var length=u::positive(u::q(r,"length"));
+  var c=n*n*hbar*hbar/(2*mass*length*length);
+  var out=u::result("infinite-square-well-energy-enclosure",[9*c,16*c]);
+  put(out,"pi_enclosure",[3,4]);
+  retornar out;
+}

@@ -1,0 +1,104 @@
+modulo science_42;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Spells one Eulerian traversal using every supplied kmer; repeats can make the original sequence nonunique.
+funcao vertex(names,s)  {
+  var i=0;
+  enquanto(i<len(names))  {
+    se(names[i]==s)  {
+      retornar i;
+    }
+    i=i+1;
+  }
+  push(names,s);
+  retornar len(names)-1;
+}
+funcao execute(r)  {
+  var raw=s::as_list(r["kmers"]);
+  se(len(raw)<1||len(raw)>256)  {
+    fail("Kmer count budget");
+  }
+  var k=len(s::as_string(raw[0]));
+  u::integer(k,2,32);
+  var names=[];
+  var edges=[];
+  var i=0;
+  enquanto(i<len(raw))  {
+    var word=s::as_string(raw[i]);
+    se(len(word)!=k)  {
+      fail("Kmer length mismatch");
+    }
+    var a=vertex(names,slice(word,0,k-1));
+    var b=vertex(names,slice(word,1,k));
+    push(edges,[a,b]);
+    i=i+1;
+  }
+  var incoming=u::zeros(len(names));
+  var outgoing=u::zeros(len(names));
+  i=0;
+  enquanto(i<len(edges))  {
+    put(outgoing,edges[i][0],outgoing[edges[i][0]]+1);
+    put(incoming,edges[i][1],incoming[edges[i][1]]+1);
+    i=i+1;
+  }
+  var start=edges[0][0];
+  var positive=0;
+  var negative=0;
+  i=0;
+  enquanto(i<len(names))  {
+    var d=outgoing[i]-incoming[i];
+    se(d==1)  {
+      start=i;
+      positive=positive+1;
+    }
+    senao  {
+      se(d==-1)  {
+        negative=negative+1;
+      }
+      senao  {
+        se(d!=0)  {
+          fail("Non-Eulerian degree sequence");
+        }
+      }
+    }
+    i=i+1;
+  }
+  se(!((positive==0&&negative==0)||(positive==1&&negative==1)))  {
+    fail("Eulerian path endpoint imbalance");
+  }
+  var used=u::zeros(len(edges));
+  var stack=[start];
+  var walk=[];
+  enquanto(len(stack)>0)  {
+    var v=stack[len(stack)-1];
+    var e=0;
+    enquanto(e<len(edges)&&(used[e]||edges[e][0]!=v))  {
+      e=e+1;
+    }
+    se(e==len(edges))  {
+      push(walk,v);
+      stack=slice(stack,0,len(stack)-1);
+    }
+    senao  {
+      put(used,e,1);
+      push(stack,edges[e][1]);
+    }
+  }
+  se(len(walk)!=len(edges)+1)  {
+    fail("Disconnected kmer graph");
+  }
+  var sequence=names[walk[len(walk)-1]];
+  i=len(walk)-1;
+  enquanto(i>0)  {
+    i=i-1;
+    var word=names[walk[i]];
+    sequence=sequence+word[k-2];
+  }
+  var out=u::result("Hierholzer-kmer-spelling",sequence);
+  put(out,"unique_original_reconstruction",0);
+  put(out,"edges_consumed",len(edges));
+  retornar out;
+}

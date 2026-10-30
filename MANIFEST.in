@@ -40,3 +40,6 @@ recursive-include metamorfose_cognitiva *.omega *.h *.c *.cu *.cuh *.lean
 recursive-include fabrica_descobertas *.omega *.h *.c *.cu *.cuh *.lean
 recursive-include imunologia_sistemica *.omega *.h *.c *.cu *.cuh *.lean
 recursive-include infraestrutura_soberana *.omega *.h *.c *.cu *.cuh *.lean
+
+recursive-include ciencia *.omega *.json *.md
+recursive-include agentes_cientificos *.omega

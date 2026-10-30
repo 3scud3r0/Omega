@@ -1,0 +1,38 @@
+modulo science_76;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+importar "../../std/math/complex_rational.omega" como c;
+exportar execute;
+# Balanced RMS positive-sequence fault calculation; breaker sizing is a model calculation, never a trip action.
+funcao execute(r)  {
+  var voltage=u::vector(r["phase_voltage"]);
+  var source=u::vector(r["source_impedance"]);
+  var fault=u::vector(r["fault_impedance"]);
+  se(len(voltage)!=2||len(source)!=2||len(fault)!=2)  {
+    fail("Complex [real,imag] phase values required");
+  }
+  var impedance=c::add(source,fault);
+  var current=c::div(voltage,impedance);
+  var magnitude=m::sqrt_interval(c::norm2(current),24);
+  var out=u::result("balanced-three-phase-positive-sequence-fault",current);
+  put(out,"current_magnitude",magnitude);
+  put(out,"negative_sequence",[0,0]);
+  put(out,"zero_sequence",[0,0]);
+  se(has(r,"breaker_ratings"))  {
+    var ratings=u::vector(r["breaker_ratings"]);
+    var selected=0;
+    var i=0;
+    enquanto(i<len(ratings))  {
+      u::positive(ratings[i]);
+      se(ratings[i]>=magnitude[1]&&(selected==0||ratings[i]<selected))  {
+        selected=ratings[i];
+      }
+      i=i+1;
+    }
+    put(out,"adequate_interrupting_rating",selected);
+    put(out,"rating_available",selected>0);
+  }
+  retornar out;
+}

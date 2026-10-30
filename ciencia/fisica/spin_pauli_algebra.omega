@@ -1,0 +1,24 @@
+modulo science_19;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+importar "../../std/math/complex_rational.omega" como c;
+exportar execute;
+# Exact Pauli expectations for pure two-component Q(i) states, normalised by their exact squared norm.
+funcao execute(r)  {
+  var psi=u::mat(r["state"]);
+  se(len(psi)!=2||len(psi[0])!=2)  {
+    fail("Two complex spin amplitudes required");
+  }
+  var a=psi[0];
+  var b=psi[1];
+  var norm=c::norm2(a)+c::norm2(b);
+  u::positive(norm);
+  var inner=c::mul(c::conj(a),b);
+  var expected=[2*inner[0]/norm,2*inner[1]/norm,(c::norm2(a)-c::norm2(b))/norm];
+  var out=u::result("Pauli-expectations-over-Qi",expected);
+  put(out,"norm_squared",norm);
+  put(out,"bloch_length_squared",u::dot(expected,expected));
+  retornar out;
+}

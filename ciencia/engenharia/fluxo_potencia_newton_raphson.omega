@@ -1,0 +1,170 @@
+modulo science_75;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Damped Newton for quadratic resistive DC power flow; checks local contraction inequalities, not generic AC convergence.
+funcao residual(g,p,v,slack)  {
+  var result=[];
+  var i=0;
+  enquanto(i<len(v))  {
+    var sum=g[i+1][0]*slack;
+    var j=0;
+    enquanto(j<len(v))  {
+      sum=sum+g[i+1][j+1]*v[j];
+      j=j+1;
+    }
+    push(result,v[i]*sum-p[i]);
+    i=i+1;
+  }
+  retornar result;
+}
+funcao jacobian(g,v,slack)  {
+  var out=[];
+  var i=0;
+  enquanto(i<len(v))  {
+    var sum=g[i+1][0]*slack;
+    var j=0;
+    enquanto(j<len(v))  {
+      sum=sum+g[i+1][j+1]*v[j];
+      j=j+1;
+    }
+    var row=[];
+    j=0;
+    enquanto(j<len(v))  {
+      var a=v[i]*g[i+1][j+1];
+      se(i==j)  {
+        a=a+sum;
+      }
+      push(row,a);
+      j=j+1;
+    }
+    push(out,row);
+    i=i+1;
+  }
+  retornar out;
+}
+funcao norm(v)  {
+  var x=0;
+  var i=0;
+  enquanto(i<len(v))  {
+    x=m::max(x,m::abs(v[i]));
+    i=i+1;
+  }
+  retornar x;
+}
+funcao execute(r)  {
+  var g=u::mat(r["conductance"]);
+  var v=u::vector(r["initial_voltages"]);
+  var p=u::vector(r["power_injections"]);
+  var n=len(v);
+  se(n<1||n>8||len(p)!=n||len(g)!=n+1||len(g[0])!=n+1)  {
+    fail("Resistive DC power-flow shape");
+  }
+  var slack=u::positive(u::q(r,"slack_voltage"));
+  var steps=u::integer(u::num(r,"steps",8),1,16);
+  var grid=u::power(2,32);
+  var i=0;
+  enquanto(i<n)  {
+    u::positive(v[i]);
+    i=i+1;
+  }
+  i=0;
+  enquanto(i<steps)  {
+    var f=residual(g,p,v,slack);
+    se(norm(f)==0)  {
+      parar;
+    }
+    var j=jacobian(g,v,slack);
+    var delta=u::solve(j,u::scale(f,-1));
+    var factor=1;
+    var accepted=0;
+    var trial=[];
+    var line=0;
+    enquanto(line<16)  {
+      trial=[];
+      var good=1;
+      var k=0;
+      enquanto(k<n)  {
+        var x=qfloor((v[k]+factor*delta[k])*grid)/grid;
+        se(x<=0)  {
+          good=0;
+        }
+        push(trial,x);
+        k=k+1;
+      }
+      se(good&&norm(residual(g,p,trial,slack))<norm(f))  {
+        accepted=1;
+        parar;
+      }
+      factor=factor/2;
+      line=line+1;
+    }
+    se(!accepted)  {
+      parar;
+    }
+    v=trial;
+    i=i+1;
+  }
+  var f=residual(g,p,v,slack);
+  var j=jacobian(g,v,slack);
+  var inv=[];
+  i=0;
+  enquanto(i<n)  {
+    var e=u::zeros(n);
+    put(e,i,1);
+    push(inv,u::solve(j,e));
+    i=i+1;
+  }
+  inv=u::transpose(inv);
+  var correction=[];
+  i=0;
+  enquanto(i<n)  {
+    push(correction,u::dot(inv[i],f));
+    i=i+1;
+  }
+  var hessian=0;
+  i=0;
+  enquanto(i<n)  {
+    var sum=0;
+    var k=0;
+    enquanto(k<n)  {
+      sum=sum+2*m::abs(g[i+1][k+1]);
+      k=k+1;
+    }
+    hessian=m::max(hessian,sum);
+    i=i+1;
+  }
+  var inverse_norm=0;
+  i=0;
+  enquanto(i<n)  {
+    var sum=0;
+    var k=0;
+    enquanto(k<n)  {
+      sum=sum+m::abs(inv[i][k]);
+      k=k+1;
+    }
+    inverse_norm=m::max(inverse_norm,sum);
+    i=i+1;
+  }
+  var bound=inverse_norm*hessian;
+  var radius=u::positive(u::num(r,"certificate_radius",1/100));
+  var eta=norm(correction);
+  var safe=bound*radius<1&&eta+bound*radius*radius/2<=radius;
+  i=0;
+  enquanto(i<n)  {
+    se(v[i]<=radius)  {
+      safe=0;
+    }
+    i=i+1;
+  }
+  var out=u::result("resistive-DC-damped-Newton-with-local-certificate-conditions",v);
+  put(out,"residual",f);
+  put(out,"newton_correction_bound",eta);
+  put(out,"jacobian_lipschitz_bound",bound);
+  put(out,"radius",radius);
+  put(out,"local_contraction_conditions",safe);
+  put(out,"AC_network_supported",0);
+  retornar out;
+}

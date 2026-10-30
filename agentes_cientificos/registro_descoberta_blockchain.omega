@@ -1,0 +1,30 @@
+modulo science_110;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/math.omega" como m;
+importar "../std/string.omega" como s;
+importar "../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Prepares real digest anchor payloads; no transaction is broadcast, fee spent, or fabricated inclusion/timestamp accepted.
+funcao execute(r)  {
+  var digest=u::text_field(r,"artifact_sha256",64);
+  se(len(digest)!=64)  {
+    fail("Full SHA-256 hex digest required");
+  }
+  var i=0;
+  enquanto(i<len(digest))  {
+    se(!contains("0123456789abcdef",digest[i]))  {
+      fail("Canonical SHA-256 digest required");
+    }
+    i=i+1;
+  }
+  var record=obj();
+  put(record,"format","omega-discovery-anchor-request-1");
+  put(record,"artifact_sha256",digest);
+  put(record,"bitcoin_op_return_script_hex","6a20"+digest);
+  put(record,"evm_data_hex","0x"+digest);
+  put(record,"status","awaiting-authorized-network-broadcast-and-independent-inclusion-verification");
+  put(record,"broadcast",0);
+  put(record,"immutable_timestamp_verified",0);
+  put(record,"request_sha256",sha256(s::canonical(record)));
+  retornar record;
+}

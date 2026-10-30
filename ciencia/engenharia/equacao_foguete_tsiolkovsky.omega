@@ -1,0 +1,35 @@
+modulo science_68;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+importar "../core/intervalos.omega" como iv;
+exportar execute;
+# Ideal vacuum rocket equation, interval logarithms and mass-consistent staging; external gravity/drag losses omitted.
+funcao execute(r)  {
+  var stages=u::mat(r["stages"]);
+  se(len(stages)>8||len(stages[0])!=3)  {
+    fail("Stages [initial_mass,final_mass,exhaust_velocity], up to eight");
+  }
+  var total=[0,0];
+  var values=[];
+  var i=0;
+  enquanto(i<len(stages))  {
+    var a=stages[i];
+    u::positive(a[0]);
+    u::positive(a[1]);
+    u::positive(a[2]);
+    se(a[0]<=a[1]||(i>0&&a[0]>stages[i-1][1]))  {
+      fail("Invalid burn mass or staging creates mass");
+    }
+    var logarithm=m::log_interval(a[0]/a[1],24);
+    var dv=iv::scale(logarithm,a[2]);
+    total=iv::add(total,dv);
+    push(values,dv);
+    i=i+1;
+  }
+  var out=u::result("ideal-multistage-Tsiolkovsky",total);
+  put(out,"stage_delta_v",values);
+  put(out,"gravity_drag_losses_included",0);
+  retornar out;
+}

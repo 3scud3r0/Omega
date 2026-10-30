@@ -1,0 +1,44 @@
+modulo science_73;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+importar "../core/intervalos.omega" como iv;
+exportar execute;
+# Both planar 2R elbow branches and reachability/singularity checks; arbitrary six-axis IK is explicitly unsupported.
+funcao execute(r)  {
+  se(has(r,"robot_model")&&r["robot_model"]!="planar-2R")  {
+    fail("This geometry solver supports planar-2R, not unspecified six-axis robots");
+  }
+  var x=u::q(r,"x");
+  var y=u::q(r,"y");
+  var a=u::positive(u::q(r,"length1"));
+  var b=u::positive(u::q(r,"length2"));
+  var distance=x*x+y*y;
+  var out=u::result("planar-2R-geometric-inverse",[]);
+  se(distance==0)  {
+    put(out,"singular_continuum",a==b);
+    se(a!=b)  {
+      fail("Unreachable folded target");
+    }
+    retornar out;
+  }
+  var cosine=(distance-a*a-b*b)/(2*a*b);
+  se(m::abs(cosine)>1)  {
+    fail("Unreachable planar target");
+  }
+  var sine=m::sqrt_interval(1-cosine*cosine,24);
+  var branches=[];
+  var sign=-1;
+  enquanto(sign<=1)  {
+    var ss=iv::scale(sine,sign);
+    var k=a+b*cosine;
+    var c1=iv::scale(iv::add([k*x,k*x],iv::scale(ss,b*y)),1/distance);
+    var s1=iv::scale(iv::sub([k*y,k*y],iv::scale(ss,b*x)),1/distance);
+    push(branches,[c1,s1,[cosine,cosine],ss]);
+    sign=sign+2;
+  }
+  put(out,"value",branches);
+  put(out,"representation","[cos(q1),sin(q1),cos(q2),sin(q2)] enclosures");
+  retornar out;
+}

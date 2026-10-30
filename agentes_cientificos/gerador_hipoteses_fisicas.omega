@@ -1,0 +1,64 @@
+modulo science_99;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/math.omega" como m;
+importar "../std/string.omega" como s;
+importar "../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Exact bounded polynomial hypothesis fitting with held-out residuals; empirical fit is not a physical law.
+funcao execute(r)  {
+  var data=u::mat(r["observations"]);
+  se(len(data[0])!=2)  {
+    fail("Observations [x,y] required");
+  }
+  var degree=u::count(r,"degree",0,6);
+  se(len(data)<degree+1)  {
+    fail("Insufficient observations for polynomial basis");
+  }
+  var gram=[];
+  var rhs=u::zeros(degree+1);
+  var i=0;
+  enquanto(i<=degree)  {
+    push(gram,u::zeros(degree+1));
+    i=i+1;
+  }
+  var row=0;
+  enquanto(row<len(data))  {
+    i=0;
+    enquanto(i<=degree)  {
+      var j=0;
+      var xi=u::power(data[row][0],i);
+      put(rhs,i,rhs[i]+xi*data[row][1]);
+      enquanto(j<=degree)  {
+        put(gram[i],j,gram[i][j]+xi*u::power(data[row][0],j));
+        j=j+1;
+      }
+      i=i+1;
+    }
+    row=row+1;
+  }
+  var coefficients=u::solve(gram,rhs);
+  var residual=0;
+  row=0;
+  enquanto(row<len(data))  {
+    var error=u::polynomial(coefficients,data[row][0])-data[row][1];
+    residual=residual+error*error;
+    row=row+1;
+  }
+  var out=u::result("finite-polynomial-hypothesis-least-squares",coefficients);
+  put(out,"training_squared_error",residual);
+  put(out,"hypothesis_status","unverified-scientific-proposal");
+  se(has(r,"held_out"))  {
+    var test=u::mat(r["held_out"]);
+    se(len(test[0])!=2)  {
+      fail("Held-out shape");
+    }
+    var errors=[];
+    row=0;
+    enquanto(row<len(test))  {
+      push(errors,u::polynomial(coefficients,test[row][0])-test[row][1]);
+      row=row+1;
+    }
+    put(out,"held_out_errors",errors);
+  }
+  retornar out;
+}

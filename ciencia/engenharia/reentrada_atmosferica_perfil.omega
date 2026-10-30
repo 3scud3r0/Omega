@@ -1,0 +1,36 @@
+modulo science_69;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Lumped one-step frozen-density reentry and Sutton-Graves-type heating enclosure; no flight safety certification.
+funcao execute(r)  {
+  var height=u::nonnegative(u::q(r,"height"));
+  var speed=u::nonnegative(u::q(r,"speed"));
+  var mass=u::positive(u::q(r,"mass"));
+  var density=u::nonnegative(u::q(r,"density"));
+  var cd=u::nonnegative(u::q(r,"drag_coefficient"));
+  var area=u::positive(u::q(r,"area"));
+  var g=u::positive(u::q(r,"gravity"));
+  var sine=u::q(r,"flight_path_sine");
+  se(m::abs(sine)>1)  {
+    fail("Flight-path sine domain");
+  }
+  var step=u::positive(u::q(r,"step"));
+  var drag=density*cd*area*speed*speed/2;
+  var acceleration=-drag/mass-g*sine;
+  var next=[height+step*speed*sine,speed+step*acceleration];
+  se(next[0]<0||next[1]<0)  {
+    fail("Reentry step leaves nonnegative height/speed domain");
+  }
+  var nose=u::positive(u::q(r,"nose_radius"));
+  var heat=u::positive(u::q(r,"heating_coefficient"));
+  var root=m::sqrt_interval(density/nose,24);
+  var out=u::result("frozen-density-point-mass-reentry-step",next);
+  put(out,"drag",drag);
+  put(out,"heating_rate_interval",[heat*root[0]*u::power(speed,3),heat*root[1]*u::power(speed,3)]);
+  put(out,"acceleration",acceleration);
+  put(out,"continuous_trajectory_certified",0);
+  retornar out;
+}

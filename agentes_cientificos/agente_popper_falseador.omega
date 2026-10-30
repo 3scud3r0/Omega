@@ -1,0 +1,32 @@
+modulo science_105;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/math.omega" como m;
+importar "../std/string.omega" como s;
+importar "../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Produces exact counterexamples on a declared finite grid; failure to find one is not a universal proof.
+funcao execute(r)  {
+  var coefficients=u::vector(r["coefficients"]);
+  u::budget(len(coefficients),32);
+  var grid=u::vector(r["grid"]);
+  var relation=u::text_field(r,"claim",16);
+  se(relation!="nonnegative"&&relation!="zero")  {
+    fail("Supported claims: polynomial nonnegative or zero");
+  }
+  var witnesses=[];
+  var tested=0;
+  var i=0;
+  enquanto(i<len(grid))  {
+    var value=u::polynomial(coefficients,grid[i]);
+    tested=tested+1;
+    se((relation=="nonnegative"&&value<0)||(relation=="zero"&&value!=0))  {
+      push(witnesses,[grid[i],value]);
+    }
+    i=i+1;
+  }
+  var out=u::result("finite-grid-polynomial-falsifier",witnesses);
+  put(out,"tested",tested);
+  put(out,"universal_claim_proved",0);
+  put(out,"falsified",len(witnesses)>0);
+  retornar out;
+}

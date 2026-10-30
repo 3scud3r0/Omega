@@ -1,0 +1,18 @@
+modulo science_33;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Positive dimensionless reaction quotient, explicit electron count and interval natural logarithm.
+funcao execute(r)  {
+  var e0=u::q(r,"standard_potential");
+  var gas=u::positive(u::q(r,"gas_constant"));
+  var temp=u::positive(u::q(r,"temperature"));
+  var electrons=u::count(r,"electrons",1,1000);
+  var faraday=u::positive(u::q(r,"faraday_constant"));
+  var quotient=u::positive(u::q(r,"reaction_quotient"));
+  var log=m::log_interval(quotient,24);
+  var factor=gas*temp/(electrons*faraday);
+  retornar u::result("Nernst-activity-model",[e0-factor*log[1],e0-factor*log[0]]);
+}

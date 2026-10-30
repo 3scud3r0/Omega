@@ -1,0 +1,87 @@
+modulo science_65;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Graham scan with exact orientation and independent supporting-halfplane checks; collinear sets are explicit.
+funcao dist(a,b)  {
+  retornar (a[0]-b[0])*(a[0]-b[0])+(a[1]-b[1])*(a[1]-b[1]);
+}
+funcao execute(r)  {
+  var points=u::mat(r["points"]);
+  se(len(points[0])!=2)  {
+    fail("Planar points required");
+  }
+  var p=0;
+  var i=1;
+  enquanto(i<len(points))  {
+    se(points[i][1]<points[p][1]||(points[i][1]==points[p][1]&&points[i][0]<points[p][0]))  {
+      p=i;
+    }
+    i=i+1;
+  }
+  var pivot=points[p];
+  var sorted=[];
+  i=0;
+  enquanto(i<len(points))  {
+    var pt=points[i];
+    var duplicate=0;
+    var j=0;
+    enquanto(j<len(sorted))  {
+      se(s::canonical(sorted[j])==s::canonical(pt))  {
+        duplicate=1;
+      }
+      j=j+1;
+    }
+    se(!duplicate)  {
+      push(sorted,pt);
+    }
+    i=i+1;
+  }
+  i=1;
+  enquanto(i<len(sorted))  {
+    var j=i;
+    enquanto(j>0)  {
+      var a=sorted[j-1];
+      var b=sorted[j];
+      var cross=u::orient(pivot,a,b);
+      var move=cross<0||(cross==0&&dist(pivot,a)>dist(pivot,b));
+      se(!move)  {
+        parar;
+      }
+      put(sorted,j-1,b);
+      put(sorted,j,a);
+      j=j-1;
+    }
+    i=i+1;
+  }
+  var hull=[];
+  i=0;
+  enquanto(i<len(sorted))  {
+    enquanto(len(hull)>=2&&u::orient(hull[len(hull)-2],hull[len(hull)-1],sorted[i])<=0)  {
+      hull=slice(hull,0,len(hull)-1);
+    }
+    push(hull,sorted[i]);
+    i=i+1;
+  }
+  var valid=1;
+  i=0;
+  enquanto(i<len(hull))  {
+    var j=0;
+    enquanto(j<len(points))  {
+      se(u::orient(hull[i],hull[(i+1)%len(hull)],points[j])<0)  {
+        valid=0;
+      }
+      j=j+1;
+    }
+    i=i+1;
+  }
+  se(!valid)  {
+    fail("Convex hull supporting-halfplane certificate failed");
+  }
+  var out=u::result("Graham-scan",hull);
+  put(out,"supporting_halfplanes_valid",valid);
+  put(out,"degenerate",len(hull)<3);
+  retornar out;
+}

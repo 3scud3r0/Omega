@@ -1,0 +1,59 @@
+modulo science_67;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Exact bounded Voronoi via half-plane clipping; intentionally not an irrational-event Fortune implementation.
+funcao clip(poly,a,b,c)  {
+  var out=[];
+  se(len(poly)==0)  {
+    retornar out;
+  }
+  var i=0;
+  enquanto(i<len(poly))  {
+    var p=poly[i];
+    var q=poly[(i+1)%len(poly)];
+    var fp=a*p[0]+b*p[1]-c;
+    var fq=a*q[0]+b*q[1]-c;
+    se(fp<=0)  {
+      push(out,p);
+    }
+    se((fp<0&&fq>0)||(fp>0&&fq<0))  {
+      var t=fp/(fp-fq);
+      push(out,[p[0]+t*(q[0]-p[0]),p[1]+t*(q[1]-p[1])]);
+    }
+    i=i+1;
+  }
+  retornar out;
+}
+funcao execute(r)  {
+  var sites=u::mat(r["points"]);
+  se(len(sites[0])!=2)  {
+    fail("Planar sites required");
+  }
+  var bounds=u::vector(r["bounds"]);
+  se(len(bounds)!=4||bounds[0]>=bounds[1]||bounds[2]>=bounds[3])  {
+    fail("Voronoi clip box");
+  }
+  var cells=[];
+  var i=0;
+  enquanto(i<len(sites))  {
+    var poly=[[bounds[0],bounds[2]],[bounds[1],bounds[2]],[bounds[1],bounds[3]],[bounds[0],bounds[3]]];
+    var j=0;
+    enquanto(j<len(sites))  {
+      se(i!=j)  {
+        var p=sites[i];
+        var q=sites[j];
+        se(s::canonical(p)==s::canonical(q))  {
+          fail("Duplicate Voronoi site");
+        }
+        poly=clip(poly,2*(q[0]-p[0]),2*(q[1]-p[1]),q[0]*q[0]+q[1]*q[1]-p[0]*p[0]-p[1]*p[1]);
+      }
+      j=j+1;
+    }
+    push(cells,poly);
+    i=i+1;
+  }
+  retornar u::result("bounded-Voronoi-halfplane-clipping",cells);
+}

@@ -65,6 +65,8 @@ def principal(argumentos: list[str] | None = None) -> int:
     p=argparse.ArgumentParser(prog='omega',description='Ômega 2.0 — auto-hospedagem, execução nativa e certificação')
     p.add_argument('--versao', action='version',version='Ômega '+VERSAO)
     sub=p.add_subparsers(dest='acao',required=True)
+    science_parser=sub.add_parser('science',help='bounded native scientific models and Lean observations')
+    science_parser.add_argument('arguments',nargs=argparse.REMAINDER)
     agent_parser=sub.add_parser('agent',help='finite reasoning, planning and rational expression synthesis')
     agent_parser.add_argument('arguments',nargs=argparse.REMAINDER)
     extensions={'live':'omega_live.cli','ingest':'omega_ingest.cli','native':'omega_native.cli','refine':'omega_refine_check.cli','synth':'omega_synth_mcts.cli',
@@ -118,6 +120,9 @@ def principal(argumentos: list[str] | None = None) -> int:
             args.target.parent.mkdir(parents=True,exist_ok=True)
             args.target.write_bytes(Path(result['source']).read_bytes())
             print(json.dumps(result,sort_keys=True,indent=2));return 0
+        if args.acao=='science':
+            from omega_science.cli import main as science_main
+            return science_main(args.arguments)
         if args.acao=='agent':
             from omega_agent.cli import main as agent_main
             return agent_main(args.arguments)

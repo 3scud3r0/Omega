@@ -1,0 +1,33 @@
+modulo science_37;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Hard-sphere ideal-cell geometry with pi/root enclosures; HCP uses the ideal c/a ratio.
+funcao execute(r)  {
+  var kind=u::text_field(r,"lattice",8);
+  var value=[0,0];
+  se(kind=="SC")  {
+    value=[1/2,2/3];
+  }
+  senao  {
+    se(kind=="BCC")  {
+      var root=m::sqrt_interval(3,24);
+      value=[3*root[0]/8,4*root[1]/8];
+    }
+    senao  {
+      se(kind=="FCC"||kind=="HCP")  {
+        var root=m::sqrt_interval(2,24);
+        value=[1/root[1],4/(3*root[0])];
+      }
+      senao  {
+        fail("SC/BCC/FCC/ideal-HCP required");
+      }
+    }
+  }
+  var out=u::result("hard-sphere-packing-fraction-enclosure",value);
+  put(out,"pi_enclosure",[3,4]);
+  put(out,"ideal_HCP_c_over_a_squared",8/3);
+  retornar out;
+}

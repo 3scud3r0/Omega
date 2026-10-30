@@ -1,0 +1,72 @@
+modulo science_78;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+importar "../core/intervalos.omega" como iv;
+exportar execute;
+# Exact force-density nodal solve; irrational member lengths produce axial-force enclosures, singular mechanisms fail.
+funcao execute(r)  {
+  var points=u::mat(r["nodes"]);
+  var members=u::mat(r["members"]);
+  var loads=u::mat(r["loads"]);
+  var supports=u::mat(r["supports"]);
+  var n=len(points);
+  var columns=len(members)+len(supports);
+  se(n>8||len(points[0])!=2||len(loads)!=n||len(loads[0])!=2||len(members[0])!=2||len(supports[0])!=2||columns!=2*n)  {
+    fail("Statically determinate 2D truss shapes required");
+  }
+  var a=[];
+  var b=[];
+  var i=0;
+  enquanto(i<2*n)  {
+    push(a,u::zeros(columns));
+    push(b,-loads[qfloor(i/2)][i%2]);
+    i=i+1;
+  }
+  i=0;
+  enquanto(i<len(members))  {
+    var left=u::integer(members[i][0],0,n-1);
+    var right=u::integer(members[i][1],0,n-1);
+    se(left==right)  {
+      fail("Zero truss member");
+    }
+    var delta=u::add(points[right],u::scale(points[left],-1));
+    u::positive(u::dot(delta,delta));
+    var axis=0;
+    enquanto(axis<2)  {
+      put(a[2*left+axis],i,delta[axis]);
+      put(a[2*right+axis],i,-delta[axis]);
+      axis=axis+1;
+    }
+    i=i+1;
+  }
+  i=0;
+  enquanto(i<len(supports))  {
+    var node=u::integer(supports[i][0],0,n-1);
+    var axis=u::integer(supports[i][1],0,1);
+    put(a[2*node+axis],len(members)+i,1);
+    i=i+1;
+  }
+  var solution=u::solve(a,b);
+  var forces=[];
+  i=0;
+  enquanto(i<len(members))  {
+    var left=members[i][0];
+    var right=members[i][1];
+    var delta=u::add(points[right],u::scale(points[left],-1));
+    var length=m::sqrt_interval(u::dot(delta,delta),24);
+    push(forces,iv::scale(length,solution[i]));
+    i=i+1;
+  }
+  i=0;
+  enquanto(i<len(a))  {
+    se(u::dot(a[i],solution)!=b[i])  {
+      fail("Nodal equilibrium certificate");
+    }
+    i=i+1;
+  }
+  var out=u::result("truss-force-density-equilibrium",solution);
+  put(out,"member_axial_force_enclosures",forces);
+  retornar out;
+}

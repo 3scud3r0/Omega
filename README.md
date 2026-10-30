@@ -20,6 +20,7 @@ referência e compatibilidade, não são chamados pelos estágios nativos do com
 
 ```sh
 # Linux x86_64, Python 3.12, compilador C, libgmp-dev, libssl-dev e zstd.
+# Icarus Verilog (iverilog/vvp) habilita os testes de co-simulação RTL.
 bash scripts/setup.sh
 bash scripts/test.sh -q
 
@@ -94,6 +95,19 @@ Veja [linguagem procedural e bootstrap](docs/AUTO_HOSPEDAGEM.md),
 Busca isolada, geração de Ômega, build C/GMP, execução nativa, admissão Lean e
 casos reservados ficam unidos em uma entrega auditável. Consulte
 [contrato, artefatos e limites](docs/SINTESE_NATIVA_3_0.md).
+
+## Biblioteca científica nativa
+
+Os 115 arquivos solicitados estão catalogados em [ciencia/](ciencia/README.md):
+97 módulos Ômega executáveis, 18 arquivos de teoremas Lean e supervisão de
+experimentos com contratos delimitados. Consulte os escopos e hipóteses antes
+de interpretar uma saída como evidência científica.
+
+```sh
+.venv/bin/python -m omega science run 23 exemplos/ciencia/agua.json
+.venv/bin/python -m omega science experiment 23 exemplos/ciencia/agua.json \
+  --saida artifacts/ciencia-agua
+```
 
 ## Subsistema neural incorporado
 

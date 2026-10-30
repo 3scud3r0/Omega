@@ -1,0 +1,45 @@
+modulo science_13;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Deterministic rational Gauss-Seidel with fixed boundary and measured residual, not a convergence-by-assertion solver.
+funcao execute(r)  {
+  var a=u::mat(r["potential"]);
+  var rho=u::mat(r["charge"]);
+  var n=len(a);
+  var k=len(a[0]);
+  se(n<3||k<3||n>10||k>10||len(rho)!=n||len(rho[0])!=k)  {
+    fail("Poisson grid shape");
+  }
+  var h=u::positive(u::q(r,"spacing"));
+  var steps=u::count(r,"steps",1,128);
+  var t=0;
+  enquanto(t<steps)  {
+    var i=1;
+    enquanto(i<n-1)  {
+      var j=1;
+      enquanto(j<k-1)  {
+        put(a[i],j,u::check((a[i-1][j]+a[i+1][j]+a[i][j-1]+a[i][j+1]+h*h*rho[i][j])/4));
+        j=j+1;
+      }
+      i=i+1;
+    }
+    t=t+1;
+  }
+  var residual=0;
+  var i=1;
+  enquanto(i<n-1)  {
+    var j=1;
+    enquanto(j<k-1)  {
+      residual=m::max(residual,m::abs((4*a[i][j]-a[i-1][j]-a[i+1][j]-a[i][j-1]-a[i][j+1])/(h*h)-rho[i][j]));
+      j=j+1;
+    }
+    i=i+1;
+  }
+  var out=u::result("Dirichlet-Gauss-Seidel-Poisson",a);
+  put(out,"residual_infinity_norm",residual);
+  put(out,"converged_exactly",residual==0);
+  retornar out;
+}

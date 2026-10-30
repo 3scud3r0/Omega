@@ -1,0 +1,43 @@
+modulo science_10;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+importar "../core/intervalos.omega" como iv;
+exportar execute;
+# Normalised discrete speed-grid approximation; continuous Maxwell density is not claimed rational/exact.
+funcao execute(r)  {
+  var speeds=u::vector(r["speeds"]);
+  se(len(speeds)<1||len(speeds)>32)  {
+    fail("Velocity grid budget");
+  }
+  var mass=u::positive(u::q(r,"mass"));
+  var kt=u::positive(u::q(r,"thermal_energy"));
+  var weights=[];
+  var total=[0,0];
+  var chosen=[];
+  var sum=0;
+  var i=0;
+  enquanto(i<len(speeds))  {
+    u::nonnegative(speeds[i]);
+    var w=iv::scale(m::exp_interval(-mass*speeds[i]*speeds[i]/(2*kt),16),speeds[i]*speeds[i]);
+    push(weights,w);
+    total=iv::add(total,w);
+    push(chosen,iv::midpoint(w));
+    sum=sum+iv::midpoint(w);
+    i=i+1;
+  }
+  u::positive(total[0]);
+  var probabilities=[];
+  var enclosures=[];
+  i=0;
+  enquanto(i<len(weights))  {
+    push(probabilities,chosen[i]/sum);
+    push(enclosures,iv::div(weights[i],total));
+    i=i+1;
+  }
+  var out=u::result("finite-speed-grid-Maxwell-weights",probabilities);
+  put(out,"probability_enclosures",enclosures);
+  put(out,"continuous_distribution",0);
+  retornar out;
+}

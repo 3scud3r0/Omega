@@ -1,0 +1,144 @@
+modulo science_71;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Rational Joseph update; positive-definite priors/measurement noise and positive semidefinite process noise are checked.
+funcao plus(a,b)  {
+  se(len(a)!=len(b)||len(a[0])!=len(b[0]))  {
+    fail("Covariance shape");
+  }
+  var out=[];
+  var i=0;
+  enquanto(i<len(a))  {
+    push(out,u::add(a[i],b[i]));
+    i=i+1;
+  }
+  retornar out;
+}
+funcao positive_definite(a)  {
+  var n=len(a);
+  se(n!=len(a[0]))  {
+    fail("Square covariance required");
+  }
+  var i=0;
+  enquanto(i<n)  {
+    var j=0;
+    enquanto(j<n)  {
+      se(a[i][j]!=a[j][i])  {
+        fail("Symmetric covariance required");
+      }
+      j=j+1;
+    }
+    var leading=[];
+    j=0;
+    enquanto(j<=i)  {
+      push(leading,slice(a[j],0,i+1));
+      j=j+1;
+    }
+    se(u::determinant(leading)<=0)  {
+      fail("Strict positive definiteness certificate failed");
+    }
+    i=i+1;
+  }
+  retornar 1;
+}
+funcao positive_semidefinite(a) {
+  var n=len(a);
+  var i=0;
+  enquanto(i<n) {
+    var j=0;
+    enquanto(j<n) {
+      se(a[i][j]!=a[j][i]) { fail("Symmetric process covariance required"); }
+      j=j+1;
+    }
+    i=i+1;
+  }
+  var mask=1;
+  enquanto(mask<u::power(2,n)) {
+    var selected=[];
+    i=0;
+    enquanto(i<n) {
+      se(qfloor(mask/u::power(2,i))%2==1) { push(selected,i); }
+      i=i+1;
+    }
+    var principal=[];
+    i=0;
+    enquanto(i<len(selected)) {
+      var row=[];
+      var j=0;
+      enquanto(j<len(selected)) {
+        push(row,a[selected[i]][selected[j]]);
+        j=j+1;
+      }
+      push(principal,row);
+      i=i+1;
+    }
+    se(u::determinant(principal)<0) { fail("Process covariance is not positive semidefinite"); }
+    mask=mask+1;
+  }
+  retornar 1;
+}
+funcao inverse(a)  {
+  var n=len(a);
+  var columns=[];
+  var j=0;
+  enquanto(j<n)  {
+    var b=u::zeros(n);
+    put(b,j,1);
+    push(columns,u::solve(a,b));
+    j=j+1;
+  }
+  retornar u::transpose(columns);
+}
+funcao apply(a,x)  {
+  var out=[];
+  var i=0;
+  enquanto(i<len(a))  {
+    push(out,u::dot(a[i],x));
+    i=i+1;
+  }
+  retornar out;
+}
+funcao execute(r)  {
+  var f=u::mat(r["transition"]);
+  var h=u::mat(r["observation"]);
+  var p=u::mat(r["covariance"]);
+  var q=u::mat(r["process_noise"]);
+  var rr=u::mat(r["measurement_noise"]);
+  var x=u::vector(r["state"]);
+  var z=u::vector(r["measurement"]);
+  var n=len(x);
+  se(n<1||n>6||len(f)!=n||len(f[0])!=n||len(h[0])!=n||len(h)!=len(z)||len(z)>4||len(p)!=n||len(p[0])!=n||len(q)!=n||len(q[0])!=n||len(rr)!=len(z)||len(rr[0])!=len(z))  {
+    fail("Kalman shapes/budget");
+  }
+  positive_definite(p);
+  positive_definite(rr);
+  positive_semidefinite(q);
+  var i=0;
+  var predicted=apply(f,x);
+  var prior=plus(u::mul(u::mul(f,p),u::transpose(f)),q);
+  positive_definite(prior);
+  var ht=u::transpose(h);
+  var innovation=plus(u::mul(u::mul(h,prior),ht),rr);
+  positive_definite(innovation);
+  var gain=u::mul(u::mul(prior,ht),inverse(innovation));
+  var residual=u::add(z,u::scale(apply(h,predicted),-1));
+  var state=u::add(predicted,apply(gain,residual));
+  var kh=u::mul(gain,h);
+  var identity=u::eye(n);
+  var subtract=[];
+  i=0;
+  enquanto(i<n)  {
+    push(subtract,u::add(identity[i],u::scale(kh[i],-1)));
+    i=i+1;
+  }
+  var covariance=plus(u::mul(u::mul(subtract,prior),u::transpose(subtract)),u::mul(u::mul(gain,rr),u::transpose(gain)));
+  positive_definite(covariance);
+  var out=u::result("exact-Joseph-form-Kalman-update",state);
+  put(out,"covariance",covariance);
+  put(out,"gain",gain);
+  put(out,"innovation",residual);
+  retornar out;
+}

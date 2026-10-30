@@ -1,0 +1,45 @@
+modulo science_108;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/math.omega" como m;
+importar "../std/string.omega" como s;
+importar "../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Self-contained hash-addressed article/source/binary-hex/proof container; hashing does not authenticate or prove the artifacts.
+funcao execute(r)  {
+  var names=["article.md","theory.omega","program.c","program.hex","Proof.lean","verification.json"];
+  var fields=["article","omega_source","c_source","binary_hex","lean_source","verification_record"];
+  var artifacts=obj();
+  var hashes=obj();
+  var i=0;
+  var bytes=0;
+  enquanto(i<len(names))  {
+    var data=u::text_field(r,fields[i],2097152);
+    bytes=bytes+len(data);
+    se(bytes>4194304)  {
+      fail("Executable article byte budget");
+    }
+    put(artifacts,names[i],data);
+    put(hashes,names[i],sha256(data));
+    i=i+1;
+  }
+  var binary=artifacts["program.hex"];
+  se(len(binary)%2!=0)  {
+    fail("Binary hex must have even length");
+  }
+  i=0;
+  enquanto(i<len(binary))  {
+    se(!contains("0123456789abcdef",binary[i]))  {
+      fail("Canonical lower-case binary hex required");
+    }
+    i=i+1;
+  }
+  var out=obj();
+  put(out,"format","omega-executable-science-paper-1");
+  put(out,"artifacts",artifacts);
+  put(out,"sha256",hashes);
+  put(out,"manifest_sha256",sha256(s::canonical(hashes)));
+  put(out,"formal_admission",0);
+  put(out,"verification_status","independent-verification-required");
+  put(out,"external_publication",0);
+  retornar out;
+}

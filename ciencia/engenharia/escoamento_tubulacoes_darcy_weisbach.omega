@@ -1,0 +1,74 @@
+modulo science_79;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+importar "../core/intervalos.omega" como iv;
+exportar execute;
+# Laminar exact friction or enclosed Colebrook root; empirical transitional regime is explicitly rejected.
+funcao colebrook(y,rough,diameter,re)  {
+  var arg=rough/(3.7*diameter)+2.51*y/re;
+  var ln=m::log_interval(arg,32);
+  var ten=m::log_interval(10,32);
+  var ratio=iv::div(ln,ten);
+  retornar [y+2*ratio[0],y+2*ratio[1]];
+}
+funcao execute(r)  {
+  var rho=u::positive(u::q(r,"density"));
+  var v=m::abs(u::q(r,"velocity"));
+  var d=u::positive(u::q(r,"diameter"));
+  var length=u::positive(u::q(r,"length"));
+  var viscosity=u::positive(u::q(r,"dynamic_viscosity"));
+  var rough=u::nonnegative(u::num(r,"roughness",0));
+  se(rough>d/10)  {
+    fail("Colebrook roughness domain");
+  }
+  var re=rho*v*d/viscosity;
+  var friction=[0,0];
+  var regime="zero-flow";
+  se(re>0)  {
+    se(re<=2300)  {
+      regime="laminar";
+      friction=[64/re,64/re];
+    }
+    senao  {
+      se(re<4000||re>100000000)  {
+        fail("Transition flow or Reynolds outside model domain");
+      }
+      regime="turbulent-Colebrook";
+      var lo=1;
+      var hi=32;
+      var first=colebrook(lo,rough,d,re);
+      var last=colebrook(hi,rough,d,re);
+      se(first[1]>=0||last[0]<=0)  {
+        fail("Uncertified Colebrook bracket");
+      }
+      var i=0;
+      enquanto(i<48)  {
+        var mid=(lo+hi)/2;
+        var f=colebrook(mid,rough,d,re);
+        se(f[1]<0)  {
+          lo=mid;
+        }
+        senao  {
+          se(f[0]>0)  {
+            hi=mid;
+          }
+          senao  {
+            var radius=m::max(m::abs(f[0]),m::abs(f[1]));
+            lo=m::max(lo,mid-radius);
+            hi=m::min(hi,mid+radius);
+            parar;
+          }
+        }
+        i=i+1;
+      }
+      friction=[1/(hi*hi),1/(lo*lo)];
+    }
+  }
+  var out=u::result("Darcy-Weisbach-pressure-loss",iv::scale(friction,length*rho*v*v/(2*d)));
+  put(out,"friction_factor",friction);
+  put(out,"Reynolds",re);
+  put(out,"regime",regime);
+  retornar out;
+}

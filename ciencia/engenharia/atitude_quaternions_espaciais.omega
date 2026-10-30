@@ -1,0 +1,29 @@
+modulo science_70;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Rational Cayley rotation update preserves unit norm; it approximates, rather than equals, the angular-rate exponential.
+funcao multiply(a,b)  {
+  retornar [a[0]*b[0]-a[1]*b[1]-a[2]*b[2]-a[3]*b[3],a[0]*b[1]+a[1]*b[0]+a[2]*b[3]-a[3]*b[2],a[0]*b[2]-a[1]*b[3]+a[2]*b[0]+a[3]*b[1],a[0]*b[3]+a[1]*b[2]-a[2]*b[1]+a[3]*b[0]];
+}
+funcao execute(r)  {
+  var q=u::vector(r["quaternion"]);
+  var w=u::vector(r["angular_velocity"]);
+  se(len(q)!=4||len(w)!=3||u::dot(q,q)!=1)  {
+    fail("Unit rational quaternion and three angular velocities required");
+  }
+  var step=u::q(r,"step");
+  var v=u::scale(w,step/4);
+  var squared=u::dot(v,v);
+  var increment=[(1-squared)/(1+squared),2*v[0]/(1+squared),2*v[1]/(1+squared),2*v[2]/(1+squared)];
+  var next=multiply(increment,q);
+  se(u::dot(next,next)!=1)  {
+    fail("Quaternion norm preservation");
+  }
+  var out=u::result("Cayley-unit-quaternion-update",next);
+  put(out,"norm_squared",1);
+  put(out,"exact_constant_rate_exponential",0);
+  retornar out;
+}

@@ -1,0 +1,120 @@
+modulo science_66;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Incremental Bowyer-Watson with exact in-circle predicates and deterministic cocircular handling.
+funcao incircle(a,b,c,p)  {
+  var ax=a[0]-p[0];
+  var ay=a[1]-p[1];
+  var bx=b[0]-p[0];
+  var by=b[1]-p[1];
+  var cx=c[0]-p[0];
+  var cy=c[1]-p[1];
+  retornar (ax*ax+ay*ay)*(bx*cy-by*cx)-(bx*bx+by*by)*(ax*cy-ay*cx)+(cx*cx+cy*cy)*(ax*by-ay*bx);
+}
+funcao execute(r)  {
+  var points=u::mat(r["points"]);
+  var n=len(points);
+  se(n<3||len(points[0])!=2)  {
+    fail("At least three planar sites required");
+  }
+  var lo=points[0][0];
+  var hi=lo;
+  var ly=points[0][1];
+  var hy=ly;
+  var i=0;
+  enquanto(i<n)  {
+    var j=0;
+    enquanto(j<i)  {
+      se(s::canonical(points[i])==s::canonical(points[j]))  {
+        fail("Duplicate Delaunay site");
+      }
+      j=j+1;
+    }
+    lo=m::min(lo,points[i][0]);
+    hi=m::max(hi,points[i][0]);
+    ly=m::min(ly,points[i][1]);
+    hy=m::max(hy,points[i][1]);
+    i=i+1;
+  }
+  var d=m::max(hi-lo,hy-ly);
+  se(d==0)  {
+    fail("Degenerate sites");
+  }
+  push(points,[lo-20*d,ly-10*d]);
+  push(points,[hi+20*d,ly-10*d]);
+  push(points,[(lo+hi)/2,hy+20*d]);
+  var triangles=[[n,n+1,n+2]];
+  i=0;
+  enquanto(i<n)  {
+    var keep=[];
+    var edges=[];
+    var counts=[];
+    var j=0;
+    enquanto(j<len(triangles))  {
+      var t=triangles[j];
+      se(incircle(points[t[0]],points[t[1]],points[t[2]],points[i])>0)  {
+        var k=0;
+        enquanto(k<3)  {
+          var x=m::min(t[k],t[(k+1)%3]);
+          var y=m::max(t[k],t[(k+1)%3]);
+          var e=0;
+          enquanto(e<len(edges)&&!(edges[e][0]==x&&edges[e][1]==y))  {
+            e=e+1;
+          }
+          se(e==len(edges))  {
+            push(edges,[x,y]);
+            push(counts,1);
+          }
+          senao  {
+            put(counts,e,counts[e]+1);
+          }
+          k=k+1;
+        }
+      }
+      senao  {
+        push(keep,t);
+      }
+      j=j+1;
+    }
+    j=0;
+    enquanto(j<len(edges))  {
+      se(counts[j]==1)  {
+        var a=edges[j][0];
+        var b=edges[j][1];
+        var sign=u::orient(points[a],points[b],points[i]);
+        se(sign>0)  {
+          push(keep,[a,b,i]);
+        }
+        se(sign<0)  {
+          push(keep,[b,a,i]);
+        }
+      }
+      j=j+1;
+    }
+    triangles=keep;
+    i=i+1;
+  }
+  var out=[];
+  i=0;
+  enquanto(i<len(triangles))  {
+    var t=triangles[i];
+    se(t[0]<n&&t[1]<n&&t[2]<n)  {
+      var j=0;
+      enquanto(j<n)  {
+        se(incircle(points[t[0]],points[t[1]],points[t[2]],points[j])>0)  {
+          fail("Empty circumcircle invariant");
+        }
+        j=j+1;
+      }
+      push(out,t);
+    }
+    i=i+1;
+  }
+  se(len(out)==0)  {
+    fail("Collinear sites have no area triangulation");
+  }
+  retornar u::result("Bowyer-Watson-exact-predicates",out);
+}

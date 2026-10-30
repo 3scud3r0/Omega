@@ -1,0 +1,107 @@
+modulo science_45;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Exact NJ Q-criterion and branch lengths; negative limbs from nonadditive data are reported without clamping.
+funcao execute(r)  {
+  var d=u::mat(r["distances"]);
+  var n=len(d);
+  se(n<2||n!=len(d[0])||n>16)  {
+    fail("NJ distance matrix shape");
+  }
+  var ids=[];
+  var i=0;
+  enquanto(i<n)  {
+    push(ids,i);
+    var j=0;
+    enquanto(j<n)  {
+      se(d[i][j]<0||d[i][j]!=d[j][i]||(i==j&&d[i][j]!=0))  {
+        fail("Invalid initial NJ distances");
+      }
+      j=j+1;
+    }
+    i=i+1;
+  }
+  var next=n;
+  var edges=[];
+  var negative=0;
+  enquanto(len(d)>2)  {
+    var k=len(d);
+    var sums=[];
+    i=0;
+    enquanto(i<k)  {
+      var sum=0;
+      var j=0;
+      enquanto(j<k)  {
+        sum=sum+d[i][j];
+        j=j+1;
+      }
+      push(sums,sum);
+      i=i+1;
+    }
+    var p=0;
+    var q=1;
+    var best=(k-2)*d[0][1]-sums[0]-sums[1];
+    i=0;
+    enquanto(i<k)  {
+      var j=i+1;
+      enquanto(j<k)  {
+        var score=(k-2)*d[i][j]-sums[i]-sums[j];
+        se(score<best)  {
+          best=score;
+          p=i;
+          q=j;
+        }
+        j=j+1;
+      }
+      i=i+1;
+    }
+    var limb=d[p][q]/2+(sums[p]-sums[q])/(2*(k-2));
+    push(edges,[next,ids[p],limb]);
+    push(edges,[next,ids[q],d[p][q]-limb]);
+    se(limb<0||d[p][q]-limb<0)  {
+      negative=negative+1;
+    }
+    var keep=[];
+    i=0;
+    enquanto(i<k)  {
+      se(i!=p&&i!=q)  {
+        push(keep,i);
+      }
+      i=i+1;
+    }
+    var matrix=[];
+    var ni=[];
+    i=0;
+    enquanto(i<len(keep))  {
+      var row=[];
+      var j=0;
+      enquanto(j<len(keep))  {
+        push(row,d[keep[i]][keep[j]]);
+        j=j+1;
+      }
+      push(row,(d[p][keep[i]]+d[q][keep[i]]-d[p][q])/2);
+      push(matrix,row);
+      push(ni,ids[keep[i]]);
+      i=i+1;
+    }
+    var row=[];
+    i=0;
+    enquanto(i<len(keep))  {
+      push(row,(d[p][keep[i]]+d[q][keep[i]]-d[p][q])/2);
+      i=i+1;
+    }
+    push(row,0);
+    push(matrix,row);
+    push(ni,next);
+    d=matrix;
+    ids=ni;
+    next=next+1;
+  }
+  push(edges,[ids[0],ids[1],d[0][1]]);
+  var out=u::result("neighbor-joining-unrooted-tree",edges);
+  put(out,"negative_limb_events",negative);
+  retornar out;
+}

@@ -1,0 +1,80 @@
+modulo science_56;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+importar "inverso_modular_euclides_estendido.omega" como inverse;
+importar "primalidade_miller_rabin_exata.omega" como primality;
+exportar execute;
+# Nonsingular prime fields, exact group operations; infinity is the empty point.
+funcao modq(x,p)  {
+  retornar u::rem_int(x,p);
+}
+funcao inv(x,p)  {
+  var r=obj();
+  put(r,"a",x);
+  put(r,"modulus",p);
+  var out=inverse::execute(r);
+  retornar out["inverse"];
+}
+funcao point(raw,a,b,p)  {
+  var q=u::vector(raw);
+  se(len(q)==0)  {
+    retornar q;
+  }
+  se(len(q)!=2||qden(q[0])!=1||qden(q[1])!=1)  {
+    fail("Finite-field point shape");
+  }
+  q=[modq(q[0],p),modq(q[1],p)];
+  se(modq(q[1]*q[1]-q[0]*q[0]*q[0]-a*q[0]-b,p)!=0)  {
+    fail("Point is not on curve");
+  }
+  retornar q;
+}
+funcao plus(a,p,q,modulus)  {
+  se(len(p)==0)  {
+    retornar q;
+  }
+  se(len(q)==0)  {
+    retornar p;
+  }
+  se(p[0]==q[0]&&modq(p[1]+q[1],modulus)==0)  {
+    retornar [];
+  }
+  var slope=0;
+  se(p[0]==q[0])  {
+    slope=modq((3*p[0]*p[0]+a)*inv(2*p[1],modulus),modulus);
+  }
+  senao  {
+    slope=modq((q[1]-p[1])*inv(q[0]-p[0],modulus),modulus);
+  }
+  var x=modq(slope*slope-p[0]-q[0],modulus);
+  var y=modq(slope*(p[0]-x)-p[1],modulus);
+  retornar [x,y];
+}
+funcao execute(r)  {
+  var p=u::count(r,"modulus",5,2147483647);
+  var req=obj();
+  put(req,"n",p);
+  var proof=primality::execute(req);
+  se(!proof["prime"])  {
+    fail("Prime field required");
+  }
+  var a=modq(u::q(r,"a"),p);
+  var b=modq(u::q(r,"b"),p);
+  se(modq(4*a*a*a+27*b*b,p)==0)  {
+    fail("Singular elliptic curve");
+  }
+  var q=point(r["point"],a,b,p);
+  var k=u::count(r,"scalar",0,18446744073709551615);
+  var result=[];
+  enquanto(k>0)  {
+    se(k%2==1)  {
+      result=plus(a,result,q,p);
+    }
+    q=plus(a,q,q,p);
+    k=qfloor(k/2);
+  }
+  point(result,a,b,p);
+  retornar u::result("Weierstrass-scalar-multiplication",result);
+}

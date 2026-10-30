@@ -1,0 +1,2116 @@
+{
+  "format": "omega-science-catalog-1",
+  "rule": "File presence and example checks are not independent scientific acceptance.",
+  "files": [
+    {
+      "id": 1,
+      "path": "ciencia/fisica/mecanica_hamiltoniana.omega",
+      "scope": "Energy-exact Cayley midpoint map for one quadratic oscillator, not arbitrary Hamiltonian flows.",
+      "example": {
+        "position": 1,
+        "momentum": 0,
+        "mass": 1,
+        "spring": 1,
+        "step": "1/10"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 2,
+      "path": "ciencia/fisica/integrador_simplico_verlet.omega",
+      "scope": "Symplectic Verlet preserves a modified quadratic energy; physical-energy drift is reported, not set to zero.",
+      "example": {
+        "position": 1,
+        "momentum": 0,
+        "mass": 1,
+        "spring": 1,
+        "step": "1/10"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 3,
+      "path": "ciencia/fisica/orbita_kepler_exata.omega",
+      "scope": "Encloses the elliptic Kepler root and planar coordinates; no rational exact representation of general anomalies.",
+      "example": {
+        "eccentricity": "1/10",
+        "mean_anomaly": 1,
+        "bits": 16
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 4,
+      "path": "ciencia/fisica/tres_corpos_restrito.omega",
+      "scope": "Interval CR3BP vector field, Jacobi value and L4 enclosure; not a certified long-time orbit integrator.",
+      "example": {
+        "mass_ratio": "1/10",
+        "x": 0,
+        "y": 1,
+        "vx": 0,
+        "vy": 0
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 5,
+      "path": "ciencia/fisica/pendulo_duplo_caotico.omega",
+      "scope": "Rational enclosures of accelerations and optional measured finite-time separation; no asymptotic chaos proof.",
+      "example": {
+        "theta1": 0,
+        "theta2": 0,
+        "omega1": 0,
+        "omega2": 0,
+        "length1": 1,
+        "length2": 1,
+        "mass1": 1,
+        "mass2": 1,
+        "gravity": 10
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 6,
+      "path": "ciencia/fisica/colisoes_rigidas_conservativas.omega",
+      "scope": "Momentum is exact; kinetic energy is conserved only for elastic collisions, otherwise heat accounts for loss.",
+      "example": {
+        "mass1": 1,
+        "mass2": 1,
+        "velocity1": 1,
+        "velocity2": 0,
+        "restitution": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 7,
+      "path": "ciencia/fisica/termodinamica_gas_ideal.omega",
+      "scope": "Ideal-gas constitutive model with exact equation of state and interval logarithmic entropy changes.",
+      "example": {
+        "moles": 1,
+        "gas_constant": 8,
+        "temperature": 300,
+        "volume": 10
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 8,
+      "path": "ciencia/fisica/gas_van_der_waals.omega",
+      "scope": "Exact van der Waals isotherm and analytic critical parameters; phase coexistence needs an additional construction.",
+      "example": {
+        "moles": 1,
+        "attraction": 1,
+        "excluded_volume": "1/10",
+        "gas_constant": 1,
+        "temperature": 3,
+        "volume": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 9,
+      "path": "ciencia/fisica/ciclo_carnot_reversivel.omega",
+      "scope": "Two equilibrium reservoirs, cyclic working fluid, positive absolute temperatures; no universal physical axiom is inferred.",
+      "example": {
+        "hot_temperature": 600,
+        "cold_temperature": 300,
+        "heat_in": 100
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 10,
+      "path": "ciencia/fisica/distribuicao_maxwell_boltzmann.omega",
+      "scope": "Normalised discrete speed-grid approximation; continuous Maxwell density is not claimed rational/exact.",
+      "example": {
+        "speeds": [
+          0,
+          1,
+          2
+        ],
+        "mass": 1,
+        "thermal_energy": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 11,
+      "path": "ciencia/fisica/modelo_ising_2d.omega",
+      "scope": "All configurations on finite 2..4 square tori; Boltzmann weights are enclosed, not irrational exact samples.",
+      "example": {
+        "size": 2,
+        "coupling": 1,
+        "inverse_temperature": "1/10"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 12,
+      "path": "ciencia/fisica/maxwell_discreto_fdtd.omega",
+      "scope": "Periodic 2D TE Yee discretisation preserves discrete magnetic divergence; this is not a charge-conservation theorem.",
+      "example": {
+        "electric_z": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "magnetic_x": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "magnetic_y": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "step": "1/10",
+        "dx": 1,
+        "dy": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 13,
+      "path": "ciencia/fisica/potencial_eletrostatico_poisson.omega",
+      "scope": "Deterministic rational Gauss-Seidel with fixed boundary and measured residual, not a convergence-by-assertion solver.",
+      "example": {
+        "potential": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "charge": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "spacing": 1,
+        "steps": 2
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 14,
+      "path": "ciencia/fisica/lei_snell_refracao_exata.omega",
+      "scope": "Exact Snell sine relation and cosine enclosure; arbitrary angles are not rational numbers.",
+      "example": {
+        "index1": 1,
+        "index2": "3/2",
+        "incident_sine": "1/2"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 15,
+      "path": "ciencia/fisica/propagacao_guias_onda.omega",
+      "scope": "Perfect-conductor guide with conservative 3 < pi < 4 bounds; threshold ambiguity remains explicit.",
+      "example": {
+        "width": 1,
+        "height": 1,
+        "m": 1,
+        "n": 0,
+        "mode": "TE",
+        "omega": 10,
+        "permeability": 1,
+        "permittivity": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 16,
+      "path": "ciencia/fisica/schrodinger_1d_discreto.omega",
+      "scope": "Finite real symmetric Hamiltonian with Gershgorin bounds; two sites also get individual root enclosures.",
+      "example": {
+        "potential": [
+          0,
+          0
+        ],
+        "hbar": 1,
+        "mass": 1,
+        "spacing": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 17,
+      "path": "ciencia/fisica/poco_potencial_infinito.omega",
+      "scope": "Energy enclosures from 3 < pi < 4; pi and general energy levels are not silently made rational.",
+      "example": {
+        "level": 1,
+        "hbar": 1,
+        "mass": 1,
+        "length": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 18,
+      "path": "ciencia/fisica/oscilador_harmonico_quantico.omega",
+      "scope": "Rational unnormalised Fock basis with factorial metric; finite truncation cannot satisfy the infinite CCR exactly.",
+      "example": {
+        "levels": 3,
+        "omega": 1,
+        "hbar": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 19,
+      "path": "ciencia/fisica/spin_pauli_algebra.omega",
+      "scope": "Exact Pauli expectations for pure two-component Q(i) states, normalised by their exact squared norm.",
+      "example": {
+        "state": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 20,
+      "path": "ciencia/fisica/geodesicas_schwarzschild.omega",
+      "scope": "Exterior equatorial timelike geodesic field in G=c=1 units; mass-shell inconsistency is reported, not hidden.",
+      "example": {
+        "central_mass": 1,
+        "radius": 10,
+        "radial_velocity": 0,
+        "angular_momentum": 0,
+        "energy": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 21,
+      "path": "ciencia/fisica/desvio_luz_gravitacional.omega",
+      "scope": "Leading weak-field deflection plus a strong-field turning-point bracket; full strong-field bending is not claimed.",
+      "example": {
+        "mass": 1,
+        "impact_parameter": 10
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 22,
+      "path": "ciencia/fisica/equacao_friedmann.omega",
+      "scope": "Flat homogeneous Friedmann model with explicit kappa (8*pi*G/3), matter/radiation scaling and root bounds.",
+      "example": {
+        "scale_factor": 1,
+        "matter_density_at_one": 1,
+        "radiation_density_at_one": 0,
+        "kappa": 1,
+        "cosmological_constant": 0
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "fisica"
+    },
+    {
+      "id": 23,
+      "path": "ciencia/quimica/balanco_reacoes_redox.omega",
+      "scope": "Primitive positive integer null vector; include signed atom/isotope/charge rows explicitly. Ambiguous nullspaces are rejected.",
+      "example": {
+        "conservation_matrix": [
+          [
+            2,
+            0,
+            -2
+          ],
+          [
+            0,
+            2,
+            -1
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "quimica"
+    },
+    {
+      "id": 24,
+      "path": "ciencia/quimica/calculo_reagente_limitante.omega",
+      "scope": "Exact stoichiometric extent and nonnegative remainders; reaction feasibility/kinetics are separate obligations.",
+      "example": {
+        "reactant_coefficients": [
+          2,
+          1
+        ],
+        "reactant_amounts": [
+          3,
+          2
+        ],
+        "product_coefficients": [
+          2
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "quimica"
+    },
+    {
+      "id": 25,
+      "path": "ciencia/quimica/estequiometria_combustao.omega",
+      "scope": "Atom-balanced complete or prescribed partial CO combustion; ignition and thermodynamic viability are not inferred.",
+      "example": {
+        "carbon": 1,
+        "hydrogen": 4
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "quimica"
+    },
+    {
+      "id": 26,
+      "path": "ciencia/quimica/lei_hess_entalpia.omega",
+      "scope": "Hess linear combination with exact target verification; input enthalpies remain empirical/model data.",
+      "example": {
+        "equations": [
+          [
+            1,
+            -1,
+            0
+          ],
+          [
+            0,
+            1,
+            -1
+          ]
+        ],
+        "weights": [
+          1,
+          1
+        ],
+        "enthalpies": [
+          -10,
+          -20
+        ],
+        "target": [
+          1,
+          0,
+          -1
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "quimica"
+    },
+    {
+      "id": 27,
+      "path": "ciencia/quimica/equilibrio_gibbs_minimizacao.omega",
+      "scope": "Strictly convex ideal binary isomer mixture; interval closed-form minimizer, not a generic chemical Gibbs solver.",
+      "example": {
+        "total_amount": 1,
+        "thermal_energy": 1,
+        "standard_mu_A": 0,
+        "standard_mu_B": 0
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "quimica"
+    },
+    {
+      "id": 28,
+      "path": "ciencia/quimica/constante_equilibrio_kp_kc.omega",
+      "scope": "Dimensionless positive activities and explicit pressure/concentration normalisation; equality is exact only for supplied data.",
+      "example": {
+        "activities": [
+          2,
+          4
+        ],
+        "stoichiometry": [
+          -1,
+          1
+        ],
+        "Kc": 2,
+        "normalised_RT": 3
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "quimica"
+    },
+    {
+      "id": 29,
+      "path": "ciencia/quimica/equilibrio_acido_base_tamponamento.omega",
+      "scope": "Ideal activity-equals-concentration acid model with a rational hydrogen root bracket and interval pH.",
+      "example": {
+        "Ka": [
+          "1/10000"
+        ],
+        "total_concentration": "1/10",
+        "Kw": "1/100000000000000",
+        "lower_H": "1/100000",
+        "upper_H": "1/10"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "quimica"
+    },
+    {
+      "id": 30,
+      "path": "ciencia/quimica/leis_velocidade_integradas.omega",
+      "scope": "Zero/first/second order models; first-order exponent and half-life are enclosed, not claimed rational constants.",
+      "example": {
+        "order": 2,
+        "initial": 2,
+        "rate": 1,
+        "time": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "quimica"
+    },
+    {
+      "id": 31,
+      "path": "ciencia/quimica/mecanismo_michaelis_menten.omega",
+      "scope": "Steady-state enzyme constitutive law with exact monotonic derivative and saturation check.",
+      "example": {
+        "substrate": 2,
+        "Km": 1,
+        "Vmax": 3
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "quimica"
+    },
+    {
+      "id": 32,
+      "path": "ciencia/quimica/arrhenius_energia_ativacao.omega",
+      "scope": "Arrhenius model on the checked exponential domain, using rational Taylor/remainder enclosures.",
+      "example": {
+        "prefactor": 10,
+        "activation_energy": 1,
+        "gas_constant": 1,
+        "temperature": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "quimica"
+    },
+    {
+      "id": 33,
+      "path": "ciencia/quimica/equacao_nernst_exata.omega",
+      "scope": "Positive dimensionless reaction quotient, explicit electron count and interval natural logarithm.",
+      "example": {
+        "standard_potential": 1,
+        "gas_constant": 1,
+        "temperature": 1,
+        "electrons": 1,
+        "faraday_constant": 1,
+        "reaction_quotient": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "quimica"
+    },
+    {
+      "id": 34,
+      "path": "ciencia/quimica/leis_faraday_eletrolise.omega",
+      "scope": "Exact charge-to-mass conversion conditional on supplied units/constants and unit Faradaic efficiency.",
+      "example": {
+        "current": 2,
+        "time": 3,
+        "molar_mass": 10,
+        "electrons": 2,
+        "faraday_constant": 100
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "quimica"
+    },
+    {
+      "id": 35,
+      "path": "ciencia/quimica/cinetica_butler_volmer.omega",
+      "scope": "Ideal Butler-Volmer polarisation with interval exponential currents and explicit model parameters.",
+      "example": {
+        "exchange_current": 1,
+        "transfer_coefficient": "1/2",
+        "overpotential": 0,
+        "thermal_energy": 1,
+        "charge_per_mole": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "quimica"
+    },
+    {
+      "id": 36,
+      "path": "ciencia/quimica/indices_miller_redes.omega",
+      "scope": "Cubic and three-index hexagonal reciprocal-metric formulae, returning spacing enclosures.",
+      "example": {
+        "h": 1,
+        "k": 1,
+        "l": 0,
+        "a": 1,
+        "lattice": "cubic"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "quimica"
+    },
+    {
+      "id": 37,
+      "path": "ciencia/quimica/fator_empacotamento_atomico.omega",
+      "scope": "Hard-sphere ideal-cell geometry with pi/root enclosures; HCP uses the ideal c/a ratio.",
+      "example": {
+        "lattice": "FCC"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "quimica"
+    },
+    {
+      "id": 38,
+      "path": "ciencia/quimica/difracao_raios_x_bragg.omega",
+      "scope": "Exact Bragg sine, forbidden-reflection detection, and conservative rational half-angle/atan enclosures.",
+      "example": {
+        "order": 1,
+        "wavelength": 1,
+        "spacing": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "quimica"
+    },
+    {
+      "id": 39,
+      "path": "ciencia/biologia/needleman_wunsch_exato.omega",
+      "scope": "Global affine-gap dynamic programming and deterministic traceback; byte sequences up to 128 bytes.",
+      "example": {
+        "sequence1": "ACGT",
+        "sequence2": "AGT",
+        "match": 2,
+        "mismatch": -1,
+        "gap_open": 2,
+        "gap_extend": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "biologia"
+    },
+    {
+      "id": 40,
+      "path": "ciencia/biologia/smith_waterman_local.omega",
+      "scope": "Smith-Waterman score and endpoint with two rows of memory; linear gaps, no reconstructed traceback.",
+      "example": {
+        "sequence1": "TTACGT",
+        "sequence2": "ACG",
+        "match": 2,
+        "mismatch": -1,
+        "gap": 2
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "biologia"
+    },
+    {
+      "id": 41,
+      "path": "ciencia/biologia/fm_index_bwt_aligner.omega",
+      "scope": "Finite BWT/FM backward search with explicit sentinel and occurrence counts; bounded pedagogical suffix construction.",
+      "example": {
+        "text": "ACGACG",
+        "pattern": "ACG"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "biologia"
+    },
+    {
+      "id": 42,
+      "path": "ciencia/biologia/montagem_debruijn_euler.omega",
+      "scope": "Spells one Eulerian traversal using every supplied kmer; repeats can make the original sequence nonunique.",
+      "example": {
+        "kmers": [
+          "ATG",
+          "TGC",
+          "GCA",
+          "CAT"
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "biologia"
+    },
+    {
+      "id": 43,
+      "path": "ciencia/biologia/scoring_matrices_pam_blosum.omega",
+      "scope": "Derives bounded log-odds from supplied counts and pseudocounts; does not invent published PAM/BLOSUM datasets.",
+      "example": {
+        "counts": [
+          [
+            9,
+            1
+          ],
+          [
+            1,
+            9
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "biologia"
+    },
+    {
+      "id": 44,
+      "path": "ciencia/biologia/arvore_filogenetica_upgma.omega",
+      "scope": "Exact average-linkage UPGMA; molecular-clock/ultrametric suitability remains an input-model assumption.",
+      "example": {
+        "distances": [
+          [
+            0,
+            2,
+            4
+          ],
+          [
+            2,
+            0,
+            4
+          ],
+          [
+            4,
+            4,
+            0
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "biologia"
+    },
+    {
+      "id": 45,
+      "path": "ciencia/biologia/neighbor_joining_tree.omega",
+      "scope": "Exact NJ Q-criterion and branch lengths; negative limbs from nonadditive data are reported without clamping.",
+      "example": {
+        "distances": [
+          [
+            0,
+            5,
+            9,
+            9
+          ],
+          [
+            5,
+            0,
+            10,
+            10
+          ],
+          [
+            9,
+            10,
+            0,
+            8
+          ],
+          [
+            9,
+            10,
+            8,
+            0
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "biologia"
+    },
+    {
+      "id": 46,
+      "path": "ciencia/biologia/maxima_parcimonia_fitch.omega",
+      "scope": "Fitch minimum unit-change score for one DNA character on a supplied binary tree; ambiguity sets are supported.",
+      "example": {
+        "tree": [
+          "A",
+          [
+            "C",
+            "A"
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "biologia"
+    },
+    {
+      "id": 47,
+      "path": "ciencia/biologia/modelo_jukes_cantor.omega",
+      "scope": "Homogeneous JC69 correction with a checked saturation/log domain; empirical model applicability is not proved.",
+      "example": {
+        "difference_fraction": "1/10"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "biologia"
+    },
+    {
+      "id": 48,
+      "path": "ciencia/biologia/lotka_volterra_presa_predador.omega",
+      "scope": "Positive bounded rational nonstandard map; reports continuous-integral drift instead of promising closed orbit preservation.",
+      "example": {
+        "prey": 1,
+        "predator": 1,
+        "prey_growth": 1,
+        "predation": 1,
+        "predator_death": 1,
+        "conversion": 1,
+        "step": "1/10",
+        "steps": 2
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "biologia"
+    },
+    {
+      "id": 49,
+      "path": "ciencia/biologia/crescimento_logistico_populacional.omega",
+      "scope": "Rational Beverton-Holt logistic discretisation preserves [0,K]; it is not the exact continuous exponential solution.",
+      "example": {
+        "population": 1,
+        "capacity": 10,
+        "rate": 1,
+        "step": 1,
+        "steps": 2
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "biologia"
+    },
+    {
+      "id": 50,
+      "path": "ciencia/biologia/equilibrio_hardy_weinberg.omega",
+      "scope": "Two-allele random-mating model without selection/migration/mutation; exact genotype sum and allele invariance.",
+      "example": {
+        "allele_frequency": "1/3"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "biologia"
+    },
+    {
+      "id": 51,
+      "path": "ciencia/biologia/potencial_lennard_jones_molecular.omega",
+      "scope": "Exact squared-distance potential and force on a pair; singular coincident positions are rejected.",
+      "example": {
+        "displacement": [
+          1,
+          0,
+          0
+        ],
+        "epsilon": 1,
+        "sigma": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "biologia"
+    },
+    {
+      "id": 52,
+      "path": "ciencia/biologia/angulos_ramachandran_peptideos.omega",
+      "scope": "Supplied empirical angle boxes and optional nonlocal hard-sphere clash tests; not a proof of protein fold viability.",
+      "example": {
+        "phi": -1,
+        "psi": -1,
+        "allowed_regions": [
+          [
+            -2,
+            0,
+            -2,
+            0
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "biologia"
+    },
+    {
+      "id": 53,
+      "path": "ciencia/biologia/cinetica_transporte_membrana.omega",
+      "scope": "Closed two-compartment Fick step with exact total amount and nonnegative-concentration guard.",
+      "example": {
+        "inside_concentration": 2,
+        "outside_concentration": 0,
+        "inside_volume": 1,
+        "outside_volume": 1,
+        "diffusion": 1,
+        "thickness": 1,
+        "area": 1,
+        "step": "1/10"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "biologia"
+    },
+    {
+      "id": 54,
+      "path": "ciencia/matematica/primalidade_miller_rabin_exata.omega",
+      "scope": "Seven-base Miller-Rabin only for unsigned 64-bit integers; not a Lean primality certificate.",
+      "example": {
+        "n": 97
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "matematica"
+    },
+    {
+      "id": 55,
+      "path": "ciencia/matematica/fatoracao_pollard_rho.omega",
+      "scope": "Bounded factor search; unresolved cofactors are explicit, never declared prime.",
+      "example": {
+        "n": 8051
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "matematica"
+    },
+    {
+      "id": 56,
+      "path": "ciencia/matematica/curvas_elipticas_corpos_finitos.omega",
+      "scope": "Nonsingular prime fields, exact group operations; infinity is the empty point.",
+      "example": {
+        "modulus": 97,
+        "a": 2,
+        "b": 3,
+        "point": [
+          3,
+          6
+        ],
+        "scalar": 2
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "matematica"
+    },
+    {
+      "id": 57,
+      "path": "ciencia/matematica/inverso_modular_euclides_estendido.omega",
+      "scope": "Extended Euclid with coprimality/domain checks and exact modular verification.",
+      "example": {
+        "a": 3,
+        "modulus": 11
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "matematica"
+    },
+    {
+      "id": 58,
+      "path": "ciencia/matematica/eliminacao_gauss_jordan_fracionaria.omega",
+      "scope": "RREF with row pivoting, rectangular matrices and explicit rank/pivot columns.",
+      "example": {
+        "matrix": [
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            3,
+            4,
+            11
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "matematica"
+    },
+    {
+      "id": 59,
+      "path": "ciencia/matematica/determinante_algoritmo_bareiss.omega",
+      "scope": "Fraction-free Bareiss with pivoting and a witness for every exact integer division.",
+      "example": {
+        "matrix": [
+          [
+            2,
+            1,
+            3
+          ],
+          [
+            4,
+            1,
+            2
+          ],
+          [
+            1,
+            5,
+            1
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "matematica"
+    },
+    {
+      "id": 60,
+      "path": "ciencia/matematica/ortogonalizacao_gram_schmidt_exata.omega",
+      "scope": "Exact orthogonal unnormalised Q and unit-upper R; irrational unit normalisation is not faked.",
+      "example": {
+        "matrix": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "matematica"
+    },
+    {
+      "id": 61,
+      "path": "ciencia/matematica/autovalores_qr_sem_drift.omega",
+      "scope": "Certified-formula rational enclosures for symmetric 2x2 spectra, not a generic exact QR algorithm.",
+      "example": {
+        "matrix": [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "matematica"
+    },
+    {
+      "id": 62,
+      "path": "ciencia/matematica/integracao_simpson_com_residuo.omega",
+      "scope": "Polynomial Simpson quadrature with an explicit supremum bound on the fourth derivative.",
+      "example": {
+        "coefficients": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "a": 0,
+        "b": 1,
+        "panels": 4
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "matematica"
+    },
+    {
+      "id": 63,
+      "path": "ciencia/matematica/zeros_funcoes_bissecao_rigorosa.omega",
+      "scope": "Polynomial continuity plus exact opposite signs brackets a root; no uniqueness assertion.",
+      "example": {
+        "coefficients": [
+          -2,
+          0,
+          1
+        ],
+        "lower": 1,
+        "upper": 2,
+        "steps": 24
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "matematica"
+    },
+    {
+      "id": 64,
+      "path": "ciencia/matematica/extrapolacao_richardson.omega",
+      "scope": "Central Richardson extrapolation with a safe polynomial fifth-derivative remainder bound.",
+      "example": {
+        "coefficients": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "x": 2,
+        "step": "1/4"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "matematica"
+    },
+    {
+      "id": 65,
+      "path": "ciencia/matematica/envoltoria_convexa_graham_scan.omega",
+      "scope": "Graham scan with exact orientation and independent supporting-halfplane checks; collinear sets are explicit.",
+      "example": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            "1/2",
+            "1/2"
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "matematica"
+    },
+    {
+      "id": 66,
+      "path": "ciencia/matematica/triangulacao_delaunay_incremental.omega",
+      "scope": "Incremental Bowyer-Watson with exact in-circle predicates and deterministic cocircular handling.",
+      "example": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "matematica"
+    },
+    {
+      "id": 67,
+      "path": "ciencia/matematica/diagrama_voronoi_fortunes.omega",
+      "scope": "Exact bounded Voronoi via half-plane clipping; intentionally not an irrational-event Fortune implementation.",
+      "example": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "bounds": [
+          -1,
+          3,
+          -1,
+          1
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "matematica"
+    },
+    {
+      "id": 68,
+      "path": "ciencia/engenharia/equacao_foguete_tsiolkovsky.omega",
+      "scope": "Ideal vacuum rocket equation, interval logarithms and mass-consistent staging; external gravity/drag losses omitted.",
+      "example": {
+        "stages": [
+          [
+            10,
+            5,
+            1000
+          ],
+          [
+            4,
+            2,
+            1000
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "engenharia"
+    },
+    {
+      "id": 69,
+      "path": "ciencia/engenharia/reentrada_atmosferica_perfil.omega",
+      "scope": "Lumped one-step frozen-density reentry and Sutton-Graves-type heating enclosure; no flight safety certification.",
+      "example": {
+        "height": 100,
+        "speed": 10,
+        "mass": 10,
+        "density": "1/100",
+        "drag_coefficient": 1,
+        "area": 1,
+        "gravity": 10,
+        "flight_path_sine": -1,
+        "step": "1/10",
+        "nose_radius": 1,
+        "heating_coefficient": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "engenharia"
+    },
+    {
+      "id": 70,
+      "path": "ciencia/engenharia/atitude_quaternions_espaciais.omega",
+      "scope": "Rational Cayley rotation update preserves unit norm; it approximates, rather than equals, the angular-rate exponential.",
+      "example": {
+        "quaternion": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "angular_velocity": [
+          0,
+          0,
+          1
+        ],
+        "step": "1/10"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "engenharia"
+    },
+    {
+      "id": 71,
+      "path": "ciencia/engenharia/filtro_kalman_racional_discreto.omega",
+      "scope": "Rational Joseph update with exact positive-definite checks and all-principal-minor PSD process-noise validation.",
+      "example": {
+        "transition": [
+          [
+            1
+          ]
+        ],
+        "observation": [
+          [
+            1
+          ]
+        ],
+        "covariance": [
+          [
+            1
+          ]
+        ],
+        "process_noise": [
+          [
+            0
+          ]
+        ],
+        "measurement_noise": [
+          [
+            1
+          ]
+        ],
+        "state": [
+          0
+        ],
+        "measurement": [
+          2
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "engenharia"
+    },
+    {
+      "id": 72,
+      "path": "ciencia/engenharia/cinematica_direta_denavit_hartenberg.omega",
+      "scope": "Exact homogeneous DH transforms parameterised by rational half-angle tangents; angles at the tangent pole need another chart.",
+      "example": {
+        "links": [
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "engenharia"
+    },
+    {
+      "id": 73,
+      "path": "ciencia/engenharia/cinematica_inversa_geometrica.omega",
+      "scope": "Both planar 2R elbow branches and reachability/singularity checks; arbitrary six-axis IK is explicitly unsupported.",
+      "example": {
+        "robot_model": "planar-2R",
+        "x": 2,
+        "y": 0,
+        "length1": 1,
+        "length2": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "engenharia"
+    },
+    {
+      "id": 74,
+      "path": "ciencia/engenharia/planejamento_trajetoria_quintica.omega",
+      "scope": "Exact six-boundary-condition quintic polynomial and position/velocity/acceleration samples.",
+      "example": {
+        "position0": 0,
+        "velocity0": 0,
+        "acceleration0": 0,
+        "position1": 1,
+        "velocity1": 0,
+        "acceleration1": 0,
+        "duration": 1,
+        "time": "1/2"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "engenharia"
+    },
+    {
+      "id": 75,
+      "path": "ciencia/engenharia/fluxo_potencia_newton_raphson.omega",
+      "scope": "Damped Newton for quadratic resistive DC power flow; checks local contraction inequalities, not generic AC convergence.",
+      "example": {
+        "conductance": [
+          [
+            1,
+            -1
+          ],
+          [
+            -1,
+            1
+          ]
+        ],
+        "initial_voltages": [
+          1
+        ],
+        "power_injections": [
+          "-9/100"
+        ],
+        "slack_voltage": 1,
+        "steps": 6,
+        "certificate_radius": "1/100"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "engenharia"
+    },
+    {
+      "id": 76,
+      "path": "ciencia/engenharia/analise_curto_circuito_simetrico.omega",
+      "scope": "Balanced RMS positive-sequence fault calculation; breaker sizing is a model calculation, never a trip action.",
+      "example": {
+        "phase_voltage": [
+          10,
+          0
+        ],
+        "source_impedance": [
+          1,
+          1
+        ],
+        "fault_impedance": [
+          0,
+          0
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "engenharia"
+    },
+    {
+      "id": 77,
+      "path": "ciencia/engenharia/estabilidade_transiente_geradores.omega",
+      "scope": "Single-machine swing model with interval force and energy accounting; no unproved global transient-stability claim.",
+      "example": {
+        "angle": 0,
+        "speed_deviation": 0,
+        "inertia": 1,
+        "damping": 1,
+        "mechanical_power": 0,
+        "maximum_electrical_power": 1,
+        "step": "1/100"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "engenharia"
+    },
+    {
+      "id": 78,
+      "path": "ciencia/engenharia/trelica_metodo_dos_nos.omega",
+      "scope": "Exact force-density nodal solve; irrational member lengths produce axial-force enclosures, singular mechanisms fail.",
+      "example": {
+        "nodes": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "members": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "loads": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            -1
+          ]
+        ],
+        "supports": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "engenharia"
+    },
+    {
+      "id": 79,
+      "path": "ciencia/engenharia/escoamento_tubulacoes_darcy_weisbach.omega",
+      "scope": "Laminar exact friction or enclosed Colebrook root; empirical transitional regime is explicitly rejected.",
+      "example": {
+        "density": 1000,
+        "velocity": 1,
+        "diameter": "1/10",
+        "length": 10,
+        "dynamic_viscosity": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "engenharia"
+    },
+    {
+      "id": 80,
+      "path": "ciencia/engenharia/pressao_hidrostatica_barragens.omega",
+      "scope": "Static vertical-wall hydrostatic load only; seepage, foundation, earthquakes and structural safety are separate models.",
+      "example": {
+        "density": 1000,
+        "gravity": 10,
+        "water_height": 3,
+        "width": 2
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "engenharia"
+    },
+    {
+      "id": 81,
+      "path": "formal/science_axioms/EnergyConservationTheorem.lean",
+      "scope": "Quadratic mass/spring oscillator midpoint invariant and finite composition; not arbitrary Hamiltonian flows.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.quadratic_midpoint_energy",
+        "OmegaScience.energy_trace_constant",
+        "OmegaScience.midpoint_mass_spring_energy"
+      ]
+    },
+    {
+      "id": 82,
+      "path": "formal/science_axioms/SecondLawThermodynamics.lean",
+      "scope": "Entropy production hypothesis and two-reservoir Carnot consequence, not a derivation of the physical Second Law.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.entropy_production_sum",
+        "OmegaScience.carnot_bound"
+      ]
+    },
+    {
+      "id": 83,
+      "path": "formal/science_axioms/SymplecticFormPreservation.lean",
+      "scope": "One-degree-of-freedom quadratic Verlet determinant for nonzero mass and symplectic bilinear form; not exact physical energy.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.verlet_determinant",
+        "OmegaScience.area_form_preserved",
+        "OmegaScience.verlet_mass_spring_determinant"
+      ]
+    },
+    {
+      "id": 84,
+      "path": "formal/science_axioms/LorentzInvariance.lean",
+      "scope": "One spatial direction, c=1, rational representable boosts with explicit gamma normalisation.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.lorentz_interval"
+      ]
+    },
+    {
+      "id": 85,
+      "path": "formal/science_axioms/QuantumUnitarity.lean",
+      "scope": "Exact norm preservation for rational two-level rotations and proved coarse pi bounds.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.rational_rotation_unitary",
+        "OmegaScience.real_pi_enclosed"
+      ]
+    },
+    {
+      "id": 86,
+      "path": "formal/science_axioms/StoichiometricConservation.lean",
+      "scope": "Conserved rows may encode isotope/charge inventories; elemental balance alone does not encode nuclear/electron conservation.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.balanced_extent_conserves"
+      ]
+    },
+    {
+      "id": 87,
+      "path": "formal/science_axioms/GibbsEnergyMinimality.lean",
+      "scope": "Convex quadratic free-energy surrogate only; does not discharge the native ideal-mixture logarithmic minimizer.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.quadratic_free_energy_minimum"
+      ]
+    },
+    {
+      "id": 88,
+      "path": "formal/science_axioms/MassActionLawDerivation.lean",
+      "scope": "Ideal two-species activity/potential equilibrium relation; not a universal chemical constitutive law.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.ideal_two_species_mass_action"
+      ]
+    },
+    {
+      "id": 89,
+      "path": "formal/science_axioms/NeedlemanWunschOptimality.lean",
+      "scope": "Global optimality and attainability of the mathematical linear-gap Needleman-Wunsch recurrence; affine native refinement remains separate.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.needleman_wunsch_optimal"
+      ]
+    },
+    {
+      "id": 90,
+      "path": "formal/science_axioms/DeBruijnEulerianEquivalence.lean",
+      "scope": "Certified nonuniqueness counterexample plus traversal edge count; balanced De Bruijn data do not uniquely recover the original genome.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.distinct_spellings_same_edge_multiset",
+        "OmegaScience.traversal_edge_count"
+      ]
+    },
+    {
+      "id": 91,
+      "path": "formal/science_axioms/HardyWeinbergStability.lean",
+      "scope": "Two-allele random mating algebra, probability normalisation and allele preservation under declared assumptions.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.hardy_weinberg_sum",
+        "OmegaScience.mendelian_allele_invariant",
+        "OmegaScience.hardy_weinberg_nonnegative"
+      ]
+    },
+    {
+      "id": 92,
+      "path": "formal/science_axioms/TaylorErrorBoundTheorem.lean",
+      "scope": "Real exp/log Taylor tail bounds with explicit order/domain/budget hypotheses; reuses the existing analytic kernel.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.exp_remainder_below_epsilon",
+        "OmegaScience.log_ratio_remainder"
+      ]
+    },
+    {
+      "id": 93,
+      "path": "formal/science_axioms/NewtonRaphsonConvergence.lean",
+      "scope": "Quadratic squared-residual identity and safeguarded rational upper iterates; no division by zero or blanket convergence promise.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.sqrt_newton_residual",
+        "OmegaScience.sqrt_newton_enclosure"
+      ]
+    },
+    {
+      "id": 94,
+      "path": "formal/science_axioms/BareissDivisionFreeTheorem.lean",
+      "scope": "3x3 Sylvester exact-division identity; general Bareiss loop is runtime-checked, not formally refined here.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.bareiss_sylvester_identity",
+        "OmegaScience.bareiss_three_by_three_divisible"
+      ]
+    },
+    {
+      "id": 95,
+      "path": "formal/science_axioms/GrahamScanConvexity.lean",
+      "scope": "Convexity of the exact supporting-halfplane certificate region; no unproved end-to-end native Graham refinement.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.supporting_halfplanes_convex"
+      ]
+    },
+    {
+      "id": 96,
+      "path": "formal/science_axioms/LyapunovAsymptoticStability.lean",
+      "scope": "Scalar discrete linear asymptotic stability with |gain|<1; not arbitrary nonlinear-controller Lyapunov synthesis.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.scalar_lyapunov_decrease",
+        "OmegaScience.scalar_asymptotic_stability"
+      ]
+    },
+    {
+      "id": 97,
+      "path": "formal/science_axioms/KalmanCovariancePositiveDefinite.lean",
+      "scope": "Strict positive scalar prior/noise guarantee posterior positivity; zero noise is an explicit counterexample to unconditional strictness.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.scalar_kalman_covariance_positive",
+        "OmegaScience.zero_noise_can_destroy_strictness"
+      ]
+    },
+    {
+      "id": 98,
+      "path": "formal/science_axioms/NyquistStabilityCriterion.lean",
+      "scope": "First-order negative-feedback pole/Nyquist half-plane special case; not the general argument-principle criterion.",
+      "kind": "formal",
+      "theorems": [
+        "OmegaScience.first_order_closed_pole_stable",
+        "OmegaScience.first_order_nyquist_right_halfplane"
+      ]
+    },
+    {
+      "id": 99,
+      "path": "agentes_cientificos/gerador_hipoteses_fisicas.omega",
+      "scope": "Exact bounded polynomial hypothesis fitting with held-out residuals; empirical fit is not a physical law.",
+      "example": {
+        "observations": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        "degree": 1,
+        "held_out": [
+          [
+            3,
+            7
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "agentes"
+    },
+    {
+      "id": 100,
+      "path": "agentes_cientificos/planejador_experimentos_quimicos.omega",
+      "scope": "Finite cost/toxicity route planning over supplied conserved inventories; conservation alone does not establish chemical viability.",
+      "example": {
+        "vertices": 3,
+        "start": 0,
+        "goal": 2,
+        "reactions": [
+          {
+            "from": 0,
+            "to": 1,
+            "cost": 1,
+            "toxicity": 0,
+            "conserved_before": [
+              2,
+              1
+            ],
+            "conserved_after": [
+              2,
+              1
+            ]
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "cost": 2,
+            "toxicity": 0,
+            "conserved_before": [
+              2,
+              1
+            ],
+            "conserved_after": [
+              2,
+              1
+            ]
+          }
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "agentes"
+    },
+    {
+      "id": 101,
+      "path": "agentes_cientificos/rastreador_literatura_formal.omega",
+      "scope": "Controlled CLAIM extraction with exact provenance; arbitrary papers and citations stay unverified data, never new axioms.",
+      "example": {
+        "source": "doi:10.0000/example-not-verified",
+        "text": "Example\nCLAIM equality 1/2 2/4\nCLAIM energy is conserved"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "agentes"
+    },
+    {
+      "id": 102,
+      "path": "agentes_cientificos/motor_simulacao_multidisciplinar.omega",
+      "scope": "A declared closed oscillator/two-reservoir/isomer model with exact discrete total-energy and amount checks.",
+      "example": {
+        "position": 1,
+        "momentum": 0,
+        "mass": 1,
+        "spring": 1,
+        "temperature1": 10,
+        "temperature2": 5,
+        "heat_capacity1": 1,
+        "heat_capacity2": 1,
+        "amount_A": 1,
+        "amount_B": 0,
+        "reaction_enthalpy": 1,
+        "step": "1/10",
+        "friction": 1,
+        "heat_exchange": 1,
+        "forward_rate": 1,
+        "reverse_rate": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "agentes"
+    },
+    {
+      "id": 103,
+      "path": "agentes_cientificos/validador_dimensional_unidades.omega",
+      "scope": "SI dimension graph with exact unit scales; additions require equal dimension vectors, multiplicative units only.",
+      "example": {
+        "nodes": [
+          {
+            "operation": "value",
+            "unit": "m",
+            "value": 1
+          }
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "agentes"
+    },
+    {
+      "id": 104,
+      "path": "agentes_cientificos/despachante_provas_lean.omega",
+      "scope": "Renders bounded closed rational obligations only; the CPU supervisor actually compiles Lean and audits dependencies.",
+      "example": {
+        "witnesses": [
+          {
+            "left": [
+              "1/2",
+              "1/2"
+            ],
+            "right": [
+              1
+            ]
+          },
+          {
+            "nonnegative": 2
+          }
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "agentes"
+    },
+    {
+      "id": 105,
+      "path": "agentes_cientificos/agente_popper_falseador.omega",
+      "scope": "Produces exact counterexamples on a declared finite grid; failure to find one is not a universal proof.",
+      "example": {
+        "coefficients": [
+          -1,
+          0,
+          1
+        ],
+        "claim": "nonnegative",
+        "grid": [
+          -2,
+          -1,
+          0,
+          1,
+          2
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "agentes"
+    },
+    {
+      "id": 106,
+      "path": "agentes_cientificos/caçador_instabilidades_numericas.omega",
+      "scope": "Exact zero witnesses and conservative interval denominator checks; no division is attempted at singular states.",
+      "example": {
+        "denominator": [
+          0,
+          1
+        ],
+        "grid": [
+          -1,
+          0,
+          1
+        ],
+        "interval": [
+          -1,
+          1
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "agentes"
+    },
+    {
+      "id": 107,
+      "path": "agentes_cientificos/injetor_ruido_sensores.omega",
+      "scope": "Deterministic finite-grid Gaussian-weight approximation; not a continuous exact Gaussian generator or cryptographic PRNG.",
+      "example": {
+        "sigma": 1,
+        "radius": 2,
+        "samples": 4,
+        "seed": 7
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "agentes"
+    },
+    {
+      "id": 108,
+      "path": "agentes_cientificos/emissor_artigo_executavel.omega",
+      "scope": "Self-contained hash-addressed article/source/binary-hex/proof container; hashing does not authenticate or prove the artifacts.",
+      "example": {
+        "article": "Example",
+        "omega_source": "funcao principal(){retornar 0;}",
+        "c_source": "int main(void){return 0;}",
+        "binary_hex": "00",
+        "lean_source": "example : (1:Nat)=1 := rfl",
+        "verification_record": "unverified"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "agentes"
+    },
+    {
+      "id": 109,
+      "path": "agentes_cientificos/gerador_graficos_vetoriais_svg.omega",
+      "scope": "Deterministic SVG polyline with exact raw-data hash and explicit 1e-6 display quantisation; no false exact decimal rendering.",
+      "example": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            "1/3"
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "title": "Exact <data>"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "agentes"
+    },
+    {
+      "id": 110,
+      "path": "agentes_cientificos/registro_descoberta_blockchain.omega",
+      "scope": "Prepares real digest anchor payloads; no transaction is broadcast, fee spent, or fabricated inclusion/timestamp accepted.",
+      "example": {
+        "artifact_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "agentes"
+    },
+    {
+      "id": 111,
+      "path": "std/math/tensor_calculus.omega",
+      "scope": "Pointwise tensor contractions and Christoffel symbols; curvature requires caller-supplied consistent connection derivatives.",
+      "example": {
+        "metric": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "metric_derivative": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "infraestrutura"
+    },
+    {
+      "id": 112,
+      "path": "std/math/complex_rational.omega",
+      "scope": "Field arithmetic over Q(i), exact squared norm and zero-denominator rejection.",
+      "example": {
+        "operation": "multiply",
+        "left": [
+          1,
+          1
+        ],
+        "right": [
+          1,
+          -1
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "infraestrutura"
+    },
+    {
+      "id": 113,
+      "path": "std/io/csv_dataset_parser.omega",
+      "scope": "Bounded quoted CSV with escaped quotes/newlines and optional exact scalar conversion; byte delimiter semantics.",
+      "example": {
+        "text": "x,y\n1,2\n3,4\n",
+        "header": 1,
+        "numeric": 1
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "infraestrutura"
+    },
+    {
+      "id": 114,
+      "path": "std/collections/spatial_kdtree.omega",
+      "scope": "Balanced median-split KD-tree and exact squared-distance pruning; bounded static point sets, deterministic ties.",
+      "example": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "query": [
+          "9/10",
+          1
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "infraestrutura"
+    },
+    {
+      "id": 115,
+      "path": "runtime/quantum_gate_emulator.omega",
+      "scope": "Sparse exact Q(i) gates up to 32 address bits with active-amplitude quota; H/T and dense 2^32 storage are not falsely supported.",
+      "example": {
+        "qubits": 32,
+        "state": [
+          [
+            0,
+            [
+              1,
+              0
+            ]
+          ]
+        ],
+        "gates": [
+          {
+            "operation": "X",
+            "target": 31
+          }
+        ]
+      },
+      "entry": "execute",
+      "kind": "native",
+      "group": "infraestrutura"
+    }
+  ]
+}

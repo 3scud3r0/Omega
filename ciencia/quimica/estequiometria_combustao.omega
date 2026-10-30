@@ -1,0 +1,28 @@
+modulo science_25;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Atom-balanced complete or prescribed partial CO combustion; ignition and thermodynamic viability are not inferred.
+funcao execute(r)  {
+  var carbon=u::count(r,"carbon",1,1000);
+  var hydrogen=u::count(r,"hydrogen",0,2000);
+  var oxygen=u::integer(u::num(r,"oxygen",0),0,2000);
+  var fraction=u::num(r,"carbon_monoxide_fraction",0);
+  se(fraction<0||fraction>1)  {
+    fail("CO fraction in [0,1]");
+  }
+  var co=carbon*fraction;
+  var co2=carbon-co;
+  var water=hydrogen/2;
+  var oxidizer=(2*co2+co+water-oxygen)/2;
+  u::nonnegative(oxidizer);
+  var out=u::result("CxHyOz-atom-balance",[1,oxidizer,co2,co,water]);
+  put(out,"species",["fuel","O2","CO2","CO","H2O"]);
+  put(out,"nitrogen_from_dry_air",oxidizer*79/21);
+  se(co+co2!=carbon||2*water!=hydrogen||2*oxidizer+oxygen!=2*co2+co+water)  {
+    fail("Combustion atom balance");
+  }
+  retornar out;
+}

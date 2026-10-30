@@ -1,0 +1,35 @@
+modulo science_4;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+importar "../core/intervalos.omega" como iv;
+exportar execute;
+# Interval CR3BP vector field, Jacobi value and L4 enclosure; not a certified long-time orbit integrator.
+funcao execute(r)  {
+  var mu=u::q(r,"mass_ratio");
+  se(mu<=0||mu>=1)  {
+    fail("Mass ratio in (0,1)");
+  }
+  var x=u::q(r,"x");
+  var y=u::q(r,"y");
+  var vx=u::q(r,"vx");
+  var vy=u::q(r,"vy");
+  var bits=u::integer(u::num(r,"bits",16),8,64);
+  var d1=(x+mu)*(x+mu)+y*y;
+  var d2=(x-1+mu)*(x-1+mu)+y*y;
+  u::positive(d1);
+  u::positive(d2);
+  var r1=m::sqrt_interval(d1,bits);
+  var r2=m::sqrt_interval(d2,bits);
+  var c1=iv::scale(r1,d1);
+  var c2=iv::scale(r2,d2);
+  var ax=iv::sub(iv::sub([x+2*vy,x+2*vy],iv::div([(1-mu)*(x+mu),(1-mu)*(x+mu)],c1)),iv::div([mu*(x-1+mu),mu*(x-1+mu)],c2));
+  var ay=iv::sub(iv::sub([y-2*vx,y-2*vx],iv::div([(1-mu)*y,(1-mu)*y],c1)),iv::div([mu*y,mu*y],c2));
+  var jacobi=iv::sub(iv::add([x*x+y*y,x*x+y*y],iv::add(iv::div([2*(1-mu),2*(1-mu)],r1),iv::div([2*mu,2*mu],r2))),[vx*vx+vy*vy,vx*vx+vy*vy]);
+  var out=u::result("circular-restricted-three-body-field",[ax,ay]);
+  put(out,"jacobi_interval",jacobi);
+  put(out,"lagrange_L4_x",1/2-mu);
+  put(out,"lagrange_L4_y",iv::scale(m::sqrt_interval(3,bits),1/2));
+  retornar out;
+}

@@ -1,0 +1,146 @@
+modulo science_39;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Global affine-gap dynamic programming and deterministic traceback; byte sequences up to 128 bytes.
+funcao table(n,k,value)  {
+  var a=[];
+  var i=0;
+  enquanto(i<n)  {
+    var row=[];
+    var j=0;
+    enquanto(j<k)  {
+      push(row,value);
+      j=j+1;
+    }
+    push(a,row);
+    i=i+1;
+  }
+  retornar a;
+}
+funcao max3(a,b,c)  {
+  retornar m::max(a,m::max(b,c));
+}
+funcao reverse(xs)  {
+  var out=[];
+  var i=len(xs);
+  enquanto(i>0)  {
+    i=i-1;
+    push(out,xs[i]);
+  }
+  retornar join(out,"");
+}
+funcao execute(r)  {
+  var a=u::text_field(r,"sequence1",128);
+  var b=u::text_field(r,"sequence2",128);
+  var match=u::q(r,"match");
+  var mismatch=u::q(r,"mismatch");
+  var open=u::positive(u::q(r,"gap_open"));
+  var extend=u::positive(u::q(r,"gap_extend"));
+  var n=len(a);
+  var k=len(b);
+  var low=-(n+k+2)*(m::abs(match)+m::abs(mismatch)+open+extend+1);
+  var mm=table(n+1,k+1,low);
+  var xx=table(n+1,k+1,low);
+  var yy=table(n+1,k+1,low);
+  put(mm[0],0,0);
+  var i=1;
+  enquanto(i<=n)  {
+    put(xx[i],0,-open-(i-1)*extend);
+    i=i+1;
+  }
+  var j=1;
+  enquanto(j<=k)  {
+    put(yy[0],j,-open-(j-1)*extend);
+    j=j+1;
+  }
+  i=1;
+  enquanto(i<=n)  {
+    j=1;
+    enquanto(j<=k)  {
+      var score=mismatch;
+      se(a[i-1]==b[j-1])  {
+        score=match;
+      }
+      put(mm[i],j,max3(mm[i-1][j-1],xx[i-1][j-1],yy[i-1][j-1])+score);
+      put(xx[i],j,max3(mm[i-1][j]-open,xx[i-1][j]-extend,yy[i-1][j]-open));
+      put(yy[i],j,max3(mm[i][j-1]-open,xx[i][j-1]-open,yy[i][j-1]-extend));
+      j=j+1;
+    }
+    i=i+1;
+  }
+  var best=max3(mm[n][k],xx[n][k],yy[n][k]);
+  var state=0;
+  se(best!=mm[n][k])  {
+    state=1;
+    se(best!=xx[n][k])  {
+      state=2;
+    }
+  }
+  var left=[];
+  var right=[];
+  i=n;
+  j=k;
+  enquanto(i>0||j>0)  {
+    se(state==0)  {
+      se(i==0||j==0)  {
+        fail("Alignment traceback state");
+      }
+      push(left,a[i-1]);
+      push(right,b[j-1]);
+      var prev=max3(mm[i-1][j-1],xx[i-1][j-1],yy[i-1][j-1]);
+      state=0;
+      se(prev!=mm[i-1][j-1])  {
+        state=1;
+        se(prev!=xx[i-1][j-1])  {
+          state=2;
+        }
+      }
+      i=i-1;
+      j=j-1;
+    }
+    senao  {
+      se(state==1)  {
+        se(i==0)  {
+          fail("Alignment gap traceback");
+        }
+        push(left,a[i-1]);
+        push(right,"-");
+        var value=xx[i][j];
+        se(value==xx[i-1][j]-extend)  {
+          state=1;
+        }
+        senao  {
+          state=0;
+          se(value!=mm[i-1][j]-open)  {
+            state=2;
+          }
+        }
+        i=i-1;
+      }
+      senao  {
+        se(j==0)  {
+          fail("Alignment gap traceback");
+        }
+        push(left,"-");
+        push(right,b[j-1]);
+        var value=yy[i][j];
+        se(value==yy[i][j-1]-extend)  {
+          state=2;
+        }
+        senao  {
+          state=0;
+          se(value!=mm[i][j-1]-open)  {
+            state=1;
+          }
+        }
+        j=j-1;
+      }
+    }
+  }
+  var out=u::result("global-affine-gap-alignment",best);
+  put(out,"alignment",[reverse(left),reverse(right)]);
+  retornar out;
+}

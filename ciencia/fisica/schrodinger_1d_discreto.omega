@@ -1,0 +1,45 @@
+modulo science_16;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Finite real symmetric Hamiltonian with Gershgorin bounds; two sites also get individual root enclosures.
+funcao execute(r)  {
+  var potential=u::vector(r["potential"]);
+  var n=len(potential);
+  u::integer(n,2,16);
+  var hbar=u::positive(u::q(r,"hbar"));
+  var mass=u::positive(u::q(r,"mass"));
+  var dx=u::positive(u::q(r,"spacing"));
+  var t=hbar*hbar/(2*mass*dx*dx);
+  var h=[];
+  var lower=2*t+potential[0]-t;
+  var upper=2*t+potential[0]+t;
+  var i=0;
+  enquanto(i<n)  {
+    var row=u::zeros(n);
+    put(row,i,2*t+potential[i]);
+    var radius=0;
+    se(i>0)  {
+      put(row,i-1,-t);
+      radius=radius+t;
+    }
+    se(i<n-1)  {
+      put(row,i+1,-t);
+      radius=radius+t;
+    }
+    lower=m::min(lower,2*t+potential[i]-radius);
+    upper=m::max(upper,2*t+potential[i]+radius);
+    push(h,row);
+    i=i+1;
+  }
+  var out=u::result("Dirichlet-finite-difference-Hamiltonian",h);
+  put(out,"all_eigenvalues_enclosed_by",[lower,upper]);
+  se(n==2)  {
+    var root=m::sqrt_interval((h[0][0]-h[1][1])*(h[0][0]-h[1][1])+4*t*t,24);
+    var tr=h[0][0]+h[1][1];
+    put(out,"eigenvalues",[[(tr-root[1])/2,(tr-root[0])/2],[(tr+root[0])/2,(tr+root[1])/2]]);
+  }
+  retornar out;
+}

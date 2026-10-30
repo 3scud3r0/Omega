@@ -1,0 +1,31 @@
+modulo science_49;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Rational Beverton-Holt logistic discretisation preserves [0,K]; it is not the exact continuous exponential solution.
+funcao execute(r)  {
+  var x=u::nonnegative(u::q(r,"population"));
+  var k=u::positive(u::q(r,"capacity"));
+  se(x>k)  {
+    fail("Population must initially lie in [0,K]");
+  }
+  var rate=u::nonnegative(u::q(r,"rate"));
+  var h=u::positive(u::q(r,"step"));
+  var count=u::count(r,"steps",1,64);
+  var growth=1+h*rate;
+  var trace=[x];
+  var i=0;
+  enquanto(i<count)  {
+    x=u::check(k*growth*x/(k+(growth-1)*x));
+    se(x<0||x>k)  {
+      fail("Logistic invariant violated");
+    }
+    push(trace,x);
+    i=i+1;
+  }
+  var out=u::result("Beverton-Holt-discrete-logistic",x);
+  put(out,"trace",trace);
+  retornar out;
+}

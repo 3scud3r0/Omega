@@ -1,0 +1,33 @@
+modulo science_72;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Exact homogeneous DH transforms parameterised by rational half-angle tangents; angles at the tangent pole need another chart.
+funcao execute(r)  {
+  var links=u::mat(r["links"]);
+  se(len(links)>16||len(links[0])!=4)  {
+    fail("DH rows [tan(theta/2),d,a,tan(alpha/2)]");
+  }
+  var transform=u::eye(4);
+  var trace=[];
+  var i=0;
+  enquanto(i<len(links))  {
+    var t=links[i][0];
+    var d=links[i][1];
+    var a=links[i][2];
+    var v=links[i][3];
+    var ct=(1-t*t)/(1+t*t);
+    var st=2*t/(1+t*t);
+    var ca=(1-v*v)/(1+v*v);
+    var sa=2*v/(1+v*v);
+    var h=[[ct,-st*ca,st*sa,a*ct],[st,ct*ca,-ct*sa,a*st],[0,sa,ca,d],[0,0,0,1]];
+    transform=u::mul(transform,h);
+    push(trace,transform);
+    i=i+1;
+  }
+  var out=u::result("DH-rational-half-angle-forward-kinematics",transform);
+  put(out,"trace",trace);
+  retornar out;
+}

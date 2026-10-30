@@ -8,7 +8,7 @@ inductive Expr : Ty → Type where
  | le (a b : Expr .rational) : Expr .proposition
  | conj (a b : Expr .proposition) : Expr .proposition
  | divide (a : Expr .rational) (denominator : {q : ℚ // q ≠ 0}) : Expr .rational
-def Value : Ty → Type | .rational => ℚ | .proposition => Prop
+abbrev Value : Ty → Type | .rational => ℚ | .proposition => Prop
 def eval : {t : Ty} → Expr t → Value t
  | _, .rational q => q
  | _, .add a b => eval a + eval b

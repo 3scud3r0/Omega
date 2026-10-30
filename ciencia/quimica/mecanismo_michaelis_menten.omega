@@ -1,0 +1,20 @@
+modulo science_31;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Steady-state enzyme constitutive law with exact monotonic derivative and saturation check.
+funcao execute(r)  {
+  var s=u::nonnegative(u::q(r,"substrate"));
+  var km=u::positive(u::q(r,"Km"));
+  var vmax=u::positive(u::q(r,"Vmax"));
+  var velocity=vmax*s/(km+s);
+  var out=u::result("steady-state-Michaelis-Menten",velocity);
+  put(out,"d_rate_d_substrate",vmax*km/((km+s)*(km+s)));
+  put(out,"upper_bound",vmax);
+  se(velocity<0||velocity>vmax)  {
+    fail("Enzyme saturation invariant");
+  }
+  retornar out;
+}

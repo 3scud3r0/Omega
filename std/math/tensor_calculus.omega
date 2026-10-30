@@ -1,0 +1,130 @@
+modulo science_111;
+importar "../../ciencia/core/exato.omega" como u;
+importar "../math.omega" como m;
+importar "../string.omega" como s;
+importar "linalg_exact.omega" como la;
+exportar execute;
+# Pointwise tensor contractions and Christoffel symbols; curvature requires caller-supplied consistent connection derivatives.
+funcao tensor(n,rank)  {
+  se(rank==0)  {
+    retornar 0;
+  }
+  var out=[];
+  var i=0;
+  enquanto(i<n)  {
+    push(out,tensor(n,rank-1));
+    i=i+1;
+  }
+  retornar out;
+}
+funcao check_tensor(raw,n,rank)  {
+  se(rank==0)  {
+    retornar u::val(raw);
+  }
+  se(!islist(raw)||len(raw)!=n)  {
+    fail("Tensor dimension mismatch");
+  }
+  var out=[];
+  var i=0;
+  enquanto(i<n)  {
+    push(out,check_tensor(raw[i],n,rank-1));
+    i=i+1;
+  }
+  retornar out;
+}
+funcao execute(r)  {
+  var metric=u::mat(r["metric"]);
+  var n=len(metric);
+  se(n>4||n!=len(metric[0]))  {
+    fail("Metric dimension 1..4");
+  }
+  var derivative=check_tensor(r["metric_derivative"],n,3);
+  var inverse=[];
+  var i=0;
+  enquanto(i<n)  {
+    var e=u::zeros(n);
+    put(e,i,1);
+    push(inverse,u::solve(metric,e));
+    var j=0;
+    enquanto(j<n)  {
+      se(metric[i][j]!=metric[j][i])  {
+        fail("Symmetric metric required");
+      }
+      j=j+1;
+    }
+    i=i+1;
+  }
+  inverse=u::transpose(inverse);
+  var gamma=tensor(n,3);
+  i=0;
+  enquanto(i<n)  {
+    var j=0;
+    enquanto(j<n)  {
+      var k=0;
+      enquanto(k<n)  {
+        var sum=0;
+        var l=0;
+        enquanto(l<n)  {
+          sum=sum+inverse[i][l]*(derivative[j][l][k]+derivative[k][l][j]-derivative[l][j][k])/2;
+          l=l+1;
+        }
+        put(gamma[i][j],k,sum);
+        k=k+1;
+      }
+      j=j+1;
+    }
+    i=i+1;
+  }
+  var out=u::result("pointwise-Levi-Civita-connection",gamma);
+  put(out,"inverse_metric",inverse);
+  se(has(r,"connection_derivative"))  {
+    var dg=check_tensor(r["connection_derivative"],n,4);
+    var curvature=tensor(n,4);
+    i=0;
+    enquanto(i<n)  {
+      var j=0;
+      enquanto(j<n)  {
+        var k=0;
+        enquanto(k<n)  {
+          var l=0;
+          enquanto(l<n)  {
+            var value=dg[k][i][l][j]-dg[l][i][k][j];
+            var p=0;
+            enquanto(p<n)  {
+              value=value+gamma[i][k][p]*gamma[p][l][j]-gamma[i][l][p]*gamma[p][k][j];
+              p=p+1;
+            }
+            put(curvature[i][j][k],l,value);
+            l=l+1;
+          }
+          k=k+1;
+        }
+        j=j+1;
+      }
+      i=i+1;
+    }
+    var ricci=tensor(n,2);
+    var scalar=0;
+    var j=0;
+    enquanto(j<n)  {
+      var l=0;
+      enquanto(l<n)  {
+        var sum=0;
+        i=0;
+        enquanto(i<n)  {
+          sum=sum+curvature[i][j][i][l];
+          i=i+1;
+        }
+        put(ricci[j],l,sum);
+        scalar=scalar+inverse[j][l]*sum;
+        l=l+1;
+      }
+      j=j+1;
+    }
+    put(out,"Riemann",curvature);
+    put(out,"Ricci",ricci);
+    put(out,"scalar_curvature",scalar);
+    put(out,"connection_derivatives_supplied_by_caller",1);
+  }
+  retornar out;
+}
