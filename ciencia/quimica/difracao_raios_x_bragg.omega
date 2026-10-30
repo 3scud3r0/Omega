@@ -5,6 +5,36 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Exact Bragg sine, forbidden-reflection detection, and conservative rational half-angle/atan enclosures.
-
-funcao atan_bound(x){var term=x;var sum=0;var i=0;enquanto(i<32){var sign=1;se(i%2==1){sign=-1;}sum=sum+sign*term/(2*i+1);term=term*x*x;i=i+1;}var error=term/65;retornar [sum-error,sum+error];}
-funcao execute(r){var n=u::count(r,"order",1,1000);var wavelength=u::positive(u::q(r,"wavelength"));var spacing=u::positive(u::q(r,"spacing"));var sine=n*wavelength/(2*spacing);var out=u::result("Bragg-constructive-interference",sine);put(out,"allowed",sine<=1);se(sine<=1){var cosine=m::sqrt_interval(1-sine*sine,24);var t=[sine/(1+cosine[1]),sine/(1+cosine[0])];var lo=atan_bound(t[0]);var hi=atan_bound(t[1]);put(out,"angle_radians",[2*lo[0],2*hi[1]]);put(out,"cosine",cosine);}retornar out;}
+funcao atan_bound(x)  {
+  var term=x;
+  var sum=0;
+  var i=0;
+  enquanto(i<32)  {
+    var sign=1;
+    se(i%2==1)  {
+      sign=-1;
+    }
+    sum=sum+sign*term/(2*i+1);
+    term=term*x*x;
+    i=i+1;
+  }
+  var error=term/65;
+  retornar [sum-error,sum+error];
+}
+funcao execute(r)  {
+  var n=u::count(r,"order",1,1000);
+  var wavelength=u::positive(u::q(r,"wavelength"));
+  var spacing=u::positive(u::q(r,"spacing"));
+  var sine=n*wavelength/(2*spacing);
+  var out=u::result("Bragg-constructive-interference",sine);
+  put(out,"allowed",sine<=1);
+  se(sine<=1)  {
+    var cosine=m::sqrt_interval(1-sine*sine,24);
+    var t=[sine/(1+cosine[1]),sine/(1+cosine[0])];
+    var lo=atan_bound(t[0]);
+    var hi=atan_bound(t[1]);
+    put(out,"angle_radians",[2*lo[0],2*hi[1]]);
+    put(out,"cosine",cosine);
+  }
+  retornar out;
+}

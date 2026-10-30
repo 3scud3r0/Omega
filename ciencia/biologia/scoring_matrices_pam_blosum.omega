@@ -6,5 +6,47 @@ importar "../../std/math/linalg_exact.omega" como la;
 importar "../core/intervalos.omega" como iv;
 exportar execute;
 # Derives bounded log-odds from supplied counts and pseudocounts; does not invent published PAM/BLOSUM datasets.
-
-funcao execute(r){var counts=u::mat(r["counts"]);var n=len(counts);se(n!=len(counts[0])||n>20){fail("Square substitution count matrix up to 20");}var pseudo=u::positive(u::num(r,"pseudocount",1));var row=u::zeros(n);var col=u::zeros(n);var total=0;var i=0;enquanto(i<n){var j=0;enquanto(j<n){u::nonnegative(counts[i][j]);var value=counts[i][j]+pseudo;put(counts[i],j,value);put(row,i,row[i]+value);put(col,j,col[j]+value);total=total+value;j=j+1;}i=i+1;}var scale=u::positive(u::num(r,"scale",2));var ln2=m::log_interval(2,16);var scores=[];i=0;enquanto(i<n){var line=[];var j=0;enquanto(j<n){var ratio=counts[i][j]*total/(row[i]*col[j]);var logarithm=m::log_interval(ratio,16);push(line,iv::scale(iv::div(logarithm,ln2),scale));j=j+1;}push(scores,line);i=i+1;}var out=u::result("count-derived-log-odds-substitution-enclosures",scores);put(out,"published_PAM_BLOSUM_parameters",0);retornar out;}
+funcao execute(r)  {
+  var counts=u::mat(r["counts"]);
+  var n=len(counts);
+  se(n!=len(counts[0])||n>20)  {
+    fail("Square substitution count matrix up to 20");
+  }
+  var pseudo=u::positive(u::num(r,"pseudocount",1));
+  var row=u::zeros(n);
+  var col=u::zeros(n);
+  var total=0;
+  var i=0;
+  enquanto(i<n)  {
+    var j=0;
+    enquanto(j<n)  {
+      u::nonnegative(counts[i][j]);
+      var value=counts[i][j]+pseudo;
+      put(counts[i],j,value);
+      put(row,i,row[i]+value);
+      put(col,j,col[j]+value);
+      total=total+value;
+      j=j+1;
+    }
+    i=i+1;
+  }
+  var scale=u::positive(u::num(r,"scale",2));
+  var ln2=m::log_interval(2,16);
+  var scores=[];
+  i=0;
+  enquanto(i<n)  {
+    var line=[];
+    var j=0;
+    enquanto(j<n)  {
+      var ratio=counts[i][j]*total/(row[i]*col[j]);
+      var logarithm=m::log_interval(ratio,16);
+      push(line,iv::scale(iv::div(logarithm,ln2),scale));
+      j=j+1;
+    }
+    push(scores,line);
+    i=i+1;
+  }
+  var out=u::result("count-derived-log-odds-substitution-enclosures",scores);
+  put(out,"published_PAM_BLOSUM_parameters",0);
+  retornar out;
+}

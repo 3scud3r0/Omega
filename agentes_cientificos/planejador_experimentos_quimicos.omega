@@ -5,5 +5,94 @@ importar "../std/string.omega" como s;
 importar "../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Finite cost/toxicity route planning over supplied conserved inventories; conservation alone does not establish chemical viability.
-
-funcao execute(r){var n=u::count(r,"vertices",1,32);var start=u::count(r,"start",0,n-1);var goal=u::count(r,"goal",0,n-1);var edges=s::as_list(r["reactions"]);u::budget(len(edges),256);var weight=u::nonnegative(u::num(r,"toxicity_weight",1));var i=0;enquanto(i<len(edges)){var e=edges[i];u::count(e,"from",0,n-1);u::count(e,"to",0,n-1);u::nonnegative(u::q(e,"cost"));u::nonnegative(u::q(e,"toxicity"));var left=u::vector(e["conserved_before"]);var right=u::vector(e["conserved_after"]);se(len(left)==0||s::canonical(left)!=s::canonical(right)){fail("Reaction edge lacks matching supplied conserved quantities");}i=i+1;}var distances=u::zeros(n);var known=u::zeros(n);var visited=u::zeros(n);var previous=u::scale(u::zeros(n),0);i=0;enquanto(i<n){put(previous,i,-1);i=i+1;}put(known,start,1);var step=0;enquanto(step<n){var best=-1;i=0;enquanto(i<n){se(known[i]&&!visited[i]&&(best<0||distances[i]<distances[best])){best=i;}i=i+1;}se(best<0){parar;}put(visited,best,1);i=0;enquanto(i<len(edges)){var e=edges[i];se(e["from"]==best&&!visited[e["to"]]){var d=distances[best]+u::q(e,"cost")+weight*u::q(e,"toxicity");var target=e["to"];se(!known[target]||d<distances[target]){put(distances,target,d);put(known,target,1);put(previous,target,i);}}i=i+1;}step=step+1;}var route=[];var found=known[goal];se(found){var cursor=goal;var count=0;enquanto(cursor!=start){var edge=previous[cursor];se(edge<0||count>=n){fail("Route predecessor invariant");}push(route,edge);cursor=edges[edge]["from"];count=count+1;}var ordered=[];i=len(route);enquanto(i>0){i=i-1;push(ordered,route[i]);}route=ordered;}var out=u::result("nonnegative-cost-chemical-route-Dijkstra",route);put(out,"found",found);se(found){put(out,"objective_cost",distances[goal]);}put(out,"physical_synthesizability_proved",0);retornar out;}
+funcao execute(r)  {
+  var n=u::count(r,"vertices",1,32);
+  var start=u::count(r,"start",0,n-1);
+  var goal=u::count(r,"goal",0,n-1);
+  var edges=s::as_list(r["reactions"]);
+  u::budget(len(edges),256);
+  var weight=u::nonnegative(u::num(r,"toxicity_weight",1));
+  var i=0;
+  enquanto(i<len(edges))  {
+    var e=edges[i];
+    u::count(e,"from",0,n-1);
+    u::count(e,"to",0,n-1);
+    u::nonnegative(u::q(e,"cost"));
+    u::nonnegative(u::q(e,"toxicity"));
+    var left=u::vector(e["conserved_before"]);
+    var right=u::vector(e["conserved_after"]);
+    se(len(left)==0||s::canonical(left)!=s::canonical(right))  {
+      fail("Reaction edge lacks matching supplied conserved quantities");
+    }
+    i=i+1;
+  }
+  var distances=u::zeros(n);
+  var known=u::zeros(n);
+  var visited=u::zeros(n);
+  var previous=u::scale(u::zeros(n),0);
+  i=0;
+  enquanto(i<n)  {
+    put(previous,i,-1);
+    i=i+1;
+  }
+  put(known,start,1);
+  var step=0;
+  enquanto(step<n)  {
+    var best=-1;
+    i=0;
+    enquanto(i<n)  {
+      se(known[i]&&!visited[i]&&(best<0||distances[i]<distances[best]))  {
+        best=i;
+      }
+      i=i+1;
+    }
+    se(best<0)  {
+      parar;
+    }
+    put(visited,best,1);
+    i=0;
+    enquanto(i<len(edges))  {
+      var e=edges[i];
+      se(e["from"]==best&&!visited[e["to"]])  {
+        var d=distances[best]+u::q(e,"cost")+weight*u::q(e,"toxicity");
+        var target=e["to"];
+        se(!known[target]||d<distances[target])  {
+          put(distances,target,d);
+          put(known,target,1);
+          put(previous,target,i);
+        }
+      }
+      i=i+1;
+    }
+    step=step+1;
+  }
+  var route=[];
+  var found=known[goal];
+  se(found)  {
+    var cursor=goal;
+    var count=0;
+    enquanto(cursor!=start)  {
+      var edge=previous[cursor];
+      se(edge<0||count>=n)  {
+        fail("Route predecessor invariant");
+      }
+      push(route,edge);
+      cursor=edges[edge]["from"];
+      count=count+1;
+    }
+    var ordered=[];
+    i=len(route);
+    enquanto(i>0)  {
+      i=i-1;
+      push(ordered,route[i]);
+    }
+    route=ordered;
+  }
+  var out=u::result("nonnegative-cost-chemical-route-Dijkstra",route);
+  put(out,"found",found);
+  se(found)  {
+    put(out,"objective_cost",distances[goal]);
+  }
+  put(out,"physical_synthesizability_proved",0);
+  retornar out;
+}

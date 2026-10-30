@@ -6,5 +6,36 @@ importar "../../std/math/linalg_exact.omega" como la;
 importar "../core/intervalos.omega" como iv;
 exportar execute;
 # Rational enclosures of accelerations and optional measured finite-time separation; no asymptotic chaos proof.
-
-funcao execute(r){var t1=u::q(r,"theta1");var t2=u::q(r,"theta2");se(m::abs(t1)>8||m::abs(t2)>8){fail("Angle domain [-8,8]");}var w1=u::q(r,"omega1");var w2=u::q(r,"omega2");var l1=u::positive(u::q(r,"length1"));var l2=u::positive(u::q(r,"length2"));var m1=u::positive(u::q(r,"mass1"));var m2=u::positive(u::q(r,"mass2"));var g=u::positive(u::q(r,"gravity"));var bits=u::integer(u::num(r,"bits",16),8,64);var delta=t1-t2;var sd=m::sin_interval(delta,bits);var cd=m::cos_interval(delta,bits);var denominator=iv::sub([2*m1+m2,2*m1+m2],iv::scale(m::cos_interval(2*delta,bits),m2));var numerator1=iv::sub(iv::scale(m::sin_interval(t1,bits),-g*(2*m1+m2)),iv::scale(m::sin_interval(t1-2*t2,bits),m2*g));numerator1=iv::sub(numerator1,iv::scale(iv::mul(sd,iv::add([w2*w2*l2,w2*w2*l2],iv::scale(cd,w1*w1*l1))),2*m2));var inner=iv::add([w1*w1*l1*(m1+m2),w1*w1*l1*(m1+m2)],iv::add(iv::scale(m::cos_interval(t1,bits),g*(m1+m2)),iv::scale(cd,w2*w2*l2*m2)));var a1=iv::div(numerator1,iv::scale(denominator,l1));var a2=iv::div(iv::scale(iv::mul(sd,inner),2),iv::scale(denominator,l2));var out=u::result("double-pendulum-interval-vector-field",[a1,a2]);se(has(r,"separation_initial")){var first=u::positive(u::q(r,"separation_initial"));var last=u::positive(u::q(r,"separation_final"));var elapsed=u::positive(u::q(r,"elapsed"));put(out,"finite_time_growth_rate",iv::scale(m::log_interval(last/first,bits),1/elapsed));}put(out,"asymptotic_Lyapunov_proved",0);retornar out;}
+funcao execute(r)  {
+  var t1=u::q(r,"theta1");
+  var t2=u::q(r,"theta2");
+  se(m::abs(t1)>8||m::abs(t2)>8)  {
+    fail("Angle domain [-8,8]");
+  }
+  var w1=u::q(r,"omega1");
+  var w2=u::q(r,"omega2");
+  var l1=u::positive(u::q(r,"length1"));
+  var l2=u::positive(u::q(r,"length2"));
+  var m1=u::positive(u::q(r,"mass1"));
+  var m2=u::positive(u::q(r,"mass2"));
+  var g=u::positive(u::q(r,"gravity"));
+  var bits=u::integer(u::num(r,"bits",16),8,64);
+  var delta=t1-t2;
+  var sd=m::sin_interval(delta,bits);
+  var cd=m::cos_interval(delta,bits);
+  var denominator=iv::sub([2*m1+m2,2*m1+m2],iv::scale(m::cos_interval(2*delta,bits),m2));
+  var numerator1=iv::sub(iv::scale(m::sin_interval(t1,bits),-g*(2*m1+m2)),iv::scale(m::sin_interval(t1-2*t2,bits),m2*g));
+  numerator1=iv::sub(numerator1,iv::scale(iv::mul(sd,iv::add([w2*w2*l2,w2*w2*l2],iv::scale(cd,w1*w1*l1))),2*m2));
+  var inner=iv::add([w1*w1*l1*(m1+m2),w1*w1*l1*(m1+m2)],iv::add(iv::scale(m::cos_interval(t1,bits),g*(m1+m2)),iv::scale(cd,w2*w2*l2*m2)));
+  var a1=iv::div(numerator1,iv::scale(denominator,l1));
+  var a2=iv::div(iv::scale(iv::mul(sd,inner),2),iv::scale(denominator,l2));
+  var out=u::result("double-pendulum-interval-vector-field",[a1,a2]);
+  se(has(r,"separation_initial"))  {
+    var first=u::positive(u::q(r,"separation_initial"));
+    var last=u::positive(u::q(r,"separation_final"));
+    var elapsed=u::positive(u::q(r,"elapsed"));
+    put(out,"finite_time_growth_rate",iv::scale(m::log_interval(last/first,bits),1/elapsed));
+  }
+  put(out,"asymptotic_Lyapunov_proved",0);
+  retornar out;
+}

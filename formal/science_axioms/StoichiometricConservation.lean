@@ -5,6 +5,7 @@ import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Positivity
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
+import Mathlib.Algebra.BigOperators.Ring.Finset
 
 namespace OmegaScience
 /-- Any explicitly represented conserved linear quantity is unchanged by a balanced extent. -/

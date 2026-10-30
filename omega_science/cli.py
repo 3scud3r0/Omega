@@ -22,6 +22,10 @@ def main(argv=None):
     proof = sub.add_parser('prove', help='Check closed numeric observations with Lean CPU')
     proof.add_argument('request', type=Path)
     proof.add_argument('--saida', type=Path, required=True)
+    experiment = sub.add_parser('experiment', help='Native execution, reviewed numeric Lean obligations and encoded paper')
+    experiment.add_argument('kernel', type=int)
+    experiment.add_argument('request', type=Path)
+    experiment.add_argument('--saida', type=Path, required=True)
     args = parser.parse_args(argv)
     def operation():
         if args.action == 'list':
@@ -33,6 +37,9 @@ def main(argv=None):
         if len(data) > REQUEST_LIMIT:
             raise ValueError('Scientific request byte budget exceeded')
         request = decode(data, max_bytes=REQUEST_LIMIT, max_nodes=50000, max_depth=40)
+        if args.action == 'experiment':
+            from .experiment import execute
+            return execute(args.kernel, request, args.saida)
         return run(args.kernel, request) if args.action == 'run' else prove(request, args.saida)
     result = attempt('science', operation)
     def encode(value):

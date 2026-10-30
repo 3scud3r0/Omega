@@ -5,5 +5,16 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Ideal Butler-Volmer polarisation with interval exponential currents and explicit model parameters.
-
-funcao execute(r){var i0=u::positive(u::q(r,"exchange_current"));var alpha=u::q(r,"transfer_coefficient");se(alpha<0||alpha>1){fail("Transfer coefficient in [0,1]");}var eta=u::q(r,"overpotential");var rt=u::positive(u::q(r,"thermal_energy"));var nf=u::positive(u::q(r,"charge_per_mole"));var a=m::exp_interval(alpha*nf*eta/rt,24);var b=m::exp_interval(-(1-alpha)*nf*eta/rt,24);retornar u::result("Butler-Volmer-enclosure",[i0*(a[0]-b[1]),i0*(a[1]-b[0])]);}
+funcao execute(r)  {
+  var i0=u::positive(u::q(r,"exchange_current"));
+  var alpha=u::q(r,"transfer_coefficient");
+  se(alpha<0||alpha>1)  {
+    fail("Transfer coefficient in [0,1]");
+  }
+  var eta=u::q(r,"overpotential");
+  var rt=u::positive(u::q(r,"thermal_energy"));
+  var nf=u::positive(u::q(r,"charge_per_mole"));
+  var a=m::exp_interval(alpha*nf*eta/rt,24);
+  var b=m::exp_interval(-(1-alpha)*nf*eta/rt,24);
+  retornar u::result("Butler-Volmer-enclosure",[i0*(a[0]-b[1]),i0*(a[1]-b[0])]);
+}

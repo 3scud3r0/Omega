@@ -17,7 +17,8 @@ theorem sqrt_newton_enclosure (x upper : ℚ) (hx : 0 ≤ x) (hu : 0 < upper)
   have hp : 0 ≤ x/upper := div_nonneg hx hu.le
   have hstep : 0 < sqrtNewton x upper := by unfold sqrtNewton; linarith
   have residual := sqrt_newton_residual x upper hz
-  have hpositive : 0 ≤ (upper^2-x)^2/(4*upper^2) := by positivity
+  have hpositive : 0 ≤ (upper^2-x)^2/(4*upper^2) :=
+    div_nonneg (sq_nonneg _) (mul_nonneg (by norm_num) (sq_nonneg _))
   have hdivide : x/upper ≤ upper := (div_le_iff₀ hu).2 (by nlinarith)
   exact ⟨hstep, by linarith, by unfold sqrtNewton; linarith⟩
 

@@ -5,10 +5,32 @@ importar "../../std/math/tensor_calculus.omega" como k111;
 importar "../../std/io/csv_dataset_parser.omega" como k113;
 importar "../../std/collections/spatial_kdtree.omega" como k114;
 importar "../../runtime/quantum_gate_emulator.omega" como k115;
-funcao principal(){se(argc()!=3){fail("Usage: science-domain id request.json");}var id=number(arg(1));var request=parsejson(read(arg(2)));
-se(id==112){print(s::canonical(k112::execute(request)));retornar 0;}
-se(id==111){print(s::canonical(k111::execute(request)));retornar 0;}
-se(id==113){print(s::canonical(k113::execute(request)));retornar 0;}
-se(id==114){print(s::canonical(k114::execute(request)));retornar 0;}
-se(id==115){print(s::canonical(k115::execute(request)));retornar 0;}
-fail("Unknown scientific kernel");retornar 1;}
+funcao principal()  {
+  se(argc()!=3)  {
+    fail("Usage: science-domain id request.json");
+  }
+  var id=number(arg(1));
+  var request=parsejson(read(arg(2)));
+  se(id==112)  {
+    print(s::canonical(k112::execute(request)));
+    retornar 0;
+  }
+  se(id==111)  {
+    print(s::canonical(k111::execute(request)));
+    retornar 0;
+  }
+  se(id==113)  {
+    print(s::canonical(k113::execute(request)));
+    retornar 0;
+  }
+  se(id==114)  {
+    print(s::canonical(k114::execute(request)));
+    retornar 0;
+  }
+  se(id==115)  {
+    print(s::canonical(k115::execute(request)));
+    retornar 0;
+  }
+  fail("Unknown scientific kernel");
+  retornar 1;
+}

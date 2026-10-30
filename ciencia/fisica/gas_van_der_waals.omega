@@ -5,5 +5,21 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Exact van der Waals isotherm and analytic critical parameters; phase coexistence needs an additional construction.
-
-funcao execute(r){var n=u::positive(u::q(r,"moles"));var a=u::positive(u::q(r,"attraction"));var b=u::positive(u::q(r,"excluded_volume"));var gas=u::positive(u::q(r,"gas_constant"));var t=u::positive(u::q(r,"temperature"));var v=u::q(r,"volume");se(v<=n*b){fail("Volume must exceed excluded volume");}var pressure=n*gas*t/(v-n*b)-a*n*n/(v*v);var out=u::result("van-der-Waals-isotherm",pressure);put(out,"critical_pressure",a/(27*b*b));put(out,"critical_volume",3*n*b);put(out,"critical_temperature",8*a/(27*gas*b));put(out,"dP_dV",-n*gas*t/((v-n*b)*(v-n*b))+2*a*n*n/(v*v*v));retornar out;}
+funcao execute(r)  {
+  var n=u::positive(u::q(r,"moles"));
+  var a=u::positive(u::q(r,"attraction"));
+  var b=u::positive(u::q(r,"excluded_volume"));
+  var gas=u::positive(u::q(r,"gas_constant"));
+  var t=u::positive(u::q(r,"temperature"));
+  var v=u::q(r,"volume");
+  se(v<=n*b)  {
+    fail("Volume must exceed excluded volume");
+  }
+  var pressure=n*gas*t/(v-n*b)-a*n*n/(v*v);
+  var out=u::result("van-der-Waals-isotherm",pressure);
+  put(out,"critical_pressure",a/(27*b*b));
+  put(out,"critical_volume",3*n*b);
+  put(out,"critical_temperature",8*a/(27*gas*b));
+  put(out,"dP_dV",-n*gas*t/((v-n*b)*(v-n*b))+2*a*n*n/(v*v*v));
+  retornar out;
+}

@@ -5,5 +5,27 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Two-allele random-mating model without selection/migration/mutation; exact genotype sum and allele invariance.
-
-funcao execute(r){var p=0;se(has(r,"genotypes")){var g=u::vector(r["genotypes"]);se(len(g)!=3||g[0]<0||g[1]<0||g[2]<0||g[0]+g[1]+g[2]!=1){fail("Genotype probabilities must be nonnegative and sum to one");}p=g[0]+g[1]/2;}senao{p=u::q(r,"allele_frequency");}se(p<0||p>1){fail("Allele frequency in [0,1]");}var q=1-p;var g=[p*p,2*p*q,q*q];se(g[0]+g[1]+g[2]!=1||g[0]+g[1]/2!=p){fail("Mendelian equilibrium identity");}var out=u::result("random-mating-Hardy-Weinberg",g);put(out,"allele_frequency",p);retornar out;}
+funcao execute(r)  {
+  var p=0;
+  se(has(r,"genotypes"))  {
+    var g=u::vector(r["genotypes"]);
+    se(len(g)!=3||g[0]<0||g[1]<0||g[2]<0||g[0]+g[1]+g[2]!=1)  {
+      fail("Genotype probabilities must be nonnegative and sum to one");
+    }
+    p=g[0]+g[1]/2;
+  }
+  senao  {
+    p=u::q(r,"allele_frequency");
+  }
+  se(p<0||p>1)  {
+    fail("Allele frequency in [0,1]");
+  }
+  var q=1-p;
+  var g=[p*p,2*p*q,q*q];
+  se(g[0]+g[1]+g[2]!=1||g[0]+g[1]/2!=p)  {
+    fail("Mendelian equilibrium identity");
+  }
+  var out=u::result("random-mating-Hardy-Weinberg",g);
+  put(out,"allele_frequency",p);
+  retornar out;
+}

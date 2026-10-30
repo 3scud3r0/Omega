@@ -5,5 +5,24 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Hess linear combination with exact target verification; input enthalpies remain empirical/model data.
-
-funcao execute(r){var equations=u::mat(r["equations"]);var weights=u::vector(r["weights"]);var enthalpies=u::vector(r["enthalpies"]);var target=u::vector(r["target"]);se(len(weights)!=len(equations)||len(enthalpies)!=len(weights)||len(target)!=len(equations[0])){fail("Hess combination shapes");}var combined=u::zeros(len(target));var i=0;enquanto(i<len(weights)){combined=u::add(combined,u::scale(equations[i],weights[i]));i=i+1;}se(s::canonical(combined)!=s::canonical(target)){fail("Hess equations do not produce the requested target");}var out=u::result("Hess-exact-linear-combination",u::dot(weights,enthalpies));put(out,"target",combined);retornar out;}
+funcao execute(r)  {
+  var equations=u::mat(r["equations"]);
+  var weights=u::vector(r["weights"]);
+  var enthalpies=u::vector(r["enthalpies"]);
+  var target=u::vector(r["target"]);
+  se(len(weights)!=len(equations)||len(enthalpies)!=len(weights)||len(target)!=len(equations[0]))  {
+    fail("Hess combination shapes");
+  }
+  var combined=u::zeros(len(target));
+  var i=0;
+  enquanto(i<len(weights))  {
+    combined=u::add(combined,u::scale(equations[i],weights[i]));
+    i=i+1;
+  }
+  se(s::canonical(combined)!=s::canonical(target))  {
+    fail("Hess equations do not produce the requested target");
+  }
+  var out=u::result("Hess-exact-linear-combination",u::dot(weights,enthalpies));
+  put(out,"target",combined);
+  retornar out;
+}

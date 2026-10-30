@@ -5,7 +5,70 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Seven-base Miller-Rabin only for unsigned 64-bit integers; not a Lean primality certificate.
-
-funcao modpow(a,d,n){var x=1;a=a%n;enquanto(d>0){se(d%2==1){x=(x*a)%n;}a=(a*a)%n;d=qfloor(d/2);}retornar x;}
-funcao prime(n){se(n<2){retornar 0;}var small=[2,3,5,7,11,13,17,19,23,29,31,37];var j=0;enquanto(j<len(small)){se(n==small[j]){retornar 1;}se(n%small[j]==0){retornar 0;}j=j+1;}var d=n-1;var shifts=0;enquanto(d%2==0){d=d/2;shifts=shifts+1;}var bases=[2,325,9375,28178,450775,9780504,1795265022];j=0;enquanto(j<len(bases)){var a=bases[j]%n;se(a!=0){var x=modpow(a,d,n);se(x!=1&&x!=n-1){var pass=0;var k=1;enquanto(k<shifts){x=x*x%n;se(x==n-1){pass=1;parar;}k=k+1;}se(!pass){retornar 0;}}}j=j+1;}retornar 1;}
-funcao execute(r){var n=u::q(r,"n");u::integer(n,0,18446744073709551615);var out=u::result("deterministic-Miller-Rabin-uint64",prime(n));put(out,"prime",prime(n));put(out,"upper_exclusive",18446744073709551616);retornar out;}
+funcao modpow(a,d,n)  {
+  var x=1;
+  a=u::rem_int(a,n);
+  enquanto(d>0)  {
+    se(u::rem_int(d,2)==1)  {
+      x=u::rem_int(x*a,n);
+    }
+    a=u::rem_int(a*a,n);
+    d=qfloor(d/2);
+  }
+  retornar x;
+}
+funcao prime(n)  {
+  se(n<2)  {
+    retornar 0;
+  }
+  var small=[2,3,5,7,11,13,17,19,23,29,31,37];
+  var j=0;
+  enquanto(j<len(small))  {
+    se(n==small[j])  {
+      retornar 1;
+    }
+    se(u::rem_int(n,small[j])==0)  {
+      retornar 0;
+    }
+    j=j+1;
+  }
+  var d=n-1;
+  var shifts=0;
+  enquanto(u::rem_int(d,2)==0)  {
+    d=d/2;
+    shifts=shifts+1;
+  }
+  var bases=[2,325,9375,28178,450775,9780504,1795265022];
+  j=0;
+  enquanto(j<len(bases))  {
+    var a=u::rem_int(bases[j],n);
+    se(a!=0)  {
+      var x=modpow(a,d,n);
+      se(x!=1&&x!=n-1)  {
+        var pass=0;
+        var k=1;
+        enquanto(k<shifts)  {
+          x=u::rem_int(x*x,n);
+          se(x==n-1)  {
+            pass=1;
+            parar;
+          }
+          k=k+1;
+        }
+        se(!pass)  {
+          retornar 0;
+        }
+      }
+    }
+    j=j+1;
+  }
+  retornar 1;
+}
+funcao execute(r)  {
+  var n=u::q(r,"n");
+  u::integer(n,0,18446744073709551615);
+  var out=u::result("deterministic-Miller-Rabin-uint64",prime(n));
+  put(out,"prime",prime(n));
+  put(out,"upper_exclusive",18446744073709551616);
+  retornar out;
+}

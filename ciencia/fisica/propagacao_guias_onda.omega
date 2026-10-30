@@ -6,5 +6,37 @@ importar "../../std/math/linalg_exact.omega" como la;
 importar "../core/intervalos.omega" como iv;
 exportar execute;
 # Perfect-conductor guide with conservative 3 < pi < 4 bounds; threshold ambiguity remains explicit.
-
-funcao execute(r){var a=u::positive(u::q(r,"width"));var b=u::positive(u::q(r,"height"));var mm=u::count(r,"m",0,100);var nn=u::count(r,"n",0,100);var mode=u::text_field(r,"mode",2);se((mm==0&&nn==0)||(mode!="TE"&&mode!="TM")||(mode=="TM"&&(mm==0||nn==0))){fail("Invalid waveguide mode");}var omega=u::positive(u::q(r,"omega"));var mu=u::positive(u::q(r,"permeability"));var eps=u::positive(u::q(r,"permittivity"));var spatial=mm*mm/(a*a)+nn*nn/(b*b);var beta2=[omega*omega*mu*eps-16*spatial,omega*omega*mu*eps-9*spatial];var out=u::result("rectangular-perfect-conductor-mode",beta2);put(out,"pi_enclosure",[3,4]);var status="undecided";se(beta2[0]>0){status="propagating";var beta=iv::sqrt(beta2,24);put(out,"beta",beta);se(mode=="TE"){put(out,"impedance",iv::div([omega*mu,omega*mu],beta));}senao{put(out,"impedance",iv::scale(beta,1/(omega*eps)));}}se(beta2[1]<0){status="evanescent";}put(out,"classification",status);retornar out;}
+funcao execute(r)  {
+  var a=u::positive(u::q(r,"width"));
+  var b=u::positive(u::q(r,"height"));
+  var mm=u::count(r,"m",0,100);
+  var nn=u::count(r,"n",0,100);
+  var mode=u::text_field(r,"mode",2);
+  se((mm==0&&nn==0)||(mode!="TE"&&mode!="TM")||(mode=="TM"&&(mm==0||nn==0)))  {
+    fail("Invalid waveguide mode");
+  }
+  var omega=u::positive(u::q(r,"omega"));
+  var mu=u::positive(u::q(r,"permeability"));
+  var eps=u::positive(u::q(r,"permittivity"));
+  var spatial=mm*mm/(a*a)+nn*nn/(b*b);
+  var beta2=[omega*omega*mu*eps-16*spatial,omega*omega*mu*eps-9*spatial];
+  var out=u::result("rectangular-perfect-conductor-mode",beta2);
+  put(out,"pi_enclosure",[3,4]);
+  var status="undecided";
+  se(beta2[0]>0)  {
+    status="propagating";
+    var beta=iv::sqrt(beta2,24);
+    put(out,"beta",beta);
+    se(mode=="TE")  {
+      put(out,"impedance",iv::div([omega*mu,omega*mu],beta));
+    }
+    senao  {
+      put(out,"impedance",iv::scale(beta,1/(omega*eps)));
+    }
+  }
+  se(beta2[1]<0)  {
+    status="evanescent";
+  }
+  put(out,"classification",status);
+  retornar out;
+}

@@ -5,6 +5,72 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Primitive positive integer null vector; include signed atom/isotope/charge rows explicitly. Ambiguous nullspaces are rejected.
-
-funcao gcd(a,b){a=m::abs(a);b=m::abs(b);enquanto(b!=0){var t=a%b;a=b;b=t;}retornar a;}
-funcao execute(r){var a=u::mat(r["conservation_matrix"]);var reduced=u::rref(a);var n=len(a[0]);var free=[];var i=0;enquanto(i<n){se(!contains(reduced["pivots"],i)){push(free,i);}i=i+1;}se(len(free)!=1){fail("A unique one-dimensional reaction nullspace is required; split ambiguous reaction networks");}var x=u::zeros(n);put(x,free[0],1);i=0;enquanto(i<reduced["rank"]){put(x,reduced["pivots"][i],-reduced["matrix"][i][free[0]]);i=i+1;}var lcm=1;i=0;enquanto(i<n){var d=qden(x[i]);lcm=lcm*d/gcd(lcm,d);i=i+1;}var divisor=0;i=0;enquanto(i<n){put(x,i,x[i]*lcm);divisor=gcd(divisor,x[i]);i=i+1;}se(x[0]<0){divisor=-divisor;}i=0;enquanto(i<n){put(x,i,x[i]/divisor);se(x[i]<=0){fail("No strictly positive balance with the supplied reaction sides");}i=i+1;}i=0;enquanto(i<len(a)){se(u::dot(a[i],x)!=0){fail("Reaction conservation certificate failed");}i=i+1;}var out=u::result("primitive-positive-integer-reaction-kernel",x);put(out,"conserved_rows",len(a));put(out,"charge_included",u::num(r,"charge_row_included",0));retornar out;}
+funcao gcd(a,b)  {
+  a=m::abs(a);
+  b=m::abs(b);
+  enquanto(b!=0)  {
+    var t=a%b;
+    a=b;
+    b=t;
+  }
+  retornar a;
+}
+funcao execute(r)  {
+  var a=u::mat(r["conservation_matrix"]);
+  var reduced=u::rref(a);
+  var n=len(a[0]);
+  var free=[];
+  var i=0;
+  enquanto(i<n)  {
+    se(!contains(reduced["pivots"],i))  {
+      push(free,i);
+    }
+    i=i+1;
+  }
+  se(len(free)!=1)  {
+    fail("A unique one-dimensional reaction nullspace is required; split ambiguous reaction networks");
+  }
+  var x=u::zeros(n);
+  put(x,free[0],1);
+  i=0;
+  enquanto(i<reduced["rank"])  {
+    put(x,reduced["pivots"][i],-reduced["matrix"][i][free[0]]);
+    i=i+1;
+  }
+  var lcm=1;
+  i=0;
+  enquanto(i<n)  {
+    var d=qden(x[i]);
+    lcm=lcm*d/gcd(lcm,d);
+    i=i+1;
+  }
+  var divisor=0;
+  i=0;
+  enquanto(i<n)  {
+    put(x,i,x[i]*lcm);
+    divisor=gcd(divisor,x[i]);
+    i=i+1;
+  }
+  se(x[0]<0)  {
+    divisor=-divisor;
+  }
+  i=0;
+  enquanto(i<n)  {
+    put(x,i,x[i]/divisor);
+    se(x[i]<=0)  {
+      fail("No strictly positive balance with the supplied reaction sides");
+    }
+    i=i+1;
+  }
+  i=0;
+  enquanto(i<len(a))  {
+    se(u::dot(a[i],x)!=0)  {
+      fail("Reaction conservation certificate failed");
+    }
+    i=i+1;
+  }
+  var out=u::result("primitive-positive-integer-reaction-kernel",x);
+  put(out,"conserved_rows",len(a));
+  put(out,"row_semantics","supplied by caller; charge must be encoded as an explicit conserved row");
+  retornar out;
+}

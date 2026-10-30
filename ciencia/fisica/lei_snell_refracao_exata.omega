@@ -5,5 +5,18 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Exact Snell sine relation and cosine enclosure; arbitrary angles are not rational numbers.
-
-funcao execute(r){var n1=u::positive(u::q(r,"index1"));var n2=u::positive(u::q(r,"index2"));var sine=u::q(r,"incident_sine");se(m::abs(sine)>1){fail("Incident sine domain");}var transmitted=n1*sine/n2;var out=u::result("Snell-sine-constraint",transmitted);put(out,"total_internal_reflection",m::abs(transmitted)>1);se(m::abs(transmitted)<=1){put(out,"transmitted_cosine",m::sqrt_interval(1-transmitted*transmitted,24));}retornar out;}
+funcao execute(r)  {
+  var n1=u::positive(u::q(r,"index1"));
+  var n2=u::positive(u::q(r,"index2"));
+  var sine=u::q(r,"incident_sine");
+  se(m::abs(sine)>1)  {
+    fail("Incident sine domain");
+  }
+  var transmitted=n1*sine/n2;
+  var out=u::result("Snell-sine-constraint",transmitted);
+  put(out,"total_internal_reflection",m::abs(transmitted)>1);
+  se(m::abs(transmitted)<=1)  {
+    put(out,"transmitted_cosine",m::sqrt_interval(1-transmitted*transmitted,24));
+  }
+  retornar out;
+}

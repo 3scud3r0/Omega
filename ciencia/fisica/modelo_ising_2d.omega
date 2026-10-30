@@ -6,6 +6,43 @@ importar "../../std/math/linalg_exact.omega" como la;
 importar "../core/intervalos.omega" como iv;
 exportar execute;
 # All configurations on finite 2..4 square tori; Boltzmann weights are enclosed, not irrational exact samples.
-
-funcao spin(state,k){retornar 2*(qfloor(state/u::power(2,k))%2)-1;}
-funcao execute(r){var n=u::count(r,"size",2,4);var j=u::q(r,"coupling");var h=u::num(r,"field",0);var beta=u::positive(u::q(r,"inverse_temperature"));var states=u::power(2,n*n);var z=[0,0];var energy_sum=[0,0];var magnet_sum=[0,0];var state=0;enquanto(state<states){var energy=0;var magnet=0;var x=0;enquanto(x<n){var y=0;enquanto(y<n){var v=spin(state,x*n+y);energy=energy-j*v*(spin(state,((x+1)%n)*n+y)+spin(state,x*n+(y+1)%n))-h*v;magnet=magnet+v;y=y+1;}x=x+1;}var weight=m::exp_interval(-beta*energy,8);z=iv::add(z,weight);energy_sum=iv::add(energy_sum,iv::scale(weight,energy));magnet_sum=iv::add(magnet_sum,iv::scale(weight,m::abs(magnet)));state=state+1;}var out=u::result("finite-periodic-Ising-exhaustive-enumeration",z);put(out,"mean_energy",iv::div(energy_sum,z));put(out,"mean_abs_magnetisation",iv::div(magnet_sum,z));put(out,"configurations",states);put(out,"thermodynamic_limit",0);retornar out;}
+funcao spin(state,k)  {
+  retornar 2*(qfloor(state/u::power(2,k))%2)-1;
+}
+funcao execute(r)  {
+  var n=u::count(r,"size",2,4);
+  var j=u::q(r,"coupling");
+  var h=u::num(r,"field",0);
+  var beta=u::positive(u::q(r,"inverse_temperature"));
+  var states=u::power(2,n*n);
+  var z=[0,0];
+  var energy_sum=[0,0];
+  var magnet_sum=[0,0];
+  var state=0;
+  enquanto(state<states)  {
+    var energy=0;
+    var magnet=0;
+    var x=0;
+    enquanto(x<n)  {
+      var y=0;
+      enquanto(y<n)  {
+        var v=spin(state,x*n+y);
+        energy=energy-j*v*(spin(state,((x+1)%n)*n+y)+spin(state,x*n+(y+1)%n))-h*v;
+        magnet=magnet+v;
+        y=y+1;
+      }
+      x=x+1;
+    }
+    var weight=m::exp_interval(-beta*energy,8);
+    z=iv::add(z,weight);
+    energy_sum=iv::add(energy_sum,iv::scale(weight,energy));
+    magnet_sum=iv::add(magnet_sum,iv::scale(weight,m::abs(magnet)));
+    state=state+1;
+  }
+  var out=u::result("finite-periodic-Ising-exhaustive-enumeration",z);
+  put(out,"mean_energy",iv::div(energy_sum,z));
+  put(out,"mean_abs_magnetisation",iv::div(magnet_sum,z));
+  put(out,"configurations",states);
+  put(out,"thermodynamic_limit",0);
+  retornar out;
+}

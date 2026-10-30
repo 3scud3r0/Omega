@@ -10,7 +10,9 @@ class NativeBuild(build_py):
         super().run()
         root=Path(__file__).parent
         output=Path(self.build_lib)/'omega_native'/'_sources'
-        files=[p for directory in ('std','runtime','tools','omega_ingest','civilizacao_agentes','incubadora_continua','sociedade_hierarquica','metamorfose_cognitiva','fabrica_descobertas','imunologia_sistemica','infraestrutura_soberana') for p in (root/directory).rglob('*') if p.suffix in ('.omega','.h')]
+        files=[p for directory in ('ciencia','agentes_cientificos','std','runtime','tools','omega_ingest','civilizacao_agentes','incubadora_continua','sociedade_hierarquica','metamorfose_cognitiva','fabrica_descobertas','imunologia_sistemica','infraestrutura_soberana') for p in (root/directory).rglob('*') if p.suffix in ('.omega','.h')]
+        files.append(root/'ciencia/catalogo.json')
+        files.extend((root/'formal/science_axioms').glob('*.lean'))
         files.extend(root/name for name in ('banco_de_dados.omega','synthesis.omega','fitness.omega','civilizacao_agentes.omega','incubadora_continua.omega','ginasio.omega'))
         for source in files:
             target=output/source.relative_to(root);target.parent.mkdir(parents=True,exist_ok=True);copyfile(source,target)

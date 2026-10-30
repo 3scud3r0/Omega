@@ -40,7 +40,7 @@ for OMEGA_DEP in "$OMEGA_MATHLIB"/.lake/packages/*; do
     ln -s "$OMEGA_DEP" "formal/tensor/.lake/packages/$OMEGA_DEP_NAME"
   fi
 done
-(cd formal/tensor && lake build omega_tensor_kernel Omega)
+(cd formal/tensor && lake build omega_tensor_kernel Omega ScienceAxioms)
 .venv/bin/python - <<'PY'
 from omega_selfhost.driver import compiler
 print('Self-hosted compiler:', compiler())

@@ -5,5 +5,20 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Exterior equatorial timelike geodesic field in G=c=1 units; mass-shell inconsistency is reported, not hidden.
-
-funcao execute(r){var mass=u::positive(u::q(r,"central_mass"));var radius=u::q(r,"radius");se(radius<=2*mass){fail("Exterior Schwarzschild coordinates require r > 2M");}var velocity=u::q(r,"radial_velocity");var angular=u::q(r,"angular_momentum");var energy=u::positive(u::q(r,"energy"));var f=1-2*mass/radius;var constraint=velocity*velocity+f*(1+angular*angular/(radius*radius))-energy*energy;var acceleration=-mass/(radius*radius)+angular*angular/u::power(radius,3)-3*mass*angular*angular/u::power(radius,4);var out=u::result("equatorial-timelike-Schwarzschild-proper-time-field",[velocity,acceleration,angular/(radius*radius),energy/f]);put(out,"mass_shell_residual",constraint);put(out,"on_mass_shell",constraint==0);retornar out;}
+funcao execute(r)  {
+  var mass=u::positive(u::q(r,"central_mass"));
+  var radius=u::q(r,"radius");
+  se(radius<=2*mass)  {
+    fail("Exterior Schwarzschild coordinates require r > 2M");
+  }
+  var velocity=u::q(r,"radial_velocity");
+  var angular=u::q(r,"angular_momentum");
+  var energy=u::positive(u::q(r,"energy"));
+  var f=1-2*mass/radius;
+  var constraint=velocity*velocity+f*(1+angular*angular/(radius*radius))-energy*energy;
+  var acceleration=-mass/(radius*radius)+angular*angular/u::power(radius,3)-3*mass*angular*angular/u::power(radius,4);
+  var out=u::result("equatorial-timelike-Schwarzschild-proper-time-field",[velocity,acceleration,angular/(radius*radius),energy/f]);
+  put(out,"mass_shell_residual",constraint);
+  put(out,"on_mass_shell",constraint==0);
+  retornar out;
+}

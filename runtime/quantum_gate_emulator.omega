@@ -6,9 +6,195 @@ importar "../std/math/linalg_exact.omega" como la;
 importar "../std/math/complex_rational.omega" como c;
 exportar execute;
 # Sparse exact Q(i) gates up to 32 address bits with active-amplitude quota; H/T and dense 2^32 storage are not falsely supported.
-
-funcao accumulate(state,index,amplitude){var key=text(index);se(has(state,key)){put(state,key,c::add(state[key],amplitude));}senao{put(state,key,amplitude);}retornar 0;}
-funcao bit(index,target){retornar qfloor(index/u::power(2,target))%2;}
-funcao flip(index,target){var value=u::power(2,target);se(bit(index,target)){retornar index-value;}retornar index+value;}
-funcao norm(state){var sum=0;var names=keys(state);var i=0;enquanto(i<len(names)){sum=sum+c::norm2(state[names[i]]);i=i+1;}retornar sum;}
-funcao execute(r){var qubits=u::count(r,"qubits",1,32);var cap=u::integer(u::num(r,"max_active",1024),1,4096);var initial=s::as_list(r["state"]);se(len(initial)<1||len(initial)>cap){fail("Sparse quantum state budget");}var state=obj();var i=0;enquanto(i<len(initial)){var index=u::integer(u::val(initial[i][0]),0,u::power(2,qubits)-1);var key=text(index);se(has(state,key)){fail("Duplicate basis amplitude");}put(state,key,c::value(initial[i][1]));i=i+1;}se(norm(state)!=1){fail("Quantum state must have exact unit norm");}var gates=s::as_list(r["gates"]);u::budget(len(gates),256);i=0;enquanto(i<len(gates)){var gate=gates[i];var op=u::text_field(gate,"operation",8);var target=u::count(gate,"target",0,qubits-1);var next=obj();var names=keys(state);var j=0;enquanto(j<len(names)){var index=number(names[j]);var amplitude=state[names[j]];var b=bit(index,target);se(op=="X"){accumulate(next,flip(index,target),amplitude);}senao{se(op=="Y"){var phase=[0,1];se(b){phase=[0,-1];}accumulate(next,flip(index,target),c::mul(phase,amplitude));}senao{se(op=="Z"){var sign=1;se(b){sign=-1;}accumulate(next,index,c::mul([sign,0],amplitude));}senao{se(op=="S"){var phase=[1,0];se(b){phase=[0,1];}accumulate(next,index,c::mul(phase,amplitude));}senao{se(op=="CNOT"){var control=u::count(gate,"control",0,qubits-1);se(control==target){fail("CNOT control equals target");}var dest=index;se(bit(index,control)){dest=flip(index,target);}accumulate(next,dest,amplitude);}senao{se(op=="SWAP"){var other=u::count(gate,"other",0,qubits-1);var dest=index;se(bit(index,other)!=b){dest=flip(flip(index,target),other);}accumulate(next,dest,amplitude);}senao{se(op=="R"){var a=u::q(gate,"a");var bvalue=u::q(gate,"b");se(a*a+bvalue*bvalue!=1){fail("Rational rotation must be unitary");}var zero=index;var one=flip(index,target);se(b){zero=one;one=index;accumulate(next,zero,c::mul([-bvalue,0],amplitude));accumulate(next,one,c::mul([a,0],amplitude));}senao{accumulate(next,zero,c::mul([a,0],amplitude));accumulate(next,one,c::mul([bvalue,0],amplitude));}}senao{fail("Unsupported gate: H/T need amplitudes outside Q(i)");}}}}}}}j=j+1;}state=obj();names=keys(next);j=0;enquanto(j<len(names)){var amplitude=next[names[j]];se(c::norm2(amplitude)!=0){put(state,names[j],amplitude);}j=j+1;}se(len(keys(state))>cap){fail("Sparse quantum amplitude budget exceeded");}se(norm(state)!=1){fail("Quantum norm preservation failed");}i=i+1;}var names=keys(state);var ids=[];i=0;enquanto(i<len(names)){push(ids,number(names[i]));i=i+1;}i=1;enquanto(i<len(ids)){var j=i;enquanto(j>0&&ids[j]<ids[j-1]){var t=ids[j];put(ids,j,ids[j-1]);put(ids,j-1,t);j=j-1;}i=i+1;}var values=[];i=0;enquanto(i<len(ids)){push(values,[ids[i],state[text(ids[i])]]);i=i+1;}var out=u::result("sparse-unitary-Qi-quantum-emulator",values);put(out,"qubits",qubits);put(out,"norm_squared",1);put(out,"dense_32_qubit_state_supported",0);retornar out;}
+funcao accumulate(state,index,amplitude)  {
+  var key=text(index);
+  se(has(state,key))  {
+    put(state,key,c::add(state[key],amplitude));
+  }
+  senao  {
+    put(state,key,amplitude);
+  }
+  retornar 0;
+}
+funcao bit(index,target)  {
+  retornar qfloor(index/u::power(2,target))%2;
+}
+funcao flip(index,target)  {
+  var value=u::power(2,target);
+  se(bit(index,target))  {
+    retornar index-value;
+  }
+  retornar index+value;
+}
+funcao norm(state)  {
+  var sum=0;
+  var names=keys(state);
+  var i=0;
+  enquanto(i<len(names))  {
+    sum=sum+c::norm2(state[names[i]]);
+    i=i+1;
+  }
+  retornar sum;
+}
+funcao execute(r)  {
+  var qubits=u::count(r,"qubits",1,32);
+  var cap=u::integer(u::num(r,"max_active",1024),1,4096);
+  var initial=s::as_list(r["state"]);
+  se(len(initial)<1||len(initial)>cap)  {
+    fail("Sparse quantum state budget");
+  }
+  var state=obj();
+  var i=0;
+  enquanto(i<len(initial))  {
+    var index=u::integer(u::val(initial[i][0]),0,u::power(2,qubits)-1);
+    var key=text(index);
+    se(has(state,key))  {
+      fail("Duplicate basis amplitude");
+    }
+    put(state,key,c::value(initial[i][1]));
+    i=i+1;
+  }
+  se(norm(state)!=1)  {
+    fail("Quantum state must have exact unit norm");
+  }
+  var gates=s::as_list(r["gates"]);
+  u::budget(len(gates),256);
+  i=0;
+  enquanto(i<len(gates))  {
+    var gate=gates[i];
+    var op=u::text_field(gate,"operation",8);
+    var target=u::count(gate,"target",0,qubits-1);
+    var next=obj();
+    var names=keys(state);
+    var j=0;
+    enquanto(j<len(names))  {
+      var index=number(names[j]);
+      var amplitude=state[names[j]];
+      var b=bit(index,target);
+      se(op=="X")  {
+        accumulate(next,flip(index,target),amplitude);
+      }
+      senao  {
+        se(op=="Y")  {
+          var phase=[0,1];
+          se(b)  {
+            phase=[0,-1];
+          }
+          accumulate(next,flip(index,target),c::mul(phase,amplitude));
+        }
+        senao  {
+          se(op=="Z")  {
+            var sign=1;
+            se(b)  {
+              sign=-1;
+            }
+            accumulate(next,index,c::mul([sign,0],amplitude));
+          }
+          senao  {
+            se(op=="S")  {
+              var phase=[1,0];
+              se(b)  {
+                phase=[0,1];
+              }
+              accumulate(next,index,c::mul(phase,amplitude));
+            }
+            senao  {
+              se(op=="CNOT")  {
+                var control=u::count(gate,"control",0,qubits-1);
+                se(control==target)  {
+                  fail("CNOT control equals target");
+                }
+                var dest=index;
+                se(bit(index,control))  {
+                  dest=flip(index,target);
+                }
+                accumulate(next,dest,amplitude);
+              }
+              senao  {
+                se(op=="SWAP")  {
+                  var other=u::count(gate,"other",0,qubits-1);
+                  var dest=index;
+                  se(bit(index,other)!=b)  {
+                    dest=flip(flip(index,target),other);
+                  }
+                  accumulate(next,dest,amplitude);
+                }
+                senao  {
+                  se(op=="R")  {
+                    var a=u::q(gate,"a");
+                    var bvalue=u::q(gate,"b");
+                    se(a*a+bvalue*bvalue!=1)  {
+                      fail("Rational rotation must be unitary");
+                    }
+                    var zero=index;
+                    var one=flip(index,target);
+                    se(b)  {
+                      zero=one;
+                      one=index;
+                      accumulate(next,zero,c::mul([-bvalue,0],amplitude));
+                      accumulate(next,one,c::mul([a,0],amplitude));
+                    }
+                    senao  {
+                      accumulate(next,zero,c::mul([a,0],amplitude));
+                      accumulate(next,one,c::mul([bvalue,0],amplitude));
+                    }
+                  }
+                  senao  {
+                    fail("Unsupported gate: H/T need amplitudes outside Q(i)");
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      j=j+1;
+    }
+    state=obj();
+    names=keys(next);
+    j=0;
+    enquanto(j<len(names))  {
+      var amplitude=next[names[j]];
+      se(c::norm2(amplitude)!=0)  {
+        put(state,names[j],amplitude);
+      }
+      j=j+1;
+    }
+    se(len(keys(state))>cap)  {
+      fail("Sparse quantum amplitude budget exceeded");
+    }
+    se(norm(state)!=1)  {
+      fail("Quantum norm preservation failed");
+    }
+    i=i+1;
+  }
+  var names=keys(state);
+  var ids=[];
+  i=0;
+  enquanto(i<len(names))  {
+    push(ids,number(names[i]));
+    i=i+1;
+  }
+  i=1;
+  enquanto(i<len(ids))  {
+    var j=i;
+    enquanto(j>0&&ids[j]<ids[j-1])  {
+      var t=ids[j];
+      put(ids,j,ids[j-1]);
+      put(ids,j-1,t);
+      j=j-1;
+    }
+    i=i+1;
+  }
+  var values=[];
+  i=0;
+  enquanto(i<len(ids))  {
+    push(values,[ids[i],state[text(ids[i])]]);
+    i=i+1;
+  }
+  var out=u::result("sparse-unitary-Qi-quantum-emulator",values);
+  put(out,"qubits",qubits);
+  put(out,"norm_squared",1);
+  put(out,"dense_32_qubit_state_supported",0);
+  retornar out;
+}

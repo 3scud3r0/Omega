@@ -5,5 +5,32 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Leading weak-field deflection plus a strong-field turning-point bracket; full strong-field bending is not claimed.
-
-funcao execute(r){var mass=u::positive(u::q(r,"mass"));var impact=u::positive(u::q(r,"impact_parameter"));var out=u::result("Schwarzschild-light-leading-deflection",4*mass/impact);put(out,"weak_field_parameter",mass/impact);put(out,"strong_field_angle_computed",0);se(impact*impact<=27*mass*mass){put(out,"critical_or_capture",1);}senao{put(out,"critical_or_capture",0);var lo=3*mass;var hi=impact;var i=0;enquanto(i<48){var mid=(lo+hi)/2;var value=mid*mid*mid-impact*impact*mid+2*mass*impact*impact;se(value>0){hi=mid;}senao{lo=mid;}i=i+1;}put(out,"outer_turning_radius",[lo,hi]);}retornar out;}
+funcao execute(r)  {
+  var mass=u::positive(u::q(r,"mass"));
+  var impact=u::positive(u::q(r,"impact_parameter"));
+  var out=u::result("Schwarzschild-light-leading-deflection",4*mass/impact);
+  put(out,"weak_field_parameter",mass/impact);
+  put(out,"strong_field_angle_computed",0);
+  se(impact*impact<=27*mass*mass)  {
+    put(out,"critical_or_capture",1);
+  }
+  senao  {
+    put(out,"critical_or_capture",0);
+    var lo=3*mass;
+    var hi=impact;
+    var i=0;
+    enquanto(i<48)  {
+      var mid=(lo+hi)/2;
+      var value=mid*mid*mid-impact*impact*mid+2*mass*impact*impact;
+      se(value>0)  {
+        hi=mid;
+      }
+      senao  {
+        lo=mid;
+      }
+      i=i+1;
+    }
+    put(out,"outer_turning_radius",[lo,hi]);
+  }
+  retornar out;
+}

@@ -12,17 +12,60 @@ importar "../../agentes_cientificos/injetor_ruido_sensores.omega" como k107;
 importar "../../agentes_cientificos/emissor_artigo_executavel.omega" como k108;
 importar "../../agentes_cientificos/gerador_graficos_vetoriais_svg.omega" como k109;
 importar "../../agentes_cientificos/registro_descoberta_blockchain.omega" como k110;
-funcao principal(){se(argc()!=3){fail("Usage: science-domain id request.json");}var id=number(arg(1));var request=parsejson(read(arg(2)));
-se(id==99){print(s::canonical(k99::execute(request)));retornar 0;}
-se(id==100){print(s::canonical(k100::execute(request)));retornar 0;}
-se(id==101){print(s::canonical(k101::execute(request)));retornar 0;}
-se(id==102){print(s::canonical(k102::execute(request)));retornar 0;}
-se(id==103){print(s::canonical(k103::execute(request)));retornar 0;}
-se(id==104){print(s::canonical(k104::execute(request)));retornar 0;}
-se(id==105){print(s::canonical(k105::execute(request)));retornar 0;}
-se(id==106){print(s::canonical(k106::execute(request)));retornar 0;}
-se(id==107){print(s::canonical(k107::execute(request)));retornar 0;}
-se(id==108){print(s::canonical(k108::execute(request)));retornar 0;}
-se(id==109){print(s::canonical(k109::execute(request)));retornar 0;}
-se(id==110){print(s::canonical(k110::execute(request)));retornar 0;}
-fail("Unknown scientific kernel");retornar 1;}
+funcao principal()  {
+  se(argc()!=3)  {
+    fail("Usage: science-domain id request.json");
+  }
+  var id=number(arg(1));
+  var request=parsejson(read(arg(2)));
+  se(id==99)  {
+    print(s::canonical(k99::execute(request)));
+    retornar 0;
+  }
+  se(id==100)  {
+    print(s::canonical(k100::execute(request)));
+    retornar 0;
+  }
+  se(id==101)  {
+    print(s::canonical(k101::execute(request)));
+    retornar 0;
+  }
+  se(id==102)  {
+    print(s::canonical(k102::execute(request)));
+    retornar 0;
+  }
+  se(id==103)  {
+    print(s::canonical(k103::execute(request)));
+    retornar 0;
+  }
+  se(id==104)  {
+    print(s::canonical(k104::execute(request)));
+    retornar 0;
+  }
+  se(id==105)  {
+    print(s::canonical(k105::execute(request)));
+    retornar 0;
+  }
+  se(id==106)  {
+    print(s::canonical(k106::execute(request)));
+    retornar 0;
+  }
+  se(id==107)  {
+    print(s::canonical(k107::execute(request)));
+    retornar 0;
+  }
+  se(id==108)  {
+    print(s::canonical(k108::execute(request)));
+    retornar 0;
+  }
+  se(id==109)  {
+    print(s::canonical(k109::execute(request)));
+    retornar 0;
+  }
+  se(id==110)  {
+    print(s::canonical(k110::execute(request)));
+    retornar 0;
+  }
+  fail("Unknown scientific kernel");
+  retornar 1;
+}

@@ -5,5 +5,33 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Dimensionless positive activities and explicit pressure/concentration normalisation; equality is exact only for supplied data.
-
-funcao execute(r){var activities=u::vector(r["activities"]);var stoich=u::vector(r["stoichiometry"]);se(len(activities)==0||len(activities)!=len(stoich)){fail("Reaction quotient shape");}var quotient=1;var delta=0;var i=0;enquanto(i<len(activities)){u::positive(activities[i]);u::integer(stoich[i],-32,32);quotient=u::check(quotient*u::power(activities[i],stoich[i]));delta=delta+stoich[i];i=i+1;}var kc=u::positive(u::q(r,"Kc"));var rt=u::positive(u::q(r,"normalised_RT"));var out=u::result("ideal-gas-normalised-equilibrium-quotient",quotient);put(out,"Kp",kc*u::power(rt,delta));var direction="equilibrium";se(quotient<kc){direction="forward";}se(quotient>kc){direction="reverse";}put(out,"direction",direction);retornar out;}
+funcao execute(r)  {
+  var activities=u::vector(r["activities"]);
+  var stoich=u::vector(r["stoichiometry"]);
+  se(len(activities)==0||len(activities)!=len(stoich))  {
+    fail("Reaction quotient shape");
+  }
+  var quotient=1;
+  var delta=0;
+  var i=0;
+  enquanto(i<len(activities))  {
+    u::positive(activities[i]);
+    u::integer(stoich[i],-32,32);
+    quotient=u::check(quotient*u::power(activities[i],stoich[i]));
+    delta=delta+stoich[i];
+    i=i+1;
+  }
+  var kc=u::positive(u::q(r,"Kc"));
+  var rt=u::positive(u::q(r,"normalised_RT"));
+  var out=u::result("ideal-gas-normalised-equilibrium-quotient",quotient);
+  put(out,"Kp",kc*u::power(rt,delta));
+  var direction="equilibrium";
+  se(quotient<kc)  {
+    direction="forward";
+  }
+  se(quotient>kc)  {
+    direction="reverse";
+  }
+  put(out,"direction",direction);
+  retornar out;
+}

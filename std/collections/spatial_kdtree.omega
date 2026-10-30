@@ -5,7 +5,78 @@ importar "../string.omega" como s;
 importar "../math/linalg_exact.omega" como la;
 exportar execute;
 # Balanced median-split KD-tree and exact squared-distance pruning; bounded static point sets, deterministic ties.
-
-funcao build(points,ids,depth,nodes,dimensions){se(len(ids)==0){retornar -1;}var axis=depth%dimensions;var i=1;enquanto(i<len(ids)){var j=i;enquanto(j>0&&(points[ids[j]][axis]<points[ids[j-1]][axis]||(points[ids[j]][axis]==points[ids[j-1]][axis]&&ids[j]<ids[j-1]))){var v=ids[j];put(ids,j,ids[j-1]);put(ids,j-1,v);j=j-1;}i=i+1;}var middle=qfloor(len(ids)/2);var node=obj();put(node,"point",ids[middle]);put(node,"axis",axis);put(node,"left",-1);put(node,"right",-1);var id=len(nodes);push(nodes,node);put(node,"left",build(points,slice(ids,0,middle),depth+1,nodes,dimensions));put(node,"right",build(points,slice(ids,middle+1,len(ids)),depth+1,nodes,dimensions));retornar id;}
-funcao nearest(points,nodes,id,query,best){se(id<0){retornar 0;}var node=nodes[id];var index=node["point"];var delta=u::add(points[index],u::scale(query,-1));var distance=u::dot(delta,delta);se(best[0]<0||distance<best[1]||(distance==best[1]&&index<best[0])){put(best,0,index);put(best,1,distance);}var axis=node["axis"];var split=query[axis]-points[index][axis];var near=node["left"];var far=node["right"];se(split>0){near=node["right"];far=node["left"];}nearest(points,nodes,near,query,best);se(split*split<=best[1]){nearest(points,nodes,far,query,best);}retornar 0;}
-funcao execute(r){var points=u::mat(r["points"]);var query=u::vector(r["query"]);se(len(query)!=len(points[0])||len(query)>16){fail("KD-tree query dimensions");}var ids=[];var i=0;enquanto(i<len(points)){push(ids,i);i=i+1;}var nodes=[];var root=build(points,ids,0,nodes,len(query));var best=[-1,0];nearest(points,nodes,root,query,best);var out=u::result("balanced-exact-KD-nearest-neighbour",best);put(out,"nodes",nodes);put(out,"root",root);retornar out;}
+funcao build(points,ids,depth,nodes,dimensions)  {
+  se(len(ids)==0)  {
+    retornar -1;
+  }
+  var axis=depth%dimensions;
+  var i=1;
+  enquanto(i<len(ids))  {
+    var j=i;
+    enquanto(j>0&&(points[ids[j]][axis]<points[ids[j-1]][axis]||(points[ids[j]][axis]==points[ids[j-1]][axis]&&ids[j]<ids[j-1])))  {
+      var v=ids[j];
+      put(ids,j,ids[j-1]);
+      put(ids,j-1,v);
+      j=j-1;
+    }
+    i=i+1;
+  }
+  var middle=qfloor(len(ids)/2);
+  var node=obj();
+  put(node,"point",ids[middle]);
+  put(node,"axis",axis);
+  put(node,"left",-1);
+  put(node,"right",-1);
+  var id=len(nodes);
+  push(nodes,node);
+  put(node,"left",build(points,slice(ids,0,middle),depth+1,nodes,dimensions));
+  put(node,"right",build(points,slice(ids,middle+1,len(ids)),depth+1,nodes,dimensions));
+  retornar id;
+}
+funcao nearest(points,nodes,id,query,best)  {
+  se(id<0)  {
+    retornar 0;
+  }
+  var node=nodes[id];
+  var index=node["point"];
+  var delta=u::add(points[index],u::scale(query,-1));
+  var distance=u::dot(delta,delta);
+  se(best[0]<0||distance<best[1]||(distance==best[1]&&index<best[0]))  {
+    put(best,0,index);
+    put(best,1,distance);
+  }
+  var axis=node["axis"];
+  var split=query[axis]-points[index][axis];
+  var near=node["left"];
+  var far=node["right"];
+  se(split>0)  {
+    near=node["right"];
+    far=node["left"];
+  }
+  nearest(points,nodes,near,query,best);
+  se(split*split<=best[1])  {
+    nearest(points,nodes,far,query,best);
+  }
+  retornar 0;
+}
+funcao execute(r)  {
+  var points=u::mat(r["points"]);
+  var query=u::vector(r["query"]);
+  se(len(query)!=len(points[0])||len(query)>16)  {
+    fail("KD-tree query dimensions");
+  }
+  var ids=[];
+  var i=0;
+  enquanto(i<len(points))  {
+    push(ids,i);
+    i=i+1;
+  }
+  var nodes=[];
+  var root=build(points,ids,0,nodes,len(query));
+  var best=[-1,0];
+  nearest(points,nodes,root,query,best);
+  var out=u::result("balanced-exact-KD-nearest-neighbour",best);
+  put(out,"nodes",nodes);
+  put(out,"root",root);
+  retornar out;
+}

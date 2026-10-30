@@ -5,5 +5,46 @@ importar "../std/string.omega" como s;
 importar "../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Deterministic finite-grid Gaussian-weight approximation; not a continuous exact Gaussian generator or cryptographic PRNG.
-
-funcao execute(r){var sigma=u::positive(u::q(r,"sigma"));var spacing=u::positive(u::num(r,"spacing",1));var radius=u::count(r,"radius",1,6);var samples=u::count(r,"samples",1,128);var seed=u::count(r,"seed",0,2147483647);var weights=[];var total=0;var boxes=[];var x=-radius;enquanto(x<=radius){var exponent=-x*x*spacing*spacing/(2*sigma*sigma);var box=m::exp_interval(exponent,16);var weight=(box[0]+box[1])/2;push(weights,weight);push(boxes,box);total=total+weight;x=x+1;}var values=[];var i=0;enquanto(i<samples){seed=(1103515245*seed+12345)%2147483648;var target=total*seed/2147483648;var sum=0;var j=0;enquanto(j<len(weights)-1){sum=sum+weights[j];se(target<sum){parar;}j=j+1;}push(values,(j-radius)*spacing);i=i+1;}var out=u::result("seeded-finite-discrete-Gaussian-approximation",values);put(out,"normalised_weights",u::scale(weights,1/total));put(out,"weight_enclosures",boxes);put(out,"final_seed",seed);put(out,"continuous_Gaussian_exact",0);retornar out;}
+funcao execute(r)  {
+  var sigma=u::positive(u::q(r,"sigma"));
+  var spacing=u::positive(u::num(r,"spacing",1));
+  var radius=u::count(r,"radius",1,6);
+  var samples=u::count(r,"samples",1,128);
+  var seed=u::count(r,"seed",0,2147483647);
+  var weights=[];
+  var total=0;
+  var boxes=[];
+  var x=-radius;
+  enquanto(x<=radius)  {
+    var exponent=-x*x*spacing*spacing/(2*sigma*sigma);
+    var box=m::exp_interval(exponent,16);
+    var weight=(box[0]+box[1])/2;
+    push(weights,weight);
+    push(boxes,box);
+    total=total+weight;
+    x=x+1;
+  }
+  var values=[];
+  var i=0;
+  enquanto(i<samples)  {
+    seed=(1103515245*seed+12345)%2147483648;
+    var target=total*seed/2147483648;
+    var sum=0;
+    var j=0;
+    enquanto(j<len(weights)-1)  {
+      sum=sum+weights[j];
+      se(target<sum)  {
+        parar;
+      }
+      j=j+1;
+    }
+    push(values,(j-radius)*spacing);
+    i=i+1;
+  }
+  var out=u::result("seeded-finite-discrete-Gaussian-approximation",values);
+  put(out,"normalised_weights",u::scale(weights,1/total));
+  put(out,"weight_enclosures",boxes);
+  put(out,"final_seed",seed);
+  put(out,"continuous_Gaussian_exact",0);
+  retornar out;
+}

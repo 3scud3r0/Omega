@@ -6,5 +6,51 @@ importar "../../std/math/linalg_exact.omega" como la;
 importar "../core/intervalos.omega" como iv;
 exportar execute;
 # Encloses the elliptic Kepler root and planar coordinates; no rational exact representation of general anomalies.
-
-funcao execute(r){var e=u::nonnegative(u::q(r,"eccentricity"));se(e>=1){fail("Elliptic eccentricity must be < 1");}var mean=u::q(r,"mean_anomaly");se(m::abs(mean)>3){fail("Principal anomaly domain [-3,3]");}var bits=u::integer(u::num(r,"bits",24),8,64);var steps=u::integer(u::num(r,"steps",32),1,64);var lo=mean-e;var hi=mean+e;var i=0;enquanto(i<steps&&lo<hi){var mid=(lo+hi)/2;var sine=m::sin_interval(mid,bits);var f=[mid-e*sine[1]-mean,mid-e*sine[0]-mean];se(f[1]<0){lo=mid;}senao{se(f[0]>0){hi=mid;}senao{var radius=m::max(m::abs(f[0]),m::abs(f[1]))/(1-e);lo=m::max(lo,mid-radius);hi=m::min(hi,mid+radius);parar;}}i=i+1;}var mid=(lo+hi)/2;var radius=(hi-lo)/2;var cs=m::cos_interval(mid,bits);var sn=m::sin_interval(mid,bits);var a=u::positive(u::num(r,"semi_major_axis",1));var root=m::sqrt_interval(1-e*e,bits);var x=[a*(m::max(-1,cs[0]-radius)-e),a*(m::min(1,cs[1]+radius)-e)];var y=iv::scale(iv::mul(root,[m::max(-1,sn[0]-radius),m::min(1,sn[1]+radius)]),a);var out=u::result("Kepler-equation-interval-bisection",[lo,hi]);put(out,"x",x);put(out,"y",y);put(out,"steps",i);retornar out;}
+funcao execute(r)  {
+  var e=u::nonnegative(u::q(r,"eccentricity"));
+  se(e>=1)  {
+    fail("Elliptic eccentricity must be < 1");
+  }
+  var mean=u::q(r,"mean_anomaly");
+  se(m::abs(mean)>3)  {
+    fail("Principal anomaly domain [-3,3]");
+  }
+  var bits=u::integer(u::num(r,"bits",24),8,64);
+  var steps=u::integer(u::num(r,"steps",32),1,64);
+  var lo=mean-e;
+  var hi=mean+e;
+  var i=0;
+  enquanto(i<steps&&lo<hi)  {
+    var mid=(lo+hi)/2;
+    var sine=m::sin_interval(mid,bits);
+    var f=[mid-e*sine[1]-mean,mid-e*sine[0]-mean];
+    se(f[1]<0)  {
+      lo=mid;
+    }
+    senao  {
+      se(f[0]>0)  {
+        hi=mid;
+      }
+      senao  {
+        var radius=m::max(m::abs(f[0]),m::abs(f[1]))/(1-e);
+        lo=m::max(lo,mid-radius);
+        hi=m::min(hi,mid+radius);
+        parar;
+      }
+    }
+    i=i+1;
+  }
+  var mid=(lo+hi)/2;
+  var radius=(hi-lo)/2;
+  var cs=m::cos_interval(mid,bits);
+  var sn=m::sin_interval(mid,bits);
+  var a=u::positive(u::num(r,"semi_major_axis",1));
+  var root=m::sqrt_interval(1-e*e,bits);
+  var x=[a*(m::max(-1,cs[0]-radius)-e),a*(m::min(1,cs[1]+radius)-e)];
+  var y=iv::scale(iv::mul(root,[m::max(-1,sn[0]-radius),m::min(1,sn[1]+radius)]),a);
+  var out=u::result("Kepler-equation-interval-bisection",[lo,hi]);
+  put(out,"x",x);
+  put(out,"y",y);
+  put(out,"steps",i);
+  retornar out;
+}

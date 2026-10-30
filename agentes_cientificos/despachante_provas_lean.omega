@@ -2,9 +2,73 @@ modulo science_104;
 importar "../ciencia/core/exato.omega" como u;
 importar "../std/math.omega" como m;
 importar "../std/string.omega" como s;
-importar "../std/math/linalg_exact.omega" como la;
 exportar execute;
-# Renders bounded closed rational obligations only; the CPU supervisor actually compiles Lean and audits dependencies.
-
-funcao literal(q){retornar "(("+text(qnum(q))+" : Rat) / "+text(qden(q))+")";}
-funcao execute(r){var witnesses=s::as_list(r["witnesses"]);se(len(witnesses)<1||len(witnesses)>32){fail("Numeric proof obligation budget");}var source="import Mathlib.Tactic.NormNum\n";var subjects=[];var i=0;enquanto(i<len(witnesses)){var witness=witnesses[i];var proposition="";se(has(witness,"nonnegative")){var q=u::q(witness,"nonnegative");proposition="0 <= "+literal(q);}senao{var left=u::vector(witness["left"]);var right=u::vector(witness["right"]);var a=0;var b=0;var j=0;enquanto(j<len(left)){a=a+left[j];j=j+1;}j=0;enquanto(j<len(right)){b=b+right[j];j=j+1;}proposition=literal(a)+" = "+literal(b);}var name="science_observation_"+text(i);source=source+"theorem "+name+" : "+proposition+" := by norm_num\n#print axioms "+name+"\n";push(subjects,sha256(proposition));i=i+1;}var out=u::result("closed-numeric-Lean-proof-job",source);put(out,"source_sha256",sha256(source));put(out,"subjects",subjects);put(out,"dispatch_status","awaiting-independent-CPU-supervisor");put(out,"executable",0);retornar out;}
+# Closed data-only expressions; no free theorem text, imports or tactics from callers.
+funcao literal(q) {
+  retornar "(("+text(qnum(q))+" : Rat) / "+text(qden(q))+")";
+}
+funcao side(w,prefix) {
+  var modes=has(w,prefix)+has(w,prefix+"_dot")+has(w,prefix+"_squares");
+  se(modes!=1) { fail("Each proof side requires one unambiguous numeric expression"); }
+  var terms=[];
+  var i=0;
+  se(has(w,prefix+"_dot")) {
+    var pair=s::as_list(w[prefix+"_dot"]);
+    se(len(pair)!=2) { fail("Proof dot product requires two vectors"); }
+    var a=u::vector(pair[0]);
+    var b=u::vector(pair[1]);
+    se(len(a)!=len(b)) { fail("Proof dot product shape"); }
+    enquanto(i<len(a)) {
+      push(terms,"("+literal(a[i])+" * "+literal(b[i])+")");
+      i=i+1;
+    }
+  } senao {
+    var values=[];
+    var square=has(w,prefix+"_squares");
+    se(square) { values=u::vector(w[prefix+"_squares"]); }
+    senao { values=u::vector(w[prefix]); }
+    enquanto(i<len(values)) {
+      var term=literal(values[i]);
+      se(square) { term="("+term+" ^ 2)"; }
+      push(terms,term);
+      i=i+1;
+    }
+  }
+  se(len(terms)==0) { retornar "(0 : Rat)"; }
+  retornar "("+join(terms," + ")+")";
+}
+funcao execute(r) {
+  var witnesses=s::as_list(r["witnesses"]);
+  se(len(witnesses)<1||len(witnesses)>32) { fail("Numeric proof obligation budget"); }
+  var source="import Mathlib.Tactic.NormNum\n";
+  var subjects=[];
+  var i=0;
+  enquanto(i<len(witnesses)) {
+    var witness=s::as_object(witnesses[i]);
+    var fields=keys(witness);
+    var j=0;
+    enquanto(j<len(fields)) {
+      se(!contains(["nonnegative","left","right","left_dot","right_dot","left_squares","right_squares"],fields[j])) {
+        fail("Unknown numeric proof expression field");
+      }
+      j=j+1;
+    }
+    var proposition="";
+    se(has(witness,"nonnegative")) {
+      se(len(fields)!=1) { fail("Ambiguous nonnegative proof expression"); }
+      proposition="0 <= "+literal(u::q(witness,"nonnegative"));
+    } senao {
+      proposition=side(witness,"left")+" = "+side(witness,"right");
+    }
+    var name="science_observation_"+text(i);
+    source=source+"theorem "+name+" : "+proposition+" := by norm_num\n#print axioms "+name+"\n";
+    push(subjects,sha256(proposition));
+    i=i+1;
+  }
+  var out=u::result("closed-numeric-Lean-proof-job",source);
+  put(out,"source_sha256",sha256(source));
+  put(out,"subjects",subjects);
+  put(out,"dispatch_status","awaiting-independent-CPU-supervisor");
+  put(out,"executable",0);
+  retornar out;
+}

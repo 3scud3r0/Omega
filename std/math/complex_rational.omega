@@ -5,11 +5,52 @@ importar "../string.omega" como s;
 importar "linalg_exact.omega" como la;
 exportar execute, value, add, mul, conj, norm2, div;
 # Field arithmetic over Q(i), exact squared norm and zero-denominator rejection.
-
-funcao value(x){var a=u::vector(x);se(len(a)!=2){fail("Q(i) pair [real,imag] required");}retornar a;}
-funcao add(a,b){retornar [u::check(a[0]+b[0]),u::check(a[1]+b[1])];}
-funcao mul(a,b){retornar [u::check(a[0]*b[0]-a[1]*b[1]),u::check(a[0]*b[1]+a[1]*b[0])];}
-funcao conj(a){retornar [a[0],-a[1]];}
-funcao norm2(a){retornar u::check(a[0]*a[0]+a[1]*a[1]);}
-funcao div(a,b){var d=norm2(b);se(d==0){fail("Complex division by zero");}var v=mul(a,conj(b));retornar [v[0]/d,v[1]/d];}
-funcao execute(r){var a=value(r["left"]);var op=u::text_field(r,"operation",8);se(op=="conjugate"){retornar u::result("complex-rational",conj(a));}se(op=="norm2"){retornar u::result("complex-rational",norm2(a));}var b=value(r["right"]);se(op=="add"){retornar u::result("complex-rational",add(a,b));}se(op=="multiply"){retornar u::result("complex-rational",mul(a,b));}se(op=="divide"){retornar u::result("complex-rational",div(a,b));}fail("Complex operation");retornar obj();}
+funcao value(x)  {
+  var a=u::vector(x);
+  se(len(a)!=2)  {
+    fail("Q(i) pair [real,imag] required");
+  }
+  retornar a;
+}
+funcao add(a,b)  {
+  retornar [u::check(a[0]+b[0]),u::check(a[1]+b[1])];
+}
+funcao mul(a,b)  {
+  retornar [u::check(a[0]*b[0]-a[1]*b[1]),u::check(a[0]*b[1]+a[1]*b[0])];
+}
+funcao conj(a)  {
+  retornar [a[0],-a[1]];
+}
+funcao norm2(a)  {
+  retornar u::check(a[0]*a[0]+a[1]*a[1]);
+}
+funcao div(a,b)  {
+  var d=norm2(b);
+  se(d==0)  {
+    fail("Complex division by zero");
+  }
+  var v=mul(a,conj(b));
+  retornar [v[0]/d,v[1]/d];
+}
+funcao execute(r)  {
+  var a=value(r["left"]);
+  var op=u::text_field(r,"operation",8);
+  se(op=="conjugate")  {
+    retornar u::result("complex-rational",conj(a));
+  }
+  se(op=="norm2")  {
+    retornar u::result("complex-rational",norm2(a));
+  }
+  var b=value(r["right"]);
+  se(op=="add")  {
+    retornar u::result("complex-rational",add(a,b));
+  }
+  se(op=="multiply")  {
+    retornar u::result("complex-rational",mul(a,b));
+  }
+  se(op=="divide")  {
+    retornar u::result("complex-rational",div(a,b));
+  }
+  fail("Complex operation");
+  retornar obj();
+}

@@ -5,6 +5,36 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Positive bounded rational nonstandard map; reports continuous-integral drift instead of promising closed orbit preservation.
-
-funcao energy(x,y,a,b,c,d){var lx=m::log_interval(x,16);var ly=m::log_interval(y,16);retornar [d*x+b*y-c*lx[1]-a*ly[1],d*x+b*y-c*lx[0]-a*ly[0]];}
-funcao execute(r){var x=u::positive(u::q(r,"prey"));var y=u::positive(u::q(r,"predator"));var a=u::positive(u::q(r,"prey_growth"));var b=u::positive(u::q(r,"predation"));var c=u::positive(u::q(r,"predator_death"));var d=u::positive(u::q(r,"conversion"));var h=u::positive(u::q(r,"step"));var steps=u::count(r,"steps",1,32);var cap=u::positive(u::num(r,"population_limit",1000000));var initial=energy(x,y,a,b,c,d);var trace=[[x,y]];var i=0;enquanto(i<steps){x=u::check(x*(1+h*a)/(1+h*b*y));y=u::check(y*(1+h*d*x)/(1+h*c));se(x<=0||y<=0||x>cap||y>cap){fail("Population domain/budget exceeded");}push(trace,[x,y]);i=i+1;}var final=energy(x,y,a,b,c,d);var out=u::result("positive-Patankar-Lotka-Volterra-map",trace);put(out,"continuous_first_integral_change",[final[0]-initial[1],final[1]-initial[0]]);put(out,"closed_orbits_preserved",0);retornar out;}
+funcao energy(x,y,a,b,c,d)  {
+  var lx=m::log_interval(x,16);
+  var ly=m::log_interval(y,16);
+  retornar [d*x+b*y-c*lx[1]-a*ly[1],d*x+b*y-c*lx[0]-a*ly[0]];
+}
+funcao execute(r)  {
+  var x=u::positive(u::q(r,"prey"));
+  var y=u::positive(u::q(r,"predator"));
+  var a=u::positive(u::q(r,"prey_growth"));
+  var b=u::positive(u::q(r,"predation"));
+  var c=u::positive(u::q(r,"predator_death"));
+  var d=u::positive(u::q(r,"conversion"));
+  var h=u::positive(u::q(r,"step"));
+  var steps=u::count(r,"steps",1,32);
+  var cap=u::positive(u::num(r,"population_limit",1000000));
+  var initial=energy(x,y,a,b,c,d);
+  var trace=[[x,y]];
+  var i=0;
+  enquanto(i<steps)  {
+    x=u::check(x*(1+h*a)/(1+h*b*y));
+    y=u::check(y*(1+h*d*x)/(1+h*c));
+    se(x<=0||y<=0||x>cap||y>cap)  {
+      fail("Population domain/budget exceeded");
+    }
+    push(trace,[x,y]);
+    i=i+1;
+  }
+  var final=energy(x,y,a,b,c,d);
+  var out=u::result("positive-Patankar-Lotka-Volterra-map",trace);
+  put(out,"continuous_first_integral_change",[final[0]-initial[1],final[1]-initial[0]]);
+  put(out,"closed_orbits_preserved",0);
+  retornar out;
+}

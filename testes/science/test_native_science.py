@@ -224,7 +224,9 @@ def test_orthogonal_factorisation_eigenvalue_enclosures_quadrature_and_roots():
     columns = list(zip(*q))
     assert sum(a*b for a,b in zip(*columns)) == 0
     assert gs['unit_normalized'] == 0
-    assert example(61)['value'] == [[1,1],[3,3]]
+    for interval, true_root in zip(example(61)['value'], [1,3]):
+        assert interval[0] <= true_root <= interval[1]
+        assert interval[1]-interval[0] <= Q(1,2**20)
     lo,hi = example(62)['interval']
     assert lo <= Q(1,5) <= hi
     lo,hi = example(63)['value']

@@ -5,6 +5,37 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Exact six-boundary-condition quintic polynomial and position/velocity/acceleration samples.
-
-funcao derivative(c){var out=[];var i=1;enquanto(i<len(c)){push(out,i*c[i]);i=i+1;}retornar out;}
-funcao execute(r){var p0=u::q(r,"position0");var v0=u::q(r,"velocity0");var a0=u::q(r,"acceleration0");var p1=u::q(r,"position1");var v1=u::q(r,"velocity1");var a1=u::q(r,"acceleration1");var t=u::positive(u::q(r,"duration"));var sample=u::q(r,"time");se(sample<0||sample>t){fail("Trajectory sample outside [0,T]");}var d=p1-p0-v0*t-a0*t*t/2;var v=v1-v0-a0*t;var a=a1-a0;var c=[p0,v0,a0/2,(10*d-4*v*t+a*t*t/2)/u::power(t,3),(-15*d+7*v*t-a*t*t)/u::power(t,4),(6*d-3*v*t+a*t*t/2)/u::power(t,5)];var dc=derivative(c);var ddc=derivative(dc);se(u::polynomial(c,t)!=p1||u::polynomial(dc,t)!=v1||u::polynomial(ddc,t)!=a1){fail("Quintic endpoint contract failed");}var out=u::result("quintic-boundary-value-trajectory",[u::polynomial(c,sample),u::polynomial(dc,sample),u::polynomial(ddc,sample)]);put(out,"coefficients",c);retornar out;}
+funcao derivative(c)  {
+  var out=[];
+  var i=1;
+  enquanto(i<len(c))  {
+    push(out,i*c[i]);
+    i=i+1;
+  }
+  retornar out;
+}
+funcao execute(r)  {
+  var p0=u::q(r,"position0");
+  var v0=u::q(r,"velocity0");
+  var a0=u::q(r,"acceleration0");
+  var p1=u::q(r,"position1");
+  var v1=u::q(r,"velocity1");
+  var a1=u::q(r,"acceleration1");
+  var t=u::positive(u::q(r,"duration"));
+  var sample=u::q(r,"time");
+  se(sample<0||sample>t)  {
+    fail("Trajectory sample outside [0,T]");
+  }
+  var d=p1-p0-v0*t-a0*t*t/2;
+  var v=v1-v0-a0*t;
+  var a=a1-a0;
+  var c=[p0,v0,a0/2,(10*d-4*v*t+a*t*t/2)/u::power(t,3),(-15*d+7*v*t-a*t*t)/u::power(t,4),(6*d-3*v*t+a*t*t/2)/u::power(t,5)];
+  var dc=derivative(c);
+  var ddc=derivative(dc);
+  se(u::polynomial(c,t)!=p1||u::polynomial(dc,t)!=v1||u::polynomial(ddc,t)!=a1)  {
+    fail("Quintic endpoint contract failed");
+  }
+  var out=u::result("quintic-boundary-value-trajectory",[u::polynomial(c,sample),u::polynomial(dc,sample),u::polynomial(ddc,sample)]);
+  put(out,"coefficients",c);
+  retornar out;
+}

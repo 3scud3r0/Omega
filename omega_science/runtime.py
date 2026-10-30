@@ -17,6 +17,7 @@ from omega_selfhost.driver import compiler, cc
 from omega_selfhost.axiom_policy import DEFAULT, forbid_admissions
 
 ROOT = Path(__file__).resolve().parents[1]
+SOURCE_ROOT = ROOT if (ROOT/'ciencia/catalogo.json').is_file() else ROOT/'omega_native/_sources'
 GROUPS = frozenset({'fisica', 'quimica', 'biologia', 'matematica', 'engenharia', 'agentes', 'infraestrutura'})
 RUNTIME_INPUTS = ('omega_selfhost/runtime.h', 'omega_selfhost/native_std.h',
                   'omega_selfhost/memory.h', 'omega_selfhost/driver.py',
@@ -26,7 +27,7 @@ REQUEST_LIMIT = 4 * 1024**2
 
 
 def catalog():
-    value = bounded_decode((ROOT / 'ciencia/catalogo.json').read_bytes(), max_bytes=2*1024**2, max_nodes=30000)
+    value = bounded_decode((SOURCE_ROOT / 'ciencia/catalogo.json').read_bytes(), max_bytes=2*1024**2, max_nodes=30000)
     if value.get('format') != 'omega-science-catalog-1':
         raise ValueError('Unknown scientific catalog')
     entries = value['files']
@@ -55,11 +56,13 @@ def _hash(path):
 def build(group, destination=None):
     if group not in GROUPS:
         raise ValueError('Known scientific application group required')
-    linked = link('ciencia/apps/' + group + '.omega', ROOT, dynamic=True)
+    linked = link('ciencia/apps/' + group + '.omega', SOURCE_ROOT, dynamic=True)
     native_compiler = compiler()
     inputs = {name: _hash(ROOT / name) for name in RUNTIME_INPUTS}
     inputs['compiler_binary'] = _hash(native_compiler)
-    subject = hashlib.sha256(linked.source.encode() + canonical(inputs)).hexdigest()
+    inputs['bootstrap_manifest'] = _hash(native_compiler.parent / 'bootstrap.json')
+    closure = canonical(linked.manifest(), max_bytes=4*1024**2, max_nodes=100000)
+    subject = hashlib.sha256(linked.source.encode() + closure + canonical(inputs)).hexdigest()
     cache = ROOT / 'build/science'
     cache.mkdir(parents=True, exist_ok=True)
     target = Path(destination).absolute() if destination else cache / (group + '-' + subject[:32])
@@ -129,9 +132,11 @@ def _plain(value, depth=0, meter=None):
         if len(value) > meter[0]:
             raise ValueError('Scientific request structure budget')
         return [_plain(x, depth+1, meter) for x in value]
-    if type(value) is dict and all(type(k) is str for k in value):
+    if type(value) is dict:
         if 2*len(value) > meter[0]:
             raise ValueError('Scientific request structure budget')
+        if any(type(k) is not str for k in value):
+            raise ValueError('Scientific object keys must be strings')
         return {_plain(k, depth+1, meter): _plain(v, depth+1, meter) for k, v in value.items()}
     raise ValueError('Scientific requests contain exact numbers, strings, arrays and objects; no floats/bools/null')
 
@@ -196,7 +201,8 @@ def prove(request, directory):
     path = directory / 'Observation.lean'
     path.write_text(source)
     # Importing only the trusted native template prevents caller tactic/plugin injection.
-    status = trusted([lake_binary(), 'env', 'lean', '-o', directory/'Observation.olean', path],
+    status = trusted([lake_binary(), 'env', 'lean', '--root='+str(directory.resolve()),
+                      '-o', directory/'Observation.olean', path],
                      cwd=ROOT/'formal/tensor', budget=PROOF_BUDGET)
     output = status.stdout + status.stderr
     (directory/'lean.log').write_text(output)
@@ -205,6 +211,8 @@ def prove(request, directory):
     dependencies = inspect_lean_transcript(output, expected)
     receipt = {'format': 'omega-science-numeric-proof-1', 'verified': True,
                'source_sha256': _hash(path), 'olean_sha256': _hash(directory/'Observation.olean'),
+               'lean_sha256': _hash(lake_binary().with_name('lean')),
+               'project_manifest_sha256': _hash(ROOT/'formal/tensor/lake-manifest.json'),
                'request_sha256': hashlib.sha256(canonical(_plain(request))).hexdigest(),
                'theorems': dependencies, 'scope': 'closed numeric statements only',
                'scientific_model_accepted': False, 'origin_authenticated': False}

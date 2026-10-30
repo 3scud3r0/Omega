@@ -95,6 +95,19 @@ Busca isolada, geração de Ômega, build C/GMP, execução nativa, admissão Le
 casos reservados ficam unidos em uma entrega auditável. Consulte
 [contrato, artefatos e limites](docs/SINTESE_NATIVA_3_0.md).
 
+## Biblioteca científica nativa
+
+Os 115 arquivos solicitados estão catalogados em [ciencia/](ciencia/README.md):
+97 módulos Ômega executáveis, 18 arquivos de teoremas Lean e supervisão de
+experimentos com contratos delimitados. Consulte os escopos e hipóteses antes
+de interpretar uma saída como evidência científica.
+
+```sh
+.venv/bin/python -m omega science run 23 exemplos/ciencia/agua.json
+.venv/bin/python -m omega science experiment 23 exemplos/ciencia/agua.json \
+  --saida artifacts/ciencia-agua
+```
+
 ## Subsistema neural incorporado
 
 ```sh

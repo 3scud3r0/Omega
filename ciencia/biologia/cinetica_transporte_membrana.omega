@@ -5,5 +5,27 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Closed two-compartment Fick step with exact total amount and nonnegative-concentration guard.
-
-funcao execute(r){var inside=u::nonnegative(u::q(r,"inside_concentration"));var outside=u::nonnegative(u::q(r,"outside_concentration"));var vin=u::positive(u::q(r,"inside_volume"));var vout=u::positive(u::q(r,"outside_volume"));var diffusion=u::positive(u::q(r,"diffusion"));var thickness=u::positive(u::q(r,"thickness"));var area=u::positive(u::q(r,"area"));var time=u::positive(u::q(r,"step"));var flux=diffusion*(inside-outside)/thickness;var transfer=flux*area*time;var ni=inside*vin-transfer;var no=outside*vout+transfer;se(ni<0||no<0){fail("Transport step would create negative concentration");}se(ni+no!=inside*vin+outside*vout){fail("Membrane mass conservation");}var out=u::result("two-compartment-Fick-discrete-step",[ni/vin,no/vout]);put(out,"outward_flux",flux);put(out,"total_amount",ni+no);retornar out;}
+funcao execute(r)  {
+  var inside=u::nonnegative(u::q(r,"inside_concentration"));
+  var outside=u::nonnegative(u::q(r,"outside_concentration"));
+  var vin=u::positive(u::q(r,"inside_volume"));
+  var vout=u::positive(u::q(r,"outside_volume"));
+  var diffusion=u::positive(u::q(r,"diffusion"));
+  var thickness=u::positive(u::q(r,"thickness"));
+  var area=u::positive(u::q(r,"area"));
+  var time=u::positive(u::q(r,"step"));
+  var flux=diffusion*(inside-outside)/thickness;
+  var transfer=flux*area*time;
+  var ni=inside*vin-transfer;
+  var no=outside*vout+transfer;
+  se(ni<0||no<0)  {
+    fail("Transport step would create negative concentration");
+  }
+  se(ni+no!=inside*vin+outside*vout)  {
+    fail("Membrane mass conservation");
+  }
+  var out=u::result("two-compartment-Fick-discrete-step",[ni/vin,no/vout]);
+  put(out,"outward_flux",flux);
+  put(out,"total_amount",ni+no);
+  retornar out;
+}

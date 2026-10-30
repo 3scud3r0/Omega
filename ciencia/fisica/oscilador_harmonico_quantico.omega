@@ -5,5 +5,45 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Rational unnormalised Fock basis with factorial metric; finite truncation cannot satisfy the infinite CCR exactly.
-
-funcao execute(r){var n=u::count(r,"levels",1,16);var omega=u::positive(u::q(r,"omega"));var hbar=u::positive(u::q(r,"hbar"));var down=[];var up=[];var metric=[];var energies=[];var fact=1;var i=0;enquanto(i<n){var a=u::zeros(n);var b=u::zeros(n);se(i+1<n){put(a,i+1,i+1);}se(i>0){put(b,i-1,1);}push(down,a);push(up,b);push(metric,fact);push(energies,hbar*omega*(i+1/2));fact=fact*(i+1);i=i+1;}var comm=[];var du=u::mul(down,up);var ud=u::mul(up,down);i=0;enquanto(i<n){push(comm,u::add(du[i],u::scale(ud[i],-1)));i=i+1;}var out=u::result("truncated-unnormalized-Fock-basis",energies);put(out,"annihilation",down);put(out,"creation",up);put(out,"metric_diagonal",metric);put(out,"commutator",comm);put(out,"boundary_commutator_defect",n);retornar out;}
+funcao execute(r)  {
+  var n=u::count(r,"levels",1,16);
+  var omega=u::positive(u::q(r,"omega"));
+  var hbar=u::positive(u::q(r,"hbar"));
+  var down=[];
+  var up=[];
+  var metric=[];
+  var energies=[];
+  var fact=1;
+  var i=0;
+  enquanto(i<n)  {
+    var a=u::zeros(n);
+    var b=u::zeros(n);
+    se(i+1<n)  {
+      put(a,i+1,i+1);
+    }
+    se(i>0)  {
+      put(b,i-1,1);
+    }
+    push(down,a);
+    push(up,b);
+    push(metric,fact);
+    push(energies,hbar*omega*(i+1/2));
+    fact=fact*(i+1);
+    i=i+1;
+  }
+  var comm=[];
+  var du=u::mul(down,up);
+  var ud=u::mul(up,down);
+  i=0;
+  enquanto(i<n)  {
+    push(comm,u::add(du[i],u::scale(ud[i],-1)));
+    i=i+1;
+  }
+  var out=u::result("truncated-unnormalized-Fock-basis",energies);
+  put(out,"annihilation",down);
+  put(out,"creation",up);
+  put(out,"metric_diagonal",metric);
+  put(out,"commutator",comm);
+  put(out,"boundary_commutator_defect",n);
+  retornar out;
+}

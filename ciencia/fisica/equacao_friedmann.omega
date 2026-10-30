@@ -5,5 +5,19 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Flat homogeneous Friedmann model with explicit kappa (8*pi*G/3), matter/radiation scaling and root bounds.
-
-funcao execute(r){var a=u::positive(u::q(r,"scale_factor"));var matter=u::nonnegative(u::q(r,"matter_density_at_one"));var radiation=u::nonnegative(u::q(r,"radiation_density_at_one"));var kappa=u::positive(u::q(r,"kappa"));var lambda=u::q(r,"cosmological_constant");var h2=kappa*(matter/u::power(a,3)+radiation/u::power(a,4))+lambda/3;u::nonnegative(h2);var h=m::sqrt_interval(h2,24);var out=u::result("flat-Friedmann-constitutive-field",h);put(out,"H_squared",h2);put(out,"scale_factor_derivative",[a*h[0],a*h[1]]);put(out,"matter_density",matter/u::power(a,3));put(out,"radiation_density",radiation/u::power(a,4));retornar out;}
+funcao execute(r)  {
+  var a=u::positive(u::q(r,"scale_factor"));
+  var matter=u::nonnegative(u::q(r,"matter_density_at_one"));
+  var radiation=u::nonnegative(u::q(r,"radiation_density_at_one"));
+  var kappa=u::positive(u::q(r,"kappa"));
+  var lambda=u::q(r,"cosmological_constant");
+  var h2=kappa*(matter/u::power(a,3)+radiation/u::power(a,4))+lambda/3;
+  u::nonnegative(h2);
+  var h=m::sqrt_interval(h2,24);
+  var out=u::result("flat-Friedmann-constitutive-field",h);
+  put(out,"H_squared",h2);
+  put(out,"scale_factor_derivative",[a*h[0],a*h[1]]);
+  put(out,"matter_density",matter/u::power(a,3));
+  put(out,"radiation_density",radiation/u::power(a,4));
+  retornar out;
+}

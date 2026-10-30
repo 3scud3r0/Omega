@@ -5,5 +5,22 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Energy-exact Cayley midpoint map for one quadratic oscillator, not arbitrary Hamiltonian flows.
-
-funcao execute(r){var q=u::q(r,"position");var p=u::q(r,"momentum");var mass=u::positive(u::q(r,"mass"));var k=u::positive(u::q(r,"spring"));var h=u::q(r,"step");var d=1+h*h*k/(4*mass);var qn=((1-h*h*k/(4*mass))*q+h*p/mass)/d;var pn=((1-h*h*k/(4*mass))*p-h*k*q)/d;var before=p*p/(2*mass)+k*q*q/2;var after=pn*pn/(2*mass)+k*qn*qn/2;se(before!=after){fail("Quadratic Hamiltonian conservation failure");}var out=u::result("implicit-midpoint-quadratic-Hamiltonian",[qn,pn]);put(out,"energy_before",before);put(out,"energy_after",after);retornar out;}
+funcao execute(r)  {
+  var q=u::q(r,"position");
+  var p=u::q(r,"momentum");
+  var mass=u::positive(u::q(r,"mass"));
+  var k=u::positive(u::q(r,"spring"));
+  var h=u::q(r,"step");
+  var d=1+h*h*k/(4*mass);
+  var qn=((1-h*h*k/(4*mass))*q+h*p/mass)/d;
+  var pn=((1-h*h*k/(4*mass))*p-h*k*q)/d;
+  var before=p*p/(2*mass)+k*q*q/2;
+  var after=pn*pn/(2*mass)+k*qn*qn/2;
+  se(before!=after)  {
+    fail("Quadratic Hamiltonian conservation failure");
+  }
+  var out=u::result("implicit-midpoint-quadratic-Hamiltonian",[qn,pn]);
+  put(out,"energy_before",before);
+  put(out,"energy_after",after);
+  retornar out;
+}

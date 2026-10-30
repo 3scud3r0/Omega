@@ -5,6 +5,41 @@ importar "../std/string.omega" como s;
 importar "../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Deterministic SVG polyline with exact raw-data hash and explicit 1e-6 display quantisation; no false exact decimal rendering.
-
-funcao svg_decimal(x){var n=qfloor(m::abs(x)*1000000);var whole=qfloor(n/1000000);var fraction=text(n%1000000);enquanto(len(fraction)<6){fraction="0"+fraction;}var sign="";se(x<0){sign="-";}retornar sign+text(whole)+"."+fraction;}
-funcao execute(r){var points=u::mat(r["points"]);se(len(points[0])!=2){fail("SVG polyline coordinates [x,y]");}var width=u::integer(u::num(r,"width",640),1,8192);var height=u::integer(u::num(r,"height",480),1,8192);var title="Scientific data";se(has(r,"title")){title=u::text_field(r,"title",512);}title=s::replace(s::replace(s::replace(title,"&","&amp;"),"<","&lt;"),">","&gt;");var coords=[];var i=0;enquanto(i<len(points)){push(coords,svg_decimal(points[i][0])+","+svg_decimal(points[i][1]));i=i+1;}var hash=sha256(s::canonical(points));var svg="<svg xmlns=\"http://www.w3.org/2000/svg\" width=\""+text(width)+"\" height=\""+text(height)+"\" viewBox=\"0 0 "+text(width)+" "+text(height)+"\"><title>"+title+"</title><desc>Exact-data SHA-256: "+hash+"</desc><polyline fill=\"none\" stroke=\"black\" points=\""+join(coords," ")+"\"/></svg>";var out=u::result("SVG-polyline-with-rational-source-hash",svg);put(out,"display_quantum",1/1000000);put(out,"source_data_sha256",hash);retornar out;}
+funcao svg_decimal(x)  {
+  var n=qfloor(m::abs(x)*1000000);
+  var whole=qfloor(n/1000000);
+  var fraction=text(n%1000000);
+  enquanto(len(fraction)<6)  {
+    fraction="0"+fraction;
+  }
+  var sign="";
+  se(x<0)  {
+    sign="-";
+  }
+  retornar sign+text(whole)+"."+fraction;
+}
+funcao execute(r)  {
+  var points=u::mat(r["points"]);
+  se(len(points[0])!=2)  {
+    fail("SVG polyline coordinates [x,y]");
+  }
+  var width=u::integer(u::num(r,"width",640),1,8192);
+  var height=u::integer(u::num(r,"height",480),1,8192);
+  var title="Scientific data";
+  se(has(r,"title"))  {
+    title=u::text_field(r,"title",512);
+  }
+  title=s::replace(s::replace(s::replace(title,"&","&amp;"),"<","&lt;"),">","&gt;");
+  var coords=[];
+  var i=0;
+  enquanto(i<len(points))  {
+    push(coords,svg_decimal(points[i][0])+","+svg_decimal(points[i][1]));
+    i=i+1;
+  }
+  var hash=sha256(s::canonical(points));
+  var svg="<svg xmlns=\"http://www.w3.org/2000/svg\" width=\""+text(width)+"\" height=\""+text(height)+"\" viewBox=\"0 0 "+text(width)+" "+text(height)+"\"><title>"+title+"</title><desc>Exact-data SHA-256: "+hash+"</desc><polyline fill=\"none\" stroke=\"black\" points=\""+join(coords," ")+"\"/></svg>";
+  var out=u::result("SVG-polyline-with-rational-source-hash",svg);
+  put(out,"display_quantum",1/1000000);
+  put(out,"source_data_sha256",hash);
+  retornar out;
+}

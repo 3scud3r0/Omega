@@ -5,5 +5,10 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # RREF with row pivoting, rectangular matrices and explicit rank/pivot columns.
-
-funcao execute(r){var a=u::mat(r["matrix"]);var out=u::rref(a);put(out,"model","exact-Gauss-Jordan");put(out,"formal_admission",0);retornar out;}
+funcao execute(r)  {
+  var a=u::mat(r["matrix"]);
+  var out=u::rref(a);
+  put(out,"model","exact-Gauss-Jordan");
+  put(out,"formal_admission",0);
+  retornar out;
+}

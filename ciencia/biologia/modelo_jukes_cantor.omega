@@ -5,5 +5,13 @@ importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
 # Homogeneous JC69 correction with a checked saturation/log domain; empirical model applicability is not proved.
-
-funcao execute(r){var difference=u::q(r,"difference_fraction");se(difference<0||difference>=3/4){fail("JC69 saturation domain 0 <= p < 3/4");}var log=m::log_interval(1-4*difference/3,24);var out=u::result("JC69-evolutionary-distance-enclosure",[-3*log[1]/4,-3*log[0]/4]);put(out,"observed_difference",difference);retornar out;}
+funcao execute(r)  {
+  var difference=u::q(r,"difference_fraction");
+  se(difference<0||difference>=3/4)  {
+    fail("JC69 saturation domain 0 <= p < 3/4");
+  }
+  var log=m::log_interval(1-4*difference/3,24);
+  var out=u::result("JC69-evolutionary-distance-enclosure",[-3*log[1]/4,-3*log[0]/4]);
+  put(out,"observed_difference",difference);
+  retornar out;
+}

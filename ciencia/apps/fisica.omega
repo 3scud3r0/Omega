@@ -22,27 +22,100 @@ importar "../fisica/spin_pauli_algebra.omega" como k19;
 importar "../fisica/geodesicas_schwarzschild.omega" como k20;
 importar "../fisica/desvio_luz_gravitacional.omega" como k21;
 importar "../fisica/equacao_friedmann.omega" como k22;
-funcao principal(){se(argc()!=3){fail("Usage: science-domain id request.json");}var id=number(arg(1));var request=parsejson(read(arg(2)));
-se(id==1){print(s::canonical(k1::execute(request)));retornar 0;}
-se(id==2){print(s::canonical(k2::execute(request)));retornar 0;}
-se(id==3){print(s::canonical(k3::execute(request)));retornar 0;}
-se(id==4){print(s::canonical(k4::execute(request)));retornar 0;}
-se(id==5){print(s::canonical(k5::execute(request)));retornar 0;}
-se(id==6){print(s::canonical(k6::execute(request)));retornar 0;}
-se(id==7){print(s::canonical(k7::execute(request)));retornar 0;}
-se(id==8){print(s::canonical(k8::execute(request)));retornar 0;}
-se(id==9){print(s::canonical(k9::execute(request)));retornar 0;}
-se(id==10){print(s::canonical(k10::execute(request)));retornar 0;}
-se(id==11){print(s::canonical(k11::execute(request)));retornar 0;}
-se(id==12){print(s::canonical(k12::execute(request)));retornar 0;}
-se(id==13){print(s::canonical(k13::execute(request)));retornar 0;}
-se(id==14){print(s::canonical(k14::execute(request)));retornar 0;}
-se(id==15){print(s::canonical(k15::execute(request)));retornar 0;}
-se(id==16){print(s::canonical(k16::execute(request)));retornar 0;}
-se(id==17){print(s::canonical(k17::execute(request)));retornar 0;}
-se(id==18){print(s::canonical(k18::execute(request)));retornar 0;}
-se(id==19){print(s::canonical(k19::execute(request)));retornar 0;}
-se(id==20){print(s::canonical(k20::execute(request)));retornar 0;}
-se(id==21){print(s::canonical(k21::execute(request)));retornar 0;}
-se(id==22){print(s::canonical(k22::execute(request)));retornar 0;}
-fail("Unknown scientific kernel");retornar 1;}
+funcao principal()  {
+  se(argc()!=3)  {
+    fail("Usage: science-domain id request.json");
+  }
+  var id=number(arg(1));
+  var request=parsejson(read(arg(2)));
+  se(id==1)  {
+    print(s::canonical(k1::execute(request)));
+    retornar 0;
+  }
+  se(id==2)  {
+    print(s::canonical(k2::execute(request)));
+    retornar 0;
+  }
+  se(id==3)  {
+    print(s::canonical(k3::execute(request)));
+    retornar 0;
+  }
+  se(id==4)  {
+    print(s::canonical(k4::execute(request)));
+    retornar 0;
+  }
+  se(id==5)  {
+    print(s::canonical(k5::execute(request)));
+    retornar 0;
+  }
+  se(id==6)  {
+    print(s::canonical(k6::execute(request)));
+    retornar 0;
+  }
+  se(id==7)  {
+    print(s::canonical(k7::execute(request)));
+    retornar 0;
+  }
+  se(id==8)  {
+    print(s::canonical(k8::execute(request)));
+    retornar 0;
+  }
+  se(id==9)  {
+    print(s::canonical(k9::execute(request)));
+    retornar 0;
+  }
+  se(id==10)  {
+    print(s::canonical(k10::execute(request)));
+    retornar 0;
+  }
+  se(id==11)  {
+    print(s::canonical(k11::execute(request)));
+    retornar 0;
+  }
+  se(id==12)  {
+    print(s::canonical(k12::execute(request)));
+    retornar 0;
+  }
+  se(id==13)  {
+    print(s::canonical(k13::execute(request)));
+    retornar 0;
+  }
+  se(id==14)  {
+    print(s::canonical(k14::execute(request)));
+    retornar 0;
+  }
+  se(id==15)  {
+    print(s::canonical(k15::execute(request)));
+    retornar 0;
+  }
+  se(id==16)  {
+    print(s::canonical(k16::execute(request)));
+    retornar 0;
+  }
+  se(id==17)  {
+    print(s::canonical(k17::execute(request)));
+    retornar 0;
+  }
+  se(id==18)  {
+    print(s::canonical(k18::execute(request)));
+    retornar 0;
+  }
+  se(id==19)  {
+    print(s::canonical(k19::execute(request)));
+    retornar 0;
+  }
+  se(id==20)  {
+    print(s::canonical(k20::execute(request)));
+    retornar 0;
+  }
+  se(id==21)  {
+    print(s::canonical(k21::execute(request)));
+    retornar 0;
+  }
+  se(id==22)  {
+    print(s::canonical(k22::execute(request)));
+    retornar 0;
+  }
+  fail("Unknown scientific kernel");
+  retornar 1;
+}

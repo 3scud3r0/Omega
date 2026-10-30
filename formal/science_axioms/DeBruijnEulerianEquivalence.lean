@@ -5,7 +5,7 @@ import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Positivity
 import Mathlib.Data.List.Perm.Basic
-import Mathlib.Tactic.Omega
+import Lean.Elab.Tactic.Omega
 
 namespace OmegaScience
 def walkEdges : List ℕ → List (ℕ × ℕ)
@@ -17,12 +17,15 @@ theorem distinct_spellings_same_edge_multiset :
     ([0,1,0,2,0] : List ℕ) ≠ [0,2,0,1,0] ∧
     (walkEdges [0,1,0,2,0]).Perm (walkEdges [0,2,0,1,0]) := by decide
 theorem traversal_edge_count (vertices : List ℕ) : (walkEdges vertices).length=vertices.length-1 := by
-  induction vertices using List.twoStepInduction with
-  | empty => rfl
-  | singleton a => rfl
-  | cons_cons a b rest _ ih =>
-      simp only [walkEdges, List.length_cons] at *
-      omega
+  induction vertices with
+  | nil => rfl
+  | cons a rest ih =>
+      cases rest with
+      | nil => rfl
+      | cons b tail =>
+          change (walkEdges (b::tail)).length+1=(tail.length+1+1)-1
+          simp only [List.length_cons] at ih
+          omega
 
 #print axioms distinct_spellings_same_edge_multiset
 
