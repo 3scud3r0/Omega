@@ -1,0 +1,9 @@
+modulo science_80;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Static vertical-wall hydrostatic load only; seepage, foundation, earthquakes and structural safety are separate models.
+
+funcao execute(r){var rho=u::positive(u::q(r,"density"));var gravity=u::positive(u::q(r,"gravity"));var height=u::positive(u::q(r,"water_height"));var width=u::positive(u::q(r,"width"));var force=rho*gravity*width*height*height/2;var moment=rho*gravity*width*u::power(height,3)/6;var out=u::result("vertical-wall-hydrostatic-triangular-load",force);put(out,"base_overturning_moment",moment);put(out,"centre_above_base",height/3);put(out,"maximum_pressure",rho*gravity*height);se(has(r,"resisting_moment")){var resisting=u::nonnegative(u::q(r,"resisting_moment"));put(out,"moment_safety_ratio",resisting/moment);put(out,"resisting_exceeds_water_moment",resisting>=moment);}retornar out;}

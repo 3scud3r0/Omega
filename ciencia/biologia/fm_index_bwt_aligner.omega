@@ -1,0 +1,10 @@
+modulo science_41;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Finite BWT/FM backward search with explicit sentinel and occurrence counts; bounded pedagogical suffix construction.
+
+funcao occ(text,ch,end){var n=0;var i=0;enquanto(i<end){se(text[i]==ch){n=n+1;}i=i+1;}retornar n;}
+funcao execute(r){var text=u::text_field(r,"text",512);var pattern=u::text_field(r,"pattern",128);se(contains(text,"$")||len(pattern)==0||contains(pattern,"$")){fail("Nonempty pattern and unique reserved BWT sentinel required");}var t=text+"$";var rotations=[];var i=0;enquanto(i<len(t)){push(rotations,[slice(t,i,len(t))+slice(t,0,i),i]);i=i+1;}i=1;enquanto(i<len(rotations)){var j=i;enquanto(j>0&&rotations[j][0]<rotations[j-1][0]){var tmp=rotations[j];put(rotations,j,rotations[j-1]);put(rotations,j-1,tmp);j=j-1;}i=i+1;}var chars=[];i=0;enquanto(i<len(rotations)){push(chars,rotations[i][0][len(t)-1]);i=i+1;}var bwt=join(chars,"");var lo=0;var hi=len(t);i=len(pattern);enquanto(i>0&&lo<hi){i=i-1;var ch=pattern[i];var smaller=0;var j=0;enquanto(j<len(t)){se(t[j]<ch){smaller=smaller+1;}j=j+1;}lo=smaller+occ(bwt,ch,lo);hi=smaller+occ(bwt,ch,hi);}var matches=[];i=lo;enquanto(i<hi){push(matches,rotations[i][1]);i=i+1;}i=1;enquanto(i<len(matches)){var j=i;enquanto(j>0&&matches[j]<matches[j-1]){var x=matches[j];put(matches,j,matches[j-1]);put(matches,j-1,x);j=j-1;}i=i+1;}var out=u::result("BWT-backward-search",matches);put(out,"bwt",bwt);put(out,"suffix_interval",[lo,hi]);retornar out;}

@@ -1,0 +1,9 @@
+modulo science_24;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Exact stoichiometric extent and nonnegative remainders; reaction feasibility/kinetics are separate obligations.
+
+funcao execute(r){var coeff=u::vector(r["reactant_coefficients"]);var amounts=u::vector(r["reactant_amounts"]);var products=u::vector(r["product_coefficients"]);se(len(coeff)==0||len(coeff)!=len(amounts)){fail("Reactant shape");}var extent=0;var i=0;enquanto(i<len(coeff)){u::positive(coeff[i]);u::nonnegative(amounts[i]);var ratio=amounts[i]/coeff[i];se(i==0||ratio<extent){extent=ratio;}i=i+1;}var remaining=[];var limiting=[];i=0;enquanto(i<len(coeff)){push(remaining,amounts[i]-extent*coeff[i]);se(amounts[i]==extent*coeff[i]){push(limiting,i);}i=i+1;}i=0;enquanto(i<len(products)){u::positive(products[i]);i=i+1;}var out=u::result("reaction-extent-limiting-reagent",extent);put(out,"remaining",remaining);put(out,"limiting_indices",limiting);put(out,"product_amounts",u::scale(products,extent));retornar out;}

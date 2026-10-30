@@ -1,0 +1,9 @@
+modulo science_113;
+importar "../../ciencia/core/exato.omega" como u;
+importar "../math.omega" como m;
+importar "../string.omega" como s;
+importar "../math/linalg_exact.omega" como la;
+exportar execute;
+# Bounded quoted CSV with escaped quotes/newlines and optional exact scalar conversion; byte delimiter semantics.
+
+funcao execute(r){var data=u::text_field(r,"text",65536);var delimiter=",";se(has(r,"delimiter")){delimiter=u::text_field(r,"delimiter",1);}se(len(delimiter)!=1||delimiter=="\""||delimiter=="\n"||delimiter=="\r"){fail("One-byte CSV delimiter required");}var rows=[];var row=[];var field="";var quoted=0;var closed=0;var i=0;enquanto(i<len(data)){var ch=data[i];se(quoted){se(ch=="\""){se(i+1<len(data)&&data[i+1]=="\""){field=field+"\"";i=i+1;}senao{quoted=0;closed=1;}}senao{field=field+ch;}}senao{se(ch==delimiter){push(row,field);field="";closed=0;}senao{se(ch=="\n"||ch=="\r"){push(row,field);push(rows,row);row=[];field="";closed=0;se(ch=="\r"&&i+1<len(data)&&data[i+1]=="\n"){i=i+1;}}senao{se(ch=="\""){se(len(field)!=0||closed){fail("Quote outside a CSV field start");}quoted=1;}senao{se(closed){fail("Unexpected bytes after a quoted field");}field=field+ch;}}}}i=i+1;}se(quoted){fail("Unclosed CSV quotation");}se(len(field)>0||closed||len(row)>0||(len(data)>0&&data[len(data)-1]==delimiter)){push(row,field);push(rows,row);}se(len(rows)>1024){fail("CSV row budget");}var width=0;i=0;enquanto(i<len(rows)){se(i==0){width=len(rows[i]);}se(len(rows[i])!=width||width>128){fail("CSV ragged table or column budget");}i=i+1;}var header=[];se(u::num(r,"header",0)&&len(rows)>0){header=rows[0];rows=slice(rows,1,len(rows));}se(u::num(r,"numeric",0)){i=0;enquanto(i<len(rows)){var j=0;enquanto(j<width){put(rows[i],j,u::val(s::trim(rows[i][j])));j=j+1;}i=i+1;}}var out=u::result("bounded-RFC4180-style-CSV",rows);put(out,"header",header);put(out,"columns",width);retornar out;}

@@ -1,0 +1,9 @@
+modulo science_7;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Ideal-gas constitutive model with exact equation of state and interval logarithmic entropy changes.
+
+funcao execute(r){var n=u::positive(u::q(r,"moles"));var gas=u::positive(u::q(r,"gas_constant"));var t=u::positive(u::q(r,"temperature"));var v=u::positive(u::q(r,"volume"));var f=u::positive(u::num(r,"degrees_of_freedom",3));var out=u::result("ideal-gas-model",n*gas*t/v);put(out,"internal_energy",f*n*gas*t/2);put(out,"dP_dT_at_V",n*gas/v);put(out,"dS_dV_at_T",n*gas/v);se(has(r,"initial_temperature")){var t0=u::positive(u::q(r,"initial_temperature"));var v0=u::positive(u::q(r,"initial_volume"));var a=m::log_interval(t/t0,16);var b=m::log_interval(v/v0,16);put(out,"entropy_change_interval",[f*n*gas*a[0]/2+n*gas*b[0],f*n*gas*a[1]/2+n*gas*b[1]]);}retornar out;}

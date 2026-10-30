@@ -1,0 +1,10 @@
+modulo science_30;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+importar "../core/intervalos.omega" como iv;
+exportar execute;
+# Zero/first/second order models; first-order exponent and half-life are enclosed, not claimed rational constants.
+
+funcao execute(r){var order=u::count(r,"order",0,2);var initial=u::positive(u::q(r,"initial"));var rate=u::positive(u::q(r,"rate"));var time=u::nonnegative(u::q(r,"time"));var concentration=[0,0];var half=[0,0];se(order==0){var n=m::max(0,initial-rate*time);concentration=[n,n];half=[initial/(2*rate),initial/(2*rate)];}se(order==1){concentration=iv::scale(m::exp_interval(-rate*time,24),initial);half=iv::scale(m::log_interval(2,24),1/rate);}se(order==2){var n=initial/(1+rate*initial*time);concentration=[n,n];half=[1/(rate*initial),1/(rate*initial)];}var out=u::result("irreversible-integrated-rate-law",concentration);put(out,"half_life",half);retornar out;}

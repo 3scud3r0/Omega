@@ -1,0 +1,9 @@
+modulo science_52;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Supplied empirical angle boxes and optional nonlocal hard-sphere clash tests; not a proof of protein fold viability.
+
+funcao execute(r){var phi=u::q(r,"phi");var psi=u::q(r,"psi");var regions=u::mat(r["allowed_regions"]);se(len(regions[0])!=4){fail("Empirical Ramachandran boxes [phi_lo,phi_hi,psi_lo,psi_hi]");}var matches=[];var i=0;enquanto(i<len(regions)){var b=regions[i];se(b[0]>b[1]||b[2]>b[3]){fail("Invalid angle region");}se(b[0]<=phi&&phi<=b[1]&&b[2]<=psi&&psi<=b[3]){push(matches,i);}i=i+1;}var out=u::result("declared-Ramachandran-region-classifier",matches);put(out,"steric_clearance_checked",0);se(has(r,"atom_positions")){var positions=u::mat(r["atom_positions"]);var radii=u::vector(r["radii"]);se(len(positions[0])!=3||len(radii)!=len(positions)){fail("Steric input shape");}var overlaps=[];i=0;enquanto(i<len(positions)){u::positive(radii[i]);var j=i+3;enquanto(j<len(positions)){var delta=u::add(positions[i],u::scale(positions[j],-1));se(u::dot(delta,delta)<(radii[i]+radii[j])*(radii[i]+radii[j])){push(overlaps,[i,j]);}j=j+1;}i=i+1;}put(out,"steric_overlaps",overlaps);put(out,"steric_clearance_checked",1);}retornar out;}

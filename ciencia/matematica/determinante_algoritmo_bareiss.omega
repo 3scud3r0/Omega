@@ -1,0 +1,9 @@
+modulo science_59;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Fraction-free Bareiss with pivoting and a witness for every exact integer division.
+
+funcao execute(r){var a=u::mat(r["matrix"]);var n=len(a);se(n!=len(a[0])){fail("Square integer matrix required");}var i=0;enquanto(i<n){var j=0;enquanto(j<n){u::integer(a[i][j],-1000000000000,1000000000000);j=j+1;}i=i+1;}var previous=1;var sign=1;var k=0;var divisions=[];enquanto(k<n-1){var p=k;enquanto(p<n&&a[p][k]==0){p=p+1;}se(p==n){retornar u::result("Bareiss",0);}se(p!=k){var row=a[p];put(a,p,a[k]);put(a,k,row);sign=-sign;}var pivot=a[k][k];i=k+1;enquanto(i<n){var j=k+1;enquanto(j<n){var numerator=pivot*a[i][j]-a[i][k]*a[k][j];var q=u::check(numerator/previous);se(q%1!=0){fail("Bareiss exact-division invariant failed");}push(divisions,[numerator,previous,q]);put(a[i],j,q);j=j+1;}put(a[i],k,0);i=i+1;}previous=pivot;k=k+1;}var out=u::result("integer-Bareiss",sign*a[n-1][n-1]);put(out,"divisions",divisions);retornar out;}

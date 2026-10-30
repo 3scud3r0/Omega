@@ -1,0 +1,30 @@
+modulo science_app;
+importar "../../std/string.omega" como s;
+importar "../engenharia/equacao_foguete_tsiolkovsky.omega" como k68;
+importar "../engenharia/reentrada_atmosferica_perfil.omega" como k69;
+importar "../engenharia/atitude_quaternions_espaciais.omega" como k70;
+importar "../engenharia/filtro_kalman_racional_discreto.omega" como k71;
+importar "../engenharia/cinematica_direta_denavit_hartenberg.omega" como k72;
+importar "../engenharia/cinematica_inversa_geometrica.omega" como k73;
+importar "../engenharia/planejamento_trajetoria_quintica.omega" como k74;
+importar "../engenharia/fluxo_potencia_newton_raphson.omega" como k75;
+importar "../engenharia/analise_curto_circuito_simetrico.omega" como k76;
+importar "../engenharia/estabilidade_transiente_geradores.omega" como k77;
+importar "../engenharia/trelica_metodo_dos_nos.omega" como k78;
+importar "../engenharia/escoamento_tubulacoes_darcy_weisbach.omega" como k79;
+importar "../engenharia/pressao_hidrostatica_barragens.omega" como k80;
+funcao principal(){se(argc()!=3){fail("Usage: science-domain id request.json");}var id=number(arg(1));var request=parsejson(read(arg(2)));
+se(id==68){print(s::canonical(k68::execute(request)));retornar 0;}
+se(id==69){print(s::canonical(k69::execute(request)));retornar 0;}
+se(id==70){print(s::canonical(k70::execute(request)));retornar 0;}
+se(id==71){print(s::canonical(k71::execute(request)));retornar 0;}
+se(id==72){print(s::canonical(k72::execute(request)));retornar 0;}
+se(id==73){print(s::canonical(k73::execute(request)));retornar 0;}
+se(id==74){print(s::canonical(k74::execute(request)));retornar 0;}
+se(id==75){print(s::canonical(k75::execute(request)));retornar 0;}
+se(id==76){print(s::canonical(k76::execute(request)));retornar 0;}
+se(id==77){print(s::canonical(k77::execute(request)));retornar 0;}
+se(id==78){print(s::canonical(k78::execute(request)));retornar 0;}
+se(id==79){print(s::canonical(k79::execute(request)));retornar 0;}
+se(id==80){print(s::canonical(k80::execute(request)));retornar 0;}
+fail("Unknown scientific kernel");retornar 1;}

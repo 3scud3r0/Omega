@@ -1,0 +1,9 @@
+modulo science_40;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Smith-Waterman score and endpoint with two rows of memory; linear gaps, no reconstructed traceback.
+
+funcao execute(r){var a=u::text_field(r,"sequence1",256);var b=u::text_field(r,"sequence2",256);var match=u::positive(u::q(r,"match"));var mismatch=u::q(r,"mismatch");var gap=u::positive(u::q(r,"gap"));var previous=u::zeros(len(b)+1);var best=0;var endpoint=[0,0];var i=1;enquanto(i<=len(a)){var row=u::zeros(len(b)+1);var j=1;enquanto(j<=len(b)){var score=mismatch;se(a[i-1]==b[j-1]){score=match;}var value=m::max(0,m::max(previous[j-1]+score,m::max(previous[j]-gap,row[j-1]-gap)));put(row,j,value);se(value>best){best=value;endpoint=[i,j];}j=j+1;}previous=row;i=i+1;}var out=u::result("linear-space-local-alignment-score",best);put(out,"endpoint",endpoint);put(out,"traceback_available",0);retornar out;}

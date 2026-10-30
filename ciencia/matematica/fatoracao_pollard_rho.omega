@@ -1,0 +1,13 @@
+modulo science_55;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+importar "primalidade_miller_rabin_exata.omega" como p;
+exportar execute;
+# Bounded factor search; unresolved cofactors are explicit, never declared prime.
+
+funcao gcd(a,b){enquanto(b!=0){var t=a%b;a=b;b=t;}retornar m::abs(a);}
+funcao prime(n){var r=obj();put(r,"n",n);var out=p::execute(r);retornar out["prime"];}
+funcao divisor(n,limit){se(n%2==0){retornar 2;}var c=1;var work=0;enquanto(c<=8&&work<limit){var x=2;var y=2;var d=1;enquanto(d==1&&work<limit){x=(x*x+c)%n;y=(y*y+c)%n;y=(y*y+c)%n;d=gcd(m::abs(x-y),n);work=work+1;}se(d>1&&d<n){retornar d;}c=c+1;}retornar 0;}
+funcao execute(r){var n=u::count(r,"n",2,18446744073709551615);var limit=u::integer(u::num(r,"iterations",10000),1,100000);var pending=[n];var factors=[];var unresolved=[];var work=0;enquanto(len(pending)>0){var x=pending[len(pending)-1];pending=slice(pending,0,len(pending)-1);se(prime(x)){push(factors,x);}senao{var d=divisor(x,limit);se(d==0){push(unresolved,x);}senao{push(pending,d);push(pending,x/d);}}work=work+1;se(work>128){fail("Factor tree budget");}}var product=1;var i=0;enquanto(i<len(factors)){product=product*factors[i];i=i+1;}i=0;enquanto(i<len(unresolved)){product=product*unresolved[i];i=i+1;}se(product!=n){fail("Factor product mismatch");}var out=u::result("bounded-Pollard-rho",factors);put(out,"factors",factors);put(out,"unresolved",unresolved);put(out,"complete",len(unresolved)==0);retornar out;}

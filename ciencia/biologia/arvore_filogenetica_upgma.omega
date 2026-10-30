@@ -1,0 +1,11 @@
+modulo science_44;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Exact average-linkage UPGMA; molecular-clock/ultrametric suitability remains an input-model assumption.
+
+funcao validate(a){var n=len(a);se(n!=len(a[0])||n>16){fail("Distance matrix shape");}var i=0;enquanto(i<n){var j=0;enquanto(j<n){se(a[i][j]<0||a[i][j]!=a[j][i]||(i==j&&a[i][j]!=0)){fail("Symmetric nonnegative zero-diagonal distances required");}j=j+1;}i=i+1;}retornar 0;}
+funcao average(a,left,right){var sum=0;var i=0;enquanto(i<len(left)){var j=0;enquanto(j<len(right)){sum=sum+a[left[i]][right[j]];j=j+1;}i=i+1;}retornar sum/(len(left)*len(right));}
+funcao execute(r){var a=u::mat(r["distances"]);validate(a);var n=len(a);se(n<2){fail("Two taxa required");}var clusters=[];var heights=[];var ids=[];var i=0;enquanto(i<n){push(clusters,[i]);push(heights,0);push(ids,i);i=i+1;}var merges=[];enquanto(len(clusters)>1){var p=0;var q=1;var best=average(a,clusters[0],clusters[1]);i=0;enquanto(i<len(clusters)){var j=i+1;enquanto(j<len(clusters)){var d=average(a,clusters[i],clusters[j]);se(d<best){best=d;p=i;q=j;}j=j+1;}i=i+1;}var record=obj();put(record,"left",ids[p]);put(record,"right",ids[q]);put(record,"height",best/2);put(record,"left_length",best/2-heights[p]);put(record,"right_length",best/2-heights[q]);push(merges,record);var members=slice(clusters[p],0,len(clusters[p]));i=0;enquanto(i<len(clusters[q])){push(members,clusters[q][i]);i=i+1;}var nc=[];var nh=[];var ni=[];i=0;enquanto(i<len(clusters)){se(i!=p&&i!=q){push(nc,clusters[i]);push(nh,heights[i]);push(ni,ids[i]);}i=i+1;}push(nc,members);push(nh,best/2);push(ni,n+len(merges)-1);clusters=nc;heights=nh;ids=ni;}retornar u::result("UPGMA-average-linkage",merges);}

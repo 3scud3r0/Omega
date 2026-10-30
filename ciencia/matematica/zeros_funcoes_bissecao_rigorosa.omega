@@ -1,0 +1,9 @@
+modulo science_63;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Polynomial continuity plus exact opposite signs brackets a root; no uniqueness assertion.
+
+funcao execute(r){var c=u::vector(r["coefficients"]);u::budget(len(c),32);var lo=u::q(r,"lower");var hi=u::q(r,"upper");se(lo>=hi){fail("Ordered root bracket required");}var count=u::integer(u::num(r,"steps",32),1,128);var fl=u::polynomial(c,lo);var fh=u::polynomial(c,hi);se(fl==0){hi=lo;}senao{se(fh==0){lo=hi;}senao{se(fl*fh>=0){fail("Root existence requires opposite endpoint signs");}var i=0;enquanto(i<count){var mid=(lo+hi)/2;var fm=u::polynomial(c,mid);se(fm==0){lo=mid;hi=mid;parar;}se(fl*fm<0){hi=mid;fh=fm;}senao{lo=mid;fl=fm;}i=i+1;}}}var out=u::result("continuous-polynomial-sign-bracket",[lo,hi]);put(out,"width",hi-lo);put(out,"endpoint_values",[u::polynomial(c,lo),u::polynomial(c,hi)]);retornar out;}

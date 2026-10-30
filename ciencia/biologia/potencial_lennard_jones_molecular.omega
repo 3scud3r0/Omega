@@ -1,0 +1,9 @@
+modulo science_51;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Exact squared-distance potential and force on a pair; singular coincident positions are rejected.
+
+funcao execute(r){var displacement=u::vector(r["displacement"]);se(len(displacement)<1||len(displacement)>3){fail("One to three spatial coordinates required");}var epsilon=u::positive(u::q(r,"epsilon"));var sigma=u::positive(u::q(r,"sigma"));var d2=u::positive(u::dot(displacement,displacement));var q=u::power(sigma*sigma/d2,3);var potential=4*epsilon*(q*q-q);var force=u::scale(displacement,24*epsilon*(2*q*q-q)/d2);var out=u::result("Lennard-Jones-12-6-pair",potential);put(out,"force",force);put(out,"distance_squared",d2);retornar out;}

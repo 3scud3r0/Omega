@@ -1,0 +1,10 @@
+modulo science_27;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+importar "../core/intervalos.omega" como iv;
+exportar execute;
+# Strictly convex ideal binary isomer mixture; interval closed-form minimizer, not a generic chemical Gibbs solver.
+
+funcao execute(r){var total=u::positive(u::q(r,"total_amount"));var rt=u::positive(u::q(r,"thermal_energy"));var ma=u::q(r,"standard_mu_A");var mb=u::q(r,"standard_mu_B");var factor=m::exp_interval((ma-mb)/rt,24);var a=[total/(1+factor[1]),total/(1+factor[0])];var b=[total-a[1],total-a[0]];var loga=iv::log(iv::scale(a,1/total),24);var logb=iv::log(iv::scale(b,1/total),24);var g=iv::add(iv::scale(a,ma),iv::scale(b,mb));g=iv::add(g,iv::scale(iv::add(iv::mul(a,loga),iv::mul(b,logb)),rt));var out=u::result("ideal-binary-isomer-mixture-Gibbs-minimizer",[a,b]);put(out,"G_at_minimizer_enclosure",g);put(out,"strict_convexity_domain","0 < n_A < total; G''=RT*(1/n_A+1/n_B)>0");retornar out;}

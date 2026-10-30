@@ -1,0 +1,9 @@
+modulo science_34;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Exact charge-to-mass conversion conditional on supplied units/constants and unit Faradaic efficiency.
+
+funcao execute(r){var current=u::nonnegative(u::q(r,"current"));var time=u::nonnegative(u::q(r,"time"));var molar=u::positive(u::q(r,"molar_mass"));var electrons=u::count(r,"electrons",1,1000);var faraday=u::positive(u::q(r,"faraday_constant"));var charge=current*time;var moles=charge/(electrons*faraday);var out=u::result("Faraday-electrodeposition-model",moles*molar);put(out,"charge",charge);put(out,"deposited_moles",moles);retornar out;}

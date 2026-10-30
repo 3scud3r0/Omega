@@ -1,0 +1,9 @@
+modulo science_2;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Symplectic Verlet preserves a modified quadratic energy; physical-energy drift is reported, not set to zero.
+
+funcao execute(r){var q=u::q(r,"position");var p=u::q(r,"momentum");var mass=u::positive(u::q(r,"mass"));var k=u::positive(u::q(r,"spring"));var h=u::q(r,"step");var a=h*h*k/(4*mass);se(a>=1){fail("Oscillator Verlet stability domain h^2*k/m < 4");}var half=p-h*k*q/2;var qn=q+h*half/mass;var pn=half-h*k*qn/2;var modified=p*p/(2*mass)+k*(1-a)*q*q/2;var after=pn*pn/(2*mass)+k*(1-a)*qn*qn/2;se(modified!=after){fail("Verlet modified invariant");}var out=u::result("velocity-Verlet-quadratic-oscillator",[qn,pn]);put(out,"modified_energy",modified);put(out,"physical_energy_change",pn*pn/(2*mass)+k*qn*qn/2-p*p/(2*mass)-k*q*q/2);put(out,"jacobian_determinant",1);retornar out;}

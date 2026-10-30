@@ -1,0 +1,9 @@
+modulo science_57;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Extended Euclid with coprimality/domain checks and exact modular verification.
+
+funcao execute(r){var a=u::q(r,"a");var n=u::count(r,"modulus",2,18446744073709551615);u::integer(a,-18446744073709551615,18446744073709551615);var old=n;var rem=(a%n+n)%n;var t=0;var next=1;enquanto(rem!=0){var q=qfloor(old/rem);var tmp=old-q*rem;old=rem;rem=tmp;tmp=t-q*next;t=next;next=tmp;}se(old!=1){fail("Modular inverse does not exist");}var inverse=(t%n+n)%n;se((a*inverse%n+n)%n!=1){fail("Bezout certificate failure");}var out=u::result("extended-Euclid",inverse);put(out,"inverse",inverse);put(out,"gcd",old);retornar out;}

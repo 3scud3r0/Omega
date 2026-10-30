@@ -1,0 +1,36 @@
+modulo science_app;
+importar "../../std/string.omega" como s;
+importar "../quimica/balanco_reacoes_redox.omega" como k23;
+importar "../quimica/calculo_reagente_limitante.omega" como k24;
+importar "../quimica/estequiometria_combustao.omega" como k25;
+importar "../quimica/lei_hess_entalpia.omega" como k26;
+importar "../quimica/equilibrio_gibbs_minimizacao.omega" como k27;
+importar "../quimica/constante_equilibrio_kp_kc.omega" como k28;
+importar "../quimica/equilibrio_acido_base_tamponamento.omega" como k29;
+importar "../quimica/leis_velocidade_integradas.omega" como k30;
+importar "../quimica/mecanismo_michaelis_menten.omega" como k31;
+importar "../quimica/arrhenius_energia_ativacao.omega" como k32;
+importar "../quimica/equacao_nernst_exata.omega" como k33;
+importar "../quimica/leis_faraday_eletrolise.omega" como k34;
+importar "../quimica/cinetica_butler_volmer.omega" como k35;
+importar "../quimica/indices_miller_redes.omega" como k36;
+importar "../quimica/fator_empacotamento_atomico.omega" como k37;
+importar "../quimica/difracao_raios_x_bragg.omega" como k38;
+funcao principal(){se(argc()!=3){fail("Usage: science-domain id request.json");}var id=number(arg(1));var request=parsejson(read(arg(2)));
+se(id==23){print(s::canonical(k23::execute(request)));retornar 0;}
+se(id==24){print(s::canonical(k24::execute(request)));retornar 0;}
+se(id==25){print(s::canonical(k25::execute(request)));retornar 0;}
+se(id==26){print(s::canonical(k26::execute(request)));retornar 0;}
+se(id==27){print(s::canonical(k27::execute(request)));retornar 0;}
+se(id==28){print(s::canonical(k28::execute(request)));retornar 0;}
+se(id==29){print(s::canonical(k29::execute(request)));retornar 0;}
+se(id==30){print(s::canonical(k30::execute(request)));retornar 0;}
+se(id==31){print(s::canonical(k31::execute(request)));retornar 0;}
+se(id==32){print(s::canonical(k32::execute(request)));retornar 0;}
+se(id==33){print(s::canonical(k33::execute(request)));retornar 0;}
+se(id==34){print(s::canonical(k34::execute(request)));retornar 0;}
+se(id==35){print(s::canonical(k35::execute(request)));retornar 0;}
+se(id==36){print(s::canonical(k36::execute(request)));retornar 0;}
+se(id==37){print(s::canonical(k37::execute(request)));retornar 0;}
+se(id==38){print(s::canonical(k38::execute(request)));retornar 0;}
+fail("Unknown scientific kernel");retornar 1;}

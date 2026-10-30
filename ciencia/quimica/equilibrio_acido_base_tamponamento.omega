@@ -1,0 +1,11 @@
+modulo science_29;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+importar "../core/intervalos.omega" como iv;
+exportar execute;
+# Ideal activity-equals-concentration acid model with a rational hydrogen root bracket and interval pH.
+
+funcao charge(h,ka,total,kw,strong){var n=len(ka);var denom=u::power(h,n);var charged=0;var product=1;var i=1;enquanto(i<=n){product=product*ka[i-1];var term=product*u::power(h,n-i);denom=denom+term;charged=charged+i*term;i=i+1;}retornar h+strong-kw/h-total*charged/denom;}
+funcao execute(r){var ka=u::vector(r["Ka"]);se(len(ka)<1||len(ka)>3){fail("Mono/di/triprotic acid model required");}var i=0;enquanto(i<len(ka)){u::positive(ka[i]);i=i+1;}var total=u::positive(u::q(r,"total_concentration"));var kw=u::positive(u::q(r,"Kw"));var strong=u::num(r,"strong_cation_excess",0);var lo=u::positive(u::q(r,"lower_H"));var hi=u::positive(u::q(r,"upper_H"));se(lo>=hi||charge(lo,ka,total,kw,strong)>0||charge(hi,ka,total,kw,strong)<0){fail("Acid electroneutrality sign bracket required");}i=0;enquanto(i<64){var mid=(lo+hi)/2;var f=charge(mid,ka,total,kw,strong);se(f==0){lo=mid;hi=mid;parar;}se(f<0){lo=mid;}senao{hi=mid;}i=i+1;}var ln10=m::log_interval(10,24);var ph=iv::scale(iv::div(iv::log([lo,hi],24),ln10),-1);var out=u::result("ideal-polyprotic-acid-electroneutrality",[lo,hi]);put(out,"pH_interval",ph);retornar out;}

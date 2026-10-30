@@ -1,0 +1,32 @@
+modulo science_app;
+importar "../../std/string.omega" como s;
+importar "../matematica/primalidade_miller_rabin_exata.omega" como k54;
+importar "../matematica/fatoracao_pollard_rho.omega" como k55;
+importar "../matematica/inverso_modular_euclides_estendido.omega" como k57;
+importar "../matematica/curvas_elipticas_corpos_finitos.omega" como k56;
+importar "../matematica/eliminacao_gauss_jordan_fracionaria.omega" como k58;
+importar "../matematica/determinante_algoritmo_bareiss.omega" como k59;
+importar "../matematica/ortogonalizacao_gram_schmidt_exata.omega" como k60;
+importar "../matematica/autovalores_qr_sem_drift.omega" como k61;
+importar "../matematica/integracao_simpson_com_residuo.omega" como k62;
+importar "../matematica/zeros_funcoes_bissecao_rigorosa.omega" como k63;
+importar "../matematica/extrapolacao_richardson.omega" como k64;
+importar "../matematica/envoltoria_convexa_graham_scan.omega" como k65;
+importar "../matematica/triangulacao_delaunay_incremental.omega" como k66;
+importar "../matematica/diagrama_voronoi_fortunes.omega" como k67;
+funcao principal(){se(argc()!=3){fail("Usage: science-domain id request.json");}var id=number(arg(1));var request=parsejson(read(arg(2)));
+se(id==54){print(s::canonical(k54::execute(request)));retornar 0;}
+se(id==55){print(s::canonical(k55::execute(request)));retornar 0;}
+se(id==57){print(s::canonical(k57::execute(request)));retornar 0;}
+se(id==56){print(s::canonical(k56::execute(request)));retornar 0;}
+se(id==58){print(s::canonical(k58::execute(request)));retornar 0;}
+se(id==59){print(s::canonical(k59::execute(request)));retornar 0;}
+se(id==60){print(s::canonical(k60::execute(request)));retornar 0;}
+se(id==61){print(s::canonical(k61::execute(request)));retornar 0;}
+se(id==62){print(s::canonical(k62::execute(request)));retornar 0;}
+se(id==63){print(s::canonical(k63::execute(request)));retornar 0;}
+se(id==64){print(s::canonical(k64::execute(request)));retornar 0;}
+se(id==65){print(s::canonical(k65::execute(request)));retornar 0;}
+se(id==66){print(s::canonical(k66::execute(request)));retornar 0;}
+se(id==67){print(s::canonical(k67::execute(request)));retornar 0;}
+fail("Unknown scientific kernel");retornar 1;}

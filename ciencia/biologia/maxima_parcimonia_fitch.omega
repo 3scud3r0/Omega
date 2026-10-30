@@ -1,0 +1,10 @@
+modulo science_46;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Fitch minimum unit-change score for one DNA character on a supplied binary tree; ambiguity sets are supported.
+
+funcao fitch(tree,counter){put(counter,0,counter[0]+1);se(counter[0]>255){fail("Fitch tree size budget");}var out=obj();se(isstr(tree)){se(len(tree)<1||len(tree)>4){fail("Leaf state set length");}var states=[];var i=0;enquanto(i<len(tree)){se(!contains("ACGT",tree[i])){fail("DNA states A/C/G/T required");}se(!contains(states,tree[i])){push(states,tree[i]);}i=i+1;}put(out,"states",states);put(out,"score",0);retornar out;}se(!islist(tree)||len(tree)!=2){fail("Binary rooted Fitch tree required");}var left=fitch(tree[0],counter);var right=fitch(tree[1],counter);var intersection=[];var union=slice(left["states"],0,len(left["states"]));var i=0;enquanto(i<len(right["states"])){var v=right["states"][i];se(contains(left["states"],v)){push(intersection,v);}senao{push(union,v);}i=i+1;}var score=left["score"]+right["score"];se(len(intersection)>0){put(out,"states",intersection);}senao{put(out,"states",union);score=score+1;}put(out,"score",score);retornar out;}
+funcao execute(r){var out=fitch(r["tree"],[0]);put(out,"model","unit-cost-Fitch-site-parsimony");put(out,"formal_admission",0);retornar out;}

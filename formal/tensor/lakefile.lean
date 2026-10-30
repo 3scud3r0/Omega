@@ -15,6 +15,9 @@ lean_lib Universal where
   srcDir := ".."
 lean_lib Native where
   srcDir := ".."
+lean_lib ScienceAxioms where
+  srcDir := "../science_axioms"
+  roots := #[`EnergyConservationTheorem, `SecondLawThermodynamics, `SymplecticFormPreservation, `LorentzInvariance, `QuantumUnitarity, `StoichiometricConservation, `GibbsEnergyMinimality, `MassActionLawDerivation, `NeedlemanWunschOptimality, `DeBruijnEulerianEquivalence, `HardyWeinbergStability, `TaylorErrorBoundTheorem, `NewtonRaphsonConvergence, `BareissDivisionFreeTheorem, `GrahamScanConvexity, `LyapunovAsymptoticStability, `KalmanCovariancePositiveDefinite, `NyquistStabilityCriterion]
 @[default_target]
 lean_exe omega_tensor_kernel where
   root := `Main

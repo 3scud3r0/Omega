@@ -1,0 +1,9 @@
+modulo science_32;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Arrhenius model on the checked exponential domain, using rational Taylor/remainder enclosures.
+
+funcao execute(r){var prefactor=u::positive(u::q(r,"prefactor"));var activation=u::nonnegative(u::q(r,"activation_energy"));var gas=u::positive(u::q(r,"gas_constant"));var temp=u::positive(u::q(r,"temperature"));var exponent=-activation/(gas*temp);var interval=m::exp_interval(exponent,24);var out=u::result("Arrhenius-exponential-enclosure",[prefactor*interval[0],prefactor*interval[1]]);put(out,"dimensionless_exponent",exponent);retornar out;}

@@ -1,0 +1,34 @@
+modulo science_app;
+importar "../../std/string.omega" como s;
+importar "../biologia/needleman_wunsch_exato.omega" como k39;
+importar "../biologia/smith_waterman_local.omega" como k40;
+importar "../biologia/fm_index_bwt_aligner.omega" como k41;
+importar "../biologia/montagem_debruijn_euler.omega" como k42;
+importar "../biologia/scoring_matrices_pam_blosum.omega" como k43;
+importar "../biologia/arvore_filogenetica_upgma.omega" como k44;
+importar "../biologia/neighbor_joining_tree.omega" como k45;
+importar "../biologia/maxima_parcimonia_fitch.omega" como k46;
+importar "../biologia/modelo_jukes_cantor.omega" como k47;
+importar "../biologia/lotka_volterra_presa_predador.omega" como k48;
+importar "../biologia/crescimento_logistico_populacional.omega" como k49;
+importar "../biologia/equilibrio_hardy_weinberg.omega" como k50;
+importar "../biologia/potencial_lennard_jones_molecular.omega" como k51;
+importar "../biologia/angulos_ramachandran_peptideos.omega" como k52;
+importar "../biologia/cinetica_transporte_membrana.omega" como k53;
+funcao principal(){se(argc()!=3){fail("Usage: science-domain id request.json");}var id=number(arg(1));var request=parsejson(read(arg(2)));
+se(id==39){print(s::canonical(k39::execute(request)));retornar 0;}
+se(id==40){print(s::canonical(k40::execute(request)));retornar 0;}
+se(id==41){print(s::canonical(k41::execute(request)));retornar 0;}
+se(id==42){print(s::canonical(k42::execute(request)));retornar 0;}
+se(id==43){print(s::canonical(k43::execute(request)));retornar 0;}
+se(id==44){print(s::canonical(k44::execute(request)));retornar 0;}
+se(id==45){print(s::canonical(k45::execute(request)));retornar 0;}
+se(id==46){print(s::canonical(k46::execute(request)));retornar 0;}
+se(id==47){print(s::canonical(k47::execute(request)));retornar 0;}
+se(id==48){print(s::canonical(k48::execute(request)));retornar 0;}
+se(id==49){print(s::canonical(k49::execute(request)));retornar 0;}
+se(id==50){print(s::canonical(k50::execute(request)));retornar 0;}
+se(id==51){print(s::canonical(k51::execute(request)));retornar 0;}
+se(id==52){print(s::canonical(k52::execute(request)));retornar 0;}
+se(id==53){print(s::canonical(k53::execute(request)));retornar 0;}
+fail("Unknown scientific kernel");retornar 1;}

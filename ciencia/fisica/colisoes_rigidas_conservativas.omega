@@ -1,0 +1,9 @@
+modulo science_6;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Momentum is exact; kinetic energy is conserved only for elastic collisions, otherwise heat accounts for loss.
+
+funcao execute(r){var m1=u::positive(u::q(r,"mass1"));var m2=u::positive(u::q(r,"mass2"));var v1=u::q(r,"velocity1");var v2=u::q(r,"velocity2");var e=u::q(r,"restitution");se(e<0||e>1){fail("Restitution in [0,1]");}var center=(m1*v1+m2*v2)/(m1+m2);var relative=-e*(v1-v2);var w1=center+m2*relative/(m1+m2);var w2=center-m1*relative/(m1+m2);var loss=(1-e*e)*m1*m2*(v1-v2)*(v1-v2)/(2*(m1+m2));se(m1*w1+m2*w2!=m1*v1+m2*v2||m1*w1*w1/2+m2*w2*w2/2+loss!=m1*v1*v1/2+m2*v2*v2/2){fail("Collision conservation");}var out=u::result("one-dimensional-restitution-collision",[w1,w2]);put(out,"heat_generated",loss);retornar out;}

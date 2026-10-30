@@ -1,0 +1,9 @@
+modulo science_62;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Polynomial Simpson quadrature with an explicit supremum bound on the fourth derivative.
+
+funcao execute(r){var c=u::vector(r["coefficients"]);u::budget(len(c),21);var a=u::q(r,"a");var b=u::q(r,"b");se(a>=b){fail("Ordered integration endpoints required");}var n=u::count(r,"panels",2,128);se(n%2!=0){fail("Simpson requires an even panel count");}var h=(b-a)/n;var sum=u::polynomial(c,a)+u::polynomial(c,b);var i=1;enquanto(i<n){var w=2;se(i%2==1){w=4;}sum=sum+w*u::polynomial(c,a+i*h);i=i+1;}var radius=m::max(m::abs(a),m::abs(b));var bound=0;i=4;enquanto(i<len(c)){bound=bound+m::abs(c[i])*i*(i-1)*(i-2)*(i-3)*u::power(radius,i-4);i=i+1;}var error=(b-a)*u::power(h,4)*bound/180;var out=u::result("polynomial-composite-Simpson",sum*h/3);put(out,"error_bound",error);put(out,"interval",[sum*h/3-error,sum*h/3+error]);retornar out;}

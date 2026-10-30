@@ -1,0 +1,9 @@
+modulo science_60;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Exact orthogonal unnormalised Q and unit-upper R; irrational unit normalisation is not faked.
+
+funcao execute(r){var a=u::mat(r["matrix"]);var columns=u::transpose(a);var basis=[];var norms=[];var n=len(columns);var rr=u::eye(n);var j=0;enquanto(j<n){var v=slice(columns[j],0,len(columns[j]));var i=0;enquanto(i<j){var c=u::dot(basis[i],columns[j])/norms[i];put(rr[i],j,c);v=u::add(v,u::scale(basis[i],-c));i=i+1;}var norm=u::dot(v,v);se(norm==0){fail("Linearly dependent columns");}push(norms,norm);push(basis,v);j=j+1;}var q=u::transpose(basis);se(s::canonical(u::mul(q,rr))!=s::canonical(a)){fail("Orthogonal factor reconstruction failed");}var out=u::result("unnormalized-rational-Gram-Schmidt",q);put(out,"R",rr);put(out,"norm_squared",norms);put(out,"unit_normalized",0);retornar out;}

@@ -1,0 +1,10 @@
+modulo science_106;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/math.omega" como m;
+importar "../std/string.omega" como s;
+importar "../std/math/linalg_exact.omega" como la;
+importar "../ciencia/core/intervalos.omega" como iv;
+exportar execute;
+# Exact zero witnesses and conservative interval denominator checks; no division is attempted at singular states.
+
+funcao execute(r){var coefficients=u::vector(r["denominator"]);u::budget(len(coefficients),32);var grid=u::vector(r["grid"]);var bounds=u::vector(r["interval"]);se(len(bounds)!=2||bounds[0]>bounds[1]){fail("Singularity interval shape");}var zeros=[];var smallest=[];var i=0;enquanto(i<len(grid)){var value=u::polynomial(coefficients,grid[i]);se(value==0){push(zeros,grid[i]);}senao{se(len(smallest)==0||m::abs(value)<smallest[1]){smallest=[grid[i],m::abs(value)];}}i=i+1;}var box=[0,0];i=len(coefficients);enquanto(i>0){i=i-1;box=iv::add(iv::mul(box,bounds),[coefficients[i],coefficients[i]]);}var out=u::result("denominator-zero-and-interval-stress",zeros);put(out,"minimum_nonzero_grid_magnitude",smallest);put(out,"denominator_enclosure",box);put(out,"interval_excludes_zero",!(box[0]<=0&&box[1]>=0));retornar out;}

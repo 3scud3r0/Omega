@@ -1,0 +1,9 @@
+modulo science_36;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Cubic and three-index hexagonal reciprocal-metric formulae, returning spacing enclosures.
+
+funcao execute(r){var h=u::count(r,"h",-256,256);var k=u::count(r,"k",-256,256);var l=u::count(r,"l",-256,256);se(h==0&&k==0&&l==0){fail("Zero Miller triple");}var a=u::positive(u::q(r,"a"));var lattice=u::text_field(r,"lattice",16);var reciprocal=0;se(lattice=="cubic"){reciprocal=(h*h+k*k+l*l)/(a*a);}senao{se(lattice!="hexagonal"){fail("Cubic or three-index hexagonal lattice required");}var c=u::positive(u::q(r,"c"));reciprocal=4*(h*h+h*k+k*k)/(3*a*a)+l*l/(c*c);}var out=u::result("Miller-reciprocal-spacing",reciprocal);put(out,"spacing",m::sqrt_interval(1/reciprocal,24));retornar out;}

@@ -1,0 +1,9 @@
+modulo science_9;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Two equilibrium reservoirs, cyclic working fluid, positive absolute temperatures; no universal physical axiom is inferred.
+
+funcao execute(r){var hot=u::positive(u::q(r,"hot_temperature"));var cold=u::positive(u::q(r,"cold_temperature"));se(cold>=hot){fail("Hot reservoir must be hotter");}var heat=u::positive(u::q(r,"heat_in"));var limit=1-cold/hot;var work=u::num(r,"work",heat*limit);se(work<0||work>heat*limit){fail("Proposed engine exceeds Carnot bound");}var rejected=heat-work;var entropy=rejected/cold-heat/hot;se(entropy<0){fail("Reservoir entropy decreased");}var out=u::result("two-reservoir-Carnot-bound",work/heat);put(out,"maximum_efficiency",limit);put(out,"heat_out",rejected);put(out,"entropy_production",entropy);retornar out;}

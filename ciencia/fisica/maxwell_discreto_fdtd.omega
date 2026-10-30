@@ -1,0 +1,10 @@
+modulo science_12;
+importar "../core/exato.omega" como u;
+importar "../../std/math.omega" como m;
+importar "../../std/string.omega" como s;
+importar "../../std/math/linalg_exact.omega" como la;
+exportar execute;
+# Periodic 2D TE Yee discretisation preserves discrete magnetic divergence; this is not a charge-conservation theorem.
+
+funcao divergence(bx,by,dx,dy,i,j,n,k){retornar (bx[(i+1)%n][j]-bx[i][j])/dx+(by[i][(j+1)%k]-by[i][j])/dy;}
+funcao execute(r){var e=u::mat(r["electric_z"]);var bx=u::mat(r["magnetic_x"]);var by=u::mat(r["magnetic_y"]);var n=len(e);var k=len(e[0]);se(n>8||k>8||len(bx)!=n||len(by)!=n||len(bx[0])!=k||len(by[0])!=k){fail("Yee field shapes");}var dt=u::positive(u::q(r,"step"));var dx=u::positive(u::q(r,"dx"));var dy=u::positive(u::q(r,"dy"));se(dt*dt/(dx*dx)+dt*dt/(dy*dy)>1){fail("Yee CFL domain");}var nx=u::copy(bx);var ny=u::copy(by);var ne=u::copy(e);var i=0;enquanto(i<n){var j=0;enquanto(j<k){put(nx[i],j,bx[i][j]-dt*(e[i][(j+1)%k]-e[i][j])/dy);put(ny[i],j,by[i][j]+dt*(e[(i+1)%n][j]-e[i][j])/dx);j=j+1;}i=i+1;}var maximum=0;i=0;enquanto(i<n){var j=0;enquanto(j<k){var before=divergence(bx,by,dx,dy,i,j,n,k);var after=divergence(nx,ny,dx,dy,i,j,n,k);se(before!=after){fail("Discrete magnetic divergence changed");}maximum=m::max(maximum,m::abs(after));put(ne[i],j,e[i][j]+dt*((ny[i][j]-ny[(i+n-1)%n][j])/dx-(nx[i][j]-nx[i][(j+k-1)%k])/dy));j=j+1;}i=i+1;}var out=u::result("periodic-2D-TE-Yee-step",ne);put(out,"magnetic_x",nx);put(out,"magnetic_y",ny);put(out,"maximum_magnetic_divergence",maximum);put(out,"divergence_preserved",1);retornar out;}
