@@ -74,7 +74,7 @@ Cada linha descreve a implementação delimitada, não o aceite de uma lei unive
 | 68 | [equacao_foguete_tsiolkovsky.omega](engenharia/equacao_foguete_tsiolkovsky.omega) | Ideal vacuum rocket equation, interval logarithms and mass-consistent staging; external gravity/drag losses omitted. |
 | 69 | [reentrada_atmosferica_perfil.omega](engenharia/reentrada_atmosferica_perfil.omega) | Lumped one-step frozen-density reentry and Sutton-Graves-type heating enclosure; no flight safety certification. |
 | 70 | [atitude_quaternions_espaciais.omega](engenharia/atitude_quaternions_espaciais.omega) | Rational Cayley rotation update preserves unit norm; it approximates, rather than equals, the angular-rate exponential. |
-| 71 | [filtro_kalman_racional_discreto.omega](engenharia/filtro_kalman_racional_discreto.omega) | Rational Joseph update; positive-definite priors/measurement noise and diagonal nonnegative process noise are checked. |
+| 71 | [filtro_kalman_racional_discreto.omega](engenharia/filtro_kalman_racional_discreto.omega) | Rational Joseph update with exact positive-definite checks and all-principal-minor PSD process-noise validation. |
 | 72 | [cinematica_direta_denavit_hartenberg.omega](engenharia/cinematica_direta_denavit_hartenberg.omega) | Exact homogeneous DH transforms parameterised by rational half-angle tangents; angles at the tangent pole need another chart. |
 | 73 | [cinematica_inversa_geometrica.omega](engenharia/cinematica_inversa_geometrica.omega) | Both planar 2R elbow branches and reachability/singularity checks; arbitrary six-axis IK is explicitly unsupported. |
 | 74 | [planejamento_trajetoria_quintica.omega](engenharia/planejamento_trajetoria_quintica.omega) | Exact six-boundary-condition quintic polynomial and position/velocity/acceleration samples. |
@@ -84,9 +84,9 @@ Cada linha descreve a implementação delimitada, não o aceite de uma lei unive
 | 78 | [trelica_metodo_dos_nos.omega](engenharia/trelica_metodo_dos_nos.omega) | Exact force-density nodal solve; irrational member lengths produce axial-force enclosures, singular mechanisms fail. |
 | 79 | [escoamento_tubulacoes_darcy_weisbach.omega](engenharia/escoamento_tubulacoes_darcy_weisbach.omega) | Laminar exact friction or enclosed Colebrook root; empirical transitional regime is explicitly rejected. |
 | 80 | [pressao_hidrostatica_barragens.omega](engenharia/pressao_hidrostatica_barragens.omega) | Static vertical-wall hydrostatic load only; seepage, foundation, earthquakes and structural safety are separate models. |
-| 81 | [EnergyConservationTheorem.lean](../formal/science_axioms/EnergyConservationTheorem.lean) | Quadratic oscillator midpoint invariant and finite composition; not all continuous Hamiltonian systems. |
+| 81 | [EnergyConservationTheorem.lean](../formal/science_axioms/EnergyConservationTheorem.lean) | Quadratic mass/spring oscillator midpoint invariant and finite composition; not arbitrary Hamiltonian flows. |
 | 82 | [SecondLawThermodynamics.lean](../formal/science_axioms/SecondLawThermodynamics.lean) | Entropy production hypothesis and two-reservoir Carnot consequence, not a derivation of the physical Second Law. |
-| 83 | [SymplecticFormPreservation.lean](../formal/science_axioms/SymplecticFormPreservation.lean) | Linear one-degree-of-freedom Verlet determinant and symplectic bilinear form, not exact physical energy. |
+| 83 | [SymplecticFormPreservation.lean](../formal/science_axioms/SymplecticFormPreservation.lean) | One-degree-of-freedom quadratic Verlet determinant for nonzero mass and symplectic bilinear form; not exact physical energy. |
 | 84 | [LorentzInvariance.lean](../formal/science_axioms/LorentzInvariance.lean) | One spatial direction, c=1, rational representable boosts with explicit gamma normalisation. |
 | 85 | [QuantumUnitarity.lean](../formal/science_axioms/QuantumUnitarity.lean) | Exact norm preservation for rational two-level rotations and proved coarse pi bounds. |
 | 86 | [StoichiometricConservation.lean](../formal/science_axioms/StoichiometricConservation.lean) | Conserved rows may encode isotope/charge inventories; elemental balance alone does not encode nuclear/electron conservation. |

@@ -4,7 +4,7 @@ importar "../../std/math.omega" como m;
 importar "../../std/string.omega" como s;
 importar "../../std/math/linalg_exact.omega" como la;
 exportar execute;
-# Rational Joseph update; positive-definite priors/measurement noise and diagonal nonnegative process noise are checked.
+# Rational Joseph update; positive-definite priors/measurement noise and positive semidefinite process noise are checked.
 funcao plus(a,b)  {
   se(len(a)!=len(b)||len(a[0])!=len(b[0]))  {
     fail("Covariance shape");
@@ -44,6 +44,42 @@ funcao positive_definite(a)  {
   }
   retornar 1;
 }
+funcao positive_semidefinite(a) {
+  var n=len(a);
+  var i=0;
+  enquanto(i<n) {
+    var j=0;
+    enquanto(j<n) {
+      se(a[i][j]!=a[j][i]) { fail("Symmetric process covariance required"); }
+      j=j+1;
+    }
+    i=i+1;
+  }
+  var mask=1;
+  enquanto(mask<u::power(2,n)) {
+    var selected=[];
+    i=0;
+    enquanto(i<n) {
+      se(qfloor(mask/u::power(2,i))%2==1) { push(selected,i); }
+      i=i+1;
+    }
+    var principal=[];
+    i=0;
+    enquanto(i<len(selected)) {
+      var row=[];
+      var j=0;
+      enquanto(j<len(selected)) {
+        push(row,a[selected[i]][selected[j]]);
+        j=j+1;
+      }
+      push(principal,row);
+      i=i+1;
+    }
+    se(u::determinant(principal)<0) { fail("Process covariance is not positive semidefinite"); }
+    mask=mask+1;
+  }
+  retornar 1;
+}
 funcao inverse(a)  {
   var n=len(a);
   var columns=[];
@@ -79,17 +115,8 @@ funcao execute(r)  {
   }
   positive_definite(p);
   positive_definite(rr);
+  positive_semidefinite(q);
   var i=0;
-  enquanto(i<n)  {
-    var j=0;
-    enquanto(j<n)  {
-      se((i==j&&q[i][j]<0)||(i!=j&&q[i][j]!=0))  {
-        fail("Nonnegative diagonal process noise supported");
-      }
-      j=j+1;
-    }
-    i=i+1;
-  }
   var predicted=apply(f,x);
   var prior=plus(u::mul(u::mul(f,p),u::transpose(f)),q);
   positive_definite(prior);

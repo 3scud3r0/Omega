@@ -1284,7 +1284,7 @@
     {
       "id": 71,
       "path": "ciencia/engenharia/filtro_kalman_racional_discreto.omega",
-      "scope": "Rational Joseph update; positive-definite priors/measurement noise and diagonal nonnegative process noise are checked.",
+      "scope": "Rational Joseph update with exact positive-definite checks and all-principal-minor PSD process-noise validation.",
       "example": {
         "transition": [
           [
@@ -1545,11 +1545,12 @@
     {
       "id": 81,
       "path": "formal/science_axioms/EnergyConservationTheorem.lean",
-      "scope": "Quadratic oscillator midpoint invariant and finite composition; not all continuous Hamiltonian systems.",
+      "scope": "Quadratic mass/spring oscillator midpoint invariant and finite composition; not arbitrary Hamiltonian flows.",
       "kind": "formal",
       "theorems": [
         "OmegaScience.quadratic_midpoint_energy",
-        "OmegaScience.energy_trace_constant"
+        "OmegaScience.energy_trace_constant",
+        "OmegaScience.midpoint_mass_spring_energy"
       ]
     },
     {
@@ -1565,11 +1566,12 @@
     {
       "id": 83,
       "path": "formal/science_axioms/SymplecticFormPreservation.lean",
-      "scope": "Linear one-degree-of-freedom Verlet determinant and symplectic bilinear form, not exact physical energy.",
+      "scope": "One-degree-of-freedom quadratic Verlet determinant for nonzero mass and symplectic bilinear form; not exact physical energy.",
       "kind": "formal",
       "theorems": [
         "OmegaScience.verlet_determinant",
-        "OmegaScience.area_form_preserved"
+        "OmegaScience.area_form_preserved",
+        "OmegaScience.verlet_mass_spring_determinant"
       ]
     },
     {

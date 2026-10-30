@@ -96,7 +96,19 @@ def test_quantum_truncation_and_pauli_state_have_explicit_correct_invariants():
     assert oscillator['commutator'] == [[1,0,0],[0,1,0],[0,0,-2]]
     spin = example(19)
     assert spin['value'] == [0,0,1] and spin['bloch_length_squared'] == 1
-    assert example(17)['value'][0] <= Q(10,2) <= example(17)['value'][1]
+    with localcontext() as context:
+        context.prec=80
+        def atan_decimal(x):
+            term=x
+            total=x
+            for k in range(1,100):
+                term *= -x*x
+                total += term/Decimal(2*k+1)
+            return total
+        pi=16*atan_decimal(Decimal(1)/5)-4*atan_decimal(Decimal(1)/239)
+        energy=pi*pi/2
+        lo,hi=example(17)['value']
+        assert Decimal(lo.numerator)/lo.denominator <= energy <= Decimal(hi.numerator)/hi.denominator
     assert example(22)['H_squared'] == 1
 
 
@@ -360,3 +372,13 @@ def test_host_data_budgets_apply_before_materialising_aliased_trees():
     with pytest.raises(ValueError,match='byte budget'):_plain(value)
     cyclic=[];cyclic.append(cyclic)
     with pytest.raises(ValueError,match='nesting'):_plain(cyclic)
+
+
+def test_kalman_accepts_correlated_psd_process_noise_and_rejects_indefinite_noise():
+    request={'transition':[[1,0],[0,1]],'observation':[[1,0],[0,1]],
+             'covariance':[[1,0],[0,1]],'process_noise':[[1,Q(1,2)],[Q(1,2),1]],
+             'measurement_noise':[[1,0],[0,1]],'state':[0,0],'measurement':[0,0]}
+    result=run(71,request)
+    assert result['covariance']==[[Q(23,35),Q(2,35)],[Q(2,35),Q(23,35)]]
+    with pytest.raises(ExecutionFailure):
+        run(71,{**request,'process_noise':[[0,1],[1,0]]})

@@ -18,7 +18,28 @@ theorem energy_trace_constant (e : ℕ → ℚ) (step : ∀ n, e (n+1)=e n) (n :
   | zero => rfl
   | succ n ih => exact (step n).trans ih
 
+def midpointPosition (q p h mass spring : ℚ) :=
+  ((1-h^2*spring/(4*mass))*q+h*p/mass)/(1+h^2*spring/(4*mass))
+def midpointMomentum (q p h mass spring : ℚ) :=
+  ((1-h^2*spring/(4*mass))*p-h*spring*q)/(1+h^2*spring/(4*mass))
+/-- Exact energy preservation for the parameters of the native midpoint kernel. -/
+theorem midpoint_mass_spring_energy (q p h mass spring : ℚ)
+    (mass_positive : 0 < mass) (spring_nonnegative : 0 ≤ spring) :
+    (midpointMomentum q p h mass spring)^2/(2*mass) +
+      spring*(midpointPosition q p h mass spring)^2/2 = p^2/(2*mass)+spring*q^2/2 := by
+  unfold midpointPosition midpointMomentum
+  have hm : mass ≠ 0 := ne_of_gt mass_positive
+  have hn : 0 ≤ h^2*spring/(4*mass) :=
+    div_nonneg (mul_nonneg (sq_nonneg h) spring_nonnegative)
+      (mul_nonneg (by norm_num) mass_positive.le)
+  have hd : 1+h^2*spring/(4*mass) ≠ 0 := by linarith
+  have hb : 4*mass+h^2*spring ≠ 0 := by
+    have h := mul_nonneg (sq_nonneg h) spring_nonnegative
+    nlinarith
+  field_simp [hm, hd, hb] <;> ring
+
 #print axioms quadratic_midpoint_energy
 
 #print axioms energy_trace_constant
+#print axioms midpoint_mass_spring_energy
 end OmegaScience
