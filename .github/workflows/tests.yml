@@ -44,6 +44,12 @@ jobs:
           .venv/bin/python scripts/validate-roadmap.py \
             --task OM-020 --task OM-024 --task OM-026 --task OM-027 \
             --task OM-028 --task OM-131 --execute
+      - name: Native engine programs and checked proof receipts
+        run: |
+          .venv/bin/python -m omega_engines prove 3 exemplos/engines/03-smt_simplex_solver.json --saida artifacts/engines/demos/lp
+          .venv/bin/python -m omega_engines prove 6 exemplos/engines/06-universal_action_engine.json --saida artifacts/engines/demos/action
+          .venv/bin/python -m omega_engines synthesize exemplos/engines/15-programmatic_hypernetwork_synthesis.json --saida artifacts/engines/demos/synthesis
+          .venv/bin/python -m omega_engines arena-native exemplos/engines/16-cellular_micro_arena_runtime.json --saida artifacts/engines/demos/actors
       - name: Manifest-based differential corpus
         run: .venv/bin/python scripts/regression.py --output artifacts/foundation/corpus.json
       - name: Native security, fuzzing and sanitizers

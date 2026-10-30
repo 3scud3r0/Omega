@@ -10,6 +10,7 @@ escopos. O auxiliar `algebra.omega`, dois aplicativos, o pacote `omega_engines`,
 o microkernel C e o arquivo Lean integram os motores. Os motores rodam em Ômega/C;
 o host prepara builds, isola processos e reconstrói contas independentes para
 verificar os contratos.
+As execuções e pendências estão em [VALIDACAO.md](VALIDACAO.md).
 
 ## Uso
 
