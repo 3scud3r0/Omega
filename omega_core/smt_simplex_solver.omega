@@ -1,0 +1,144 @@
+modulo rational_simplex;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/math.omega" como m;
+importar "algebra.omega" como a;
+exportar execute;
+
+# Two-phase exact simplex, Bland entering/leaving ties. Solves max c*x,
+# A*x<=b, x>=0 over Q. No integer, nonlinear, quantified or bitvector SMT.
+funcao pivot(g,row,column) {
+  se(g["pivots"]>=g["limit"]) { fail("Simplex pivot budget exhausted; no SAT/UNSAT claim"); }
+  put(g,"pivots",g["pivots"]+1);
+  var t=g["tableau"]; var rows=len(t); var columns=len(t[0]); var p=t[row][column];
+  se(p==0) { fail("Zero simplex pivot"); }
+  var i=0;
+  enquanto(i<rows) {
+    se(i!=row) {
+      var j=0;
+      enquanto(j<columns) {
+        se(j!=column) { put(t[i],j,u::check(t[i][j]-t[row][j]*t[i][column]/p)); }
+        j=j+1;
+      }
+    }
+    i=i+1;
+  }
+  var j=0;
+  enquanto(j<columns) { se(j!=column) { put(t[row],j,u::check(t[row][j]/p)); } j=j+1; }
+  i=0;
+  enquanto(i<rows) { se(i!=row) { put(t[i],column,u::check(-t[i][column]/p)); } i=i+1; }
+  put(t[row],column,1/p);
+  var old=g["basic"][row]; put(g["basic"],row,g["nonbasic"][column]); put(g["nonbasic"],column,old);
+  retornar 0;
+}
+funcao phase(g,phase_number) {
+  var t=g["tableau"]; var rows=len(g["basic"]); var n=len(g["nonbasic"])-1;
+  var objective=rows;
+  se(phase_number==1) { objective=rows+1; }
+  var running=1;
+  enquanto(running) {
+    var enter=-1; var j=0;
+    enquanto(j<=n) {
+      se((phase_number==1||g["nonbasic"][j]!=-1)&&t[objective][j]<0) {
+        se(enter<0||g["nonbasic"][j]<g["nonbasic"][enter]) { enter=j; }
+      }
+      j=j+1;
+    }
+    se(enter<0) { retornar -1; }
+    var leave=-1; var i=0;
+    enquanto(i<rows) {
+      se(t[i][enter]>0) {
+        se(leave<0) { leave=i; }
+        senao {
+          var ratio=t[i][n+1]/t[i][enter]; var best=t[leave][n+1]/t[leave][enter];
+          se(ratio<best||(ratio==best&&g["basic"][i]<g["basic"][leave])) { leave=i; }
+        }
+      }
+      i=i+1;
+    }
+    se(leave<0) { retornar enter; }
+    pivot(g,leave,enter);
+  }
+  retornar -1;
+}
+funcao dual(g,phase_number) {
+  var rows=len(g["basic"]); var n=len(g["nonbasic"])-1;
+  var objective=rows;
+  se(phase_number==1) { objective=rows+1; }
+  var y=u::zeros(rows); var j=0;
+  enquanto(j<=n) {
+    var label=g["nonbasic"][j];
+    se(label>=n) { put(y,label-n,g["tableau"][objective][j]); }
+    j=j+1;
+  }
+  retornar y;
+}
+funcao feasible(matrix,b,x) {
+  var i=0;
+  enquanto(i<len(x)) { se(x[i]<0) { fail("Negative primal certificate variable"); } i=i+1; }
+  i=0;
+  enquanto(i<len(matrix)) { se(u::dot(matrix[i],x)>b[i]) { fail("Primal certificate violates constraint"); } i=i+1; }
+  retornar 1;
+}
+funcao execute(r) {
+  var matrix=u::mat(r["A"]); var b=u::vector(r["b"]); var c=u::vector(r["c"]);
+  var rows=len(matrix); var n=len(c);
+  se(rows>24||n<1||n>12||len(matrix[0])!=n||len(b)!=rows) { fail("LP dimension budget m<=24, n<=12"); }
+  var t=[]; var basic=[]; var nonbasic=[]; var i=0;
+  enquanto(i<rows) { var row=slice(matrix[i],0,n); push(row,-1); push(row,b[i]); push(t,row); push(basic,n+i); i=i+1; }
+  var objective=u::scale(c,-1); push(objective,0); push(objective,0); push(t,objective);
+  var artificial=u::zeros(n+2); put(artificial,n,1); push(t,artificial);
+  i=0;
+  enquanto(i<n) { push(nonbasic,i); i=i+1; }
+  push(nonbasic,-1); var g=obj(); put(g,"tableau",t); put(g,"basic",basic); put(g,"nonbasic",nonbasic);
+  put(g,"pivots",0); put(g,"limit",u::integer(u::num(r,"max_pivots",1000),1,4000));
+  var minimum=0; i=1;
+  enquanto(i<rows) { se(t[i][n+1]<t[minimum][n+1]) { minimum=i; } i=i+1; }
+  se(t[minimum][n+1]<0) {
+    pivot(g,minimum,n); var unbounded=phase(g,1);
+    se(unbounded>=0) { fail("Auxiliary simplex unexpectedly unbounded"); }
+    se(t[rows+1][n+1]!=0) {
+      var y=dual(g,1); var aty=a::apply(u::transpose(matrix),y); i=0;
+      enquanto(i<len(y)) { se(y[i]<0) { fail("Invalid Farkas dual sign"); } i=i+1; }
+      i=0;
+      enquanto(i<len(aty)) { se(aty[i]<0) { fail("Invalid Farkas dual coefficients"); } i=i+1; }
+      se(u::dot(y,b)>=0) { fail("Farkas contradiction certificate missing"); }
+      var out=u::result("exact-two-phase-simplex",[]); put(out,"status","infeasible");
+      put(out,"farkas",y); put(out,"contradiction",u::dot(y,b)); put(out,"pivots",g["pivots"]); retornar out;
+    }
+    i=0;
+    enquanto(i<rows) {
+      se(basic[i]==-1) {
+        var enter=-1; var j=0;
+        enquanto(j<=n) {
+          se(t[i][j]!=0&&nonbasic[j]!=-1) { se(enter<0||nonbasic[j]<nonbasic[enter]) { enter=j; } }
+          j=j+1;
+        }
+        se(enter>=0) { pivot(g,i,enter); }
+      }
+      i=i+1;
+    }
+  }
+  var ray_column=phase(g,2); var x=u::zeros(n); i=0;
+  enquanto(i<rows) { se(basic[i]>=0&&basic[i]<n) { put(x,basic[i],t[i][n+1]); } i=i+1; }
+  feasible(matrix,b,x); var out=u::result("exact-two-phase-simplex",x); put(out,"pivots",g["pivots"]);
+  se(ray_column>=0) {
+    var direction=u::zeros(n);
+    se(nonbasic[ray_column]>=0&&nonbasic[ray_column]<n) { put(direction,nonbasic[ray_column],1); }
+    i=0;
+    enquanto(i<rows) { se(basic[i]>=0&&basic[i]<n) { put(direction,basic[i],-t[i][ray_column]); } i=i+1; }
+    i=0;
+    enquanto(i<n) { se(direction[i]<0) { fail("Unbounded ray nonnegativity failed"); } i=i+1; }
+    var image=a::apply(matrix,direction); i=0;
+    enquanto(i<rows) { se(image[i]>0) { fail("Unbounded ray constraint failed"); } i=i+1; }
+    se(u::dot(c,direction)<=0) { fail("Ray does not improve objective"); }
+    put(out,"status","unbounded"); put(out,"ray",direction); retornar out;
+  }
+  var y=dual(g,2); var aty=a::apply(u::transpose(matrix),y); i=0;
+  enquanto(i<rows) { se(y[i]<0) { fail("Dual sign certificate failed"); } i=i+1; }
+  i=0;
+  enquanto(i<n) { se(aty[i]<c[i]) { fail("Dual feasibility failed"); } i=i+1; }
+  var optimum=u::dot(c,x);
+  se(optimum!=u::dot(y,b)) { fail("Strong duality certificate failed"); }
+  put(out,"status","optimal"); put(out,"objective",optimum); put(out,"dual",y);
+  put(out,"duality_gap",0); retornar out;
+}

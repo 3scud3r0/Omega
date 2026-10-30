@@ -1,0 +1,12 @@
+{
+  "center": 0,
+  "radius": "1/4",
+  "order": 6,
+  "bits": 40,
+  "expression": [
+    "exp",
+    [
+      "var"
+    ]
+  ]
+}

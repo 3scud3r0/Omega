@@ -1,0 +1,70 @@
+modulo hopfield_ssm;
+importar "../ciencia/core/exato.omega" como u;
+importar "../ciencia/core/intervalos.omega" como iv;
+importar "../std/math.omega" como m;
+importar "../omega_core/algebra.omega" como a;
+exportar execute;
+
+# Finite FIFO key/value memory plus a linear state-space recurrence.
+# Associative softmax weights are enclosed rationally, never called exact floats.
+funcao retrieve(keys,values,query,beta,bits) {
+  var scores=[]; var maximum=beta*u::dot(keys[0],query); var minimum=maximum; var i=0;
+  enquanto(i<len(keys)) {
+    var score=u::check(beta*u::dot(keys[i],query)); push(scores,score);
+    maximum=m::max(maximum,score); minimum=m::min(minimum,score); i=i+1;
+  }
+  se(maximum-minimum>64) { fail("Associative score dynamic-range budget 64"); }
+  var exponential=[]; var total=[0,0]; i=0;
+  enquanto(i<len(scores)) { var e=m::exp_interval(scores[i]-maximum,bits); push(exponential,e); total=iv::add(total,e); i=i+1; }
+  var midpoints=[]; var normalization=0; var intervals=[]; i=0;
+  enquanto(i<len(scores)) {
+    var weight=iv::div(exponential[i],total); push(intervals,weight);
+    var point=iv::midpoint(weight); push(midpoints,point); normalization=normalization+point; i=i+1;
+  }
+  midpoints=u::scale(midpoints,1/normalization); var enclosure=[]; var dimension=0;
+  enquanto(dimension<len(values[0])) {
+    var sum=[0,0]; i=0;
+    enquanto(i<len(values)) { sum=iv::add(sum,iv::scale(intervals[i],values[i][dimension])); i=i+1; }
+    push(enclosure,sum); dimension=dimension+1;
+  }
+  var out=obj(); put(out,"weight_intervals",intervals); put(out,"normalized_midpoint_weights",midpoints);
+  put(out,"value_intervals",enclosure); put(out,"key_midpoint",a::apply(u::transpose(keys),midpoints));
+  retornar out;
+}
+funcao execute(r) {
+  var keys=u::mat(r["keys"]); var values=u::mat(r["values"]); var capacity=u::count(r,"capacity",1,32);
+  se(len(keys)!=len(values)||len(keys)>capacity||len(keys[0])>16||len(values[0])>16) { fail("Finite associative bank shape/capacity"); }
+  var evicted=0;
+  se(has(r,"new_key")) {
+    var key=u::vector(r["new_key"]); var value=u::vector(r["new_value"]);
+    se(len(key)!=len(keys[0])||len(value)!=len(values[0])) { fail("Associative insertion shape"); }
+    se(len(keys)==capacity) { keys=slice(keys,1,len(keys)); values=slice(values,1,len(values)); evicted=1; }
+    push(keys,key); push(values,value);
+  }
+  var state=u::vector(r["state"]); var input=u::vector(r["input"]);
+  var transition=u::mat(r["transition"]); var input_map=u::mat(r["input_map"]); var query_map=u::mat(r["query_map"]);
+  var n=len(state);
+  se(n<1||n>16||len(transition)!=n||len(transition[0])!=n||len(input_map)!=n||len(input_map[0])!=len(input)||len(query_map)!=len(keys[0])||len(query_map[0])!=n) { fail("SSM dimensions"); }
+  var norm=0; var i=0;
+  enquanto(i<n) {
+    var row_sum=0; var j=0;
+    enquanto(j<n) { row_sum=row_sum+m::abs(transition[i][j]); j=j+1; }
+    norm=m::max(norm,row_sum); i=i+1;
+  }
+  se(norm>1) { fail("SSM recurrent infinity norm must be <=1"); }
+  var next=u::add(a::apply(transition,state),a::apply(input_map,input)); var query=a::apply(query_map,next);
+  var beta=u::nonnegative(u::q(r,"beta")); var bits=u::integer(u::num(r,"bits",40),12,80);
+  var iterations=u::integer(u::num(r,"iterations",1),1,32); var damping=u::num(r,"damping",0);
+  se(damping<0||damping>=1) { fail("Hopfield damping must lie in [0,1)"); }
+  var tolerance=u::nonnegative(u::num(r,"tolerance",0)); var step=0; var converged=0;
+  enquanto(step<iterations&&!converged) {
+    var retrieved=retrieve(keys,values,query,beta,bits);
+    var newquery=u::add(u::scale(query,damping),u::scale(retrieved["key_midpoint"],1-damping));
+    converged=a::maxabs(u::add(newquery,u::scale(query,-1)))<=tolerance;
+    query=newquery; step=step+1;
+  }
+  var out=retrieve(keys,values,query,beta,bits); put(out,"model","finite-Hopfield-bank-and-bounded-linear-SSM");
+  put(out,"state",next); put(out,"query",query); put(out,"keys",keys); put(out,"values",values);
+  put(out,"evicted",evicted); put(out,"capacity",capacity); put(out,"iterations",step); put(out,"converged",converged);
+  put(out,"recurrent_norm",norm); put(out,"infinite_memory_claimed",0); put(out,"formal_admission",0); retornar out;
+}

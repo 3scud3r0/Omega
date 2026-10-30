@@ -1,0 +1,224 @@
+{
+  "all_150_tasks_accepted": false,
+  "arena_measurements": {
+    "commit": "b211393",
+    "measurement_helper_source_sha256": "f0b976a0c0769a48581115abaea857fd398ecf2f9756b16449fb0a1d72e38e25",
+    "runs": [
+      {
+        "actors": 1,
+        "arena_bytes_each": 65536,
+        "arena_bytes_total": 65536,
+        "maximum_resident_set_KiB": 640,
+        "measurement_scope": "wait4 Linux ru_maxrss of native harness; one run; not an intelligence/RSS guarantee",
+        "sandbox_wall_seconds": 0.05128965701442212,
+        "workload": "one HALT opcode per actor; no neural weights or Lean process"
+      },
+      {
+        "actors": 32,
+        "arena_bytes_each": 65536,
+        "arena_bytes_total": 2097152,
+        "maximum_resident_set_KiB": 2560,
+        "measurement_scope": "wait4 Linux ru_maxrss of native harness; one run; not an intelligence/RSS guarantee",
+        "sandbox_wall_seconds": 0.04123059901758097,
+        "workload": "one HALT opcode per actor; no neural weights or Lean process"
+      },
+      {
+        "actors": 256,
+        "arena_bytes_each": 65536,
+        "arena_bytes_total": 16777216,
+        "maximum_resident_set_KiB": 16896,
+        "measurement_scope": "wait4 Linux ru_maxrss of native harness; one run; not an intelligence/RSS guarantee",
+        "sandbox_wall_seconds": 0.0518233879993204,
+        "workload": "one HALT opcode per actor; no neural weights or Lean process"
+      },
+      {
+        "actors": 1,
+        "arena_bytes_each": 524288,
+        "arena_bytes_total": 524288,
+        "maximum_resident_set_KiB": 1024,
+        "measurement_scope": "wait4 Linux ru_maxrss of native harness; one run; not an intelligence/RSS guarantee",
+        "sandbox_wall_seconds": 0.05111034700530581,
+        "workload": "one HALT opcode per actor; no neural weights or Lean process"
+      },
+      {
+        "actors": 32,
+        "arena_bytes_each": 524288,
+        "arena_bytes_total": 16777216,
+        "maximum_resident_set_KiB": 16896,
+        "measurement_scope": "wait4 Linux ru_maxrss of native harness; one run; not an intelligence/RSS guarantee",
+        "sandbox_wall_seconds": 0.06184898200444877,
+        "workload": "one HALT opcode per actor; no neural weights or Lean process"
+      },
+      {
+        "actors": 256,
+        "arena_bytes_each": 524288,
+        "arena_bytes_total": 134217728,
+        "maximum_resident_set_KiB": 131584,
+        "measurement_scope": "wait4 Linux ru_maxrss of native harness; one run; not an intelligence/RSS guarantee",
+        "sandbox_wall_seconds": 0.09225265201530419,
+        "workload": "one HALT opcode per actor; no neural weights or Lean process"
+      }
+    ],
+    "scope": "single native harness runs of HALT actors; no neural models/Lean; no throughput or intelligence guarantee"
+  },
+  "artifacts_demos": {
+    "action": {
+      "format": "omega-engine-numeric-proof-1",
+      "receipt": {
+        "path": "artifacts/engines/demos/action/receipt.json",
+        "sha256": "5f3c08e9fe71b3b36a6e6abcb0a6fb4e36fe830f4d1990cd0ad99b6cde1ccb88"
+      }
+    },
+    "actors": {
+      "format": "omega-microarena-native-1",
+      "receipt": {
+        "path": "artifacts/engines/demos/actors/receipt.json",
+        "sha256": "4d74c3359b670096ed66b35bebf99c75dd6925d72037a17cdb1756f291ed34fa"
+      }
+    },
+    "lp": {
+      "format": "omega-engine-numeric-proof-1",
+      "receipt": {
+        "path": "artifacts/engines/demos/lp/receipt.json",
+        "sha256": "7273d2e80e3fff0f1002c65412cc6c834c3bc534f6aebbf5f2c724f423a86b82"
+      }
+    },
+    "synthesis": {
+      "format": "omega-engine-synthesis-1",
+      "receipt": {
+        "path": "artifacts/engines/demos/synthesis/receipt.json",
+        "sha256": "4f04016de5cadf2d36f6c5fc9dcb30896e5e4341c7f2457ac23310fcebb99f0f"
+      }
+    }
+  },
+  "base_commit": "13111b3b096774f1f17c2f8529da2ada95eb2eaf",
+  "corpus": {
+    "count_matches": true,
+    "example_failures": 0,
+    "expected_negative": 4,
+    "expected_positive": 25,
+    "format": "omega-corpus-report-1",
+    "infrastructure_failures": 0,
+    "manifest_sha256": "a9ecc05df4232aaed66f7878bd5ad800ff5442f415effee0410de0862defb0ac",
+    "observed_negative": 4,
+    "passed_positive": 25,
+    "valid": true
+  },
+  "final_engines": {
+    "commit": "954539f2131ab7f0e4b05c79204e465788e06c8d",
+    "errors": 0,
+    "failed": 0,
+    "groups": {
+      "testes.engines.test_engine_integration": 27,
+      "testes.engines.test_engine_packaging": 1,
+      "testes.engines.test_native_engines": 87
+    },
+    "junit": {
+      "path": "artifacts/engines/final.xml",
+      "sha256": "d4727282dd1ea3fcc0e81c39a76723c91b3e671bad7960507d22fc3c55b0e5ea"
+    },
+    "passed": 115,
+    "skipped": 0
+  },
+  "formal_support": {
+    "axiom_policy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "declarations_checked": 6,
+    "path": "omega_core/formal/HamiltonPrinciple.lean"
+  },
+  "format": "omega-fundamental-engines-evidence-1",
+  "full_regression": {
+    "commit": "b211393",
+    "errors": 0,
+    "failed": 0,
+    "junit": {
+      "path": "artifacts/engines/full.xml",
+      "sha256": "3148fb5a81b9293a2a3d705f27325e8588075c2ff783776996139b490d930342"
+    },
+    "log_sha256": "fbfb7138c8e6cae68cb1a753ff30d367684956610f19b05eeb35e9b6ca61b542",
+    "passed": 1240,
+    "skipped_cuda": 4,
+    "subtests_passed": 37,
+    "warnings": 3
+  },
+  "independent_external_review": null,
+  "native_security": {
+    "commit": "b211393",
+    "failed": 0,
+    "passed": 250,
+    "report": {
+      "path": "artifacts/engines/security.json",
+      "sha256": "7546d74f79e32987dbb8d4567c98e03bda66a727e754cda3f6af834d06e49ca8"
+    },
+    "scope": "existing compiler/runtime fuzzing and analyzer harness; microkernel has separate final ASan/UBSan tests"
+  },
+  "native_source_sha256": {
+    "omega_core/active_inference_grounding.omega": "80ec5c694e57e771a43ae3a7cf8eeeb0f36c071ca5abd7aa737825ee334a69e7",
+    "omega_core/cellular_micro_arena_runtime.omega": "d0f19c8bc27b471c7cf083c0dd90c2b048f5feffadb6082ef306639d1be24121",
+    "omega_core/egraph_saturation.omega": "12a36a2b17535cbc94289adf75f57e1ffb1ecf0d97767f14db174ca9e5a3a1c0",
+    "omega_core/renormalization_multiscale_engine.omega": "8c383ca4288eb95ac02044c643341dc680aa679a7e8c0ce4d24b050fe07528b1",
+    "omega_core/sindy_discovery_engine.omega": "b96653212843257c10f9225b8a2af519801744bb4d38968bbed709c2a5e7251b",
+    "omega_core/smt_simplex_solver.omega": "8113b13e7078a95ba90098c5e5790bbc300024a447def3bc54b9fd4682f2dcf3",
+    "omega_core/taylor_models_interval.omega": "23842bb6c9442ee69b9e3e8c8b80eec9a8b42e8fda786e8995efaf582875377d",
+    "omega_core/tensor_network_compressor.omega": "cb2f84137c17c72b36473919253b06d10e0eb22a6c8fa1bbd62a626891015ada",
+    "omega_core/universal_action_engine.omega": "d09604962e833b584fb33cfec73607fece85f8e5c0cb6ab9b95a0be7a5f40dae",
+    "omega_core/universal_constructor_autopoiesis.omega": "5f2c38f03948d04536a9aa6d29866c22d58c9a735c213326f5966408a99a41ad",
+    "omega_core/variational_physics_compiler.omega": "e42b7888e7b807d14b35b804f5efbf63e67af6af49c5488ff281cdb556d0af15",
+    "omega_ml/causal_do_calculus.omega": "1319a4fbc08c1850153f7a8edcde52cfc2d90d0da39ccd5e807bfe06c4392b5e",
+    "omega_ml/continuous_hopfield_ssm.omega": "c2cdb8656430049ce97916512a1f76069f8e7fb1b9aa15f52d0d912939d975f2",
+    "omega_ml/equilibrium_propagation_engine.omega": "8befb21e872be9150836cbea1215b67d374b02ef1ad46926b4ab937f5c19c013",
+    "omega_ml/jepa_latent_world_model.omega": "94703228eeb0dc1b17517b9ea5cce611b39ab8277629f169de70b01f95273401",
+    "omega_ml/programmatic_hypernetwork_synthesis.omega": "e1826c43ea05f23d0cf2dd18193d1a0f42f746ffea2328c9b0f8b1a00080e1fb"
+  },
+  "post_full_changes": [
+    "public C microkernel null/runtime/actor guards",
+    "quantified Lean contracts for concrete rational LPs"
+  ],
+  "selected_roadmap_checks": [
+    {
+      "report": "artifacts/validation/20261030T133545Z-36dd25817e35/om020/report.json",
+      "status": "checks_passed_acceptance_pending",
+      "task": "OM-020"
+    },
+    {
+      "report": "artifacts/validation/20261030T133545Z-36dd25817e35/om024/report.json",
+      "status": "checks_passed_acceptance_pending",
+      "task": "OM-024"
+    },
+    {
+      "report": "artifacts/validation/20261030T133545Z-36dd25817e35/om026/report.json",
+      "status": "checks_passed_acceptance_pending",
+      "task": "OM-026"
+    },
+    {
+      "report": "artifacts/validation/20261030T133545Z-36dd25817e35/om027/report.json",
+      "status": "checks_passed_acceptance_pending",
+      "task": "OM-027"
+    },
+    {
+      "report": "artifacts/validation/20261030T133545Z-36dd25817e35/om028/report.json",
+      "status": "checks_passed_acceptance_pending",
+      "task": "OM-028"
+    },
+    {
+      "report": "artifacts/validation/20261030T133545Z-36dd25817e35/om131/report.json",
+      "status": "checks_passed_acceptance_pending",
+      "task": "OM-131"
+    }
+  ],
+  "support_source_sha256": {
+    "omega_core/formal/HamiltonPrinciple.lean": "2fdeb96c843eebb1ca83ffa0fff25c2bb3352fc471549f6eb87ccae09ae619a7",
+    "omega_engines/__init__.py": "9054f971dbf07439e378092e377c8ede68dcb359c4da70714bbb811a0fd0f7b0",
+    "omega_engines/__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+    "omega_engines/cli.py": "2203bc82a683579d61593a90d3c46ac02cf6ac4190564a35c96162936e48b43d",
+    "omega_engines/execution.py": "cca1a05c6011dff6e03386bcae1deab38ced2a964bfc653faa3710082a575b88",
+    "omega_engines/linear_certificate.py": "26c52339b8fb29c6564e7f6a12629b8b33ad2ee12d2265d62da8d11dcba78644",
+    "omega_engines/proof.py": "d5e35cbd3a6649e80ff3e9e9f665233040fc3ef17e7b55aac36cd15d02f268c0",
+    "omega_engines/runtime.py": "035b7ce7917d9ab5019c035cc0758b4d80e15983529bba2864d323a8523e4bad",
+    "runtime/cellular_micro_arena.h": "aefdb74fbcc127ec63fdfd3d9039855a5b685414f09acf59acaa00a70efc4383"
+  },
+  "universal_scientific_correctness_claimed": false
+}

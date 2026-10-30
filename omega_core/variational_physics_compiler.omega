@@ -1,0 +1,62 @@
+modulo variational_compiler;
+importar "../ciencia/core/exato.omega" como u;
+importar "algebra.omega" como a;
+exportar execute, derive;
+
+# Polynomial first-order Lagrangians: variables [q...,v...,t]. Output appends
+# accelerations after t. This is an explicit finite-dimensional jet algebra,
+# not a general differential-geometric or quantum-field compiler.
+funcao total_derivative(p,d) {
+  var n=3*d+1; var result=a::poly_diff(p,2*d); var j=0;
+  enquanto(j<d) {
+    result=a::poly_add(result,a::poly_mul(a::poly_diff(p,j),a::poly_var(d+j,n)));
+    result=a::poly_add(result,a::poly_mul(a::poly_diff(p,d+j),a::poly_var(2*d+1+j,n)));
+    j=j+1;
+  }
+  retornar result;
+}
+funcao derive(raw,d) {
+  u::integer(d,1,3); var n=3*d+1;
+  var lagrangian=a::poly_extend(a::poly_read(raw,2*d+1),n);
+  var momenta=[]; var equations=[]; var hessian=[]; var cyclic=[];
+  var energy=a::poly_scale(lagrangian,-1); var i=0;
+  enquanto(i<d) {
+    var momentum=a::poly_diff(lagrangian,d+i); push(momenta,momentum);
+    var equation=a::poly_add(total_derivative(momentum,d),a::poly_scale(a::poly_diff(lagrangian,i),-1));
+    push(equations,equation); push(cyclic,len(a::poly_diff(lagrangian,i))==0);
+    energy=a::poly_add(energy,a::poly_mul(a::poly_var(d+i,n),momentum));
+    var row=[]; var j=0;
+    enquanto(j<d) { push(row,a::poly_diff(momentum,d+j)); j=j+1; }
+    push(hessian,row); i=i+1;
+  }
+  # Off-shell Noether identity: dE/dt + partial_t L = sum(v_i * EL_i).
+  # Verify a canonical polynomial identity, rather than assume conservation.
+  var residual=a::poly_add(total_derivative(energy,d),a::poly_diff(lagrangian,2*d));
+  i=0;
+  enquanto(i<d) {
+    residual=a::poly_add(residual,a::poly_scale(a::poly_mul(a::poly_var(d+i,n),equations[i]),-1));
+    i=i+1;
+  }
+  se(len(residual)!=0) { fail("Internal polynomial Noether identity failed"); }
+  var rotations=[]; i=0;
+  enquanto(i<d) {
+    var j=i+1;
+    enquanto(j<d) {
+      var change=a::poly_add(a::poly_mul(a::poly_var(i,n),a::poly_diff(lagrangian,j)),a::poly_scale(a::poly_mul(a::poly_var(j,n),a::poly_diff(lagrangian,i)),-1));
+      change=a::poly_add(change,a::poly_mul(a::poly_var(d+i,n),a::poly_diff(lagrangian,d+j)));
+      change=a::poly_add(change,a::poly_scale(a::poly_mul(a::poly_var(d+j,n),a::poly_diff(lagrangian,d+i)),-1));
+      var charge=a::poly_add(a::poly_mul(a::poly_var(i,n),momenta[j]),a::poly_scale(a::poly_mul(a::poly_var(j,n),momenta[i]),-1));
+      var rotation=obj(); put(rotation,"plane",[i,j]); put(rotation,"variation",change);
+      put(rotation,"invariant",len(change)==0); put(rotation,"charge",charge); push(rotations,rotation); j=j+1;
+    }
+    i=i+1;
+  }
+  var out=u::result("polynomial-Euler-Lagrange-and-off-shell-Noether",equations);
+  put(out,"coordinates",d); put(out,"variables","q[0:d], v[0:d], t, acceleration[0:d]");
+  put(out,"lagrangian",lagrangian); put(out,"momenta",momenta); put(out,"velocity_hessian",hessian);
+  put(out,"energy",energy); put(out,"time_translation_invariant",len(a::poly_diff(lagrangian,2*d))==0);
+  put(out,"cyclic_coordinates",cyclic); put(out,"rotation_symmetries",rotations);
+  put(out,"noether_identity_residual",residual); put(out,"conservation_requires_EL_solution",1);
+  retornar out;
+}
+funcao execute(r) { retornar derive(r["lagrangian"],u::count(r,"coordinates",1,3)); }

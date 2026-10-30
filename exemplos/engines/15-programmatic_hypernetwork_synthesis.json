@@ -1,0 +1,46 @@
+{
+  "mode": "generate",
+  "features": [
+    1,
+    2
+  ],
+  "variables": 1,
+  "basis": [
+    [
+      0
+    ],
+    [
+      1
+    ]
+  ],
+  "hyper_weights": [
+    [
+      1,
+      0
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "cases": [
+    {
+      "input": [
+        0
+      ],
+      "expected": 1
+    },
+    {
+      "input": [
+        1
+      ],
+      "expected": 3
+    },
+    {
+      "input": [
+        "-3/2"
+      ],
+      "expected": -2
+    }
+  ]
+}

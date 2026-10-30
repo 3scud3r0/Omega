@@ -1,0 +1,105 @@
+modulo taylor_models;
+importar "../ciencia/core/exato.omega" como u;
+importar "../ciencia/core/intervalos.omega" como iv;
+importar "../std/math.omega" como m;
+exportar execute;
+
+# A model is p(z)+R for |z|<=radius; z=x-center. Truncated coefficients,
+# rational quantization and analytic tails all contribute to the remainder.
+funcao model(coefficients,remainder) {
+  var r=obj(); put(r,"coefficients",coefficients); put(r,"remainder",remainder); retornar r;
+}
+funcao interval_of(p,radius) {
+  var y=[0,0]; var i=len(p["coefficients"]);
+  enquanto(i>0) {
+    i=i-1; y=iv::add(iv::mul(y,[-radius,radius]),iv::point(p["coefficients"][i]));
+  }
+  retornar iv::add(y,p["remainder"]);
+}
+funcao bounded(p,radius,bits) {
+  var a=[]; var error=0; var i=0; var unit=u::power(2,bits);
+  enquanto(i<len(p["coefficients"])) {
+    var v=u::check(p["coefficients"][i]); var rounded=qfloor(v*unit)/unit;
+    error=error+m::abs(v-rounded)*u::power(radius,i); push(a,rounded); i=i+1;
+  }
+  var rem=iv::add(p["remainder"],[-error,error]);
+  # Outward rounding of the accumulated error interval.
+  rem=[qfloor(rem[0]*unit)/unit,-qfloor(-rem[1]*unit)/unit];
+  u::check(rem[0]); u::check(rem[1]); retornar model(a,rem);
+}
+funcao constant(x,order) {
+  var a=u::zeros(order+1); put(a,0,x); retornar model(a,[0,0]);
+}
+funcao plus(a,b,radius,bits) {
+  retornar bounded(model(u::add(a["coefficients"],b["coefficients"]),iv::add(a["remainder"],b["remainder"])),radius,bits);
+}
+funcao times(a,b,radius,bits) {
+  var ac=a["coefficients"]; var bc=b["coefficients"]; var order=len(ac)-1;
+  var coefficients=u::zeros(order+1); var tail=0; var i=0;
+  enquanto(i<=order) {
+    var j=0;
+    enquanto(j<=order) {
+      var v=u::check(ac[i]*bc[j]);
+      se(i+j<=order) { put(coefficients,i+j,u::check(coefficients[i+j]+v)); }
+      senao { tail=tail+m::abs(v)*u::power(radius,i+j); }
+      j=j+1;
+    }
+    i=i+1;
+  }
+  var ar=interval_of(model(ac,[0,0]),radius); var br=interval_of(model(bc,[0,0]),radius);
+  var error=iv::add(iv::mul(ar,b["remainder"]),iv::mul(br,a["remainder"]));
+  error=iv::add(error,iv::mul(a["remainder"],b["remainder"]));
+  retornar bounded(model(coefficients,iv::add(error,[-tail,tail])),radius,bits);
+}
+funcao scaled(a,k,radius,bits) {
+  retornar bounded(model(u::scale(a["coefficients"],k),iv::scale(a["remainder"],k)),radius,bits);
+}
+funcao analytic(a,op,order,radius,bits) {
+  var input=a; var range=interval_of(a,radius); var rho=m::max(m::abs(range[0]),m::abs(range[1]));
+  se(op=="log") {
+    input=plus(a,constant(-1,order),radius,bits);
+    range=interval_of(input,radius); rho=m::max(m::abs(range[0]),m::abs(range[1]));
+    se(rho>=1) { fail("Taylor log requires |x-1|<1 on the full domain"); }
+  }
+  se(rho>16) { fail("Analytic Taylor expansion magnitude budget"); }
+  var out=constant(0,order); var term=constant(1,order); var factorial=1; var k=0;
+  enquanto(k<=order) {
+    var coefficient=0;
+    se(op=="exp") { coefficient=1/factorial; }
+    se(op=="sin"&&k%2==1) { coefficient=u::power(-1,qfloor(k/2))/factorial; }
+    se(op=="log"&&k>0) { coefficient=u::power(-1,k+1)/k; }
+    se(coefficient!=0) { out=plus(out,scaled(term,coefficient,radius,bits),radius,bits); }
+    term=times(term,input,radius,bits); k=k+1; factorial=factorial*k;
+  }
+  var tail=u::power(rho,order+1)/factorial;
+  se(op=="exp") { tail=tail*m::exp_interval(rho,bits)[1]; }
+  se(op=="log") { tail=u::power(rho,order+1)/((order+1)*(1-rho)); }
+  put(out,"remainder",iv::add(out["remainder"],[-tail,tail]));
+  retornar bounded(out,radius,bits);
+}
+funcao evaluate_ast(ast,center,radius,order,bits,depth,meter) {
+  put(meter,0,meter[0]+1);
+  se(depth>24||meter[0]>256||!islist(ast)||len(ast)<1||!isstr(ast[0])) { fail("Taylor expression AST budget/shape"); }
+  var op=ast[0];
+  se(op=="const"&&len(ast)==2) { retornar bounded(constant(u::val(ast[1]),order),radius,bits); }
+  se(op=="var"&&len(ast)==1) { var a=constant(center,order); put(a["coefficients"],1,1); retornar bounded(a,radius,bits); }
+  se((op=="add"||op=="mul")&&len(ast)==3) {
+    var a=evaluate_ast(ast[1],center,radius,order,bits,depth+1,meter);
+    var b=evaluate_ast(ast[2],center,radius,order,bits,depth+1,meter);
+    se(op=="add") { retornar plus(a,b,radius,bits); }
+    retornar times(a,b,radius,bits);
+  }
+  se((op=="exp"||op=="sin"||op=="log")&&len(ast)==2) {
+    retornar analytic(evaluate_ast(ast[1],center,radius,order,bits,depth+1,meter),op,order,radius,bits);
+  }
+  fail("Unsupported Taylor AST operation/arity"); retornar 0;
+}
+funcao execute(r) {
+  var center=u::q(r,"center"); var radius=u::nonnegative(u::q(r,"radius"));
+  var order=u::count(r,"order",1,12); var bits=u::integer(u::num(r,"bits",48),8,128);
+  se(radius>16||m::abs(center)>16) { fail("Taylor domain magnitude budget"); }
+  var result=evaluate_ast(r["expression"],center,radius,order,bits,0,[0]);
+  put(result,"range",interval_of(result,radius)); put(result,"center",center); put(result,"radius",radius);
+  put(result,"model","quantized-univariate-Taylor-with-rational-remainder"); put(result,"formal_admission",0);
+  retornar result;
+}

@@ -1,0 +1,17 @@
+modulo engines_ml_app;
+importar "../../std/string.omega" como s;
+importar "../../omega_ml/equilibrium_propagation_engine.omega" como k11;
+importar "../../omega_ml/continuous_hopfield_ssm.omega" como k12;
+importar "../../omega_ml/causal_do_calculus.omega" como k13;
+importar "../../omega_ml/jepa_latent_world_model.omega" como k14;
+importar "../../omega_ml/programmatic_hypernetwork_synthesis.omega" como k15;
+funcao principal() {
+  se(argc()!=3) { fail("Usage: engines_ml id request.json"); }
+  var id=number(arg(1)); var request=parsejson(read(arg(2)));
+  se(id==11) { print(s::canonical(k11::execute(request))); retornar 0; }
+  se(id==12) { print(s::canonical(k12::execute(request))); retornar 0; }
+  se(id==13) { print(s::canonical(k13::execute(request))); retornar 0; }
+  se(id==14) { print(s::canonical(k14::execute(request))); retornar 0; }
+  se(id==15) { print(s::canonical(k15::execute(request))); retornar 0; }
+  fail("Unknown ML engine ID"); retornar 1;
+}

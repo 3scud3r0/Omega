@@ -1,0 +1,46 @@
+{
+  "mode": "query",
+  "nodes": [
+    {
+      "parents": [],
+      "noise": 0,
+      "table": [
+        0,
+        1
+      ]
+    },
+    {
+      "parents": [
+        0
+      ],
+      "noise": 0,
+      "table": [
+        0,
+        1,
+        1,
+        0
+      ]
+    }
+  ],
+  "noise_worlds": [
+    {
+      "values": [
+        0
+      ],
+      "probability": "1/2"
+    },
+    {
+      "values": [
+        1
+      ],
+      "probability": "1/2"
+    }
+  ],
+  "query": 1,
+  "interventions": [
+    [
+      0,
+      1
+    ]
+  ]
+}

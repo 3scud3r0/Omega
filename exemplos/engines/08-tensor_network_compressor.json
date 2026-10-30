@@ -1,0 +1,19 @@
+{
+  "mode": "compress",
+  "dimensions": [
+    2,
+    2,
+    2
+  ],
+  "values": [
+    1,
+    2,
+    2,
+    4,
+    3,
+    6,
+    6,
+    12
+  ],
+  "max_rank": 2
+}

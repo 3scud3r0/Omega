@@ -1,0 +1,104 @@
+modulo active_inference;
+importar "../ciencia/core/exato.omega" como u;
+importar "../ciencia/core/intervalos.omega" como iv;
+importar "../std/math.omega" como m;
+importar "algebra.omega" como a;
+exportar execute;
+
+# Finite POMDP: exact Bayes filtering and bounded expected-free-energy planning.
+# Logarithms are rational intervals. Returned actions are proposals only.
+funcao predict(belief,transition) {
+  retornar a::apply(u::transpose(transition),belief);
+}
+funcao posterior(prior,likelihood,observation) {
+  var mass=0; var p=[]; var i=0;
+  enquanto(i<len(prior)) { var v=prior[i]*likelihood[i][observation]; push(p,v); mass=mass+v; i=i+1; }
+  se(mass==0) { fail("Observation has zero model evidence; do not fabricate a posterior"); }
+  retornar u::scale(p,1/mass);
+}
+funcao immediate(predicted,likelihood,preferences,bits) {
+  var observations=a::apply(u::transpose(likelihood),predicted); var cost=[0,0]; var i=0;
+  enquanto(i<len(observations)) {
+    se(observations[i]>0) {
+      var logratio=m::log_interval(observations[i]/preferences[i],bits);
+      cost=iv::add(cost,iv::scale(logratio,observations[i]));
+    }
+    i=i+1;
+  }
+  i=0;
+  enquanto(i<len(predicted)) {
+    se(predicted[i]>0) { cost=iv::add(cost,iv::scale(a::entropy(likelihood[i],bits),predicted[i])); }
+    i=i+1;
+  }
+  retornar [cost,observations];
+}
+funcao plan(belief,transitions,likelihood,preferences,allowed,horizon,bits,meter) {
+  put(meter,0,meter[0]+1);
+  se(meter[0]>256) { fail("Active inference policy tree budget 256"); }
+  var costs=[]; var actions=[]; var action=0; var chosen=-1; var chosen_upper=0; var lower=0;
+  enquanto(action<len(transitions)) {
+    se(allowed[action]) {
+      var prior=predict(belief,transitions[action]); var now=immediate(prior,likelihood,preferences,bits);
+      var value=now[0];
+      se(horizon>1) {
+        var observation=0;
+        enquanto(observation<len(preferences)) {
+          se(now[1][observation]>0) {
+            var next=posterior(prior,likelihood,observation);
+            var future=plan(next,transitions,likelihood,preferences,allowed,horizon-1,bits,meter);
+            value=iv::add(value,iv::scale(future["optimal_value_interval"],now[1][observation]));
+          }
+          observation=observation+1;
+        }
+      }
+      push(actions,action); push(costs,value);
+      se(chosen<0) { chosen=action; chosen_upper=value[1]; lower=value[0]; }
+      senao {
+        lower=m::min(lower,value[0]);
+        se(value[1]<chosen_upper) { chosen=action; chosen_upper=value[1]; }
+      }
+    }
+    action=action+1;
+  }
+  se(chosen<0) { fail("No action authorized in the supplied admissibility mask"); }
+  var out=obj(); put(out,"action_proposal",chosen); put(out,"actions",actions); put(out,"cost_intervals",costs);
+  put(out,"optimal_value_interval",[lower,chosen_upper]); put(out,"selection_regret_upper",chosen_upper-lower);
+  retornar out;
+}
+funcao execute(r) {
+  var belief=a::probability(r["belief"]); var states=len(belief);
+  var likelihood=u::mat(r["likelihood"]); var preferences=a::probability(r["preferences"]);
+  se(states>8||len(likelihood)!=states||len(preferences)>8||len(likelihood[0])!=len(preferences)) { fail("POMDP states/observations 1..8"); }
+  var i=0;
+  enquanto(i<states) { a::probability(likelihood[i]); i=i+1; }
+  i=0;
+  enquanto(i<len(preferences)) { u::positive(preferences[i]); i=i+1; }
+  var raw=r["transitions"];
+  se(!islist(raw)||len(raw)<1||len(raw)>4) { fail("POMDP actions 1..4"); }
+  var transitions=[]; i=0;
+  enquanto(i<len(raw)) {
+    var matrix=u::mat(raw[i]);
+    se(len(matrix)!=states||len(matrix[0])!=states) { fail("Transition shape mismatch"); }
+    var j=0;
+    enquanto(j<states) { a::probability(matrix[j]); j=j+1; }
+    push(transitions,matrix); i=i+1;
+  }
+  var allowed=u::vector(r["allowed_actions"]);
+  se(len(allowed)!=len(transitions)) { fail("Action mask shape"); }
+  i=0;
+  enquanto(i<len(allowed)) { u::integer(allowed[i],0,1); i=i+1; }
+  se(has(r,"previous_action")) { belief=predict(belief,transitions[u::count(r,"previous_action",0,len(transitions)-1)]); }
+  var source="not-supplied"; var sequence=-1;
+  se(has(r,"observation")) {
+    source=u::text_field(r,"source",256); se(len(source)==0) { fail("Observation provenance required"); }
+    sequence=u::count(r,"sequence",0,1000000000000);
+    se(has(r,"last_sequence")&&sequence<=u::q(r,"last_sequence")) { fail("Stale observation sequence"); }
+    belief=posterior(belief,likelihood,u::count(r,"observation",0,len(preferences)-1));
+  }
+  var bits=u::integer(u::num(r,"bits",32),12,80); var horizon=u::integer(u::num(r,"horizon",1),1,3); var meter=[0];
+  var out=plan(belief,transitions,likelihood,preferences,allowed,horizon,bits,meter);
+  put(out,"model","finite-POMDP-Bayes-and-interval-expected-free-energy"); put(out,"belief",belief);
+  put(out,"source",source); put(out,"sequence",sequence); put(out,"policy_nodes",meter[0]);
+  put(out,"external_action_executed",0); put(out,"sensor_origin_authenticated",0); put(out,"formal_admission",0);
+  retornar out;
+}

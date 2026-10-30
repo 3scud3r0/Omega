@@ -1,0 +1,55 @@
+modulo programmatic_hypernetwork;
+importar "../ciencia/core/exato.omega" como u;
+importar "../omega_core/algebra.omega" como a;
+exportar execute;
+
+# A trainable linear hypernetwork emits coefficients for a typed polynomial DSL.
+# The host can compile its self-contained candidate and check held-out examples.
+# Neither an arbitrary program learner nor a proof of OOD generalization.
+funcao fit(features,targets,ridge) {
+  var xt=u::transpose(features); var gram=u::mul(xt,features); var i=0;
+  enquanto(i<len(gram)) { put(gram[i],i,gram[i][i]+ridge); i=i+1; }
+  retornar u::transpose(u::mul(a::inverse(gram),u::mul(xt,targets)));
+}
+funcao source(polynomial,variables) {
+  var body="funcao predict(x) { retornar "+a::poly_text(polynomial)+"; }\n";
+  body=body+"funcao principal() { se(argc()!="+text(2*variables+1)+") { fail(\"Expected numerator/denominator argument pairs\"); } var x=[]; var i=0; enquanto(i<"+text(variables)+") { push(x,number(arg(2*i+1))/number(arg(2*i+2))); i=i+1; } var y=predict(x); print(qnum(y)); print(qden(y)); retornar 0; }\n";
+  retornar body;
+}
+funcao execute(r) {
+  var features=u::vector(r["features"]); var variables=u::count(r,"variables",1,4); var raw=r["basis"];
+  se(len(features)<1||len(features)>16||!islist(raw)||len(raw)<1||len(raw)>16) { fail("Hypernetwork feature/basis budget"); }
+  var basis=[]; var i=0;
+  enquanto(i<len(raw)) {
+    var term=a::poly_read([[1,raw[i]]],variables); var j=0;
+    enquanto(j<i) { se(a::same(basis[j],term[0][1])) { fail("Duplicate synthesis basis"); } j=j+1; }
+    push(basis,term[0][1]); i=i+1;
+  }
+  var mode=u::text_field(r,"mode",24); var hyper=[]; var training_error=0;
+  se(mode=="fit_generate") {
+    var x=u::mat(r["training_features"]); var y=u::mat(r["training_coefficients"]);
+    se(len(x)!=len(y)||len(x[0])!=len(features)||len(y[0])!=len(basis)) { fail("Hypernetwork training shape"); }
+    hyper=fit(x,y,u::nonnegative(u::num(r,"ridge",0))); i=0;
+    enquanto(i<len(x)) { training_error=training_error+a::norm2(u::add(a::apply(hyper,x[i]),u::scale(y[i],-1))); i=i+1; }
+  }
+  senao {
+    se(mode!="generate") { fail("Hypernetwork mode generate or fit_generate required"); }
+    hyper=u::mat(r["hyper_weights"]);
+  }
+  se(len(hyper)!=len(basis)||len(hyper[0])!=len(features)) { fail("Hypernetwork output signature mismatch"); }
+  var coefficients=a::apply(hyper,features); var polynomial=[]; i=0;
+  enquanto(i<len(basis)) { se(coefficients[i]!=0) { push(polynomial,[coefficients[i],basis[i]]); } i=i+1; }
+  var cases=r["cases"];
+  se(!islist(cases)||len(cases)<1||len(cases)>32) { fail("Synthesis requires 1..32 reviewable cases"); }
+  var checks=[]; var accepted=1; i=0;
+  enquanto(i<len(cases)) {
+    var x=u::vector(cases[i]["input"]); se(len(x)!=variables) { fail("Synthesis case input type/dimension"); }
+    var expected=u::q(cases[i],"expected"); var value=a::poly_eval(polynomial,x); var good=value==expected;
+    se(!good) { accepted=0; }
+    push(checks,[value,expected,good]); i=i+1;
+  }
+  var code=source(polynomial,variables); var out=u::result("linear-hypernetwork-to-polynomial-Omega-program",coefficients);
+  put(out,"polynomial",polynomial); put(out,"hyper_weights",hyper); put(out,"training_squared_error",training_error);
+  put(out,"source",code); put(out,"source_sha256",sha256(code)); put(out,"cases",checks); put(out,"examples_passed",accepted);
+  put(out,"compiled",0); put(out,"generalization_proven",0); retornar out;
+}

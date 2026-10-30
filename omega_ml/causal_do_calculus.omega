@@ -1,0 +1,193 @@
+modulo causal_scm;
+importar "../ciencia/core/exato.omega" como u;
+importar "../omega_core/algebra.omega" como a;
+exportar execute;
+
+# Finite binary structural causal models with a declared joint exogenous law.
+# Abduction, intervention and counterfactual prediction reuse the same U-world.
+# Backdoor identification additionally checks independence and graph separation.
+funcao event_mask(raw,n) {
+  var mask=[]; var i=0;
+  enquanto(i<n) { push(mask,-1); i=i+1; }
+  se(!islist(raw)||len(raw)>n) { fail("Causal event list budget"); }
+  i=0;
+  enquanto(i<len(raw)) {
+    var pair=u::vector(raw[i]); se(len(pair)!=2) { fail("Causal event [node,binary value]"); }
+    var node=u::integer(pair[0],0,n-1); var value=u::integer(pair[1],0,1);
+    se(mask[node]!=-1) { fail("Duplicate causal event variable"); }
+    put(mask,node,value); i=i+1;
+  }
+  retornar mask;
+}
+funcao evaluate(nodes,noise,intervention) {
+  var values=[]; var i=0;
+  enquanto(i<len(nodes)) {
+    se(intervention[i]>=0) { push(values,intervention[i]); }
+    senao {
+      var index=0; var j=0;
+      enquanto(j<len(nodes[i][0])) { index=2*index+values[nodes[i][0][j]]; j=j+1; }
+      se(nodes[i][1]>=0) { index=2*index+noise[nodes[i][1]]; }
+      push(values,nodes[i][2][index]);
+    }
+    i=i+1;
+  }
+  retornar values;
+}
+funcao matches(values,event) {
+  var i=0;
+  enquanto(i<len(event)) { se(event[i]>=0&&values[i]!=event[i]) { retornar 0; } i=i+1; }
+  retornar 1;
+}
+funcao zero_matrix(n) {
+  var matrix=[]; var i=0;
+  enquanto(i<n) { push(matrix,u::zeros(n)); i=i+1; }
+  retornar matrix;
+}
+funcao independent_noise(worlds,probabilities,k) {
+  var marginals=u::zeros(k); var i=0;
+  enquanto(i<len(worlds)) {
+    var j=0;
+    enquanto(j<k) { put(marginals,j,marginals[j]+probabilities[i]*worlds[i][j]); j=j+1; }
+    i=i+1;
+  }
+  var code=0;
+  enquanto(code<u::power(2,k)) {
+    var bits=[]; var j=0; var product=1;
+    enquanto(j<k) {
+      var bit=qfloor(code/u::power(2,j))%2; push(bits,bit);
+      se(bit) { product=product*marginals[j]; } senao { product=product*(1-marginals[j]); }
+      j=j+1;
+    }
+    var actual=0; i=0;
+    enquanto(i<len(worlds)) { se(a::same(bits,worlds[i])) { actual=actual+probabilities[i]; } i=i+1; }
+    se(product!=actual) { fail("Graph backdoor checking requires independent exogenous roots"); }
+    code=code+1;
+  }
+  retornar 1;
+}
+funcao backdoor_separated(nodes,k,x,y,z) {
+  var n=len(nodes); var size=n+k; var graph=zero_matrix(size); var i=0;
+  enquanto(i<n) {
+    var j=0;
+    enquanto(j<len(nodes[i][0])) { put(graph[nodes[i][0][j]],i,1); j=j+1; }
+    se(nodes[i][1]>=0) { put(graph[n+nodes[i][1]],i,1); }
+    i=i+1;
+  }
+  var reachable=u::copy(graph); var middle=0;
+  enquanto(middle<size) {
+    i=0;
+    enquanto(i<size) { var j=0; enquanto(j<size) { se(reachable[i][middle]&&reachable[middle][j]) { put(reachable[i],j,1); } j=j+1; } i=i+1; }
+    middle=middle+1;
+  }
+  i=0;
+  enquanto(i<len(z)) { se(z[i]==x||z[i]==y||reachable[x][z[i]]) { fail("Backdoor controls cannot include treatment, outcome or descendants of treatment"); } i=i+1; }
+  # Remove outgoing treatment edges, then moralize the ancestral subgraph.
+  put(graph,x,u::zeros(size)); var ancestors=u::zeros(size); put(ancestors,x,1); put(ancestors,y,1); i=0;
+  enquanto(i<len(z)) { put(ancestors,z[i],1); i=i+1; }
+  var pass=0;
+  enquanto(pass<size) {
+    i=0;
+    enquanto(i<size) { var j=0; enquanto(j<size) { se(graph[i][j]&&ancestors[j]) { put(ancestors,i,1); } j=j+1; } i=i+1; }
+    pass=pass+1;
+  }
+  var moral=zero_matrix(size); var child=0;
+  enquanto(child<size) {
+    se(ancestors[child]) {
+      var parents=[]; i=0;
+      enquanto(i<size) {
+        se(graph[i][child]&&ancestors[i]) { push(parents,i); put(moral[i],child,1); put(moral[child],i,1); }
+        i=i+1;
+      }
+      i=0;
+      enquanto(i<len(parents)) { var j=0; enquanto(j<i) { put(moral[parents[i]],parents[j],1); put(moral[parents[j]],parents[i],1); j=j+1; } i=i+1; }
+    }
+    child=child+1;
+  }
+  var blocked=u::zeros(size); i=0;
+  enquanto(i<len(z)) { put(blocked,z[i],1); i=i+1; }
+  var seen=u::zeros(size); put(seen,x,1); var queue=[x]; var position=0;
+  enquanto(position<len(queue)) {
+    var current=queue[position]; i=0;
+    enquanto(i<size) { se(moral[current][i]&&!blocked[i]&&!seen[i]) { put(seen,i,1); push(queue,i); } i=i+1; }
+    position=position+1;
+  }
+  retornar !seen[y];
+}
+funcao execute(r) {
+  var raw=r["nodes"]; var worlds_raw=r["noise_worlds"];
+  se(!islist(raw)||len(raw)<1||len(raw)>12||!islist(worlds_raw)||len(worlds_raw)<1||len(worlds_raw)>256) { fail("SCM node/world budget"); }
+  var worlds=[]; var probabilities=[]; var k=len(worlds_raw[0]["values"]); u::integer(k,1,8); var i=0;
+  enquanto(i<len(worlds_raw)) {
+    var values=u::vector(worlds_raw[i]["values"]);
+    se(len(values)!=k) { fail("Exogenous world dimension mismatch"); }
+    var j=0;
+    enquanto(j<k) { u::integer(values[j],0,1); j=j+1; }
+    j=0;
+    enquanto(j<i) { se(a::same(values,worlds[j])) { fail("Duplicate exogenous world"); } j=j+1; }
+    push(worlds,values); push(probabilities,u::q(worlds_raw[i],"probability")); i=i+1;
+  }
+  a::probability(probabilities); var nodes=[]; i=0;
+  enquanto(i<len(raw)) {
+    var parents=u::vector(raw[i]["parents"]); var noise=u::integer(u::num(raw[i],"noise",-1),-1,k-1); var j=0;
+    se(len(parents)>8) { fail("SCM parent budget"); }
+    enquanto(j<len(parents)) {
+      u::integer(parents[j],0,i-1); var previous=0;
+      enquanto(previous<j) { se(parents[previous]==parents[j]) { fail("Duplicate causal parent"); } previous=previous+1; }
+      j=j+1;
+    }
+    var table=u::vector(raw[i]["table"]); var width=len(parents);
+    se(noise>=0) { width=width+1; }
+    se(len(table)!=u::power(2,width)) { fail("SCM truth-table arity mismatch"); }
+    j=0;
+    enquanto(j<len(table)) { u::integer(table[j],0,1); j=j+1; }
+    push(nodes,[parents,noise,table]); i=i+1;
+  }
+  var n=len(nodes); var mode=u::text_field(r,"mode",24);
+  se(mode=="backdoor") {
+    independent_noise(worlds,probabilities,k);
+    var x=u::count(r,"treatment",0,n-1); var y=u::count(r,"outcome",0,n-1); var value=u::count(r,"value",0,1);
+    var z=u::vector(r["controls"]); se(len(z)>6||x==y) { fail("Backdoor control budget / distinct X,Y"); }
+    i=0;
+    enquanto(i<len(z)) { u::integer(z[i],0,n-1); var j=0; enquanto(j<i) { se(z[i]==z[j]) { fail("Duplicate backdoor control"); } j=j+1; } i=i+1; }
+    se(!backdoor_separated(nodes,k,x,y,z)) { fail("Controls fail the backdoor separation criterion"); }
+    var none=event_mask([],n); var adjustment=0; var code=0;
+    enquanto(code<u::power(2,len(z))) {
+      var pz=0; var pxz=0; var pyxz=0; i=0;
+      enquanto(i<len(worlds)) {
+        var observed=evaluate(nodes,worlds[i],none); var matched=1; var j=0;
+        enquanto(j<len(z)) { se(observed[z[j]]!=qfloor(code/u::power(2,j))%2) { matched=0; } j=j+1; }
+        se(matched) {
+          pz=pz+probabilities[i];
+          se(observed[x]==value) { pxz=pxz+probabilities[i]; se(observed[y]==1) { pyxz=pyxz+probabilities[i]; } }
+        }
+        i=i+1;
+      }
+      se(pz>0) { se(pxz==0) { fail("Backdoor adjustment positivity fails"); } adjustment=adjustment+pz*pyxz/pxz; }
+      code=code+1;
+    }
+    var intervention=event_mask([[x,value]],n); var direct=0; i=0;
+    enquanto(i<len(worlds)) { se(evaluate(nodes,worlds[i],intervention)[y]==1) { direct=direct+probabilities[i]; } i=i+1; }
+    se(direct!=adjustment) { fail("Backdoor formula disagrees with declared SCM"); }
+    var out=u::result("graph-checked-finite-backdoor-adjustment",[1-adjustment,adjustment]); put(out,"interventional_probability",direct); retornar out;
+  }
+  se(mode!="query") { fail("Causal mode query or backdoor required"); }
+  var do_raw=[]; var evidence_raw=[];
+  se(has(r,"interventions")) { do_raw=r["interventions"]; }
+  se(has(r,"evidence")) { evidence_raw=r["evidence"]; }
+  var intervention=event_mask(do_raw,n); var evidence=event_mask(evidence_raw,n); var query=u::count(r,"query",0,n-1);
+  var alternate=intervention;
+  se(has(r,"counterfactual")) { alternate=event_mask(r["counterfactual"],n); }
+  var mass=0; var distribution=[0,0]; var posterior=[]; i=0;
+  enquanto(i<len(worlds)) {
+    var factual=evaluate(nodes,worlds[i],intervention); var weight=0;
+    se(matches(factual,evidence)) {
+      weight=probabilities[i]; var predicted=evaluate(nodes,worlds[i],alternate);
+      put(distribution,predicted[query],distribution[predicted[query]]+weight); mass=mass+weight;
+    }
+    push(posterior,weight); i=i+1;
+  }
+  se(mass==0) { fail("Causal evidence is impossible under the supplied SCM"); }
+  var out=u::result("exact-finite-SCM-abduction-action-prediction",u::scale(distribution,1/mass));
+  put(out,"evidence_probability",mass); put(out,"posterior_noise_worlds",u::scale(posterior,1/mass));
+  put(out,"counterfactual",has(r,"counterfactual")); put(out,"empirical_causal_graph_verified",0); retornar out;
+}
