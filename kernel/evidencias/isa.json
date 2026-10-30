@@ -1,0 +1,1773 @@
+{
+  "format": "omega-kernel-cross-isa-random-1",
+  "seed": 22130,
+  "executions": 135,
+  "cases": 45,
+  "architectures": [
+    "x86_64",
+    "aarch64",
+    "riscv64"
+  ],
+  "passed": true,
+  "seconds": 83.44489855898428,
+  "sandboxed": true,
+  "reference": "independent Python integers, explicit exact signed division/remainder",
+  "cases_sha256": "13543ca0cfb6f509340fbfe4ebab6cd0b56ee902158acf41d1386d229b336ac3",
+  "records": [
+    {
+      "architecture": "x86_64",
+      "operation": "+",
+      "inputs": [
+        -4294967296,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        9223372032559808510
+      ],
+      "elf_sha256": "87540035f5485d86fcb021663e0d316fddedfc937be5a61aaf0d76b3882eb512"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "+",
+      "inputs": [
+        -4294967296,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        9223372032559808510
+      ],
+      "elf_sha256": "fd4089da8ce256c268dec01965419e8decb51ec7354dcf66c691451cd1bc554e"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "+",
+      "inputs": [
+        -4294967296,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        9223372032559808510
+      ],
+      "elf_sha256": "fb28aba17e2b23fa8cd578885f6d2b741e6b8a6806b7c532e2ec384f81b80430"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "-",
+      "inputs": [
+        1,
+        -1
+      ],
+      "expected": [
+        0,
+        2
+      ],
+      "elf_sha256": "97df1b01390986b5df33f47ac74812f385a54ebcc595cabf49cbdb97be427dee"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "-",
+      "inputs": [
+        1,
+        -1
+      ],
+      "expected": [
+        0,
+        2
+      ],
+      "elf_sha256": "e14c62e9d3c43e3b21a5e762d87e9284e38f4fa1c659d71e79f0f33fd4903c4a"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "-",
+      "inputs": [
+        1,
+        -1
+      ],
+      "expected": [
+        0,
+        2
+      ],
+      "elf_sha256": "6db7267a535e2be306ad279cd2e8609979ee5939f0956fc7d00baabc045ac2be"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "*",
+      "inputs": [
+        -9223372036854775807,
+        4294967296
+      ],
+      "expected": [
+        1,
+        0
+      ],
+      "elf_sha256": "ba15650d79ebf8e382275d4dd8a824318ef4123aa3345fbe13a1f200e13d1dbc"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "*",
+      "inputs": [
+        -9223372036854775807,
+        4294967296
+      ],
+      "expected": [
+        1,
+        0
+      ],
+      "elf_sha256": "fac660c5bc27e20bc84fb09d823f8c3bf46163ace0bc31e7437792ad372180e5"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "*",
+      "inputs": [
+        -9223372036854775807,
+        4294967296
+      ],
+      "expected": [
+        1,
+        0
+      ],
+      "elf_sha256": "272d8d1a7c6f969760f663bd5ceb7873e3d6c0122c3d1d88b2c334796166efe8"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "/",
+      "inputs": [
+        -9223372036854775808,
+        -1
+      ],
+      "expected": [
+        1,
+        0
+      ],
+      "elf_sha256": "e1651ddd220ec2b0fa0276ee790f006a311f7d37773c274fa5aef7dc065f1f3b"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "/",
+      "inputs": [
+        -9223372036854775808,
+        -1
+      ],
+      "expected": [
+        1,
+        0
+      ],
+      "elf_sha256": "bc3387b581ecb20f948755f87af6b765f6ec5e08ae3b4281426f57186afe3e12"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "/",
+      "inputs": [
+        -9223372036854775808,
+        -1
+      ],
+      "expected": [
+        1,
+        0
+      ],
+      "elf_sha256": "3df4a64474638aacbd23ab880e806cdc39796b29dc9a8b29599fb164d0010d1b"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "%",
+      "inputs": [
+        1,
+        1
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "3f0586400bd3b9891ccd2af0502e3d21088ecb237e3ec7af1afeaf669a58a8fd"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "%",
+      "inputs": [
+        1,
+        1
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "60e0d55a30d1c26b3cc65c6b73e0bbbab2b92e76e259d6ea4857a5e671212599"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "%",
+      "inputs": [
+        1,
+        1
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "f748e9f9eaa646034f2a604073a52c8775f24ba3eaafcf9bee2dcf990e5a865d"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "==",
+      "inputs": [
+        4294967296,
+        -4294967296
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "9f0939d315f3864d17ab23bf756bce27691717cafd5ab0215ab01bf67b475155"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "==",
+      "inputs": [
+        4294967296,
+        -4294967296
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "bfab4980626aeb2ce2ac54f97ee7c5c94344b13d7e50411007edb83778dc3b2a"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "==",
+      "inputs": [
+        4294967296,
+        -4294967296
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "d717598c017a9df72d8cecfb74566de3eed109b23a3bc64c1f308db0271b34f2"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "!=",
+      "inputs": [
+        -4294967296,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "c169440dc1ba09aadecefe9784c0f1b9a17f4f6c8aaa23569e0d3717bfa7d147"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "!=",
+      "inputs": [
+        -4294967296,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "ba174cafecc40779e4ad7a69c031de162341b7639b254ad807efcf61feff2394"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "!=",
+      "inputs": [
+        -4294967296,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "4adde3069bb59873b99273e34a542b3cfa85032738bbe56c9d8d490faacbc129"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "<",
+      "inputs": [
+        1,
+        4294967296
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "247c1ce8ebd153a969270c541e4704b101892e4cb7566e94095366f091693168"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "<",
+      "inputs": [
+        1,
+        4294967296
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "9eacb0a54855bfea9a4cc66b1d96e894d0db40d8dc8e02b4fbf228ea015bb419"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "<",
+      "inputs": [
+        1,
+        4294967296
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "3109141c8c1ca089c1e9d95190b3c433bc0fe2e398464d2f5c8a73d71a4003b2"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "<=",
+      "inputs": [
+        9223372036854775807,
+        -9223372036854775807
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "3c52714234c170e67a25f8a820003f35c887ae463572d7fe58f5dba9a545b4a1"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "<=",
+      "inputs": [
+        9223372036854775807,
+        -9223372036854775807
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "b513f45ae40df60cd43df2efa634d210e480d98209f1d1fad7b6eb407a3a8bbe"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "<=",
+      "inputs": [
+        9223372036854775807,
+        -9223372036854775807
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "07086cfa2c791438ce915a2600d2b48b79bbcf93f668748ce83411f3804d7fec"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": ">",
+      "inputs": [
+        -4294967296,
+        -9223372036854775807
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "0cf6e5549af3f5dbff43de1e2b5fff33dbb81468ba674920fa1632fc9d276e26"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": ">",
+      "inputs": [
+        -4294967296,
+        -9223372036854775807
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "3f4cc95f4a1e2ee1a8eecef91fc97439e1d60622e62a4c3bdf73f18245deca8f"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": ">",
+      "inputs": [
+        -4294967296,
+        -9223372036854775807
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "28145e545a07a6af1037008fe5db8980807a233d04ecf6587aeaf98874a8a769"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": ">=",
+      "inputs": [
+        0,
+        -9223372036854775807
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "327209d603ce9b9e6c9c9789e8969ba4f0fb34148834f915cdf3d43bd1927b6d"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": ">=",
+      "inputs": [
+        0,
+        -9223372036854775807
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "5df5035bd5d15304a434bf5bdb0292afb5e0aa898b67db4da558426eef7ed928"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": ">=",
+      "inputs": [
+        0,
+        -9223372036854775807
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "439a3d2c3e66c057289172ec04ed97d51c1d38dd772113a3995943981cbc67cd"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "+",
+      "inputs": [
+        9223372036854775806,
+        -4294967296
+      ],
+      "expected": [
+        0,
+        9223372032559808510
+      ],
+      "elf_sha256": "87540035f5485d86fcb021663e0d316fddedfc937be5a61aaf0d76b3882eb512"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "+",
+      "inputs": [
+        9223372036854775806,
+        -4294967296
+      ],
+      "expected": [
+        0,
+        9223372032559808510
+      ],
+      "elf_sha256": "fd4089da8ce256c268dec01965419e8decb51ec7354dcf66c691451cd1bc554e"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "+",
+      "inputs": [
+        9223372036854775806,
+        -4294967296
+      ],
+      "expected": [
+        0,
+        9223372032559808510
+      ],
+      "elf_sha256": "fb28aba17e2b23fa8cd578885f6d2b741e6b8a6806b7c532e2ec384f81b80430"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "-",
+      "inputs": [
+        -1,
+        -4294967296
+      ],
+      "expected": [
+        0,
+        4294967295
+      ],
+      "elf_sha256": "97df1b01390986b5df33f47ac74812f385a54ebcc595cabf49cbdb97be427dee"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "-",
+      "inputs": [
+        -1,
+        -4294967296
+      ],
+      "expected": [
+        0,
+        4294967295
+      ],
+      "elf_sha256": "e14c62e9d3c43e3b21a5e762d87e9284e38f4fa1c659d71e79f0f33fd4903c4a"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "-",
+      "inputs": [
+        -1,
+        -4294967296
+      ],
+      "expected": [
+        0,
+        4294967295
+      ],
+      "elf_sha256": "6db7267a535e2be306ad279cd2e8609979ee5939f0956fc7d00baabc045ac2be"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "*",
+      "inputs": [
+        9223372036854775807,
+        -1
+      ],
+      "expected": [
+        0,
+        -9223372036854775807
+      ],
+      "elf_sha256": "ba15650d79ebf8e382275d4dd8a824318ef4123aa3345fbe13a1f200e13d1dbc"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "*",
+      "inputs": [
+        9223372036854775807,
+        -1
+      ],
+      "expected": [
+        0,
+        -9223372036854775807
+      ],
+      "elf_sha256": "fac660c5bc27e20bc84fb09d823f8c3bf46163ace0bc31e7437792ad372180e5"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "*",
+      "inputs": [
+        9223372036854775807,
+        -1
+      ],
+      "expected": [
+        0,
+        -9223372036854775807
+      ],
+      "elf_sha256": "272d8d1a7c6f969760f663bd5ceb7873e3d6c0122c3d1d88b2c334796166efe8"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "/",
+      "inputs": [
+        -9223372036854775807,
+        4294967296
+      ],
+      "expected": [
+        4,
+        0
+      ],
+      "elf_sha256": "e1651ddd220ec2b0fa0276ee790f006a311f7d37773c274fa5aef7dc065f1f3b"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "/",
+      "inputs": [
+        -9223372036854775807,
+        4294967296
+      ],
+      "expected": [
+        4,
+        0
+      ],
+      "elf_sha256": "bc3387b581ecb20f948755f87af6b765f6ec5e08ae3b4281426f57186afe3e12"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "/",
+      "inputs": [
+        -9223372036854775807,
+        4294967296
+      ],
+      "expected": [
+        4,
+        0
+      ],
+      "elf_sha256": "3df4a64474638aacbd23ab880e806cdc39796b29dc9a8b29599fb164d0010d1b"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "%",
+      "inputs": [
+        9223372036854775806,
+        1
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "3f0586400bd3b9891ccd2af0502e3d21088ecb237e3ec7af1afeaf669a58a8fd"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "%",
+      "inputs": [
+        9223372036854775806,
+        1
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "60e0d55a30d1c26b3cc65c6b73e0bbbab2b92e76e259d6ea4857a5e671212599"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "%",
+      "inputs": [
+        9223372036854775806,
+        1
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "f748e9f9eaa646034f2a604073a52c8775f24ba3eaafcf9bee2dcf990e5a865d"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "==",
+      "inputs": [
+        0,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "9f0939d315f3864d17ab23bf756bce27691717cafd5ab0215ab01bf67b475155"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "==",
+      "inputs": [
+        0,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "bfab4980626aeb2ce2ac54f97ee7c5c94344b13d7e50411007edb83778dc3b2a"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "==",
+      "inputs": [
+        0,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "d717598c017a9df72d8cecfb74566de3eed109b23a3bc64c1f308db0271b34f2"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "!=",
+      "inputs": [
+        0,
+        0
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "c169440dc1ba09aadecefe9784c0f1b9a17f4f6c8aaa23569e0d3717bfa7d147"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "!=",
+      "inputs": [
+        0,
+        0
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "ba174cafecc40779e4ad7a69c031de162341b7639b254ad807efcf61feff2394"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "!=",
+      "inputs": [
+        0,
+        0
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "4adde3069bb59873b99273e34a542b3cfa85032738bbe56c9d8d490faacbc129"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "<",
+      "inputs": [
+        0,
+        -9223372036854775808
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "247c1ce8ebd153a969270c541e4704b101892e4cb7566e94095366f091693168"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "<",
+      "inputs": [
+        0,
+        -9223372036854775808
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "9eacb0a54855bfea9a4cc66b1d96e894d0db40d8dc8e02b4fbf228ea015bb419"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "<",
+      "inputs": [
+        0,
+        -9223372036854775808
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "3109141c8c1ca089c1e9d95190b3c433bc0fe2e398464d2f5c8a73d71a4003b2"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "<=",
+      "inputs": [
+        4294967296,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "3c52714234c170e67a25f8a820003f35c887ae463572d7fe58f5dba9a545b4a1"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "<=",
+      "inputs": [
+        4294967296,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "b513f45ae40df60cd43df2efa634d210e480d98209f1d1fad7b6eb407a3a8bbe"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "<=",
+      "inputs": [
+        4294967296,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "07086cfa2c791438ce915a2600d2b48b79bbcf93f668748ce83411f3804d7fec"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": ">",
+      "inputs": [
+        -1,
+        1
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "0cf6e5549af3f5dbff43de1e2b5fff33dbb81468ba674920fa1632fc9d276e26"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": ">",
+      "inputs": [
+        -1,
+        1
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "3f4cc95f4a1e2ee1a8eecef91fc97439e1d60622e62a4c3bdf73f18245deca8f"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": ">",
+      "inputs": [
+        -1,
+        1
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "28145e545a07a6af1037008fe5db8980807a233d04ecf6587aeaf98874a8a769"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": ">=",
+      "inputs": [
+        9223372036854775807,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "327209d603ce9b9e6c9c9789e8969ba4f0fb34148834f915cdf3d43bd1927b6d"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": ">=",
+      "inputs": [
+        9223372036854775807,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "5df5035bd5d15304a434bf5bdb0292afb5e0aa898b67db4da558426eef7ed928"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": ">=",
+      "inputs": [
+        9223372036854775807,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "439a3d2c3e66c057289172ec04ed97d51c1d38dd772113a3995943981cbc67cd"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "+",
+      "inputs": [
+        -1,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        9223372036854775805
+      ],
+      "elf_sha256": "87540035f5485d86fcb021663e0d316fddedfc937be5a61aaf0d76b3882eb512"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "+",
+      "inputs": [
+        -1,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        9223372036854775805
+      ],
+      "elf_sha256": "fd4089da8ce256c268dec01965419e8decb51ec7354dcf66c691451cd1bc554e"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "+",
+      "inputs": [
+        -1,
+        9223372036854775806
+      ],
+      "expected": [
+        0,
+        9223372036854775805
+      ],
+      "elf_sha256": "fb28aba17e2b23fa8cd578885f6d2b741e6b8a6806b7c532e2ec384f81b80430"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "-",
+      "inputs": [
+        -1,
+        -9223372036854775807
+      ],
+      "expected": [
+        0,
+        9223372036854775806
+      ],
+      "elf_sha256": "97df1b01390986b5df33f47ac74812f385a54ebcc595cabf49cbdb97be427dee"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "-",
+      "inputs": [
+        -1,
+        -9223372036854775807
+      ],
+      "expected": [
+        0,
+        9223372036854775806
+      ],
+      "elf_sha256": "e14c62e9d3c43e3b21a5e762d87e9284e38f4fa1c659d71e79f0f33fd4903c4a"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "-",
+      "inputs": [
+        -1,
+        -9223372036854775807
+      ],
+      "expected": [
+        0,
+        9223372036854775806
+      ],
+      "elf_sha256": "6db7267a535e2be306ad279cd2e8609979ee5939f0956fc7d00baabc045ac2be"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "*",
+      "inputs": [
+        -9223372036854775807,
+        -4294967296
+      ],
+      "expected": [
+        1,
+        0
+      ],
+      "elf_sha256": "ba15650d79ebf8e382275d4dd8a824318ef4123aa3345fbe13a1f200e13d1dbc"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "*",
+      "inputs": [
+        -9223372036854775807,
+        -4294967296
+      ],
+      "expected": [
+        1,
+        0
+      ],
+      "elf_sha256": "fac660c5bc27e20bc84fb09d823f8c3bf46163ace0bc31e7437792ad372180e5"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "*",
+      "inputs": [
+        -9223372036854775807,
+        -4294967296
+      ],
+      "expected": [
+        1,
+        0
+      ],
+      "elf_sha256": "272d8d1a7c6f969760f663bd5ceb7873e3d6c0122c3d1d88b2c334796166efe8"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "/",
+      "inputs": [
+        7371657309437819100,
+        -6497055861460959154
+      ],
+      "expected": [
+        4,
+        0
+      ],
+      "elf_sha256": "e1651ddd220ec2b0fa0276ee790f006a311f7d37773c274fa5aef7dc065f1f3b"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "/",
+      "inputs": [
+        7371657309437819100,
+        -6497055861460959154
+      ],
+      "expected": [
+        4,
+        0
+      ],
+      "elf_sha256": "bc3387b581ecb20f948755f87af6b765f6ec5e08ae3b4281426f57186afe3e12"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "/",
+      "inputs": [
+        7371657309437819100,
+        -6497055861460959154
+      ],
+      "expected": [
+        4,
+        0
+      ],
+      "elf_sha256": "3df4a64474638aacbd23ab880e806cdc39796b29dc9a8b29599fb164d0010d1b"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "%",
+      "inputs": [
+        -3498927796186494562,
+        -1771694735070240286
+      ],
+      "expected": [
+        0,
+        -1727233061116254276
+      ],
+      "elf_sha256": "3f0586400bd3b9891ccd2af0502e3d21088ecb237e3ec7af1afeaf669a58a8fd"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "%",
+      "inputs": [
+        -3498927796186494562,
+        -1771694735070240286
+      ],
+      "expected": [
+        0,
+        -1727233061116254276
+      ],
+      "elf_sha256": "60e0d55a30d1c26b3cc65c6b73e0bbbab2b92e76e259d6ea4857a5e671212599"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "%",
+      "inputs": [
+        -3498927796186494562,
+        -1771694735070240286
+      ],
+      "expected": [
+        0,
+        -1727233061116254276
+      ],
+      "elf_sha256": "f748e9f9eaa646034f2a604073a52c8775f24ba3eaafcf9bee2dcf990e5a865d"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "==",
+      "inputs": [
+        -2758246618258102011,
+        -2084239196134241716
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "9f0939d315f3864d17ab23bf756bce27691717cafd5ab0215ab01bf67b475155"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "==",
+      "inputs": [
+        -2758246618258102011,
+        -2084239196134241716
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "bfab4980626aeb2ce2ac54f97ee7c5c94344b13d7e50411007edb83778dc3b2a"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "==",
+      "inputs": [
+        -2758246618258102011,
+        -2084239196134241716
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "d717598c017a9df72d8cecfb74566de3eed109b23a3bc64c1f308db0271b34f2"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "!=",
+      "inputs": [
+        6211488987050247040,
+        2159189512062258633
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "c169440dc1ba09aadecefe9784c0f1b9a17f4f6c8aaa23569e0d3717bfa7d147"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "!=",
+      "inputs": [
+        6211488987050247040,
+        2159189512062258633
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "ba174cafecc40779e4ad7a69c031de162341b7639b254ad807efcf61feff2394"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "!=",
+      "inputs": [
+        6211488987050247040,
+        2159189512062258633
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "4adde3069bb59873b99273e34a542b3cfa85032738bbe56c9d8d490faacbc129"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "<",
+      "inputs": [
+        -4294690504223092368,
+        5454503143816605365
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "247c1ce8ebd153a969270c541e4704b101892e4cb7566e94095366f091693168"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "<",
+      "inputs": [
+        -4294690504223092368,
+        5454503143816605365
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "9eacb0a54855bfea9a4cc66b1d96e894d0db40d8dc8e02b4fbf228ea015bb419"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "<",
+      "inputs": [
+        -4294690504223092368,
+        5454503143816605365
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "3109141c8c1ca089c1e9d95190b3c433bc0fe2e398464d2f5c8a73d71a4003b2"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "<=",
+      "inputs": [
+        4300831284177908147,
+        3048900481046072684
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "3c52714234c170e67a25f8a820003f35c887ae463572d7fe58f5dba9a545b4a1"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "<=",
+      "inputs": [
+        4300831284177908147,
+        3048900481046072684
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "b513f45ae40df60cd43df2efa634d210e480d98209f1d1fad7b6eb407a3a8bbe"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "<=",
+      "inputs": [
+        4300831284177908147,
+        3048900481046072684
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "07086cfa2c791438ce915a2600d2b48b79bbcf93f668748ce83411f3804d7fec"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": ">",
+      "inputs": [
+        -7001648790182338534,
+        -4006280007156868677
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "0cf6e5549af3f5dbff43de1e2b5fff33dbb81468ba674920fa1632fc9d276e26"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": ">",
+      "inputs": [
+        -7001648790182338534,
+        -4006280007156868677
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "3f4cc95f4a1e2ee1a8eecef91fc97439e1d60622e62a4c3bdf73f18245deca8f"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": ">",
+      "inputs": [
+        -7001648790182338534,
+        -4006280007156868677
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "28145e545a07a6af1037008fe5db8980807a233d04ecf6587aeaf98874a8a769"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": ">=",
+      "inputs": [
+        9070508766796625617,
+        -8382503484021812110
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "327209d603ce9b9e6c9c9789e8969ba4f0fb34148834f915cdf3d43bd1927b6d"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": ">=",
+      "inputs": [
+        9070508766796625617,
+        -8382503484021812110
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "5df5035bd5d15304a434bf5bdb0292afb5e0aa898b67db4da558426eef7ed928"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": ">=",
+      "inputs": [
+        9070508766796625617,
+        -8382503484021812110
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "439a3d2c3e66c057289172ec04ed97d51c1d38dd772113a3995943981cbc67cd"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "+",
+      "inputs": [
+        1575571461778683721,
+        -4567197700717683925
+      ],
+      "expected": [
+        0,
+        -2991626238939000204
+      ],
+      "elf_sha256": "87540035f5485d86fcb021663e0d316fddedfc937be5a61aaf0d76b3882eb512"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "+",
+      "inputs": [
+        1575571461778683721,
+        -4567197700717683925
+      ],
+      "expected": [
+        0,
+        -2991626238939000204
+      ],
+      "elf_sha256": "fd4089da8ce256c268dec01965419e8decb51ec7354dcf66c691451cd1bc554e"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "+",
+      "inputs": [
+        1575571461778683721,
+        -4567197700717683925
+      ],
+      "expected": [
+        0,
+        -2991626238939000204
+      ],
+      "elf_sha256": "fb28aba17e2b23fa8cd578885f6d2b741e6b8a6806b7c532e2ec384f81b80430"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "-",
+      "inputs": [
+        -104107834178892266,
+        3958956545202334269
+      ],
+      "expected": [
+        0,
+        -4063064379381226535
+      ],
+      "elf_sha256": "97df1b01390986b5df33f47ac74812f385a54ebcc595cabf49cbdb97be427dee"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "-",
+      "inputs": [
+        -104107834178892266,
+        3958956545202334269
+      ],
+      "expected": [
+        0,
+        -4063064379381226535
+      ],
+      "elf_sha256": "e14c62e9d3c43e3b21a5e762d87e9284e38f4fa1c659d71e79f0f33fd4903c4a"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "-",
+      "inputs": [
+        -104107834178892266,
+        3958956545202334269
+      ],
+      "expected": [
+        0,
+        -4063064379381226535
+      ],
+      "elf_sha256": "6db7267a535e2be306ad279cd2e8609979ee5939f0956fc7d00baabc045ac2be"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "*",
+      "inputs": [
+        126318205952938009,
+        -4958978532487504592
+      ],
+      "expected": [
+        1,
+        0
+      ],
+      "elf_sha256": "ba15650d79ebf8e382275d4dd8a824318ef4123aa3345fbe13a1f200e13d1dbc"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "*",
+      "inputs": [
+        126318205952938009,
+        -4958978532487504592
+      ],
+      "expected": [
+        1,
+        0
+      ],
+      "elf_sha256": "fac660c5bc27e20bc84fb09d823f8c3bf46163ace0bc31e7437792ad372180e5"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "*",
+      "inputs": [
+        126318205952938009,
+        -4958978532487504592
+      ],
+      "expected": [
+        1,
+        0
+      ],
+      "elf_sha256": "272d8d1a7c6f969760f663bd5ceb7873e3d6c0122c3d1d88b2c334796166efe8"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "/",
+      "inputs": [
+        6868688091750089129,
+        -1356025614021737735
+      ],
+      "expected": [
+        4,
+        0
+      ],
+      "elf_sha256": "e1651ddd220ec2b0fa0276ee790f006a311f7d37773c274fa5aef7dc065f1f3b"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "/",
+      "inputs": [
+        6868688091750089129,
+        -1356025614021737735
+      ],
+      "expected": [
+        4,
+        0
+      ],
+      "elf_sha256": "bc3387b581ecb20f948755f87af6b765f6ec5e08ae3b4281426f57186afe3e12"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "/",
+      "inputs": [
+        6868688091750089129,
+        -1356025614021737735
+      ],
+      "expected": [
+        4,
+        0
+      ],
+      "elf_sha256": "3df4a64474638aacbd23ab880e806cdc39796b29dc9a8b29599fb164d0010d1b"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "%",
+      "inputs": [
+        -372979798836662455,
+        3407533203280192728
+      ],
+      "expected": [
+        0,
+        -372979798836662455
+      ],
+      "elf_sha256": "3f0586400bd3b9891ccd2af0502e3d21088ecb237e3ec7af1afeaf669a58a8fd"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "%",
+      "inputs": [
+        -372979798836662455,
+        3407533203280192728
+      ],
+      "expected": [
+        0,
+        -372979798836662455
+      ],
+      "elf_sha256": "60e0d55a30d1c26b3cc65c6b73e0bbbab2b92e76e259d6ea4857a5e671212599"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "%",
+      "inputs": [
+        -372979798836662455,
+        3407533203280192728
+      ],
+      "expected": [
+        0,
+        -372979798836662455
+      ],
+      "elf_sha256": "f748e9f9eaa646034f2a604073a52c8775f24ba3eaafcf9bee2dcf990e5a865d"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "==",
+      "inputs": [
+        2654447369278455497,
+        -4306463023639646307
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "9f0939d315f3864d17ab23bf756bce27691717cafd5ab0215ab01bf67b475155"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "==",
+      "inputs": [
+        2654447369278455497,
+        -4306463023639646307
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "bfab4980626aeb2ce2ac54f97ee7c5c94344b13d7e50411007edb83778dc3b2a"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "==",
+      "inputs": [
+        2654447369278455497,
+        -4306463023639646307
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "d717598c017a9df72d8cecfb74566de3eed109b23a3bc64c1f308db0271b34f2"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "!=",
+      "inputs": [
+        -1923343192772069950,
+        4073430109979346457
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "c169440dc1ba09aadecefe9784c0f1b9a17f4f6c8aaa23569e0d3717bfa7d147"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "!=",
+      "inputs": [
+        -1923343192772069950,
+        4073430109979346457
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "ba174cafecc40779e4ad7a69c031de162341b7639b254ad807efcf61feff2394"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "!=",
+      "inputs": [
+        -1923343192772069950,
+        4073430109979346457
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "4adde3069bb59873b99273e34a542b3cfa85032738bbe56c9d8d490faacbc129"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "<",
+      "inputs": [
+        -291419997076171300,
+        6386690485641546447
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "247c1ce8ebd153a969270c541e4704b101892e4cb7566e94095366f091693168"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "<",
+      "inputs": [
+        -291419997076171300,
+        6386690485641546447
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "9eacb0a54855bfea9a4cc66b1d96e894d0db40d8dc8e02b4fbf228ea015bb419"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "<",
+      "inputs": [
+        -291419997076171300,
+        6386690485641546447
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "3109141c8c1ca089c1e9d95190b3c433bc0fe2e398464d2f5c8a73d71a4003b2"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "<=",
+      "inputs": [
+        -5360862112781584084,
+        -1740577122010511153
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "3c52714234c170e67a25f8a820003f35c887ae463572d7fe58f5dba9a545b4a1"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "<=",
+      "inputs": [
+        -5360862112781584084,
+        -1740577122010511153
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "b513f45ae40df60cd43df2efa634d210e480d98209f1d1fad7b6eb407a3a8bbe"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "<=",
+      "inputs": [
+        -5360862112781584084,
+        -1740577122010511153
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "07086cfa2c791438ce915a2600d2b48b79bbcf93f668748ce83411f3804d7fec"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": ">",
+      "inputs": [
+        7062141880300590309,
+        -7168639083561180259
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "0cf6e5549af3f5dbff43de1e2b5fff33dbb81468ba674920fa1632fc9d276e26"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": ">",
+      "inputs": [
+        7062141880300590309,
+        -7168639083561180259
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "3f4cc95f4a1e2ee1a8eecef91fc97439e1d60622e62a4c3bdf73f18245deca8f"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": ">",
+      "inputs": [
+        7062141880300590309,
+        -7168639083561180259
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "elf_sha256": "28145e545a07a6af1037008fe5db8980807a233d04ecf6587aeaf98874a8a769"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": ">=",
+      "inputs": [
+        -2575534492666247770,
+        929592598632631413
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "327209d603ce9b9e6c9c9789e8969ba4f0fb34148834f915cdf3d43bd1927b6d"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": ">=",
+      "inputs": [
+        -2575534492666247770,
+        929592598632631413
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "5df5035bd5d15304a434bf5bdb0292afb5e0aa898b67db4da558426eef7ed928"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": ">=",
+      "inputs": [
+        -2575534492666247770,
+        929592598632631413
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "elf_sha256": "439a3d2c3e66c057289172ec04ed97d51c1d38dd772113a3995943981cbc67cd"
+    },
+    {
+      "architecture": "x86_64",
+      "operation": "+",
+      "inputs": [
+        -3326898357941220275,
+        -2255853612571870067
+      ],
+      "expected": [
+        0,
+        -5582751970513090342
+      ],
+      "elf_sha256": "87540035f5485d86fcb021663e0d316fddedfc937be5a61aaf0d76b3882eb512"
+    },
+    {
+      "architecture": "aarch64",
+      "operation": "+",
+      "inputs": [
+        -3326898357941220275,
+        -2255853612571870067
+      ],
+      "expected": [
+        0,
+        -5582751970513090342
+      ],
+      "elf_sha256": "fd4089da8ce256c268dec01965419e8decb51ec7354dcf66c691451cd1bc554e"
+    },
+    {
+      "architecture": "riscv64",
+      "operation": "+",
+      "inputs": [
+        -3326898357941220275,
+        -2255853612571870067
+      ],
+      "expected": [
+        0,
+        -5582751970513090342
+      ],
+      "elf_sha256": "fb28aba17e2b23fa8cd578885f6d2b741e6b8a6806b7c532e2ec384f81b80430"
+    }
+  ]
+}

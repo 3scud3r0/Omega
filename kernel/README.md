@@ -69,6 +69,10 @@ acumula arestas repetidas e usa subgradiente zero na origem da ReLU. Essas
 operações são testáveis diferencialmente; sua implementação completa não possui
 um teorema universal de refinamento para C.
 
+O adaptador JSON limita cada entrada a 4 MiB e 65.536 tokens, independentemente
+das dimensões máximas da API C. Matrizes grandes devem usar a API residente C;
+a interface textual recusa requisições que ultrapassem seu orçamento.
+
 Certificados de cálculos matriciais pequenos recompõem as expressões e provam
 igualdades particulares no kernel, com até 32 células de saída e racionais
 dentro do domínio finito. Alterar o cálculo, a saída ou trocar o certificado por
@@ -154,6 +158,8 @@ funcao square_difference(a,b) {
 python -m omega_kernel.amalgamation --generate
 python -m omega_kernel.amalgamation --check
 python -m pytest testes/kernel -v
+python scripts/benchmark-kernel.py --output artifacts/kernel/benchmark.json
+python scripts/validate-kernel-isa.py --output artifacts/kernel/random-cross-isa.json
 ```
 
 Testes incluem comparação entre os verificadores C/Ômega, rejeição de provas
@@ -168,3 +174,7 @@ Os resultados efetivamente executados ficam em `kernel/VALIDACAO.md`; antes
 da execução a presença dos testes não é evidência de aprovação. Racionais exatos
 eliminam arredondamento no domínio representado; não eliminam erro de modelo,
 discretização, incerteza empírica ou oscilação de energia de Verlet.
+
+O teste das três ISAs usa execução nativa x86-64 e QEMU para AArch64/RISC-V.
+O caminho NEON dos tensores ainda requer validação própria em ARM; resultados
+AVX não são apresentados como evidência de desempenho NEON.

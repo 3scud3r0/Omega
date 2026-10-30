@@ -185,7 +185,7 @@ def build():
         if not name or ROOT/path==OUTPUT or '.lake' in path.parts or '__pycache__' in path.parts:
             continue
         if name=='scripts/monolith-components.py.txt' or (path.parts[0] in FOLDERS and
-            (path.suffix in EXTENSIONS or path.name=='lean-toolchain')) or name in {'setup.py','pyproject.toml','MANIFEST.in','README.md','LICENSE','banco_de_dados.omega','synthesis.omega','fitness.omega','civilizacao_agentes.omega','incubadora_continua.omega','ginasio.omega'}:
+            (path.suffix in EXTENSIONS or path.name=='lean-toolchain')) or name in {'omega_kernel.omega','setup.py','pyproject.toml','MANIFEST.in','README.md','LICENSE','banco_de_dados.omega','synthesis.omega','fitness.omega','civilizacao_agentes.omega','incubadora_continua.omega','ginasio.omega'}:
             selected.append(name)
     sources={name:(ROOT/name).read_bytes().decode('utf-8') for name in selected}
     # The virtual module lives only inside the requested single-file artifact.

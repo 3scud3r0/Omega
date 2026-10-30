@@ -246,6 +246,13 @@ class DirectBackendTests(unittest.TestCase):
 
 
 class BundleTests(unittest.TestCase):
+    def test_legacy_distribution_delivers_the_new_amalgamation(self):
+        import runpy
+        from omega_kernel.runtime import ROOT
+        legacy = runpy.run_path(str(ROOT / "omega/omega_3_monolith.py"))
+        sources = legacy["validated_sources"]()
+        self.assertEqual(sources["omega_kernel.omega"], OUTPUT.read_bytes())
+
     def test_all_sixteen_existing_engines_reachable(self):
         from omega_engines import catalog
         for entry in catalog()["engines"]:

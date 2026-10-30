@@ -90,6 +90,7 @@ def generate(root=ROOT):
                  if path.suffix in {".py", ".c", ".json"})
     names.add("kernel/README.md")
     names.add("scripts/benchmark-kernel.py")
+    names.add("scripts/validate-kernel-isa.py")
     names.update(path.relative_to(root).as_posix() for path in (root / "kernel/examples").glob("*")
                  if path.suffix in {".omega", ".json"})
     sources = {name: (root / name).read_text(encoding="utf-8") for name in sorted(names)}
@@ -100,6 +101,9 @@ def generate(root=ROOT):
                      "bytes": len(text.encode()), "lines": len(text.splitlines()),
                      "trailing_newline": text.endswith("\n")}
               for name, text in sources.items()}
+    component_names = {name for name in sources
+                       if name.startswith(("kernel/", "omega_kernel/", "testes/kernel/"))
+                       or name in {"scripts/benchmark-kernel.py", "scripts/validate-kernel-isa.py"}}
     manifest = {"format": "omega-kernel-amalgamation-1", "files": hashes,
                 "prefix_sha256": hashlib.sha256(prefix.encode()).hexdigest(),
                 "module_manifest": linked.manifest(),
@@ -107,9 +111,9 @@ def generate(root=ROOT):
                 "line_accounting": {
                     "linked_omega_lines": len(prefix.splitlines()),
                     "new_component_source_lines": sum(info["lines"] for name, info in hashes.items()
-                                                      if name.startswith(("kernel/", "omega_kernel/", "testes/kernel/"))),
+                                                      if name in component_names),
                     "reused_dependency_source_lines": sum(info["lines"] for name, info in hashes.items()
-                                                         if not name.startswith(("kernel/", "omega_kernel/", "testes/kernel/"))),
+                                                         if name not in component_names),
                     "linked_and_modular_omega_overlap": True,
                     "line_count_is_not_a_correctness_metric": True}}
     pieces = [prefix, HEADER + json.dumps(manifest, sort_keys=True, separators=(",", ":")) + "\n", MARKER]
