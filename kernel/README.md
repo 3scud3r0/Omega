@@ -12,6 +12,13 @@ dos novos componentes, dependências reutilizadas e a duplicação necessária
 entre o prefixo ligado e os módulos originais. Quantidade de linhas não é
 evidência de correção ou de capacidade científica.
 
+Use o fluxo `omega kernel` para esse arquivo. O frontend genérico de módulos
+tem limite de 256 KiB e não deve receber toda a distribuição multilíngue como
+se fosse um módulo comum. O build do workbench compila grupos de funções
+completas, de aproximadamente 12 KiB, no compilador auto-hospedado e reúne as
+declarações/corpos gerados em uma única unidade C. Isso limita a arena temporária
+do compilador; o executável final mantém um só runtime e símbolos compartilhados.
+
 ## 1. Kernel lógico embutido
 
 `kernel/native/logic.h` implementa um subconjunto predicativo e intensional de
@@ -123,6 +130,10 @@ pode compilar `omega_kernel_linked.omega` para C; compile esse C com o runtime
 extraído e GMP/OpenSSL, e execute o resultado apenas no sandbox.
 
 Exemplo `tensor.json`:
+
+Os arquivos de entrada prontos para esses comandos estão em `kernel/examples/`.
+São entradas do backend de funções puras, sem o `principal` exigido de um
+aplicativo procedural completo no corpus geral.
 
 ```json
 {"operation":"gemm","a":{"rows":1,"columns":2,"values":["1/3","2/7"]},"b":{"rows":2,"columns":1,"values":[3,7]}}

@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: '3.12.14'
       - name: Install trusted system prerequisites
-        run: sudo apt-get update && sudo apt-get install -y libgmp-dev libssl-dev zstd libegl1 libopengl0 bubblewrap meson ninja-build pkg-config libcap-dev ripgrep iverilog
+        run: sudo apt-get update && sudo apt-get install -y libgmp-dev libssl-dev zstd libegl1 libopengl0 bubblewrap meson ninja-build pkg-config libcap-dev ripgrep iverilog qemu-user
       - name: Enable the namespace mechanism on the disposable runner
         run: |
           if test -f /proc/sys/kernel/apparmor_restrict_unprivileged_userns; then
@@ -50,6 +50,10 @@ jobs:
           .venv/bin/python -m omega_engines prove 6 exemplos/engines/06-universal_action_engine.json --saida artifacts/engines/demos/action
           .venv/bin/python -m omega_engines synthesize exemplos/engines/15-programmatic_hypernetwork_synthesis.json --saida artifacts/engines/demos/synthesis
           .venv/bin/python -m omega_engines arena-native exemplos/engines/16-cellular_micro_arena_runtime.json --saida artifacts/engines/demos/actors
+      - name: Kernel amalgamation and measured GEMM
+        run: |
+          .venv/bin/python -m omega_kernel.amalgamation --check
+          .venv/bin/python scripts/benchmark-kernel.py --output artifacts/kernel/benchmark.json
       - name: Manifest-based differential corpus
         run: .venv/bin/python scripts/regression.py --output artifacts/foundation/corpus.json
       - name: Native security, fuzzing and sanitizers
@@ -71,6 +75,7 @@ jobs:
             artifacts/validation
             artifacts/science-*
             artifacts/engines
+            artifacts/kernel
             build/selfhost/bootstrap.json
             dist/*.whl
             dist/*.tar.gz

@@ -7,6 +7,7 @@ import hashlib
 import os
 from pathlib import Path
 import platform
+import re
 import shutil
 import tempfile
 
@@ -45,9 +46,59 @@ def _input_hashes(paths):
     return result
 
 
+def _compile_native_chunks(linked, native_compiler, folder):
+    """Bound peak stage-two memory without changing the generated C runtime.
+
+    The existing compiler retains its whole AST/temporary arena until exit.
+    Compile bounded groups of complete linked functions, then concatenate their
+    declarations and bodies into ONE C translation unit. All calls keep the
+    same static symbols and the same shared runtime/arena; no host expression
+    compiler or second value runtime is introduced.
+    """
+    starts = [match.start() for match in re.finditer(r"(?m)^funcao ", linked.source)]
+    if not starts or starts[0] != 0:
+        raise ValueError("Canonical linked function boundaries required")
+    starts.append(len(linked.source))
+    groups = []
+    group = ""
+    for index in range(len(starts)-1):
+        function = linked.source[starts[index]:starts[index+1]]
+        if group and len(group) + len(function) > 12000:
+            groups.append(group)
+            group = ""
+        group += function
+    if group:
+        groups.append(group)
+    declarations = []
+    bodies = []
+    main = None
+    for index, group in enumerate(groups):
+        source = folder / ("part-" + str(index) + ".omega")
+        output = source.with_suffix(".c")
+        source.write_text(group, encoding="utf-8")
+        isolated_run([native_compiler, source, output], readonly=[source], writable=[folder],
+                     budget=COMPILER_BUDGET, check=True)
+        lines = output.read_text(encoding="utf-8").splitlines(keepends=True)
+        if lines[0] != '#include "runtime.h"\n' or not lines[-1].startswith("int main(int argc,char **argv){"):
+            raise ValueError("Unexpected native compiler framing")
+        if main is not None and main != lines[-1]:
+            raise ValueError("Native compiler entry framing changed across groups")
+        main = lines[-1]
+        for line in lines[1:-1]:
+            if re.fullmatch(r"static V fn_[A-Za-z0-9_]+\([^{};\n]*\);\n", line):
+                declarations.append(line)
+            else:
+                bodies.append(line)
+    result = folder / "program.c"
+    result.write_text('#include "runtime.h"\n' + "".join(declarations + bodies) + main, encoding="utf-8")
+    return result
+
+
 def build(kind="workbench", *, diagnostic=False):
     if kind not in {"logic", "tensor", "workbench"} or type(diagnostic) is not bool:
         raise ValueError("Known kernel build kind and diagnostic boolean required")
+    if kind == "workbench" and diagnostic:
+        raise ValueError("Diagnostic profile currently applies to the C proof/tensor API")
     CACHE.mkdir(parents=True, exist_ok=True)
     paths = {name: ROOT / name for name in CORE_INPUTS if not name.endswith(".h")}
     paths["omega_selfhost/bounded_rational.h"] = SOURCE_ROOT / "omega_selfhost/bounded_rational.h"
@@ -91,11 +142,7 @@ def build(kind="workbench", *, diagnostic=False):
             folder = Path(tmp)
             binary = folder / "program"
             if linked:
-                source = folder / "linked.omega"
-                source.write_text(linked.source, encoding="utf-8")
-                c_source = folder / "program.c"
-                isolated_run([compiler_binary, source, c_source], readonly=[source], writable=[folder],
-                             budget=COMPILER_BUDGET, check=True)
+                c_source = _compile_native_chunks(linked, compiler_binary, folder)
                 cc(c_source, binary)
             else:
                 source = SOURCE_ROOT / "kernel/native/main.c"
@@ -133,6 +180,8 @@ def request(operation, packet, *, budget=COMPILER_BUDGET, diagnostic=False):
         path.write_bytes(payload)
         execute = instrumented if diagnostic else isolated_run
         result = execute([binary, path], readonly=[path], budget=budget)
+    if result.timed_out or result.limit is not None:
+        raise RuntimeError("Kernel execution exhausted its OS budget: " + str(result.termination))
     if operation in OMEGA_OPERATIONS:
         if not result.ok:
             raise RuntimeError("Omega kernel request failed: " + result.stderr[-2000:])
@@ -152,6 +201,8 @@ def request(operation, packet, *, budget=COMPILER_BUDGET, diagnostic=False):
 
 def execute(document, values, *, budget=Budget(), emulator=None):
     """Run emitted ELF under the same no-network sandbox as other candidates."""
+    if type(budget) is not Budget:
+        raise ValueError("Explicit OS budget required")
     data = elf_bytes(document)
     architecture = document["architecture"]
     native = {"AMD64": "x86_64", "arm64": "aarch64"}.get(platform.machine(), platform.machine())
@@ -173,6 +224,8 @@ def execute(document, values, *, budget=Budget(), emulator=None):
             argv = [binary, path]
             readonly = [path]
         outcome = isolated_run(argv, readonly=readonly, budget=budget, threads=bool(emulator))
+    if outcome.timed_out or outcome.limit is not None:
+        raise RuntimeError("Direct ELF exhausted its OS execution budget")
     output = decode_execution(outcome.stdout, outcome.returncode)
     output.update({"elf_sha256": sha256(data), "input_sha256": sha256(arguments),
                    "architecture": architecture, "sandboxed": outcome.sandboxed,

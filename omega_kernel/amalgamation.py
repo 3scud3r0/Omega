@@ -18,6 +18,8 @@ from omega_security.encoding import canonical, decode
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "omega_kernel.omega"
+if not OUTPUT.is_file() and (Path(__file__).parent / "omega_kernel.omega").is_file():
+    OUTPUT = Path(__file__).parent / "omega_kernel.omega"
 MARKER = "# OMEGA-KERNEL-SOURCES-BEGIN\n"
 HEADER = "# OMEGA-KERNEL-MANIFEST "
 FILE = "# OMEGA-KERNEL-FILE "
@@ -87,6 +89,9 @@ def generate(root=ROOT):
     names.update(path.relative_to(root).as_posix() for path in (root / "testes/kernel").glob("*.*")
                  if path.suffix in {".py", ".c", ".json"})
     names.add("kernel/README.md")
+    names.add("scripts/benchmark-kernel.py")
+    names.update(path.relative_to(root).as_posix() for path in (root / "kernel/examples").glob("*")
+                 if path.suffix in {".omega", ".json"})
     sources = {name: (root / name).read_text(encoding="utf-8") for name in sorted(names)}
     prefix = ("# Omega kernel: native Omega + explicit C/Python source frames.\n"
               "# Generate: python -m omega_kernel.amalgamation --generate\n"

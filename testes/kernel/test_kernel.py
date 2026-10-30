@@ -11,6 +11,7 @@ from omega_kernel.amalgamation import OUTPUT, generate, inspect, extract
 from omega_kernel.certificates import ProofBuilder, create_tensor_certificate, verify_tensor_certificate
 from omega_kernel.protocol import elf_bytes, matrix_values, envelope, decode_execution
 from omega_kernel.runtime import request, execute, build
+from omega_platform.sandbox import run as isolated_run
 from testes.kernel.corpus import examples, arithmetic_cases
 
 
@@ -199,6 +200,20 @@ class DirectBackendTests(unittest.TestCase):
         document = request("compile-source", {"source": source, "architecture": "x86_64"})
         self.assertEqual(execute(document, [])["value"], -(1<<63))
 
+    def test_short_and_trailing_binary_input_rejected(self):
+        document = request("compile-source", {"source": "funcao f(a) { retornar a; }", "architecture": "x86_64"})
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            binary = folder / "program"
+            binary.write_bytes(elf_bytes(document))
+            binary.chmod(0o500)
+            for data in (b"", bytes(7), bytes(9)):
+                with self.subTest(bytes=len(data)):
+                    path = folder / "arguments"
+                    path.write_bytes(data)
+                    result = isolated_run([binary, path], readonly=[path])
+                    self.assertEqual(decode_execution(result.stdout, result.returncode)["status"], 3)
+
     def test_cross_architectures(self):
         for arch, variable, executable in (("aarch64", "OMEGA_KERNEL_QEMU_AARCH64", "qemu-aarch64"),
                                             ("riscv64", "OMEGA_KERNEL_QEMU_RISCV64", "qemu-riscv64")):
@@ -231,6 +246,13 @@ class DirectBackendTests(unittest.TestCase):
 
 
 class BundleTests(unittest.TestCase):
+    def test_all_sixteen_existing_engines_reachable(self):
+        from omega_engines import catalog
+        for entry in catalog()["engines"]:
+            with self.subTest(engine=entry["id"]):
+                result = request("engine", {"id": entry["id"], "data": entry["example"]})
+                self.assertIsInstance(result, dict)
+
     def test_bundle_roundtrip_and_reproducibility(self):
         data = OUTPUT.read_bytes()
         manifest, sources, prefix = inspect(data)
