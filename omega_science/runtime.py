@@ -188,6 +188,11 @@ def prove(request, directory):
     from omega_selfhost.proof import lake_binary
     from omega_platform.budget import PROOF_BUDGET
     from omega_platform.sandbox import trusted
+    if type(request) is not dict:
+        raise ValueError('Scientific proof object request required')
+    # Bind all subsequent counts and hashes to the data actually rendered and
+    # checked, even if the caller reuses/mutates its original object concurrently.
+    request = _plain(request)
     job = run(104, request)
     source = job['value']
     if hashlib.sha256(source.encode()).hexdigest() != job['source_sha256']:

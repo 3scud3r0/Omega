@@ -76,3 +76,22 @@ def test_experiment_refuses_a_kernel_without_an_independent_contract(tmp_path):
     with pytest.raises(ValueError,match='contract'):
         execute(99,{},tmp_path/'not-authorized')
     assert not (tmp_path/'not-authorized').exists()
+
+
+def test_receipt_is_bound_to_checked_snapshot_when_caller_mutates_original(tmp_path,monkeypatch):
+    from copy import deepcopy
+    from omega_science import runtime
+    from omega_security.encoding import canonical
+    request={'witnesses':[{'left':[1],'right':[1]}]}
+    checked_input=deepcopy(request)
+    original_run=runtime.run
+    def concurrent_update(identifier,payload,**options):
+        result=original_run(identifier,payload,**options)
+        request['witnesses'][0]['right']=[2]
+        return result
+    monkeypatch.setattr(runtime,'run',concurrent_update)
+    receipt=runtime.prove(request,tmp_path/'proof')
+    assert receipt['verified']
+    assert request!=checked_input
+    assert receipt['request_sha256']==hashlib.sha256(canonical(checked_input)).hexdigest()
+    assert receipt['request_sha256']!=hashlib.sha256(canonical(request)).hexdigest()
