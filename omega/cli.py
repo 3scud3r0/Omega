@@ -71,6 +71,8 @@ def principal(argumentos: list[str] | None = None) -> int:
     engines_parser.add_argument('arguments',nargs=argparse.REMAINDER)
     kernel_parser=sub.add_parser('kernel',help='native dependent proof kernel, exact tensors and direct ELF')
     kernel_parser.add_argument('arguments',nargs=argparse.REMAINDER)
+    recursive_parser=sub.add_parser('recursive',help='six bounded native induction and improvement components')
+    recursive_parser.add_argument('arguments',nargs=argparse.REMAINDER)
     agent_parser=sub.add_parser('agent',help='finite reasoning, planning and rational expression synthesis')
     agent_parser.add_argument('arguments',nargs=argparse.REMAINDER)
     extensions={'live':'omega_live.cli','ingest':'omega_ingest.cli','native':'omega_native.cli','refine':'omega_refine_check.cli','synth':'omega_synth_mcts.cli',
@@ -133,6 +135,9 @@ def principal(argumentos: list[str] | None = None) -> int:
         if args.acao=='kernel':
             from omega_kernel.cli import main as kernel_main
             return kernel_main(args.arguments)
+        if args.acao=='recursive':
+            from omega_recursive.cli import main as recursive_main
+            return recursive_main(args.arguments)
         if args.acao=='agent':
             from omega_agent.cli import main as agent_main
             return agent_main(args.arguments)

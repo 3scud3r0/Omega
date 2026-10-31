@@ -1,0 +1,45 @@
+{
+  "verified_claims": 2,
+  "records": [
+    {
+      "id": "42:0",
+      "training_error": 0,
+      "holdout_error": 0,
+      "claim_sha256": "c7f44e17b069a896a4991ab3f51f5475a68ffcb8452dc98aec3b6e63667b1c32",
+      "gpu_adapter": {
+        "vendor": "llvmpipe",
+        "architecture": "",
+        "device": "llvmpipe (LLVM 19.1.7, 256 bits)",
+        "description": "Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)",
+        "stackgroup_min_size": 4,
+        "stackgroup_max_size": 128,
+        "vendor_id": 65541,
+        "device_id": 0,
+        "adapter_type": "CPU",
+        "backend_type": "Vulkan"
+      },
+      "cpu_evaluated_candidates": 1
+    },
+    {
+      "id": "42:1",
+      "training_error": 0,
+      "holdout_error": 0,
+      "claim_sha256": "ceb2e273bc0131e84710b9dfdc7a75ae481a2278f4ece963688c6c0a4978bc5d",
+      "gpu_adapter": {
+        "vendor": "llvmpipe",
+        "architecture": "",
+        "device": "llvmpipe (LLVM 19.1.7, 256 bits)",
+        "description": "Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)",
+        "stackgroup_min_size": 4,
+        "stackgroup_max_size": 128,
+        "vendor_id": 65541,
+        "device_id": 0,
+        "adapter_type": "CPU",
+        "backend_type": "Vulkan"
+      },
+      "cpu_evaluated_candidates": 1
+    }
+  ],
+  "stable_version_modified": false,
+  "network_actions": 0
+}

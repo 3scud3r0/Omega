@@ -1,0 +1,168 @@
+{
+  "format": "omega-recursive-validation-1",
+  "timestamp_utc": "2026-10-31T13:48:55.319456+00:00",
+  "bundle": {
+    "file": "omega_singularity.omega",
+    "lines": 15177,
+    "sha256": "c6a83088a18932e8cfbd8ef2c54fefed7bf36daae40553cc584f0c35477c26e7",
+    "files": 52,
+    "components": [
+      "omega_brain/solomonoff_induction.omega",
+      "omega_singularity/godel_recursive_improver.omega",
+      "omega_episteme/synthetic_universe_generator.omega",
+      "omega_brain/symbolic_neuro_dag.omega",
+      "omega_hive/decentralized_epistemic_swarm.omega",
+      "omega_gpu/parallel_induction_substrate.omega"
+    ],
+    "line_accounting": {
+      "component_source_lines": 2546,
+      "line_count_is_not_acceptance": true,
+      "linked_and_original_omega_overlap": true,
+      "linked_omega_lines": 4606,
+      "reused_source_lines": 7919
+    }
+  },
+  "reports": {
+    "recursive-regression": {
+      "junit": {
+        "name": "pytest",
+        "errors": "0",
+        "failures": "0",
+        "skipped": "2",
+        "tests": "172",
+        "time": "177.351",
+        "timestamp": "2026-10-31T13:39:54.971826+00:00"
+      },
+      "sha256": "0d5f52a641deeda612f086edc340ba10e4611bfa89015cf9f6d3ac94be3ddd14"
+    },
+    "recursive-cross": {
+      "junit": {
+        "name": "pytest",
+        "errors": "0",
+        "failures": "0",
+        "skipped": "0",
+        "tests": "3",
+        "time": "26.380",
+        "timestamp": "2026-10-31T13:44:11.995491+00:00"
+      },
+      "sha256": "f891695a89ed6d97d0555df1d67fe645073234ced5e52be9c57ad7a025c04c0f"
+    },
+    "recursive-final": {
+      "junit": {
+        "name": "pytest",
+        "errors": "0",
+        "failures": "0",
+        "skipped": "0",
+        "tests": "26",
+        "time": "43.935",
+        "timestamp": "2026-10-31T13:33:58.276805+00:00"
+      },
+      "sha256": "035162f44f3d66ee80a668bdaef253ee68ba24b13dc15a3a3484d3c340a3ada6"
+    }
+  },
+  "regression_summary": "71 passed, 2 skipped, 99 subtests passed; skipped QEMU case rerun explicitly: 1 passed, 2 subtests passed",
+  "new_component_suite": "26 passed; actual WGSL execution on software Vulkan included",
+  "gpu": {
+    "adapter": {
+      "vendor": "llvmpipe",
+      "architecture": "",
+      "device": "llvmpipe (LLVM 19.1.7, 256 bits)",
+      "description": "Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7)",
+      "stackgroup_min_size": 4,
+      "stackgroup_max_size": 128,
+      "vendor_id": 65541,
+      "device_id": 0,
+      "adapter_type": "CPU",
+      "backend_type": "Vulkan"
+    },
+    "physical_gpu_validated": false,
+    "wgpu": "0.28.1",
+    "mesa_package": "25.0.7-2+deb13u1",
+    "mesa_deb_sha256": "caf2f7d296b7522efe74e40a74bce762a3ce84c33b53b5e54e1248ac2e0a13a5",
+    "shader_sha256": "a4efeb6893d67a3a0b1f82be4af612e748e8938b8d61840eef97e4542c4aa99a",
+    "bounds": {
+      "numerator_magnitude": 32767,
+      "denominator_max": 32767,
+      "candidate_nodes": 32,
+      "batch": 256
+    }
+  },
+  "cli": {
+    "induction_holdout_error": 0,
+    "self_play_verified_tasks": 2,
+    "cycle_generations": 1,
+    "cycle_stop": "no-strict-cost-improvement",
+    "network_actions": 0,
+    "stable_code_modified": false,
+    "cost_before": 3,
+    "cost_after": 1
+  },
+  "initial_failures_corrected": [
+    "Event hashing originally used the strict input codec on boolean execution metadata; changed to bounded JSON canonicalization",
+    "WGSL reserved identifiers common and target; renamed and actual shader execution repeated",
+    "Software Vulkan memfd allocations exceeded the original 64 MiB file limit; trusted driver worker now has an explicit 512 MiB file/memfd quota and 4 GiB virtual memory limit; candidate sandbox unchanged"
+  ],
+  "limits": [
+    "Universal Solomonoff induction and Kolmogorov minima are not computed",
+    "Only finite synthetic polynomial tasks are implemented",
+    "Coefficient reflection remains trusted; no universal compiler/hardware/intelligence improvement theorem",
+    "Critical stable promotion still requires independent authenticated authority",
+    "Only localhost P2P was exercised; no public network or remote peers contacted",
+    "Physical GPU, Metal/macOS/ARM host execution, throughput and energy measurements remain pending"
+  ],
+  "full_repository_suite_rerun_this_change": false,
+  "sources_sha256": {
+    "ciencia/core/exato.omega": "7530869ab1ef7a2de655f77a5c690521f1b40464dc5ba4bf81680f480bf9348f",
+    "ciencia/core/intervalos.omega": "5d00913b7a3f5f2a08730b933bc70328cd624362113d65b520c050e28d2d4fac",
+    "kernel/native/json.h": "09dccc919406e1fe24ed0027700eb9e199f4cfc432090fcb7b0126610765fc40",
+    "kernel/native/logic.h": "43ef9b77e7be1dd60d39135ad028e1c47cef32f548a7eec6601670651c8ffd9d",
+    "kernel/native/main.c": "2dfa32f902359ad540483b66560abae76e4670ad2334de550ccef92dadfafe5e",
+    "kernel/native/sha256.h": "1d1bebdf2ebea3aa4cfb281a6d25d6f82ce1e1d90ce7254ebcde37cbf8ed8e31",
+    "kernel/native/tensor.h": "924c9f499fa0505c86d415d1f5d5a655303286e5dfe58fcdbfd5b79cc5e28611",
+    "kernel/native/tensor_gmp.h": "25e3f5fceb980d065afff4bc9285fe912c3fa65740ebb0342c2857d45a8913c0",
+    "kernel/native/tensor_graph.h": "1a7fc724339e4d4696f94c2bc1c4deebd35e8e316396427f4735760a7c8425b0",
+    "kernel/omega/aarch64.omega": "89ef0bc3fb0577f0b59f4a4a4c39b97608f3a51346aa0ffb0770dbcbbcedf39d",
+    "kernel/omega/assembler.omega": "6d724f9afb5a6d2c9c06f550b2645ebac6aa62e5323e25694745d98c628268d0",
+    "kernel/omega/elf.omega": "629e5be4e68ee65b011fecd1f1b8724e21faffea7cd3455e75e44cf07c4e4669",
+    "kernel/omega/proof.omega": "3031aac28332991cdba5bf3c8ae679c515fcd4c87223ca201a54feb3bd5cfc67",
+    "kernel/omega/riscv64.omega": "b4193cced7f564b8b7c30dcd0371185c1ff00c6847c1c2f7a6285e42c63e1513",
+    "kernel/omega/source.omega": "63ff1b2771c3206e47ba694fb80cc75a57a79d3a52196155b890a47ec40968bd",
+    "kernel/omega/x86_64.omega": "c2365458b3c6140c9f412caf9becc9f2a1fca14b66d5b048c4b45d424ec753a1",
+    "omega_brain/solomonoff_induction.omega": "749cab312bd57f518303f8c132ab93767b8b59c29b3747bd44a109216db0f2f1",
+    "omega_brain/symbolic_neuro_dag.omega": "be9ec41fbab5091919ce533a061293ab5eb60a3ec11640391a697b25ac09c80d",
+    "omega_core/algebra.omega": "999bd5a5b53154e8a38f74064fbdcc0ae1812c5cbdb7d6215d80918d3af50274",
+    "omega_episteme/synthetic_universe_generator.omega": "b1f13b65c6ea999e20fca340ead3d3fd82d58cfa901d3fbb615807cf9d79dac8",
+    "omega_gpu/parallel_induction.wgsl": "a4efeb6893d67a3a0b1f82be4af612e748e8938b8d61840eef97e4542c4aa99a",
+    "omega_gpu/parallel_induction_substrate.omega": "395ecf2ea92768f054fe056d259aded166db08d25032aea18d40b24af0a40a1b",
+    "omega_hive/decentralized_epistemic_swarm.omega": "e3ca082ac237858290b01a700ce5ca1095da0ee4261b7cd5c45308fb9503d037",
+    "omega_recursive/__init__.py": "5d168ee17b012966cd584af2ed766af628f3f8d9aa7a48d9120bb3f9a1f01e50",
+    "omega_recursive/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "omega_recursive/_gpu_worker.py": "9e49c4786c6e751ba96791f1a99479962148c0e25cc705ea78a7ea794a97f330",
+    "omega_recursive/amalgamation.py": "d3cba580eb923da26b97f583a26c524e4c862361987c4aefc4dc0705e3501bad",
+    "omega_recursive/certificates.py": "9855042286c2ec9c79e1566c6e121e0c1af39b70f17900f255ca2fcd8ed7423f",
+    "omega_recursive/cli.py": "fc7d21ca9c9922341c668700d4314bf1de902f4fa4593140730f6d10dc72b000",
+    "omega_recursive/cycle.py": "248a5ac0f26a82b3459ef038081116c0d24db2eca476ab8aaba9d4d482a85db9",
+    "omega_recursive/gpu.py": "ef9f8dfa137d43015d6161babc4a676a61f9ac99d9c6b3f6ecc2a0053454ec54",
+    "omega_recursive/runtime.py": "b8576cd64ba9072cd3ecbc2b14f1cb69b10ed5d7f8e580bdb130564212fac986",
+    "omega_recursive/swarm.py": "16e0e19f0d73c6e64953ecb9a0e2f6ddc60e215e92f48c23b958de40daf28651",
+    "omega_selfhost/bootstrap.py": "89c5b26afc40d1c50dd64378b200c1cedcd2006dd9905d543a4c1f08f98221a7",
+    "omega_selfhost/bounded_rational.h": "91fa3475eb872de131ce4f55d43f976da697f0063b3dffe107f6ff9b6e564d50",
+    "omega_selfhost/compiler.omega": "78218b5eabc440fc870bd3d1bcc19d1173eb2c6b0f00176ded8fb64bf7d89f2a",
+    "omega_selfhost/memory.h": "38b8c8a858094c4644192a4378ff7700022653b8afb7ce0da017352993ef3752",
+    "omega_selfhost/native_std.h": "8bf902f2820a21bd941856b3bab776ce1b0d32099122222e9bbffb29bc2f0866",
+    "omega_selfhost/runtime.h": "53070b66bf7c3d8b6e424455d236891e42634d4ffed17a946d1f8e84d2a7d214",
+    "omega_singularity/README.md": "7c8666c4450734647e8fe0d55df1cd2328d938daa05213bf9f110f570dd08dbf",
+    "omega_singularity/examples/cycle.json": "132adbc06055a7401b3ecf46d7dde9edf1eb849c04581c4677bc2b0f422300ba",
+    "omega_singularity/examples/induction.json": "46ae552c85e06457fac746b71763faf2b2d950b2ec99c47cb7484a6652f0b8bf",
+    "omega_singularity/examples/self-play.json": "3e8e468e6e30bf8192acc09eb6f408de0e5f45dc314799121a541e5e08bd8c0a",
+    "omega_singularity/examples/sieve.json": "0659870df340b210c5776fa6c0fc2a0669d2101fa95dbbb86fddf9221a1596d1",
+    "omega_singularity/examples/universe.json": "42a92ae88c301c1bdc1eb8f88eefe1b9a54b0cc19b801908c9bad4df2a7f6d92",
+    "omega_singularity/godel_recursive_improver.omega": "b8970c80e53ef389e1a4b8d3d285e9ab879f1023761450cb7b13ab9ac6a42607",
+    "omega_singularity/main.omega": "a26548b2cb0ccdb239c1800b98c89743d935d8544fa4558679d3333feb8a14bd",
+    "std/math.omega": "2993e838b203fa9f0d2c74ab7b00c9f484a482cb716e1cf73a9b77ed0c831cac",
+    "std/string.omega": "4747803b2e53212005648d3a7552e6dfe82edc2e230cd96d0302e5e7a86045a7",
+    "testes/recursive/__init__.py": "11977ff1b8fe13ae5433a637fd8a8b8a709040797c706c88017576196a5aa8b3",
+    "testes/recursive/test_distribution.py": "f17c4d9d8c85857abea16ca5b69bf6bd41320b040d3dd10f2500101c55d51ce3",
+    "testes/recursive/test_recursive.py": "6a368ce900427cbffc6dc67a9e2c0de9d265c18307f439d4ce626ad7e8816e64"
+  }
+}

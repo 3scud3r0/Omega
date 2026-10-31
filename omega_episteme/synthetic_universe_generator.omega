@@ -1,0 +1,73 @@
+modulo synthetic_universes;
+importar "../omega_brain/symbolic_neuro_dag.omega" como dag;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/string.omega" como strings;
+exportar execute;
+
+# Deterministic finite mathematical tasks with exact answer keys. These are
+# mathematical simulations, not measurements of empirical physical constants.
+funcao next(state) {
+  put(state,0,(state[0]*1664525+1013904223)%4294967296);
+  retornar state[0];
+}
+funcao draw(state,low,high) { retornar low+next(state)%(high-low+1); }
+funcao execute(r) {
+  var seed=u::integer(u::num(r,"seed",0),0,4294967295);
+  var count=u::integer(u::num(r,"tasks",4),1,16);
+  var train=u::integer(u::num(r,"train",4),2,12);
+  var held=u::integer(u::num(r,"heldout",2),1,8);
+  var mode=u::text_field(r,"domain",32);
+  se(!contains(["affine","polynomial","conservative-step"],mode)) { fail("Synthetic domain affine, polynomial or conservative-step"); }
+  var state=[seed];
+  var tasks=[];
+  var i=0;
+  enquanto(i<count) {
+    var a=draw(state,-3,3);
+    se(a==0) { a=1; }
+    var b=draw(state,-3,3);
+    var ast=["add",["mul",["const",a],["var",0]],["const",b]];
+    var variables=1;
+    se(mode=="polynomial") {
+      ast=["add",["mul",["const",a],["mul",["var",0],["var",0]]],["const",b]];
+    }
+    se(mode=="conservative-step") {
+      variables=2;
+      ast=["add",["var",0],["var",1]];
+    }
+    var g=dag::create(variables,64);
+    var root=dag::ingest(g,ast,0);
+    var observations=[];
+    var holdout=[];
+    var j=0;
+    enquanto(j<train+held) {
+      var x=[j-train];
+      se(variables==2) { push(x,draw(state,-3,3)); }
+      var values=dag::values(g,x);
+      se(!values[1][root]) { fail("Synthetic arithmetic limit"); }
+      var sample=[x,values[0][root]];
+      se(j<train) { push(observations,sample); }
+      senao { push(holdout,sample); }
+      j=j+1;
+    }
+    var task=obj();
+    put(task,"id",text(seed)+":"+text(i));
+    put(task,"domain",mode);
+    put(task,"variables",variables);
+    put(task,"observations",observations);
+    put(task,"holdout",holdout);
+    put(task,"answer_key",dag::document(g,root));
+    put(task,"answer_key_sha256",sha256(strings::canonical(task["answer_key"])));
+    put(task,"verified",0);
+    put(task,"empirical_claim",0);
+    push(tasks,task);
+    i=i+1;
+  }
+  var out=obj();
+  put(out,"format","omega-synthetic-universes-1");
+  put(out,"seed",seed);
+  put(out,"tasks",tasks);
+  put(out,"external_data_bytes",0);
+  put(out,"proof_obligations",len(tasks)*(train+held));
+  put(out,"generator_semantics","finite exact polynomial models; LCG32 seed; disjoint x0 ranges");
+  retornar out;
+}
