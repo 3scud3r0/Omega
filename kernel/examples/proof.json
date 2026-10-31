@@ -1,0 +1,16 @@
+{
+  "format": "omega-kernel-proof-1",
+  "nodes": [
+    {"op": "nat", "args": [], "data": []},
+    {"op": "nat-literal", "args": [], "data": [3]},
+    {"op": "nat-literal", "args": [], "data": [6]},
+    {"op": "nat-literal", "args": [], "data": [9]},
+    {"op": "nat-add", "args": [1, 2], "data": []},
+    {"op": "refl", "args": [0, 4], "data": []},
+    {"op": "equality", "args": [0, 4, 3], "data": []}
+  ],
+  "definitions": [],
+  "proof": 5,
+  "expected": 6,
+  "limits": {"nodes": 16384, "fuel": 1000000, "depth": 128}
+}

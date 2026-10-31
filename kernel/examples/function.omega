@@ -1,0 +1,5 @@
+# Pure checked i64 fragment for direct ELF emission, not a scientific model.
+funcao square_difference(a,b) {
+  var sum=a+b;
+  retornar sum*(a-b);
+}

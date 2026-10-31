@@ -1,0 +1,40 @@
+modulo omega_kernel_workbench;
+importar "proof.omega" como proof;
+importar "source.omega" como source;
+importar "elf.omega" como elf;
+importar "tensor_reference.omega" como tensors;
+importar "engines.omega" como engines;
+importar "../../std/string.omega" como strings;
+
+# The foreign C/Python sections of the amalgamation are inert comments. The
+# extractor preserves their exact bytes; the native Omega program is this entry
+# and its linked import closure. No textual polyglot execution trick is used.
+funcao principal() {
+  se(argc()!=2) { fail("Usage: omega-kernel-workbench request.json"); }
+  var document=parsejson(read(arg(1)));
+  var op=document["operation"];
+  var request=document["request"];
+  var out=obj();
+  se(op=="verify-omega") { out=proof::verify(request); }
+  senao {
+    se(op=="compile-source") { out=elf::compile(source::parse(request["source"]),request["architecture"]); }
+    senao {
+      se(op=="compile-ir") { out=elf::compile(request["ir"],request["architecture"]); }
+      senao {
+        se(op=="evaluate") { out=source::evaluate(request["ir"],request["inputs"]); }
+        senao {
+          se(op=="parse") { out=source::parse(request["source"]); }
+          senao {
+            se(op=="tensor-reference") { out=tensors::execute(request); }
+            senao {
+              se(op=="engine") { out=engines::execute(request["id"],request["data"]); }
+              senao { fail("Unknown kernel workbench operation"); }
+            }
+          }
+        }
+      }
+    }
+  }
+  print(strings::canonical(out));
+  retornar 0;
+}

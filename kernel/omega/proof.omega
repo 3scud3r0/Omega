@@ -1,0 +1,791 @@
+modulo omega_dependent_checker;
+importar "../../ciencia/core/exato.omega" como u;
+importar "../../std/string.omega" como string;
+importar "../../std/math.omega" como math;
+exportar verify;
+
+# An independently implemented reference for the same finite wire calculus as
+# native/logic.h. It is compiled by Omega, not interpreted by a host proof API.
+# It intentionally has no context-insensitive inferred-type cache.
+funcao fault(state,code,node) {
+  se(state["error"]=="") {
+    put(state,"error",code);
+    put(state,"error_node",node);
+  }
+  retornar -1;
+}
+
+funcao tick(state,id,depth) {
+  se(state["error"]!="") {
+    retornar 0;
+  }
+  se(depth>state["depth_limit"]) {
+    fault(state,"depth-limit",id);
+    retornar 0;
+  }
+  se(depth>state["peak_depth"]) {
+    put(state,"peak_depth",depth);
+  }
+  se(state["fuel"]==0) {
+    fault(state,"fuel-limit",id);
+    retornar 0;
+  }
+  put(state,"fuel",state["fuel"]-1);
+  retornar 1;
+}
+
+funcao arity(op) {
+  se(contains(["pi","lambda","app","sigma","annotation","refl","absurd","nat-add","nat-mul","rat-add","rat-mul"],op)) {
+    retornar 2;
+  }
+  se(contains(["let","pair","equality","transport"],op)) {
+    retornar 3;
+  }
+  se(contains(["first","second","successor","rat-neg"],op)) {
+    retornar 1;
+  }
+  se(op=="nat-rec") {
+    retornar 4;
+  }
+  se(contains(["sort","var","nat","zero","nat-literal","unit","unit-value","empty","constant","rat","rat-literal"],op)) {
+    retornar 0;
+  }
+  retornar -1;
+}
+
+funcao data_arity(op) {
+  se(op=="rat-literal") {
+    retornar 2;
+  }
+  se(contains(["sort","var","constant","nat-literal"],op)) {
+    retornar 1;
+  }
+  retornar 0;
+}
+
+funcao fields(raw,allowed) {
+  se(isnum(raw)||isstr(raw)||islist(raw)) {
+    fail("Proof protocol object required");
+  }
+  var names=keys(raw);
+  var i=0;
+  enquanto(i<len(names)) {
+    se(!contains(allowed,names[i])) {
+      fail("Unknown proof protocol field");
+    }
+    i=i+1;
+  }
+  retornar 0;
+}
+
+funcao node(state,id) {
+  se(id<0||id>=len(state["nodes"])) {
+    fault(state,"bad-node",id);
+    retornar ["invalid",[],[]];
+  }
+  retornar state["nodes"][id];
+}
+
+funcao make_node(state,op,args,data) {
+  se(state["error"]!="") {
+    retornar -1;
+  }
+  se(len(state["nodes"])>=state["capacity"]) {
+    retornar fault(state,"arena-limit",-1);
+  }
+  var i=0;
+  enquanto(i<len(args)) {
+    se(args[i]<0||args[i]>=len(state["nodes"])) {
+      retornar fault(state,"bad-node",args[i]);
+    }
+    i=i+1;
+  }
+  var id=len(state["nodes"]);
+  push(state["nodes"],[op,args,data]);
+  retornar id;
+}
+
+funcao atom(state,op) {
+  retornar make_node(state,op,[],[]);
+}
+
+funcao unary(state,op,a) {
+  retornar make_node(state,op,[a],[]);
+}
+
+funcao binary(state,op,a,b) {
+  retornar make_node(state,op,[a,b],[]);
+}
+
+funcao variable(state,index) {
+  se(index<0||index>=256) {
+    retornar fault(state,"scope",-1);
+  }
+  retornar make_node(state,"var",[],[index]);
+}
+
+funcao sort_node(state,level) {
+  se(level<0||level>32) {
+    retornar fault(state,"universe-limit",-1);
+  }
+  retornar make_node(state,"sort",[],[level]);
+}
+
+funcao natural(state,value) {
+  se(value<0||value>9223372036854775807) {
+    retornar fault(state,"arithmetic-limit",-1);
+  }
+  retornar make_node(state,"nat-literal",[],[value]);
+}
+
+funcao rational(state,value) {
+  se(math::abs(qnum(value))>9223372036854775807||qden(value)>9223372036854775807) {
+    retornar fault(state,"arithmetic-limit",-1);
+  }
+  retornar make_node(state,"rat-literal",[],[qnum(value),qden(value)]);
+}
+
+funcao binder(op,index) {
+  retornar (contains(["pi","lambda","sigma"],op)&&index==1)||(op=="let"&&index==2);
+}
+
+funcao shift(state,id,amount,cutoff,depth) {
+  se(!tick(state,id,depth)) {
+    retornar -1;
+  }
+  var term=node(state,id);
+  se(term[0]=="var"&&term[2][0]>=cutoff) {
+    retornar variable(state,term[2][0]+amount);
+  }
+  var args=[];
+  var changed=0;
+  var i=0;
+  enquanto(i<len(term[1])) {
+    var result=shift(state,term[1][i],amount,cutoff+binder(term[0],i),depth+1);
+    se(result!=term[1][i]) {
+      changed=1;
+    }
+    push(args,result);
+    i=i+1;
+  }
+  se(!changed) {
+    retornar id;
+  }
+  retornar make_node(state,term[0],args,term[2]);
+}
+
+funcao substitute(state,id,index,value,depth) {
+  se(!tick(state,id,depth)) {
+    retornar -1;
+  }
+  var term=node(state,id);
+  se(term[0]=="var"&&term[2][0]==index) {
+    retornar value;
+  }
+  var args=[];
+  var changed=0;
+  var i=0;
+  enquanto(i<len(term[1])) {
+    var bound=binder(term[0],i);
+    var replacement=value;
+    se(bound) {
+      replacement=shift(state,value,1,0,depth+1);
+    }
+    var result=substitute(state,term[1][i],index+bound,replacement,depth+1);
+    se(result!=term[1][i]) {
+      changed=1;
+    }
+    push(args,result);
+    i=i+1;
+  }
+  se(!changed) {
+    retornar id;
+  }
+  retornar make_node(state,term[0],args,term[2]);
+}
+
+funcao instantiate(state,body,value,depth) {
+  var lifted=shift(state,value,1,0,depth+1);
+  var replaced=substitute(state,body,0,lifted,depth+1);
+  retornar shift(state,replaced,-1,0,depth+1);
+}
+
+funcao natural_value(state,id) {
+  var term=node(state,id);
+  se(term[0]=="zero") {
+    retornar 0;
+  }
+  se(term[0]=="nat-literal") {
+    retornar term[2][0];
+  }
+  retornar -1;
+}
+
+funcao normal(state,id,depth) {
+  enquanto(1) {
+    se(!tick(state,id,depth)) {
+      retornar -1;
+    }
+    var term=node(state,id);
+    var op=term[0];
+    var args=term[1];
+    se(op=="constant") {
+      se(term[2][0]<0||term[2][0]>=len(state["definitions"])) {
+        retornar fault(state,"constant-not-previously-checked",id);
+      }
+      id=state["definitions"][term[2][0]][1];
+    }
+    senao {
+      se(op=="annotation") {
+        id=args[0];
+      }
+      senao {
+        se(op=="let") {
+          id=instantiate(state,args[2],args[1],depth+1);
+        }
+        senao {
+          se(op=="app") {
+            var function=normal(state,args[0],depth+1);
+            var fn=node(state,function);
+            se(fn[0]=="lambda") {
+              id=instantiate(state,fn[1][1],args[1],depth+1);
+            }
+            senao {
+              se(function==args[0]) {
+                retornar id;
+              }
+              retornar binary(state,"app",function,args[1]);
+            }
+          }
+          senao {
+            se(op=="first"||op=="second") {
+              var p=normal(state,args[0],depth+1);
+              var pair=node(state,p);
+              se(pair[0]=="pair") {
+                var index=1;
+                se(op=="second") {
+                  index=2;
+                }
+                id=pair[1][index];
+              }
+              senao {
+                se(p==args[0]) {
+                  retornar id;
+                }
+                retornar unary(state,op,p);
+              }
+            }
+            senao {
+              se(op=="zero") {
+                retornar natural(state,0);
+              }
+              se(op=="successor") {
+                var child=normal(state,args[0],depth+1);
+                var value=natural_value(state,child);
+                se(value>=0) {
+                  retornar natural(state,value+1);
+                }
+                se(child==args[0]) {
+                  retornar id;
+                }
+                retornar unary(state,"successor",child);
+              }
+              se(op=="nat-add"||op=="nat-mul") {
+                var left=normal(state,args[0],depth+1);
+                var right=normal(state,args[1],depth+1);
+                var a=natural_value(state,left);
+                var b=natural_value(state,right);
+                se(a>=0&&b>=0) {
+                  se(op=="nat-add") {
+                    retornar natural(state,a+b);
+                  }
+                  retornar natural(state,a*b);
+                }
+                se(a==0) {
+                  se(op=="nat-add") {
+                    retornar right;
+                  }
+                  retornar natural(state,0);
+                }
+                var predecessor=-1;
+                var lhs=node(state,left);
+                se(a>0) {
+                  predecessor=natural(state,a-1);
+                }
+                senao {
+                  se(lhs[0]=="successor") {
+                    predecessor=lhs[1][0];
+                  }
+                }
+                se(predecessor>=0) {
+                  var tail=binary(state,op,predecessor,right);
+                  se(op=="nat-add") {
+                    id=unary(state,"successor",tail);
+                  }
+                  senao {
+                    id=binary(state,"nat-add",right,tail);
+                  }
+                }
+                senao {
+                  se(left==args[0]&&right==args[1]) {
+                    retornar id;
+                  }
+                  retornar binary(state,op,left,right);
+                }
+              }
+              senao {
+                se(op=="nat-rec") {
+                  var n=normal(state,args[3],depth+1);
+                  var value=natural_value(state,n);
+                  se(value==0) {
+                    id=args[1];
+                  }
+                  senao {
+                    var predecessor=-1;
+                    se(value>0) {
+                      predecessor=natural(state,value-1);
+                    }
+                    senao {
+                      var nt=node(state,n);
+                      se(nt[0]=="successor") {
+                        predecessor=nt[1][0];
+                      }
+                    }
+                    se(predecessor>=0) {
+                      var rec=make_node(state,"nat-rec",[args[0],args[1],args[2],predecessor],[]);
+                      id=binary(state,"app",binary(state,"app",args[2],predecessor),rec);
+                    }
+                    senao {
+                      se(n==args[3]) {
+                        retornar id;
+                      }
+                      retornar make_node(state,"nat-rec",[args[0],args[1],args[2],n],[]);
+                    }
+                  }
+                }
+                senao {
+                  se(op=="transport") {
+                    var equality=normal(state,args[1],depth+1);
+                    var proof=node(state,equality);
+                    se(proof[0]=="refl") {
+                      id=args[2];
+                    }
+                    senao {
+                      se(equality==args[1]) {
+                        retornar id;
+                      }
+                      retornar make_node(state,"transport",[args[0],equality,args[2]],[]);
+                    }
+                  }
+                  senao {
+                    se(op=="rat-literal") {
+                      retornar rational(state,term[2][0]/term[2][1]);
+                    }
+                    se(op=="rat-add"||op=="rat-mul"||op=="rat-neg") {
+                      var left=normal(state,args[0],depth+1);
+                      var right=left;
+                      se(op!="rat-neg") {
+                        right=normal(state,args[1],depth+1);
+                      }
+                      var lt=node(state,left);
+                      var rt=node(state,right);
+                      se(lt[0]=="rat-literal"&&rt[0]=="rat-literal") {
+                        var x=lt[2][0]/lt[2][1];
+                        var y=rt[2][0]/rt[2][1];
+                        se(op=="rat-add") {
+                          retornar rational(state,x+y);
+                        }
+                        se(op=="rat-mul") {
+                          retornar rational(state,x*y);
+                        }
+                        retornar rational(state,-x);
+                      }
+                      se(op=="rat-neg") {
+                        se(left==args[0]) {
+                          retornar id;
+                        }
+                        retornar unary(state,op,left);
+                      }
+                      se(left==args[0]&&right==args[1]) {
+                        retornar id;
+                      }
+                      retornar binary(state,op,left,right);
+                    }
+                    retornar id;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  retornar -1;
+}
+
+funcao equal_terms(state,left,right,depth) {
+  se(!tick(state,left,depth)) {
+    retornar 0;
+  }
+  se(left==right&&left>=0&&left<len(state["nodes"])) {
+    retornar 1;
+  }
+  left=normal(state,left,depth+1);
+  right=normal(state,right,depth+1);
+  se(state["error"]!="") {
+    retornar 0;
+  }
+  var a=node(state,left);
+  var b=node(state,right);
+  se(a[0]!=b[0]||len(a[2])!=len(b[2])||len(a[1])!=len(b[1])) {
+    retornar 0;
+  }
+  var i=0;
+  enquanto(i<len(a[2])) {
+    se(a[2][i]!=b[2][i]) {
+      retornar 0;
+    }
+    i=i+1;
+  }
+  i=0;
+  enquanto(i<len(a[1])) {
+    se(!equal_terms(state,a[1][i],b[1][i],depth+1)) {
+      retornar 0;
+    }
+    i=i+1;
+  }
+  retornar 1;
+}
+
+funcao push_context(state,type,id) {
+  var depth=state["context_depth"];
+  se(depth>=256) {
+    fault(state,"context-limit",id);
+    retornar 0;
+  }
+  se(depth==len(state["context"])) {
+    push(state["context"],type);
+  }
+  senao {
+    put(state["context"],depth,type);
+  }
+  put(state,"context_depth",depth+1);
+  retornar 1;
+}
+
+funcao type_level(state,type,depth) {
+  var actual=normal(state,infer_term(state,type,depth+1),depth+1);
+  var sort=node(state,actual);
+  se(sort[0]!="sort") {
+    retornar fault(state,"not-a-type",type);
+  }
+  retornar sort[2][0];
+}
+
+funcao check_term(state,term,expected,depth) {
+  var actual=infer_term(state,term,depth+1);
+  se(actual<0||!equal_terms(state,actual,expected,depth+1)) {
+    fault(state,"type-mismatch",term);
+    retornar 0;
+  }
+  retornar state["error"]=="";
+}
+
+funcao infer_term(state,id,depth) {
+  se(!tick(state,id,depth)) {
+    retornar -1;
+  }
+  var term=node(state,id);
+  var op=term[0];
+  var args=term[1];
+  se(op=="sort") {
+    se(term[2][0]>31) {
+      retornar fault(state,"universe-limit",id);
+    }
+    retornar sort_node(state,term[2][0]+1);
+  }
+  se(op=="var") {
+    var k=term[2][0];
+    se(k<0||k>=state["context_depth"]) {
+      retornar fault(state,"scope",id);
+    }
+    retornar shift(state,state["context"][state["context_depth"]-1-k],k+1,0,depth+1);
+  }
+  se(op=="pi"||op=="sigma") {
+    var a=type_level(state,args[0],depth+1);
+    se(a<0||!push_context(state,args[0],id)) {
+      retornar -1;
+    }
+    var b=type_level(state,args[1],depth+1);
+    put(state,"context_depth",state["context_depth"]-1);
+    se(b<0) {
+      retornar -1;
+    }
+    retornar sort_node(state,math::max(a,b));
+  }
+  se(op=="lambda") {
+    se(type_level(state,args[0],depth+1)<0||!push_context(state,args[0],id)) {
+      retornar -1;
+    }
+    var body=infer_term(state,args[1],depth+1);
+    put(state,"context_depth",state["context_depth"]-1);
+    retornar binary(state,"pi",args[0],body);
+  }
+  se(op=="app") {
+    var fn=node(state,normal(state,infer_term(state,args[0],depth+1),depth+1));
+    se(fn[0]!="pi") {
+      retornar fault(state,"not-a-function",id);
+    }
+    se(!check_term(state,args[1],fn[1][0],depth+1)) {
+      retornar -1;
+    }
+    retornar instantiate(state,fn[1][1],args[1],depth+1);
+  }
+  se(op=="let") {
+    se(type_level(state,args[0],depth+1)<0||!check_term(state,args[1],args[0],depth+1)||!push_context(state,args[0],id)) {
+      retornar -1;
+    }
+    var body=infer_term(state,args[2],depth+1);
+    put(state,"context_depth",state["context_depth"]-1);
+    retornar instantiate(state,body,args[1],depth+1);
+  }
+  se(op=="annotation") {
+    se(type_level(state,args[1],depth+1)<0||!check_term(state,args[0],args[1],depth+1)) {
+      retornar -1;
+    }
+    retornar args[1];
+  }
+  se(op=="pair") {
+    se(type_level(state,args[0],depth+1)<0) {
+      retornar -1;
+    }
+    var sigma=node(state,normal(state,args[0],depth+1));
+    se(sigma[0]!="sigma") {
+      retornar fault(state,"not-a-pair",id);
+    }
+    se(!check_term(state,args[1],sigma[1][0],depth+1)) {
+      retornar -1;
+    }
+    var second=instantiate(state,sigma[1][1],args[1],depth+1);
+    se(!check_term(state,args[2],second,depth+1)) {
+      retornar -1;
+    }
+    retornar args[0];
+  }
+  se(op=="first"||op=="second") {
+    var sigma=node(state,normal(state,infer_term(state,args[0],depth+1),depth+1));
+    se(sigma[0]!="sigma") {
+      retornar fault(state,"not-a-pair",id);
+    }
+    se(op=="first") {
+      retornar sigma[1][0];
+    }
+    retornar instantiate(state,sigma[1][1],unary(state,"first",args[0]),depth+1);
+  }
+  se(contains(["nat","rat","unit","empty"],op)) {
+    retornar sort_node(state,0);
+  }
+  se(op=="unit-value") {
+    retornar atom(state,"unit");
+  }
+  se(op=="zero"||op=="nat-literal") {
+    retornar atom(state,"nat");
+  }
+  se(contains(["successor","nat-add","nat-mul","rat-add","rat-mul","rat-neg"],op)) {
+    var base="nat";
+    se(contains(["rat-add","rat-mul","rat-neg"],op)) {
+      base="rat";
+    }
+    var type=atom(state,base);
+    var i=0;
+    enquanto(i<len(args)) {
+      se(!check_term(state,args[i],type,depth+1)) {
+        retornar -1;
+      }
+      i=i+1;
+    }
+    retornar type;
+  }
+  se(op=="rat-literal") {
+    retornar atom(state,"rat");
+  }
+  se(op=="nat-rec") {
+    var motive=node(state,normal(state,infer_term(state,args[0],depth+1),depth+1));
+    se(motive[0]!="pi") {
+      retornar fault(state,"not-a-function",id);
+    }
+    var n=atom(state,"nat");
+    var codomain=node(state,normal(state,motive[1][1],depth+1));
+    se(!equal_terms(state,motive[1][0],n,depth+1)||codomain[0]!="sort") {
+      retornar fault(state,"not-a-type",id);
+    }
+    var zero_type=binary(state,"app",args[0],natural(state,0));
+    se(!check_term(state,args[1],zero_type,depth+1)) {
+      retornar -1;
+    }
+    var m1=shift(state,args[0],1,0,depth+1);
+    var ih=binary(state,"app",m1,variable(state,0));
+    var m2=shift(state,args[0],2,0,depth+1);
+    var conclusion=binary(state,"app",m2,unary(state,"successor",variable(state,1)));
+    var step=binary(state,"pi",n,binary(state,"pi",ih,conclusion));
+    se(!check_term(state,args[2],step,depth+1)||!check_term(state,args[3],n,depth+1)) {
+      retornar -1;
+    }
+    retornar binary(state,"app",args[0],args[3]);
+  }
+  se(op=="equality") {
+    var level=type_level(state,args[0],depth+1);
+    se(level<0||!check_term(state,args[1],args[0],depth+1)||!check_term(state,args[2],args[0],depth+1)) {
+      retornar -1;
+    }
+    retornar sort_node(state,level);
+  }
+  se(op=="refl") {
+    se(type_level(state,args[0],depth+1)<0||!check_term(state,args[1],args[0],depth+1)) {
+      retornar -1;
+    }
+    retornar make_node(state,"equality",[args[0],args[1],args[1]],[]);
+  }
+  se(op=="transport") {
+    var equality=node(state,normal(state,infer_term(state,args[1],depth+1),depth+1));
+    se(equality[0]!="equality") {
+      retornar fault(state,"type-mismatch",id);
+    }
+    var motive=node(state,normal(state,infer_term(state,args[0],depth+1),depth+1));
+    se(motive[0]!="pi") {
+      retornar fault(state,"not-a-function",id);
+    }
+    var codomain=node(state,normal(state,motive[1][1],depth+1));
+    se(!equal_terms(state,motive[1][0],equality[1][0],depth+1)||codomain[0]!="sort") {
+      retornar fault(state,"not-a-type",id);
+    }
+    se(!check_term(state,args[2],binary(state,"app",args[0],equality[1][1]),depth+1)) {
+      retornar -1;
+    }
+    retornar binary(state,"app",args[0],equality[1][2]);
+  }
+  se(op=="absurd") {
+    se(type_level(state,args[0],depth+1)<0||!check_term(state,args[1],atom(state,"empty"),depth+1)) {
+      retornar -1;
+    }
+    retornar args[0];
+  }
+  se(op=="constant") {
+    se(term[2][0]<0||term[2][0]>=len(state["definitions"])) {
+      retornar fault(state,"constant-not-previously-checked",id);
+    }
+    retornar state["definitions"][term[2][0]][0];
+  }
+  retornar fault(state,"bad-node",id);
+}
+
+funcao verify(request) {
+  fields(request,["format","nodes","definitions","proof","expected","limits"]);
+  se(request["format"]!="omega-kernel-proof-1") {
+    fail("Unsupported proof calculus wire format");
+  }
+  var limits=obj();
+  se(has(request,"limits")) {
+    limits=request["limits"];
+  }
+  fields(limits,["nodes","fuel","depth"]);
+  var state=obj();
+  put(state,"nodes",[]);
+  put(state,"capacity",u::integer(u::num(limits,"nodes",16384),16,16384));
+  put(state,"fuel",u::integer(u::num(limits,"fuel",1000000),1,10000000));
+  put(state,"initial_fuel",state["fuel"]);
+  put(state,"depth_limit",u::integer(u::num(limits,"depth",128),8,256));
+  put(state,"peak_depth",0);
+  put(state,"error","");
+  put(state,"error_node",-1);
+  put(state,"context",[]);
+  put(state,"context_depth",0);
+  put(state,"definitions",[]);
+  var raw=string::as_list(request["nodes"]);
+  se(len(raw)<1||len(raw)>4096||len(raw)>state["capacity"]) {
+    fail("Proof raw node budget");
+  }
+  var i=0;
+  enquanto(i<len(raw)) {
+    fields(raw[i],["op","args","data"]);
+    var op=string::as_string(raw[i]["op"]);
+    var args=u::vector(raw[i]["args"]);
+    var data=u::vector(raw[i]["data"]);
+    se(arity(op)<0||len(args)!=arity(op)||len(data)!=data_arity(op)) {
+      fail("Proof constructor arity");
+    }
+    var j=0;
+    enquanto(j<len(args)) {
+      u::integer(args[j],0,i-1);
+      j=j+1;
+    }
+    j=0;
+    enquanto(j<len(data)) {
+      u::integer(data[j],-9223372036854775807,9223372036854775807);
+      j=j+1;
+    }
+    se(op=="sort") {
+      u::integer(data[0],0,32);
+    }
+    se(op=="var"||op=="constant") {
+      u::integer(data[0],0,255);
+    }
+    se(op=="nat-literal") {
+      u::integer(data[0],0,9223372036854775807);
+    }
+    se(op=="rat-literal") {
+      u::integer(data[1],1,9223372036854775807);
+    }
+    make_node(state,op,args,data);
+    i=i+1;
+  }
+  var expected=u::count(request,"expected",0,len(raw)-1);
+  var proof=u::count(request,"proof",0,len(raw)-1);
+  var definitions=string::as_list(request["definitions"]);
+  se(len(definitions)>256) {
+    fail("Proof definition budget");
+  }
+  var accepted=1;
+  i=0;
+  enquanto(i<len(definitions)&&accepted) {
+    fields(definitions[i],["type","body"]);
+    var type=u::count(definitions[i],"type",0,len(raw)-1);
+    var body=u::count(definitions[i],"body",0,len(raw)-1);
+    se(type_level(state,type,0)<0||!check_term(state,body,type,0)) {
+      accepted=0;
+    }
+    senao {
+      push(state["definitions"],[type,body]);
+    }
+    i=i+1;
+  }
+  se(accepted) {
+    accepted=type_level(state,expected,0)>=0&&check_term(state,proof,expected,0)&&state["error"]=="";
+  }
+  var resource=contains(["arena-limit","fuel-limit","depth-limit","context-limit","universe-limit","arithmetic-limit"],state["error"]);
+  var status="rejected";
+  se(accepted) {
+    status="accepted";
+  }
+  senao {
+    se(resource) {
+      status="resource-limit";
+    }
+  }
+  var result=obj();
+  put(result,"accepted",accepted);
+  put(result,"verified",accepted);
+  put(result,"status",status);
+  put(result,"error",state["error"]);
+  put(result,"expected_node",expected);
+  put(result,"proof_node",proof);
+  put(result,"error_node",state["error_node"]);
+  put(result,"arena_nodes",len(state["nodes"]));
+  put(result,"fuel_used",state["initial_fuel"]-state["fuel"]);
+  put(result,"peak_depth",state["peak_depth"]);
+  put(result,"axioms",[]);
+  put(result,"logic","predicative-intensional-MLTT-1");
+  put(result,"request_document_sha256",sha256(string::canonical(request)));
+  retornar result;
+}

@@ -1,0 +1,106 @@
+{
+  "format": "omega-kernel-validation-1",
+  "timestamp_utc": "2026-10-30T17:15:43.589631+00:00",
+  "python": "3.12.14",
+  "architecture": "x86_64",
+  "bundle": {
+    "sha256": "00693efaa399b7a087a4cfc009b3306c7126ab9926c94fcd94a55838fb821e06",
+    "lines": 18679,
+    "files": 64,
+    "line_accounting": {
+      "line_count_is_not_a_correctness_metric": true,
+      "linked_and_modular_omega_overlap": true,
+      "linked_omega_lines": 6819,
+      "new_component_source_lines": 7775,
+      "reused_dependency_source_lines": 3955
+    }
+  },
+  "full_regression": {
+    "command": "OMEGA_KERNEL_QEMU_AARCH64=<qemu-aarch64> OMEGA_KERNEL_QEMU_RISCV64=<qemu-riscv64> bash scripts/test.sh -q --junitxml=artifacts/kernel-full-final.xml",
+    "summary": "1268 passed, 4 skipped, 3 warnings, 138 subtests passed in 1467.32s (0:24:27)",
+    "junit": {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "4",
+      "tests": "1410",
+      "time": "1467.302",
+      "timestamp": "2026-10-30T16:48:07.598823+00:00"
+    },
+    "junit_sha256": "9eac6993170ae634e739e9cd5c66776bbc59d01aff0f385c2469961acd0462b6",
+    "lean_projects_built": true,
+    "kernel_primary_cases": 27
+  },
+  "post_distribution_checks": {
+    "summary": "20 passed, 21 subtests passed in 39.06s",
+    "junit": {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "41",
+      "time": "39.064",
+      "timestamp": "2026-10-30T17:13:10.147150+00:00"
+    },
+    "junit_sha256": "9eb86d2a35110cb311f080b23e117d1df8f52961d8ae9e7e2f48b86a00f26d8f",
+    "scope": "source accounting and inclusion in legacy distribution; native algorithms unchanged"
+  },
+  "tested_core": {
+    "prefix_sha256": "0df9112b567d5fb32736ca402853c143b9e6f76d50dcee2f98a9c8dbdddb5a35",
+    "core_sha256": {
+      "kernel/native/json.h": "09dccc919406e1fe24ed0027700eb9e199f4cfc432090fcb7b0126610765fc40",
+      "kernel/native/logic.h": "43ef9b77e7be1dd60d39135ad028e1c47cef32f548a7eec6601670651c8ffd9d",
+      "kernel/native/main.c": "2dfa32f902359ad540483b66560abae76e4670ad2334de550ccef92dadfafe5e",
+      "kernel/native/sha256.h": "1d1bebdf2ebea3aa4cfb281a6d25d6f82ce1e1d90ce7254ebcde37cbf8ed8e31",
+      "kernel/native/tensor.h": "924c9f499fa0505c86d415d1f5d5a655303286e5dfe58fcdbfd5b79cc5e28611",
+      "kernel/native/tensor_gmp.h": "25e3f5fceb980d065afff4bc9285fe912c3fa65740ebb0342c2857d45a8913c0",
+      "kernel/native/tensor_graph.h": "1a7fc724339e4d4696f94c2bc1c4deebd35e8e316396427f4735760a7c8425b0",
+      "kernel/omega/aarch64.omega": "89ef0bc3fb0577f0b59f4a4a4c39b97608f3a51346aa0ffb0770dbcbbcedf39d",
+      "kernel/omega/assembler.omega": "6d724f9afb5a6d2c9c06f550b2645ebac6aa62e5323e25694745d98c628268d0",
+      "kernel/omega/elf.omega": "629e5be4e68ee65b011fecd1f1b8724e21faffea7cd3455e75e44cf07c4e4669",
+      "kernel/omega/engines.omega": "d7ae22a54b919557cd0180a60e2b0d4e13278ac55fb11469a11b3e82919fe3ed",
+      "kernel/omega/main.omega": "3c25ed602e9a5b03b0757d13f61cdd6b535ad9b532ce99fceee50328d86e65f6",
+      "kernel/omega/proof.omega": "3031aac28332991cdba5bf3c8ae679c515fcd4c87223ca201a54feb3bd5cfc67",
+      "kernel/omega/riscv64.omega": "b4193cced7f564b8b7c30dcd0371185c1ff00c6847c1c2f7a6285e42c63e1513",
+      "kernel/omega/source.omega": "63ff1b2771c3206e47ba694fb80cc75a57a79d3a52196155b890a47ec40968bd",
+      "kernel/omega/tensor_reference.omega": "a2daaad418441bfcbcbb01919af0eae4eb8680716610475dd826eb4058bcdcb0",
+      "kernel/omega/x86_64.omega": "c2365458b3c6140c9f412caf9becc9f2a1fca14b66d5b048c4b45d424ec753a1",
+      "omega_kernel/certificates.py": "545ba70262921bff694bd2f4764ea84b25a75bad2125d92545cf7d81a3dcc1c0",
+      "omega_kernel/cli.py": "b42b3bba76959625b07b0508a181720bf097cdefb34fffa6901ffdf3cb599adf",
+      "omega_kernel/protocol.py": "7d1808493b22f82a46d00336a5fc8a4eb1f84b7ecb214cd9ac923ed03653a221",
+      "omega_kernel/runtime.py": "c661c163ef838619332a798bd0e743fc6471a1d848eacbb266b1a9b748f8f049"
+    }
+  },
+  "core_unchanged_after_full_suite": true,
+  "qemu": {
+    "version": "10.0.13+ds-0+deb13u1",
+    "deb_url": "https://deb.debian.org/debian/pool/main/q/qemu/qemu-user_10.0.13+ds-0+deb13u1_amd64.deb",
+    "deb_sha256": "ca6ede739327a20ae5a3498230c8a3a9a072c586e131bc6bcc1201eb1725e336"
+  },
+  "skipped": [
+    "OM-096 CUDA hardware",
+    "Nextorch CUDA synthesis",
+    "CUDA SDK hyper-flat",
+    "CUDA SDK hyper-rational"
+  ],
+  "limitations": [
+    "No proof of global kernel soundness",
+    "Predicative MLTT subset; no arbitrary Lean/CIC imports",
+    "Finite rational proof normalization; GMP tensor path retains its dependency",
+    "Direct backend covers pure checked i64 Linux functions",
+    "AArch64/RISC-V tested with QEMU, not physical hardware",
+    "Tensor NEON and CUDA device validation remain pending"
+  ],
+  "publication": {
+    "branch": "feat/omega-kernel-amalgamation",
+    "first_commit_before_tests": "fd6693e",
+    "pull_request_created": false,
+    "blocker": "POST https://api.github.com/graphql: Forbidden (environment network policy)"
+  },
+  "preliminary_failures": [
+    "Whole-workbench native compilation exhausted the current compiler arena; fixed by bounded function groups joined into one C translation unit",
+    "AArch64 multiplication overflow check used a wrong ASR base encoding; corrected and re-executed",
+    "Intermediate bundle reproducibility check observed changing sources; full suite repeated with stable sources"
+  ],
+  "all_150_roadmap_tasks_accepted": false
+}

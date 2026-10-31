@@ -45,3 +45,6 @@ recursive-include ciencia *.omega *.json *.md
 recursive-include agentes_cientificos *.omega
 recursive-include omega_core *.omega *.lean *.json *.md
 recursive-include omega_ml *.omega *.md
+
+include omega_kernel.omega
+recursive-include kernel *.omega *.h *.c *.md *.json

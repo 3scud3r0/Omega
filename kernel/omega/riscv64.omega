@@ -1,0 +1,237 @@
+modulo direct_riscv64;
+importar "assembler.omega" como a;
+importar "../../ciencia/core/exato.omega" como u;
+exportar constant, load, store, unary, binary, jump, zero_branch, prologue, epilogue;
+
+# RV64IM without compressed instructions. s0 = BSS + 2048, t0/t1 are operands.
+# Every data access is relative to the middle of the 4096-byte BSS segment.
+funcao instruction(s,opcode,funct3,dst,left,right,funct7) {
+  a::word(s,opcode+dst*128+funct3*4096+left*32768+right*1048576+funct7*33554432);
+  retornar 0;
+}
+funcao immediate(s,opcode,funct3,dst,src,value) {
+  u::integer(value,-2048,2047);
+  a::word(s,opcode+dst*128+funct3*4096+src*32768+u::rem_int(value,4096)*1048576);
+  retornar 0;
+}
+funcao constant(s,reg,value) {
+  se(value>=-2048&&value<=2047) {
+    immediate(s,19,0,reg,0,value);
+    retornar 0;
+  }
+  var low=u::rem_int(value+2048,4096)-2048;
+  constant(s,reg,(value-low)/4096);
+  immediate(s,19,1,reg,reg,12);
+  se(low!=0) { immediate(s,19,0,reg,reg,low); }
+  retornar 0;
+}
+funcao load(s,reg,offset) {
+  immediate(s,3,3,reg,8,offset-2048);
+  retornar 0;
+}
+funcao store_width(s,reg,offset,width) {
+  var value=u::rem_int(offset-2048,4096);
+  a::word(s,35+a::part(value,0,5)*128+width*4096+8*32768+reg*1048576+a::part(value,5,7)*33554432);
+  retornar 0;
+}
+funcao store(s,reg,offset) {
+  retornar store_width(s,reg,offset,3);
+}
+funcao jump(s,label) {
+  a::fixup(s,"rv-jal",label,0);
+  retornar 0;
+}
+funcao conditional(s,condition,left,right,label) {
+  var inverse=condition+1;
+  se(condition%2==1) { inverse=condition-1; }
+  # Invert the condition and skip one JAL. This keeps branch distances bounded
+  # independently of the size of generated expression and formatting code.
+  a::word(s,99+4*256+inverse*4096+left*32768+right*1048576);
+  jump(s,label);
+  retornar 0;
+}
+funcao zero_branch(s,label) {
+  conditional(s,0,5,0,label);
+  retornar 0;
+}
+funcao move(s,dst,src) {
+  immediate(s,19,0,dst,src,0);
+  retornar 0;
+}
+funcao unary(s,op) {
+  se(op=="-") {
+    constant(s,7,-9223372036854775808);
+    conditional(s,0,5,7,"error_overflow");
+    instruction(s,51,0,5,0,5,32);
+  } senao { immediate(s,19,3,5,5,1); }
+  retornar 0;
+}
+funcao binary(s,op) {
+  se(op=="+"||op=="-") {
+    var high=0;
+    se(op=="-") { high=32; }
+    instruction(s,51,0,7,5,6,high);
+    se(op=="+") {
+      instruction(s,51,4,28,5,7,0);
+      instruction(s,51,4,29,6,7,0);
+    } senao {
+      instruction(s,51,4,28,5,6,0);
+      instruction(s,51,4,29,5,7,0);
+    }
+    instruction(s,51,7,28,28,29,0);
+    conditional(s,4,28,0,"error_overflow");
+    move(s,5,7);
+    retornar 0;
+  }
+  se(op=="*") {
+    instruction(s,51,0,7,5,6,1);
+    instruction(s,51,1,28,5,6,1);
+    immediate(s,19,5,29,7,1087);
+    conditional(s,1,28,29,"error_overflow");
+    move(s,5,7);
+    retornar 0;
+  }
+  se(op=="/"||op=="%") {
+    conditional(s,0,6,0,"error_zero");
+    constant(s,7,-9223372036854775808);
+    var normal=a::fresh(s,"div_normal_");
+    conditional(s,1,5,7,normal);
+    constant(s,7,-1);
+    conditional(s,0,6,7,"error_overflow");
+    a::mark(s,normal);
+    instruction(s,51,6,28,5,6,1);
+    se(op=="/") {
+      conditional(s,1,28,0,"error_nonintegral");
+      instruction(s,51,4,5,5,6,1);
+    } senao { move(s,5,28); }
+    retornar 0;
+  }
+  se(op=="=="||op=="!=") {
+    instruction(s,51,4,5,5,6,0);
+    se(op=="==") { immediate(s,19,3,5,5,1); }
+    senao { instruction(s,51,3,5,0,5,0); }
+    retornar 0;
+  }
+  se(op=="<"||op==">=") {
+    instruction(s,51,2,5,5,6,0);
+  } senao { instruction(s,51,2,5,6,5,0); }
+  se(op==">="||op=="<=") { immediate(s,19,4,5,5,1); }
+  retornar 0;
+}
+funcao syscall(s,number) {
+  constant(s,17,number);
+  a::word(s,115);
+  retornar 0;
+}
+funcao address(s,reg,offset) {
+  immediate(s,19,0,reg,8,offset-2048);
+  retornar 0;
+}
+funcao retry(s,label) {
+  constant(s,7,-4);
+  conditional(s,0,10,7,label);
+  retornar 0;
+}
+funcao prologue(s,parameters) {
+  constant(s,8,6293504);
+  immediate(s,3,3,5,2,0);
+  constant(s,6,2);
+  conditional(s,1,5,6,"error_io");
+  constant(s,10,-100);
+  immediate(s,3,3,11,2,16);
+  constant(s,12,0);
+  constant(s,13,0);
+  syscall(s,56);
+  conditional(s,4,10,0,"error_io");
+  store(s,10,160);
+  se(parameters>0) {
+    a::mark(s,"read_loop");
+    load(s,10,160);
+    load(s,7,168);
+    address(s,11,0);
+    instruction(s,51,0,11,11,7,0);
+    constant(s,12,parameters*8);
+    instruction(s,51,0,12,12,7,32);
+    syscall(s,63);
+    retry(s,"read_loop");
+    conditional(s,5,0,10,"error_io");
+    load(s,7,168);
+    instruction(s,51,0,7,7,10,0);
+    store(s,7,168);
+    constant(s,28,parameters*8);
+    conditional(s,6,7,28,"read_loop");
+  }
+  a::mark(s,"read_tail");
+  load(s,10,160);
+  address(s,11,200);
+  constant(s,12,1);
+  syscall(s,63);
+  retry(s,"read_tail");
+  conditional(s,1,10,0,"error_io");
+  load(s,10,160);
+  syscall(s,57);
+  retornar 0;
+}
+funcao epilogue(s) {
+  a::mark(s,"success");
+  store(s,5,192);
+  constant(s,5,0);
+  store(s,5,184);
+  jump(s,"print_result");
+  var errors=["error_overflow","error_zero","error_io","error_nonintegral"];
+  var i=0;
+  enquanto(i<4) {
+    a::mark(s,errors[i]);
+    constant(s,5,0);
+    store(s,5,192);
+    constant(s,5,i+1);
+    store(s,5,184);
+    jump(s,"print_result");
+    i=i+1;
+  }
+  a::mark(s,"print_result");
+  load(s,5,184);
+  immediate(s,19,0,5,5,48);
+  store_width(s,5,128,0);
+  load(s,5,192);
+  i=0;
+  enquanto(i<16) {
+    immediate(s,19,5,7,5,4*(15-i));
+    immediate(s,19,7,7,7,15);
+    constant(s,28,10);
+    var digit=a::fresh(s,"digit_");
+    var done=a::fresh(s,"digit_done_");
+    conditional(s,4,7,28,digit);
+    immediate(s,19,0,7,7,55);
+    jump(s,done);
+    a::mark(s,digit);
+    immediate(s,19,0,7,7,48);
+    a::mark(s,done);
+    store_width(s,7,129+i,0);
+    i=i+1;
+  }
+  constant(s,5,10);
+  store_width(s,5,145,0);
+  a::mark(s,"write_loop");
+  constant(s,10,1);
+  load(s,7,176);
+  address(s,11,128);
+  instruction(s,51,0,11,11,7,0);
+  constant(s,12,18);
+  instruction(s,51,0,12,12,7,32);
+  syscall(s,64);
+  retry(s,"write_loop");
+  conditional(s,5,0,10,"exit_io");
+  load(s,7,176);
+  instruction(s,51,0,7,7,10,0);
+  store(s,7,176);
+  constant(s,28,18);
+  conditional(s,6,7,28,"write_loop");
+  load(s,10,184);
+  syscall(s,93);
+  a::mark(s,"exit_io");
+  constant(s,10,3);
+  syscall(s,93);
+  a::word(s,1048691);
+  retornar 0;
+}

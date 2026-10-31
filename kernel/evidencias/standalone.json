@@ -1,0 +1,25 @@
+{
+  "format": "omega-kernel-standalone-smoke-1",
+  "bundle_sha256": "00693efaa399b7a087a4cfc009b3306c7126ab9926c94fcd94a55838fb821e06",
+  "prefix_sha256": "0df9112b567d5fb32736ca402853c143b9e6f76d50dcee2f98a9c8dbdddb5a35",
+  "prefix_tokens_equal_modules": true,
+  "compiled_from_entire_mixed_file": true,
+  "core_unchanged_after_full_regression": true,
+  "tool": "auditable stage-zero Omega bootstrap + GCC -O0",
+  "proof_accepted": true,
+  "direct_elf_result": {
+    "status": 0,
+    "value": -40,
+    "accepted": true,
+    "verified": false,
+    "semantics": "checked-i64-exact-division-v1",
+    "elf_sha256": "ba62cfefd14bb11a925f0436779c4f85ad3aecbc2676e47e47020bb6a3c38e5e",
+    "input_sha256": "761b59d486d929d4d242938b94eeae7ee280c78da753bba0c9af46ad5e4bef4b",
+    "architecture": "x86_64",
+    "sandboxed": true,
+    "emulated": false
+  },
+  "sandboxed": true,
+  "source_files": 64,
+  "seconds": 2.498284850997152
+}

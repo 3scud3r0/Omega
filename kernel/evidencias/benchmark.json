@@ -1,0 +1,147 @@
+{
+  "format": "omega-kernel-gemm-benchmark-1",
+  "architecture": "x86_64",
+  "cpu": "AMD EPYC 9V74 80-Core Processor",
+  "rows": [
+    {
+      "dimension": 8,
+      "regime": "compact-simd",
+      "mpq_seconds": 9.1225e-05,
+      "grid_seconds": 1.0265e-05,
+      "ratio": 8.887015,
+      "backend": 3,
+      "simd_products": 512,
+      "equal": true
+    },
+    {
+      "dimension": 32,
+      "regime": "compact-simd",
+      "mpq_seconds": 0.009718248,
+      "grid_seconds": 0.000101981,
+      "ratio": 95.294705,
+      "backend": 3,
+      "simd_products": 32768,
+      "equal": true
+    },
+    {
+      "dimension": 64,
+      "regime": "compact-simd",
+      "mpq_seconds": 0.057876553,
+      "grid_seconds": 0.000370289,
+      "ratio": 156.301034,
+      "backend": 3,
+      "simd_products": 262144,
+      "equal": true
+    },
+    {
+      "dimension": 32,
+      "regime": "wide-gmp",
+      "mpq_seconds": 0.01137302,
+      "grid_seconds": 0.001499623,
+      "ratio": 7.583919,
+      "backend": 1,
+      "simd_products": 0,
+      "equal": true
+    },
+    {
+      "dimension": 64,
+      "regime": "wide-gmp",
+      "mpq_seconds": 0.088019066,
+      "grid_seconds": 0.011285872,
+      "ratio": 7.799049,
+      "backend": 1,
+      "simd_products": 0,
+      "equal": true
+    },
+    {
+      "dimension": 32,
+      "regime": "compact-simd",
+      "mpq_seconds": 0.008206427,
+      "grid_seconds": 7.1746e-05,
+      "ratio": 114.381656,
+      "backend": 3,
+      "simd_products": 32768,
+      "equal": true
+    },
+    {
+      "dimension": 64,
+      "regime": "compact-simd",
+      "mpq_seconds": 0.060344107,
+      "grid_seconds": 0.000325924,
+      "ratio": 185.147776,
+      "backend": 3,
+      "simd_products": 262144,
+      "equal": true
+    },
+    {
+      "dimension": 32,
+      "regime": "wide-gmp",
+      "mpq_seconds": 0.014627927,
+      "grid_seconds": 0.001374338,
+      "ratio": 10.643617,
+      "backend": 1,
+      "simd_products": 0,
+      "equal": true
+    },
+    {
+      "dimension": 64,
+      "regime": "wide-gmp",
+      "mpq_seconds": 0.08646414,
+      "grid_seconds": 0.00661743,
+      "ratio": 13.066121,
+      "backend": 1,
+      "simd_products": 0,
+      "equal": true
+    },
+    {
+      "dimension": 32,
+      "regime": "compact-simd",
+      "mpq_seconds": 0.005337173,
+      "grid_seconds": 5.1156e-05,
+      "ratio": 104.331307,
+      "backend": 3,
+      "simd_products": 32768,
+      "equal": true
+    },
+    {
+      "dimension": 64,
+      "regime": "compact-simd",
+      "mpq_seconds": 0.042523433,
+      "grid_seconds": 0.000321376,
+      "ratio": 132.316757,
+      "backend": 3,
+      "simd_products": 262144,
+      "equal": true
+    },
+    {
+      "dimension": 32,
+      "regime": "wide-gmp",
+      "mpq_seconds": 0.012893625,
+      "grid_seconds": 0.00142971,
+      "ratio": 9.01835,
+      "backend": 1,
+      "simd_products": 0,
+      "equal": true
+    },
+    {
+      "dimension": 64,
+      "regime": "wide-gmp",
+      "mpq_seconds": 0.091900856,
+      "grid_seconds": 0.01102834,
+      "ratio": 8.333154,
+      "backend": 1,
+      "simd_products": 0,
+      "equal": true
+    }
+  ],
+  "sandboxed": true,
+  "flags": [
+    "-std=c11",
+    "-O3"
+  ],
+  "compiler": "cc (Debian 14.2.0-19) 14.2.0",
+  "source_sha256": "49e5479229ed6ec32f0962101cf11898ea656b4612c5ae5c73ede05a1add06ae",
+  "binary_sha256": "1d550c24f9820a8d8ff5f40ca78ac01b6d51b994fa0d37cc476aca33ed97b62e",
+  "scope": "same-process GEMM; allocations/output normalization included; parsing/compilation excluded",
+  "limitations": "synthetic 32/64 matrices, compact SIMD and wide GMP inputs; not a general neural-network throughput claim"
+}
