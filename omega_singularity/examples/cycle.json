@@ -1,0 +1,8 @@
+{
+  "baseline": {
+    "format": "omega-symbolic-dag-1", "variables": 1,
+    "nodes": [["var",0,[]],["const",2,[]],["mul",0,[0,1]],["const",3,[]],["mul",0,[0,3]],["add",0,[2,4]]],
+    "root": 5
+  },
+  "observations": [[[-1],-5],[[0],0],[[2],10]]
+}

@@ -1,0 +1,57 @@
+modulo epistemic_envelopes;
+importar "../omega_brain/symbolic_neuro_dag.omega" como dag;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/string.omega" como strings;
+exportar execute;
+
+# Data-only quarantine. A remote assertion, identity or vote is not admission.
+# Authenticated framing and independent CPU checking belong to the supervisor.
+funcao execute(r) {
+  var messages=r["messages"];
+  se(!islist(messages)||len(messages)>32) { fail("Swarm batch limit 32"); }
+  var known=obj();
+  var pending=[];
+  var rejected=[];
+  var duplicate=[];
+  var bytes=0;
+  var i=0;
+  enquanto(i<len(messages)) {
+    var message=messages[i];
+    se(message["format"]!="omega-epistemic-claim-1"||len(keys(message))!=3) { fail("Claim exact fields: format,dag,observations"); }
+    var g=dag::load(message["dag"]);
+    var claim=obj();
+    put(claim,"format","omega-epistemic-claim-1");
+    put(claim,"dag",dag::document(g,g["root"]));
+    put(claim,"observations",dag::observations(message["observations"],g["variables"]));
+    var encoded=strings::canonical(claim);
+    se(len(encoded)>65536) { fail("Swarm claim byte limit 64 KiB"); }
+    bytes=bytes+len(encoded);
+    se(bytes>262144) { fail("Swarm batch byte limit 256 KiB"); }
+    var id=sha256(encoded);
+    se(has(known,id)) { push(duplicate,[i,id]); }
+    senao {
+      put(known,id,1);
+      var valid=1;
+      var j=0;
+      enquanto(j<len(claim["observations"])) {
+        var sample=claim["observations"][j];
+        var values=dag::values(g,sample[0]);
+        se(!values[1][g["root"]]||values[0][g["root"]]!=sample[1]) { valid=0; }
+        j=j+1;
+      }
+      se(valid) { push(pending,[id,claim]); }
+      senao { push(rejected,[i,id,"counterexample-or-numeric-limit"]); }
+    }
+    i=i+1;
+  }
+  var out=obj();
+  put(out,"format","omega-swarm-quarantine-1");
+  put(out,"pending_kernel",pending);
+  put(out,"rejected",rejected);
+  put(out,"duplicates",duplicate);
+  put(out,"bytes",bytes);
+  put(out,"admitted",0);
+  put(out,"network_actions",0);
+  put(out,"origin_authenticated",0);
+  retornar out;
+}

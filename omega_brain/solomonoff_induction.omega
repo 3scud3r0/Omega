@@ -1,0 +1,251 @@
+modulo finite_mdl_induction;
+importar "symbolic_neuro_dag.omega" como dag;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/string.omega" como strings;
+exportar execute;
+
+# Bounded bottom-up MDL/beam search, NOT computable universal Solomonoff
+# induction. The finite mixture reports disagreement and no unseen-data proof.
+funcao score(g,id,observed,cache) {
+  var error=0;
+  var good=1;
+  var values=[];
+  var i=0;
+  enquanto(i<len(observed)) {
+    var result=cache[i];
+    good=good&&result[1][id];
+    var value=result[0][id];
+    push(values,value);
+    var delta=value-observed[i][1];
+    error=error+delta*delta;
+    i=i+1;
+  }
+  se(qbits(error)>1024) { good=0; error=0; }
+  retornar [id,error,g["code_bits"][id],good,values];
+}
+funcao better(a,b) {
+  se(a[3]!=b[3]) { retornar a[3]>b[3]; }
+  se(a[1]!=b[1]) { retornar a[1]<b[1]; }
+  se(a[2]!=b[2]) { retornar a[2]<b[2]; }
+  retornar a[0]<b[0];
+}
+funcao offer(best,item,width) {
+  var i=0;
+  enquanto(i<len(best)&&!better(item,best[i])) { i=i+1; }
+  se(i>=width) { retornar best; }
+  var out=slice(best,0,i);
+  push(out,item);
+  var j=i;
+  enquanto(j<len(best)&&len(out)<width) { push(out,best[j]); j=j+1; }
+  retornar out;
+}
+funcao evaluate_new(g,observed,cache) {
+  var i=0;
+  enquanto(i<len(observed)) {
+    # Extend cached columns; evaluate only the newly appended topological nodes.
+    var pair=cache[i];
+    var values=pair[0];
+    var valid=pair[1];
+    var j=len(values);
+    enquanto(j<len(g["nodes"])) {
+      var n=g["nodes"][j];
+      var value=0;
+      var good=1;
+      se(n[0]=="const") { value=n[1]; }
+      se(n[0]=="var") { value=observed[i][0][n[1]]; }
+      se(n[0]=="neg") { good=valid[n[2][0]]; value=-values[n[2][0]]; }
+      se(contains(["add","sub","mul"],n[0])) {
+        var a=n[2][0];
+        var b=n[2][1];
+        good=valid[a]&&valid[b];
+        se(good) {
+          se(n[0]=="add") { value=values[a]+values[b]; }
+          se(n[0]=="sub") { value=values[a]-values[b]; }
+          se(n[0]=="mul") { value=values[a]*values[b]; }
+        }
+      }
+      se(qbits(value)>256) { good=0; }
+      se(!good) { value=0; }
+      push(values,value);
+      push(valid,good);
+      j=j+1;
+    }
+    i=i+1;
+  }
+  retornar 0;
+}
+funcao execute(r) {
+  var variables=u::integer(u::num(r,"variables",1),1,4);
+  var observed=dag::observations(r["observations"],variables);
+  var limit=u::integer(u::num(r,"max_candidates",512),8,1024);
+  var width=u::integer(u::num(r,"beam_width",8),1,32);
+  var max_nodes=u::integer(u::num(r,"max_nodes",5),1,9);
+  var constants=u::vector(r["constants"]);
+  se(len(constants)<1||len(constants)>8) { fail("Constant alphabet 1..8"); }
+  var g=dag::create(variables,limit);
+  var operators=["add","sub","mul"];
+  se(has(r,"opcode_prior")) {
+    var prior=u::vector(r["opcode_prior"]);
+    se(len(prior)!=3) { fail("Advisory prior: add,sub,mul"); }
+    var order=[0,1,2];
+    var position=1;
+    enquanto(position<3) {
+      var j=position;
+      enquanto(j>0&&prior[order[j]]>prior[order[j-1]]) {
+        var swap=order[j]; put(order,j,order[j-1]); put(order,j-1,swap); j=j-1;
+      }
+      position=position+1;
+    }
+    operators=[operators[order[0]],operators[order[1]],operators[order[2]]];
+  }
+  var levels=[[]];
+  var cache=[];
+  var i=0;
+  enquanto(i<len(observed)) { push(cache,[[],[]]); i=i+1; }
+  i=0;
+  enquanto(i<variables) { dag::intern(g,"var",i,[]); i=i+1; }
+  i=0;
+  enquanto(i<len(constants)) { dag::intern(g,"const",constants[i],[]); i=i+1; }
+  var seen=obj();
+  var all=[];
+  var best=[];
+  var beam_pruned=0;
+  var level=1;
+  var exhausted=0;
+  enquanto(level<=max_nodes&&!exhausted) {
+    var begin=0;
+    se(level>1) {
+      begin=len(g["nodes"]);
+      var unary=levels[level-1];
+      i=0;
+      enquanto(i<len(unary)&&!g["limited"]) {
+        dag::intern(g,"neg",0,[unary[i][0]]);
+        i=i+1;
+      }
+      var split=1;
+      enquanto(split<level-1&&!g["limited"]) {
+        var left=levels[split];
+        var right=levels[level-1-split];
+        var a=0;
+        enquanto(a<len(left)&&!g["limited"]) {
+          var b=0;
+          enquanto(b<len(right)&&!g["limited"]) {
+            var op=0;
+            enquanto(op<3&&!g["limited"]) {
+              dag::intern(g,operators[op],0,[left[a][0],right[b][0]]);
+              op=op+1;
+            }
+            b=b+1;
+          }
+          a=a+1;
+        }
+        split=split+1;
+      }
+    }
+    evaluate_new(g,observed,cache);
+    var retained=[];
+    var candidates=0;
+    i=begin;
+    enquanto(i<len(g["nodes"])) {
+      se(g["costs"][i]==level) {
+        var item=score(g,i,observed,cache);
+        se(item[3]) {
+          # Only full polynomial normalization may deduplicate candidates.
+          # Equal observed outputs alone do not establish equivalence.
+          var key=strings::canonical(dag::polynomial(g,i));
+          se(!has(seen,key)) {
+            put(seen,key,1);
+            push(all,item);
+            retained=offer(retained,item,width);
+            best=offer(best,item,8);
+            candidates=candidates+1;
+          }
+        }
+      }
+      i=i+1;
+    }
+    se(candidates>width) { beam_pruned=1; }
+    push(levels,retained);
+    exhausted=g["limited"];
+    level=level+1;
+  }
+  se(len(best)==0) { fail("No valid candidate within the finite numeric domain"); }
+  var winner=best[0];
+  var out=obj();
+  put(out,"format","omega-finite-induction-1");
+  put(out,"winner",dag::document(g,winner[0]));
+  put(out,"training_error",winner[1]);
+  put(out,"description_bits",winner[2]);
+  put(out,"cost",dag::cost(g,winner[0]));
+  put(out,"generated_nodes",len(g["nodes"]));
+  put(out,"distinct_polynomials",len(all));
+  put(out,"budget_exhausted",exhausted);
+  put(out,"beam_pruned",beam_pruned);
+  put(out,"search_complete",!exhausted&&!beam_pruned);
+  put(out,"universal_optimality_claimed",0);
+  put(out,"verified",0);
+  var consistent=[];
+  var weight=0;
+  i=0;
+  enquanto(i<len(all)) {
+    se(all[i][1]==0) {
+      var prior=1;
+      var bit=0;
+      enquanto(bit<all[i][2]) { prior=prior/2; bit=bit+1; }
+      push(consistent,[all[i][0],prior]);
+      weight=weight+prior;
+    }
+    i=i+1;
+  }
+  var predictions=[];
+  se(has(r,"predict")) {
+    se(!islist(r["predict"])||len(r["predict"])>16) { fail("Prediction query budget"); }
+    var j=0;
+    enquanto(j<len(r["predict"])) {
+      var x=u::vector(r["predict"][j]);
+      var evaluation=dag::values(g,x);
+      var total=0;
+      var low=0;
+      var high=0;
+      var valid=weight>0;
+      i=0;
+      enquanto(i<len(consistent)) {
+        var id=consistent[i][0];
+        valid=valid&&evaluation[1][id];
+        var value=evaluation[0][id];
+        total=total+value*consistent[i][1];
+        se(i==0||value<low) { low=value; }
+        se(i==0||value>high) { high=value; }
+        i=i+1;
+      }
+      var mean=0;
+      se(valid) { mean=total/weight; }
+      push(predictions,[valid,mean,low,high]);
+      j=j+1;
+    }
+  }
+  put(out,"consistent_candidates",len(consistent));
+  put(out,"finite_prior_mass",weight);
+  put(out,"predictions",predictions);
+  se(has(r,"holdout")) {
+    var holdout=dag::observations(r["holdout"],variables);
+    var error=0;
+    var valid=1;
+    i=0;
+    enquanto(i<len(holdout)) {
+      var j=0;
+      enquanto(j<len(observed)) {
+        se(strings::canonical(holdout[i][0])==strings::canonical(observed[j][0])) { fail("Train/holdout input overlap"); }
+        j=j+1;
+      }
+      var evaluation=dag::values(g,holdout[i][0]);
+      valid=valid&&evaluation[1][winner[0]];
+      var delta=evaluation[0][winner[0]]-holdout[i][1];
+      error=error+delta*delta;
+      i=i+1;
+    }
+    put(out,"holdout_valid",valid);
+    put(out,"holdout_error",error);
+  }
+  retornar out;
+}

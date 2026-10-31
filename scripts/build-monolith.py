@@ -12,11 +12,11 @@ import subprocess
 
 ROOT=Path(__file__).resolve().parents[1]
 OUTPUT=ROOT/'omega/omega_3_monolith.py'
-FOLDERS={'kernel','omega_kernel','omega_engines','omega_core','omega_ml','ciencia','agentes_cientificos','omega_science','omega_live','omega_ingest','civilizacao_agentes','incubadora_continua','sociedade_hierarquica','metamorfose_cognitiva','fabrica_descobertas','imunologia_sistemica','infraestrutura_soberana','std','runtime','tools','omega_native','validation','omega_agent','omega_coder','omega_memory','omega_learning','omega_evolution','omega_tools','omega_security','omega_bench','omega','omega_open','omega_selfhost','omega_platform','omega_nextorch','nextorch',
+FOLDERS={'omega_recursive','omega_brain','omega_singularity','omega_episteme','omega_hive','omega_gpu','kernel','omega_kernel','omega_engines','omega_core','omega_ml','ciencia','agentes_cientificos','omega_science','omega_live','omega_ingest','civilizacao_agentes','incubadora_continua','sociedade_hierarquica','metamorfose_cognitiva','fabrica_descobertas','imunologia_sistemica','infraestrutura_soberana','std','runtime','tools','omega_native','validation','omega_agent','omega_coder','omega_memory','omega_learning','omega_evolution','omega_tools','omega_security','omega_bench','omega','omega_open','omega_selfhost','omega_platform','omega_nextorch','nextorch',
          'omega_refine_check','omega_synth_mcts','omega_self_mutate','omega_agent_sandbox','omega_cognition','hardware',
          'omega_gpu_mcts','omega_abstract_domain','omega_autotelic','omega_self_evolve_v2','omega_runtime_verified',
          'formal','scripts','requirements','roadmap','docs','testes','exemplos','.github'}
-EXTENSIONS={'.py','.h','.omega','.lean','.json','.lock','.tsv','.md','.sh','.yml','.c','.svg','.sv','.cu','.cuh','.cpp'}
+EXTENSIONS={'.py','.h','.omega','.lean','.json','.lock','.tsv','.md','.sh','.yml','.c','.svg','.sv','.cu','.cuh','.cpp','.wgsl'}
 
 LAUNCHER='''"""Readable single-file Omega source distribution.
 
@@ -185,7 +185,7 @@ def build():
         if not name or ROOT/path==OUTPUT or '.lake' in path.parts or '__pycache__' in path.parts:
             continue
         if name=='scripts/monolith-components.py.txt' or (path.parts[0] in FOLDERS and
-            (path.suffix in EXTENSIONS or path.name=='lean-toolchain')) or name in {'omega_kernel.omega','setup.py','pyproject.toml','MANIFEST.in','README.md','LICENSE','banco_de_dados.omega','synthesis.omega','fitness.omega','civilizacao_agentes.omega','incubadora_continua.omega','ginasio.omega'}:
+            (path.suffix in EXTENSIONS or path.name=='lean-toolchain')) or name in {'omega_singularity.omega','omega_kernel.omega','setup.py','pyproject.toml','MANIFEST.in','README.md','LICENSE','banco_de_dados.omega','synthesis.omega','fitness.omega','civilizacao_agentes.omega','incubadora_continua.omega','ginasio.omega'}:
             selected.append(name)
     sources={name:(ROOT/name).read_bytes().decode('utf-8') for name in selected}
     # The virtual module lives only inside the requested single-file artifact.

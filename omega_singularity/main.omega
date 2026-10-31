@@ -1,0 +1,44 @@
+modulo omega_recursive_entry;
+importar "../omega_brain/symbolic_neuro_dag.omega" como dag;
+importar "../omega_brain/solomonoff_induction.omega" como induction;
+importar "godel_recursive_improver.omega" como improver;
+importar "../omega_episteme/synthetic_universe_generator.omega" como universe;
+importar "../omega_hive/decentralized_epistemic_swarm.omega" como swarm;
+importar "../omega_gpu/parallel_induction_substrate.omega" como parallel;
+importar "../kernel/omega/proof.omega" como proof;
+importar "../kernel/omega/elf.omega" como elf;
+importar "../kernel/omega/source.omega" como source;
+importar "../std/string.omega" como strings;
+
+funcao principal() {
+  se(argc()!=2) { fail("Usage: omega-recursive request.json"); }
+  var envelope=parsejson(read(arg(1)));
+  var operation=envelope["operation"];
+  var request=envelope["request"];
+  var out=obj();
+  se(operation=="dag") { out=dag::execute(request); }
+  senao {
+    se(operation=="induce") { out=induction::execute(request); }
+    senao {
+      se(operation=="improve") { out=improver::execute(request); }
+      senao {
+        se(operation=="universe") { out=universe::execute(request); }
+        senao {
+          se(operation=="quarantine") { out=swarm::execute(request); }
+          senao {
+            se(operation=="sieve") { out=parallel::execute(request); }
+            senao {
+              se(operation=="verify") { out=proof::verify(request); }
+              senao {
+                se(operation=="compile") { out=elf::compile(source::parse(request["source"]),request["architecture"]); }
+                senao { fail("Unknown recursive workbench operation"); }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  print(strings::canonical(out));
+  retornar 0;
+}

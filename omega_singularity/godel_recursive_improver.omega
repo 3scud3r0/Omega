@@ -1,0 +1,113 @@
+modulo bounded_recursive_improver;
+importar "../omega_brain/symbolic_neuro_dag.omega" como dag;
+importar "../ciencia/core/exato.omega" como u;
+importar "../std/string.omega" como strings;
+exportar execute;
+
+# Proposals for the explicitly declared polynomial DAG component. Cost is the
+# number of unique arithmetic nodes, not intelligence, time or energy.
+funcao literal(g,id,value) {
+  retornar g["nodes"][id][0]=="const"&&g["nodes"][id][1]==value;
+}
+funcao rewrite(g,op,payload,children,ledger) {
+  se(op=="const"||op=="var") { retornar dag::intern(g,op,payload,[]); }
+  var left=children[0];
+  var a=g["nodes"][left];
+  se(op=="neg") {
+    se(a[0]=="const") { push(ledger,"constant-negation"); retornar dag::intern(g,"const",-a[1],[]); }
+    se(a[0]=="neg") { push(ledger,"double-negation"); retornar a[2][0]; }
+    retornar dag::intern(g,op,0,children);
+  }
+  var right=children[1];
+  var b=g["nodes"][right];
+  se(a[0]=="const"&&b[0]=="const") {
+    var value=a[1]+b[1];
+    se(op=="sub") { value=a[1]-b[1]; }
+    se(op=="mul") { value=a[1]*b[1]; }
+    se(qbits(value)<=256) { push(ledger,"constant-folding"); retornar dag::intern(g,"const",value,[]); }
+  }
+  se((op=="add"||op=="sub")&&literal(g,right,0)) { push(ledger,"right-zero"); retornar left; }
+  se(op=="add"&&literal(g,left,0)) { push(ledger,"left-zero"); retornar right; }
+  se(op=="sub"&&left==right) { push(ledger,"self-subtraction"); retornar dag::intern(g,"const",0,[]); }
+  se(op=="mul") {
+    se(literal(g,left,0)||literal(g,right,0)) { push(ledger,"zero-product"); retornar dag::intern(g,"const",0,[]); }
+    se(literal(g,left,1)) { push(ledger,"left-one"); retornar right; }
+    se(literal(g,right,1)) { push(ledger,"right-one"); retornar left; }
+  }
+  se(op=="add"&&a[0]=="mul"&&b[0]=="mul") {
+    var i=0;
+    enquanto(i<2) {
+      var j=0;
+      enquanto(j<2) {
+        se(a[2][i]==b[2][j]) {
+          var sum=dag::intern(g,"add",0,[a[2][1-i],b[2][1-j]]);
+          se(sum<0) { fail("Rewrite node budget"); }
+          push(ledger,"distributive-factorization");
+          retornar dag::intern(g,"mul",0,[a[2][i],sum]);
+        }
+        j=j+1;
+      }
+      i=i+1;
+    }
+  }
+  retornar dag::intern(g,op,0,children);
+}
+funcao pass(raw) {
+  var old=dag::load(raw);
+  var g=dag::create(old["variables"],256);
+  var map=[];
+  var ledger=[];
+  var i=0;
+  enquanto(i<len(old["nodes"])) {
+    var n=old["nodes"][i];
+    var children=[];
+    var j=0;
+    enquanto(j<len(n[2])) { push(children,map[n[2][j]]); j=j+1; }
+    var id=rewrite(g,n[0],n[1],children,ledger);
+    se(id<0) { fail("Rewrite arena budget"); }
+    push(map,id);
+    i=i+1;
+  }
+  retornar [dag::document(g,map[old["root"]]),ledger];
+}
+funcao execute(r) {
+  var baseline=dag::load(r["baseline"]);
+  var original=dag::document(baseline,baseline["root"]);
+  var old_cost=dag::cost(baseline,baseline["root"]);
+  var rounds=u::integer(u::num(r,"rounds",4),1,8);
+  var candidate=original;
+  var history=[];
+  var step=0;
+  var stopped=0;
+  enquanto(step<rounds&&!stopped) {
+    var proposed=pass(candidate);
+    var equal=strings::canonical(proposed[0])==strings::canonical(candidate);
+    push(history,[step,sha256(strings::canonical(candidate)),sha256(strings::canonical(proposed[0])),proposed[1]]);
+    candidate=proposed[0];
+    stopped=equal;
+    step=step+1;
+  }
+  var new=dag::load(candidate);
+  var new_cost=dag::cost(new,new["root"]);
+  var p=dag::polynomial(baseline,baseline["root"]);
+  var q=dag::polynomial(new,new["root"]);
+  var equivalent=strings::canonical(p)==strings::canonical(q);
+  var out=obj();
+  put(out,"format","omega-improvement-proposal-1");
+  put(out,"baseline",original);
+  put(out,"candidate",candidate);
+  put(out,"baseline_sha256",sha256(strings::canonical(original)));
+  put(out,"candidate_sha256",sha256(strings::canonical(candidate)));
+  put(out,"polynomial_equal",equivalent);
+  put(out,"baseline_cost",old_cost);
+  put(out,"candidate_cost",new_cost);
+  put(out,"strict_cost_improvement",equivalent&&new_cost[1]<old_cost[1]);
+  put(out,"history",history);
+  put(out,"stop_reason","round-budget");
+  se(stopped) { put(out,"stop_reason","fixed-point"); }
+  put(out,"applied",0);
+  put(out,"verified",0);
+  put(out,"cost_model","unique exact-rational arithmetic DAG nodes");
+  put(out,"general_intelligence_gain_proved",0);
+  retornar out;
+}

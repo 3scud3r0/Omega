@@ -1,0 +1,10 @@
+{
+  "variables": 1,
+  "constants": [-1, 0, 1, 2],
+  "observations": [[[-1], 0], [[0], 1], [[1], 2]],
+  "holdout": [[[2], 3], [[3], 4]],
+  "predict": [[4]],
+  "max_nodes": 3,
+  "max_candidates": 128,
+  "beam_width": 8
+}

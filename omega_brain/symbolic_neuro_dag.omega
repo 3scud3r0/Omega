@@ -1,0 +1,292 @@
+modulo symbolic_neuro_dag;
+importar "../ciencia/core/exato.omega" como u;
+importar "../omega_core/algebra.omega" como algebra;
+importar "../std/string.omega" como strings;
+exportar create, intern, ingest, load, document, values, polynomial, cost, expression, execute, observations;
+
+# A hash-consed exact polynomial DAG. A neural heuristic is optional advice;
+# neither a score nor an observation vector is a proof of equivalence.
+funcao create(variables,limit) {
+  u::integer(variables,1,4);
+  u::integer(limit,1,1024);
+  var g=obj();
+  put(g,"variables",variables);
+  put(g,"limit",limit);
+  put(g,"nodes",[]);
+  put(g,"table",obj());
+  put(g,"polynomials",[]);
+  put(g,"costs",[]);
+  put(g,"code_bits",[]);
+  put(g,"depths",[]);
+  put(g,"limited",0);
+  retornar g;
+}
+funcao intern(g,op,payload,children) {
+  var arity=0;
+  se(op=="neg") { arity=1; }
+  se(contains(["add","sub","mul"],op)) { arity=2; }
+  se(!contains(["const","var","neg","add","sub","mul"],op)||!islist(children)||len(children)!=arity) {
+    fail("Symbolic DAG operation/arity");
+  }
+  se(op=="const") {
+    payload=u::val(payload);
+    se(qbits(payload)>256) { fail("DAG constant bit budget 256"); }
+  }
+  senao {
+    se(op=="var") { payload=u::integer(u::val(payload),0,g["variables"]-1); }
+    senao { se(payload!=0) { fail("Operator payload must be zero"); } }
+  }
+  var expanded=1;
+  var bits=3;
+  se(op=="var") { bits=5; }
+  se(op=="const") {
+    var numerator=qnum(payload);
+    se(numerator<0) { numerator=-numerator; }
+    bits=4+2*qbits(numerator+1)-1+2*qbits(qden(payload))-1;
+  }
+  var depth=1;
+  var i=0;
+  enquanto(i<arity) {
+    var child=u::integer(children[i],0,len(g["nodes"])-1);
+    expanded=expanded+g["costs"][child];
+    bits=bits+g["code_bits"][child];
+    se(g["depths"][child]+1>depth) { depth=g["depths"][child]+1; }
+    i=i+1;
+  }
+  se(expanded>127||depth>16) { put(g,"limited",1); retornar -1; }
+  # Canonical commutative ordering preserves exact polynomial semantics.
+  se((op=="add"||op=="mul")&&children[0]>children[1]) {
+    children=[children[1],children[0]];
+  }
+  var key=strings::canonical([op,payload,children]);
+  se(has(g["table"],key)) { retornar g["table"][key]; }
+  se(len(g["nodes"])>=g["limit"]) { put(g,"limited",1); retornar -1; }
+  var id=len(g["nodes"]);
+  push(g["nodes"],[op,payload,slice(children,0,len(children))]);
+  push(g["costs"],expanded);
+  push(g["code_bits"],bits);
+  push(g["depths"],depth);
+  put(g["table"],key,id);
+  retornar id;
+}
+funcao ingest(g,ast,depth) {
+  se(depth>16||!islist(ast)||len(ast)<2) { fail("Symbolic AST shape/depth"); }
+  var op=ast[0];
+  se(op=="const"||op=="var") {
+    se(len(ast)!=2) { fail("Leaf AST exact arity"); }
+    retornar intern(g,op,ast[1],[]);
+  }
+  var arity=2;
+  se(op=="neg") { arity=1; }
+  se(len(ast)!=arity+1||!contains(["neg","add","sub","mul"],op)) { fail("Polynomial AST required"); }
+  var children=[];
+  var i=0;
+  enquanto(i<arity) {
+    var child=ingest(g,ast[i+1],depth+1);
+    se(child<0) { retornar -1; }
+    push(children,child);
+    i=i+1;
+  }
+  retornar intern(g,op,0,children);
+}
+funcao load(raw) {
+  se(raw["format"]!="omega-symbolic-dag-1"||!islist(raw["nodes"])||len(raw["nodes"])<1||len(raw["nodes"])>256) {
+    fail("Symbolic DAG format/size");
+  }
+  se(len(keys(raw))!=4) { fail("DAG fields: format,variables,nodes,root"); }
+  var g=create(u::val(raw["variables"]),256);
+  var map=[];
+  var i=0;
+  enquanto(i<len(raw["nodes"])) {
+    var node=raw["nodes"][i];
+    se(!islist(node)||len(node)!=3||!islist(node[2])) { fail("DAG node [op,payload,children]"); }
+    var children=[];
+    var j=0;
+    enquanto(j<len(node[2])) {
+      var child=u::integer(u::val(node[2][j]),0,i-1);
+      push(children,map[child]);
+      j=j+1;
+    }
+    var id=intern(g,node[0],u::val(node[1]),children);
+    se(id<0) { fail("DAG expression resource limit"); }
+    push(map,id);
+    i=i+1;
+  }
+  put(g,"root",map[u::integer(u::val(raw["root"]),0,len(map)-1)]);
+  retornar g;
+}
+funcao reachable(g,id,marked) {
+  se(marked[id]) { retornar 0; }
+  put(marked,id,1);
+  var children=g["nodes"][id][2];
+  var i=0;
+  enquanto(i<len(children)) { reachable(g,children[i],marked); i=i+1; }
+  retornar 0;
+}
+funcao document(g,root) {
+  u::integer(root,0,len(g["nodes"])-1);
+  var marked=u::zeros(len(g["nodes"]));
+  reachable(g,root,marked);
+  var nodes=[];
+  var map=[];
+  var i=0;
+  enquanto(i<len(g["nodes"])) {
+    push(map,-1);
+    se(marked[i]) {
+      var node=g["nodes"][i];
+      var children=[];
+      var j=0;
+      enquanto(j<len(node[2])) { push(children,map[node[2][j]]); j=j+1; }
+      put(map,i,len(nodes));
+      push(nodes,[node[0],node[1],children]);
+    }
+    i=i+1;
+  }
+  var out=obj();
+  put(out,"format","omega-symbolic-dag-1");
+  put(out,"variables",g["variables"]);
+  put(out,"nodes",nodes);
+  put(out,"root",map[root]);
+  retornar out;
+}
+funcao observations(raw,variables) {
+  se(!islist(raw)||len(raw)<1||len(raw)>32) { fail("Observation budget 1..32"); }
+  var out=[];
+  var i=0;
+  enquanto(i<len(raw)) {
+    se(!islist(raw[i])||len(raw[i])!=2) { fail("Observation [inputs,output]"); }
+    var x=u::vector(raw[i][0]);
+    var y=u::val(raw[i][1]);
+    se(len(x)!=variables||qbits(y)>256) { fail("Observation dimension/bit budget"); }
+    var j=0;
+    enquanto(j<len(x)) {
+      se(qbits(x[j])>256) { fail("Observation input bit budget"); }
+      j=j+1;
+    }
+    push(out,[x,y]);
+    i=i+1;
+  }
+  retornar out;
+}
+funcao values(g,x) {
+  se(len(x)!=g["variables"]) { fail("DAG evaluation dimension"); }
+  var out=[];
+  var valid=[];
+  var i=0;
+  enquanto(i<len(g["nodes"])) {
+    var n=g["nodes"][i];
+    var v=0;
+    var good=1;
+    se(n[0]=="const") { v=n[1]; }
+    se(n[0]=="var") { v=x[n[1]]; }
+    se(n[0]=="neg") { good=valid[n[2][0]]; v=-out[n[2][0]]; }
+    se(contains(["add","sub","mul"],n[0])) {
+      var left=n[2][0];
+      var right=n[2][1];
+      good=valid[left]&&valid[right];
+      se(good) {
+        se(n[0]=="add") { v=out[left]+out[right]; }
+        se(n[0]=="sub") { v=out[left]-out[right]; }
+        se(n[0]=="mul") { v=out[left]*out[right]; }
+      }
+    }
+    se(qbits(v)>256) { good=0; }
+    se(!good) { v=0; }
+    push(out,v);
+    push(valid,good);
+    i=i+1;
+  }
+  retornar [out,valid];
+}
+funcao polynomial(g,root) {
+  var polys=g["polynomials"];
+  var i=len(polys);
+  enquanto(i<=root) {
+    var n=g["nodes"][i];
+    var p=[];
+    se(n[0]=="const") { p=algebra::poly_const(n[1],g["variables"]); }
+    se(n[0]=="var") { p=algebra::poly_var(n[1],g["variables"]); }
+    se(n[0]=="neg") { p=algebra::poly_scale(polys[n[2][0]],-1); }
+    se(n[0]=="add") { p=algebra::poly_add(polys[n[2][0]],polys[n[2][1]]); }
+    se(n[0]=="sub") { p=algebra::poly_add(polys[n[2][0]],algebra::poly_scale(polys[n[2][1]],-1)); }
+    se(n[0]=="mul") { p=algebra::poly_mul(polys[n[2][0]],polys[n[2][1]]); }
+    push(polys,p);
+    i=i+1;
+  }
+  retornar polys[root];
+}
+funcao cost(g,root) {
+  var d=document(g,root);
+  var operations=0;
+  var i=0;
+  enquanto(i<len(d["nodes"])) {
+    se(!contains(["const","var"],d["nodes"][i][0])) { operations=operations+1; }
+    i=i+1;
+  }
+  retornar [len(d["nodes"]),operations,g["costs"][root],len(strings::canonical(d))];
+}
+funcao expression(g,id) {
+  var n=g["nodes"][id];
+  se(n[0]=="const") {
+    se(qden(n[1])!=1||n[1]<-9223372036854775808||n[1]>9223372036854775807) { fail("Direct i64 lowering requires integral bounded constants"); }
+    retornar "("+text(n[1])+")";
+  }
+  se(n[0]=="var") { retornar "x"+text(n[1]); }
+  se(n[0]=="neg") { retornar "(-"+expression(g,n[2][0])+")"; }
+  var op="+";
+  se(n[0]=="sub") { op="-"; }
+  se(n[0]=="mul") { op="*"; }
+  retornar "("+expression(g,n[2][0])+op+expression(g,n[2][1])+")";
+}
+funcao update_policy(r) {
+  var weights=u::vector(r["weights"]);
+  var features=u::vector(r["features"]);
+  se(len(weights)!=6||len(features)!=6) { fail("Six-opcode linear policy vectors required"); }
+  var rate=u::positive(u::num(r,"rate",1/16));
+  var reward=u::val(r["reward"]);
+  se(rate>1||reward< -1||reward>1) { fail("Bounded advisory reward/rate"); }
+  var i=0;
+  enquanto(i<6) {
+    se(weights[i]<-32||weights[i]>32||features[i]<-127||features[i]>127) { fail("Advisory policy bounds"); }
+    i=i+1;
+  }
+  var before=u::dot(weights,features);
+  var out=[];
+  i=0;
+  enquanto(i<6) {
+    var next=weights[i]+rate*reward*features[i];
+    se(next< -32) { next=-32; }
+    se(next>32) { next=32; }
+    push(out,next);
+    i=i+1;
+  }
+  var result=obj();
+  put(result,"weights",out);
+  put(result,"previous_score",before);
+  put(result,"new_score",u::dot(out,features));
+  put(result,"proof_authority",0);
+  put(result,"model","bounded exact linear opcode preference; not a language model");
+  retornar result;
+}
+funcao execute(r) {
+  se(has(r,"mode")&&r["mode"]=="policy-update") { retornar update_policy(r); }
+  var g=load(r["dag"]);
+  var out=obj();
+  put(out,"dag",document(g,g["root"]));
+  put(out,"polynomial",polynomial(g,g["root"]));
+  put(out,"cost",cost(g,g["root"]));
+  put(out,"formal_refinement_proved",0);
+  se(has(r,"inputs")) {
+    var x=u::vector(r["inputs"]);
+    var result=values(g,x);
+    put(out,"valid",result[1][g["root"]]);
+    put(out,"value",result[0][g["root"]]);
+  }
+  se(has(r,"lower_i64")&&r["lower_i64"]==1) {
+    var names=[];
+    var i=0;
+    enquanto(i<g["variables"]) { push(names,"x"+text(i)); i=i+1; }
+    put(out,"source","funcao hypothesis("+join(names,",")+") { retornar "+expression(g,g["root"])+"; }");
+  }
+  retornar out;
+}

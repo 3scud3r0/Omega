@@ -1,0 +1,97 @@
+modulo parallel_induction;
+importar "../omega_brain/symbolic_neuro_dag.omega" como dag;
+importar "../ciencia/core/exato.omega" como u;
+exportar execute;
+
+# CPU oracle and a portable WebGPU/WGSL buffer contract. GPU results are a sieve,
+# not proof authority. Every admitted result must return to the CPU checker.
+funcao execute(r) {
+  var programs=r["programs"];
+  se(!islist(programs)||len(programs)<1||len(programs)>256) { fail("Parallel candidate batch 1..256"); }
+  var dimension=u::integer(u::val(programs[0]["variables"]),1,4);
+  var observed=dag::observations(r["observations"],dimension);
+  var packed=[];
+  var descriptors=[];
+  var results=[];
+  var fits=[];
+  var eligible=1;
+  var evaluate=1;
+  se(has(r,"pack_only")&&r["pack_only"]==1) { evaluate=0; }
+  var i=0;
+  enquanto(i<len(programs)) {
+    var g=dag::load(programs[i]);
+    se(g["variables"]!=dimension) { fail("Parallel candidate variable mismatch"); }
+    var doc=dag::document(g,g["root"]);
+    se(len(doc["nodes"])>32) { eligible=0; }
+    var j=0;
+    enquanto(j<32) {
+      var record=[0,0,1,0];
+      se(j<len(doc["nodes"])) {
+        var node=doc["nodes"][j];
+        se(node[0]=="const") {
+          record=[0,qnum(node[1]),qden(node[1]),0];
+          se(record[1]<-32767||record[1]>32767||record[2]>32767) { eligible=0; }
+        }
+        se(node[0]=="var") { record=[1,node[1],0,0]; }
+        se(node[0]=="neg") { record=[2,node[2][0],0,0]; }
+        se(contains(["add","sub","mul"],node[0])) {
+          var op=3;
+          se(node[0]=="sub") { op=4; }
+          se(node[0]=="mul") { op=5; }
+          record=[op,node[2][0],node[2][1],0];
+        }
+      }
+      push(packed,record);
+      j=j+1;
+    }
+    push(descriptors,[len(doc["nodes"]),doc["root"]]);
+    var mismatches=0;
+    var first=-1;
+    var good=1;
+    var witness=[];
+    j=0;
+    enquanto(evaluate&&j<len(observed)) {
+      var values=dag::values(g,observed[j][0]);
+      good=good&&values[1][g["root"]];
+      se(!values[1][g["root"]]||values[0][g["root"]]!=observed[j][1]) {
+        mismatches=mismatches+1;
+        se(first<0) { first=j; witness=[observed[j][0],values[0][g["root"]],observed[j][1]]; }
+      }
+      j=j+1;
+    }
+    se(evaluate) {
+      push(results,[good,mismatches,first,witness]);
+      se(good&&mismatches==0) { push(fits,i); }
+    }
+    i=i+1;
+  }
+  var samples=[];
+  i=0;
+  enquanto(i<len(observed)) {
+    var row=slice(observed[i][0],0,dimension);
+    push(row,observed[i][1]);
+    var j=0;
+    enquanto(j<len(row)) {
+      var n=qnum(row[j]);
+      var d=qden(row[j]);
+      se(n< -32767||n>32767||d>32767) { eligible=0; }
+      push(samples,[n,d]);
+      j=j+1;
+    }
+    i=i+1;
+  }
+  var out=obj();
+  put(out,"format","omega-parallel-sieve-1");
+  put(out,"backend","native-omega-cpu-reference");
+  put(out,"results",results);
+  put(out,"fits",fits);
+  put(out,"gpu_eligible",eligible);
+  put(out,"metadata",[len(programs),len(observed),dimension,32]);
+  put(out,"nodes",packed);
+  put(out,"descriptors",descriptors);
+  put(out,"samples",samples);
+  put(out,"verified",0);
+  put(out,"gpu_executed",0);
+  put(out,"cpu_evaluated",evaluate);
+  retornar out;
+}

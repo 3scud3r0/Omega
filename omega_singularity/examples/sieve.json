@@ -1,0 +1,7 @@
+{
+  "programs": [
+    {"format":"omega-symbolic-dag-1","variables":1,"nodes":[["var",0,[]],["const",1,[]],["add",0,[0,1]]],"root":2},
+    {"format":"omega-symbolic-dag-1","variables":1,"nodes":[["var",0,[]]],"root":0}
+  ],
+  "observations": [[[0],1],[[1],2],[[2],3]]
+}
