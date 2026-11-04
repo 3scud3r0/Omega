@@ -24,6 +24,8 @@ jobs:
           .venv/bin/pip install -e '.[dev]'
           bash scripts/setup-sandbox.sh
       - name: Build pinned local prover and static verifier
+        env:
+          CARGO_BUILD_JOBS: '1'
         run: |
           mkdir -p artifacts
           set +e
@@ -31,6 +33,7 @@ jobs:
           OMEGA_ZK_BUILD_STATUS=${PIPESTATUS[0]}
           set -e
           if test "$OMEGA_ZK_BUILD_STATUS" -ne 0; then
+            .venv/bin/python -c 'from pathlib import Path; text=Path("artifacts/zkvm-build.log").read_text(errors="replace")[-12000:]; print("::error title=zkVM prover build diagnostic::"+text.replace("%","%25").replace("\r","%0D").replace("\n","%0A"))'
             {
               printf '### Local prover build failure\n\n```text\n'
               tail -n 100 artifacts/zkvm-build.log
