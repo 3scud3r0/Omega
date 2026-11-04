@@ -221,3 +221,5 @@ extraíveis e hashes. Use `omega kernel ...` ou `python -m omega_kernel ...`.
 Escopos, limites e dependências estão em [kernel/README.md](kernel/README.md),
 e os resultados reais em [kernel/VALIDACAO.md](kernel/VALIDACAO.md).
 
+
+Os modos de descoberta `strict`, `empirical`, `dream` e `bicameral` estão documentados em [Modos cognitivos](docs/COGNITIVE_MODES.md), incluindo seus critérios de admissão e limites reais.

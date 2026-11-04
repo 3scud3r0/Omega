@@ -8,7 +8,7 @@ cd "$OMEGA_ROOT"
 command -v rustup >/dev/null || { echo 'rustup is required (https://rustup.rs)' >&2; exit 1; }
 rustup toolchain install 1.90.0 --profile minimal --no-self-update
 rustup +1.90.0 target add x86_64-unknown-linux-musl
-export CARGO_BUILD_JOBS=2
+export CARGO_BUILD_JOBS="${CARGO_BUILD_JOBS:-2}"
 export CARGO_TARGET_DIR="$OMEGA_ROOT/build/risc0"
 # Never use RISC0_DEV_MODE, fake receipts or DOCS_RS to bypass the prover build.
 cargo +1.90.0 build --release --locked --manifest-path omega_zk/risc0/Cargo.toml

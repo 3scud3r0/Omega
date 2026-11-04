@@ -11,8 +11,8 @@ prover = ["risc0-zkvm/prove", "dep:rayon"]
 
 [dependencies]
 risc0-zkvm = { version = "=3.0.3", default-features = false, features = ["std", "disable-dev-mode"] }
-risc0-binfmt = { version = "=3.0.5" }
-risc0-zkos-v1compat = { version = "=2.2.3" }
+risc0-binfmt = { version = "=3.0.2" }
+risc0-zkos-v1compat = { version = "=2.2.0" }
 bincode = "=1.3.3"
 sha2 = "=0.10.9"
 hex = "=0.4.3"

@@ -62,8 +62,14 @@ def principal(argumentos: list[str] | None = None) -> int:
         from omega_native.cli import main
         from omega_live.context import tracked
         return tracked('native',lambda:main(native_arguments[1:]))
+    if native_arguments and native_arguments[0]=='cognition':
+        from omega_cognition.cli import main
+        from omega_live.context import tracked
+        return tracked('cognition',lambda:main(native_arguments[1:]))
     p=argparse.ArgumentParser(prog='omega',description='Ômega 2.0 — auto-hospedagem, execução nativa e certificação')
     p.add_argument('--versao', action='version',version='Ômega '+VERSAO)
+    p.add_argument('--mode',choices=['strict','empirical','dream','creative','bicameral'],default=None,
+                   help='cognitive discovery policy; strict is the default')
     sub=p.add_subparsers(dest='acao',required=True)
     science_parser=sub.add_parser('science',help='bounded native scientific models and Lean observations')
     science_parser.add_argument('arguments',nargs=argparse.REMAINDER)
@@ -109,12 +115,18 @@ def principal(argumentos: list[str] | None = None) -> int:
         if acao=='optimize':sp.add_argument('--prova',type=Path)
         if acao in ('run','check','types','compile'):sp.add_argument('--motor',choices=['auto','classico','v1'],default='auto')
     args=p.parse_args(argumentos)
+    if args.mode not in (None,'strict') and args.acao!='cognition':
+        p.error('Non-strict modes apply to cognition discover; existing execution commands keep their admission rules')
     try:
         if args.acao in extensions:
             from importlib import import_module
             module=import_module(extensions[args.acao])
             from omega_live.context import tracked
-            return tracked(args.acao,lambda:module.main(args.arguments))
+            forwarded=args.arguments
+            if args.acao=='cognition' and args.mode is not None:
+                if any(a=='--mode' or a.startswith('--mode=') for a in forwarded):p.error('Cognitive mode was specified twice')
+                forwarded=['--mode',args.mode,*forwarded]
+            return tracked(args.acao,lambda:module.main(forwarded))
         if args.acao=='compile' and args.standalone:
             if args.contracts is None or args.target is None:p.error('--standalone requires --contracts and --target')
             if args.target.suffix!='.c' or args.target.exists():raise ValueError('A fresh .c target is required')

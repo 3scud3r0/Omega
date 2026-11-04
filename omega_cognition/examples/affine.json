@@ -1,0 +1,12 @@
+{
+  "format": "omega-cognitive-problem-1",
+  "variables": {"x": {"lower": -10, "upper": 10, "denominator": 1}},
+  "reference": "x + 1",
+  "training": [
+    {"inputs": {"x": "0"}, "output": "1"},
+    {"inputs": {"x": "2"}, "output": "3"}
+  ],
+  "candidates": ["x + 1"],
+  "constants": ["0", "1", "-1"],
+  "operators": ["+", "-", "*"]
+}
