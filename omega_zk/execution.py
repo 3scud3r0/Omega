@@ -25,6 +25,8 @@ UINT_MAX=2**32-1
 SCHEME='risc0-succinct-stark-3.0.3'
 PROOF_BUDGET=Budget(wall_seconds=1800,cpu_seconds=1800,memory_bytes=12*1024**3,
                     file_bytes=64*1024**2,processes=128,output_bytes=1024**2)
+VERIFY_BUDGET=Budget(wall_seconds=30,cpu_seconds=20,memory_bytes=1024**3,
+                     file_bytes=8*1024**2,processes=128,output_bytes=1024**2)
 
 
 def uint(n):
@@ -138,7 +140,7 @@ class Engine:
     def __init__(self,tool):
         self.tool=Path(tool).resolve(strict=True)
         if not self.tool.is_file():raise ValueError('Local prover/verifier executable required')
-    def invoke(self,args,*,inputs=(),outputs=(),budget=PROOF_BUDGET):
+    def invoke(self,args,*,inputs=(),outputs=(),budget=VERIFY_BUDGET):
         result=run([self.tool,*map(str,args)],readonly=[self.tool,*inputs],writable=outputs,
                    threads=True,budget=budget,check=True)
         return result.stdout.strip()
@@ -160,7 +162,7 @@ class Engine:
             j=folder/'journal';j.write_bytes(program.journal)
             witness=folder/'private';witness.write_bytes(raw)
             proof=folder/'proof.bin'
-            metrics=json.loads(self.invoke(['prove',elf,witness,j,proof],inputs=[elf,j,witness],outputs=[folder]))
+            metrics=json.loads(self.invoke(['prove',elf,witness,j,proof],inputs=[elf,j,witness],outputs=[folder],budget=PROOF_BUDGET))
             return proof.read_bytes(),metrics
     def verify(self,proof,image_id,journal):
         if type(proof) is not bytes or not 0<len(proof)<=4*1024**2:raise ValueError('Proof byte budget')
