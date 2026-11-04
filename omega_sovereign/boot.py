@@ -58,7 +58,7 @@ def fpga(destination,*,seed=1):
     destination,names=sources(destination)
     tools_root=ROOT.parent/'.tools/sovereign/usr/share'
     database=tools_root/'nextpnr'
-    command=[tool('nextpnr-ecp5'),'--85k','--package','CABGA381','--speed','6','--json','monitor.json',
+    command=[tool('nextpnr-ecp5'),'--router','router2','--85k','--package','CABGA381','--speed','6','--json','monitor.json',
              '--lpf','ulx3s85f.lpf','--textcfg','monitor.config','--freq','6.25','--seed',str(seed),'--report','timing.json','--log','route.log']
     if database.is_dir() and not Path('/usr/share/nextpnr/ecp5').is_dir():
         command=[str(ROOT.parent/'.tools/bubblewrap-0.12.0/bin/bwrap'),'--unshare-all','--die-with-parent','--new-session',
