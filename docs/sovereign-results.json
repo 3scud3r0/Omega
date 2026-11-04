@@ -1,0 +1,351 @@
+{
+  "format": "omega-sovereign-evidence-1",
+  "all_six_requirements_complete": false,
+  "physical_hardware_validated": false,
+  "production_crypto_approved": false,
+  "zero_knowledge": false,
+  "inputs": {
+    "formal/Sovereign.lean": "4b2c594ed6fd48d76d886e49f8577b3dde2c46474eb0d01bb0ccd1851d27dbc0",
+    "formal/tensor/lakefile.lean": "9c5fe78a21fd1565f68927f6c883c4ed99aeefcd576260aa0177dabca2aa37d8",
+    "hardware/sovereign/icestick.pcf": "d58e1d41f1d2ae3e7de85ee715ea50ffbeb937368e0c2d2b85481e2a1a8d8627",
+    "hardware/sovereign/icestick_top.v": "b66e8db08ff06a333c8cfd0be8c314b73476dcfe0a9e1e3faa5531a344fce9c1",
+    "hardware/sovereign/qpu_exact.v": "e953d17922166cecd91ef5b62579f28e8d3acda22405394838bae96f9ef222aa",
+    "hardware/sovereign/sky130.json": "94120b8ac930c2e0bf803a5e475d44c3d025405baa704abbd73a9d7dd33bdc85",
+    "omega_sovereign/__init__.py": "d6efb04e5b348751da3d2af2599a27bbc517613a0ecbfa46496457ce2ba153ad",
+    "omega_sovereign/__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+    "omega_sovereign/air_fri.py": "9b0b0cc923fc449c306fab10e86cda9cdbd60533491efd0439ec260180ce44db",
+    "omega_sovereign/baremetal.py": "82a1fef0452fc128d02e880e0b2f71758a10950b62b0e02ab9cced1df90ae127",
+    "omega_sovereign/cli.py": "ec10f05d77c68239b622e65afa0c62f35a6390b4d7abe670da8221735e8586bb",
+    "omega_sovereign/hardware.py": "2f36d672dad5ed4a4165a927f99a2883fc2ec9853afd0bde63269fd85431d393",
+    "omega_sovereign/models.py": "5b3cc3712e8641b8f99e358d222c82fd284a1ab7a0e387ba4a369a341f94b747",
+    "omega_sovereign/native.py": "c1e02ac11b5b65cc3605efdadeace32afdd0b85c3d79e696c401261abc08b497",
+    "omega_sovereign/raft_store.py": "ab79bc5b70eb3387f400ff9a696fc2c961c8cef900e31dbd671f7b0c43aa2157",
+    "omega_sovereign/rv64.py": "62be2f1d81b2f2f00f5e8645c1250ce22133a20615a84f11bdc4f33ea025d763",
+    "requirements/sovereign-tools.json": "a51303af7a1e8b7015c9399e043a02f53d6bf8ddf3c4ea4122296dcabca5ea65",
+    "sovereign/baremetal/boot.S": "ba47513ed95f0aab98ddb81cc79f9ffa875feac8d02ce1547cf6b3f6c6a5f272",
+    "sovereign/native/bigq.S": "1ce996c22add6c4a3de79b40459d0a80b1207847504a0b87572ab084216665d2",
+    "sovereign/native/compiler.S": "c0c53e65c0c8de4bfdc5515483dfcc9376dd7cb69cee90d30377e84cb33ff3c6",
+    "sovereign/native/crypto.S": "1f3bab72997494d8592686e72827ab30444de14757da1cb406ff1ef13180dad0",
+    "sovereign/native/sha3.S": "21d1ccbfafaf3cfc3b274f124110a0e4f77445925a2289fda6323679d8b05ae7",
+    "sovereign/native/x25519.S": "856f9678862d79b9fbbb431d3b12408fac101d7a314fbce869ed5d6b0b0515a5",
+    "sovereign/omega/main.omega": "1422aa24ddd84462e0d77d6b6bf6dc2d0055223c7368bd32100731131965d812",
+    "sovereign/omega/raft.omega": "aa4b70978f902ad5645e5f879c0cc717e9ef2bafb009e553d7c79de4b8bd874d",
+    "sovereign/omega/tcp.omega": "b6273fe26306c3b8bf0c263d9474cadb4f614579165c4a608742877a57286c16",
+    "testes/sovereign/test_distribution.py": "71052ca12f8de03bcb741074db45525c8a9fcd0e1f110413c2d9427a5ac77d92",
+    "testes/sovereign/test_hardware.py": "b3af83d40d4e1f88369278c7719da3e93b12261ab76931726240ac1e2f646671",
+    "testes/sovereign/test_native.py": "ba54d933ef3ba4667d6633f0fba1f9e857ae678b4f74e26723733125f7fb26e6",
+    "testes/sovereign/test_proofs.py": "d5e6d085807c060542b185adb8f4b3f82f461b2907bf4b6e5668599d8a5ce659",
+    "testes/sovereign/test_protocols.py": "148d46a49cfaba0c352862fb1e6b51e8bcdd8a63a879a7ab7bef6068ca68b5d1",
+    "tools/validate-sovereign.py": "f96994d9b23dc4e0413716d01ffd7601d2026e8ffaef70fc867eec94d13ce7f8"
+  },
+  "input_tree_sha256": "5e2c5aeab9161741f15ae2a9b49a1e631580e9ec1de11df0742281ec52fcb63f",
+  "native": {
+    "format": "omega-native-seed-v1",
+    "architecture": "rv64im-linux",
+    "sha256": "41d1080911c0e3f822348d04fa8f2d99bb287e78dccaeb76724c0bb91fb87c11",
+    "source_sha256": "b1e3734bd85eee3094908c56a5737aeead166451b41de25a5132bae92a52b174",
+    "bytes": 43188,
+    "limbs": 128,
+    "bits": 4096,
+    "fragment": "closed scalar rational expressions; mostrar statements",
+    "external_runtime_dependencies": [],
+    "bootstrap": "Python RV64 assembler"
+  },
+  "crypto": {
+    "format": "omega-crypto-reference-v1",
+    "sha256": "ef8a190ac8a9f3e6bce720a9f8f220b83c0c0c2123edc5ec6740f016faf33a55",
+    "source_sha256": "7154563052226061bd9e46d758edb192865d09408e079cbbae915d2c2b56b231",
+    "bytes": 54508,
+    "algorithms": [
+      "SHA3-256",
+      "HMAC-SHA3-256-key32",
+      "X25519"
+    ],
+    "constant_time_x25519": false,
+    "production_approved": false
+  },
+  "boot": {
+    "format": "omega-baremetal-v1",
+    "sha256": "ec16bf6dd8357e359aa616a72820b551a0e68252f65e6393a0022122443099a1",
+    "source_sha256": "66f00899c46a8a042424345f68331f8dc9402c4beba82b5fcbe506a13b29b992",
+    "bytes": 14716,
+    "target": "QEMU virt RV64IM, one hart, Sv39, VirtIO MMIO v2",
+    "physical_hardware_validated": false
+  },
+  "native_compile": {
+    "argv": [
+      "/workspace/.tools/sovereign/usr/bin/qemu-riscv64",
+      "/workspace/Omega/artifacts/sovereign/validated/omegac-rv64",
+      "/workspace/Omega/artifacts/sovereign/validated/example.omega",
+      "/workspace/Omega/artifacts/sovereign/validated/example.elf"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "",
+    "wall_seconds": 0.061685769993346184,
+    "timed_out": false,
+    "sandboxed": true,
+    "budget": {
+      "wall_seconds": 180,
+      "cpu_seconds": 120,
+      "memory_bytes": 2147483648,
+      "output_bytes": 8388608,
+      "file_bytes": 67108864,
+      "processes": 128,
+      "open_files": 128,
+      "stack_bytes": 16777216,
+      "fuel": 500000000,
+      "depth": 512
+    },
+    "limit": null
+  },
+  "native_execution": {
+    "argv": [
+      "/workspace/.tools/sovereign/usr/bin/qemu-riscv64",
+      "/workspace/Omega/artifacts/sovereign/validated/example.elf"
+    ],
+    "returncode": 0,
+    "stdout": "-82304526008230452600823045262/1\n3/7\n",
+    "stderr": "",
+    "wall_seconds": 0.05129029699310195,
+    "timed_out": false,
+    "sandboxed": true,
+    "budget": {
+      "wall_seconds": 180,
+      "cpu_seconds": 120,
+      "memory_bytes": 2147483648,
+      "output_bytes": 8388608,
+      "file_bytes": 67108864,
+      "processes": 128,
+      "open_files": 128,
+      "stack_bytes": 16777216,
+      "fuel": 500000000,
+      "depth": 512
+    },
+    "limit": null
+  },
+  "baremetal_execution": {
+    "argv": [
+      "/workspace/.tools/sovereign/usr/bin/qemu-system-riscv64",
+      "-machine",
+      "virt",
+      "-m",
+      "128M",
+      "-smp",
+      "1",
+      "-bios",
+      "none",
+      "-display",
+      "none",
+      "-serial",
+      "stdio",
+      "-monitor",
+      "none",
+      "-net",
+      "none",
+      "-no-reboot",
+      "-kernel",
+      "/workspace/Omega/artifacts/sovereign/validated/boot.elf",
+      "-global",
+      "virtio-mmio.force-legacy=false",
+      "-drive",
+      "file=/workspace/Omega/artifacts/sovereign/validated/cas.raw,format=raw,if=none,id=d",
+      "-device",
+      "virtio-blk-device,drive=d"
+    ],
+    "returncode": 0,
+    "stdout": "OMEGA baremetal: supervisor Sv39 active\nCLINT timer + PLIC UART: PASS\nSv39 unmapped + NX faults: PASS\nVirtIO block sector write/read: PASS\nCAS SHA3 content binding: PASS\nOMEGA BAREMETAL PASS\n",
+    "stderr": "",
+    "wall_seconds": 0.10246321000158787,
+    "timed_out": false,
+    "sandboxed": false,
+    "budget": {
+      "wall_seconds": 10,
+      "cpu_seconds": 15,
+      "memory_bytes": 2147483648,
+      "output_bytes": 8388608,
+      "file_bytes": 67108864,
+      "processes": 128,
+      "open_files": 128,
+      "stack_bytes": 16777216,
+      "fuel": 5000000,
+      "depth": 256
+    },
+    "limit": null
+  },
+  "fpga": {
+    "format": "omega-fpga-build-v1",
+    "target": "iCEstick HX1K TQ144",
+    "clock_mhz": 12,
+    "seed": 1,
+    "board_programmed": false,
+    "tools": [
+      {
+        "argv": [
+          "/workspace/.tools/sovereign/usr/bin/yosys",
+          "-p",
+          "read_verilog qpu_exact.v icestick_top.v; synth_ice40 -top icestick_top -json design.json"
+        ],
+        "exit": 0,
+        "seconds": 1.2085227529896656
+      },
+      {
+        "argv": [
+          "/workspace/.tools/bubblewrap-0.12.0/bin/bwrap",
+          "--unshare-all",
+          "--die-with-parent",
+          "--new-session",
+          "--ro-bind",
+          "/",
+          "/",
+          "--bind",
+          "/workspace/Omega/artifacts/sovereign/validated/fpga",
+          "/workspace/Omega/artifacts/sovereign/validated/fpga",
+          "--tmpfs",
+          "/usr/share",
+          "--ro-bind",
+          "/workspace/.tools/sovereign/usr/share/nextpnr",
+          "/usr/share/nextpnr",
+          "--",
+          "/workspace/.tools/sovereign/usr/bin/nextpnr-ice40",
+          "--hx1k",
+          "--package",
+          "tq144",
+          "--json",
+          "design.json",
+          "--pcf",
+          "icestick.pcf",
+          "--asc",
+          "design.asc",
+          "--freq",
+          "12",
+          "--seed",
+          "1",
+          "--report",
+          "timing.json"
+        ],
+        "exit": 0,
+        "seconds": 0.9152825139899505
+      },
+      {
+        "argv": [
+          "/workspace/.tools/sovereign/usr/bin/icepack",
+          "design.asc",
+          "qpu.bin"
+        ],
+        "exit": 0,
+        "seconds": 0.0409996759990463
+      }
+    ],
+    "inputs": {
+      "qpu_exact.v": "e953d17922166cecd91ef5b62579f28e8d3acda22405394838bae96f9ef222aa",
+      "icestick_top.v": "b66e8db08ff06a333c8cfd0be8c314b73476dcfe0a9e1e3faa5531a344fce9c1",
+      "icestick.pcf": "d58e1d41f1d2ae3e7de85ee715ea50ffbeb937368e0c2d2b85481e2a1a8d8627"
+    },
+    "artifacts": {
+      "design.json": "4572899d81f193dccbb9a4c351a5be96db3c49b69fece336b1c38ef32bbe2948",
+      "design.asc": "53ce91588c31db0033dbb2f688f7c97ec868b91dbc954954ca61972445835a3c",
+      "timing.json": "a96f80093c58e3a06411e2fbda06fc2dc842e662ceaf30ffd770dd1204c21d7f",
+      "qpu.bin": "7906766a7f9aa8d1151a35cf2794c41c5ada9dc38ff065699b25eb6383ebc2db"
+    }
+  },
+  "air_fri": {
+    "valid": true,
+    "bytes": 198574,
+    "prove_seconds": 0.02296741098689381,
+    "verify_seconds": 0.008449670989648439,
+    "machine": "x[i+1]=x[i]^2+c mod Goldilocks",
+    "steps": 32,
+    "queries": 32,
+    "zero_knowledge": false
+  },
+  "test_command": {
+    "argv": [
+      "/workspace/Omega/.venv/bin/python",
+      "-m",
+      "pytest",
+      "testes/sovereign",
+      "-q",
+      "--junitxml=/workspace/Omega/artifacts/sovereign/validated/tests.xml"
+    ],
+    "returncode": 0,
+    "stdout": "................................................................         [100%]\n64 passed in 19.99s\n",
+    "stderr": "",
+    "wall_seconds": 20.343448878003983,
+    "timed_out": false,
+    "sandboxed": false,
+    "budget": {
+      "wall_seconds": 300,
+      "cpu_seconds": 240,
+      "memory_bytes": 4294967296,
+      "output_bytes": 8388608,
+      "file_bytes": 536870912,
+      "processes": 1024,
+      "open_files": 128,
+      "stack_bytes": 16777216,
+      "fuel": 500000000,
+      "depth": 512
+    },
+    "limit": null
+  },
+  "tests": {
+    "tests": 64,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "artifacts": {
+    "air-proof.json": "778bc545e25ce63b9e2b15b12f89b9b309f032d1c5b60002f439b18fba91e3e1",
+    "air-statement.json": "0e2ff577d466d3523ac5d380dded51659392b0329e1142b69d909dbddfe75a76",
+    "boot.elf": "ec16bf6dd8357e359aa616a72820b551a0e68252f65e6393a0022122443099a1",
+    "cas.raw": "fac8f40e5bcb2ce00d87a93f8a0f9ab0edd2f4c3f65dc6ffa18986312c0fe905",
+    "crypto-rv64": "ef8a190ac8a9f3e6bce720a9f8f220b83c0c0c2123edc5ec6740f016faf33a55",
+    "example.elf": "2d9c02d3a3bb1ed07aa2925517208adf44e4c7b2b7db483643795ae437b34536",
+    "example.omega": "c7bc4d83846467c908a4847491c8ce30f8cdd1498a4ade0b468fb86d9fdcea93",
+    "fpga/0.log": "d98f96880ab838483c73e111f152fc8811095bf6cfd3f40a3f742dc421995d86",
+    "fpga/1.log": "955643f69eafeaba8b6ed5e71bb5577f7b7fc0dc2368e7ca59c9eeb72daa41f1",
+    "fpga/2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "fpga/design.asc": "53ce91588c31db0033dbb2f688f7c97ec868b91dbc954954ca61972445835a3c",
+    "fpga/design.json": "4572899d81f193dccbb9a4c351a5be96db3c49b69fece336b1c38ef32bbe2948",
+    "fpga/icestick.pcf": "d58e1d41f1d2ae3e7de85ee715ea50ffbeb937368e0c2d2b85481e2a1a8d8627",
+    "fpga/icestick_top.v": "b66e8db08ff06a333c8cfd0be8c314b73476dcfe0a9e1e3faa5531a344fce9c1",
+    "fpga/manifest.json": "2278080a4d493ce3cab5dc13b450e81d2cadcdbc6574733c9f97db4e3cf26d47",
+    "fpga/qpu.bin": "7906766a7f9aa8d1151a35cf2794c41c5ada9dc38ff065699b25eb6383ebc2db",
+    "fpga/qpu_exact.v": "e953d17922166cecd91ef5b62579f28e8d3acda22405394838bae96f9ef222aa",
+    "fpga/timing.json": "a96f80093c58e3a06411e2fbda06fc2dc842e662ceaf30ffd770dd1204c21d7f",
+    "omegac-rv64": "41d1080911c0e3f822348d04fa8f2d99bb287e78dccaeb76724c0bb91fb87c11",
+    "tests.log": "3b5a3d556e597caea3b4f5729d84472ec56261342b213f5fffd9ce2977ec1668",
+    "tests.xml": "602711983706b2b22c72c4b76f2fdc734aaec92e0a2779d2cb65b75ad3f8fcd1"
+  },
+  "validation_passed": true,
+  "full_regression": {
+    "source_commit": "ebfae4e5714cee0ad79f72ee0b1968a88d158f86",
+    "command": "bash scripts/test.sh -q --junitxml=artifacts/sovereign/full-regression.xml",
+    "environment": {
+      "OMEGA_KERNEL_QEMU_AARCH64": "/workspace/.tools/sovereign/usr/bin/qemu-aarch64",
+      "OMEGA_KERNEL_QEMU_RISCV64": "/workspace/.tools/sovereign/usr/bin/qemu-riscv64",
+      "VK_ICD_FILENAMES": "/workspace/.tools/mesa-vulkan-25.0.7/icd-lvp.json",
+      "XDG_RUNTIME_DIR": "/tmp",
+      "LP_NUM_THREADS": "2"
+    },
+    "exit": 0,
+    "passed": 1359,
+    "subtests_passed": 138,
+    "skipped": 4,
+    "warnings": 3,
+    "seconds": 1448.71,
+    "junit": {
+      "tests": 1501,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 4
+    },
+    "junit_sha256": "5a783acbdd89d9e04947678dadc6013a41b43092a147634de4cbbe2e4ce89ac2",
+    "skip_reasons": [
+      "OM-096 CUDA hardware unavailable",
+      "Nextorch synthesis CUDA device unavailable",
+      "hyper_flat CUDA SDK unavailable",
+      "hyper_rational CUDA SDK/device stress unavailable"
+    ]
+  }
+}

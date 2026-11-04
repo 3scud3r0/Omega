@@ -1,0 +1,11 @@
+importar "tcp.omega" como tcp;
+importar "raft.omega" como raft;
+importar "../../std/string.omega" como strings;
+funcao principal() {
+ se(argc()!=2) { fail("Usage: sovereign-models request.json"); }
+ var input=parsejson(read(arg(1)));var out=obj();
+ se(input["operation"]=="tcp") { out=tcp::execute(input["request"]); }
+ senao { se(input["operation"]=="raft") { out=raft::execute(input["request"]); }
+ senao { fail("Unknown sovereign model"); } }
+ print(strings::canonical(out));retornar 0;
+}

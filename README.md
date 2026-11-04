@@ -1,5 +1,9 @@
 # Ômega 2.0 — compilador auto-hospedado, execução nativa e núcleo Lean
 
+A [fundação soberana](sovereign/README.md) adiciona compilação escalar RV64 sem
+C/GMP, boot Sv39/VirtIO, bitstream FPGA e protótipos de redes/provas, com os
+critérios ainda pendentes documentados.
+
 O compilador de produção está escrito em
 [`omega_selfhost/compiler.omega`](omega_selfhost/compiler.omega): lexer, parser,
 verificação de formas, lowering da linguagem tensorial, otimizador e emissão de C.

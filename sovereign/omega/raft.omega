@@ -1,0 +1,123 @@
+modulo sovereign_raft;
+importar "../../ciencia/core/exato.omega" como u;
+exportar execute;
+
+# Deterministic Raft transition core for a fixed, authenticated membership.
+# Transport and durable storage are external effects: callers MUST persist the
+# returned hard state before sending replies. No Byzantine-fault claim.
+funcao term_at(log,index) { se(index==0) { retornar 0; } retornar log[index-1][0]; }
+funcao member_has(xs,x) { var i=0;enquanto(i<len(xs)) { se(xs[i]==x) { retornar 1; } i=i+1; } retornar 0; }
+funcao copy_prefix(log,n) { var out=[];var i=0;enquanto(i<n) { push(out,log[i]);i=i+1; } retornar out; }
+funcao check_log(log,term) {
+ se(!islist(log)||len(log)>256) { fail("Raft log cap 256"); }
+ var i=0;var prior=0;
+ enquanto(i<len(log)) {
+  var e=log[i];se(!islist(e)||len(e)!=2||!isnum(e[0])||qden(e[0])!=1||e[0]<1||e[0]>term||e[0]<prior||!isstr(e[1])||len(e[1])>256) { fail("Raft entry"); }
+  prior=e[0];i=i+1;
+ }
+ retornar log;
+}
+funcao execute(r) {
+ var members=r["members"];se(!islist(members)||len(members)<3||len(members)>7||len(members)%2!=1) { fail("Raft fixed odd membership 3..7"); }
+ var i=0;var ids=[];enquanto(i<len(members)) { var id=members[i];se(!isnum(id)||qden(id)!=1||id<0||id>65535||member_has(ids,id)) { fail("Raft member identity"); } push(ids,id);i=i+1; }
+ var self=u::count(r,"self",0,65535);se(!member_has(ids,self)) { fail("Self outside membership"); }
+ var term=0;var vote=-1;var log=[];var commit=0;
+ se(has(r,"hard_state")) {
+  var old=r["hard_state"];term=u::count(old,"term",0,1000000000);vote=old["vote"];
+  se(vote!=-1&&!member_has(ids,vote)) { fail("Persisted vote outside membership"); }
+  log=check_log(old["log"],term);commit=u::count(old,"commit",0,len(log));
+ }
+ var role="follower";var votes=[];var matches=obj();var responses=[];var events=r["events"];
+ se(has(r,"volatile_state")) {
+  var v=r["volatile_state"];role=v["role"];votes=v["votes"];matches=v["matches"];
+  se(role!="follower"&&role!="candidate"&&role!="leader") { fail("Raft volatile role"); }
+  se(!islist(votes)||len(votes)>len(ids)) { fail("Raft volatile votes"); }
+  var j=0;var seen=[];
+  enquanto(j<len(votes)) { se(!member_has(ids,votes[j])||member_has(seen,votes[j])) { fail("Raft volatile vote identity"); } push(seen,votes[j]);j=j+1; }
+  se(role!="follower"&&(vote!=self||!member_has(votes,self))) { fail("Raft candidate hard-state mismatch"); }
+  se(role=="leader"&&len(votes)<=qfloor(len(ids)/2)) { fail("Raft leader without election quorum"); }
+  var ks=keys(matches);se(len(ks)>len(ids)) { fail("Raft volatile matches"); }j=0;
+  enquanto(j<len(ks)) { var peer=number(ks[j]);se(!member_has(ids,peer)||peer==self) { fail("Raft match peer"); } u::integer(matches[ks[j]],0,len(log));j=j+1; }
+ }
+ se(!islist(events)||len(events)>64) { fail("Raft event cap 64"); }
+ i=0;
+ enquanto(i<len(events)) {
+  var ev=events[i];var kind=ev["kind"];var response=obj();
+  se(kind=="timeout") {
+   se(term==1000000000) { fail("Raft term limit"); }
+   term=term+1;vote=self;votes=[self];role="candidate";
+   put(response,"kind","request_votes");put(response,"last_index",len(log));put(response,"last_term",term_at(log,len(log)));
+  }
+  senao { se(kind=="propose") {
+   se(role!="leader"||len(log)==256||!isstr(ev["command"])||len(ev["command"])>256) { fail("Raft proposal state/budget"); }
+   push(log,[term,ev["command"]]);put(response,"kind","replicate");put(response,"index",len(log));
+  }
+  senao {
+   var sender=u::count(ev,"sender",0,65535);var remote=u::count(ev,"term",0,1000000000);
+   se(!member_has(ids,sender)||sender==self) { fail("Raft unauthenticated membership identity"); }
+   se(remote>term) { term=remote;vote=-1;role="follower";votes=[];matches=obj(); }
+   se(kind=="vote_request") {
+    var last=u::count(ev,"last_index",0,256);var lt=u::count(ev,"last_term",0,1000000000);
+    var ours=term_at(log,len(log));var granted=0;
+    se(remote==term&&(vote==-1||vote==sender)&&(lt>ours||(lt==ours&&last>=len(log)))) { vote=sender;granted=1; }
+    put(response,"kind","vote_response");put(response,"granted",granted);
+   }
+   senao { se(kind=="vote_response") {
+    var granted=u::count(ev,"granted",0,1);
+    se(role=="candidate"&&remote==term&&granted&&!member_has(votes,sender)) {
+     push(votes,sender);se(len(votes)>qfloor(len(ids)/2)) { role="leader";matches=obj(); }
+    }
+    put(response,"kind","role");put(response,"role",role);
+   }
+   senao { se(kind=="append") {
+    var prev=u::count(ev,"prev_index",0,256);var pt=u::count(ev,"prev_term",0,1000000000);
+    var entries=check_log(ev["entries"],remote);var leader_commit=u::count(ev,"leader_commit",0,256);var success=0;
+    se(remote==term) {
+     role="follower";
+     se(prev<=len(log)&&term_at(log,prev)==pt) {
+      se(len(entries)>0&&entries[0][0]<pt) { fail("Raft decreasing append term"); }
+      var j=0;var allowed=1;
+      enquanto(j<len(entries)) {
+       var at=prev+j;
+       se(at<len(log)&&log[at][0]!=entries[j][0]&&at<commit) { allowed=0; }
+       se(at<len(log)&&log[at][0]==entries[j][0]&&log[at][1]!=entries[j][1]) { allowed=0; }
+       j=j+1;
+      }
+      se(prev+len(entries)>256) { allowed=0; }
+      se(allowed) {
+       j=0;
+       enquanto(j<len(entries)) {
+        var at=prev+j;
+        se(at<len(log)&&log[at][0]!=entries[j][0]) { log=copy_prefix(log,at); }
+        se(at==len(log)) { push(log,entries[j]); }
+        j=j+1;
+       }
+       var matched=prev+len(entries);var upto=leader_commit;se(upto>matched) { upto=matched; }
+       se(upto>commit) { commit=upto; }success=1;
+      }
+     }
+    }
+    put(response,"kind","append_response");put(response,"success",success);
+    se(success) { put(response,"match",prev+len(entries)); } senao { put(response,"match",0); }
+   }
+   senao { se(kind=="append_response") {
+    var success=u::count(ev,"success",0,1);var matched=u::count(ev,"match",0,256);
+    se(role=="leader"&&remote==term&&success) {
+     se(matched>len(log)) { fail("Raft impossible match index"); }
+     var key=text(sender);se(!has(matches,key)||matched>matches[key]) { put(matches,key,matched); }
+     var index=len(log);
+     enquanto(index>commit) {
+      var count=1;var j=0;
+      enquanto(j<len(ids)) { var key=text(ids[j]);se(ids[j]!=self&&has(matches,key)&&matches[key]>=index) { count=count+1; } j=j+1; }
+      se(count>qfloor(len(ids)/2)&&term_at(log,index)==term) { commit=index; }index=index-1;
+     }
+    }
+    put(response,"kind","commit");put(response,"index",commit);
+   } senao { fail("Unknown Raft event"); } } } }
+  } }
+  put(response,"term",term);push(responses,response);i=i+1;
+ }
+ var hard=obj();put(hard,"term",term);put(hard,"vote",vote);put(hard,"log",log);put(hard,"commit",commit);
+ var volatile=obj();put(volatile,"role",role);put(volatile,"votes",votes);put(volatile,"matches",matches);
+ var out=obj();put(out,"hard_state",hard);put(out,"volatile_state",volatile);put(out,"role",role);put(out,"responses_after_persist",responses);put(out,"requires_durable_barrier",1);retornar out;
+}

@@ -15,6 +15,8 @@ lean_lib Universal where
   srcDir := ".."
 lean_lib Native where
   srcDir := ".."
+lean_lib Sovereign where
+  srcDir := ".."
 lean_lib ScienceAxioms where
   srcDir := "../science_axioms"
   roots := #[`EnergyConservationTheorem, `SecondLawThermodynamics, `SymplecticFormPreservation, `LorentzInvariance, `QuantumUnitarity, `StoichiometricConservation, `GibbsEnergyMinimality, `MassActionLawDerivation, `NeedlemanWunschOptimality, `DeBruijnEulerianEquivalence, `HardyWeinbergStability, `TaylorErrorBoundTheorem, `NewtonRaphsonConvergence, `BareissDivisionFreeTheorem, `GrahamScanConvexity, `LyapunovAsymptoticStability, `KalmanCovariancePositiveDefinite, `NyquistStabilityCriterion]

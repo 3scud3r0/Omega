@@ -1,0 +1,11 @@
+{
+  "DESIGN_NAME": "qpu_exact",
+  "VERILOG_FILES": ["dir::qpu_exact.v"],
+  "CLOCK_PORT": "clk",
+  "CLOCK_PERIOD": 80,
+  "FP_CORE_UTIL": 35,
+  "PL_TARGET_DENSITY_PCT": 45,
+  "DIE_AREA": [0, 0, 700, 700],
+  "FP_SIZING": "absolute",
+  "RUN_HEURISTIC_DIODE_INSERTION": true
+}

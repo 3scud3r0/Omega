@@ -54,3 +54,8 @@ recursive-include omega_episteme *.omega
 recursive-include omega_hive *.omega
 recursive-include omega_gpu *.omega *.wgsl
 recursive-include kernel *.omega *.h *.c *.md *.json
+
+recursive-include sovereign *.omega *.S *.md
+recursive-include hardware/sovereign *.v *.pcf *.json
+recursive-include tools *.py
+recursive-include requirements *.json

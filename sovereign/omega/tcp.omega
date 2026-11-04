@@ -1,0 +1,105 @@
+modulo sovereign_tcp;
+importar "../../ciencia/core/exato.omega" como u;
+exportar execute;
+
+# Bounded passive IPv4/TCP endpoint model. No IP fragmentation, TCP options,
+# simultaneous open, SACK or congestion-control claim. At most one outstanding
+# segment and 4096 receive bytes. The existing Omega bootstrap uses C/GMP.
+funcao octets(xs,limit) {
+ se(!islist(xs)||len(xs)>limit) { fail("Packet byte budget"); }
+ var i=0; enquanto(i<len(xs)) { se(!isnum(xs[i])||qden(xs[i])!=1||xs[i]<0||xs[i]>255) { fail("Invalid byte"); } i=i+1; }
+ retornar xs;
+}
+funcao word(xs,p) { retornar xs[p]*256+xs[p+1]; }
+funcao long(xs,p) { retornar word(xs,p)*65536+word(xs,p+2); }
+funcao add16(xs,n) { push(xs,qfloor(n/256)%256);push(xs,n%256); }
+funcao add32(xs,n) { add16(xs,qfloor(n/65536));add16(xs,n%65536); }
+funcao checksum(xs) {
+ var s=0;var i=0;
+ enquanto(i<len(xs)) { var n=xs[i]*256; se(i+1<len(xs)) { n=n+xs[i+1]; } s=s+n;i=i+2; }
+ enquanto(s>=65536) { s=qfloor(s/65536)+s%65536; }
+ retornar 65535-s;
+}
+funcao part(xs,start,count) { var out=[];var i=0;enquanto(i<count) { push(out,xs[start+i]);i=i+1; } retornar out; }
+funcao extend(xs,ys) { var i=0;enquanto(i<len(ys)) { push(xs,ys[i]);i=i+1; } }
+funcao pseudo(src,dst,length) { var p=[];extend(p,src);extend(p,dst);push(p,0);push(p,6);add16(p,length);retornar p; }
+funcao packet(local,remote,lp,rp,seq,ack,flags,payload,window) {
+ var tcp=[];add16(tcp,lp);add16(tcp,rp);add32(tcp,seq);add32(tcp,ack);
+ push(tcp,80);push(tcp,flags);add16(tcp,window);add16(tcp,0);add16(tcp,0);extend(tcp,payload);
+ var check=pseudo(local,remote,len(tcp));extend(check,tcp);var cs=checksum(check);
+ put(tcp,16,qfloor(cs/256));put(tcp,17,cs%256);
+ var ip=[69,0];add16(ip,20+len(tcp));add16(ip,0);add16(ip,16384);push(ip,64);push(ip,6);add16(ip,0);
+ extend(ip,local);extend(ip,remote);cs=checksum(ip);put(ip,10,qfloor(cs/256));put(ip,11,cs%256);extend(ip,tcp);retornar ip;
+}
+funcao valid(p,local,remote,lp,rp) {
+ se(len(p)<40||p[0]!=69||p[9]!=6||word(p,2)!=len(p)||(word(p,6)!=0&&word(p,6)!=16384)||p[8]==0) { retornar 0; }
+ se(checksum(part(p,0,20))!=0||p[32]!=80||p[33]>=32) { retornar 0; }
+ var i=0;enquanto(i<4) { se(p[12+i]!=remote[i]||p[16+i]!=local[i]) { retornar 0; } i=i+1; }
+ se(word(p,20)!=rp||word(p,22)!=lp) { retornar 0; }
+ var check=pseudo(remote,local,len(p)-20);extend(check,part(p,20,len(p)-20));retornar checksum(check)==0;
+}
+funcao execute(r) {
+ var local=octets(r["local_ip"],4);var remote=octets(r["remote_ip"],4);
+ se(len(local)!=4||len(remote)!=4) { fail("IPv4 address length"); }
+ var lp=u::count(r,"local_port",1,65535);var rp=u::count(r,"remote_port",1,65535);
+ var seq=u::count(r,"isn",0,4294967295);var ack=0;var peer_window=0;var state="LISTEN";var pending=[];var received=[];
+ var events=r["events"];se(!islist(events)||len(events)>128) { fail("TCP event budget"); }
+ var sent=[];var dropped=0;var retransmissions=0;var now=0;var deadline=0;var retries=0;var i=0;
+ enquanto(i<len(events)) {
+  var ev=events[i];var kind=ev["kind"];
+  se(kind=="tick") {
+   var time=u::count(ev,"now",0,1000000000);se(time<now) { fail("Monotonic clock required"); } now=time;
+   se(len(pending)>0&&now>=deadline) {
+    se(retries==5) { state="CLOSED";pending=[]; }
+    senao { push(sent,pending);retransmissions=retransmissions+1;retries=retries+1;deadline=now+1000*u::power(2,retries); }
+   }
+   se(state=="TIME_WAIT"&&now>=deadline) { state="CLOSED"; }
+  }
+  senao { se(kind=="segment") {
+   var p=octets(ev["packet"],1500);
+   se(!valid(p,local,remote,lp,rp)) { dropped=dropped+1; }
+   senao {
+    var ps=long(p,24);var pa=long(p,28);var flags=p[33];var syn=qfloor(flags/2)%2;var rst=qfloor(flags/4)%2;var af=qfloor(flags/16)%2;var fin=flags%2;
+    var payload=part(p,40,len(p)-40);var respond=0;
+    se(state=="LISTEN") {
+     se(syn&&!rst&&!af&&!fin&&len(payload)==0) {
+      ack=(ps+1)%4294967296;pending=packet(local,remote,lp,rp,seq,ack,18,[],4096);push(sent,pending);
+     peer_window=word(p,34);
+      seq=(seq+1)%4294967296;deadline=now+1000;retries=0;state="SYN_RECEIVED";
+     } senao { dropped=dropped+1; }
+    }
+    senao { se(rst&&ps==ack) { state="CLOSED";pending=[]; }
+     senao { se(syn||ps!=ack||!af||pa!=seq||state=="CLOSED") { dropped=dropped+1; }
+      senao {
+       pending=[];peer_window=word(p,34);var accepted=1;
+       se(state=="SYN_RECEIVED") { state="ESTABLISHED"; }
+       se(state=="FIN_WAIT_1") { state="FIN_WAIT_2"; }
+       se(state=="LAST_ACK") { state="CLOSED"; }
+       se(len(payload)>0) {
+        se(state!="ESTABLISHED"||len(received)+len(payload)>4096) { dropped=dropped+1;respond=1;accepted=0; }
+        senao { extend(received,payload);ack=(ack+len(payload))%4294967296;respond=1; }
+       }
+       se(fin&&accepted&&(state=="ESTABLISHED"||state=="FIN_WAIT_2")) {
+        ack=(ack+1)%4294967296;respond=1;
+        se(state=="ESTABLISHED") { state="CLOSE_WAIT"; } senao { state="TIME_WAIT";deadline=now+60000; }
+       }
+       se(respond) { push(sent,packet(local,remote,lp,rp,seq,ack,16,[],4096-len(received))); }
+      }
+     }
+    }
+   }
+  } senao { se(kind=="send") {
+   var payload=octets(ev["payload"],1460);
+   se(state!="ESTABLISHED"||len(pending)>0||len(payload)==0||len(payload)>peer_window) { fail("TCP sender state, peer window or outstanding segment"); }
+   pending=packet(local,remote,lp,rp,seq,ack,24,payload,4096-len(received));push(sent,pending);
+   seq=(seq+len(payload))%4294967296;deadline=now+1000;retries=0;
+  } senao { se(kind=="close") {
+   se((state!="ESTABLISHED"&&state!="CLOSE_WAIT")||len(pending)>0) { fail("TCP close state"); }
+   pending=packet(local,remote,lp,rp,seq,ack,17,[],4096-len(received));push(sent,pending);seq=(seq+1)%4294967296;deadline=now+1000;retries=0;
+   se(state=="CLOSE_WAIT") { state="LAST_ACK"; } senao { state="FIN_WAIT_1"; }
+  } senao { fail("Unknown TCP event"); } } } }
+  i=i+1;
+ }
+ var out=obj();put(out,"state",state);put(out,"sent",sent);put(out,"received",received);put(out,"snd_next",seq);put(out,"rcv_next",ack);
+ put(out,"dropped",dropped);put(out,"retransmissions",retransmissions);put(out,"nic_integrated",0);retornar out;
+}
