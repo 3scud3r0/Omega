@@ -1,0 +1,198 @@
+{
+  "format": "omega-debian-tools-1",
+  "distribution": "trixie",
+  "packages": {
+    "iverilog": {
+      "version": "12.0-2+b1",
+      "path": "pool/main/i/iverilog/iverilog_12.0-2+b1_amd64.deb",
+      "sha256": "febe027d2d3f5a7e570844d55758339ab5490acc09f404f214a8719d89d07056",
+      "bytes": 2046080
+    },
+    "yosys": {
+      "version": "0.52-2",
+      "path": "pool/main/y/yosys/yosys_0.52-2_amd64.deb",
+      "sha256": "c950e58a1f554546a91602e5124eb05019a92040e57b0aaa43cf33b032ee9c40",
+      "bytes": 6226136
+    },
+    "python3-click": {
+      "version": "8.2.0+0.really.8.1.8-1",
+      "path": "pool/main/p/python-click/python3-click_8.2.0+0.really.8.1.8-1_all.deb",
+      "sha256": "a464c9b11930f293c8808cc5ea049830d8645a0d314bfa7e294803cb983ee15e",
+      "bytes": 95388
+    },
+    "yosys-abc": {
+      "version": "0.52-2",
+      "path": "pool/main/y/yosys/yosys-abc_0.52-2_amd64.deb",
+      "sha256": "f54c92c5ce88959f6aedc71c7b01eaf2b39d6c8c3e5f02784b6ce24736dc50e4",
+      "bytes": 4944476
+    },
+    "nextpnr-ice40": {
+      "version": "0.7-1+b2",
+      "path": "pool/main/n/nextpnr/nextpnr-ice40_0.7-1+b2_amd64.deb",
+      "sha256": "1843c76aa004b496d621ab3a5a6d29fc9e8a77d2bfa94b78ab201e1c124c6c78",
+      "bytes": 811584
+    },
+    "nextpnr-ice40-chipdb": {
+      "version": "0.7-1+b2",
+      "path": "pool/main/n/nextpnr/nextpnr-ice40-chipdb_0.7-1+b2_amd64.deb",
+      "sha256": "d2d1f189dcc71f9add5b8e033f969207c25c48240ac2b1609ff4e09be8d6dc66",
+      "bytes": 31508200
+    },
+    "fpga-icestorm": {
+      "version": "0~20250207git7fbf8c0+dfsg1-1",
+      "path": "pool/main/f/fpga-icestorm/fpga-icestorm_0~20250207git7fbf8c0+dfsg1-1_amd64.deb",
+      "sha256": "0110d951ad07ba606c2bcc84992c42dd5212dac460c9533f806fe4102ad129c5",
+      "bytes": 513096
+    },
+    "libftdi1": {
+      "version": "0.20-4+b2",
+      "path": "pool/main/libf/libftdi/libftdi1_0.20-4+b2_amd64.deb",
+      "sha256": "0bf09d33ea3cfe2a1aaf33727006da4384f1065da465cee73c6789dd44451732",
+      "bytes": 17900
+    },
+    "libusb-0.1-4": {
+      "version": "2:0.1.12-35+b1",
+      "path": "pool/main/libu/libusb/libusb-0.1-4_0.1.12-35+b1_amd64.deb",
+      "sha256": "dffa6c8ff5cd6d26827110556d5dd2e2461bf3a67823f12da52a3d7b616125b9",
+      "bytes": 17060
+    },
+    "libjs-sphinxdoc": {
+      "version": "8.1.3-5",
+      "path": "pool/main/s/sphinx/libjs-sphinxdoc_8.1.3-5_all.deb",
+      "sha256": "ec764abfb43e5e8b86bd78ea0d5a97253131ba373e50c28c7d9c08cd1b8a8e3e",
+      "bytes": 30464
+    },
+    "libjs-underscore": {
+      "version": "1.13.4~dfsg+~1.11.4-3",
+      "path": "pool/main/u/underscore/libjs-underscore_1.13.4~dfsg+~1.11.4-3_all.deb",
+      "sha256": "4a0fbc90e7f62ea50c4ac7453352721fa60bb5eac87e9f39a027908faff29015",
+      "bytes": 115632
+    },
+    "sphinx-rtd-theme-common": {
+      "version": "3.0.2+dfsg-2",
+      "path": "pool/main/s/sphinx-rtd-theme/sphinx-rtd-theme-common_3.0.2+dfsg-2_all.deb",
+      "sha256": "1d6c25da42e948f707ad01df5522a289ce0fb69f18e7012b55d1c80a929d040f",
+      "bytes": 1023404
+    },
+    "fonts-font-awesome": {
+      "version": "5.0.10+really4.7.0~dfsg-4.1",
+      "path": "pool/main/f/fonts-font-awesome/fonts-font-awesome_5.0.10+really4.7.0~dfsg-4.1_all.deb",
+      "sha256": "5f09e1adce26d59628a239c538882d53e58978b958233864fc617be9a510018e",
+      "bytes": 517040
+    },
+    "fonts-lato": {
+      "version": "2.015-1",
+      "path": "pool/main/f/fonts-lato/fonts-lato_2.015-1_all.deb",
+      "sha256": "0bd1c095d4646f51ce3e5c002df3cd322c0fbabf13c76a694a0360e1191221e8",
+      "bytes": 2780488
+    },
+    "qemu-system-riscv": {
+      "version": "1:10.0.13+ds-0+deb13u1",
+      "path": "pool/main/q/qemu/qemu-system-riscv_10.0.13+ds-0+deb13u1_amd64.deb",
+      "sha256": "80effad6aa07c09a7532e1b731c04ec9a32c545c2b9597320ec16ae59d2f34a2",
+      "bytes": 7630948
+    },
+    "libaio1t64": {
+      "version": "0.3.113-8+b1",
+      "path": "pool/main/liba/libaio/libaio1t64_0.3.113-8+b1_amd64.deb",
+      "sha256": "490c8a2d116001a5f3b0a6d7a7aabf6a7b629366590dc5c3f75b078e931dd129",
+      "bytes": 14888
+    },
+    "libcapstone5": {
+      "version": "5.0.7-1~deb13u1",
+      "path": "pool/main/c/capstone/libcapstone5_5.0.7-1~deb13u1_amd64.deb",
+      "sha256": "775187a7be26bb0b076d1979a02163b943dbc13eb4adb0efc503223a03c75422",
+      "bytes": 778216
+    },
+    "libfdt1": {
+      "version": "1.7.2-2+b1",
+      "path": "pool/main/d/device-tree-compiler/libfdt1_1.7.2-2+b1_amd64.deb",
+      "sha256": "8e37034d7864807ae2063efcc82fc79aad59069546212e6e0908ed67f9f7e107",
+      "bytes": 19996
+    },
+    "libpmem1": {
+      "version": "1.13.1-1.1+b1",
+      "path": "pool/main/p/pmdk/libpmem1_1.13.1-1.1+b1_amd64.deb",
+      "sha256": "7d972d6958e915ce602e4b90debc6b4b91a01dfea1fe003d0b013756e7d9d863",
+      "bytes": 91708
+    },
+    "libdaxctl1": {
+      "version": "81-1",
+      "path": "pool/main/n/ndctl/libdaxctl1_81-1_amd64.deb",
+      "sha256": "6296eb5c976743ba0defb7a061ef081238ca072cf569c6bb96fd3f9095c58a30",
+      "bytes": 22188
+    },
+    "libndctl6": {
+      "version": "81-1",
+      "path": "pool/main/n/ndctl/libndctl6_81-1_amd64.deb",
+      "sha256": "fe60a05d42e61cb9f49a90b872aa5ca569363b13459ee0d405243c37a7de7c93",
+      "bytes": 62312
+    },
+    "libslirp0": {
+      "version": "4.8.0-1+deb13u1",
+      "path": "pool/main/libs/libslirp/libslirp0_4.8.0-1+deb13u1_amd64.deb",
+      "sha256": "6125698173f8be0d0de01ff897a0df3c5e50fb09f70238b26dd6574aaa0934e1",
+      "bytes": 66544
+    },
+    "liburing2": {
+      "version": "2.9-1",
+      "path": "pool/main/libu/liburing/liburing2_2.9-1_amd64.deb",
+      "sha256": "4b589c00c7a51172aace2cb2fb3d3ff32daf86c644023126dcfcaa840cc941ea",
+      "bytes": 26448
+    },
+    "libvdeplug2t64": {
+      "version": "4.0.1-5.1+b1",
+      "path": "pool/main/v/vdeplug4/libvdeplug2t64_4.0.1-5.1+b1_amd64.deb",
+      "sha256": "01291e2c8e28e91eac6b59c983a3a44e29ad0ddb8622699fbb84cbd5f26334a4",
+      "bytes": 28456
+    },
+    "libexecs1": {
+      "version": "1.4-2+b2",
+      "path": "pool/main/libe/libexecs/libexecs1_1.4-2+b2_amd64.deb",
+      "sha256": "05b578fead365a81141fe834c3b3b6df89d17a050784a237f736489fbd426105",
+      "bytes": 7820
+    },
+    "qemu-system-common": {
+      "version": "1:10.0.13+ds-0+deb13u1",
+      "path": "pool/main/q/qemu/qemu-system-common_10.0.13+ds-0+deb13u1_amd64.deb",
+      "sha256": "3a99dc23c42c66bb7e96dc1f2ba12b1797d154a472fbdb1cfcd822d9fb69e85b",
+      "bytes": 1000628
+    },
+    "libbrlapi0.8": {
+      "version": "6.7-3.1+deb13u3",
+      "path": "pool/main/b/brltty/libbrlapi0.8_6.7-3.1+deb13u3_amd64.deb",
+      "sha256": "d8767805735bfae0edbe793fc8b6f6266ac9e55bec88c3d36b567c41b6438ca2",
+      "bytes": 92960
+    },
+    "libcacard0": {
+      "version": "1:2.8.0-3+b2",
+      "path": "pool/main/libc/libcacard/libcacard0_2.8.0-3+b2_amd64.deb",
+      "sha256": "1d6a8d17b893e54dfea8fe78df16c9a8ab4a6e626f9312881784592d480d9317",
+      "bytes": 90904
+    },
+    "libusbredirparser1t64": {
+      "version": "0.15.0-1",
+      "path": "pool/main/u/usbredir/libusbredirparser1t64_0.15.0-1_amd64.deb",
+      "sha256": "4b039802dac140bae5a6f3fb6341eeeb9ea8c3e4d7b95ad36a07a8c28572f177",
+      "bytes": 19560
+    },
+    "qemu-system-data": {
+      "version": "1:10.0.13+ds-0+deb13u1",
+      "path": "pool/main/q/qemu/qemu-system-data_10.0.13+ds-0+deb13u1_all.deb",
+      "sha256": "a0e03c526cc09d4c2ab20aa19a8c12e916cdc49a170acb16a6563c28f70eafd3",
+      "bytes": 2144176
+    },
+    "opensbi": {
+      "version": "1.6-1",
+      "path": "pool/main/o/opensbi/opensbi_1.6-1_all.deb",
+      "sha256": "dc4a43bd21a0ca11771ed8b19ee6fa8476d1d0f4976bd0b27c0357c699d27e1e",
+      "bytes": 204072
+    },
+    "qemu-user": {
+      "version": "1:10.0.13+ds-0+deb13u1",
+      "path": "pool/main/q/qemu/qemu-user_10.0.13+ds-0+deb13u1_amd64.deb",
+      "sha256": "ca6ede739327a20ae5a3498230c8a3a9a072c586e131bc6bcc1201eb1725e336",
+      "bytes": 71089852
+    }
+  }
+}
