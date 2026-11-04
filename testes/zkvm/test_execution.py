@@ -111,3 +111,13 @@ def test_real_succinct_stark_and_tampering(engine,tmp_path):
         (bytes([proof[0]^128])+proof[1:],image_id,p.journal),(proof,'0'*64,p.journal),(proof,image_id,b'{}')]:
         with pytest.raises(ExecutionFailure):engine.verify(damaged,id,public)
     with pytest.raises(ExecutionFailure):prover.prove(p,[3,8,0,0,0,0,0,0])
+    # Exercise the actual cognitive bridge as well as the lower-level SDK.
+    # This is an execution certificate, distinct from the Lean theorem and
+    # the RV64 specialization verified by test_bicameral.py.
+    from omega_cognition.problem import normalize
+    from omega_cognition.bridge import seal
+    from omega_refine_check.syntax import parse
+    problem=normalize(json.loads((ROOT/'omega_cognition/examples/affine.json').read_text()))
+    raw,certificate=seal(parse('x+1'),problem,prover=configured,verifier=engine.tool)
+    assert raw and certificate['verification']['valid']
+    assert 'not a proof of the RV64 binary' in certificate['scope']
