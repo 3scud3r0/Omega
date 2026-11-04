@@ -1,0 +1,11 @@
+modulo cognitive_jail_policy;
+exportar validate;
+# Data-only policy validator. The Python host enforces these through namespaces,
+# seccomp, watchdog, rlimits and interpreter fuel; this module cannot grant I/O.
+funcao validate(r) {
+ var names=["wall_seconds","cpu_seconds","memory_bytes","stack_bytes","fuel","depth"];
+ var minimum=[1,1,33554432,1048576,1,1];
+ var maximum=[300,240,8589934592,67108864,500000000,512];var i=0;
+ enquanto(i<len(names)) { var n=r[names[i]];se(n%1!=0||n<minimum[i]||n>maximum[i]) { fail("Cognitive jail quota"); }i=i+1; }
+ var out=obj();put(out,"network",0);put(out,"host_write",0);put(out,"policy",r);retornar out;
+}

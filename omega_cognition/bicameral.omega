@@ -1,0 +1,24 @@
+modulo bicameral_state_machine;
+importar "../ginasio.omega" como gym;
+importar "../omega_agent_sandbox/jail.omega" como jail;
+exportar execute;
+funcao execute(r) {
+ se(r["operation"]=="batch") { retornar gym::adversarial_batch(r["request"]); }
+ se(r["operation"]=="jail") { retornar jail::validate(r["request"]); }
+ var s=r["request"];var mode=s["mode"];var phase=s["phase"];var event=s["event"];
+ se(!contains(["strict","empirical","dream","bicameral"],mode)) { fail("Unknown cognitive mode"); }
+ var next="";
+ se(event=="propose"&&phase=="new") { se(mode=="strict") { next="formal_pending"; }senao { next="dreamed"; } }
+ se(event=="debate"&&phase=="dreamed"&&mode!="dream") { next="empirical_pending"; }
+ se(event=="stable"&&phase=="empirical_pending") { next="empirically_stable"; }
+ se(event=="insufficient"&&phase=="empirical_pending") { next="provisional"; }
+ se(event=="counterexample"&&phase=="empirical_pending") { next="falsified"; }
+ se(event=="crystallize"&&phase=="empirically_stable"&&mode=="bicameral") { next="formal_pending"; }
+ se(event=="proved"&&phase=="formal_pending") { next="formal_verified"; }
+ se(event=="unproved"&&phase=="formal_pending") { next="formal_unproved"; }
+ se(event=="emit"&&phase=="formal_verified") { next="native_emitted"; }
+ se(event=="seal"&&phase=="native_emitted") { next="zk_verified"; }
+ se(next=="") { fail("Invalid cognitive transition"); }
+ var out=obj();put(out,"mode",mode);put(out,"phase",next);put(out,"kernel_activated",0);
+ put(out,"formal_admitted",contains(["formal_verified","native_emitted","zk_verified"],next));retornar out;
+}

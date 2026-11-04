@@ -1,0 +1,6 @@
+importar "../bicameral.omega" como cognitive;
+importar "../../std/string.omega" como strings;
+funcao principal() {
+ se(argc()!=2) { fail("Usage: cognitive-native request.json"); }
+ var input=parsejson(read(arg(1)));print(strings::canonical(cognitive::execute(input)));retornar 0;
+}

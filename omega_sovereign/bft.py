@@ -58,7 +58,7 @@ def _worker(pipe,directory,seed,members):
     finally:pipe.close()
 
 
-def experiment(directory,*,max_messages=256):
+def experiment(directory,*,max_messages=256,value=None):
     """f=1 adversary equivocates and withholds; bounded delays, then good round.
 
     Demonstrates this schedule only, not a universal liveness theorem. Four
@@ -66,6 +66,7 @@ def experiment(directory,*,max_messages=256):
     binaries; process 0 is adversarial and its honest effects are suppressed.
     """
     if type(max_messages) is not int or not 32<=max_messages<=1024:raise ValueError('Message budget')
+    if value is not None and (type(value) is not str or len(value)!=64 or any(c not in '0123456789abcdef' for c in value)):raise ValueError('BFT value digest')
     root=Path(directory)
     if root.exists():raise FileExistsError(root)
     root.mkdir(parents=True)
@@ -104,7 +105,7 @@ def experiment(directory,*,max_messages=256):
         for i in range(4):step(i,[])
         # Distinct signed proposals and double votes by member 0. No honest
         # quorum can be assembled in this round; duplicate votes count once.
-        a,b=hashlib.sha256(b'proposal-A').hexdigest(),hashlib.sha256(b'proposal-B').hexdigest()
+        a,b=value or hashlib.sha256(b'proposal-A').hexdigest(),hashlib.sha256(b'proposal-B').hexdigest()
         for i in (1,2,3):
             step(i,[{'kind':'message','message':sign(body(0,'propose',b if i==2 else a),keys[0])}])
             step(i,[{'kind':'message','message':sign(body(0,'prevote',a),keys[0])},
