@@ -57,6 +57,11 @@ def promote(directory,regression,receipt,signature,*,verifier_key,proposer_key,s
                         'regression_sha256':digest(regression)}.items():
         if receipt.get(field)!=value:raise ValueError('Ouroboros subject mismatch: '+field)
         if field!='regression_sha256' and prepared.get(field)!=value:raise ValueError('Modified preparation')
+    # A valid signature must not substitute a different cost experiment for the
+    # measured objective in this audited generation.
+    for field,measured in (('cost_before',record['objective']['before']),('cost_after',record['objective']['after'])):
+        if receipt.get(field)!=measured or prepared.get(field)!=measured:
+            raise ValueError('Ouroboros measured cost mismatch: '+field)
     xml=ET.fromstring(Path(regression).read_bytes())
     properties=[p for p in xml.iter('property') if p.attrib.get('name')=='omega.candidate.sha256']
     if not properties or any(p.attrib.get('value')!=receipt['candidate_sha256'] for p in properties):

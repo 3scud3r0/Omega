@@ -34,7 +34,7 @@
     "omega_self_evolve_v2/cli.py": "b8575d00942ab88242aa895a69a1e6eaf36c4485218a3f7306a483a55b29a71d",
     "omega_self_evolve_v2/cycle.py": "bce443a072974daebf501cbc1447cc4ded24a5b1108f8c5c67e954103f5164a3",
     "omega_self_evolve_v2/ouroboros.omega": "c5287cb527b6757c5237f23baf465be0623ab937d39796bab3eb922710f75d80",
-    "omega_self_evolve_v2/ouroboros.py": "f0196ce09ca74077c69dd1e277ccdce2f9c8c9ffa0b2483a3fc5722211f1a756",
+    "omega_self_evolve_v2/ouroboros.py": "b6a1e8404492beac3fbc7ce6353297b028eef16b85d07ee43cde725026c98780",
     "omega_selfhost/__init__.py": "294962ff80255cebbd3fe6fd985e578a32273bff22a68cc9edce1af422ccd871",
     "omega_selfhost/axiom_policy.py": "77d1bbc9d517291bb6be85efd1d53bb122edfef2e83eb03deddbff70a8fc98c8",
     "omega_selfhost/backend_elf64.omega": "ab9fb082b5a15445be55fe453e1a5e1dbfac99200f471966835c52b37042f870",
@@ -85,6 +85,7 @@
     "sovereign/omega/raft.omega": "aa4b70978f902ad5645e5f879c0cc717e9ef2bafb009e553d7c79de4b8bd874d",
     "sovereign/omega/tcp.omega": "b6273fe26306c3b8bf0c263d9474cadb4f614579165c4a608742877a57286c16",
     "testes/pr21/__init__.py": "8c5d5627c457f70e665395052ed639014960eeb9e9e67a2a4ec4544c80423d51",
+    "testes/pr21/test_admission.py": "74d411319ef1a7181013c1efeb52b83d5f6f7c14f2975cb5e2b74137ccfe14dc",
     "testes/pr21/test_backend.py": "67957191e65bb78fbc30b00822e96f8f579ddea897ea02c1cf068acee4188aa9",
     "testes/pr21/test_proof_pipeline.py": "3bec8325fe569e582e89b4a54b91819e352b9917deca30b2f4347a611103f54b",
     "testes/pr21/test_protocols.py": "3a074e0a4b077f59875696e256c56117ee6ae07734decce99a34b20c7f9effdd",
@@ -175,12 +176,12 @@
     "execution": {
       "argv": [
         "/workspace/.tools/sovereign/usr/bin/qemu-riscv64",
-        "/workspace/Omega/artifacts/pr21/review-dma/loop.elf"
+        "/workspace/Omega/artifacts/pr21/review-admission/loop.elf"
       ],
       "returncode": 0,
       "stdout": "00000000000004c9\n",
       "stderr": "",
-      "wall_seconds": 0.0616549560072599,
+      "wall_seconds": 0.054310213003191166,
       "timed_out": false,
       "sandboxed": true,
       "budget": {
@@ -216,14 +217,14 @@
     "vector_execution": {
       "argv": [
         "/workspace/.tools/sovereign/usr/bin/qemu-riscv64",
-        "/workspace/Omega/artifacts/pr21/review-dma/crypto-fixed",
+        "/workspace/Omega/artifacts/pr21/review-admission/crypto-fixed",
         "x25519",
-        "/workspace/Omega/artifacts/pr21/review-dma/x25519.input"
+        "/workspace/Omega/artifacts/pr21/review-admission/x25519.input"
       ],
       "returncode": 0,
       "stdout": "8520f0098930a754748b7ddcb43ef75a0dbf3a0d26381af4eba4a98eaa9b4e6a\n",
       "stderr": "",
-      "wall_seconds": 0.3884267289977288,
+      "wall_seconds": 0.42044396699930076,
       "timed_out": false,
       "sandboxed": true,
       "budget": {
@@ -279,18 +280,18 @@
           "none",
           "-no-reboot",
           "-kernel",
-          "/workspace/Omega/artifacts/pr21/review-dma/network/node-0.elf",
+          "/workspace/Omega/artifacts/pr21/review-admission/network/node-0.elf",
           "-global",
           "virtio-mmio.force-legacy=false",
           "-netdev",
-          "socket,id=n,listen=127.0.0.1:36535",
+          "socket,id=n,listen=127.0.0.1:34701",
           "-device",
           "virtio-net-device,netdev=n"
         ],
         "returncode": 0,
         "stdout": "OMEGA VIRTIO-NET MUTUAL HMAC PASS\n",
         "stderr": "",
-        "wall_seconds": 0.3466372870025225,
+        "wall_seconds": 0.33821247999730986,
         "timed_out": false,
         "sandboxed": false,
         "budget": {
@@ -328,18 +329,18 @@
           "none",
           "-no-reboot",
           "-kernel",
-          "/workspace/Omega/artifacts/pr21/review-dma/network/node-1.elf",
+          "/workspace/Omega/artifacts/pr21/review-admission/network/node-1.elf",
           "-global",
           "virtio-mmio.force-legacy=false",
           "-netdev",
-          "socket,id=n,connect=127.0.0.1:36535",
+          "socket,id=n,connect=127.0.0.1:34701",
           "-device",
           "virtio-net-device,netdev=n"
         ],
         "returncode": 0,
         "stdout": "OMEGA VIRTIO-NET MUTUAL HMAC PASS\n",
         "stderr": "",
-        "wall_seconds": 0.26750253699719906,
+        "wall_seconds": 0.2545656849979423,
         "timed_out": false,
         "sandboxed": false,
         "budget": {
@@ -366,10 +367,10 @@
   "bft": {
     "format": "omega-bft-process-experiment-1",
     "processes": [
-      164334,
-      164335,
-      164336,
-      164337
+      180618,
+      180619,
+      180620,
+      180621
     ],
     "faults": 1,
     "delivered": 31,
@@ -426,11 +427,11 @@
   },
   "lean": {
     "exit": 0,
-    "seconds": 0.7869577020028373,
+    "seconds": 1.952619614006835,
     "scope": "additive RV64 fragment, quorum lemmas, word select and fixed-work model"
   },
   "tests": {
-    "tests": 37,
+    "tests": 38,
     "errors": 0,
     "failures": 0,
     "skipped": 0
@@ -443,14 +444,14 @@
     "bft/node-1/state.json": "02452a76d1716b96f03aeae1a8bf9842749a0f9a2a6baf8025ce29766ec30d14",
     "bft/node-2/state.json": "02452a76d1716b96f03aeae1a8bf9842749a0f9a2a6baf8025ce29766ec30d14",
     "bft/node-3/state.json": "02452a76d1716b96f03aeae1a8bf9842749a0f9a2a6baf8025ce29766ec30d14",
-    "bft/report.json": "60021eda36bfa9b206d78c43aef8bd1a0f104f21af35eee7b307bc452e37a92a",
+    "bft/report.json": "502df300bf8734ed9e26b4368ac9cd67ddc64069425d36996e93ef19f6fc3d83",
     "crypto-fixed": "2ef9736e5f8438316b66470ac140600dc231955a55ee8b06b9668cdf1aaaca36",
-    "lean.log": "7c3850242818ed286b012304c52ad1a40f3aef3e534acc96b6c4eedbbe184564",
+    "lean.log": "c54da99cb1a527f8a335f1d26d4f0267d4ee857a18e0d7a91351bba903f16e7f",
     "loop.elf": "3f071827434efd9290c45e926e79835829e267cde6e88d58bcdf29e8421a3ca5",
     "loop.omega": "bca658e6b545f85b213aad5ad8501358024f93e91f8d080865e4a4ed7cec6f84",
     "network/node-0.elf": "51023baa0c91facacb47c31d4a2e168ba65d928f55aa1a6a4029ec5756bf91de",
     "network/node-1.elf": "064eec5b7a1c83a58749ac6ad34db4576504e8f3b752d899947223638c577630",
-    "network/report.json": "203b1a3b0443e4693554e3cba0485787d74b845cd5862ace2c237347eabc771a",
+    "network/report.json": "a71b0f01480b0f85a54aec48eb8513f9d3a81591761905bcb13d6b7d543d8e67",
     "ouroboros/generation/bootstrap/compiler.omega": "87ccc986f747212cb537e53747b7688967bd9713fb4b8e83c6ec0fdf3235e83b",
     "ouroboros/generation/bootstrap/stage0": "c2054b260bb90d512092c5b55b7003995e1ea77b460e01d6c14bc93e9dfbb83b",
     "ouroboros/generation/bootstrap/stage0.c": "4c6a1f1bb2b6dfe7a01ab3ca07e3e53f93063f33cd9728fb4132fe95a534b909",
@@ -461,15 +462,15 @@
     "ouroboros/generation/bootstrap/stage3": "c2054b260bb90d512092c5b55b7003995e1ea77b460e01d6c14bc93e9dfbb83b",
     "ouroboros/generation/bootstrap/stage3.c": "4c6a1f1bb2b6dfe7a01ab3ca07e3e53f93063f33cd9728fb4132fe95a534b909",
     "ouroboros/generation/bootstrap/stage4.c": "4c6a1f1bb2b6dfe7a01ab3ca07e3e53f93063f33cd9728fb4132fe95a534b909",
-    "ouroboros/generation/generation.json": "87ff20d100b826bd21cd8dc18170ca8fcf4f3205379fbd617ab8ce182a1807f1",
+    "ouroboros/generation/generation.json": "ad221ca2997685932408d825d462954418756a328a60053f65d4be1d26d77888",
     "ouroboros/generation/optimization.lean": "42f2065247632308b062596cc102ba521e81f5dbeea8959674149145de3f98d8",
     "ouroboros/generation/probe": "01ac544b12a73df403f8d4f3462d48d63643ac84a4c66102a9f2f21ecff41b73",
     "ouroboros/generation/probe.c": "198f12d27982eeb1d4899d42a941fc0ec8dde9d734b19ec019db875bc4b84032",
     "ouroboros/generation/probe.c.opt.json": "0ee4e920f9e1b3e7af03dabe34e49a6a350063c0406f33f0e6cb43576093cede",
     "ouroboros/generation/probe.omega": "5f272b899b7ff3c624567c6b10b07cc57dc0da3f30da5547e1594073e1eec73d",
     "ouroboros/prepared.json": "fb17fdf49f5326c8a1f03e5779d489147c25f42e80f2363eccc1e9b6ecadda8d",
-    "tests.log": "6263640f9c83a650232d0dd7c33734fdf545af86fc5be4e1c1d7dee09a45b6a0",
-    "tests.xml": "5cecd0b7043f495479bc84244975197ec1d010666c0ce17226a1667ac3e53a62",
+    "tests.log": "3fff8c933b835f468d85bce6301edc3cf05d8254aefccdc44669e404d7194dee",
+    "tests.xml": "f804507a8dfdb9f28dddf94ff26cc38b37eaa91a5002ca3c679e1eb22b21bacb",
     "x25519.input": "81d57822b304cb78f225d45c246514748c6a2f34977ec4f8339a4d7adcc49e24"
   }
 }
