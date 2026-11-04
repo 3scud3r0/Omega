@@ -123,10 +123,11 @@ Loops Python são interrompidos por watchdog/CPU, não pelo contador de combust�
 do interpretador Ômega. Os limites de memória são limites de espaço de endereços,
 não uma promessa de RAM reservada por agente.
 
-O prazo do orquestrador é conferido entre etapas; cada subprocesso também tem
-seu próprio limite rígido. Prova Lean, compilação e prova STARK usam os orçamentos
-existentes de suas ferramentas. O prazo global não cancela instantaneamente uma
-etapa confiável em execução. Não se promete suporte a malware que explore bugs
+O prazo do orquestrador é conferido entre ciclos, propostas e candidatos,
+e a cada lote do debate; cada subprocesso também tem seu próprio limite rígido.
+Prova Lean, compilação e prova STARK usam os orçamentos existentes de suas
+ferramentas. Essa sequência de ferramentas confiáveis pode prolongar o ciclo além
+do prazo do orquestrador: esse prazo não é um watchdog global da sequência. Não se promete suporte a malware que explore bugs
 do kernel Linux, ataques microarquiteturais ou hardware físico indisponível.
 
 `report.json`, fontes Lean, especialização nativa e recibos contêm hashes. Os
