@@ -74,7 +74,7 @@
     "omega_sovereign/rv64.py": "62be2f1d81b2f2f00f5e8645c1250ce22133a20615a84f11bdc4f33ea025d763",
     "omega_zk/stark.omega": "e228a822b88be2ff99e5c9c85204619fed76068e237a898f7f22159d60f66bdb",
     "sovereign/baremetal/boot.S": "ba47513ed95f0aab98ddb81cc79f9ffa875feac8d02ce1547cf6b3f6c6a5f272",
-    "sovereign/baremetal/virtio_net.S": "2582711d625cc5df76738fc8ff8b768986a48756cabede822a0fff638d9aaa03",
+    "sovereign/baremetal/virtio_net.S": "bb2121472bbc90a631526dffef7e53c84053ffe8bf32f13a33cac6bda0baf0c2",
     "sovereign/native/bigq.S": "1ce996c22add6c4a3de79b40459d0a80b1207847504a0b87572ab084216665d2",
     "sovereign/native/compiler.S": "c0c53e65c0c8de4bfdc5515483dfcc9376dd7cb69cee90d30377e84cb33ff3c6",
     "sovereign/native/crypto.S": "1f3bab72997494d8592686e72827ab30444de14757da1cb406ff1ef13180dad0",
@@ -84,6 +84,7 @@
     "sovereign/omega/main.omega": "3e993e288560640e10ab647052959aa7471e64d4bff21df482ad3b8f309c8b00",
     "sovereign/omega/raft.omega": "aa4b70978f902ad5645e5f879c0cc717e9ef2bafb009e553d7c79de4b8bd874d",
     "sovereign/omega/tcp.omega": "b6273fe26306c3b8bf0c263d9474cadb4f614579165c4a608742877a57286c16",
+    "testes/pr21/__init__.py": "8c5d5627c457f70e665395052ed639014960eeb9e9e67a2a4ec4544c80423d51",
     "testes/pr21/test_backend.py": "67957191e65bb78fbc30b00822e96f8f579ddea897ea02c1cf068acee4188aa9",
     "testes/pr21/test_proof_pipeline.py": "3bec8325fe569e582e89b4a54b91819e352b9917deca30b2f4347a611103f54b",
     "testes/pr21/test_protocols.py": "3a074e0a4b077f59875696e256c56117ee6ae07734decce99a34b20c7f9effdd",
@@ -174,12 +175,12 @@
     "execution": {
       "argv": [
         "/workspace/.tools/sovereign/usr/bin/qemu-riscv64",
-        "/workspace/Omega/artifacts/pr21/final/loop.elf"
+        "/workspace/Omega/artifacts/pr21/review-dma/loop.elf"
       ],
       "returncode": 0,
       "stdout": "00000000000004c9\n",
       "stderr": "",
-      "wall_seconds": 0.07310098400921561,
+      "wall_seconds": 0.0616549560072599,
       "timed_out": false,
       "sandboxed": true,
       "budget": {
@@ -215,14 +216,14 @@
     "vector_execution": {
       "argv": [
         "/workspace/.tools/sovereign/usr/bin/qemu-riscv64",
-        "/workspace/Omega/artifacts/pr21/final/crypto-fixed",
+        "/workspace/Omega/artifacts/pr21/review-dma/crypto-fixed",
         "x25519",
-        "/workspace/Omega/artifacts/pr21/final/x25519.input"
+        "/workspace/Omega/artifacts/pr21/review-dma/x25519.input"
       ],
       "returncode": 0,
       "stdout": "8520f0098930a754748b7ddcb43ef75a0dbf3a0d26381af4eba4a98eaa9b4e6a\n",
       "stderr": "",
-      "wall_seconds": 0.44083664400386624,
+      "wall_seconds": 0.3884267289977288,
       "timed_out": false,
       "sandboxed": true,
       "budget": {
@@ -244,15 +245,15 @@
     "format": "omega-two-baremetal-nodes-1",
     "builds": [
       {
-        "sha256": "ccb7dc6b2223f3a9e20865a844b0e02b3ec2c1aed9e4fdaea361642a8e146275",
-        "source_sha256": "cff62be58976d017745a94a3d6683d111bb9312deab60b4ef0ea3cb6315c00e8",
-        "bytes": 23492,
+        "sha256": "51023baa0c91facacb47c31d4a2e168ba65d928f55aa1a6a4029ec5756bf91de",
+        "source_sha256": "d7c229e41abbdad7a8e2e308bc78cd31a86bd5b14ff458c60ab53e717e124c7e",
+        "bytes": 23500,
         "role": 0
       },
       {
-        "sha256": "6f071253cd232c52120f818abaefaec3f2231b9a761a6cf23b3760cab50ccaec",
-        "source_sha256": "897dccc057f78c24c5974342da65e423cd87417a372ec02c827412fe82096ce6",
-        "bytes": 23492,
+        "sha256": "064eec5b7a1c83a58749ac6ad34db4576504e8f3b752d899947223638c577630",
+        "source_sha256": "4d284ce02221aa3ce0310ae40a76447ba89587e2507a0b03ea255e1ac8c05379",
+        "bytes": 23500,
         "role": 1
       }
     ],
@@ -278,18 +279,18 @@
           "none",
           "-no-reboot",
           "-kernel",
-          "/workspace/Omega/artifacts/pr21/final/network/node-0.elf",
+          "/workspace/Omega/artifacts/pr21/review-dma/network/node-0.elf",
           "-global",
           "virtio-mmio.force-legacy=false",
           "-netdev",
-          "socket,id=n,listen=127.0.0.1:40907",
+          "socket,id=n,listen=127.0.0.1:36535",
           "-device",
           "virtio-net-device,netdev=n"
         ],
         "returncode": 0,
         "stdout": "OMEGA VIRTIO-NET MUTUAL HMAC PASS\n",
         "stderr": "",
-        "wall_seconds": 0.3408782789920224,
+        "wall_seconds": 0.3466372870025225,
         "timed_out": false,
         "sandboxed": false,
         "budget": {
@@ -327,18 +328,18 @@
           "none",
           "-no-reboot",
           "-kernel",
-          "/workspace/Omega/artifacts/pr21/final/network/node-1.elf",
+          "/workspace/Omega/artifacts/pr21/review-dma/network/node-1.elf",
           "-global",
           "virtio-mmio.force-legacy=false",
           "-netdev",
-          "socket,id=n,connect=127.0.0.1:40907",
+          "socket,id=n,connect=127.0.0.1:36535",
           "-device",
           "virtio-net-device,netdev=n"
         ],
         "returncode": 0,
         "stdout": "OMEGA VIRTIO-NET MUTUAL HMAC PASS\n",
         "stderr": "",
-        "wall_seconds": 0.2644841189903673,
+        "wall_seconds": 0.26750253699719906,
         "timed_out": false,
         "sandboxed": false,
         "budget": {
@@ -365,10 +366,10 @@
   "bft": {
     "format": "omega-bft-process-experiment-1",
     "processes": [
-      160711,
-      160712,
-      160713,
-      160714
+      164334,
+      164335,
+      164336,
+      164337
     ],
     "faults": 1,
     "delivered": 31,
@@ -425,7 +426,7 @@
   },
   "lean": {
     "exit": 0,
-    "seconds": 0.7894220410089474,
+    "seconds": 0.7869577020028373,
     "scope": "additive RV64 fragment, quorum lemmas, word select and fixed-work model"
   },
   "tests": {
@@ -442,14 +443,14 @@
     "bft/node-1/state.json": "02452a76d1716b96f03aeae1a8bf9842749a0f9a2a6baf8025ce29766ec30d14",
     "bft/node-2/state.json": "02452a76d1716b96f03aeae1a8bf9842749a0f9a2a6baf8025ce29766ec30d14",
     "bft/node-3/state.json": "02452a76d1716b96f03aeae1a8bf9842749a0f9a2a6baf8025ce29766ec30d14",
-    "bft/report.json": "b0015fa530363ab53a7bd4034fb8666b9fcc78e959e868954ac5df05af597fb0",
+    "bft/report.json": "60021eda36bfa9b206d78c43aef8bd1a0f104f21af35eee7b307bc452e37a92a",
     "crypto-fixed": "2ef9736e5f8438316b66470ac140600dc231955a55ee8b06b9668cdf1aaaca36",
     "lean.log": "7c3850242818ed286b012304c52ad1a40f3aef3e534acc96b6c4eedbbe184564",
     "loop.elf": "3f071827434efd9290c45e926e79835829e267cde6e88d58bcdf29e8421a3ca5",
     "loop.omega": "bca658e6b545f85b213aad5ad8501358024f93e91f8d080865e4a4ed7cec6f84",
-    "network/node-0.elf": "ccb7dc6b2223f3a9e20865a844b0e02b3ec2c1aed9e4fdaea361642a8e146275",
-    "network/node-1.elf": "6f071253cd232c52120f818abaefaec3f2231b9a761a6cf23b3760cab50ccaec",
-    "network/report.json": "bfe783b3418712dcbbe39c7d152c140440d8d6cfb1662c0448a902594b187c1b",
+    "network/node-0.elf": "51023baa0c91facacb47c31d4a2e168ba65d928f55aa1a6a4029ec5756bf91de",
+    "network/node-1.elf": "064eec5b7a1c83a58749ac6ad34db4576504e8f3b752d899947223638c577630",
+    "network/report.json": "203b1a3b0443e4693554e3cba0485787d74b845cd5862ace2c237347eabc771a",
     "ouroboros/generation/bootstrap/compiler.omega": "87ccc986f747212cb537e53747b7688967bd9713fb4b8e83c6ec0fdf3235e83b",
     "ouroboros/generation/bootstrap/stage0": "c2054b260bb90d512092c5b55b7003995e1ea77b460e01d6c14bc93e9dfbb83b",
     "ouroboros/generation/bootstrap/stage0.c": "4c6a1f1bb2b6dfe7a01ab3ca07e3e53f93063f33cd9728fb4132fe95a534b909",
@@ -460,15 +461,15 @@
     "ouroboros/generation/bootstrap/stage3": "c2054b260bb90d512092c5b55b7003995e1ea77b460e01d6c14bc93e9dfbb83b",
     "ouroboros/generation/bootstrap/stage3.c": "4c6a1f1bb2b6dfe7a01ab3ca07e3e53f93063f33cd9728fb4132fe95a534b909",
     "ouroboros/generation/bootstrap/stage4.c": "4c6a1f1bb2b6dfe7a01ab3ca07e3e53f93063f33cd9728fb4132fe95a534b909",
-    "ouroboros/generation/generation.json": "2480e6cef008ec98127fc1a51be47d5c2987282ee2be874e7e0d8f48b48f0ceb",
+    "ouroboros/generation/generation.json": "87ff20d100b826bd21cd8dc18170ca8fcf4f3205379fbd617ab8ce182a1807f1",
     "ouroboros/generation/optimization.lean": "42f2065247632308b062596cc102ba521e81f5dbeea8959674149145de3f98d8",
     "ouroboros/generation/probe": "01ac544b12a73df403f8d4f3462d48d63643ac84a4c66102a9f2f21ecff41b73",
     "ouroboros/generation/probe.c": "198f12d27982eeb1d4899d42a941fc0ec8dde9d734b19ec019db875bc4b84032",
     "ouroboros/generation/probe.c.opt.json": "0ee4e920f9e1b3e7af03dabe34e49a6a350063c0406f33f0e6cb43576093cede",
     "ouroboros/generation/probe.omega": "5f272b899b7ff3c624567c6b10b07cc57dc0da3f30da5547e1594073e1eec73d",
     "ouroboros/prepared.json": "fb17fdf49f5326c8a1f03e5779d489147c25f42e80f2363eccc1e9b6ecadda8d",
-    "tests.log": "fe887ed55d903b7f5a79a8f547b9b244c433252a5a4e113503fb60c7ae7cb01e",
-    "tests.xml": "5a128296518d497507f20ec104b777b4d29aa2a9d4e899baa3706dffed1f6a15",
+    "tests.log": "6263640f9c83a650232d0dd7c33734fdf545af86fc5be4e1c1d7dee09a45b6a0",
+    "tests.xml": "5cecd0b7043f495479bc84244975197ec1d010666c0ce17226a1667ac3e53a62",
     "x25519.input": "81d57822b304cb78f225d45c246514748c6a2f34977ec4f8339a4d7adcc49e24"
   }
 }

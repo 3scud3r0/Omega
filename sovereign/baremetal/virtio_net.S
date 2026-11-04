@@ -44,6 +44,8 @@ net_rx_poll:
     bne s0,zero,net_rx_poll
     j net_fail
 net_rx_ready:
+    # Acquire device DMA writes after observing the used index.
+    fence
     # Exactly one outstanding descriptor; used ring wraps at eight entries.
     andi t2,t2,7
     slli t2,t2,3
@@ -428,6 +430,7 @@ net_tx_poll:
     bne s2,zero,net_tx_poll
     j net_fail
 net_tx_done:
+    fence
     leave
 net_pass_message:
     .asciz "OMEGA VIRTIO-NET MUTUAL HMAC PASS\n"
