@@ -5,7 +5,7 @@ AIR/FRI para uma recorrência Goldilocks, sem conhecimento zero. Eles não são
 aceitos pelo novo verificador de execução.
 
 A integração em `risc0/` fixa RISC Zero 3.0.3 e seu kernel de compatibilidade
-2.2.3, com todas as dependências transitivas/checksums em Cargo.lock. O provador
+2.2.0, com todas as dependências transitivas/checksums em Cargo.lock. O provador
 é local, em CPU. O verificador aceita somente `SuccinctReceipt`, confere a
 identidade esperada da imagem e o journal público esperado, e rejeita recibos
 Fake/Composite, bytes extras, falhas de execução e adulterações. O modo de
@@ -64,3 +64,8 @@ O workflow `zkvm.yml` fornece ambos e exige geração/verificação/adulteraçã
 A segurança depende do protocolo e implementação RISC Zero, hashes e parâmetros
 fixados; não foi demonstrada em Lean neste repositório. Não há evidência de
 50 KB/5 ms, nem de provas para dez horas de treinamento, nesta entrega.
+
+O lockfile mantém a família de crates publicada com o SDK 3.0.3 (circuitos
+4.0.2 e ZKP 3.0.2). Atualizar componentes transitivos separadamente pode quebrar
+as APIs do provador, mesmo em versões patch. O CI compila o provador completo
+com `--locked`; o build do verificador isolado não detecta essas incompatibilidades.
