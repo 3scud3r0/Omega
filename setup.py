@@ -12,7 +12,7 @@ class NativeBuild(build_py):
         output=Path(self.build_lib)/'omega_native'/'_sources'
         copyfile(root/'omega_kernel.omega',Path(self.build_lib)/'omega_kernel'/'omega_kernel.omega')
         copyfile(root/'omega_singularity.omega',Path(self.build_lib)/'omega_recursive'/'omega_singularity.omega')
-        files=[p for directory in ('sovereign','omega_brain','omega_singularity','omega_episteme','omega_hive','omega_gpu','kernel','omega_core','omega_ml','ciencia','agentes_cientificos','std','runtime','tools','omega_ingest','civilizacao_agentes','incubadora_continua','sociedade_hierarquica','metamorfose_cognitiva','fabrica_descobertas','imunologia_sistemica','infraestrutura_soberana') for p in (root/directory).rglob('*') if p.suffix in ('.omega','.h','.c','.wgsl','.S')]
+        files=[p for directory in ('omega_selfhost','omega_net','omega_zk','omega_security','omega_self_evolve_v2','sovereign','omega_brain','omega_singularity','omega_episteme','omega_hive','omega_gpu','kernel','omega_core','omega_ml','ciencia','agentes_cientificos','std','runtime','tools','omega_ingest','civilizacao_agentes','incubadora_continua','sociedade_hierarquica','metamorfose_cognitiva','fabrica_descobertas','imunologia_sistemica','infraestrutura_soberana') for p in (root/directory).rglob('*') if p.suffix in ('.omega','.h','.c','.wgsl','.S')]
         files.extend((root/'hardware/sovereign').glob('*'))
         files.append(root/'ciencia/catalogo.json')
         files.extend((root/'omega_singularity/examples').glob('*.json'))

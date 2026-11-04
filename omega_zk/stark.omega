@@ -1,0 +1,24 @@
+modulo omega_air_fft;
+importar "../ciencia/core/exato.omega" como u;
+exportar execute;
+# Exact Goldilocks FFT/AIR reference in Omega. The existing Python AIR/FRI
+# verifier checks the resulting quadratic trace; this module does NOT claim ZK
+# privacy, arbitrary CPU programs, or a security proof of Fiat-Shamir/FRI.
+funcao fp(x) { retornar u::rem_int(x,18446744069414584321); }
+funcao power(a,n) { var out=1;a=fp(a);enquanto(n>0) { se(u::rem_int(n,2)==1) { out=fp(out*a); }a=fp(a*a);n=qfloor(n/2); }retornar out; }
+funcao fft(xs,root) {
+ se(len(xs)==1) { retornar xs; }var even=[];var odd=[];var i=0;
+ enquanto(i<len(xs)) { push(even,xs[i]);push(odd,xs[i+1]);i=i+2; }
+ even=fft(even,fp(root*root));odd=fft(odd,fp(root*root));var result=u::zeros(len(xs));var w=1;i=0;
+ enquanto(i<len(xs)/2) { var z=fp(w*odd[i]);put(result,i,fp(even[i]+z));put(result,i+len(xs)/2,fp(even[i]-z));w=fp(w*root);i=i+1; }retornar result;
+}
+# Pre: steps power-of-two 8..128, canonical field inputs. Post: every AIR row
+# has zero transition residual and returned coefficients interpolate that trace.
+funcao execute(r) {
+ var steps=u::count(r,"steps",8,128);var check=steps;enquanto(check%2==0) { check=check/2; }se(check!=1) { fail("AIR steps power of two"); }
+ var start=u::count(r,"start",0,18446744069414584320);var c=u::count(r,"c",0,18446744069414584320);var trace=[start];var residuals=[];var i=1;
+ enquanto(i<steps) { var next=fp(trace[i-1]*trace[i-1]+c);push(trace,next);push(residuals,fp(next-trace[i-1]*trace[i-1]-c));i=i+1; }
+ var root=power(7,18446744069414584320/steps);var inverse=power(root,18446744069414584319);var coefficients=fft(trace,inverse);var scale=power(steps,18446744069414584319);i=0;
+ enquanto(i<steps) { put(coefficients,i,fp(coefficients[i]*scale));i=i+1; }
+ var out=obj();put(out,"trace",trace);put(out,"residuals",residuals);put(out,"coefficients",coefficients);put(out,"end",trace[len(trace)-1]);put(out,"field",18446744069414584321);put(out,"zero_knowledge",0);retornar out;
+}

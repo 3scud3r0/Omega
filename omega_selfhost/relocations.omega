@@ -1,0 +1,35 @@
+modulo riscv_internal_linker;
+importar "../kernel/omega/assembler.omega" como a;
+importar "../ciencia/core/exato.omega" como u;
+exportar resolve;
+funcao patch(bytes,position,word) { var i=0;enquanto(i<4) { put(bytes,position+i,word%256);word=qfloor(word/256);i=i+1; } }
+funcao read32(bytes,position) { retornar bytes[position]+bytes[position+1]*256+bytes[position+2]*65536+bytes[position+3]*16777216; }
+# Pre: aligned relocation offsets and unique, defined symbols. LO12_I names a
+# HI20 anchor, not the target: its PC is the AUIPC PC per the RISC-V psABI.
+funcao resolve(s,fixups) {
+ var bytes=s["bytes"];var symbols=s["labels"];var sites=[];var highs=obj();var i=0;
+ se(len(fixups)>256) { fail("Relocation budget"); }
+ enquanto(i<len(fixups)) {
+  var f=fixups[i];var kind=f[0];var at=u::integer(f[1],0,len(bytes)-4);
+  se(at%4!=0||contains(sites,at)) { fail("Overlapping/misaligned relocation"); }push(sites,at);
+  se(kind=="R_RISCV_CALL"||kind=="R_RISCV_PCREL_HI20") {
+   se(!has(symbols,f[2])) { fail("Unresolved symbol"); }
+   var delta=symbols[f[2]]-at;u::integer(delta,-2147483648,2147481599);
+   var hi=qfloor((delta+2048)/4096);var lo=delta-hi*4096;var original=read32(bytes,at);
+   se(original%128!=23) { fail("HI20 requires AUIPC"); }
+   patch(bytes,at,original%4096+u::rem_int(hi,1048576)*4096);put(highs,text(at),[lo,qfloor(original/128)%32]);
+   se(kind=="R_RISCV_CALL") {
+    se(at+8>len(bytes)||contains(sites,at+4)) { fail("CALL pair bounds"); }push(sites,at+4);
+    var low=read32(bytes,at+4);se(low%128!=103||qfloor(low/32768)%32!=qfloor(original/128)%32) { fail("CALL requires matching JALR"); }
+    patch(bytes,at+4,low%1048576+u::rem_int(lo,4096)*1048576);
+   }
+  } senao { se(kind!="R_RISCV_PCREL_LO12_I") { fail("Unsupported relocation"); } }
+  i=i+1;
+ }
+ i=0;enquanto(i<len(fixups)) { var f=fixups[i];se(f[0]=="R_RISCV_PCREL_LO12_I") {
+  se(!has(highs,text(f[2]))) { fail("LO12 missing HI20 anchor"); }var pair=highs[text(f[2])];var old=read32(bytes,f[1]);
+  se(!contains([3,19,103],old%128)||qfloor(old/32768)%32!=pair[1]) { fail("LO12 base mismatch"); }
+  patch(bytes,f[1],old%1048576+u::rem_int(pair[0],4096)*1048576);
+ }i=i+1; }
+ retornar bytes;
+}

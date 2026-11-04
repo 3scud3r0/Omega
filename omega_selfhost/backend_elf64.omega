@@ -1,0 +1,121 @@
+modulo omega_native_elf64;
+importar "regalloc.omega" como alloc;
+importar "relocations.omega" como reloc;
+importar "procedural_parser.omega" como parser;
+importar "../kernel/omega/assembler.omega" como a;
+importar "../kernel/omega/riscv64.omega" como rv;
+importar "../ciencia/core/exato.omega" como u;
+exportar compile;
+
+# Closed checked-i64 procedural fragment: principal(), mutable scalars, lexical
+# blocks, comparisons, if/else, while/break, return. No tensors/calls/effects.
+# Every emitted instruction is RV64IM (valid on RV64GC); no FP/RVC ABI claim.
+funcao fresh(s) { var n=s["next"];se(n>=240) { fail("Native virtual-register budget 240"); }put(s,"next",n+1);retornar n; }
+funcao emit(s,x) { se(len(s["ir"])>=4096) { fail("Native IR budget"); }push(s["ir"],x); }
+funcao clone(env) { retornar parsejson(json(env)); }
+funcao expr(s,e,env) {
+ var dst=fresh(s);var op=e[0];
+ se(op=="n") { var n=number(e[1]);u::integer(n,-9223372036854775808,9223372036854775807);emit(s,["const",dst,n]); }
+ senao { se(op=="v") { se(!has(env,e[1])) { fail("Unbound native variable"); }emit(s,["move",dst,env[e[1]]]); }
+ senao { se(op=="un") {
+  se(e[1]=="-"&&e[2][0]=="n"&&number(e[2][1])==9223372036854775808) { emit(s,["const",dst,-9223372036854775808]); }
+  senao { var x=expr(s,e[2],env);emit(s,["un",dst,e[1],x]); }
+ }
+ senao { se(op=="bin") {
+  se(contains(["&&","||"],e[1])) { fail("Short-circuit Boolean lowering not admitted"); }
+  var x=expr(s,e[2],env);var y=expr(s,e[3],env);emit(s,["bin",dst,e[1],x,y]);
+ } senao { fail("Expression outside checked-i64 native fragment"); } } }
+ }
+ retornar dst;
+}
+funcao lower(s,body,env,stop) {
+ var i=0;enquanto(i<len(body)) {
+  var x=body[i];var op=x[0];
+  se(op=="var"||op=="set") {
+   var value=expr(s,x[2],env);var dst=0;
+   se(op=="var") { se(has(env,x[1])) { fail("Native shadow/redeclaration"); }dst=fresh(s);put(env,x[1],dst); }
+   senao { se(!has(env,x[1])) { fail("Unbound assignment"); }dst=env[x[1]]; }
+   emit(s,["move",dst,value]);
+  } senao { se(op=="return") { emit(s,["return",expr(s,x[1],env)]); }
+  senao { se(op=="break") { se(stop=="") { fail("Break outside loop"); }emit(s,["jump",stop]); }
+  senao { se(op=="se") {
+   var no="else_"+text(len(s["ir"]));var end="end_"+text(len(s["ir"]));
+   emit(s,["zero",expr(s,x[1],env),no]);lower(s,x[2],clone(env),stop);emit(s,["jump",end]);emit(s,["label",no]);lower(s,x[3],clone(env),stop);emit(s,["label",end]);
+  } senao { se(op=="enquanto") {
+   put(s,"loop",1);var begin="loop_"+text(len(s["ir"]));var end="loop_end_"+text(len(s["ir"]));emit(s,["label",begin]);
+   emit(s,["zero",expr(s,x[1],env),end]);lower(s,x[2],clone(env),end);emit(s,["jump",begin]);emit(s,["label",end]);
+  } senao { fail("Statement outside native fragment"); } } } }
+  }i=i+1;
+ }
+}
+funcao touch(spans,id,pos) { var key=text(id);se(!has(spans,key)) { put(spans,key,[id,pos,pos]); }senao { put(spans[key],2,pos); } }
+funcao intervals(s) {
+ var spans=obj();var i=0;enquanto(i<len(s["ir"])) {
+  var x=s["ir"][i];var op=x[0];
+  se(contains(["const","move","un","bin"],op)) { touch(spans,x[1],i); }
+  se(op=="move") { touch(spans,x[2],i); }
+  se(op=="un") { touch(spans,x[3],i); }
+  se(op=="bin") { touch(spans,x[3],i);touch(spans,x[4],i); }
+  se(op=="zero"||op=="return") { touch(spans,x[1],i); }i=i+1;
+ }
+ var out=[];var ks=keys(spans);i=0;enquanto(i<len(ks)) { var x=spans[ks[i]];
+  # Conservative whole-function intervals in the presence of loops. This
+  # sacrifices allocation quality rather than dropping back-edge live values.
+  se(s["loop"]) { put(x,0,number(ks[i]));put(x,1,0);put(x,2,len(s["ir"])-1); }
+  push(out,x);i=i+1;
+ }retornar out;
+}
+funcao ins(s,op,f3,rd,rs1,rs2,f7) { a::word(s,op+rd*128+f3*4096+rs1*32768+rs2*1048576+f7*33554432); }
+funcao imm(s,op,f3,rd,rs1,value) { u::integer(value,-2048,2047);a::word(s,op+rd*128+f3*4096+rs1*32768+u::rem_int(value,4096)*1048576); }
+funcao store(s,reg,offset,width) { u::integer(offset,-2048,2047);var v=u::rem_int(offset,4096);a::word(s,35+(v%32)*128+width*4096+2*32768+reg*1048576+qfloor(v/32)*33554432); }
+funcao getv(s,locations,id,rd) { var loc=locations[text(id)];se(loc[0]=="reg") { imm(s,19,0,rd,loc[1],0); }senao { imm(s,3,3,rd,2,loc[1]); } }
+funcao setv(s,locations,id,rs) { var loc=locations[text(id)];se(loc[0]=="reg") { imm(s,19,0,loc[1],rs,0); }senao { store(s,rs,loc[1],3); } }
+funcao half(s,n) { a::octet(s,n);a::octet(s,qfloor(n/256)); }
+funcao strbytes(s,textvalue) { var i=0;enquanto(i<len(textvalue)) { var c=textvalue[i];var alphabet="_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.";var j=0;var byte=0;
+  enquanto(j<len(alphabet)) { se(alphabet[j]==c) { se(j==0) { byte=95; }senao { se(j<=26) { byte=96+j; }senao { se(j<=52) { byte=64+j-26; }senao { se(j<=62) { byte=47+j-52; }senao { byte=46; } } } } }j=j+1; }
+  se(byte==0) { fail("ELF symbol character"); }a::octet(s,byte);i=i+1;
+ }a::octet(s,0); }
+funcao section(s,name,type,flags,addr,offset,size,link,info,align,entsize) { a::word(s,name);a::word(s,type);a::wide(s,flags);a::wide(s,addr);a::wide(s,offset);a::wide(s,size);a::word(s,link);a::word(s,info);a::wide(s,align);a::wide(s,entsize); }
+funcao sym(s,name,info,value) { a::word(s,name);a::octet(s,info);a::octet(s,0);half(s,1);a::wide(s,value);a::wide(s,0); }
+funcao compile(r) {
+ var fs=parser::parse(r["source"]);se(len(fs)!=1||fs[0][0]!="principal"||len(fs[0][1])!=0) { fail("Native entry: principal() only"); }
+ var state=obj();put(state,"next",0);put(state,"ir",[]);put(state,"loop",0);lower(state,fs[0][2],obj(),"");
+ emit(state,["trap"]);var ar=obj();put(ar,"intervals",intervals(state));se(has(r,"registers")) { put(ar,"registers",r["registers"]); }var allocation=alloc::allocate(ar);var loc=allocation["locations"];
+ var frame=allocation["frame_bytes"];se(frame>2032) { fail("Native spill frame budget"); }
+ var code=a::create();var fixes=[];a::mark(code,"_start");imm(code,19,0,2,2,-frame);
+ var at=len(code["bytes"]);a::word(code,151);a::word(code,32999);push(fixes,["R_RISCV_CALL",at,"main_body"]);
+ # Hex formatting uses a real HI20/LO12_I pair to address .rodata.
+ at=len(code["bytes"]);a::word(code,31*128+23);a::word(code,31*128+31*32768+19);push(fixes,["R_RISCV_PCREL_HI20",at,"__digits"]);push(fixes,["R_RISCV_PCREL_LO12_I",at+4,at]);
+ imm(code,19,0,6,5,0);rv::constant(code,28,15);a::mark(code,"hex_loop");imm(code,19,7,7,6,15);ins(code,51,0,7,7,31,0);imm(code,3,4,7,7,0);ins(code,51,0,29,2,28,0);a::word(code,35+29*32768+7*1048576);
+ imm(code,19,5,6,6,4);imm(code,19,0,28,28,-1);
+ # blt t3,zero,+8 ; jal hex_loop.
+ a::word(code,99+4*256+4*4096+28*32768);a::fixup(code,"rv-jal","hex_loop",0);
+ rv::constant(code,7,10);store(code,7,16,0);rv::constant(code,30,0);a::mark(code,"write_loop");rv::constant(code,10,1);ins(code,51,0,11,2,30,0);rv::constant(code,12,17);ins(code,51,0,12,12,30,32);rv::constant(code,17,64);a::word(code,115);
+ rv::constant(code,7,-4);ins(code,51,0,5,10,0,0);ins(code,51,0,6,7,0,0);rv::binary(code,"==");a::word(code,99+4*256+5*32768);a::fixup(code,"rv-jal","write_loop",0);
+ # Positive progress is mandatory; 17 bytes fit PIPE_BUF, still handle partial writes.
+ a::word(code,99+4*256+4*4096+10*1048576);a::fixup(code,"rv-jal","error_io",0);ins(code,51,0,30,30,10,0);rv::constant(code,7,17);a::word(code,99+4*256+5*4096+30*32768+7*1048576);a::fixup(code,"rv-jal","write_loop",0);
+ rv::constant(code,10,0);rv::constant(code,17,93);a::word(code,115);
+ var errors=["error_overflow","error_zero","error_nonintegral","error_io","error_fallthrough"];var i=0;enquanto(i<len(errors)) { a::mark(code,errors[i]);rv::constant(code,10,70+i);rv::constant(code,17,93);a::word(code,115);i=i+1; }
+ a::mark(code,"main_body");i=0;enquanto(i<len(state["ir"])) { var x=state["ir"][i];var op=x[0];
+  se(op=="const") { rv::constant(code,5,x[2]);setv(code,loc,x[1],5); }
+  se(op=="move") { getv(code,loc,x[2],5);setv(code,loc,x[1],5); }
+  se(op=="un") { getv(code,loc,x[3],5);rv::unary(code,x[2]);setv(code,loc,x[1],5); }
+  se(op=="bin") { getv(code,loc,x[3],5);getv(code,loc,x[4],6);rv::binary(code,x[2]);setv(code,loc,x[1],5); }
+  se(op=="label") { a::mark(code,x[1]); }
+  se(op=="jump") { a::fixup(code,"rv-jal",x[1],0); }
+  se(op=="zero") { getv(code,loc,x[1],5);rv::zero_branch(code,x[2]); }
+  se(op=="return") { getv(code,loc,x[1],5);a::word(code,32871); }
+  se(op=="trap") { a::fixup(code,"rv-jal","error_fallthrough",0); }i=i+1;
+ }
+ a::resolve(code);var textlen=len(code["bytes"]);enquanto(len(code["bytes"])%8!=0) { a::octet(code,0); }a::mark(code,"__digits");var rooffset=len(code["bytes"]);a::emit(code,[48,49,50,51,52,53,54,55,56,57,97,98,99,100,101,102]);reloc::resolve(code,fixes);
+ var str=a::create();a::octet(str,0);var symbols=[];var names=keys(code["labels"]);i=0;enquanto(i<len(names)) { se(names[i]!="_start"&&names[i]!="__digits") { push(symbols,[names[i],len(str["bytes"]),code["labels"][names[i]]]);strbytes(str,names[i]); }i=i+1; }var startname=len(str["bytes"]);strbytes(str,"_start");
+ var table=a::create();var j=0;enquanto(j<24) { a::octet(table,0);j=j+1; }i=0;enquanto(i<len(symbols)) { sym(table,symbols[i][1],2,4198400+symbols[i][2]);i=i+1; }sym(table,startname,18,4198400);
+ var shstr=a::create();a::octet(shstr,0);var sn=[];var sections=[".text",".rodata",".symtab",".strtab",".shstrtab"];i=0;enquanto(i<len(sections)) { push(sn,len(shstr["bytes"]));strbytes(shstr,sections[i]);i=i+1; }
+ var stroff=4096+len(code["bytes"]);var symoff=qfloor((stroff+len(str["bytes"])+7)/8)*8;var shstroff=symoff+len(table["bytes"]);var shoff=qfloor((shstroff+len(shstr["bytes"])+7)/8)*8;
+ var file=a::create();a::emit(file,[127,69,76,70,2,1,1,0,0,0,0,0,0,0,0,0]);half(file,2);half(file,243);a::word(file,1);a::wide(file,4198400);a::wide(file,64);a::wide(file,shoff);a::word(file,0);half(file,64);half(file,56);half(file,2);half(file,64);half(file,6);half(file,5);
+ a::word(file,1);a::word(file,5);a::wide(file,0);a::wide(file,4194304);a::wide(file,4194304);a::wide(file,stroff);a::wide(file,stroff);a::wide(file,4096);
+ a::word(file,1685382481);a::word(file,6);j=0;enquanto(j<5) { a::wide(file,0);j=j+1; }a::wide(file,16);
+ enquanto(len(file["bytes"])<4096) { a::octet(file,0); }a::emit(file,code["bytes"]);a::emit(file,str["bytes"]);enquanto(len(file["bytes"])<symoff) { a::octet(file,0); }a::emit(file,table["bytes"]);a::emit(file,shstr["bytes"]);enquanto(len(file["bytes"])<shoff) { a::octet(file,0); }
+ j=0;enquanto(j<64) { a::octet(file,0);j=j+1; }section(file,sn[0],1,6,4198400,4096,textlen,0,0,4,0);section(file,sn[1],1,2,4198400+rooffset,4096+rooffset,16,0,0,8,0);section(file,sn[2],2,0,0,symoff,len(table["bytes"]),4,len(symbols)+1,8,24);section(file,sn[3],3,0,0,stroff,len(str["bytes"]),0,0,1,0);section(file,sn[4],3,0,0,shstroff,len(shstr["bytes"]),0,0,1,0);
+ var out=obj();put(out,"elf_hex",a::hex(file["bytes"]));put(out,"allocation",allocation);put(out,"ir",state["ir"]);put(out,"relocations",fixes);put(out,"semantics","checked-i64-loops-v1");put(out,"target","rv64im-linux");put(out,"external_linker",0);retornar out;
+}

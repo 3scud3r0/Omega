@@ -1,11 +1,25 @@
 importar "tcp.omega" como tcp;
+importar "../../omega_net/transport.omega" como transport;
+importar "../../omega_zk/stark.omega" como stark;
+importar "../../omega_security/crypto.omega" como crypto;
+importar "../../omega_self_evolve_v2/ouroboros.omega" como ouroboros;
+importar "../../civilizacao_agentes/bft_consensus.omega" como bft;
+importar "../../omega_selfhost/backend_elf64.omega" como backend;
+importar "../../omega_selfhost/regalloc.omega" como alloc;
 importar "raft.omega" como raft;
 importar "../../std/string.omega" como strings;
 funcao principal() {
  se(argc()!=2) { fail("Usage: sovereign-models request.json"); }
  var input=parsejson(read(arg(1)));var out=obj();
- se(input["operation"]=="tcp") { out=tcp::execute(input["request"]); }
+ se(input["operation"]=="transport") { out=transport::execute(input["request"]); }
+senao { se(input["operation"]=="stark") { out=stark::execute(input["request"]); }
+senao { se(input["operation"]=="crypto") { out=crypto::verify_batch(input["request"]); }
+senao { se(input["operation"]=="ouroboros") { out=ouroboros::execute(input["request"]); }
+senao { se(input["operation"]=="bft") { out=bft::execute(input["request"]); }
+senao { se(input["operation"]=="backend") { out=backend::compile(input["request"]); }
+senao { se(input["operation"]=="regalloc") { out=alloc::allocate(input["request"]); }
+senao { se(input["operation"]=="tcp") { out=tcp::execute(input["request"]); }
  senao { se(input["operation"]=="raft") { out=raft::execute(input["request"]); }
  senao { fail("Unknown sovereign model"); } }
- print(strings::canonical(out));retornar 0;
+ } } } } } } } print(strings::canonical(out));retornar 0;
 }

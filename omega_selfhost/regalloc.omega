@@ -1,0 +1,42 @@
+modulo native_linear_scan;
+importar "../ciencia/core/exato.omega" como u;
+exportar allocate;
+
+# Pre: unique virtual IDs 0..255, inclusive intervals [start,end], <=4096
+# positions. Post: overlapping register intervals never share a physical GPR;
+# spilled values have unique eight-byte slots. Reserved ABI/scratch GPRs excluded.
+funcao allocate(r) {
+ var raw=r["intervals"];var pool=[9,18,19,20,21,22,23,24,25,26,27];
+ se(has(r,"registers")) { pool=r["registers"]; }
+ se(!islist(pool)||len(pool)<1||len(pool)>11||!islist(raw)||len(raw)>256) { fail("Linear scan budget"); }
+ var seen=[];var i=0;
+ enquanto(i<len(pool)) { u::integer(pool[i],0,31);se(!contains([9,18,19,20,21,22,23,24,25,26,27],pool[i])||contains(seen,pool[i])) { fail("Reserved/repeated register"); }push(seen,pool[i]);i=i+1; }
+ var intervals=[];seen=[];i=0;
+ enquanto(i<len(raw)) {
+  var x=raw[i];se(!islist(x)||len(x)!=3) { fail("Interval shape"); }
+  u::integer(x[0],0,255);u::integer(x[1],0,4095);u::integer(x[2],x[1],4095);
+  se(contains(seen,x[0])) { fail("Duplicate virtual register"); }push(seen,x[0]);push(intervals,x);i=i+1;
+ }
+ # Stable insertion sort provides deterministic tie breaking by virtual ID.
+ i=1;enquanto(i<len(intervals)) { var j=i;enquanto(j>0&&(intervals[j][1]<intervals[j-1][1]||(intervals[j][1]==intervals[j-1][1]&&intervals[j][0]<intervals[j-1][0]))) { var tmp=intervals[j];put(intervals,j,intervals[j-1]);put(intervals,j-1,tmp);j=j-1; }i=i+1; }
+ var locations=obj();var spills=0;i=0;
+ enquanto(i<len(intervals)) {
+  var x=intervals[i];var used=[];var active=[];var j=0;
+  enquanto(j<i) { var prev=intervals[j];var loc=locations[text(prev[0])];se(prev[2]>=x[1]&&loc[0]=="reg") { push(used,loc[1]);push(active,prev); }j=j+1; }
+  var chosen=-1;j=0;enquanto(j<len(pool)) { se(chosen==-1&&!contains(used,pool[j])) { chosen=pool[j]; }j=j+1; }
+  se(chosen!=-1) { put(locations,text(x[0]),["reg",chosen]); }
+  senao {
+   var far=x;j=0;enquanto(j<len(active)) { se(active[j][2]>far[2]) { far=active[j]; }j=j+1; }
+   se(far[0]!=x[0]) { var reg=locations[text(far[0])][1];put(locations,text(far[0]),["spill",32+spills*8]);put(locations,text(x[0]),["reg",reg]); }
+   senao { put(locations,text(x[0]),["spill",32+spills*8]); }
+   spills=spills+1;
+  }
+  i=i+1;
+ }
+ # Independently check the allocation before code generation consumes it.
+ i=0;enquanto(i<len(intervals)) { var j=i+1;enquanto(j<len(intervals)) {
+  var a=intervals[i];var b=intervals[j];var la=locations[text(a[0])];var lb=locations[text(b[0])];
+  se(la[0]=="reg"&&lb[0]=="reg"&&la[1]==lb[1]&&a[1]<=b[2]&&b[1]<=a[2]) { fail("Register interference"); }j=j+1;
+ }i=i+1; }
+ var out=obj();put(out,"locations",locations);put(out,"spills",spills);put(out,"frame_bytes",qfloor((32+spills*8+15)/16)*16);put(out,"algorithm","deterministic-linear-scan-v1");retornar out;
+}

@@ -1,5 +1,9 @@
 # Ômega 2.0 — compilador auto-hospedado, execução nativa e núcleo Lean
 
+O [incremento nativo e distribuído](sovereign/PR21.md) detalha o backend com
+spills/seções ELF, VirtIO-net, BFT e o preparo Ouroboros, incluindo os critérios
+de verificação e autonomia que continuam abertos.
+
 A [fundação soberana](sovereign/README.md) adiciona compilação escalar RV64 sem
 C/GMP, boot Sv39/VirtIO, bitstream FPGA e protótipos de redes/provas, com os
 critérios ainda pendentes documentados.

@@ -18,10 +18,29 @@ def assembly(limbs):
         '.equ LIMBS,128',f'.equ LIMBS,{limbs}')+'\n'+(SOURCES/'sovereign/native/compiler.S').read_text()
 
 
-def build_crypto(destination):
+def build_crypto(destination,*,fixed_field=False):
     source=assembly(16)
     for name in ('sha3.S','x25519.S','crypto.S'):
-        source+='\n'+(SOURCES/'sovereign/native'/name).read_text()
+        part=(SOURCES/'sovereign/native'/name).read_text()
+        if name=='x25519.S' and fixed_field:
+            definitions=part[:part.index('field_reduce:')]
+            ladder=part[part.index('\nx25519:'):]
+            ladder=ladder.replace('call big_one','call field_one').replace('call big_zero','call field_zero')
+            ladder=ladder.replace('    ld t1,8(t0)\n    beq t1,zero,crypto_reject_zero', '''    li t1,0
+    li t2,8
+    addi t3,t0,16
+x25519_public_zero_check:
+    ld t4,0(t3)
+    or t1,t1,t4
+    addi t3,t3,8
+    addi t2,t2,-1
+    bne t2,zero,x25519_public_zero_check
+    beq t1,zero,crypto_reject_zero
+    li t1,8''')
+            # The fixed representation also initializes the public A24 constant.
+            ladder=ladder.replace('    call big_decimal','    call big_decimal\n    li t0,FA24\n    li t1,8\n    sd t1,8(t0)')
+            part=definitions+(SOURCES/'sovereign/native/field25519_ct.S').read_text()+ladder
+        source+='\n'+part
     expanded=[]
     for line in source.splitlines():
         if not line.strip():continue
@@ -30,7 +49,7 @@ def build_crypto(destination):
             args=[s.strip() for s in rest[0].split(',')]
             if len(args)!=(2 if op=='.fcopy' else 3):raise ValueError('Field macro arity')
             expanded.extend(f'li a{i},{arg}' for i,arg in enumerate(args))
-            expanded.append('call '+{'.fadd':'field_add','.fsub':'field_sub','.fmul':'field_mul','.fcopy':'big_copy'}[op])
+            expanded.append('call '+{'.fadd':'field_add','.fsub':'field_sub','.fmul':'field_mul','.fcopy':'field_copy' if fixed_field else 'big_copy'}[op])
         else: expanded.append(line)
     source='\n'.join(expanded)
     image,symbols=assemble(source)
@@ -42,6 +61,7 @@ def build_crypto(destination):
     return {'format':'omega-crypto-reference-v1','sha256':sha256(binary).hexdigest(),
             'source_sha256':sha256(source.encode()).hexdigest(),'bytes':len(binary),
             'algorithms':['SHA3-256','HMAC-SHA3-256-key32','X25519'], 'constant_time_x25519':False,
+            'fixed_control_flow_field':fixed_field,
             'production_approved':False}
 
 

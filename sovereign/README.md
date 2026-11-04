@@ -1,5 +1,8 @@
 # Fundação soberana: implementações e limites
 
+Este documento registra o PR20. Para o incremento seguinte, consulte
+[backend, rede, consenso e Ouroboros](PR21.md).
+
 Esta entrega adiciona mecanismos executáveis aos seis eixos solicitados. **Não
 conclui os seis eixos** e não transforma testes de subconjuntos em garantias do
 compilador inteiro. O compilador geral continua dependendo de C/GMP e Python no

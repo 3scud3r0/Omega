@@ -1,0 +1,136 @@
+modulo native_procedural_parser;
+exportar parse;
+# Parser derived from compiler.omega; bounded by OS fuel/depth as well as source bytes.
+funcao peek(p) { retornar p["tokens"][p["pos"]]; }
+funcao take(p) { var s = peek(p); put(p,"pos",p["pos"]+1); retornar s; }
+funcao accept(p,s) { se (peek(p)==s) { take(p); retornar 1; } retornar 0; }
+funcao need(p,s) { se (!accept(p,s)) { fail("Esperado " + s + ", encontrado " + peek(p)); } retornar 0; }
+funcao identifier(s) { retornar ident(s); }
+funcao name(p) { var s=take(p); se (!identifier(s)) { fail("Identificador esperado: "+s); } retornar s; }
+funcao lex(source) {
+  var tokens=[]; var i=0;
+  enquanto (i<len(source)) {
+    var c=source[i];
+    se (contains(" \t\r\n",c)) { i=i+1; }
+    senao {
+      se (c=="#" || (c=="/" && i+1<len(source) && source[i+1]=="/")) { enquanto (i<len(source) && source[i]!="\n") { i=i+1; } }
+      senao {
+        se (c=="\"") {
+          var start=i; i=i+1;
+          enquanto (i<len(source) && source[i]!="\"") {
+            se (source[i]=="\\") { i=i+1; }
+            i=i+1;
+          }
+          se (i>=len(source)) { fail("String sem fechamento"); }
+          i=i+1; push(tokens,slice(source,start,i));
+        }
+        senao {
+          se (decimal(source,i)>0) {
+            var start=i;
+            enquanto (i<len(source) && decimal(source,i)>0) { i=i+decimal(source,i); }
+            se (i<len(source) && source[i]==".") {
+              i=i+1;
+              enquanto (i<len(source) && decimal(source,i)>0) { i=i+decimal(source,i); }
+            }
+            push(tokens,slice(source,start,i));
+          }
+          senao {
+            se (identifier(c) || c>"~") {
+              var start=i; i=i+1;
+              enquanto (i<len(source) && (identifier(source[i]) || decimal(source,i)>0 || source[i]>"~")) { i=i+1; }
+              push(tokens,slice(source,start,i));
+            }
+            senao {
+              var two="";
+              se (i+1<len(source)) { two=slice(source,i,i+2); }
+              se (contains(["==","!=","<=",">=","&&","||"],two)) { push(tokens,two); i=i+2; }
+              senao {
+                se (!contains("{}();,[]+*/%<>=!-@^:.",c)) { fail("Caractere inesperado: "+c); }
+                push(tokens,c); i=i+1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  push(tokens,"<fim>"); retornar tokens;
+}
+funcao parser(source) { var p=obj(); put(p,"tokens",lex(source)); put(p,"pos",0); retornar p; }
+funcao expr(p,level) {
+  var levels=[["||"],["&&"],["==","!="],["<","<=",">",">="],["+","-"],["*","/","%"]];
+  se (level<len(levels)) {
+    var a=expr(p,level+1);
+    enquanto (contains(levels[level],peek(p))) { var op=take(p); var b=expr(p,level+1); a=["bin",op,a,b]; }
+    retornar a;
+  }
+  se (contains(["!","-"],peek(p))) { var op=take(p); var a=expr(p,level); retornar ["un",op,a]; }
+  var s=take(p); var a=[];
+  se (s=="(") { a=expr(p,0); need(p,")"); }
+  senao {
+    se (s[0]=="\"") { a=["s",parsejson(s)]; }
+    senao {
+      se (decimal(s,0)>0) { a=["n",s]; }
+      senao {
+        se (s=="[") {
+          var items=[];
+          se (!accept(p,"]")) {
+            push(items,expr(p,0));
+            enquanto (accept(p,",")) { push(items,expr(p,0)); }
+            need(p,"]");
+          }
+          a=["list",items];
+        }
+        senao {
+          se (!identifier(s)) { fail("Expressao invalida: "+s); }
+          se (accept(p,"(")) {
+            var args=[];
+            se (!accept(p,")")) {
+              push(args,expr(p,0));
+              enquanto (accept(p,",")) { push(args,expr(p,0)); }
+              need(p,")");
+            }
+            a=["call",s,args];
+          } senao { a=["v",s]; }
+        }
+      }
+    }
+  }
+  enquanto (accept(p,"[")) { var b=expr(p,0); a=["index",a,b]; need(p,"]"); }
+  retornar a;
+}
+funcao block(p) {
+  need(p,"{"); var out=[];
+  enquanto (!accept(p,"}")) {
+    var word=peek(p);
+    se (accept(p,"var")) { var n=name(p); need(p,"="); var e=expr(p,0); push(out,["var",n,e]); need(p,";"); }
+    senao {
+      se (accept(p,"retornar")) { push(out,["return",expr(p,0)]); need(p,";"); }
+      senao {
+        se (accept(p,"parar")) { push(out,["break"]); need(p,";"); }
+        senao {
+          se (word=="se" || word=="enquanto") {
+            take(p); need(p,"("); var c=expr(p,0); need(p,")"); var body=block(p); var other=[];
+            se (word=="se" && accept(p,"senao")) { other=block(p); }
+            push(out,[word,c,body,other]);
+          }
+          senao {
+            se (p["tokens"][p["pos"]+1]=="=") {
+              var n=name(p); need(p,"="); var e=expr(p,0); push(out,["set",n,e]); need(p,";");
+            } senao { push(out,["expr",expr(p,0)]); need(p,";"); }
+          }
+        }
+      }
+    }
+  }
+  retornar out;
+}
+funcao parse(source) { se(!isstr(source)||len(source)>16384) { fail("Native source budget"); }
+  var p=parser(source); var functions=[];
+  enquanto (peek(p)!="<fim>") {
+    need(p,"funcao"); var n=name(p); need(p,"("); var args=[];
+    se (!accept(p,")")) { push(args,name(p)); enquanto (accept(p,",")) { push(args,name(p)); } need(p,")"); }
+    var body=block(p); push(functions,[n,args,body]);
+  }
+  retornar functions;
+}

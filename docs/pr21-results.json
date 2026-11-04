@@ -1,0 +1,506 @@
+{
+  "format": "omega-pr21-evidence-1",
+  "all_requirements_complete": false,
+  "inputs": {
+    "civilizacao_agentes/bft_consensus.omega": "53d36ffe1a8494932fea3abe53015e74ae5b3a22a8f5bd3c5ec6db11bfd8f1db",
+    "civilizacao_agentes/contrato_social.omega": "ff8629def259e72f091350a7e958115e25d5a18afaac3190c5729032bbe4e81b",
+    "civilizacao_agentes/diplomacia_axiomatica.omega": "35c353753a1009f340af6e69afad572dc74f87cebee4bef7810233b4ef928f2c",
+    "civilizacao_agentes/memoria_coletiva.omega": "9c699253e15db086789b17bebf316bd0935e0b31ee079a52d2c4e24179405fde",
+    "civilizacao_agentes/mercado_computacional.omega": "3194b5a26edc578bd14d03cd7e49f1608cba84b0ca80d963fbd95301a0db7732",
+    "civilizacao_agentes/protocolo_consenso.omega": "c5bea646c2df8736cb416c13b950b4207b3fbf2b5ae5197bcbeba7a7771765c0",
+    "formal/Bisimulation.lean": "4ddebc7418f067ecc59fb1d0a51a5a649f39091cf87cc6c1aad6135361c6d546",
+    "formal/CompilerCorrectness.lean": "80fdf435cce2cbf1698e9283c5436934a8a4ffc2408216f321e72b882ab0bda0",
+    "formal/ConsensusSafety.lean": "d454efd6be36b6b3400638a2b49f88b02ce9791846d07e9c9d9847c3a1cdc0cb",
+    "formal/CryptoTiming.lean": "0a4baa376530ededd99d975ba5c055cd13a03661eafefb95596d92edd9c8bf7e",
+    "formal/tensor/lakefile.lean": "13cf9608e229592f441d4e6f994c6d03d50cbe5bedbe65715f7798aafa5633d0",
+    "omega_net/transport.omega": "0fd226e4d1a82f6ca9fec622b5a2a4c5dd9b8f9cd32771c71b46113a4e7f9520",
+    "omega_security/__init__.py": "9a87daab1cc562fece9fe8d680efa83a01f324f92d7d73d471d661eb5c814c59",
+    "omega_security/adversarial.py": "fa6b3e778c723b0f2dc8440f843ff64699c6cf6c4c4d6fedb81eaf2c14ab6f55",
+    "omega_security/anomalies.py": "0a383f0331ac50d05612915da3b94b14e3a642662a705f29bf546cb48ea4a74d",
+    "omega_security/audit.py": "67b9f6df1c77cd5a2b3c1b1d58fd5ae0c86a318c5a27c33bb423271abb55b629",
+    "omega_security/capabilities.py": "8ac59d7af73abb62c655c56610a1a7f0b126877ba95d60a534f167adaadab836",
+    "omega_security/crypto.omega": "f79987348ea2e44d34beda6cace3f2c72c365a1c81b340c62abdd7e6f28b9da6",
+    "omega_security/encoding.py": "1991d7eb46dcaa322be1b1ec5f5bee4df923f219609a6837413f35597ef37d41",
+    "omega_security/filesystem.py": "7ba2bddf299b8b7d5365229d7dd143ccab4cce6aab6b282eca710092a5246755",
+    "omega_security/objectives.py": "90566c45def325505fcd725c098f83d91faff07bfd8ad2c890918e8df9e5444a",
+    "omega_security/revocation.py": "066674eb5d6479fa9523285654c4e4c5547100bf1a14957b4d90fe1b010e27bf",
+    "omega_security/roles.py": "4578a2f3083b3ad6285afbd45afd0a1aa2f777d5897b4f677b0565d2279e5eb5",
+    "omega_security/secrets.py": "502a48ea33825f231decfaee6546ec498782ce61e5eae833d93d3a1ccbaae76e",
+    "omega_security/signatures.py": "7a8031d47d17967afd37ce7c4d64a82583f1578eaa34f6a0a0d20f834aa10f91",
+    "omega_security/untrusted_data.py": "8a03a948c42af583c67a5e4d0db75ab01636a5253ce39b89149b7afa040bd1e2",
+    "omega_self_evolve_v2/__init__.py": "54791dc29d3e36f87f978934de8e02caa54f5126d8077d3ae88aabeb00047b5a",
+    "omega_self_evolve_v2/auto_mutator_v2.omega": "1fbb9b6524e1d9e34baab15259a5a4066adb062794915a2cf9a0ab645cb984d0",
+    "omega_self_evolve_v2/bridge_lean_filter.py": "9249fce1956ddc904118e6e5ebab94f2fc5ca96b7f2ab210e65a934f7b7fcf5e",
+    "omega_self_evolve_v2/cli.py": "b8575d00942ab88242aa895a69a1e6eaf36c4485218a3f7306a483a55b29a71d",
+    "omega_self_evolve_v2/cycle.py": "bce443a072974daebf501cbc1447cc4ded24a5b1108f8c5c67e954103f5164a3",
+    "omega_self_evolve_v2/ouroboros.omega": "c5287cb527b6757c5237f23baf465be0623ab937d39796bab3eb922710f75d80",
+    "omega_self_evolve_v2/ouroboros.py": "b6a1e8404492beac3fbc7ce6353297b028eef16b85d07ee43cde725026c98780",
+    "omega_selfhost/__init__.py": "294962ff80255cebbd3fe6fd985e578a32273bff22a68cc9edce1af422ccd871",
+    "omega_selfhost/axiom_policy.py": "77d1bbc9d517291bb6be85efd1d53bb122edfef2e83eb03deddbff70a8fc98c8",
+    "omega_selfhost/backend_elf64.omega": "ab9fb082b5a15445be55fe453e1a5e1dbfac99200f471966835c52b37042f870",
+    "omega_selfhost/bootstrap.py": "89c5b26afc40d1c50dd64378b200c1cedcd2006dd9905d543a4c1f08f98221a7",
+    "omega_selfhost/bounded_rational.h": "91fa3475eb872de131ce4f55d43f976da697f0063b3dffe107f6ff9b6e564d50",
+    "omega_selfhost/certified_transcendental.h": "948739235589d4abd21bdffbe85834f5e85f2662d3f5a2ed791afafba35ea543",
+    "omega_selfhost/cli.py": "60150b5c7f08bcac04a4431b0dfc7b2ab65b2c531e3ad317c5003953cdb722be",
+    "omega_selfhost/compiler.omega": "78218b5eabc440fc870bd3d1bcc19d1173eb2c6b0f00176ded8fb64bf7d89f2a",
+    "omega_selfhost/driver.py": "d4f3743d5c34ec91ecaef00fe34f4aea2be50025993e430a0b371f55ff197021",
+    "omega_selfhost/memory.h": "38b8c8a858094c4644192a4378ff7700022653b8afb7ce0da017352993ef3752",
+    "omega_selfhost/native_backend.py": "6bc4da03aaa3eff6ae51870b70a082e60419538ecf1a84a9015628499784c7b9",
+    "omega_selfhost/native_std.h": "8bf902f2820a21bd941856b3bab776ce1b0d32099122222e9bbffb29bc2f0866",
+    "omega_selfhost/polynomial.h": "23f0dee22f70ce796214a03df853af4d39e36f5a8c8bc509774c5c3e537fd527",
+    "omega_selfhost/procedural_parser.omega": "a3571d99a4a1e2aea8012605d197e11a55881cf1049faee97fd49c982eb80ce2",
+    "omega_selfhost/proof.py": "54ebe598b545a054d9f4c454ce7c96358678c78990458f18109069f74f02d1b3",
+    "omega_selfhost/proof_microkernel.h": "065f2df0964664d2271f9c94752217b3cdbcc88cc150397745459799d671bbef",
+    "omega_selfhost/proof_protocol.py": "2baf892c9e378b6e8f1801b9552febfb7b3c019bc64afca10a34471d88d0b4c9",
+    "omega_selfhost/rational_pruning.h": "a642c15b813f9628cb7b3be36eae2feca740b957ece9f402089190b93e4c2095",
+    "omega_selfhost/regalloc.omega": "c153151831e0ae5e2d325465f80a2e4dea85905c34b854465a2579656f3de055",
+    "omega_selfhost/relocations.omega": "bfa0e8b4516fc0bd59715e7c1a92d795bf489cfb7dbfb6ad7485ef4a40258e39",
+    "omega_selfhost/runtime.h": "53070b66bf7c3d8b6e424455d236891e42634d4ffed17a946d1f8e84d2a7d214",
+    "omega_selfhost/statement_binding.py": "bd834c43186b67ff19abf6f04393736ad682aa2c7a68fac6149cb83cd22e814f",
+    "omega_selfhost/stdlib.omega": "3457c66530e4abf2073019a6248bd54f9c0f65f16c1573c48963e9ce593a4fdc",
+    "omega_selfhost/tensor_runtime.h": "cc9a4e3433896091523b61bc23ef39810b02eeb1342f8f6991131f8842b9b355",
+    "omega_selfhost/wasm_backend.py": "3467e19b06839bfd3a1b1ecb91d64a396e82e7062ca03c0c1f01aecda967f327",
+    "omega_sovereign/__init__.py": "d6efb04e5b348751da3d2af2599a27bbc517613a0ecbfa46496457ce2ba153ad",
+    "omega_sovereign/__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+    "omega_sovereign/air_fri.py": "9b0b0cc923fc449c306fab10e86cda9cdbd60533491efd0439ec260180ce44db",
+    "omega_sovereign/baremetal.py": "82a1fef0452fc128d02e880e0b2f71758a10950b62b0e02ab9cced1df90ae127",
+    "omega_sovereign/bft.py": "6e7476c7961e064a9b75aa1cf091db99476188d726e8367fbd3714b80075f19a",
+    "omega_sovereign/cli.py": "b3e53d00056cec0cdde3d70b9727e35a202b80b516509fbd1ba03e39006a4fba",
+    "omega_sovereign/hardware.py": "2f36d672dad5ed4a4165a927f99a2883fc2ec9853afd0bde63269fd85431d393",
+    "omega_sovereign/models.py": "457e152ba6928ac5f4868db53b2cf06960195700ba831c944f0a230761435ef2",
+    "omega_sovereign/native.py": "bc3a39b63bfc2434be79b4534aea91b88f74e002a9f66c1c33febef4f9d054b7",
+    "omega_sovereign/network.py": "9dd430230e5105d1bb8951d2c9aa8f013d912884f6241db86909fd21a97404af",
+    "omega_sovereign/raft_store.py": "ab79bc5b70eb3387f400ff9a696fc2c961c8cef900e31dbd671f7b0c43aa2157",
+    "omega_sovereign/rv64.py": "62be2f1d81b2f2f00f5e8645c1250ce22133a20615a84f11bdc4f33ea025d763",
+    "omega_zk/stark.omega": "e228a822b88be2ff99e5c9c85204619fed76068e237a898f7f22159d60f66bdb",
+    "sovereign/baremetal/boot.S": "ba47513ed95f0aab98ddb81cc79f9ffa875feac8d02ce1547cf6b3f6c6a5f272",
+    "sovereign/baremetal/virtio_net.S": "bb2121472bbc90a631526dffef7e53c84053ffe8bf32f13a33cac6bda0baf0c2",
+    "sovereign/native/bigq.S": "1ce996c22add6c4a3de79b40459d0a80b1207847504a0b87572ab084216665d2",
+    "sovereign/native/compiler.S": "c0c53e65c0c8de4bfdc5515483dfcc9376dd7cb69cee90d30377e84cb33ff3c6",
+    "sovereign/native/crypto.S": "1f3bab72997494d8592686e72827ab30444de14757da1cb406ff1ef13180dad0",
+    "sovereign/native/field25519_ct.S": "63a99afeb1135f17ddb99b3c5aefaa06e51b1e58134c8d60063250601864b24f",
+    "sovereign/native/sha3.S": "21d1ccbfafaf3cfc3b274f124110a0e4f77445925a2289fda6323679d8b05ae7",
+    "sovereign/native/x25519.S": "856f9678862d79b9fbbb431d3b12408fac101d7a314fbce869ed5d6b0b0515a5",
+    "sovereign/omega/main.omega": "3e993e288560640e10ab647052959aa7471e64d4bff21df482ad3b8f309c8b00",
+    "sovereign/omega/raft.omega": "aa4b70978f902ad5645e5f879c0cc717e9ef2bafb009e553d7c79de4b8bd874d",
+    "sovereign/omega/tcp.omega": "b6273fe26306c3b8bf0c263d9474cadb4f614579165c4a608742877a57286c16",
+    "testes/pr21/__init__.py": "8c5d5627c457f70e665395052ed639014960eeb9e9e67a2a4ec4544c80423d51",
+    "testes/pr21/test_admission.py": "74d411319ef1a7181013c1efeb52b83d5f6f7c14f2975cb5e2b74137ccfe14dc",
+    "testes/pr21/test_backend.py": "67957191e65bb78fbc30b00822e96f8f579ddea897ea02c1cf068acee4188aa9",
+    "testes/pr21/test_proof_pipeline.py": "3bec8325fe569e582e89b4a54b91819e352b9917deca30b2f4347a611103f54b",
+    "testes/pr21/test_protocols.py": "3a074e0a4b077f59875696e256c56117ee6ae07734decce99a34b20c7f9effdd",
+    "tools/validate-pr21.py": "694993539ba533ec4d4a1fc5fd26fdc5e4a91d0404f520e5a632fa5839b48ef3"
+  },
+  "native_backend": {
+    "sha256": "3f071827434efd9290c45e926e79835829e267cde6e88d58bcdf29e8421a3ca5",
+    "allocation": {
+      "algorithm": "deterministic-linear-scan-v1",
+      "frame_bytes": 128,
+      "locations": {
+        "0": [
+          "reg",
+          9
+        ],
+        "1": [
+          "reg",
+          18
+        ],
+        "10": [
+          "spill",
+          96
+        ],
+        "11": [
+          "spill",
+          104
+        ],
+        "12": [
+          "spill",
+          112
+        ],
+        "13": [
+          "spill",
+          120
+        ],
+        "2": [
+          "spill",
+          32
+        ],
+        "3": [
+          "spill",
+          40
+        ],
+        "4": [
+          "spill",
+          48
+        ],
+        "5": [
+          "spill",
+          56
+        ],
+        "6": [
+          "spill",
+          64
+        ],
+        "7": [
+          "spill",
+          72
+        ],
+        "8": [
+          "spill",
+          80
+        ],
+        "9": [
+          "spill",
+          88
+        ]
+      },
+      "spills": 12
+    },
+    "relocations": [
+      [
+        "R_RISCV_CALL",
+        4,
+        "main_body"
+      ],
+      [
+        "R_RISCV_PCREL_HI20",
+        12,
+        "__digits"
+      ],
+      [
+        "R_RISCV_PCREL_LO12_I",
+        16,
+        12
+      ]
+    ],
+    "execution": {
+      "argv": [
+        "/workspace/.tools/sovereign/usr/bin/qemu-riscv64",
+        "/workspace/Omega/artifacts/pr21/review-admission/loop.elf"
+      ],
+      "returncode": 0,
+      "stdout": "00000000000004c9\n",
+      "stderr": "",
+      "wall_seconds": 0.054310213003191166,
+      "timed_out": false,
+      "sandboxed": true,
+      "budget": {
+        "wall_seconds": 180,
+        "cpu_seconds": 120,
+        "memory_bytes": 2147483648,
+        "output_bytes": 8388608,
+        "file_bytes": 67108864,
+        "processes": 128,
+        "open_files": 128,
+        "stack_bytes": 16777216,
+        "fuel": 500000000,
+        "depth": 512
+      },
+      "limit": null
+    },
+    "bootstrap_uses_c_gmp": true,
+    "target_uses_c_gmp": false
+  },
+  "crypto": {
+    "format": "omega-crypto-reference-v1",
+    "sha256": "2ef9736e5f8438316b66470ac140600dc231955a55ee8b06b9668cdf1aaaca36",
+    "source_sha256": "f6bedc836d5d9ce51b75954eee157128d1d1267c338aba513680d45c38e610b5",
+    "bytes": 56256,
+    "algorithms": [
+      "SHA3-256",
+      "HMAC-SHA3-256-key32",
+      "X25519"
+    ],
+    "constant_time_x25519": false,
+    "fixed_control_flow_field": true,
+    "production_approved": false,
+    "vector_execution": {
+      "argv": [
+        "/workspace/.tools/sovereign/usr/bin/qemu-riscv64",
+        "/workspace/Omega/artifacts/pr21/review-admission/crypto-fixed",
+        "x25519",
+        "/workspace/Omega/artifacts/pr21/review-admission/x25519.input"
+      ],
+      "returncode": 0,
+      "stdout": "8520f0098930a754748b7ddcb43ef75a0dbf3a0d26381af4eba4a98eaa9b4e6a\n",
+      "stderr": "",
+      "wall_seconds": 0.42044396699930076,
+      "timed_out": false,
+      "sandboxed": true,
+      "budget": {
+        "wall_seconds": 180,
+        "cpu_seconds": 120,
+        "memory_bytes": 2147483648,
+        "output_bytes": 8388608,
+        "file_bytes": 67108864,
+        "processes": 128,
+        "open_files": 128,
+        "stack_bytes": 16777216,
+        "fuel": 500000000,
+        "depth": 512
+      },
+      "limit": null
+    }
+  },
+  "network": {
+    "format": "omega-two-baremetal-nodes-1",
+    "builds": [
+      {
+        "sha256": "51023baa0c91facacb47c31d4a2e168ba65d928f55aa1a6a4029ec5756bf91de",
+        "source_sha256": "d7c229e41abbdad7a8e2e308bc78cd31a86bd5b14ff458c60ab53e717e124c7e",
+        "bytes": 23500,
+        "role": 0
+      },
+      {
+        "sha256": "064eec5b7a1c83a58749ac6ad34db4576504e8f3b752d899947223638c577630",
+        "source_sha256": "4d284ce02221aa3ce0310ae40a76447ba89587e2507a0b03ea255e1ac8c05379",
+        "bytes": 23500,
+        "role": 1
+      }
+    ],
+    "nodes": [
+      {
+        "argv": [
+          "/usr/bin/env",
+          "LD_LIBRARY_PATH=/workspace/.tools/sovereign/usr/lib/x86_64-linux-gnu",
+          "/workspace/.tools/sovereign/usr/bin/qemu-system-riscv64",
+          "-machine",
+          "virt",
+          "-m",
+          "128M",
+          "-smp",
+          "1",
+          "-bios",
+          "none",
+          "-display",
+          "none",
+          "-serial",
+          "stdio",
+          "-monitor",
+          "none",
+          "-no-reboot",
+          "-kernel",
+          "/workspace/Omega/artifacts/pr21/review-admission/network/node-0.elf",
+          "-global",
+          "virtio-mmio.force-legacy=false",
+          "-netdev",
+          "socket,id=n,listen=127.0.0.1:34701",
+          "-device",
+          "virtio-net-device,netdev=n"
+        ],
+        "returncode": 0,
+        "stdout": "OMEGA VIRTIO-NET MUTUAL HMAC PASS\n",
+        "stderr": "",
+        "wall_seconds": 0.33821247999730986,
+        "timed_out": false,
+        "sandboxed": false,
+        "budget": {
+          "wall_seconds": 12,
+          "cpu_seconds": 10,
+          "memory_bytes": 2147483648,
+          "output_bytes": 8388608,
+          "file_bytes": 67108864,
+          "processes": 128,
+          "open_files": 128,
+          "stack_bytes": 16777216,
+          "fuel": 5000000,
+          "depth": 256
+        },
+        "limit": null
+      },
+      {
+        "argv": [
+          "/usr/bin/env",
+          "LD_LIBRARY_PATH=/workspace/.tools/sovereign/usr/lib/x86_64-linux-gnu",
+          "/workspace/.tools/sovereign/usr/bin/qemu-system-riscv64",
+          "-machine",
+          "virt",
+          "-m",
+          "128M",
+          "-smp",
+          "1",
+          "-bios",
+          "none",
+          "-display",
+          "none",
+          "-serial",
+          "stdio",
+          "-monitor",
+          "none",
+          "-no-reboot",
+          "-kernel",
+          "/workspace/Omega/artifacts/pr21/review-admission/network/node-1.elf",
+          "-global",
+          "virtio-mmio.force-legacy=false",
+          "-netdev",
+          "socket,id=n,connect=127.0.0.1:34701",
+          "-device",
+          "virtio-net-device,netdev=n"
+        ],
+        "returncode": 0,
+        "stdout": "OMEGA VIRTIO-NET MUTUAL HMAC PASS\n",
+        "stderr": "",
+        "wall_seconds": 0.2545656849979423,
+        "timed_out": false,
+        "sandboxed": false,
+        "budget": {
+          "wall_seconds": 12,
+          "cpu_seconds": 10,
+          "memory_bytes": 2147483648,
+          "output_bytes": 8388608,
+          "file_bytes": 67108864,
+          "processes": 128,
+          "open_files": 128,
+          "stack_bytes": 16777216,
+          "fuel": 5000000,
+          "depth": 256
+        },
+        "limit": null
+      }
+    ],
+    "authenticated": true,
+    "physical_hardware": false,
+    "protocol": "bounded IPv4/UDP PSK HMAC handshake; no encryption",
+    "production_approved": false,
+    "test_key_tampered": false
+  },
+  "bft": {
+    "format": "omega-bft-process-experiment-1",
+    "processes": [
+      180618,
+      180619,
+      180620,
+      180621
+    ],
+    "faults": 1,
+    "delivered": 31,
+    "delays_injected": true,
+    "equivocations": 3,
+    "rejected": 12,
+    "honest_ledgers": [
+      [
+        [
+          0,
+          "d6651d9d34df786cbced9a0757ac124870dafa2fc29996c2c1a7592704c32172",
+          "0000000000000000000000000000000000000000000000000000000000000000"
+        ]
+      ],
+      [
+        [
+          0,
+          "d6651d9d34df786cbced9a0757ac124870dafa2fc29996c2c1a7592704c32172",
+          "0000000000000000000000000000000000000000000000000000000000000000"
+        ]
+      ],
+      [
+        [
+          0,
+          "d6651d9d34df786cbced9a0757ac124870dafa2fc29996c2c1a7592704c32172",
+          "0000000000000000000000000000000000000000000000000000000000000000"
+        ]
+      ]
+    ],
+    "converged": true,
+    "liveness_scope": "this finite delayed schedule after an honest proposer",
+    "ed25519_backend": "host reference / native Omega OpenSSL primitive"
+  },
+  "air_fri": {
+    "valid": true,
+    "omega_fft": true,
+    "steps": 32,
+    "bytes": 198574,
+    "zero_knowledge": false
+  },
+  "ouroboros": {
+    "format": "omega-ouroboros-prepared-1",
+    "base_sha256": "bd36b816065fcdb2d0848372813adb836badb91fb16ac499d36a0cc504bf0c3b",
+    "candidate_sha256": "c2054b260bb90d512092c5b55b7003995e1ea77b460e01d6c14bc93e9dfbb83b",
+    "proof_sha256": "42f2065247632308b062596cc102ba521e81f5dbeea8959674149145de3f98d8",
+    "cost_before": 7,
+    "cost_after": 5,
+    "proof_kind": "lean-universal-rewrite",
+    "metric": "generated-probe-ir-nodes",
+    "fixed_point": true,
+    "promoted": false,
+    "full_candidate_regression_passed": false,
+    "bootstrap_uses_c_gmp": true
+  },
+  "lean": {
+    "exit": 0,
+    "seconds": 1.952619614006835,
+    "scope": "additive RV64 fragment, quorum lemmas, word select and fixed-work model"
+  },
+  "tests": {
+    "tests": 38,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "validation_passed": true,
+  "artifact_sha256": {
+    "air-proof.json": "778bc545e25ce63b9e2b15b12f89b9b309f032d1c5b60002f439b18fba91e3e1",
+    "backend.json": "0e5f253b99a04c4d92605a162b0985d6842ca14a14cfb3865a5be0d603fdaabe",
+    "bft/node-0/state.json": "a2ba86ca58fa0be6045f1bd8b8ef236aa3fbb38fa7bd8859b24b34ec1cb11597",
+    "bft/node-1/state.json": "02452a76d1716b96f03aeae1a8bf9842749a0f9a2a6baf8025ce29766ec30d14",
+    "bft/node-2/state.json": "02452a76d1716b96f03aeae1a8bf9842749a0f9a2a6baf8025ce29766ec30d14",
+    "bft/node-3/state.json": "02452a76d1716b96f03aeae1a8bf9842749a0f9a2a6baf8025ce29766ec30d14",
+    "bft/report.json": "502df300bf8734ed9e26b4368ac9cd67ddc64069425d36996e93ef19f6fc3d83",
+    "crypto-fixed": "2ef9736e5f8438316b66470ac140600dc231955a55ee8b06b9668cdf1aaaca36",
+    "lean.log": "c54da99cb1a527f8a335f1d26d4f0267d4ee857a18e0d7a91351bba903f16e7f",
+    "loop.elf": "3f071827434efd9290c45e926e79835829e267cde6e88d58bcdf29e8421a3ca5",
+    "loop.omega": "bca658e6b545f85b213aad5ad8501358024f93e91f8d080865e4a4ed7cec6f84",
+    "network/node-0.elf": "51023baa0c91facacb47c31d4a2e168ba65d928f55aa1a6a4029ec5756bf91de",
+    "network/node-1.elf": "064eec5b7a1c83a58749ac6ad34db4576504e8f3b752d899947223638c577630",
+    "network/report.json": "a71b0f01480b0f85a54aec48eb8513f9d3a81591761905bcb13d6b7d543d8e67",
+    "ouroboros/generation/bootstrap/compiler.omega": "87ccc986f747212cb537e53747b7688967bd9713fb4b8e83c6ec0fdf3235e83b",
+    "ouroboros/generation/bootstrap/stage0": "c2054b260bb90d512092c5b55b7003995e1ea77b460e01d6c14bc93e9dfbb83b",
+    "ouroboros/generation/bootstrap/stage0.c": "4c6a1f1bb2b6dfe7a01ab3ca07e3e53f93063f33cd9728fb4132fe95a534b909",
+    "ouroboros/generation/bootstrap/stage1": "c2054b260bb90d512092c5b55b7003995e1ea77b460e01d6c14bc93e9dfbb83b",
+    "ouroboros/generation/bootstrap/stage1.c": "4c6a1f1bb2b6dfe7a01ab3ca07e3e53f93063f33cd9728fb4132fe95a534b909",
+    "ouroboros/generation/bootstrap/stage2": "c2054b260bb90d512092c5b55b7003995e1ea77b460e01d6c14bc93e9dfbb83b",
+    "ouroboros/generation/bootstrap/stage2.c": "4c6a1f1bb2b6dfe7a01ab3ca07e3e53f93063f33cd9728fb4132fe95a534b909",
+    "ouroboros/generation/bootstrap/stage3": "c2054b260bb90d512092c5b55b7003995e1ea77b460e01d6c14bc93e9dfbb83b",
+    "ouroboros/generation/bootstrap/stage3.c": "4c6a1f1bb2b6dfe7a01ab3ca07e3e53f93063f33cd9728fb4132fe95a534b909",
+    "ouroboros/generation/bootstrap/stage4.c": "4c6a1f1bb2b6dfe7a01ab3ca07e3e53f93063f33cd9728fb4132fe95a534b909",
+    "ouroboros/generation/generation.json": "ad221ca2997685932408d825d462954418756a328a60053f65d4be1d26d77888",
+    "ouroboros/generation/optimization.lean": "42f2065247632308b062596cc102ba521e81f5dbeea8959674149145de3f98d8",
+    "ouroboros/generation/probe": "01ac544b12a73df403f8d4f3462d48d63643ac84a4c66102a9f2f21ecff41b73",
+    "ouroboros/generation/probe.c": "198f12d27982eeb1d4899d42a941fc0ec8dde9d734b19ec019db875bc4b84032",
+    "ouroboros/generation/probe.c.opt.json": "0ee4e920f9e1b3e7af03dabe34e49a6a350063c0406f33f0e6cb43576093cede",
+    "ouroboros/generation/probe.omega": "5f272b899b7ff3c624567c6b10b07cc57dc0da3f30da5547e1594073e1eec73d",
+    "ouroboros/prepared.json": "fb17fdf49f5326c8a1f03e5779d489147c25f42e80f2363eccc1e9b6ecadda8d",
+    "tests.log": "3fff8c933b835f468d85bce6301edc3cf05d8254aefccdc44669e404d7194dee",
+    "tests.xml": "f804507a8dfdb9f28dddf94ff26cc38b37eaa91a5002ca3c679e1eb22b21bacb",
+    "x25519.input": "81d57822b304cb78f225d45c246514748c6a2f34977ec4f8339a4d7adcc49e24"
+  },
+  "full_regression": {
+    "source_commit": "0d088c3e9efa20e41594665e1286f3dda6a2e73f",
+    "command": "bash scripts/test.sh -q --junitxml=artifacts/pr21/full-regression.xml",
+    "environment": {
+      "OMEGA_KERNEL_QEMU_AARCH64": "/workspace/.tools/sovereign/usr/bin/qemu-aarch64",
+      "OMEGA_KERNEL_QEMU_RISCV64": "/workspace/.tools/sovereign/usr/bin/qemu-riscv64",
+      "VK_ICD_FILENAMES": "/workspace/.tools/mesa-vulkan-25.0.7/icd-lvp.json",
+      "XDG_RUNTIME_DIR": "/tmp",
+      "LP_NUM_THREADS": "2"
+    },
+    "passed": 1397,
+    "subtests_passed": 138,
+    "skipped": 4,
+    "warnings": 3,
+    "seconds": 1580.4,
+    "junit": {
+      "tests": 1539,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 4
+    },
+    "junit_sha256": "2f79afb907d8d3373350a0507cb46f22c99a5c91547e5db2e45a4422674e2634",
+    "candidate_compiler_full_regression_performed": false,
+    "skip_reasons": [
+      "OM-096 CUDA hardware unavailable",
+      "Nextorch synthesis CUDA device unavailable",
+      "hyper_flat CUDA SDK unavailable",
+      "hyper_rational CUDA SDK/device stress unavailable"
+    ]
+  }
+}

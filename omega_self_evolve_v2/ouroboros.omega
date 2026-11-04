@@ -1,0 +1,20 @@
+modulo independent_ouroboros_admission;
+importar "../ciencia/core/exato.omega" como u;
+exportar execute;
+# Admission control, not self-approval. A proposer cannot supply its own trusted
+# key. Host policy owns the independent verifier key and binds actual artifacts
+# and regression evidence before this gate is evaluated. No filesystem effects.
+funcao hex64(s) { se(!isstr(s)||len(s)!=64) { retornar 0; }var i=0;enquanto(i<64) { se(!contains("0123456789abcdef",s[i])) { retornar 0; }i=i+1; }retornar 1; }
+funcao execute(r) {
+ var policy=r["policy"];var e=r["evidence"];var key=policy["verifier_key"];
+ se(!hex64(key)||key==policy["proposer_key"]||!hex64(policy["proposer_key"])) { fail("Independent verifier identity required"); }
+ var names=["base_sha256","candidate_sha256","proof_sha256","regression_sha256"];var i=0;
+ enquanto(i<len(names)) { se(!hex64(e[names[i]])) { fail("Ouroboros subject digest"); }i=i+1; }
+ se(e["base_sha256"]!=policy["base_sha256"]||e["candidate_sha256"]==e["base_sha256"]) { fail("Ouroboros base or unchanged candidate"); }
+ var before=u::count(e,"cost_before",1,1000000000);var after=u::count(e,"cost_after",0,1000000000);
+ var passed=u::count(e,"tests_passed",1,1000000);var failures=u::count(e,"failures",0,1000000);var minimum=u::count(policy,"minimum_tests",1,1000000);
+ se(after>=before||passed<minimum||failures!=0||e["proof_kind"]!="lean-universal-rewrite"||e["metric"]!="generated-probe-ir-nodes") { fail("Ouroboros proof/strict cost/regression barrier"); }
+ var payload="omega-ouroboros-v1|"+e["base_sha256"]+"|"+e["candidate_sha256"]+"|"+e["proof_sha256"]+"|"+e["regression_sha256"]+"|"+text(before)+"|"+text(after)+"|"+text(passed)+"|"+text(failures);
+ se(!ed25519_verify(key,payload,r["signature"])) { fail("Ouroboros independent signature"); }
+ var out=obj();put(out,"admitted",1);put(out,"candidate_sha256",e["candidate_sha256"]);put(out,"metric",e["metric"]);put(out,"activation_performed",0);put(out,"claim","cost on generated probe, not general intelligence or runtime speed");retornar out;
+}
