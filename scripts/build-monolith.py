@@ -16,7 +16,7 @@ FOLDERS={'omega_net','omega_zk','omega_sovereign','sovereign','omega_recursive',
          'omega_refine_check','omega_synth_mcts','omega_self_mutate','omega_agent_sandbox','omega_cognition','hardware',
          'omega_gpu_mcts','omega_abstract_domain','omega_autotelic','omega_self_evolve_v2','omega_runtime_verified',
          'formal','scripts','requirements','roadmap','docs','testes','exemplos','.github'}
-EXTENSIONS={'.S','.v','.pcf','.py','.h','.omega','.lean','.json','.lock','.tsv','.md','.sh','.yml','.c','.svg','.sv','.cu','.cuh','.cpp','.wgsl'}
+EXTENSIONS={'.rs','.toml','.lpf','.S','.v','.pcf','.py','.h','.omega','.lean','.json','.lock','.tsv','.md','.sh','.yml','.c','.svg','.sv','.cu','.cuh','.cpp','.wgsl'}
 
 LAUNCHER='''"""Readable single-file Omega source distribution.
 

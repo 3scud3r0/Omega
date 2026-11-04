@@ -12,3 +12,4 @@ artifacts/
 .lake/
 *.olean
 *.ilean
+omega_zk/risc0/target/

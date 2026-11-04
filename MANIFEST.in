@@ -63,3 +63,7 @@ recursive-include requirements *.json
 recursive-include omega_net *.omega
 recursive-include omega_zk *.omega
 recursive-include omega_security *.omega
+
+recursive-include omega_zk *.rs *.toml *.lock *.md
+recursive-include hardware/boot *.v *.sv *.S *.lpf *.md
+recursive-include hardware/tinytapeout *.v *.sv *.json *.md

@@ -193,6 +193,30 @@
       "path": "pool/main/q/qemu/qemu-user_10.0.13+ds-0+deb13u1_amd64.deb",
       "sha256": "ca6ede739327a20ae5a3498230c8a3a9a072c586e131bc6bcc1201eb1725e336",
       "bytes": 71089852
+    },
+    "nextpnr-ecp5": {
+      "version": "0.7-1+b2",
+      "path": "pool/main/n/nextpnr/nextpnr-ecp5_0.7-1+b2_amd64.deb",
+      "sha256": "1e111164f2d9dbc9d8abc72bfd862333e86aeb6749e24d916df7967585a60697",
+      "bytes": 1074288
+    },
+    "nextpnr-ecp5-chipdb": {
+      "version": "0.7-1+b2",
+      "path": "pool/main/n/nextpnr/nextpnr-ecp5-chipdb_0.7-1+b2_amd64.deb",
+      "sha256": "a8a32f1c1afd8d06d5a48050d230086db757fd2c74b693910e1f813411173d37",
+      "bytes": 2877016
+    },
+    "fpga-trellis": {
+      "version": "1.4-2+b4",
+      "path": "pool/main/p/prjtrellis/fpga-trellis_1.4-2+b4_amd64.deb",
+      "sha256": "d9ac3352443e0d33f42f6d40ab8bbe50ff449190f5bbfd51aaa176617f55d0e5",
+      "bytes": 449060
+    },
+    "fpga-trellis-database": {
+      "version": "1.4-2",
+      "path": "pool/main/p/prjtrellis/fpga-trellis-database_1.4-2_all.deb",
+      "sha256": "4cea6aa7a7d0a1ae0100ea8a63860d7ed94484e78a67555108fb1713866c37c8",
+      "bytes": 951756
     }
   }
 }

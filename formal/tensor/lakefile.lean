@@ -21,6 +21,10 @@ lean_lib Bisimulation where
   srcDir := ".."
 lean_lib CompilerCorrectness where
   srcDir := ".."
+lean_lib ExpressionCompiler where
+  srcDir := ".."
+lean_lib RiscvEncoding where
+  srcDir := ".."
 lean_lib ConsensusSafety where
   srcDir := ".."
 lean_lib CryptoTiming where

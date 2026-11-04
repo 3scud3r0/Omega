@@ -45,7 +45,7 @@ def build():
 
 
 def call(operation,request):
-    if operation not in ('tcp','raft','backend','regalloc','bft','transport','stark','crypto','ouroboros') or type(request) is not dict:raise ValueError('Model request')
+    if operation not in ('zk-lower','tcp','raft','backend','regalloc','bft','transport','stark','crypto','ouroboros') or type(request) is not dict:raise ValueError('Model request')
     payload=canonical({'operation':operation,'request':plain(request)},max_bytes=1024**2,max_nodes=50000,max_depth=32)
     binary=build()
     with tempfile.TemporaryDirectory(prefix='omega-sovereign-') as tmp:

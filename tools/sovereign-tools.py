@@ -11,7 +11,7 @@ import tempfile
 
 ROOT=Path(__file__).resolve().parents[1]
 LOCK=ROOT/'requirements/sovereign-tools.json'
-PACKAGES=['iverilog','yosys','nextpnr-ice40','fpga-icestorm','qemu-system-riscv','qemu-user']
+PACKAGES=['iverilog','yosys','nextpnr-ice40','fpga-icestorm','nextpnr-ecp5','fpga-trellis','qemu-system-riscv','qemu-user']
 
 
 def main():
