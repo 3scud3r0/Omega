@@ -43,7 +43,7 @@ def main():
         'scope':['arithmetic AST to stack IR','positive ADDI fragment','ADDI byte encoding/decoding'],
         'log_sha256':digest(out/'lean.log')}
     engine=Engine(args.verifier)
-    source=(ROOT/'exemplos/zkvm/soma_privada.omega').read_text()
+    source=(ROOT/'omega_zk/examples/soma_privada.omega').read_text()
     program=engine.compile(source,10);image_id=engine.image_id(program)
     (out/'guest.elf').write_bytes(program.elf);(out/'journal.json').write_bytes(program.journal)
     (out/'image-id.txt').write_text(image_id+'\n')

@@ -40,7 +40,7 @@ um recibo. Não é um binário bare-metal.
 ```sh
 bash scripts/setup-zkvm.sh
 .venv/bin/python -m omega_zk --tool build/risc0/release/omega-risc0 compile \
-  exemplos/zkvm/soma_privada.omega --result 10 --output artifacts/zkvm-program
+  omega_zk/examples/soma_privada.omega --result 10 --output artifacts/zkvm-program
 # Crie um JSON local com oito u32. Não publique a entrada privada.
 .venv/bin/python -m omega_zk --tool build/risc0/release/omega-risc0 prove \
   artifacts/zkvm-program caminho/entrada-privada.json --output artifacts/receipt.bin
