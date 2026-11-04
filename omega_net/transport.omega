@@ -1,0 +1,52 @@
+modulo bounded_stream_transport;
+importar "../ciencia/core/exato.omega" como u;
+exportar execute;
+# Bounded receive window + length-prefixed framing reference. All queue/framing
+# storage is allocated before events; the native VirtIO driver separately uses
+# static buffers. This GMP bootstrap model does not assert zero heap allocation.
+funcao bytes(xs,n) { se(!islist(xs)||len(xs)>n) { fail("Transport byte budget"); }var i=0;enquanto(i<len(xs)) { u::integer(xs[i],0,255);i=i+1; }retornar xs; }
+funcao word(xs,i) { retornar xs[i]*256+xs[i+1]; }
+funcao append_range(out,xs,start,count) { var i=0;enquanto(i<count) { push(out,xs[start+i]);i=i+1; } }
+funcao checksum(xs) { var n=0;var i=0;enquanto(i<len(xs)) { n=n+256*xs[i];se(i+1<len(xs)) { n=n+xs[i+1]; }i=i+2; }enquanto(n>=65536) { n=qfloor(n/65536)+n%65536; }retornar 65535-n; }
+funcao decode_udp(r) {
+ var p=bytes(r["packet"],1536);se(len(p)<42) { fail("Truncated Ethernet/IP/UDP"); }var ether=word(p,12);var offset=34;var total=0;var pseudo=[];var version=4;
+ se(ether==2048) {
+  se(p[14]!=69||p[23]!=17||p[22]==0||(word(p,20)!=0&&word(p,20)!=16384)) { fail("Unsupported IPv4 header/options/fragment"); }
+  total=word(p,16);se(total<28||total+14>len(p)) { fail("IPv4 length"); }
+  var header=[];append_range(header,p,14,20);se(checksum(header)!=0) { fail("IPv4 checksum"); }
+  append_range(pseudo,p,26,8);push(pseudo,0);push(pseudo,17);push(pseudo,qfloor((total-20)/256));push(pseudo,(total-20)%256);
+ } senao { se(ether==34525) {
+  version=6;offset=54;se(len(p)<62||qfloor(p[14]/16)!=6||p[20]!=17||p[21]==0) { fail("IPv6 header/extension not supported"); }
+  var length=word(p,18);total=40+length;se(length<8||total+14>len(p)) { fail("IPv6 length"); }
+  append_range(pseudo,p,22,32);push(pseudo,0);push(pseudo,0);push(pseudo,qfloor(length/256));push(pseudo,length%256);push(pseudo,0);push(pseudo,0);push(pseudo,0);push(pseudo,17);
+ } senao { fail("EtherType outside IPv4/IPv6"); } }
+ var size=word(p,offset+4);se(size<8||size+offset!=total+14||word(p,offset+6)==0) { fail("UDP length/checksum required"); }
+ append_range(pseudo,p,offset,size);se(checksum(pseudo)!=0) { fail("UDP checksum"); }
+ var payload=[];append_range(payload,p,offset+8,size-8);var out=obj();put(out,"ip_version",version);put(out,"source_port",word(p,offset));put(out,"destination_port",word(p,offset+2));put(out,"payload",payload);retornar out;
+}
+funcao execute(r) {
+ se(has(r,"mode")) { se(r["mode"]!="decode-udp") { fail("Unknown transport mode"); }retornar decode_udp(r); }
+ var capacity=u::count(r,"window",1,16);var next=u::count(r,"next",0,65535);var slots=[];var i=0;
+ enquanto(i<capacity) { push(slots,[0,0,u::zeros(512)]);i=i+1; }
+ var frame=u::zeros(1024);var prefix=0;var prefix_bytes=0;var need=0;var filled=0;var messages=[];var dropped=0;var events=r["segments"];
+ se(!islist(events)||len(events)>128) { fail("Transport event cap"); }i=0;
+ enquanto(i<len(events)) {
+  var e=events[i];var seq=u::count(e,"sequence",0,65535);var payload=bytes(e["payload"],512);
+  se(len(payload)==0||seq<next||seq>=next+capacity) { dropped=dropped+1; }
+  senao { var index=seq%capacity;var slot=slots[index];se(slot[0]) { dropped=dropped+1; }
+   senao { put(slot,0,1);put(slot,1,len(payload));var j=0;enquanto(j<len(payload)) { put(slot[2],j,payload[j]);j=j+1; } }
+  }
+  var ready=1;enquanto(ready) {
+   var slot=slots[next%capacity];se(!slot[0]) { ready=0; }
+   senao {
+    var j=0;enquanto(j<slot[1]) { var byte=slot[2][j];
+     se(prefix_bytes<4) { prefix=prefix*256+byte;prefix_bytes=prefix_bytes+1;se(prefix_bytes==4) { se(prefix>1024) { fail("Frame length cap 1024"); }need=prefix;filled=0;se(need==0) { push(messages,[]);prefix_bytes=0;prefix=0; } } }
+     senao { put(frame,filled,byte);filled=filled+1;se(filled==need) { var out=[];var k=0;enquanto(k<need) { push(out,frame[k]);k=k+1; }push(messages,out);prefix_bytes=0;prefix=0;filled=0; } }
+     j=j+1;
+    }
+    put(slot,0,0);next=next+1;se(next>65535) { fail("Transport sequence epoch exhausted"); }
+   }
+  }i=i+1;
+ }
+ var out=obj();put(out,"messages",messages);put(out,"ack_next",next);put(out,"dropped",dropped);put(out,"prefix_bytes",prefix_bytes);put(out,"partial_bytes",filled);put(out,"window",capacity);retornar out;
+}

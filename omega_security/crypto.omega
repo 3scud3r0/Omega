@@ -1,0 +1,18 @@
+modulo crypto_reference_contracts;
+importar "../ciencia/core/exato.omega" como u;
+exportar select, verify_batch;
+# Mathematical reference only: GMP operations in this Omega bootstrap are not
+# constant-time. Native fixed-field implementation is field25519_ct.S.
+# Pre: bit in {0,1}. Post: bit=1 selects a, bit=0 selects b, exactly.
+funcao select(bit,a,b) { u::integer(bit,0,1);retornar bit*a+(1-bit)*b; }
+# Public request validation before dispatch to native crypto. Unknown modes,
+# encodings and lengths are rejected; this does not treat a digest as a proof.
+funcao verify_batch(r) {
+ var entries=r["requests"];se(!islist(entries)||len(entries)>16) { fail("Crypto batch cap 16"); }var sizes=[];var i=0;
+ enquanto(i<len(entries)) {
+  var e=entries[i];var mode=e["mode"];var data=e["hex"];
+  se(!contains(["sha3","hmac-sha3","x25519"],mode)||!isstr(data)||len(data)>32768||len(data)%2!=0) { fail("Crypto request domain"); }
+  var j=0;enquanto(j<len(data)) { se(!contains("0123456789abcdef",data[j])) { fail("Canonical lowercase hex required"); }j=j+1; }
+  se(mode=="x25519"&&len(data)!=128) { fail("X25519 scalar32/u32 required"); }se(mode=="hmac-sha3"&&len(data)<64) { fail("HMAC key32 required"); }push(sizes,len(data)/2);i=i+1;
+ }var out=obj();put(out,"bytes",sizes);put(out,"production_approved",0);put(out,"native_implementation","sovereign/native/field25519_ct.S");retornar out;
+}

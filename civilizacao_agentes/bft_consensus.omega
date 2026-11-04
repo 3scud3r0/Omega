@@ -1,0 +1,83 @@
+modulo omega_bft;
+importar "../ciencia/core/exato.omega" como u;
+exportar execute;
+
+# Fixed authenticated membership n=3f+1, equal voting power, <=10 nodes.
+# Persist the returned state BEFORE signing/broadcasting effects. Signatures
+# currently use the existing OpenSSL bootstrap primitive, not a native Ed25519.
+funcao hex64(x) { se(!isstr(x)||len(x)!=64) { retornar 0; }var i=0;enquanto(i<64) { se(!contains("0123456789abcdef",x[i])) { retornar 0; }i=i+1; }retornar 1; }
+funcao signing(b) { retornar "omega-bft-v1|"+b["chain"]+"|"+text(b["height"])+"|"+text(b["round"])+"|"+b["phase"]+"|"+b["value"]+"|"+b["parent"]+"|"+text(b["pol_round"])+"|"+b["sender"]; }
+funcao valid(e,members,chain) {
+ se(isnum(e)||isstr(e)||islist(e)||!has(e,"body")||!has(e,"signature")) { retornar 0; }
+ var b=e["body"];
+ se(isnum(b)||isstr(b)||islist(b)) { retornar 0; }
+ var fields=["chain","height","round","phase","value","parent","pol_round","sender"];var k=0;enquanto(k<len(fields)) { se(!has(b,fields[k])) { retornar 0; }k=k+1; }
+ se(len(keys(b))!=8||b["chain"]!=chain||!contains(members,b["sender"])||!isnum(b["height"])||qden(b["height"])!=1||b["height"]<0||b["height"]>1024||!isnum(b["round"])||qden(b["round"])!=1||b["round"]<0||b["round"]>31) { retornar 0; }
+ se(!contains(["propose","prevote","precommit"],b["phase"])||(b["value"]!="nil"&&!hex64(b["value"]))||!hex64(b["parent"])||!isnum(b["pol_round"])||qden(b["pol_round"])!=1||b["pol_round"]< -1||b["pol_round"]>=b["round"]) { retornar 0; }
+ se(!isstr(e["signature"])||len(e["signature"])!=128) { retornar 0; }k=0;enquanto(k<128) { se(!contains("0123456789abcdef",e["signature"][k])) { retornar 0; }k=k+1; }
+ retornar ed25519_verify(b["sender"],signing(b),e["signature"]);
+}
+funcao cert_valid(cert,members,chain,height,round,phase,value,parent) {
+ se(!islist(cert)||len(cert)>len(members)) { retornar 0; }var seen=[];var i=0;
+ enquanto(i<len(cert)) { var e=cert[i];se(!valid(e,members,chain)) { retornar 0; }var b=e["body"];
+  se(b["height"]!=height||b["round"]!=round||b["phase"]!=phase||b["value"]!=value||b["parent"]!=parent||contains(seen,b["sender"])) { retornar 0; }
+  push(seen,b["sender"]);i=i+1;
+ }retornar len(seen)>2*(len(members)-1)/3;
+}
+funcao effect(state,phase,value,identity) {
+ var b=obj();put(b,"chain",state["chain"]);put(b,"height",state["height"]);put(b,"round",state["round"]);put(b,"phase",phase);put(b,"value",value);put(b,"parent",state["parent"]);put(b,"pol_round",-1);put(b,"sender",identity);retornar b;
+}
+funcao commit(state,entry,commits) {
+ se(len(state["ledger"])==16) { fail("BFT ledger quota 16"); }
+ push(state["ledger"],entry);push(commits,entry);put(state,"parent",entry["value"]);put(state,"height",state["height"]+1);put(state,"round",0);put(state,"locked_round",-1);put(state,"locked_value","nil");put(state,"prevote","");put(state,"precommit","");put(state,"votes",[]);
+}
+funcao execute(r) {
+ var members=r["members"];se(!islist(members)||len(members)<4||len(members)>10||(len(members)-1)%3!=0) { fail("BFT membership n=3f+1, 4..10"); }
+ var seen=[];var i=0;enquanto(i<len(members)) { se(!hex64(members[i])||contains(seen,members[i])) { fail("BFT member key"); }push(seen,members[i]);i=i+1; }
+ var chain=r["chain"];se(!isstr(chain)||len(chain)<1||len(chain)>32) { fail("BFT chain"); }i=0;enquanto(i<len(chain)) { se(!contains("abcdefghijklmnopqrstuvwxyz0123456789_-",chain[i])) { fail("BFT chain alphabet"); }i=i+1; }
+ var identity=r["self"];se(!contains(members,identity)) { fail("BFT self identity"); }
+ var state=obj();put(state,"chain",chain);put(state,"height",0);put(state,"round",0);put(state,"parent","0000000000000000000000000000000000000000000000000000000000000000");put(state,"locked_round",-1);put(state,"locked_value","nil");put(state,"prevote","");put(state,"precommit","");put(state,"votes",[]);put(state,"ledger",[]);
+ se(has(r,"state")) { state=r["state"];se(state["chain"]!=chain||!hex64(state["parent"])||!islist(state["votes"])||len(state["votes"])>640||!islist(state["ledger"])||len(state["ledger"])>16) { fail("BFT persisted state bounds"); }u::count(state,"height",0,16);u::count(state,"round",0,31);u::count(state,"locked_round",-1,state["round"]); }
+ var events=r["events"];se(!islist(events)||len(events)>128) { fail("BFT event budget"); }var effects=[];var commits=[];var rejected=0;var equivocations=[];i=0;
+ enquanto(i<len(events)) {
+  var event=events[i];
+  se(event["kind"]=="timeout") { se(state["round"]==31) { fail("BFT round budget exhausted"); }put(state,"round",state["round"]+1);put(state,"prevote","");put(state,"precommit",""); }
+  senao { se(event["kind"]=="commit") {
+   var entry=event["entry"];
+   se(entry["height"]==state["height"]&&entry["parent"]==state["parent"]&&hex64(entry["value"])&&cert_valid(entry["certificate"],members,chain,entry["height"],entry["round"],"precommit",entry["value"],entry["parent"])) { commit(state,entry,commits); }senao { rejected=rejected+1; }
+  } senao {
+   se(event["kind"]!="message") { fail("Unknown BFT event"); }var e=event["message"];
+   se(!valid(e,members,chain)) { rejected=rejected+1; }
+   senao { var b=e["body"];var height=state["height"];var round=state["round"];
+    se(b["height"]!=height||b["parent"]!=state["parent"]||b["round"]>round) { rejected=rejected+1; }
+    senao {
+     se(b["phase"]=="propose") {
+      se(b["round"]==round&&b["sender"]==members[(height+round)%len(members)]&&b["value"]!="nil"&&state["prevote"]=="") {
+       var acceptable=state["locked_round"]<0||state["locked_value"]==b["value"];
+       se(b["pol_round"]>=0&&has(e,"certificate")&&cert_valid(e["certificate"],members,chain,height,b["pol_round"],"prevote",b["value"],b["parent"])&&b["pol_round"]>=state["locked_round"]) { acceptable=1; }
+       var value="nil";se(acceptable) { value=b["value"]; }put(state,"prevote",value);push(effects,effect(state,"prevote",value,identity));
+      }senao { rejected=rejected+1; }
+     }
+     senao {
+      var duplicate=0;var j=0;enquanto(j<len(state["votes"])) { var other=state["votes"][j]["body"];
+       se(other["sender"]==b["sender"]&&other["phase"]==b["phase"]&&other["round"]==b["round"]) { duplicate=1;se(other["value"]!=b["value"]) { push(equivocations,[state["votes"][j],e]); } }j=j+1;
+      }
+      se(!duplicate) { se(len(state["votes"])==640) { fail("BFT vote budget"); }push(state["votes"],e); }
+      var cert=[];j=0;enquanto(j<len(state["votes"])) { var other=state["votes"][j]["body"];se(other["phase"]==b["phase"]&&other["round"]==b["round"]&&other["value"]==b["value"]) { push(cert,state["votes"][j]); }j=j+1; }
+      se(len(cert)>2*(len(members)-1)/3) {
+       se(b["phase"]=="prevote"&&b["round"]==round&&state["precommit"]=="") {
+        put(state,"precommit",b["value"]);se(b["value"]!="nil") { put(state,"locked_round",round);put(state,"locked_value",b["value"]); }
+        push(effects,effect(state,"precommit",b["value"],identity));
+       }
+       se(b["phase"]=="precommit"&&b["value"]!="nil") {
+        var entry=obj();put(entry,"height",height);put(entry,"round",b["round"]);put(entry,"value",b["value"]);put(entry,"parent",b["parent"]);put(entry,"certificate",cert);
+        commit(state,entry,commits);
+       }
+      }
+     }
+    }
+   }
+  } }i=i+1;
+ }
+ var out=obj();put(out,"state",state);put(out,"effects_after_persist",effects);put(out,"commits",commits);put(out,"rejected",rejected);put(out,"equivocations",equivocations);put(out,"model","authenticated-fixed-membership-bft-v1");retornar out;
+}

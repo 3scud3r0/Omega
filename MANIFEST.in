@@ -59,3 +59,7 @@ recursive-include sovereign *.omega *.S *.md
 recursive-include hardware/sovereign *.v *.pcf *.json
 recursive-include tools *.py
 recursive-include requirements *.json
+
+recursive-include omega_net *.omega
+recursive-include omega_zk *.omega
+recursive-include omega_security *.omega
