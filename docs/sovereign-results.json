@@ -317,5 +317,35 @@
     "tests.log": "3b5a3d556e597caea3b4f5729d84472ec56261342b213f5fffd9ce2977ec1668",
     "tests.xml": "602711983706b2b22c72c4b76f2fdc734aaec92e0a2779d2cb65b75ad3f8fcd1"
   },
-  "validation_passed": true
+  "validation_passed": true,
+  "full_regression": {
+    "source_commit": "ebfae4e5714cee0ad79f72ee0b1968a88d158f86",
+    "command": "bash scripts/test.sh -q --junitxml=artifacts/sovereign/full-regression.xml",
+    "environment": {
+      "OMEGA_KERNEL_QEMU_AARCH64": "/workspace/.tools/sovereign/usr/bin/qemu-aarch64",
+      "OMEGA_KERNEL_QEMU_RISCV64": "/workspace/.tools/sovereign/usr/bin/qemu-riscv64",
+      "VK_ICD_FILENAMES": "/workspace/.tools/mesa-vulkan-25.0.7/icd-lvp.json",
+      "XDG_RUNTIME_DIR": "/tmp",
+      "LP_NUM_THREADS": "2"
+    },
+    "exit": 0,
+    "passed": 1359,
+    "subtests_passed": 138,
+    "skipped": 4,
+    "warnings": 3,
+    "seconds": 1448.71,
+    "junit": {
+      "tests": 1501,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 4
+    },
+    "junit_sha256": "5a783acbdd89d9e04947678dadc6013a41b43092a147634de4cbbe2e4ce89ac2",
+    "skip_reasons": [
+      "OM-096 CUDA hardware unavailable",
+      "Nextorch synthesis CUDA device unavailable",
+      "hyper_flat CUDA SDK unavailable",
+      "hyper_rational CUDA SDK/device stress unavailable"
+    ]
+  }
 }
