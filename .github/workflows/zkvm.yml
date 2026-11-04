@@ -24,7 +24,20 @@ jobs:
           .venv/bin/pip install -e '.[dev]'
           bash scripts/setup-sandbox.sh
       - name: Build pinned local prover and static verifier
-        run: bash scripts/setup-zkvm.sh
+        run: |
+          mkdir -p artifacts
+          set +e
+          bash scripts/setup-zkvm.sh 2>&1 | tee artifacts/zkvm-build.log
+          OMEGA_ZK_BUILD_STATUS=${PIPESTATUS[0]}
+          set -e
+          if test "$OMEGA_ZK_BUILD_STATUS" -ne 0; then
+            {
+              printf '### Local prover build failure\n\n```text\n'
+              tail -n 100 artifacts/zkvm-build.log
+              printf '\n```\n'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+          exit "$OMEGA_ZK_BUILD_STATUS"
       - name: Unit checks including forbidden fake receipts
         run: CARGO_TARGET_DIR="$GITHUB_WORKSPACE/build/risc0" cargo +1.90.0 test --release --locked --no-default-features --manifest-path omega_zk/risc0/Cargo.toml
       - name: Real succinct proof, independent verification and adversarial rejection
@@ -36,4 +49,7 @@ jobs:
         if: always()
         with:
           name: zkvm-cpu-evidence
-          path: artifacts/zkvm-real.xml
+          path: |
+            artifacts/zkvm-real.xml
+            artifacts/zkvm-build.log
+            build/risc0/x86_64-unknown-linux-musl/release/omega-risc0
