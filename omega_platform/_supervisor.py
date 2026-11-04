@@ -40,7 +40,10 @@ def main():
                 except (FileNotFoundError,ProcessLookupError,PermissionError):pass
             time.sleep(0.001)
     if code<0:
-        signal.signal(-code,signal.SIG_DFL)
+        # SIGKILL/SIGSTOP have no installable disposition. Attempting to reset
+        # them raises EINVAL and hides the child's actual termination signal.
+        if -code not in (signal.SIGKILL,signal.SIGSTOP):
+            signal.signal(-code,signal.SIG_DFL)
         os.kill(os.getpid(),-code)
     return code
 

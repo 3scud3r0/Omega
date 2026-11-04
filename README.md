@@ -1,5 +1,10 @@
 # Ômega 2.0 — compilador auto-hospedado, execução nativa e núcleo Lean
 
+As [fronteiras de zk-VM, prova do compilador e hardware](docs/ZKVM_FORMAL_HARDWARE.md)
+registram o alvo checked-u32/RV32IM, as novas provas Lean delimitadas e o monitor
+RV64 para FPGA. Prova STARK real, correção de toda a linguagem e validação física
+têm critérios separados; presença de código não significa fechamento dos três.
+
 O [incremento nativo e distribuído](sovereign/PR21.md) detalha o backend com
 spills/seções ELF, VirtIO-net, BFT e o preparo Ouroboros, incluindo os critérios
 de verificação e autonomia que continuam abertos.

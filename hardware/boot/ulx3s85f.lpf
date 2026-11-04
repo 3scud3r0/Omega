@@ -1,0 +1,12 @@
+# ULX3S v2/v3 constraints derived from emard/ulx3s doc/constraints/ulx3s_v20.lpf.
+# Target: LFE5U-85F-6BG381C. No physical board has been tested by this project.
+LOCATE COMP "clk_25mhz" SITE "G2";
+IOBUF PORT "clk_25mhz" PULLMODE=NONE IO_TYPE=LVCMOS33;
+FREQUENCY PORT "clk_25mhz" 25 MHZ;
+LOCATE COMP "reset_n" SITE "D6";
+IOBUF PORT "reset_n" PULLMODE=UP IO_TYPE=LVCMOS33;
+LOCATE COMP "ftdi_rxd" SITE "L4";
+IOBUF PORT "ftdi_rxd" PULLMODE=UP IO_TYPE=LVCMOS33 DRIVE=4;
+LOCATE COMP "trapped" SITE "B2";
+IOBUF PORT "trapped" PULLMODE=NONE IO_TYPE=LVCMOS33 DRIVE=4;
+FREQUENCY NET "core_clk" 6.25 MHZ;

@@ -6,6 +6,7 @@ importar "../kernel/omega/assembler.omega" como a;
 importar "../kernel/omega/riscv64.omega" como rv;
 importar "../ciencia/core/exato.omega" como u;
 exportar compile;
+exportar lower_zk;
 
 # Closed checked-i64 procedural fragment: principal(), mutable scalars, lexical
 # blocks, comparisons, if/else, while/break, return. No tensors/calls/effects.
@@ -24,7 +25,9 @@ funcao expr(s,e,env) {
  senao { se(op=="bin") {
   se(contains(["&&","||"],e[1])) { fail("Short-circuit Boolean lowering not admitted"); }
   var x=expr(s,e[2],env);var y=expr(s,e[3],env);emit(s,["bin",dst,e[1],x,y]);
- } senao { fail("Expression outside checked-i64 native fragment"); } } }
+ } senao { se(op=="call"&&has(s,"zk")&&e[1]=="private"&&len(e[2])==1&&e[2][0][0]=="n") {
+  var index=number(e[2][0][1]);u::integer(index,0,7);emit(s,["input",dst,index]);
+ } senao { fail("Expression outside checked-i64 native fragment"); } } } }
  }
  retornar dst;
 }
@@ -118,4 +121,13 @@ funcao compile(r) {
  enquanto(len(file["bytes"])<4096) { a::octet(file,0); }a::emit(file,code["bytes"]);a::emit(file,str["bytes"]);enquanto(len(file["bytes"])<symoff) { a::octet(file,0); }a::emit(file,table["bytes"]);a::emit(file,shstr["bytes"]);enquanto(len(file["bytes"])<shoff) { a::octet(file,0); }
  j=0;enquanto(j<64) { a::octet(file,0);j=j+1; }section(file,sn[0],1,6,4198400,4096,textlen,0,0,4,0);section(file,sn[1],1,2,4198400+rooffset,4096+rooffset,16,0,0,8,0);section(file,sn[2],2,0,0,symoff,len(table["bytes"]),4,len(symbols)+1,8,24);section(file,sn[3],3,0,0,stroff,len(str["bytes"]),0,0,1,0);section(file,sn[4],3,0,0,shstroff,len(shstr["bytes"]),0,0,1,0);
  var out=obj();put(out,"elf_hex",a::hex(file["bytes"]));put(out,"allocation",allocation);put(out,"ir",state["ir"]);put(out,"relocations",fixes);put(out,"semantics","checked-i64-loops-v1");put(out,"target","rv64im-linux");put(out,"external_linker",0);retornar out;
+}
+
+# ZK execution uses a separate checked-u32 target. No claim that its RV32IM
+# guest is the RV64 native binary. Reuses precisely the procedural AST/lowering.
+funcao lower_zk(r) {
+ var fs=parser::parse(r["source"]);se(len(fs)!=1||fs[0][0]!="principal"||len(fs[0][1])!=0) { fail("ZK entry: principal() only"); }
+ var state=obj();put(state,"next",0);put(state,"ir",[]);put(state,"loop",0);put(state,"zk",1);
+ lower(state,fs[0][2],obj(),"");emit(state,["trap"]);
+ var out=obj();put(out,"ir",state["ir"]);put(out,"registers",state["next"]);retornar out;
 }

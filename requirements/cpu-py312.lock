@@ -127,3 +127,6 @@ xlsxwriter==3.3.0
 z3-solver==4.16.0.0
 hypothesis==6.170.14
 sortedcontainers==2.4.0
+
+# Independent RV32IM execution for zkVM guest regression tests
+unicorn==2.1.4

@@ -12,6 +12,7 @@ requires-python = ">=3.10"
 omega = "omega.cli:principal"
 omega-kernel = "omega_kernel.cli:main"
 omega-recursive = "omega_recursive.cli:main"
+omega-zk = "omega_zk.__main__:main"
 omega-sovereign = "omega_sovereign.cli:main"
 omegac = "omega_selfhost.driver:compiler_main"
 
@@ -19,7 +20,7 @@ omegac = "omega_selfhost.driver:compiler_main"
 webgpu = ["wgpu==0.28.1"]
 neural = ["torch>=2.5,<3", "numpy>=1.26,<3", "z3-solver>=4.13,<5"]
 orange = ["Orange3>=3.38,<4", "PyQt6>=6.7,<7", "pyqtgraph>=0.13"]
-dev = ["hypothesis==6.170.14", "pytest>=8", "build>=1", "jsonschema>=4,<5"]
+dev = ["unicorn==2.1.4", "hypothesis==6.170.14", "pytest>=8", "build>=1", "jsonschema>=4,<5"]
 umap = ["umap-learn>=0.5,<1"]
 tools = ["pypdf>=5,<7", "wasmtime>=31,<40", "cryptography>=44,<51"]
 gpu = ["triton>=3; platform_system == 'Linux'"]
@@ -29,7 +30,7 @@ gpu = ["triton>=3; platform_system == 'Linux'"]
 "Omega Certified Synthesis" = "omega_nextorch.orange"
 
 [tool.setuptools.packages.find]
-include = ["omega_sovereign*", "omega_recursive*", "omega_kernel*", "omega_engines*", "omega_science*", "omega_live*", "omega_ingest*", "omega_native*", "omega", "omega_open", "omega_nextorch*", "omega_selfhost*", "omega_platform*", "omega_agent*", "omega_bench*", "omega_coder*", "omega_evolution*", "omega_learning*", "omega_memory*", "omega_security*", "omega_tools*", "omega_refine_check*", "omega_synth_mcts*", "omega_self_mutate*", "omega_cognition*", "omega_gpu_mcts*", "omega_autotelic*", "omega_self_evolve_v2*", "omega_runtime_verified*", "nextorch*"]
+include = ["omega_zk*", "omega_sovereign*", "omega_recursive*", "omega_kernel*", "omega_engines*", "omega_science*", "omega_live*", "omega_ingest*", "omega_native*", "omega", "omega_open", "omega_nextorch*", "omega_selfhost*", "omega_platform*", "omega_agent*", "omega_bench*", "omega_coder*", "omega_evolution*", "omega_learning*", "omega_memory*", "omega_security*", "omega_tools*", "omega_refine_check*", "omega_synth_mcts*", "omega_self_mutate*", "omega_cognition*", "omega_gpu_mcts*", "omega_autotelic*", "omega_self_evolve_v2*", "omega_runtime_verified*", "nextorch*"]
 
 [tool.setuptools.package-data]
 "omega_kernel" = ["omega_kernel.omega"]

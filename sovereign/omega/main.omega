@@ -11,7 +11,8 @@ importar "../../std/string.omega" como strings;
 funcao principal() {
  se(argc()!=2) { fail("Usage: sovereign-models request.json"); }
  var input=parsejson(read(arg(1)));var out=obj();
- se(input["operation"]=="transport") { out=transport::execute(input["request"]); }
+ se(input["operation"]=="zk-lower") { out=backend::lower_zk(input["request"]); }
+senao { se(input["operation"]=="transport") { out=transport::execute(input["request"]); }
 senao { se(input["operation"]=="stark") { out=stark::execute(input["request"]); }
 senao { se(input["operation"]=="crypto") { out=crypto::verify_batch(input["request"]); }
 senao { se(input["operation"]=="ouroboros") { out=ouroboros::execute(input["request"]); }
@@ -21,5 +22,5 @@ senao { se(input["operation"]=="regalloc") { out=alloc::allocate(input["request"
 senao { se(input["operation"]=="tcp") { out=tcp::execute(input["request"]); }
  senao { se(input["operation"]=="raft") { out=raft::execute(input["request"]); }
  senao { fail("Unknown sovereign model"); } }
- } } } } } } } print(strings::canonical(out));retornar 0;
+ } } } } } } } } print(strings::canonical(out));retornar 0;
 }

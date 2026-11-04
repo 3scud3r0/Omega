@@ -1,0 +1,7 @@
+# Declaração pública: existe uma entrada privada que produz a soma 10.
+# O programa não publica os dois operandos. O journal vincula fonte, IR e alvo.
+funcao principal() {
+ var esquerda=private(0);
+ var direita=private(1);
+ retornar esquerda+direita;
+}
