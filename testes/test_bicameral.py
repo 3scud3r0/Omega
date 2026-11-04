@@ -166,6 +166,14 @@ def test_empirical_ledger_binds_evidence_without_formal_promotion(spec,tmp_path)
     assert not row['formal_admission'] and not result['kernel_activated']
 
 
+def test_failed_experiments_cannot_refund_the_trial_budget(tmp_path):
+    spec={'format':'omega-cognitive-problem-1','variables':{'x':{'lower':0,'upper':1,'denominator':1}},
+          'reference':'x/x','training':[{'inputs':{'x':'1'},'output':'1'}],'candidates':['1','x/x']}
+    result=run(spec,tmp_path/'failed-quota',options=Options(mode='empirical',cases=100,proposals=2,max_total_trials=150))
+    assert [row['status'] for row in result['candidates']]==['validation_failed','resource_exhausted']
+    assert result['iid_trial_budget_reserved']==100 and not result['iid_accounting_complete']
+
+
 def test_cli_both_flag_locations_and_legacy_dispatch(spec,tmp_path,capsys):
     from omega.cli import principal
     path=tmp_path/'spec.json';path.write_text(json.dumps(spec))

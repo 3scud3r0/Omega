@@ -1,6 +1,6 @@
 """Dream→falsification→Lean artifacts. Proposal never grants promotion authority."""
 from dataclasses import dataclass,asdict
-from decimal import Decimal
+from decimal import Decimal,localcontext,ROUND_FLOOR
 import hashlib,json,math,time
 from pathlib import Path
 from .problem import normalize,flat
@@ -58,8 +58,10 @@ def run(spec,directory,*,options=None,jail=None):
     report={'format':'omega-bicameral-report-1','mode':mode,'problem_sha256':digest(spec),'candidates':[],
             'extensions':[{'syntax':e,'status':'quarantined_unsupported_semantics','executed':False} for e in problem['extensions']],
             'events':[],'kernel_activated':False,'activation_requires_independent_approval':True,'zk_verified':False,'completed_cycles':0}
-    previous='0'*64;seen=set();used=0;started=time.monotonic()
-    per_alpha=str(Decimal(config.alpha)/(config.proposals*config.cycles))
+    previous='0'*64;seen=set();used=0;reserved=0;accounting_complete=True;started=time.monotonic()
+    with localcontext() as precision:
+        precision.prec=70;precision.rounding=ROUND_FLOOR
+        per_alpha=str(Decimal(config.alpha)/(config.proposals*config.cycles))
     trials=config.cases if config.cases is not None else max(100000,required_trials(alpha=per_alpha,epsilon=config.epsilon))
     report['validation_policy']={'alpha_family':config.alpha,'alpha_per_candidate':per_alpha,'planned_iid_trials':trials,
                                   'multiple_comparisons':config.proposals*config.cycles,'max_total_trials':config.max_total_trials}
@@ -88,6 +90,7 @@ def run(spec,directory,*,options=None,jail=None):
             if mode in ('strict','empirical') and not proposals:raise ValueError('This mode requires explicit candidate hypotheses')
             accepted_this_cycle=False
             for candidate,origin in proposals[:config.proposals]:
+                if time.monotonic()-started>=config.wall_seconds:report['stop_reason']='wall_budget';break
                 signature=novelty(candidate,problem)
                 identity=digest(flat(candidate,list(problem['grid'])))
                 if identity in seen:continue
@@ -99,11 +102,15 @@ def run(spec,directory,*,options=None,jail=None):
                 if mode=='dream':row['status']='quarantined';continue
                 if mode!='strict':
                     phase=event(identity,phase,'debate')
-                    if used+trials>config.max_total_trials:row['status']='resource_exhausted';report['stop_reason']='trial_budget';break
+                    if reserved+trials>config.max_total_trials:row['status']='resource_exhausted';report['stop_reason']='trial_budget';break
+                    # Never refund a failed/aborted experiment: it may already
+                    # have consumed draws before its subprocess failed.
+                    reserved+=trials
                     try:
                         evidence=evaluate(candidate,problem,trials=trials,alpha=per_alpha,epsilon=config.epsilon,jail=jail,
                                           wall_seconds=max(1,config.wall_seconds-(time.monotonic()-started)))
                     except (ValueError,TimeoutError,RuntimeError) as error:
+                        accounting_complete=False
                         row['status']='validation_failed';row['reason']=str(error)[-2000:];continue
                     used+=evidence['counts']['iid'];row['empirical']=evidence;dump(folder/'empirical.json',evidence)
                     phase=event(identity,phase,'stable' if evidence['accepted'] else 'counterexample' if evidence['status']=='falsified' else 'insufficient')
@@ -139,6 +146,8 @@ def run(spec,directory,*,options=None,jail=None):
             report['completed_cycles']+=1
             if mode=='bicameral' and accepted_this_cycle:report['stop_reason']='formal_artifact_ready';break
         report['iid_trials_executed']=used
+        report['iid_accounting_complete']=accounting_complete
+        report['iid_trial_budget_reserved']=reserved
         report.setdefault('stop_reason','cycle_budget')
         report['status']='formal_verified' if any(c['formal_admission'] for c in report['candidates']) else 'empirically_stable' if any(c.get('empirical',{}).get('accepted') for c in report['candidates']) else 'quarantined' if mode=='dream' else 'no_admitted_hypothesis'
         return report

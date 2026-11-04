@@ -139,3 +139,9 @@ etapa posterior de emissão/prova criptográfica teve sucesso: examine os candid
 Testes dirigidos: `pytest testes/test_bicameral.py -q`. A suíte inclui loop
 infinito, crash, bloqueio de rede/escrita, memória, 100.000 observações realmente
 executadas, rejeições estatísticas/formais, cadeia Lean/RV64, ledger e CLI.
+
+O orçamento de casos reserva cada experimento antes de iniciá-lo. Uma falha ou
+timeout não devolve a reserva, pois pode ter consumido amostras. Se isso ocorrer,
+`iid_accounting_complete` é falso: o contador executado inclui apenas os lotes
+de experimentos concluídos, e `iid_trial_budget_reserved` limita conservadoramente
+o consumo total possível.
