@@ -202,6 +202,11 @@ O STARK cobre a especialização declarada, não os testes do ginásio nem todo 
 compilador. Artefatos dedutivos estritos, sem etapa empírica, requerem
 `--allow-deduction-only` para reverificação.
 
+A amostra deste perfil é pública e faz parte do problema esperado. O guest
+impõe seus valores com guardas para cada variável, incluindo variáveis que não
+afetam uma expressão constante. A prova só pode certificar a entrada declarada;
+o verificador recria também essas guardas ao derivar a identidade esperada.
+
 Quando `--bft-local` está habilitado, a hipótese empírica e o manifesto final
 recebem registros nos experimentos BFT locais. O registro final só é produzido
 após as três verificações; uma falha no registro impede o sucesso configurado.

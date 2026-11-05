@@ -56,11 +56,19 @@ def zk_specialization(candidate,problem,engine):
     from fractions import Fraction
     inputs=problem['training'][0]['inputs'];lines=[]
     for i,name in enumerate(problem['grid']):lines.append(f'var {name}=private({i});')
-    source='funcao principal() { '+' '.join(lines)+' retornar '+render(candidate)+'; }'
     expected=evaluate(candidate,{k:Fraction(v) for k,v in inputs.items()})
     if expected.denominator!=1:raise ValueError('ZK u32 specialization requires an integer result')
     values=[Fraction(inputs[n]) for n in problem['grid']]
     if any(v.denominator!=1 for v in values):raise ValueError('ZK u32 specialization requires integer inputs')
+    # The experiment's sample is public. Bind every modeled input, including
+    # inputs unused by a constant expression, rather than proving only that
+    # some witness happens to produce the same output.
+    from omega_zk.execution import uint
+    uint(expected.numerator)
+    alternate=0 if expected.numerator else 1
+    guards=[f'se ({name}!={uint(int(value))}) {{ retornar {alternate}; }}'
+            for name,value in zip(problem['grid'],values)]
+    source='funcao principal() { '+' '.join(lines+guards)+' retornar '+render(candidate)+'; }'
     return engine.compile(source,expected.numerator)
 
 

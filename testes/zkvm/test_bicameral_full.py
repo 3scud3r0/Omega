@@ -47,3 +47,15 @@ def test_seedless_bicameral_command_and_independent_reverification(tmp_path,caps
     content['sha256']=digest({k:v for k,v in content.items() if k!='sha256'})
     (damaged/'crystallization.json').write_text(json.dumps(content))
     with pytest.raises(RuntimeError):verify(damaged/'crystallization.json',json.loads(spec.read_text()),verifier=verifier)
+    # A constant output must not allow the prover to substitute another input
+    # for the experiment's publicly declared sample.
+    from omega_cognition.bridge import zk_specialization
+    from omega_cognition.problem import normalize
+    from omega_refine_check.syntax import parse
+    from omega_zk.execution import Engine
+    from omega_platform.sandbox import ExecutionFailure
+    constant=normalize({'format':'omega-cognitive-problem-1',
+        'variables':{'x':{'lower':0,'upper':1,'denominator':1}},'reference':'1',
+        'training':[{'inputs':{'x':'0'},'output':'1'}]})
+    fixed=zk_specialization(parse('1'),constant,Engine(verifier))
+    with pytest.raises(ExecutionFailure):Engine(prover).prove(fixed,[1,0,0,0,0,0,0,0])
