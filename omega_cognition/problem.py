@@ -28,7 +28,8 @@ def normalize(raw):
     variables=raw.get('variables')
     if type(variables) is not dict or not 1<=len(variables)<=8:raise ValueError('One to eight variables required')
     grid={};contracts={}
-    for name,domain in variables.items():
+    for name in variables:identifier(name)
+    for name,domain in sorted(variables.items()):
         identifier(name)
         if name in ('self','result') or type(domain) is not dict or set(domain)!={'lower','upper','denominator'}:raise ValueError('Variable grid schema')
         lo,hi,den=(domain[n] for n in ('lower','upper','denominator'))

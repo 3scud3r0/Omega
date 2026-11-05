@@ -50,9 +50,8 @@ def emit_rv64(candidate,problem,directory):
             'sample':sample,'target':'rv64im-linux','compiler':manifest,'universal_compiler_equivalence_proved':False}
 
 
-def seal(candidate,problem,*,prover,verifier):
-    """Optional independent u32 execution proof, distinct from the RV64 artifact."""
-    from omega_zk.execution import Engine
+def zk_specialization(candidate,problem,engine):
+    """Derive the expected statement using a caller-selected trusted compiler."""
     from omega_refine_check.syntax import evaluate
     from fractions import Fraction
     inputs=problem['training'][0]['inputs'];lines=[]
@@ -62,8 +61,17 @@ def seal(candidate,problem,*,prover,verifier):
     if expected.denominator!=1:raise ValueError('ZK u32 specialization requires an integer result')
     values=[Fraction(inputs[n]) for n in problem['grid']]
     if any(v.denominator!=1 for v in values):raise ValueError('ZK u32 specialization requires integer inputs')
-    program=Engine(prover).compile(source,expected.numerator)
+    return engine.compile(source,expected.numerator)
+
+
+def seal(candidate,problem,*,prover,verifier):
+    """Independent u32 execution proof, distinct from the RV64 artifact."""
+    from omega_zk.execution import Engine
+    from fractions import Fraction
+    check=Engine(verifier)
+    program=zk_specialization(candidate,problem,check)
+    values=[Fraction(problem['training'][0]['inputs'][n]) for n in problem['grid']]
     raw,metrics=Engine(prover).prove(program,[int(v) for v in values]+[0]*(8-len(values)))
-    check=Engine(verifier);identity=check.image_id(program);verified=check.verify(raw,identity,program.journal)
+    identity=check.image_id(program);verified=check.verify(raw,identity,program.journal)
     return raw,{'proving':metrics,'verification':verified,'image_id':identity,'journal':program.journal.decode(),
                 'scope':'checked-u32 RV32IM specialization; not a proof of the RV64 binary'}
