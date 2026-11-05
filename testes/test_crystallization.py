@@ -48,7 +48,9 @@ def untrusted_bundle(root,spec):
     for name in FILES:
         path=root/name;path.parent.mkdir(exist_ok=True)
         path.write_bytes(b'untrusted')
-    (root/'hypothesis.json').write_text(json.dumps({'format':'omega-cognitive-hypothesis-1','problem':spec,'candidate':'x+1'}))
+    from omega_refine_check.syntax import parse,render
+    node=parse('x+1')
+    (root/'hypothesis.json').write_text(json.dumps({'format':'omega-cognitive-hypothesis-1','problem':spec,'candidate':render(node),'ast':node}))
     publish(root)
     return root/'crystallization.json'
 
@@ -109,3 +111,16 @@ def test_variable_order_does_not_change_generated_theorem():
        'training':[{'inputs':{'x':'0','y':'1'},'output':'1'}]}
     b={**a,'variables':{'x':domain,'y':domain}}
     assert hypothesis_to_lemma(parse('y+x'),normalize(a))==hypothesis_to_lemma(parse('y+x'),normalize(b))
+
+
+@pytest.mark.parametrize('literal',['-1','-1/3','0','1/3'])
+def test_ast_roundtrip_preserves_formal_obligations(literal):
+    from omega_cognition.bridge import hypothesis_to_lemma
+    from omega_cognition.problem import normalize
+    from omega_cognition.crystallization import decode
+    from omega_refine_check.syntax import tree
+    node=('const',literal)
+    spec={'format':'omega-cognitive-problem-1','variables':{'x':{'lower':0,'upper':1,'denominator':1}},
+          'reference':literal,'training':[{'inputs':{'x':'0'},'output':literal}]}
+    restored=tree(decode(json.dumps({'ast':node}).encode())['ast'])
+    assert hypothesis_to_lemma(node,normalize(spec))==hypothesis_to_lemma(restored,normalize(spec))

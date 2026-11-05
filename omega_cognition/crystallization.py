@@ -9,7 +9,7 @@ from pathlib import Path
 from . import bridge
 from .problem import normalize, flat
 from .statistics import confidence, probability
-from omega_refine_check.syntax import parse
+from omega_refine_check.syntax import tree,render
 
 FILES = {
     'hypothesis.json': 128*1024,
@@ -109,12 +109,14 @@ def verify(manifest_path, expected_problem, *, verifier, replay_empirical=False,
         raise ValueError('Crystallization artifact hash mismatch')
     problem = normalize(expected_problem)
     hypothesis = decode(assets['hypothesis.json'])
-    if (type(hypothesis) is not dict or set(hypothesis) != {'format','problem','candidate'}
+    if (type(hypothesis) is not dict or set(hypothesis) != {'format','problem','candidate','ast'}
             or hypothesis['format'] != 'omega-cognitive-hypothesis-1'
             or digest(expected_problem) != manifest['problem_sha256']
             or hypothesis['problem'] != expected_problem):
         raise ValueError('Crystallization statement differs from expected problem')
-    candidate = parse(hypothesis['candidate'])
+    candidate = tree(hypothesis['ast'])
+    if render(candidate) != hypothesis['candidate']:
+        raise ValueError('Hypothesis AST and expression differ')
     flat(candidate, list(problem['grid']))
     source, _ = bridge.hypothesis_to_lemma(candidate, problem)
     if assets['formal/hypothesis.lean'] != source.encode():

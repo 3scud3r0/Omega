@@ -10,7 +10,7 @@ from .dream import propose,novelty
 from .debate import evaluate
 from . import bridge
 from omega_agent_sandbox.jail import Jail
-from omega_refine_check.syntax import render
+from omega_refine_check.syntax import render,tree
 
 MODES=('strict','empirical','dream','creative','bicameral')
 
@@ -161,7 +161,7 @@ def run(spec,directory,*,options=None,jail=None):
                         row['zk_error']=str(error)[-2000:];row['status']='zk_failed';phase=event(identity,phase,'fail_seal')
                 if phase=='zk_verified':
                     from .crystallization import publish
-                    dump(folder/'hypothesis.json',{'format':'omega-cognitive-hypothesis-1','problem':spec,'candidate':render(candidate)})
+                    dump(folder/'hypothesis.json',{'format':'omega-cognitive-hypothesis-1','problem':spec,'candidate':render(candidate),'ast':tree(candidate)})
                     try:
                         row['crystallization']=publish(folder,empirical=mode!='strict')
                         phase=event(identity,phase,'publish');row['status']='crystallized'
