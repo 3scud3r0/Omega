@@ -5,7 +5,7 @@ from pathlib import Path
 
 def main(argv=None):
     parser=argparse.ArgumentParser(prog='omega cognition')
-    parser.add_argument('action',choices=['discover','distill','schedule','qpu','trace','replay','memory','standalone'])
+    parser.add_argument('action',choices=['discover','verify','distill','schedule','qpu','trace','replay','memory','standalone'])
     parser.add_argument('--mode',choices=['strict','empirical','dream','creative','bicameral'],default='strict')
     parser.add_argument('--cases',type=int)
     parser.add_argument('--epsilon',default='0.00001');parser.add_argument('--alpha',default='0.05')
@@ -17,8 +17,22 @@ def main(argv=None):
     parser.add_argument('--bft-local',action='store_true')
     parser.add_argument('--no-native',action='store_true')
     parser.add_argument('--zk-prover');parser.add_argument('--zk-verifier')
+    parser.add_argument('--require-seal',action='store_true')
+    parser.add_argument('--proposal-source',choices=['search','seeds','mixed'],default='mixed')
+    parser.add_argument('--expected-problem',type=Path)
+    parser.add_argument('--replay-empirical',action='store_true')
+    parser.add_argument('--allow-deduction-only',action='store_true')
     parser.add_argument('spec',type=Path);parser.add_argument('--output',type=Path)
     args=parser.parse_args(argv)
+    if args.action=='verify':
+        if args.expected_problem is None or args.zk_verifier is None:parser.error('verify requires --expected-problem and --zk-verifier')
+        if args.mode!='strict':parser.error('Artifact verification always uses strict proof admission')
+        from .crystallization import verify,read,decode
+        expected=args.expected_problem.absolute()
+        result=verify(args.spec,decode(read(expected.parent,expected.name,128*1024)),verifier=args.zk_verifier,
+                      replay_empirical=args.replay_empirical,max_alpha=args.alpha,max_epsilon=args.epsilon,
+                      require_empirical=not args.allow_deduction_only)
+        print(json.dumps(result,sort_keys=True,indent=2));return 0
     if args.spec.stat().st_size>128*1024:parser.error('Specification byte budget')
     spec=json.loads(args.spec.read_text())
     if args.action=='discover':
@@ -27,8 +41,10 @@ def main(argv=None):
         config=Options(mode=args.mode,cases=args.cases,epsilon=args.epsilon,alpha=args.alpha,cycles=args.cycles,
             proposals=args.proposals,iterations=args.iterations,seed=args.seed,temperature=args.temperature,guide=args.guide,
             max_total_trials=args.max_total_trials,wall_seconds=args.wall_seconds,bft=args.bft_local,native=not args.no_native,
-            zk_prover=args.zk_prover,zk_verifier=args.zk_verifier)
+            zk_prover=args.zk_prover,zk_verifier=args.zk_verifier,require_seal=args.require_seal,proposal_source=args.proposal_source)
         result=run(spec,args.output,options=config)
+        if args.require_seal and not result['crystallization_complete']:
+            print(json.dumps(result,sort_keys=True,indent=2));return 1
     elif args.mode!='strict':parser.error('Cognitive operation modes apply to discover')
     elif args.action=='distill':
         from .pipeline import distill

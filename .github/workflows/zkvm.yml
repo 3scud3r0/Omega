@@ -7,7 +7,7 @@ permissions:
 jobs:
   cpu-stark:
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
@@ -16,12 +16,13 @@ jobs:
       - name: Host build and isolation prerequisites
         run: |
           sudo apt-get update
-          sudo apt-get install -y g++ libgmp-dev libssl-dev bubblewrap meson ninja-build pkg-config libcap-dev
+          sudo apt-get install -y g++ libgmp-dev libssl-dev bubblewrap meson ninja-build pkg-config libcap-dev qemu-user zstd
           if test -f /proc/sys/kernel/apparmor_restrict_unprivileged_userns; then
             sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
           fi
           python -m venv .venv
           .venv/bin/pip install -e '.[dev]'
+          .venv/bin/pip install cryptography==50.0.2 cffi==2.1.1
           bash scripts/setup-sandbox.sh
       - name: Build pinned local prover and static verifier
         env:
@@ -43,11 +44,28 @@ jobs:
           exit "$OMEGA_ZK_BUILD_STATUS"
       - name: Unit checks including forbidden fake receipts
         run: CARGO_TARGET_DIR="$GITHUB_WORKSPACE/build/risc0" cargo +1.90.0 test --release --locked --no-default-features --manifest-path omega_zk/risc0/Cargo.toml
+      - name: Prepare pinned Lean and native cognitive prerequisites
+        run: |
+          set +e
+          bash scripts/setup-cognition.sh 2>&1 | tee artifacts/cognition-setup.log
+          OMEGA_COGNITION_STATUS=${PIPESTATUS[0]}
+          set -e
+          if test "$OMEGA_COGNITION_STATUS" -ne 0; then
+            .venv/bin/python -c 'from pathlib import Path; text=Path("artifacts/cognition-setup.log").read_text(errors="replace")[-2500:]; print("::error title=Bicameral setup diagnostic::"+text.replace("%","%25").replace("\r","%0D").replace("\n","%0A"))'
+          fi
+          exit "$OMEGA_COGNITION_STATUS"
       - name: Real succinct proof, independent verification and adversarial rejection
         env:
           OMEGA_RISC0_PROVER: ${{ github.workspace }}/build/risc0/release/omega-risc0
           OMEGA_RISC0_VERIFIER: ${{ github.workspace }}/build/risc0/x86_64-unknown-linux-musl/release/omega-risc0
         run: .venv/bin/python -m pytest testes/zkvm/test_execution.py -q --junitxml=artifacts/zkvm-real.xml
+      - name: Complete bicameral command and independent replay
+        env:
+          OMEGA_RISC0_PROVER: ${{ github.workspace }}/build/risc0/release/omega-risc0
+          OMEGA_RISC0_VERIFIER: ${{ github.workspace }}/build/risc0/x86_64-unknown-linux-musl/release/omega-risc0
+          OMEGA_BICAMERAL_FULL: '1'
+          OMEGA_BICAMERAL_EVIDENCE_DIR: ${{ github.workspace }}/artifacts/bicameral-real
+        run: .venv/bin/python -m pytest testes/zkvm/test_bicameral_full.py -q --junitxml=artifacts/bicameral-real.xml
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         if: always()
         with:
@@ -55,4 +73,7 @@ jobs:
           path: |
             artifacts/zkvm-real.xml
             artifacts/zkvm-build.log
+            artifacts/cognition-setup.log
+            artifacts/bicameral-real.xml
+            artifacts/bicameral-real
             build/risc0/x86_64-unknown-linux-musl/release/omega-risc0

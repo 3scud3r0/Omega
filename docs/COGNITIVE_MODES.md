@@ -146,3 +146,76 @@ timeout não devolve a reserva, pois pode ter consumido amostras. Se isso ocorre
 `iid_accounting_complete` é falso: o contador executado inclui apenas os lotes
 de experimentos concluídos, e `iid_trial_budget_reserved` limita conservadoramente
 o consumo total possível.
+
+## Cristalização completa e reverificação independente
+
+O PR #23 já contém os modos, o ginásio e a ponte Lean/RV64. A conclusão do ciclo
+agora é explícita: `formal_verified` não significa `crystallized`. O relatório
+expõe `completion_target`, `configured_stages_complete`, `crystallization_complete`
+e `pending_stages`. Erros posteriores à prova preservam a verdade do lema, mas
+não dão sucesso à emissão, ao STARK ou à publicação do artefato.
+
+```sh
+# Prerequisitos Linux: cc, GMP/OpenSSL, QEMU RV64, bubblewrap e Rust para o prover.
+bash scripts/setup-cognition.sh
+bash scripts/setup-zkvm.sh
+
+# Este exemplo não fornece candidatos: o MCTS precisa gerar a hipótese.
+.venv/bin/python -m omega --mode bicameral cognition discover \
+  omega_cognition/examples/seedless_affine.json \
+  --proposal-source search --iterations 512 --proposals 1 --wall-seconds 900 \
+  --require-seal --bft-local \
+  --zk-prover build/risc0/release/omega-risc0 \
+  --zk-verifier build/risc0/x86_64-unknown-linux-musl/release/omega-risc0 \
+  --output artifacts/bicameral-complete
+
+# Recria o enunciado a partir do problema esperado pelo operador; repete o
+# experimento, verifica Lean, recompila o RV64 e verifica o recibo recebido.
+.venv/bin/python -m omega cognition verify \
+  artifacts/bicameral-complete/candidate-000/crystallization.json \
+  --expected-problem omega_cognition/examples/seedless_affine.json \
+  --zk-verifier build/risc0/x86_64-unknown-linux-musl/release/omega-risc0 \
+  --replay-empirical
+```
+
+`--require-seal` exige os dois executáveis ZK e emissão nativa. O comando retorna
+código de saída diferente de zero se não atingir a cristalização. Sem essa opção,
+a exploração parcial continua disponível e o relatório declara as etapas pendentes.
+`--proposal-source search` exclui sementes fornecidas; `seeds` permite depurar uma
+hipótese explícita e `mixed` prioriza as propostas do MCTS antes das sementes.
+Candidatos estruturalmente repetidos não consomem as vagas de avaliação de outros
+candidatos do mesmo ciclo. A ordem das chaves das variáveis não altera o lema.
+
+A publicação gera `crystallization.json`, `hypothesis.json`, o lema e recibo Lean,
+a especialização e os executáveis RV64, o recibo STARK e sua identidade/journal.
+Os escopos ficam fixos no formato. O verificador confere o problema esperado,
+reconstrói o lema, o aceita novamente no Lean, regenera os binários em isolamento
+e compara seus bytes. Ele compila independentemente a imagem RV32IM esperada e
+verifica o recibo contra essa identidade e esse journal, sem executar o binário
+recebido. Recalcular hashes de um recibo falso não lhe dá validade.
+
+Os arquivos recebidos têm limites de tamanho e precisam ser regulares, sem
+symlinks nos componentes internos. Sem `--replay-empirical`, as cotas declaradas
+são recalculadas, mas a execução passada do ginásio não é atestada. Com a opção,
+o ginásio é reexecutado com a semente registrada e o transcript é comparado.
+O STARK cobre a especialização declarada, não os testes do ginásio nem todo o
+compilador. Artefatos dedutivos estritos, sem etapa empírica, requerem
+`--allow-deduction-only` para reverificação.
+
+A amostra deste perfil é pública e faz parte do problema esperado. O guest
+impõe seus valores com guardas para cada variável, incluindo variáveis que não
+afetam uma expressão constante. A prova só pode certificar a entrada declarada;
+o verificador recria também essas guardas ao derivar a identidade esperada.
+
+Quando `--bft-local` está habilitado, a hipótese empírica e o manifesto final
+recebem registros nos experimentos BFT locais. O registro final só é produzido
+após as três verificações; uma falha no registro impede o sucesso configurado.
+Esses experimentos usam clusters de teste de quatro processos, com chaves fixas,
+e não são um serviço BFT de produção nem uma cadeia global persistente. A
+promoção do kernel continua exigindo aprovação independente.
+
+O workflow `zkvm.yml` provisiona as versões fixadas de Lean/Mathlib, QEMU e prover
+e executa o comando completo, sem sementes, com 299.572 observações, registros
+BFT e reverificação com replay. Os artefatos publicados pelo CI incluem o recibo
+STARK efetivo e os demais arquivos, para auditoria fora do gerador. Esse teste
+não usa mocks nem recibos de desenvolvimento.

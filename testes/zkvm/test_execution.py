@@ -121,3 +121,16 @@ def test_real_succinct_stark_and_tampering(engine,tmp_path):
     raw,certificate=seal(parse('x+1'),problem,prover=configured,verifier=engine.tool)
     assert raw and certificate['verification']['valid']
     assert 'not a proof of the RV64 binary' in certificate['scope']
+
+
+def test_cognitive_proof_binds_sample_even_when_output_is_constant(engine):
+    from omega_cognition.problem import normalize
+    from omega_cognition.bridge import zk_specialization
+    from omega_refine_check.syntax import parse
+    spec={'format':'omega-cognitive-problem-1','variables':{
+        'y':{'lower':0,'upper':1,'denominator':1},'x':{'lower':0,'upper':1,'denominator':1}},
+        'reference':'1','training':[{'inputs':{'x':'0','y':'1'},'output':'1'}]}
+    p=zk_specialization(parse('1'),normalize(spec),engine)
+    assert execute(p,[0,1,0,0,0,0,0,0])[:2]==(0,p.journal)
+    for wrong in ([1,1,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[900,1,0,0,0,0,0,0]):
+        assert execute(p,wrong)[:2]==(1,b'')

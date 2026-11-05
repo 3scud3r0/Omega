@@ -10,7 +10,7 @@ from .dream import propose,novelty
 from .debate import evaluate
 from . import bridge
 from omega_agent_sandbox.jail import Jail
-from omega_refine_check.syntax import render
+from omega_refine_check.syntax import render,tree
 
 MODES=('strict','empirical','dream','creative','bicameral')
 
@@ -32,6 +32,8 @@ class Options:
     native:bool=True
     zk_prover:str|None=None
     zk_verifier:str|None=None
+    require_seal:bool=False
+    proposal_source:str='mixed'
 
     def __post_init__(self):
         if self.mode not in MODES or self.guide not in ('heuristic','neural'):raise ValueError('Cognitive mode/guide')
@@ -41,6 +43,10 @@ class Options:
         probability(self.alpha);probability(self.epsilon)
         if type(self.temperature) not in (int,float) or not math.isfinite(self.temperature) or not 1<=self.temperature<=20:raise ValueError('Temperature in [1,20]')
         if type(self.bft) is not bool or type(self.native) is not bool or bool(self.zk_prover)!=bool(self.zk_verifier):raise ValueError('Explicit BFT/native and paired ZK tools required')
+        if self.proposal_source not in ('search','seeds','mixed'):raise ValueError('Proposal source')
+        if type(self.require_seal) is not bool:raise ValueError('Explicit seal policy required')
+        if self.require_seal and (self.mode not in ('strict','bicameral') or not self.native or not self.zk_prover):
+            raise ValueError('Required crystallization needs strict/bicameral, native emission and both ZK tools')
 
 
 def dump(path,value):path.write_text(json.dumps(value,sort_keys=True,indent=2)+'\n')
@@ -75,21 +81,28 @@ def run(spec,directory,*,options=None,jail=None):
     try:
         for cycle in range(config.cycles):
             if time.monotonic()-started>=config.wall_seconds:report['stop_reason']='wall_budget';break
-            proposals=[]
+            seeds=[];proposals=[]
             for c in problem['candidates']:
                 if mode in ('dream','bicameral'):
-                    proposals.append((('+',c,('const','0')),{'origin':'sandbox_checked_ast_mutation','mutation':'add-neutral-element','verified':False}))
+                    seeds.append((('+',c,('const','0')),{'origin':'sandbox_checked_ast_mutation','mutation':'add-neutral-element','verified':False}))
                 else:proposals.append((c,{'origin':'caller_seed','verified':False}))
-            if mode in ('dream','bicameral'):
+            if mode in ('dream','bicameral') and config.proposal_source!='seeds':
                 for i in range(config.proposals):
                     if time.monotonic()-started>=config.wall_seconds:break
                     result=propose(problem,seed=(config.seed+cycle*config.proposals+i)%(2**63),iterations=config.iterations,
                                    temperature=config.temperature,guide=config.guide,jail=jail)
                     if result['status']=='proposed':proposals.append((result['candidate'],{k:v for k,v in result.items() if k!='candidate'}))
                     else:report.setdefault('proposal_failures',[]).append(result)
+            if mode in ('dream','bicameral') and config.proposal_source!='search':proposals.extend(seeds)
             if mode in ('strict','empirical') and not proposals:raise ValueError('This mode requires explicit candidate hypotheses')
+            # Count unique hypotheses, not duplicated search outputs. Search
+            # proposals come first so caller seeds cannot starve the generator.
+            selected=[];identities=set(seen)
+            for candidate,origin in proposals:
+                identity=digest(flat(candidate,list(problem['grid'])))
+                if identity not in identities:selected.append((candidate,origin));identities.add(identity)
             accepted_this_cycle=False
-            for candidate,origin in proposals[:config.proposals]:
+            for candidate,origin in selected[:config.proposals]:
                 if time.monotonic()-started>=config.wall_seconds:report['stop_reason']='wall_budget';break
                 signature=novelty(candidate,problem)
                 identity=digest(flat(candidate,list(problem['grid'])))
@@ -122,7 +135,10 @@ def run(spec,directory,*,options=None,jail=None):
                         from omega_sovereign.bft import experiment
                         payload={'kind':'empirically_stable','candidate_sha256':identity,'evidence_sha256':digest(evidence),'formal_admission':False}
                         dump(folder/'ledger-object.json',payload)
-                        row['bft']=experiment(folder/'bft',value=digest(payload))
+                        try:row['bft']=experiment(folder/'bft',value=digest(payload))
+                        except (ValueError,RuntimeError,OSError) as error:
+                            row['ledger_error']=str(error)[-2000:];row['status']='empirical_ledger_failed'
+                            event(identity,phase,'fail_empirical_ledger');continue
                         row['bft']['scope']='local fixed-membership test cluster; not production network authority'
                     if mode=='empirical':accepted_this_cycle=True;continue
                     phase=event(identity,phase,'crystallize')
@@ -134,22 +150,53 @@ def run(spec,directory,*,options=None,jail=None):
                 if config.native:
                     try:
                         row['native']=bridge.emit_rv64(candidate,problem,folder/'native');phase=event(identity,phase,'emit');row['status']='native_emitted'
-                    except (ValueError,RuntimeError,OSError) as error:row['native_error']=str(error)[-1000:]
+                    except (ValueError,RuntimeError,OSError) as error:
+                        row['native_error']=str(error)[-1000:];row['status']='native_failed';phase=event(identity,phase,'fail_emit')
                 if config.zk_prover and phase=='native_emitted':
                     try:
                         raw,receipt=bridge.seal(candidate,problem,prover=config.zk_prover,verifier=config.zk_verifier)
-                        (folder/'receipt.stark').write_bytes(raw);dump(folder/'zk.json',receipt)
+                        (folder/'receipt.stark').write_bytes(raw);dump(folder/'zk.json',receipt);row['zk']=receipt
                         phase=event(identity,phase,'seal');row['status']='zk_verified';report['zk_verified']=True
-                    except (ValueError,RuntimeError,OSError) as error:row['zk_error']=str(error)[-2000:]
-                row['promotion']='pending_independent_approval';accepted_this_cycle=True
-                if mode=='bicameral':break
+                    except (ValueError,RuntimeError,OSError) as error:
+                        row['zk_error']=str(error)[-2000:];row['status']='zk_failed';phase=event(identity,phase,'fail_seal')
+                if phase=='zk_verified':
+                    from .crystallization import publish
+                    dump(folder/'hypothesis.json',{'format':'omega-cognitive-hypothesis-1','problem':spec,'candidate':render(candidate),'ast':tree(candidate)})
+                    try:
+                        row['crystallization']=publish(folder,empirical=mode!='strict')
+                        phase=event(identity,phase,'publish');row['status']='crystallized'
+                    except (ValueError,RuntimeError,OSError) as error:
+                        row['artifact_error']=str(error)[-2000:];row['status']='artifact_failed';phase=event(identity,phase,'fail_publish')
+                    if row['status']=='crystallized' and config.bft:
+                        try:
+                            from omega_sovereign.bft import experiment
+                            payload={'kind':'crystallized','candidate_sha256':identity,
+                                     'manifest_sha256':row['crystallization']['sha256'],'kernel_activated':False}
+                            dump(folder/'final-ledger-object.json',payload)
+                            row['final_bft']=experiment(folder/'bft-final',value=digest(payload))
+                        except (ValueError,RuntimeError,OSError) as error:
+                            row['ledger_error']=str(error)[-2000:];row['status']='ledger_failed';phase=event(identity,phase,'fail_ledger')
+                row['promotion']='pending_independent_approval'
+                target='crystallized' if config.zk_prover else 'native_emitted' if config.native else 'formal_verified'
+                accepted_this_cycle=row['status']==target
+                if mode=='bicameral' and accepted_this_cycle:break
             report['completed_cycles']+=1
-            if mode=='bicameral' and accepted_this_cycle:report['stop_reason']='formal_artifact_ready';break
+            if mode=='bicameral' and accepted_this_cycle:
+                report['stop_reason']='crystallization_ready' if config.zk_prover else 'formal_artifact_ready';break
         report['iid_trials_executed']=used
         report['iid_accounting_complete']=accounting_complete
         report['iid_trial_budget_reserved']=reserved
         report.setdefault('stop_reason','cycle_budget')
         report['status']='formal_verified' if any(c['formal_admission'] for c in report['candidates']) else 'empirically_stable' if any(c.get('empirical',{}).get('accepted') for c in report['candidates']) else 'quarantined' if mode=='dream' else 'no_admitted_hypothesis'
+        report['crystallization_complete']=any(c.get('status')=='crystallized' for c in report['candidates'])
+        if report['crystallization_complete']:report['status']='crystallized'
+        target='quarantined' if mode=='dream' else 'empirically_stable' if mode=='empirical' else 'crystallized' if config.zk_prover else 'native_emitted' if config.native else 'formal_verified'
+        report['completion_target']=target
+        report['configured_stages_complete']=any(c.get('status')==target for c in report['candidates'])
+        report['pending_stages']=[label for label,key in [('lean','formal_admission'),('rv64','native'),('stark','zk'),('artifact','crystallization')] if not any(c.get(key) for c in report['candidates'])]
+        if config.bft:
+            ledger='bft' if mode=='empirical' else 'final_bft'
+            if not any(c.get(ledger,{}).get('converged') for c in report['candidates']):report['pending_stages'].append('ledger')
         return report
     finally:
         report['artifact_sha256']={str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(root.rglob('*')) if p.is_file() and p.name!='report.json'}

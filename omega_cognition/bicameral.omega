@@ -18,7 +18,13 @@ funcao execute(r) {
  se(event=="unproved"&&phase=="formal_pending") { next="formal_unproved"; }
  se(event=="emit"&&phase=="formal_verified") { next="native_emitted"; }
  se(event=="seal"&&phase=="native_emitted") { next="zk_verified"; }
+ se(event=="fail_emit"&&phase=="formal_verified") { next="native_failed"; }
+ se(event=="fail_seal"&&phase=="native_emitted") { next="zk_failed"; }
+ se(event=="publish"&&phase=="zk_verified") { next="crystallized"; }
+ se(event=="fail_publish"&&phase=="zk_verified") { next="artifact_failed"; }
+ se(event=="fail_ledger"&&phase=="crystallized") { next="ledger_failed"; }
+ se(event=="fail_empirical_ledger"&&phase=="empirically_stable") { next="empirical_ledger_failed"; }
  se(next=="") { fail("Invalid cognitive transition"); }
  var out=obj();put(out,"mode",mode);put(out,"phase",next);put(out,"kernel_activated",0);
- put(out,"formal_admitted",contains(["formal_verified","native_emitted","zk_verified"],next));retornar out;
+ put(out,"formal_admitted",contains(["formal_verified","native_emitted","zk_verified","crystallized","native_failed","zk_failed","artifact_failed","ledger_failed"],next));retornar out;
 }

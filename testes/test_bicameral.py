@@ -114,16 +114,19 @@ def test_real_100000_trials_are_insufficient_for_requested_risk(spec):
 def test_sampling_grid_success_does_not_imply_universal_rational_proof(tmp_path):
     spec={'format':'omega-cognitive-problem-1','variables':{'x':{'lower':0,'upper':1,'denominator':1}},
           'reference':'0','training':[{'inputs':{'x':'0'},'output':'0'}],'candidates':['x*(x-1)']}
-    result=run(spec,tmp_path/'gap',options=Options(mode='bicameral',cases=100,epsilon='0.1',proposals=1,iterations=8,native=False))
+    result=run(spec,tmp_path/'gap',options=Options(mode='bicameral',cases=100,epsilon='0.1',proposals=1,iterations=8,native=False,proposal_source='seeds'))
     row=result['candidates'][0]
     assert row['empirical']['accepted'] and row['status']=='formal_unproved'
     assert not row['formal_admission'] and not result['kernel_activated']
 
 
 def test_real_bicameral_mutation_lean_and_rv64_chain(spec,tmp_path):
-    result=run(spec,tmp_path/'full',options=Options(mode='bicameral',cases=100,epsilon='0.1',proposals=1,iterations=32))
+    spec['candidates']=[]
+    result=run(spec,tmp_path/'full',options=Options(mode='bicameral',cases=100,epsilon='0.1',proposals=1,iterations=512,proposal_source='search'))
     row=result['candidates'][0]
-    assert row['origin']['mutation']=='add-neutral-element'
+    assert row['origin']['sandboxed'] and row['origin']['evaluations']>0
+    assert not result['crystallization_complete'] and result['configured_stages_complete']
+    assert result['pending_stages']==['stark','artifact']
     assert row['status']=='native_emitted' and row['formal_admission']
     assert row['native']['observed']=='1/1'
     assert not row['native']['universal_compiler_equivalence_proved']
